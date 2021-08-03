@@ -25,4 +25,11 @@ D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\W
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Word.dll
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.ResolveComReference.cache
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\Buttons.baml
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\App.baml
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\CheckBoxes.baml
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\Labels.baml
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\TextBoxes.baml
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\ComboBoxes.baml
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\FlowDocuments.baml
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache

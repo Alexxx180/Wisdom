@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:Wisdom"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Buttons.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resources/Styles/Labels.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resources/Styles/TextBoxes.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resources/Styles/CheckBoxes.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resources/Styles/ComboBoxes.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resources/Styles/FlowDocuments.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wisdom"
+        xmlns:bind="clr-namespace:Wisdom.Binds"
+        xmlns:writer="clr-namespace:Wisdom.Writers"
         mc:Ignorable="d"
         Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized">
     <Window.Resources>
+        
+        
         <Style TargetType="{x:Type MenuItem}" x:Key="MenuItemTextStyle" >
             <Setter Property="Template">
                 <Setter.Value>
@@ -89,7 +93,8 @@
 
             <Grid Grid.Row="1" Grid.Column="1" Visibility="Visible">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="0.225*"/>
+                    <ColumnDefinition Width="0.025*"/>
                     <ColumnDefinition Width="0.075*"/>
                     <ColumnDefinition Width="0.025*"/>
                     <ColumnDefinition Width="0.075*"/>
@@ -105,26 +110,16 @@
                     <ColumnDefinition Width="0.15*"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                <TextBox x:Name="Program" Text="Программа" Style="{StaticResource CaptionBox}"/>
 
-                <Label Content="Программа" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Padding="0,0,0,0" FontFamily="Cambria" FontSize="40" Panel.ZIndex="2" FontWeight="Bold"/>
+                <Button Click="Stepping" Tag="{x:Reference Name=Form1}" x:Name="Step1" Content="Шаг 1" Grid.Column="2" Style="{StaticResource Steps}"/>
+                <Button Click="Stepping" Tag="{x:Reference Name=Form2}" x:Name="Step2" Content="Шаг 2" Grid.Column="4" Style="{StaticResource Steps}"/>
+                <Button Click="Stepping" Tag="{x:Reference Name=Form3}" x:Name="Step3" Content="Шаг 3" Grid.Column="6" Style="{StaticResource Steps}"/>
+                <Button x:Name="Step4" Content="Шаг 4" Grid.Column="8" Style="{StaticResource Steps}"/>
+                <Button x:Name="Step5" Content="Шаг 5" Grid.Column="10" Style="{StaticResource Steps}"/>
+                <Button x:Name="Step6" Content="Шаг 6" Grid.Column="12" Style="{StaticResource Steps}"/>
 
-                <Label Content="&gt;" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Padding="0,0,0,0" FontFamily="Gill Sans" FontSize="40" Panel.ZIndex="2" Grid.Column="2"/>
-                <Label Content="&gt;" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Padding="0,0,0,0" FontFamily="Gill Sans" FontSize="40" Panel.ZIndex="2" Grid.Column="4"/>
-                <Label Content="&gt;" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Padding="0,0,0,0" FontFamily="Gill Sans" FontSize="40" Panel.ZIndex="2" Grid.Column="6"/>
-                <Label Content="&gt;" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Padding="0,0,0,0" FontFamily="Gill Sans" FontSize="40" Panel.ZIndex="2" Grid.Column="8"/>
-                <Label Content="&gt;" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Padding="0,0,0,0" FontFamily="Gill Sans" FontSize="40" Panel.ZIndex="2" Grid.Column="10"/>
-
-                <Button Click="Stepping" Tag="{x:Reference Name=Form1}" x:Name="Step1" Content="Шаг 1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="28" IsDefault="True" FontFamily="Cambria" FontWeight="Bold" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0" Foreground="#FF00A2E8" />
-                <Button Click="Stepping" Tag="{x:Reference Name=Form2}" x:Name="Step2" Content="Шаг 2" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="28" IsDefault="True" FontFamily="Cambria" FontWeight="Bold" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0" Foreground="#FF00A2E8" />
-                <Button x:Name="Step3" Content="Шаг 3" Grid.Column="5" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="28" IsDefault="True" FontFamily="Cambria" FontWeight="Bold" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0" Foreground="#FF00A2E8" />
-                <Button x:Name="Step4" Content="Шаг 4" Grid.Column="7" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="28" IsDefault="True" FontFamily="Cambria" FontWeight="Bold" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0" Foreground="#FF00A2E8" />
-                <Button x:Name="Step5" Content="Шаг 5" Grid.Column="9" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="28" IsDefault="True" FontFamily="Cambria" FontWeight="Bold" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0" Foreground="#FF00A2E8" />
-                <Button x:Name="Step6" Content="Шаг 6" Grid.Column="11" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="28" IsDefault="True" FontFamily="Cambria" FontWeight="Bold" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0" Foreground="#FF00A2E8" />
-
-                <Button x:Name="Create" Content="Подтвердить" Grid.Column="13" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="28" IsDefault="True" FontFamily="Cambria" FontWeight="Bold" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0" Foreground="#FF00A2E8" Click="Create_Click"/>
+                <Button x:Name="Create" Content="Подтвердить" Grid.Column="14" IsDefault="True" Style="{StaticResource Steps}"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1" Visibility="Hidden">
@@ -187,13 +182,13 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="Код и название дисциплины" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="7" VerticalAlignment="Bottom" FontSize="28"/>
-                <ComboBox x:Name="DpSelect" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="8" VerticalAlignment="Top" FontSize="28" SelectionChanged="DpSelect_SelectionChanged" IsEditable="True" Grid.RowSpan="3">
+                <ComboBox x:Name="DpSelect" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="8" VerticalAlignment="Top" FontSize="28" IsEditable="True" Grid.RowSpan="3">
                     <ComboBoxItem Content="ОГСЭ.01 Основы философии"/>
                     <ComboBoxItem Content="ОГСЭ.02 Технология разработки и защиты баз данных"/>
                 </ComboBox>
 
                 <Label Content="Код и название специальности" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="10" VerticalAlignment="Bottom" FontSize="28"/>
-                <ComboBox x:Name="SpSelect" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="11" VerticalAlignment="Top" FontSize="28" SelectionChanged="SpSelect_SelectionChanged" IsEditable="True" Grid.RowSpan="3">
+                <ComboBox x:Name="SpSelect" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="11" VerticalAlignment="Top" FontSize="28" IsEditable="True" Grid.RowSpan="3">
                     <ComboBoxItem Content="15.02.07 Автоматизация технологических процессов и производств (по отраслям)"/>
                     <ComboBoxItem Content="09.02.03 Программирование в компьютерных системах"/>
                 </ComboBox>
@@ -202,7 +197,6 @@
                 <StackPanel Grid.Row="13" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
                     <TextBox x:Name="Usual" TextAlignment="Right" MaxLength="3" MinWidth="70" FontSize="26" PreviewTextInput="Numbers" TextChanged="Hours"></TextBox>
                     <StackPanel x:Name="N12" Tag="{x:Reference Name=Usual}">
-                        <!---->
                         <Button FontFamily="Segoe UI" FontSize="13" Tag="1" Click="Counting">▲</Button>
                         <Button FontFamily="Segoe UI" FontSize="13" Tag="-1" Click="Counting">▼</Button>
                     </StackPanel>
@@ -217,7 +211,17 @@
                 </StackPanel>
 
                 <Label Content="Максимальная учебная нагрузка: "  Grid.Row="17"  Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="28"></Label>
-                <Label x:Name="Max" Content="" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,0,0" Grid.Row="17" VerticalAlignment="Bottom" FontSize="28"/>
+                <Label x:Name="Max" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,0,0" Grid.Row="17" VerticalAlignment="Bottom" FontSize="28">
+                    <Label.Resources>
+                        <bind:SumConverter x:Key="SumConverter" />
+                    </Label.Resources>
+                    <Label.Content>
+                        <MultiBinding Converter="{StaticResource SumConverter}">
+                            <Binding Path="Text" ElementName="Usual" />
+                            <Binding Path="Text" ElementName="Self" />
+                        </MultiBinding>
+                    </Label.Content>
+                </Label>
 
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5">
                     <Grid>
@@ -367,14 +371,15 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="1" Grid.Column="4" Content="Объём часов:" FontSize="26" FontWeight="Bold" Background="#FFFFFCC7"></Label>
-                <Label Grid.Row="1" Grid.Column="5" Content="{Binding ElementName=Max,Path=Content}" FontSize="26" FontWeight="Bold" Background="#FFFFFCC7"></Label>
-                <Label Grid.Row="2" Grid.Column="2" Content="Секция" FontSize="26" Background="#FF03C6FF" FontWeight="Bold" Foreground="White"></Label>
+                <Label Grid.Row="1" Grid.Column="5" HorizontalContentAlignment="Right" Content="{Binding ElementName=Max,Path=Content}" FontSize="26" FontWeight="Bold" Background="#FFFFFCC7"></Label>
 
-                <Label Grid.Row="2" Grid.Column="3" Content="Наименование" FontSize="26" Grid.ColumnSpan="2" Background="#FF03C6FF" FontWeight="Bold" Foreground="White"></Label>
-                <Label Grid.Row="2" Grid.Column="5" Content="Часы" FontSize="26" Background="#FF03C6FF" FontWeight="Bold" Foreground="White"></Label>
+                <Label Grid.Row="2" Grid.Column="2" Content="Секция"  Style="{StaticResource ListCaptions}"></Label>
+                <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Content="Наименование" Style="{StaticResource ListCaptions}"></Label>
+                <Label Grid.Row="2" Grid.Column="5" Content="Часы" Style="{StaticResource ListCaptions}"></Label>
+                
                 <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="9">
-                    <StackPanel Background="#FFFFFCC7">
-                        <Grid>
+                    <StackPanel Background="#FFFFFCC7" Tag="{x:Reference AllSectionsContents}">
+                        <Grid Tag="{x:Reference Name=Topic1}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.05*" />
                                 <ColumnDefinition Width="0.15*" />
@@ -387,34 +392,53 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <Button Content="X"  FontWeight="Bold" FontFamily="Gill Sans MT" FontSize="26" Background="#FFFF2A2A" Foreground="White" BorderBrush="Black"></Button>
-                            <Label FontSize="26" Content="Раздел 1." FontWeight="Bold" Grid.Column="1" HorizontalAlignment="Right"></Label>
-                            <TextBox FontSize="26" MaxLength="3" Grid.Column="2"></TextBox>
-                            <TextBox FontSize="26" MaxLength="3" Grid.Column="3"></TextBox>
-
-                            <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
-                                <StackPanel Background="#FFEEEBB6">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.05*" />
-                                            <ColumnDefinition Width="0.15*" />
-                                            <ColumnDefinition Width="0.7*" />
-                                            <ColumnDefinition Width="0.1*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                        </Grid.RowDefinitions>
+                            <Button Click="DeleteTopicClick" Tag="{x:Reference Name=Themes}" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
+                            <Label x:Name="SectionNo" Content="Раздел 1." Grid.Column="1"  Style="{StaticResource CaptionSections}"></Label>
+                            <TextBox x:Name="SectionName" FontWeight="Bold" Text="Предмет философии и ее история" Grid.Column="2" Style="{StaticResource RegularBox}"></TextBox>
+                            <TextBox x:Name="SectionHours" Grid.Column="3" Text="31" Style="{StaticResource HoursBox}"></TextBox>
 
 
-                                        <Button Content="X"  FontWeight="Bold" FontFamily="Gill Sans MT" FontSize="26" Background="#FFFF2A2A" Foreground="White" BorderBrush="Black"></Button>
-                                        <Label FontSize="26" FontWeight="Bold" Content="Тема 1.1." Grid.Column="1" HorizontalAlignment="Right"></Label>
-                                        <TextBox FontSize="26" MaxLength="3" Grid.Column="2"></TextBox>
-                                        <Label FontSize="26" Grid.Column="3"></Label>
+                            <StackPanel x:Name="Themes" Background="#FFEEEBB6" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+                                <Grid Tag="{x:Reference Name=Theme1}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.05*" />
+                                        <ColumnDefinition Width="0.15*" />
+                                        <ColumnDefinition Width="0.7*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                    </Grid.ColumnDefinitions>
 
-                                        <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
-                                            <StackPanel Background="#FFEEEBB6">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Button Click="DeleteThemeClick" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
+                                    <Label x:Name="ThemeNo" Content="Тема 1.1." Grid.Column="1"  Style="{StaticResource CaptionSections}"></Label>
+                                    <TextBox x:Name="ThemeName" Grid.Column="2" Text="Основные понятия и предмет философии" Style="{StaticResource SubCaptionBox}"></TextBox>
+                                    <TextBox x:Name="ThemeLevel" Grid.Column="3" Text="2" Style="{StaticResource HoursBox}"></TextBox>
+
+
+                                    <StackPanel Background="#FFEEEBB6" Tag="{x:Reference Name=ThemeContents}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+                                        <Grid Tag="{x:Reference Name=ThemeContents}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.05*" />
+                                                <ColumnDefinition Width="0.15*" />
+                                                <ColumnDefinition Width="0.7*" />
+                                                <ColumnDefinition Width="0.1*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition></RowDefinition>
+                                            </Grid.RowDefinitions>
+
+                                            <Label Content="Содержание учебного материала" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource RegularSections}"></Label>
+
+                                            <Label Grid.Row="1" Grid.Column="1" Content="№" Style="{StaticResource ListCaptions}"></Label>
+                                            <Label Grid.Row="1" Grid.Column="2" Content="Описание" Style="{StaticResource ListCaptions}"></Label>
+                                            <Label Grid.Row="1" Grid.Column="3" Content="Часы" Style="{StaticResource ListCaptions}"></Label>
+                                            <StackPanel Grid.Row="2" Grid.ColumnSpan="5" Tag="{x:Reference Name=EduContents}">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="0.05*" />
@@ -423,80 +447,51 @@
                                                         <ColumnDefinition Width="0.1*" />
                                                     </Grid.ColumnDefinitions>
 
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition></RowDefinition>
-                                                        <RowDefinition></RowDefinition>
-                                                        <RowDefinition></RowDefinition>
-                                                        <RowDefinition></RowDefinition>
-                                                        <RowDefinition></RowDefinition>
-                                                        <RowDefinition></RowDefinition>
-                                                    </Grid.RowDefinitions>
-
-                                                    <Label FontSize="26" Content="Содержание учебного материала" Grid.Column="1" HorizontalAlignment="Left" Grid.ColumnSpan="3"></Label>
-
-                                                    <Label Grid.Row="1" Grid.Column="1" Content="№" FontSize="26" Background="#FF03C6FF" FontWeight="Bold" Foreground="White"></Label>
-                                                    <Label Grid.Row="1" Grid.Column="2" Content="Описание" FontSize="26" Background="#FF03C6FF" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="2"></Label>
-                                                    <ScrollViewer Grid.Row="2" Grid.ColumnSpan="5">
-                                                        <StackPanel>
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="0.05*" />
-                                                                    <ColumnDefinition Width="0.15*" />
-                                                                    <ColumnDefinition Width="0.7*" />
-                                                                    <ColumnDefinition Width="0.1*" />
-                                                                </Grid.ColumnDefinitions>
-
-                                                                <Grid.RowDefinitions>
-                                                                    <RowDefinition></RowDefinition>
-                                                                    <RowDefinition></RowDefinition>
-                                                                    <RowDefinition></RowDefinition>
-                                                                    <RowDefinition></RowDefinition>
-                                                                    <RowDefinition></RowDefinition>
-                                                                    <RowDefinition></RowDefinition>
-                                                                </Grid.RowDefinitions>
-
-                                                                <Button Content="+" FontSize="32" FontFamily="Gill Sans Ultra Bold" Background="#FF00FF2A" Foreground="White" BorderBrush="Black"></Button>
-                                                                <Label Grid.Column="1" FontSize="26" Content="1" HorizontalAlignment="Center"></Label>
-                                                                <TextBox FontSize="26" Grid.Column="2" Grid.ColumnSpan="2"></TextBox>
-                                                            </Grid>
-
-                                                        </StackPanel>
-                                                    </ScrollViewer>
-
-                                                    <Button Grid.Row="3" Content="+" FontSize="32" FontFamily="Gill Sans Ultra Bold" Background="#FF00FF2A" Foreground="White" BorderBrush="Black"></Button>
-                                                    <ComboBox Grid.Row="3" FontSize="26" Grid.Column="1" Grid.ColumnSpan="2">
-                                                        <ComboBoxItem>Практические занятия</ComboBoxItem>
-                                                        <ComboBoxItem>Контрольная работа</ComboBoxItem>
-                                                        <ComboBoxItem>Самостоятельная работа</ComboBoxItem>
-                                                    </ComboBox>
-                                                    <CheckBox Grid.Row="3" FontSize="13" FontFamily="Gill Sans Ultra Bold"  Grid.Column="3" VerticalAlignment="Center" Content=" >1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center">
-                                                        <CheckBox.RenderTransform>
-                                                            <TransformGroup>
-                                                                <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
-                                                                <SkewTransform/>
-                                                                <RotateTransform/>
-                                                                <TranslateTransform/>
-                                                            </TransformGroup>
-                                                        </CheckBox.RenderTransform>
-                                                    </CheckBox>
+                                                    <Button Click="AddContent" Style="{StaticResource ResourceKey=AddButton}"></Button>
+                                                    <Label Grid.Column="1" Content="1"  Style="{StaticResource ResourceKey=No2}"></Label>
+                                                    <TextBox Grid.Column="2" Grid.ColumnSpan="1"  Style="{StaticResource RegularBox}"></TextBox>
+                                                    <TextBox Grid.Column="3" Grid.ColumnSpan="1"  Style="{StaticResource HoursBox}"></TextBox>
                                                 </Grid>
-                                            </StackPanel>
-                                        </ScrollViewer>
-                                    </Grid>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.05*" />
-                                            <ColumnDefinition Width="0.15*" />
-                                            <ColumnDefinition Width="0.7*" />
-                                            <ColumnDefinition Width="0.1*" />
-                                        </Grid.ColumnDefinitions>
 
-                                        <Button Content="+" FontSize="32" FontFamily="Gill Sans Ultra Bold" Background="#FF00FF2A" Foreground="White" BorderBrush="Black"></Button>
-                                        <Label FontSize="26" FontWeight="Bold" Content="Тема 1.2." Grid.Column="1" HorizontalAlignment="Right"></Label>
-                                        <TextBox Grid.Column="2" FontSize="26"></TextBox>
-                                    </Grid>
-                                </StackPanel>
-                            </ScrollViewer>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.05*" />
+                                                <ColumnDefinition Width="0.15*" />
+                                                <ColumnDefinition Width="0.7*" />
+                                                <ColumnDefinition Width="0.1*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Button Click="NewTypeContent" Grid.Row="3" Style="{StaticResource ResourceKey=AddButton}"></Button>
+                                            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SubCaptionBox}">
+                                                <ComboBox.ItemContainerStyle>
+                                                    <StaticResource ResourceKey="ItemsBox"></StaticResource>
+                                                </ComboBox.ItemContainerStyle>
+                                                <ComboBoxItem>Практические занятия</ComboBoxItem>
+                                                <ComboBoxItem>Контрольная работа</ComboBoxItem>
+                                                <ComboBoxItem>Самостоятельная работа</ComboBoxItem>
+                                            </ComboBox>
+                                            <CheckBox Grid.Row="3" Grid.Column="3" Content=" >1" Style="{StaticResource RegularCheckBox}">
+
+                                            </CheckBox>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.05*" />
+                                        <ColumnDefinition Width="0.15*" />
+                                        <ColumnDefinition Width="0.7*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Style="{StaticResource ResourceKey=AddButton}"></Button>
+                                    <Label Content="Тема 1.2." Grid.Column="1" Style="{StaticResource CaptionSections}"></Label>
+                                    <TextBox Grid.Column="2" Style="{StaticResource RegularBox}"></TextBox>
+                                    <TextBox Grid.Column="3" Style="{StaticResource HoursBox}" PreviewTextInput="Numbers" TextChanged="Hours"></TextBox>
+                                </Grid>
+                            </StackPanel>
                         </Grid>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -506,17 +501,17 @@
                                 <ColumnDefinition Width="0.1*" />
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="+" FontSize="32" FontFamily="Gill Sans Ultra Bold" Background="#FF00FF2A" Foreground="White" BorderBrush="Black"></Button>
-                            <Label FontSize="26" FontWeight="Bold" Content="Раздел 2." Grid.Column="1" HorizontalAlignment="Right"></Label>
-                            <TextBox Grid.Column="2" FontSize="26"></TextBox>
+                            <Button Style="{StaticResource ResourceKey=AddButton}"></Button>
+                            <Label Content="Раздел 2." Grid.Column="1"  Style="{StaticResource CaptionSections}"></Label>
+                            <TextBox Grid.Column="2" Style="{StaticResource RegularBox}"></TextBox>
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
 
-                <TextBox x:Name="LvComment" Grid.Row="13" Grid.Column="1" TextWrapping="Wrap" Text="Для характеристики уровня освоения учебного материала используются следующие обозначения:" FontSize="26" Grid.ColumnSpan="5" Grid.RowSpan="2" VerticalAlignment="Center"></TextBox>
-                <Label Grid.Row="15" FontSize="26"  Grid.Column="2" Content="№" Background="#FF03C6FF" FontWeight="Bold" Foreground="White"></Label>
-                <Label Grid.Row="15" FontSize="26"  Grid.Column="3" Content="Название" Background="#FF03C6FF" FontWeight="Bold" Foreground="White"></Label>
-                <Label Grid.Row="15" FontSize="26"  Grid.Column="4" Content="Описание" Background="#FF03C6FF" FontWeight="Bold" Foreground="White" Grid.ColumnSpan="2"></Label>
+                <TextBox x:Name="LvComment" Grid.Row="13" Grid.Column="1" TextWrapping="Wrap" Text="Для характеристики уровня освоения учебного материала используются следующие обозначения:" Grid.ColumnSpan="5" Grid.RowSpan="2" VerticalContentAlignment="Center" Style="{StaticResource SubCaptionBox}"></TextBox>
+                <Label Grid.Row="15" Grid.Column="2" Content="№" Style="{StaticResource ListCaptions}"></Label>
+                <Label Grid.Row="15" Grid.Column="3" Content="Название" Style="{StaticResource ListCaptions}"></Label>
+                <Label Grid.Row="15" Grid.Column="4" Grid.ColumnSpan="2" Content="Описание" Style="{StaticResource ListCaptions}"></Label>
                 <ScrollViewer  Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="3">
                     <StackPanel x:Name="Levels"  Background="#FFFFFCC7">
                         <Grid x:Name="Level1" Tag="{x:Reference Name=LevelsText1}">
@@ -527,10 +522,10 @@
                                 <ColumnDefinition Width="0.5*" />
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="X" Click="DeleteLevel" Tag="{x:Reference Name=Level1}" FontWeight="Bold" FontFamily="Gill Sans MT" FontSize="26" Background="#FFFF2A2A" Foreground="White" BorderBrush="Black"></Button>
-                            <Label x:Name="LevelNo1" Grid.Column="1"  FontSize="26" Content="1." HorizontalAlignment="Right"></Label>
-                            <TextBox x:Name="LevelName1" Grid.Column="2" FontSize="26" Text="ознакомительный"></TextBox>
-                            <TextBox x:Name="LevelDescrp1" Grid.Column="3" FontSize="26" Text="узнавание ранее изученных объектов, свойств"></TextBox>
+                            <Button Click="DeleteLevel" Tag="{x:Reference Name=Level1}" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
+                            <Label x:Name="LevelNo1" Grid.Column="1"  FontSize="26" Content="1." Style="{StaticResource No1}"></Label>
+                            <TextBox x:Name="LevelName1" Grid.Column="2" Text="ознакомительный" Style="{StaticResource RegularBox}"></TextBox>
+                            <TextBox x:Name="LevelDescrp1" Grid.Column="3" Text="узнавание ранее изученных объектов, свойств" Style="{StaticResource RegularBox}"></TextBox>
                         </Grid>
                         <Grid x:Name="Level2" Tag="{x:Reference Name=LevelsText2}">
                             <Grid.ColumnDefinitions>
@@ -540,10 +535,10 @@
                                 <ColumnDefinition Width="0.5*" />
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="X" Click="DeleteLevel" Tag="{x:Reference Name=Level2}" FontWeight="Bold" FontFamily="Gill Sans MT" FontSize="26" Background="#FFFF2A2A" Foreground="White" BorderBrush="Black"></Button>
-                            <Label Grid.Column="1"  x:Name="LevelNo2" FontSize="26" Content="2." HorizontalAlignment="Right"></Label>
-                            <TextBox x:Name="LevelName2" Grid.Column="2" FontSize="26" Text="репродуктивный"></TextBox>
-                            <TextBox x:Name="LevelDescrp2" Grid.Column="3" FontSize="26" Text="выполнение деятельности по образцу, инструкции или под руководством"></TextBox>
+                            <Button Click="DeleteLevel" Tag="{x:Reference Name=Level2}" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
+                            <Label Grid.Column="1"  x:Name="LevelNo2" Content="2." Style="{StaticResource No1}"></Label>
+                            <TextBox x:Name="LevelName2" Grid.Column="2" Text="репродуктивный" Style="{StaticResource RegularBox}"></TextBox>
+                            <TextBox x:Name="LevelDescrp2" Grid.Column="3" Text="выполнение деятельности по образцу, инструкции или под руководством" Style="{StaticResource RegularBox}"></TextBox>
                         </Grid>
                         <Grid x:Name="Level3" Tag="{x:Reference Name=LevelsText3}">
                             <Grid.ColumnDefinitions>
@@ -553,12 +548,12 @@
                                 <ColumnDefinition Width="0.5*" />
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="X" Click="DeleteLevel" Tag="{x:Reference Name=Level3}" FontWeight="Bold" FontFamily="Gill Sans MT" FontSize="26" Background="#FFFF2A2A" Foreground="White" BorderBrush="Black"></Button>
-                            <Label Grid.Column="1"  x:Name="LevelNo3" FontSize="26" Content="3." HorizontalAlignment="Right"></Label>
-                            <TextBox x:Name="LevelName3" Grid.Column="2" FontSize="26" Text="продуктивный"></TextBox>
-                            <TextBox x:Name="LevelDescrp3"  Grid.Column="3" FontSize="26" Text="планирование и самостоятельное выполнение деятельности, решение проблемных задач"></TextBox>
+                            <Button Click="DeleteLevel" Tag="{x:Reference Name=Level3}" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
+                            <Label Grid.Column="1"  x:Name="LevelNo3" Content="3." Style="{StaticResource No1}"></Label>
+                            <TextBox x:Name="LevelName3" Grid.Column="2" Text="продуктивный" Style="{StaticResource RegularBox}"></TextBox>
+                            <TextBox x:Name="LevelDescrp3"  Grid.Column="3" Text="планирование и самостоятельное выполнение деятельности, решение проблемных задач" Style="{StaticResource RegularBox}"></TextBox>
                         </Grid>
-                        <Grid x:Name="NextLevel">
+                        <Grid x:Name="NextLevel" Tag="{x:Reference LevelsText}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.05*" />
                                 <ColumnDefinition Width="0.15*" />
@@ -566,10 +561,10 @@
                                 <ColumnDefinition Width="0.5*" />
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="+" Click="AddLevel" FontSize="32" FontFamily="Gill Sans Ultra Bold" Background="#FF00FF2A" Foreground="White" BorderBrush="Black"></Button>
-                            <Label Grid.Column="1"  FontSize="26" Content="4." HorizontalAlignment="Right"></Label>
-                            <TextBox Grid.Column="2" FontSize="26" Text=""></TextBox>
-                            <TextBox Grid.Column="3" FontSize="26" Text=""></TextBox>
+                            <Button Click="AddLevel" Style="{StaticResource ResourceKey=AddButton}"></Button>
+                            <Label Grid.Column="1" Content="4." Style="{StaticResource No1}"></Label>
+                            <TextBox Grid.Column="2" Text="" Style="{StaticResource RegularBox}"></TextBox>
+                            <TextBox Grid.Column="3" Text="" Style="{StaticResource RegularBox}"></TextBox>
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
@@ -596,7 +591,190 @@
                     <Border BorderThickness="1" BorderBrush="Black" Width="795"  Margin="0,0,0,0">
                         <FlowDocumentReader x:Name="FlowReader" Grid.Row="1" Grid.Column="1" Height="1122.519685" Width="793.700787" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="14pt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Language="RU" >
                             <FlowDocument x:Name="Struct" PagePadding="3cm,2cm,1cm,2cm">
-                                <!--<Section x:Name="Sheet1">
+                                <Section BreakPageBefore="True" x:Name="Sheet6">
+                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
+                                        <Run FontWeight="Bold" Text="    2.2 Тематический план и содержание учебной дисциплины "></Run>
+                                    </Paragraph>
+                                    <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0" >
+                                        <Table.Columns>
+                                            <TableColumn Width="0.2*"></TableColumn>
+                                            <TableColumn Width="0.55*"></TableColumn>
+                                            <TableColumn Width="0.1*"></TableColumn>
+                                            <TableColumn Width="0.15*"></TableColumn>
+                                        </Table.Columns>
+                                        <TableRowGroup x:Name="AllSectionsContents">
+                                            <TableRow>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="Наименование разделов и тем"></Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="Содержание учебного материала, лабораторные и практические работы, самостоятельная работа обучающихся, курсовая работа (проект)"></Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="Объем часов"></Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="Уровень освоения"></Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="1"></Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="2"></Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="3"></Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="4"></Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                            </TableRow>
+                                            <TableRow x:Name="Topic1">
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold">
+                                                            <Run.Resources>
+                                                                <bind:SectionsConverter x:Key="SectionsConverter" />
+                                                            </Run.Resources>
+                                                            <Run.Text>
+                                                                <MultiBinding Converter="{StaticResource SectionsConverter}">
+                                                                    <Binding Path="Content" ElementName="SectionNo" />
+                                                                    <Binding Path="Text" ElementName="SectionName" />
+                                                                </MultiBinding>
+                                                            </Run.Text>
+                                                        </Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="{Binding ElementName=SectionHours, Path=Text}">
+                                                        </Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                </TableCell>
+                                            </TableRow>
+                                            <TableRow x:Name="Theme1">
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold">
+                                                            <Run.Resources>
+                                                                <bind:SectionsConverter x:Key="SectionsConverter" />
+                                                            </Run.Resources>
+                                                            <Run.Text>
+                                                                <MultiBinding Converter="{StaticResource SectionsConverter}">
+                                                                    <Binding Path="Content" ElementName="ThemeNo" />
+                                                                    <Binding Path="Text" ElementName="ThemeName" />
+                                                                </MultiBinding>
+                                                            </Run.Text>
+                                                        </Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5" ColumnSpan="2">
+                                                    <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0" Margin="0" Padding="0">
+                                                        <Table.Columns>
+                                                            <TableColumn Width="0.848*"></TableColumn>
+                                                            <TableColumn Width="0.152*"></TableColumn>
+                                                        </Table.Columns>
+                                                        <TableRowGroup x:Name="ThemeContents">
+                                                            <TableRow>
+                                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                                    <Paragraph FontSize="14pt" FontFamily="Times New Roman">
+                                                                        <Run Text="Содержание учебного материала"></Run>
+                                                                    </Paragraph>
+                                                                </TableCell>
+                                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                                    
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell BorderBrush="Black" BorderThickness="0.5"  ColumnSpan="2">
+                                                                    <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0" Margin="0" Padding="0">
+                                                                        <Table.Columns>
+                                                                            <TableColumn Width="0.048*"></TableColumn>
+                                                                            <TableColumn Width="0.8*"></TableColumn>
+                                                                            <TableColumn Width="0.152*"></TableColumn>
+                                                                        </Table.Columns>
+                                                                        <TableRowGroup x:Name="EduContents"></TableRowGroup>
+                                                                    </Table>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        </TableRowGroup>
+                                                    </Table>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="{Binding ElementName=ThemeLevel, Path=Text}">
+                                                        </Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableRowGroup>
+                                    </Table>
+                                    <Paragraph x:Name="LevelsText" FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
+                                        <Run Text="{Binding ElementName=LvComment, Path=Text}"></Run>
+                                        <LineBreak/>
+                                        <Run x:Name="LevelsText1">
+                                            <Run.Resources>
+                                                <bind:LevelsConverter x:Key="LevelsConverter" />
+                                            </Run.Resources>
+                                            <Run.Text>
+                                                <MultiBinding Converter="{StaticResource LevelsConverter}">
+                                                    <Binding Path="Content" ElementName="LevelNo1" />
+                                                    <Binding Path="Text" ElementName="LevelName1" />
+                                                    <Binding Path="Text" ElementName="LevelDescrp1" />
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                        <Run x:Name="LevelsText2">
+                                            <Run.Resources>
+                                                <bind:LevelsConverter x:Key="LevelsConverter" />
+                                            </Run.Resources>
+                                            <Run.Text>
+                                                <MultiBinding Converter="{StaticResource LevelsConverter}">
+                                                    <Binding Path="Content" ElementName="LevelNo2" />
+                                                    <Binding Path="Text" ElementName="LevelName2" />
+                                                    <Binding Path="Text" ElementName="LevelDescrp2" />
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                        <Run x:Name="LevelsText3">
+                                            <Run.Resources>
+                                                <bind:LevelsConverter x:Key="LevelsConverter" />
+                                            </Run.Resources>
+                                            <Run.Text>
+                                                <MultiBinding Converter="{StaticResource LevelsConverter}">
+                                                    <Binding Path="Content" ElementName="LevelNo3" />
+                                                    <Binding Path="Text" ElementName="LevelName3" />
+                                                    <Binding Path="Text" ElementName="LevelDescrp3" />
+                                                </MultiBinding>
+                                            </Run.Text>
+                                        </Run>
+                                    </Paragraph>
+                                </Section>
+
+
+                                <Section x:Name="Sheet1" BreakPageBefore="True">
                                     <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0">
                                         <Table.Columns>
                                             <TableColumn Width="0.125*"></TableColumn>
@@ -645,13 +823,13 @@
                                     </Table>
 
                                     <Paragraph Margin="0,0,0,0" FontSize="14pt" FontFamily="Times New Roman" Padding="0,0,0,0" FontWeight="Bold" TextAlignment="Center">
-                                        <Run x:Name="DpRep">ОГСЭ.01 ОСНОВЫ ФИЛОСОФИИ</Run>
+                                        <Run x:Name="DpRep" Text="{Binding ElementName=DpSelect, Path=Text}"></Run>
                                     </Paragraph>
                                     <Paragraph  Margin="Auto,24pt,Auto,16pt" FontSize="14pt" FontFamily="Times New Roman" Padding="0,0,0,0" TextAlignment="Center" >
                                         <Run>Специальности:</Run>
                                     </Paragraph>
                                     <Paragraph Margin="0,0,0,0" FontSize="14pt" FontFamily="Times New Roman" Padding="0,0,0,0" FontWeight="Bold" TextAlignment="Center">
-                                        <Run x:Name="SpRep">15.02.07 Автоматизация технологических процессов и производств (по отраслям)</Run>
+                                        <Run x:Name="SpRep" Text="{Binding ElementName=SpSelect, Path=Text}"></Run>
                                     </Paragraph>
 
                                     <Paragraph Margin="0,0,0,0" FontSize="14pt" FontFamily="Times New Roman" FontWeight="Normal" Padding="0,0,0,0" TextAlignment="Center">
@@ -741,8 +919,7 @@
                                     <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
                                         <Run FontWeight="Bold" Text="1. ПАСПОРТ РАБОЧЕЙ  ПРОГРАММЫ УЧЕБНОЙ ДИСЦИПЛИНЫ"></Run>
                                         <LineBreak/>
-                                        «
-                                        <Run x:Name="D3" Text="{Binding ElementName=DpSelect, Path=Text}"></Run> »
+                                        «<Run x:Name="D3" Text="{Binding ElementName=DpSelect, Path=Text}"></Run>»
                                     </Paragraph>
                                     <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
                                         <Run FontWeight="Bold" Text="1.1. Область применения рабочей программы"></Run>
@@ -932,123 +1109,9 @@
                                             </TableRow>
                                         </TableRowGroup>
                                     </Table>
-                                </Section> -->
+                                </Section> 
 
-                                <Section BreakPageBefore="True" x:Name="Sheet6">
-                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
-                                        <Run FontWeight="Bold" Text="    2.2 Тематический план и содержание учебной дисциплины "></Run>
-                                    </Paragraph>
-                                    <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0" >
-                                        <Table.Columns>
-                                            <TableColumn Width="0.2*"></TableColumn>
-                                            <TableColumn Width="0.55*"></TableColumn>
-                                            <TableColumn Width="0.1*"></TableColumn>
-                                            <TableColumn Width="0.15*"></TableColumn>
-                                        </Table.Columns>
-                                        <TableRowGroup>
-                                            <TableRow>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="Наименование разделов и тем"></Run>
-                                                    </Paragraph>
-                                                </TableCell>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="Содержание учебного материала, лабораторные и практические работы, самостоятельная работа обучающихся, курсовая работа (проект)"></Run>
-                                                    </Paragraph>
-                                                </TableCell>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="Объем часов"></Run>
-                                                    </Paragraph>
-                                                </TableCell>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="Уровень освоения"></Run>
-                                                    </Paragraph>
-                                                </TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="1"></Run>
-                                                    </Paragraph>
-                                                </TableCell>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="2"></Run>
-                                                    </Paragraph>
-                                                </TableCell>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="3"></Run>
-                                                    </Paragraph>
-                                                </TableCell>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="4"></Run>
-                                                    </Paragraph>
-                                                </TableCell>
-                                            </TableRow>
-                                            <TableRow>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="4"></Run>
-                                                    </Paragraph>
-                                                </TableCell>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                </TableCell>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="4"></Run>
-                                                    </Paragraph>
-                                                </TableCell>
-                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                            </TableRow>
-                                        </TableRowGroup>
-                                    </Table>
-                                    <Paragraph x:Name="LevelsText" FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
-                                        <Run Text="{Binding ElementName=LvComment, Path=Text}"></Run>
-                                        <LineBreak/>
-                                        <Run x:Name="LevelsText1">
-                                            <Run.Resources>
-                                                <local:LevelsConverter x:Key="LevelsConverter" />
-                                            </Run.Resources>
-                                            <Run.Text>
-                                                <MultiBinding Converter="{StaticResource LevelsConverter}">
-                                                    <Binding Path="Content" ElementName="LevelNo1" />
-                                                    <Binding Path="Text" ElementName="LevelName1" />
-                                                    <Binding Path="Text" ElementName="LevelDescrp1" />
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                        <Run x:Name="LevelsText2">
-                                            <Run.Resources>
-                                                <local:LevelsConverter x:Key="LevelsConverter" />
-                                            </Run.Resources>
-                                            <Run.Text>
-                                                <MultiBinding Converter="{StaticResource LevelsConverter}">
-                                                    <Binding Path="Content" ElementName="LevelNo2" />
-                                                    <Binding Path="Text" ElementName="LevelName2" />
-                                                    <Binding Path="Text" ElementName="LevelDescrp2" />
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                        <Run x:Name="LevelsText3">
-                                            <Run.Resources>
-                                                <local:LevelsConverter x:Key="LevelsConverter" />
-                                            </Run.Resources>
-                                            <Run.Text>
-                                                <MultiBinding Converter="{StaticResource LevelsConverter}">
-                                                    <Binding Path="Content" ElementName="LevelNo3" />
-                                                    <Binding Path="Text" ElementName="LevelName3" />
-                                                    <Binding Path="Text" ElementName="LevelDescrp3" />
-                                                </MultiBinding>
-                                            </Run.Text>
-                                        </Run>
-                                    </Paragraph>
-                                </Section>
-
+                                
                                 <Section BreakPageBefore="True" x:Name="Sheet7">
                                     <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
                                         <Run Text="ЛИСТ РЕГИСТРАЦИИ ИЗМЕНЕНИЙ"></Run>

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\App.xaml
-21111155301
+81209562038
 
-51586318449
+141215942261
 1951135133781
-AddProg.xaml;MainWindow.xaml;
+AddProg.xaml;MainWindow.xaml;Resources\Styles\Buttons.xaml;Resources\Styles\CheckBoxes.xaml;Resources\Styles\ComboBoxes.xaml;Resources\Styles\FlowDocuments.xaml;Resources\Styles\Labels.xaml;Resources\Styles\TextBoxes.xaml;
 
 False
 
