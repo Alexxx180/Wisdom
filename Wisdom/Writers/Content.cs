@@ -43,6 +43,67 @@ namespace Wisdom.Writers
             levels.Children.Add(next);
             return delete;
         }
+        public static Button TextContent2(Button btn, Button delete)
+        {
+            Grid next = btn.Parent as Grid;
+            StackPanel levels = next.Parent as StackPanel;
+            Grid grid = GridItem3();
+            Paragraph p = (levels.Parent as Grid).Tag as Paragraph;
+
+            delete = new Button { Style = GetStyle("DeleteButton"), Tag = grid };
+            Label no = new Label { Style = GetStyle("No1"), Content = levels.Children.Count + "." };
+            TextBox name = new TextBox { Text = ((TextBox)next.Children[2]).Text, Style = GetStyle("RegularBox") };
+            Run run2 = new Run();
+            _ = SetBind(run2, Run.TextProperty, Multi(new SectionsConverter(), FastBind(no, "Content"), FastBind(name, "Text")));
+            p.Inlines.Add(new LineBreak());
+            p.Inlines.Add(run2);
+            GridAddX(grid, delete, no, name);
+            grid.Tag = run2;
+            SetPropX(Grid.ColumnProperty, new object[] { 1, 2 }, new Control[] { no, name });
+            SetProp(name, Grid.ColumnSpanProperty, 3);
+            levels.Children.Remove(next);
+            levels.Children.Add(grid);
+            int id = levels.Children.Count + 1;
+            (next.Children[1] as Label).Content = $"{id}.";
+            levels.Children.Add(next);
+            return delete;
+        }
+        public static void ParagraphText(Button btn, out Button delete, out Button add)
+        {
+            Grid next = btn.Parent as Grid;
+            StackPanel levels = next.Parent as StackPanel;
+            string title = (next.Children[1] as ComboBox).Text;
+            Paragraph p = TextB(title + ":");
+            Section sources = next.Tag as Section;
+
+            sources.Blocks.Add(p);
+
+            Grid grid = GridItem();
+            AddRows(grid, 2);
+            delete = new Button { Style = GetStyle("DeleteButton"), Tag = grid };
+            Label no = new Label { Style = GetStyle("ListCaptions"), Content = title };
+
+            StackPanel stack = new StackPanel();
+            
+            Grid subGrid = GridItem();
+            add = new Button { Style = GetStyle("AddButton"), Tag = grid };
+            Label no1 = new Label { Style = GetStyle("No1"), Content = "1." };
+            TextBox level = new TextBox { Style = GetStyle("RegularBox"), Text = "" };
+            stack.Children.Add(subGrid);
+
+            GridAddX(subGrid, add, no1, level);
+            GridAddX(grid, delete, no, stack);
+            SetPropX(Grid.ColumnProperty, new object[] { 1, 1, 2 }, new Control[] { no, no1, level });
+            SetProp(no, Grid.ColumnSpanProperty, 3);
+            SetProp(level, Grid.ColumnSpanProperty, 2);
+            SetProp(stack, Grid.ColumnSpanProperty, 4);
+            SetProp(stack, Grid.RowProperty, 1);
+            grid.Tag = p;
+
+            levels.Children.Remove(next);
+            levels.Children.Add(grid);
+            levels.Children.Add(next);
+        }
         public static Button TableContent(Button btn, Button delete)
         {
             Grid grid = btn.Parent as Grid;
@@ -184,6 +245,11 @@ namespace Wisdom.Writers
             grandGrid.Children.Remove(element);
             return grandGrid;
         }
+        /*public static void AutoIndexingI1(StackPanel grandGrid, int pos, char mark, string prefix)
+        {
+            for (int no = 0; no < grandGrid.Children.Count; no++)
+                ((grandGrid.Children[no] as Grid).Children[pos] as Label).Content = $"{prefix}{no + 1}{mark}";
+        }*/
         public static void AutoIndexing(StackPanel grandGrid, int pos, char mark, string prefix)
         {
             for (int no = 0; no < grandGrid.Children.Count; no++)
@@ -241,144 +307,130 @@ namespace Wisdom.Writers
             StackPanel panel = parent.Parent as StackPanel;
             panel.Children.Remove(parent);
         }
-        /*
-         <Grid>
-        (TableRow)
-            <Grid Tag="{x:Reference Name=Topic1}">
-        
-                (TableRow)
-                    <Grid Tag="{x:Reference Name=ThemeContents}">
-                        
-                        <StackPanel Tag="{x:Reference Name=EduContents}">
-                    
-                    <Grid>
-
-                        
-                    </Grid>
-                
-
-
-        </Grid>
-
-        <TableRow x:Name="Topic1">
-            <TableCell BorderBrush="Black" BorderThickness="0.5">
-                <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                    <Run FontWeight="Bold">
-                        <Run.Resources>
-                            <bind:SectionsConverter x:Key="SectionsConverter" />
-                        </Run.Resources>
-                        <Run.Text>
-                            <MultiBinding Converter="{StaticResource SectionsConverter}">
-                                <Binding Path="Content" ElementName="SectionNo" />
-                                <Binding Path="Text" ElementName="SectionName" />
-                            </MultiBinding>
-                        </Run.Text>
-                    </Run>
-                </Paragraph>
-            </TableCell>
-            <TableCell BorderBrush="Black" BorderThickness="0.5">
-            </TableCell>
-            <TableCell BorderBrush="Black" BorderThickness="0.5">
-                <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                    <Run FontWeight="Bold" Text="{Binding ElementName=SectionHours, Path=Text}">
-                    </Run>
-                </Paragraph>
-            </TableCell>
-            <TableCell BorderBrush="Black" BorderThickness="0.5">
-            </TableCell>
-        </TableRow>
-        <TableRow x:Name="Theme1">
-            <TableCell BorderBrush="Black" BorderThickness="0.5">
-                <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                    <Run FontWeight="Bold">
-                        <Run.Resources>
-                            <bind:SectionsConverter x:Key="SectionsConverter" />
-                        </Run.Resources>
-                        <Run.Text>
-                            <MultiBinding Converter="{StaticResource SectionsConverter}">
-                                <Binding Path="Content" ElementName="ThemeNo" />
-                                <Binding Path="Text" ElementName="ThemeName" />
-                            </MultiBinding>
-                        </Run.Text>
-                    </Run>
-                </Paragraph>
-            </TableCell>
-            <TableCell BorderBrush="Black" BorderThickness="0.5" ColumnSpan="2">
-                <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0" Margin="0" Padding="0">
-                    <Table.Columns>
-                        <TableColumn Width="0.848*"></TableColumn>
-                        <TableColumn Width="0.152*"></TableColumn>
-                    </Table.Columns>
-                    <TableRowGroup x:Name="ThemeContents">
-                        <TableRow>
-                            <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                <Paragraph FontSize="14pt" FontFamily="Times New Roman">
-                                    <Run Text="Содержание учебного материала"></Run>
-                                </Paragraph>
-                            </TableCell>
-                            <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                                    
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell BorderBrush="Black" BorderThickness="0.5"  ColumnSpan="2">
-                                <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0" Margin="0" Padding="0">
-                                    <Table.Columns>
-                                        <TableColumn Width="0.048*"></TableColumn>
-                                        <TableColumn Width="0.8*"></TableColumn>
-                                        <TableColumn Width="0.152*"></TableColumn>
-                                    </Table.Columns>
-                                    <TableRowGroup x:Name="EduContents"></TableRowGroup>
-                                </Table>
-                            </TableCell>
-                        </TableRow>
-                    </TableRowGroup>
-                </Table>
-            </TableCell>
-            <TableCell BorderBrush="Black" BorderThickness="0.5">
-                <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
-                    <Run FontWeight="Bold" Text="{Binding ElementName=ThemeLevel, Path=Text}">
-                    </Run>
-                </Paragraph>
-            </TableCell>
-        </TableRow>
-         */
-        public static void NewTopic(out Button BTbutton, out Button Cadd, out Button NewTypeAdd)
+        public static void NewTopic(TableRowGroup mainBinding, StackPanel master, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out Button deleteOmni, out Button addNew, out TextBox newHours, string name, string hours)
         {
+            int cnt = master.Children.Count;
+            //Topic
+            Grid omniGrid = GridItem();
+            AddRows(omniGrid, 2);
+            deleteOmni = new Button { Style = GetStyle("DeleteButton") };
+            Label topicNo = new Label { Content = $"Раздел {cnt}.", Style = GetStyle("CaptionSections") };
+            TextBox topicName = new TextBox { FontWeight = FontWeights.Bold, Text=name, Style = GetStyle("RegularBox") };
+            TextBox topicHours = new TextBox { FontWeight = FontWeights.Bold, Text=hours, Style = GetStyle("HoursBox") };
+            StackPanel Themes = new StackPanel { Background = new SolidColorBrush(Color.FromRgb(238, 235, 182)) };
+            GridAddX(omniGrid, deleteOmni, topicNo, topicName, topicHours, Themes);
+            SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3 }, new Control[] { topicNo, topicName, topicHours });
+            SetPropX(new DependencyProperty[] { Grid.RowProperty, Grid.ColumnProperty, Grid.ColumnSpanProperty },
+                new object[] { 1, 0, 5 }, Themes);
+            Grid addTopic = master.Children[cnt - 1] as Grid;
+            (addTopic.Children[1] as Label).Content = $"Раздел {cnt+1}.";
+            master.Children.Remove(addTopic);
+            master.Children.Add(omniGrid);
+            master.Children.Add(addTopic);
+
+            MultiBinding multi = Multi(new SectionsConverter(), FastBind(topicNo, "Content"), FastBind(topicName, "Text"));
+            Binding bindHours = FastBind(topicHours, "Text");
+            TableRow newTopicRow = new TableRow();
+            TableCell topicNameCell = new TableCell { Style = GetStyle("RegularCells"), Blocks = { TextCB(multi) } };
+            TableCell emptyCell = new TableCell { Style = GetStyle("RegularCells") };
+            TableCell topicHoursCell = new TableCell { Style = GetStyle("RegularCells"), Blocks = { TextCB(bindHours) } };
+            TableCell emptyCell2 = new TableCell { Style = GetStyle("RegularCells") };
+            AddRCells(newTopicRow, topicNameCell, emptyCell, topicHoursCell, emptyCell2);
+            omniGrid.Tag = newTopicRow;
+            mainBinding.Rows.Add(newTopicRow);
+            deleteOmni.Tag = Themes;
+            NewTheme(cnt, Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd);
+
+            Grid AddThemeGrid = GridItem();
+            addNew = new Button { Style = GetStyle("AddButton") };
+            Label newTitle = new Label { Content = $"Тема {cnt}.2.", Style = GetStyle("CaptionSections") };
+            TextBox newName = new TextBox { Style = GetStyle("RegularBox") };
+            newHours = new TextBox { Style = GetStyle("HoursBox") };
+            GridAddX(AddThemeGrid, addNew, newTitle, newName, newHours);
+            SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3 }, new Control[] { newTitle, newName, newHours });
+            Themes.Children.Add(AddThemeGrid);
+        }
+
+        public static void NewTheme(int cnt, StackPanel Themes, TableRowGroup mainBinding, out Button BTbutton, out Button Cadd, out Button NewTypeAdd)
+        {
+            NewTheme($"Тема {cnt}.1.", Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd, "", "");
+        }
+
+        public static void NewTheme(string themeTitle, StackPanel Themes, TableRowGroup mainBinding, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, string themeNameVal, string themeLevelVal)
+        {
+            //Theme
             Grid mainGrid = GridItem();
             AddRows(mainGrid, 2);
             BTbutton = new Button { Style = GetStyle("DeleteButton") };
-            Label themeNo = new Label { Content = "Тема 1.1.", Style = GetStyle("CaptionSections") };
-            TextBox themeName = new TextBox { Text = "", Style = GetStyle("SubCaptionBox") };
-            TextBox themeLevel = new TextBox { Text = "2", Style = GetStyle("HoursBox") };
+            Label themeNo = new Label { Content = themeTitle, Style = GetStyle("CaptionSections") };
+            TextBox themeName = new TextBox { Text = themeNameVal, Style = GetStyle("SubCaptionBox") };
+            TextBox themeLevel = new TextBox { Text = themeLevelVal, Style = GetStyle("HoursBox") };
             StackPanel themes = new StackPanel { Background = new SolidColorBrush(Color.FromRgb(238, 235, 182)) }; //"#FFEEEBB6"
             GridAddX(mainGrid, BTbutton, themeNo, themeName, themeLevel, themes);
             SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3 }, new Control[] { themeNo, themeName, themeLevel });
             SetPropX(new DependencyProperty[] { Grid.RowProperty, Grid.ColumnProperty, Grid.ColumnSpanProperty },
                 new object[] { 1, 0, 5 }, themes);
+            Themes.Children.Add(mainGrid);
 
+            //ThemeContent
             Grid content = GridItem();
-            AddRows(mainGrid, 3);
+            AddRows(content, 3);
             Label title = new Label { Content = "Содержание учебного материала", Style = GetStyle("RegularSections") };
             Label listCaption1 = new Label { Content = "№", Style = GetStyle("ListCaptions") };
             Label listCaption2 = new Label { Content = "Описание", Style = GetStyle("ListCaptions") };
             Label listCaption3 = new Label { Content = "Часы", Style = GetStyle("ListCaptions") };
             StackPanel themeContent = new StackPanel();
             GridAddX(content, title, listCaption1, listCaption2, listCaption3, themeContent);
-            SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3 }, new Control[] { listCaption1, listCaption2, listCaption3 });
+            SetPropX(Grid.ColumnProperty, new object[] { 1, 1, 2, 3 }, new Control[] { title, listCaption1, listCaption2, listCaption3 });
             SetPropX(Grid.RowProperty, 1, new Control[] { listCaption1, listCaption2, listCaption3 });
+            SetProp(title, Grid.ColumnSpanProperty, 3);
             SetPropX(new DependencyProperty[] { Grid.RowProperty, Grid.ColumnProperty, Grid.ColumnSpanProperty },
-                new object[] { 1, 0, 5 }, themeContent);
+                new object[] { 2, 0, 5 }, themeContent);
             themes.Children.Add(content);
 
             Grid levelContent = GridItem();
             Cadd = new Button { Style = GetStyle("AddButton") };
-            Label levelNo = new Label { Style = GetStyle("No2") };
+            Label levelNo = new Label { Style = GetStyle("No2"), Content = "1" };
             TextBox levelName = new TextBox { Style = GetStyle("RegularBox") };
             TextBox levelHours = new TextBox { Style = GetStyle("HoursBox") };
             GridAddX(levelContent, Cadd, levelNo, levelName, levelHours);
             SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3 }, new Control[] { levelNo, levelName, levelHours });
             themeContent.Children.Add(levelContent);
+
+            MultiBinding multi2 = Multi(new SectionsConverter(), FastBind(themeNo, "Content"), FastBind(themeName, "Text"));
+            Binding bindLevel = FastBind(themeLevel, "Text");
+            TableRow newTheme = new TableRow();
+            TableCell themeNameCell = new TableCell { Style = GetStyle("RegularCells"), Blocks = { TextCB(multi2) } };
+            TableCell contentsCell = new TableCell { Style = GetStyle("RegularCells"), ColumnSpan = 2 };
+            TableCell themeLevelCell = new TableCell { Style = GetStyle("RegularCells"), Blocks = { TextCenter(bindLevel) } };
+            TableCell emptyCell3 = new TableCell { Style = GetStyle("RegularCells") };
+            AddRCells(newTheme, themeNameCell, contentsCell, themeLevelCell);
+            mainGrid.Tag = newTheme;
+            mainBinding.Rows.Add(newTheme);
+
+            Table educationCont = new Table { Style = GetStyle("RegularTable") };
+            AddTCols(educationCont, 0.848, 0.152);
+            TableRowGroup pureContent = new TableRowGroup();
+            TableRow eduNameRow = new TableRow();
+            TableCell eduName = new TableCell { Style = GetStyle("RegularCells"), Blocks = { Text("Содержание учебного материала") } };
+            TableCell emptyCell4 = new TableCell { Style = GetStyle("RegularCells") };
+            AddRCells(eduNameRow, eduName, emptyCell4);
+            pureContent.Rows.Add(eduNameRow);
+            educationCont.RowGroups.Add(pureContent);
+
+            TableRow simpleRow = new TableRow();
+            TableCell cellTable2 = new TableCell { Style = GetStyle("RegularCells"), ColumnSpan = 2 };
+            AddRCells(simpleRow, cellTable2);
+            Table educationCont2 = new Table { Style = GetStyle("RegularTable") };
+            AddTCols(educationCont2, 0.048, 0.8, 0.152);
+            cellTable2.Blocks.Add(educationCont2);
+            TableRowGroup pureContent2 = new TableRowGroup();
+            pureContent.Rows.Add(simpleRow);
+            educationCont2.RowGroups.Add(pureContent2);
+
+            themeContent.Tag = pureContent2;
+            themes.Tag = pureContent;
+            contentsCell.Blocks.Add(educationCont);
 
             Grid newTypeContent = GridItem();
             NewTypeAdd = new Button { Style = GetStyle("AddButton") };
@@ -391,6 +443,5 @@ namespace Wisdom.Writers
             SetProp(NewType, Grid.ColumnSpanProperty, 2);
             themes.Children.Add(newTypeContent);
         }
-
     }
 }

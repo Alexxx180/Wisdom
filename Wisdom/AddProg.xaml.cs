@@ -8,6 +8,7 @@ using static Wisdom.Customing.Decorators;
 using static Wisdom.Writers.ResultRenderer;
 using static Wisdom.Binds.EasyBindings;
 using static Wisdom.Writers.Content;
+using static Wisdom.Customing.Converters;
 using System;
 
 namespace Wisdom
@@ -97,6 +98,19 @@ namespace Wisdom
         {
             TableContent(sender as Button, null).Click += AnyDeleteAuto;
         }
+        private void AddSources(object sender, RoutedEventArgs e)
+        {
+            ParagraphText(sender as Button, out Button delete, out Button add);
+            add.Click += AddSource;
+        }
+        private void AddSource(object sender, RoutedEventArgs e)
+        {
+            TextContent2(sender as Button, null);//.Click =;
+        }
+        private void DeleteSource(object sender, RoutedEventArgs e)
+        {
+
+        }
         private void NewTypeContent(object sender, RoutedEventArgs e)
         {
             Button add = null, delete = null;
@@ -121,7 +135,13 @@ namespace Wisdom
         }
         private void DeleteThemeClick(object sender, RoutedEventArgs e)
         {
-            DeleteSection((sender as Button).Parent as Grid);
+            Grid current = (sender as Button).Parent as Grid;
+            StackPanel themes = current.Parent as StackPanel;
+            DeleteSection(current);
+            Grid section = themes.Parent as Grid;
+            StackPanel sections = section.Parent as StackPanel;
+            int optimization = sections.Children.IndexOf(section) + 1;
+            AutoIndexing(themes, 1, '.', $"Тема {optimization}."); //
         }
         private void DeleteTopicClick(object sender, RoutedEventArgs e)
         {
@@ -133,14 +153,42 @@ namespace Wisdom
             StackPanel sections = current.Parent as StackPanel;
             DeleteSection(current);
             AutoIndexing(sections, 1, '.', "Раздел ");
+            for (int i = 0; i < sections.Children.Count - 1; i++)
+            {
+                Grid section = sections.Children[i] as Grid;
+                StackPanel themes = section.Children[4] as StackPanel;
+                int optimization = i + 1;
+                AutoIndexing(themes, 1, '.', $"Тема {optimization}."); //
+            }
+                
         }
 
         private void AddTopic(object sender, RoutedEventArgs e)
         {
-            NewTopic(out Button BTbutton, out Button Cadd, out Button NewTypeAdd);
-            BTbutton.Click += DeleteTopicClick;
+            Grid topic = (sender as Button).Parent as Grid;
+            NewTopic(AllSectionsContents, topic.Parent as StackPanel, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out Button deleteOmni, out Button addNew, out TextBox hours, (topic.Children[2] as TextBox).Text, (topic.Children[3] as TextBox).Text);
+            BTbutton.Click += DeleteThemeClick;
             Cadd.Click += AddContent;
             NewTypeAdd.Click += NewTypeContent;
+            deleteOmni.Click += DeleteTopicClick;
+            addNew.Click += AddTheme;
+            hours.TextChanged += Hours;
+            hours.PreviewTextInput += Numbers;
+        }
+        private void AddTheme(object sender, RoutedEventArgs e)
+        {
+            Grid current = (sender as Button).Parent as Grid;
+            StackPanel themes = current.Parent as StackPanel;
+            themes.Children.Remove(current);
+            NewTheme((current.Children[1] as Label).Content.ToString(), themes, AllSectionsContents, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, (current.Children[2] as TextBox).Text, (current.Children[3] as TextBox).Text);
+            BTbutton.Click += DeleteThemeClick;
+            Cadd.Click += AddContent;
+            NewTypeAdd.Click += NewTypeContent;
+            themes.Children.Add(current);
+            Grid section = themes.Parent as Grid;
+            StackPanel sections = section.Parent as StackPanel;
+            int optimization = sections.Children.IndexOf(section) + 1;
+            AutoIndexing(themes, 1, '.', $"Тема {optimization}."); //
         }
     }
 }

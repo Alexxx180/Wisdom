@@ -45,10 +45,62 @@ namespace Wisdom.Binds
                 Inlines = { SetBind(new Run(), Run.TextProperty, binding) as Run }
             };
         }
+        public static Paragraph Text(string text)
+        {
+            return new Paragraph()
+            {
+                Style = GetStyle("RegularParagraph"),
+                Inlines = { new Run(text) }
+            };
+        }
+        public static Paragraph TextB(string text)
+        {
+            return new Paragraph()
+            {
+                Style = GetStyle("RegularParagraph"),
+                Inlines = { new Run(text) { FontWeight = FontWeights.Bold } }
+            };
+        }
+        public static Paragraph TextCB(Binding binding)
+        {
+            return new Paragraph()
+            {
+                TextAlignment = TextAlignment.Center,
+                Style = GetStyle("RegularParagraph"),
+                Inlines = { SetBind(new Run() { FontWeight = FontWeights.Bold }, Run.TextProperty, binding) as Run }
+            };
+        }
+        public static Paragraph TextCenter(Binding binding)
+        {
+            return new Paragraph()
+            {
+                TextAlignment = TextAlignment.Center,
+                Style = GetStyle("RegularParagraph"),
+                Inlines = { SetBind(new Run(), Run.TextProperty, binding) as Run }
+            };
+        }
         public static Paragraph Text(MultiBinding binding)
         {
             return new Paragraph()
             {
+                Style = GetStyle("RegularParagraph"),
+                Inlines = { SetBind(new Run(), Run.TextProperty, binding) as Run }
+            };
+        }
+        public static Paragraph TextCB(MultiBinding binding)
+        {
+            return new Paragraph()
+            {
+                TextAlignment = TextAlignment.Center,
+                Style = GetStyle("RegularParagraph"),
+                Inlines = { SetBind(new Run() { FontWeight = FontWeights.Bold }, Run.TextProperty, binding) as Run }
+            };
+        }
+        public static Paragraph TextCenter(MultiBinding binding)
+        {
+            return new Paragraph()
+            {
+                TextAlignment = TextAlignment.Center,
                 Style = GetStyle("RegularParagraph"),
                 Inlines = { SetBind(new Run(), Run.TextProperty, binding) as Run }
             };

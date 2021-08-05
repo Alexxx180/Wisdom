@@ -62,6 +62,14 @@ namespace Wisdom.Customing
         {
             foreach (double w in width) AddTCols(grid, w);
         }
+        public static void AddRCells(TableRow row, TableCell cell)
+        {
+            row.Cells.Add(cell);
+        }
+        public static void AddRCells(TableRow row, params TableCell[] cells)
+        {
+            foreach (TableCell cell in cells) AddRCells(row, cell);
+        }
         public static void MenuItemTemplating(MenuItem item, RichTextBox box)
         {
             DependencyProperty[] dps = new DependencyProperty[] { TextElement.FontWeightProperty, TextElement.FontStyleProperty, TextBlock.TextDecorationsProperty };
