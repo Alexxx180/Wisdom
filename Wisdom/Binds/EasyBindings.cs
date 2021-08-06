@@ -113,7 +113,7 @@ namespace Wisdom.Binds
         {
             return Text(FastBind(lab, "Content"));
         }
-        public static void RichText(RichTextBox box)
+        /*public static void RichText(RichTextBox box)
         {
             if (box.Tag.GetType() == typeof(TableCell))
             {
@@ -132,6 +132,6 @@ namespace Wisdom.Binds
                     if (item.ToString() != "")
                         cl.ListItems.Add(item);
             }
-        }
+        }*/
     }
 }

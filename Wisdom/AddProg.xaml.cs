@@ -10,6 +10,7 @@ using static Wisdom.Binds.EasyBindings;
 using static Wisdom.Writers.Content;
 using static Wisdom.Customing.Converters;
 using System;
+using System.Windows.Documents;
 
 namespace Wisdom
 {
@@ -35,7 +36,7 @@ namespace Wisdom
             RichTextBox box = sender as RichTextBox;
             if (NAN(box) || NA(box.Tag))
                 return;
-            RichText(box);
+            //RichText(box);
         }
         private void BSbSelect_Click(object sender, RoutedEventArgs e)
         {
@@ -75,7 +76,7 @@ namespace Wisdom
         private void Stepping(object sender, RoutedEventArgs e)
         {
             Grid grid = (sender as Button).Tag as Grid;
-            GridHideX(Form1, Form2, Form3);
+            GridHideX(Form1, Form2, Form3, Form4, Form5);
             GridShow(grid);
         }
         private void DeleteLevel(object sender, RoutedEventArgs e)
@@ -102,14 +103,55 @@ namespace Wisdom
         {
             ParagraphText(sender as Button, out Button delete, out Button add);
             add.Click += AddSource;
+            delete.Click += DeleteSources;
         }
         private void AddSource(object sender, RoutedEventArgs e)
         {
-            TextContent2(sender as Button, null);//.Click =;
+            TextContent2(sender as Button, null).Click += DeleteSource;
+        }
+        private void AddListItem(object sender, RoutedEventArgs e)
+        {
+            TextContent3(sender as Button, null).Click += DeleteListItem;
+        }
+        private void AddListItem2(object sender, RoutedEventArgs e)
+        {
+            TextContent3(sender as Button, null).Click += DeleteListItem2;
+        }
+        private void DeleteSources(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Grid current = btn.Parent as Grid;
+            StackPanel panel = current.Parent as StackPanel;
+            panel.Children.Remove(current);
+            RemoveParagraph(current.Tag);
         }
         private void DeleteSource(object sender, RoutedEventArgs e)
         {
-
+            Button btn = sender as Button;
+            Grid current = btn.Parent as Grid;
+            StackPanel panel = current.Parent as StackPanel;
+            panel.Children.Remove(current);
+            RemoveRunLB(current.Tag);
+            AutoIndexing(panel, 1, '.');
+        }
+        private void DeleteListItem(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Grid current = btn.Parent as Grid;
+            StackPanel panel = current.Parent as StackPanel;
+            panel.Children.Remove(current);
+            RemoveListItem((current.Tag as ListItem).Tag);
+            RemoveListItem(current.Tag);
+            AutoIndexing(panel, 1, '.');
+        }
+        private void DeleteListItem2(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Grid current = btn.Parent as Grid;
+            StackPanel panel = current.Parent as StackPanel;
+            panel.Children.Remove(current);
+            RemoveListItem(current.Tag);
+            AutoIndexing(panel, 1, '.');
         }
         private void NewTypeContent(object sender, RoutedEventArgs e)
         {
@@ -130,7 +172,7 @@ namespace Wisdom
         private void AnyDeleteAuto(object sender, RoutedEventArgs e)
         {
             Grid grid = ((Button)sender).Tag as Grid;
-            RemoveTableRow(grid.Tag);
+            RemoveTableRow(grid.Tag); 
             AutoIndexing(RemoveGrid(grid), 1, '.');
         }
         private void DeleteThemeClick(object sender, RoutedEventArgs e)

@@ -12,8 +12,6 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Windows.Markup;
-using System;
-using System.Media;
 using System.Windows.Media;
 
 namespace Wisdom.Writers
@@ -55,17 +53,61 @@ namespace Wisdom.Writers
             TextBox name = new TextBox { Text = ((TextBox)next.Children[2]).Text, Style = GetStyle("RegularBox") };
             Run run2 = new Run();
             _ = SetBind(run2, Run.TextProperty, Multi(new SectionsConverter(), FastBind(no, "Content"), FastBind(name, "Text")));
-            p.Inlines.Add(new LineBreak());
+            LineBreak lb = new LineBreak();
+            p.Inlines.Add(lb);
+            run2.Tag = lb;
             p.Inlines.Add(run2);
             GridAddX(grid, delete, no, name);
             grid.Tag = run2;
             SetPropX(Grid.ColumnProperty, new object[] { 1, 2 }, new Control[] { no, name });
             SetProp(name, Grid.ColumnSpanProperty, 3);
+
             levels.Children.Remove(next);
             levels.Children.Add(grid);
             int id = levels.Children.Count + 1;
             (next.Children[1] as Label).Content = $"{id}.";
             levels.Children.Add(next);
+            return delete;
+        }
+        public static Button TextContent3(Button btn, Button delete)
+        {
+            Grid next = btn.Parent as Grid;
+            StackPanel levels = next.Parent as StackPanel;
+            Grid grid = GridItem3();
+            List p = (levels.Parent as Grid).Tag as List;
+
+            delete = new Button { Style = GetStyle("DeleteButton"), Tag = grid };
+            Label no = new Label { Style = GetStyle("No1"), Content = levels.Children.Count + "." };
+            TextBox name = new TextBox { Text = ((TextBox)next.Children[2]).Text, Style = GetStyle("RegularBox") };
+
+            ListItem litems = new ListItem();
+            Run run2 = new Run();
+            _ = SetBind(run2, Run.TextProperty, FastBind(name, "Text"));
+            ListItem litem = new ListItem();
+            
+            litems.Blocks.Add(new Paragraph(run2) { Style = GetStyle("RegularParagraph") });
+            p.ListItems.Add(litems);
+
+            if (levels.Tag != null)
+            {
+                List p2 = levels.Tag as List;
+                Run run = new Run();
+                _ = SetBind(run, Run.TextProperty, FastBind(name, "Text"));
+                litem.Blocks.Add(new Paragraph(run) { Style = GetStyle("RegularParagraph") });
+                p2.ListItems.Add(litem);
+            }
+
+            GridAddX(grid, delete, no, name);
+            litems.Tag = litem;
+            grid.Tag = litems;
+            SetPropX(Grid.ColumnProperty, new object[] { 1, 2 }, new Control[] { no, name });
+            SetProp(name, Grid.ColumnSpanProperty, 3);
+
+            levels.Children.Remove(next);
+            _ = levels.Children.Add(grid);
+            int id = levels.Children.Count + 1;
+            (next.Children[1] as Label).Content = $"{id}.";
+            _ = levels.Children.Add(next);
             return delete;
         }
         public static void ParagraphText(Button btn, out Button delete, out Button add)
@@ -101,8 +143,8 @@ namespace Wisdom.Writers
             grid.Tag = p;
 
             levels.Children.Remove(next);
-            levels.Children.Add(grid);
-            levels.Children.Add(next);
+            _ = levels.Children.Add(grid);
+            _ = levels.Children.Add(next);
         }
         public static Button TableContent(Button btn, Button delete)
         {
@@ -129,7 +171,7 @@ namespace Wisdom.Writers
             panel.Children.Add(grid2);
             int id = panel.Children.Count + 1;
             ((Label)grid.Children[1]).Content = $"{id}.";
-            panel.Children.Add(grid);
+            _ = panel.Children.Add(grid);
             grp.Rows.Add(row);
             return delete;
         }
@@ -148,7 +190,7 @@ namespace Wisdom.Writers
             {
                 Style = GetStyle("RegularCells"),
                 Blocks = { new Paragraph() { Style = GetStyle("RegularParagraph"),
-                    Inlines = { SetBind(new Run(), Run.TextProperty, bind3) as Run }, TextAlignment = TextAlignment.Center } }
+                Inlines = { SetBind(new Run(), Run.TextProperty, bind3) as Run }, TextAlignment = TextAlignment.Center } }
             };
             lab.SetValue(Grid.ColumnProperty, 1);
             txt1.SetValue(Grid.ColumnProperty, 2);
@@ -158,8 +200,8 @@ namespace Wisdom.Writers
             grid2.Tag = row;
 
             panel.Children.Remove(grid);
-            panel.Children.Add(grid2);
-            panel.Children.Add(grid);
+            _ = panel.Children.Add(grid2);
+            _ = panel.Children.Add(grid);
             TableRowGroup grp = ((StackPanel)grid.Parent).Tag as TableRowGroup;
             grp.Rows.Add(row);
         }
@@ -227,11 +269,30 @@ namespace Wisdom.Writers
             else
                 TableSingleContent(grid, panel, cbx, out hours, out delete);
         }
+        public static void RemoveParagraph(object value)
+        {
+            Paragraph prg = value as Paragraph;
+            Section sct = prg.Parent as Section;
+            _ = sct.Blocks.Remove(prg);
+        }
         public static void RemoveRun(object value)
         {
             Run run = value as Run;
             Paragraph prg = run.Parent as Paragraph;
-            prg.Inlines.Remove(run);
+            _ = prg.Inlines.Remove(run);
+        }
+        public static void RemoveRunLB(object value)
+        {
+            Run run = value as Run;
+            Paragraph prg = run.Parent as Paragraph;
+            _ = prg.Inlines.Remove(run);
+            _ = prg.Inlines.Remove(run.Tag as LineBreak);
+        }
+        public static void RemoveListItem(object value)
+        {
+            ListItem item = value as ListItem;
+            List list = item.Parent as List;
+            _ = list.ListItems.Remove(item);
         }
         public static void RemoveTableRow(object value)
         {
