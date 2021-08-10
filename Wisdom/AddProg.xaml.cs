@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
-using Microsoft.Win32;
 using static Wisdom.Customing.BlockTemplates;
 using static Wisdom.Customing.Decorators;
 using static Wisdom.Writers.ResultRenderer;
@@ -15,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Data;
 using Wisdom.Binds;
+using Microsoft.Win32;
 
 namespace Wisdom
 {
@@ -24,7 +24,7 @@ namespace Wisdom
     public partial class AddProg : Window
     {
         private static readonly Regex numbers = new Regex("^[\\d]");
-        private string FileName => $@"D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\{Program.Text}.rtf";
+        private string FileName => $@"{Program.Text}.rtf";
         public AddProg()
         {
             InitializeComponent();
@@ -32,7 +32,9 @@ namespace Wisdom
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            WriteDoc(Struct, FileName);
+            SaveFileDialog dialog = new SaveFileDialog { FileName = FileName, Filter = "Текст в формате RTF (*.rtf)|*.rtf|Документ Word 97-2003 (*.doc)|*.doc" };
+            if (dialog.ShowDialog().Value)
+                WriteDoc(Struct, dialog.FileName);
         }
 
         private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)

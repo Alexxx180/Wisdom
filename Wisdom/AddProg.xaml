@@ -118,7 +118,7 @@
                 <Button Click="Stepping" Tag="{x:Reference Name=Form4}" x:Name="Step4" Content="Шаг 4" Grid.Column="10" Style="{StaticResource Steps2}"/>
                 <Button Click="Stepping" Tag="{x:Reference Name=Form5}" x:Name="Step5" Content="Шаг 5" Grid.Column="12" Style="{StaticResource Steps2}"/>
 
-                <Button x:Name="Create" Content="Подтвердить" Grid.Column="14" IsDefault="True" Style="{StaticResource Steps}"/>
+                <Button x:Name="Create" Click="Create_Click" Content="Подтвердить" Grid.Column="14" IsDefault="True" Style="{StaticResource Steps}"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1" Visibility="Hidden">
@@ -147,7 +147,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="Form1" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <Grid x:Name="Form1" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.9*"/>
@@ -198,35 +198,69 @@
                     <ComboBoxItem Content="09.02.03 Программирование в компьютерных системах"/>
                 </ComboBox>
 
-                <Label Content="Аудиторная нагрузка, часы" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="13" VerticalAlignment="Bottom" FontSize="28"/>
-                <StackPanel Grid.Row="13" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                    <TextBox x:Name="Usual" Style="{StaticResource HoursBox}" MinWidth="70" PreviewTextInput="Numbers" TextChanged="Hours"></TextBox>
-                    <StackPanel x:Name="N12" Tag="{x:Reference Name=Usual}">
-                        <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="1" Click="Counting">▲</Button>
-                        <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="-1" Click="Counting">▼</Button>
-                    </StackPanel>
-                </StackPanel>
-                <Label Content="Самостоятельная работа, часы" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="15" VerticalAlignment="Bottom" FontSize="28"/>
-                <StackPanel Grid.Row="15" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                    <TextBox x:Name="Self" Style="{StaticResource HoursBox}" MinWidth="70" PreviewTextInput="Numbers"  TextChanged="Hours"></TextBox>
-                    <StackPanel Tag="{x:Reference Name=Self}">
-                        <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="1" Click="Counting">▲</Button>
-                        <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="-1" Click="Counting">▼</Button>
-                    </StackPanel>
-                </StackPanel>
+                <Grid Grid.Column="1" Grid.Row="13" Background="#FFFCC7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
 
-                <Label Content="Максимальная учебная нагрузка: "  Grid.Row="17"  Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="28"></Label>
-                <Label x:Name="Max" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,0,0" Grid.Row="17" VerticalAlignment="Bottom" FontSize="28">
-                    <Label.Resources>
-                        <bind:SumConverter x:Key="SumConverter" />
-                    </Label.Resources>
-                    <Label.Content>
-                        <MultiBinding Converter="{StaticResource SumConverter}">
-                            <Binding Path="Text" ElementName="Usual" />
-                            <Binding Path="Text" ElementName="Self" />
-                        </MultiBinding>
-                    </Label.Content>
-                </Label>
+                    <Label Content="Аудиторная нагрузка, часы" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" FontSize="28"/>
+                    <Grid Grid.Column="1" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="Usual" Style="{StaticResource HoursBox}" PreviewTextInput="Numbers"  HorizontalAlignment="Stretch" TextChanged="Hours"></TextBox>
+                        <StackPanel x:Name="N12" Tag="{x:Reference Name=Usual}" Grid.Column="1" HorizontalAlignment="Right">
+                            <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="1" Click="Counting">▲</Button>
+                            <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="-1" Click="Counting">▼</Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Column="1" Grid.Row="15" Background="#FFFCC7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Самостоятельная работа, часы" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" FontSize="28"/>
+                    <Grid Grid.Column="1" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="Self" Style="{StaticResource HoursBox}" HorizontalAlignment="Stretch" PreviewTextInput="Numbers"  TextChanged="Hours"></TextBox>
+                        <StackPanel Tag="{x:Reference Name=Self}" Grid.Column="1" HorizontalAlignment="Stretch">
+                            <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="1" Click="Counting">▲</Button>
+                            <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="-1" Click="Counting">▼</Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Column="1" Grid.Row="17" Background="#FFFCC7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Максимальная учебная нагрузка: " HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="28"></Label>
+                    <Label x:Name="Max" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,0,0" Grid.Row="17" VerticalAlignment="Stretch" FontSize="28">
+                        <Label.Resources>
+                            <bind:SumConverter x:Key="SumConverter" />
+                        </Label.Resources>
+                        <Label.Content>
+                            <MultiBinding Converter="{StaticResource SumConverter}">
+                                <Binding Path="Text" ElementName="Usual" />
+                                <Binding Path="Text" ElementName="Self" />
+                            </MultiBinding>
+                        </Label.Content>
+                    </Label>
+                </Grid>
+
+                
 
                 <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5">
                     <Grid>
@@ -262,7 +296,7 @@
                 </Border>
             </Grid>
 
-            <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.35*"/>
@@ -315,6 +349,7 @@
                             <Binding ElementName="Practices" Path="Text"></Binding>
                             <Binding ElementName="Controls" Path="Text"></Binding>
                             <Binding ElementName="Course" Path="Text"></Binding>
+                            <Binding ElementName="SelfWork" Path="Text"></Binding>
                         </MultiBinding>
                     </Label.Content>
                     <Label.Background>
@@ -334,9 +369,11 @@
                 <TextBox x:Name="Controls"  TextChanged="Hours"  PreviewTextInput="Numbers" Grid.Row="3" Grid.Column="5" Style="{StaticResource HoursBox}"></TextBox>
                 <Label Grid.Row="4" Grid.Column="1" Content="Курсовая работа (если предусмотрена)" FontSize="26" Grid.ColumnSpan="4"></Label>
                 <TextBox x:Name="Course"  TextChanged="Hours" PreviewTextInput="Numbers"  Grid.Row="4" Grid.Column="5"  Style="{StaticResource HoursBox}"></TextBox>
+                <Label Grid.Row="5" Grid.Column="1" Content="Самостоятельная работа обучающегося (всего)" FontWeight="Bold" FontSize="26" Grid.ColumnSpan="4"></Label>
+                <TextBox x:Name="SelfWork"  TextChanged="Hours" PreviewTextInput="Numbers"  Grid.Row="5" Grid.Column="5"  Style="{StaticResource HoursBox}"></TextBox>
 
                 <Label x:Name="TSkills" Grid.Row="6" Grid.Column="1"  Style="{StaticResource ResourceKey=ListCaptions}" Content="В результате освоения дисциплины обучающийся должен уметь:" FontSize="26" Grid.ColumnSpan="5"></Label>
-                <ScrollViewer Grid.Row="7" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="5">
+                <ScrollViewer Grid.Row="7" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="3">
                     <StackPanel Background="#FFFFFCC7">
                         <Grid Tag="{x:Reference RSkills}">
                             <Grid.ColumnDefinitions>
@@ -369,8 +406,8 @@
                     </StackPanel>
                 </ScrollViewer>
                 
-                <Label x:Name="TKnowledge" Grid.Row="13" Grid.Column="1" Content="В результате освоения дисциплины обучающийся должен знать:" FontSize="26" Grid.ColumnSpan="5" Style="{StaticResource ResourceKey=ListCaptions}" ></Label>
-                <ScrollViewer Grid.Row="14" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="5">
+                <Label x:Name="TKnowledge" Grid.Row="10" Grid.Column="1" Content="В результате освоения дисциплины обучающийся должен знать:" FontSize="26" Grid.ColumnSpan="5" Style="{StaticResource ResourceKey=ListCaptions}" ></Label>
+                <ScrollViewer Grid.Row="11" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="3">
                     <StackPanel Background="#FFFFFCC7">
                         <Grid Tag="{x:Reference RKnowledge}">
                             <Grid.ColumnDefinitions>
@@ -402,8 +439,43 @@
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
+
+                <Label x:Name="TCompetentions" Grid.Row="14" Grid.Column="1" Content="Общие кометенции (ОК)" FontSize="26" Grid.ColumnSpan="5" Style="{StaticResource ResourceKey=ListCaptions}" ></Label>
+                <ScrollViewer Grid.Row="15" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="4">
+                    <StackPanel Background="#FFFFFCC7">
+                        <Grid Tag="{x:Reference RCompetentions}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.05*" />
+                                <ColumnDefinition Width="0.15*" />
+                                <ColumnDefinition Width="0.7*" />
+                                <ColumnDefinition Width="0.1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.ColumnSpan="4">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.05*" />
+                                        <ColumnDefinition Width="0.15*" />
+                                        <ColumnDefinition Width="0.7*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Click="AddListItem2" Style="{StaticResource ResourceKey=AddButton}"></Button>
+                                    <Label  Grid.Column="1" Content="1." Style="{StaticResource No1}" />
+                                    <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
             </Grid>
 
+            <!--RCompetentions-->
             <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
@@ -1157,6 +1229,9 @@
                                     <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
                                         <Run FontWeight="Bold" Text="Общие компетенции (ОК)"></Run>
                                     </Paragraph>
+                                    <List x:Name="RCompetentions">
+
+                                    </List>
                                     <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
                                         <Run FontWeight="Bold" Text="1.5 Рекомендуемое количество часов на освоение учебной дисциплины"></Run>
                                         <Run Text="&#xA;    Максимальная учебная нагрузка обучающегося"></Run>
