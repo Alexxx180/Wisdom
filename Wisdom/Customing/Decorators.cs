@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Wisdom.Customing
@@ -15,6 +16,16 @@ namespace Wisdom.Customing
         {
             return new BitmapImage(Ura(path));
         }
+        public static void AnyHide(FrameworkElement element)
+        {
+            element.Visibility = Visibility.Hidden;
+            element.IsEnabled = false;
+        }
+        public static void AnyShow(FrameworkElement element)
+        {
+            element.Visibility = Visibility.Visible;
+            element.IsEnabled = true;
+        }
         public static void GridHide(Grid grid)
         {
             grid.Visibility = Visibility.Hidden;
@@ -28,6 +39,10 @@ namespace Wisdom.Customing
         public static void GridHideX(params Grid[] grids)
         {
             foreach (Grid grid in grids) GridHide(grid);
+        }
+        public static void AnyHideX(params FrameworkElement[] elements)
+        {
+            foreach (FrameworkElement element in elements) AnyHide(element);
         }
         public static void GridAddX(Grid grid, params UIElement[] elements)
         {
@@ -49,6 +64,18 @@ namespace Wisdom.Customing
         {
             for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value);
         }
+        public static void StylesX(Style style, params FrameworkElement[] elements)
+        {
+            foreach (FrameworkElement element in elements) Styles(style, element);
+        }
+        public static void ColorBack(Color color, Control element)
+        {
+            element.Background = new SolidColorBrush(color);
+        }
+        public static void Styles(Style style, FrameworkElement element)
+        {
+            element.Style = style;
+        }
         public static bool NAN(FrameworkElement element)
         {
             return element == null;
@@ -56,6 +83,13 @@ namespace Wisdom.Customing
         public static bool NA(object o)
         {
             return o == null;
+        }
+        public static object OmniTernar(object fallBackValue, bool[] conditions, object[] values)
+        {
+            for (int i = 0; i < conditions.Length; i++)
+                if (conditions[i])
+                    return values[i];
+            return fallBackValue;
         }
     }
 }

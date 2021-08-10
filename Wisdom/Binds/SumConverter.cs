@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Binds
 {
@@ -9,8 +10,8 @@ namespace Wisdom.Binds
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             int sum = 0;
-            //foreach (int value in values)
-             //   sum += value;
+            foreach (string value in values)
+                sum += Itry(value);
             return sum.ToString();
         }
 

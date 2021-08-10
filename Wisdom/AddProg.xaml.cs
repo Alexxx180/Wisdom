@@ -10,7 +10,11 @@ using static Wisdom.Binds.EasyBindings;
 using static Wisdom.Writers.Content;
 using static Wisdom.Customing.Converters;
 using System;
+using static Wisdom.Customing.ResourceHelper;
 using System.Windows.Documents;
+using System.Windows.Media;
+using System.Windows.Data;
+using Wisdom.Binds;
 
 namespace Wisdom
 {
@@ -61,7 +65,11 @@ namespace Wisdom
         private void Hours(object sender, TextChangedEventArgs e)
         {
             TextBox box = sender as TextBox;
-            if ((box.Text != "") && (box.Text.Substring(0, 1) == "0"))
+            RejectCondition(box, (box.Text != "") && box.Text.Substring(0, 1) == "0");
+        }
+        private void RejectCondition(TextBox box, bool cond)
+        {
+            if (cond)
                 box.Text = box.Text[1..];
         }
         private void Counting(object sender, RoutedEventArgs e)
@@ -75,9 +83,12 @@ namespace Wisdom
         
         private void Stepping(object sender, RoutedEventArgs e)
         {
-            Grid grid = (sender as Button).Tag as Grid;
-            GridHideX(Form1, Form2, Form3, Form4, Form5);
-            GridShow(grid);
+            Button step = sender as Button;
+            Grid form = step.Tag as Grid;
+            StylesX(GetStyle("Steps2"), Step1, Step2, Step3, Step4, Step5);
+            Styles(GetStyle("Steps"), step);
+            AnyHideX(Form1, Form2, Form3, Form4, Form5);
+            AnyShow(form);
         }
         private void DeleteLevel(object sender, RoutedEventArgs e)
         {
@@ -165,13 +176,49 @@ namespace Wisdom
         }
         private void AnyDelete(object sender, RoutedEventArgs e)
         {
-            Grid grid = ((Button)sender).Tag as Grid;
+            Grid grid = (sender as Button).Tag as Grid;
             RemoveTableRow(grid.Tag);
+
+            TextBox box = grid.Children[3] as TextBox;
+            if (box.Tag != null)
+            {
+                Binding bind = box.Tag as Binding;
+                TextBox refer = ((((grid.Parent as StackPanel).Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox; ;
+                //throw new Exception(refer.Name);
+                MultiBinding old = BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty).ParentMultiBinding;
+                BindingOperations.ClearBinding(refer, Control.BackgroundProperty);
+                MultiBinding multi2 = new MultiBinding { Converter = new UsedValuesConverter() };
+
+                foreach (Binding binding in old.Bindings)
+                {
+                    if (!bind.Equals(binding))
+                        multi2.Bindings.Add(binding);
+                }
+
+                _ = SetBind(refer, Control.BackgroundProperty, multi2);
+            }
+
             _ = RemoveGrid(grid);
         }
         private void AnyDeleteAuto(object sender, RoutedEventArgs e)
         {
-            Grid grid = ((Button)sender).Tag as Grid;
+            Grid grid = (sender as Button).Tag as Grid;
+
+            Binding bind = (grid.Children[3] as TextBox).Tag as Binding;
+            TextBox refer = ((((((grid.Parent as StackPanel).Parent as Grid).Parent as StackPanel).Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox; ;
+            //throw new Exception(refer.Name);
+            MultiBinding old = BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty).ParentMultiBinding;
+            BindingOperations.ClearBinding(refer, Control.BackgroundProperty);
+            MultiBinding multi2 = new MultiBinding { Converter = new UsedValuesConverter() };
+
+            foreach (Binding binding in old.Bindings)
+            {
+                if (!bind.Equals(binding))
+                    multi2.Bindings.Add(binding);
+            }
+
+            _ = SetBind(refer, Control.BackgroundProperty, multi2);
+
             RemoveTableRow(grid.Tag); 
             AutoIndexing(RemoveGrid(grid), 1, '.');
         }
@@ -193,6 +240,18 @@ namespace Wisdom
                 DeleteSection(stack.Children[0] as Grid);
             Grid current = btn.Parent as Grid;
             StackPanel sections = current.Parent as StackPanel;
+
+            Label refer = (current.Children[3] as TextBox).Tag as Label; //
+            MultiBinding multi = BindingOperations.GetMultiBindingExpression(refer, ContentProperty).ParentMultiBinding;
+            MultiBinding multi2 = new MultiBinding { Converter = new SumConverter() };
+
+            for (int i = 0; i < multi.Bindings.Count; i++)
+            {
+                if (i == sections.Children.IndexOf(current))
+                    continue;
+                multi2.Bindings.Add(multi.Bindings[i]);
+            }
+
             DeleteSection(current);
             AutoIndexing(sections, 1, '.', "Раздел ");
             for (int i = 0; i < sections.Children.Count - 1; i++)
@@ -202,13 +261,14 @@ namespace Wisdom
                 int optimization = i + 1;
                 AutoIndexing(themes, 1, '.', $"Тема {optimization}."); //
             }
-                
+            
+            _ = SetBind(refer, ContentProperty, multi2);
         }
 
         private void AddTopic(object sender, RoutedEventArgs e)
         {
             Grid topic = (sender as Button).Parent as Grid;
-            NewTopic(AllSectionsContents, topic.Parent as StackPanel, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out Button deleteOmni, out Button addNew, out TextBox hours, (topic.Children[2] as TextBox).Text, (topic.Children[3] as TextBox).Text);
+            NewTopic(AllSectionsContents, topic.Parent as StackPanel, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out Button deleteOmni, out Button addNew, out TextBox hours, (topic.Children[2] as TextBox).Text, (topic.Children[3] as TextBox).Text, TotalHoursUsed);
             BTbutton.Click += DeleteThemeClick;
             Cadd.Click += AddContent;
             NewTypeAdd.Click += NewTypeContent;
@@ -232,5 +292,6 @@ namespace Wisdom
             int optimization = sections.Children.IndexOf(section) + 1;
             AutoIndexing(themes, 1, '.', $"Тема {optimization}."); //
         }
+        
     }
 }

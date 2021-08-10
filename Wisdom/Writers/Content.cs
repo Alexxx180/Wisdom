@@ -169,6 +169,22 @@ namespace Wisdom.Writers
             StackPanel panel = grid.Parent as StackPanel;
             panel.Children.Remove(grid);
             panel.Children.Add(grid2);
+
+            //throw new System.Exception(((((((panel.Parent as Grid).Parent as StackPanel).Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox).Name+"");
+            TextBox refer = (((((panel.Parent as Grid).Parent as StackPanel).Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox; //
+            MultiBinding multi = BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty).ParentMultiBinding;
+            BindingOperations.ClearBinding(refer, Control.BackgroundProperty);
+            MultiBinding multi2 = new MultiBinding { Converter = new UsedValuesConverter() };
+
+            foreach (Binding binding in multi.Bindings)
+                multi2.Bindings.Add(binding);
+
+            Binding newBind = FastBind(txt2, "Text");
+            txt2.Tag = newBind;
+            multi2.Bindings.Add(newBind);
+            _ = SetBind(refer, Control.BackgroundProperty, multi2);
+
+
             int id = panel.Children.Count + 1;
             ((Label)grid.Children[1]).Content = $"{id}.";
             _ = panel.Children.Add(grid);
@@ -202,6 +218,21 @@ namespace Wisdom.Writers
             panel.Children.Remove(grid);
             _ = panel.Children.Add(grid2);
             _ = panel.Children.Add(grid);
+
+            //throw new System.Exception( ((((panel.Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox).Name+"");
+            TextBox refer = (((panel.Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox; //
+            MultiBinding old = BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty).ParentMultiBinding;
+            BindingOperations.ClearBinding(refer, Control.BackgroundProperty);
+            MultiBinding multi2 = new MultiBinding { Converter = new UsedValuesConverter() };
+
+            foreach (Binding binding in old.Bindings)
+                multi2.Bindings.Add(binding);
+
+            Binding newBind = FastBind(hoursBox, "Text");
+            hoursBox.Tag = newBind;
+            multi2.Bindings.Add(newBind);
+            _ = SetBind(refer, Control.BackgroundProperty, multi2);
+
             TableRowGroup grp = ((StackPanel)grid.Parent).Tag as TableRowGroup;
             grp.Rows.Add(row);
         }
@@ -368,8 +399,9 @@ namespace Wisdom.Writers
             StackPanel panel = parent.Parent as StackPanel;
             panel.Children.Remove(parent);
         }
-        public static void NewTopic(TableRowGroup mainBinding, StackPanel master, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out Button deleteOmni, out Button addNew, out TextBox newHours, string name, string hours)
+        public static void NewTopic(TableRowGroup mainBinding, StackPanel master, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out Button deleteOmni, out Button addNew, out TextBox newHours, string name, string hours, Label hoursToBind)
         {
+
             int cnt = master.Children.Count;
             //Topic
             Grid omniGrid = GridItem();
@@ -388,6 +420,20 @@ namespace Wisdom.Writers
             master.Children.Remove(addTopic);
             master.Children.Add(omniGrid);
             master.Children.Add(addTopic);
+
+            topicHours.Tag = hoursToBind;
+            MultiBinding oldBind = BindingOperations.GetMultiBindingExpression(hoursToBind, ContentControl.ContentProperty).ParentMultiBinding;
+            BindingOperations.ClearBinding(hoursToBind, ContentControl.ContentProperty);
+            MultiBinding newBind = new MultiBinding { Converter = new SumConverter() };
+
+            for (int i = 0; i < oldBind.Bindings.Count; i++)
+            {
+                if (i == master.Children.IndexOf(omniGrid))
+                    continue;
+                newBind.Bindings.Add(oldBind.Bindings[i]);
+            }
+            newBind.Bindings.Add(FastBind(topicHours, "Text"));
+            _ = SetBind(hoursToBind, ContentControl.ContentProperty, newBind);
 
             MultiBinding multi = Multi(new SectionsConverter(), FastBind(topicNo, "Content"), FastBind(topicName, "Text"));
             Binding bindHours = FastBind(topicHours, "Text");

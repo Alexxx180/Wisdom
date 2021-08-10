@@ -31,6 +31,15 @@ namespace Wisdom.Customing
         {
             return Convert.ToInt32(o);
         }
+        public static Int32 Itry(string value)
+        {
+            if (value == "")
+                return 0;
+            if (int.TryParse(value, out int result))
+                return result;
+            else
+                return 0;
+        }
         public static bool Bool(object o)
         {
             return Convert.ToBoolean(o);
