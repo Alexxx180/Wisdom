@@ -395,7 +395,6 @@ namespace Wisdom.Writers
             TableRow row = parent.Tag as TableRow;
             TableRowGroup grp = row.Parent as TableRowGroup;
             grp.Rows.Remove(row);
-            //throw new Exception("SUCCESS");
             StackPanel panel = parent.Parent as StackPanel;
             panel.Children.Remove(parent);
         }

@@ -44,6 +44,11 @@ namespace Wisdom.Customing
         {
             foreach (FrameworkElement element in elements) AnyHide(element);
         }
+        public static void EnableX(bool value, params FrameworkElement[] elements)
+        {
+            for (byte i = 0; i < elements.Length; i++)
+                elements[i].IsEnabled = value;
+        }
         public static void GridAddX(Grid grid, params UIElement[] elements)
         {
             foreach (UIElement element in elements) grid.Children.Add(element);

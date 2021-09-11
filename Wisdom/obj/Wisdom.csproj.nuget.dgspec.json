@@ -43,6 +43,14 @@
             "DocX": {
               "target": "Package",
               "version": "[1.8.0, )"
+            },
+            "DocumentFormat.OpenXml": {
+              "target": "Package",
+              "version": "[2.13.1, )"
+            },
+            "Open-XML-SDK": {
+              "target": "Package",
+              "version": "[2.5.0, )"
             }
           },
           "imports": [

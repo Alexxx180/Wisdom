@@ -33,3 +33,4 @@ D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\W
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\ComboBoxes.baml
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\FlowDocuments.baml
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll

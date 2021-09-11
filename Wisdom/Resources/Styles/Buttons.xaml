@@ -38,4 +38,21 @@
         <Setter Property="Control.VerticalAlignment" Value="Stretch"/>
         <Setter Property="Control.Margin" Value="0"/>
     </Style>
+    <Style x:Key="Steps3" TargetType="Button">
+        <Setter Property="Control.Background" Value="White"/>
+        <Setter Property="Control.Foreground" Value="#FF00A2E8"/>
+        <Setter Property="Control.BorderBrush" Value="#FF00A2E8"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+        <Setter Property="Control.FontSize" Value="28"/>
+        <Setter Property="Control.FontFamily" Value="Franklin Gothic Demi"/>
+        <Setter Property="Control.HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Control.VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Control.Margin" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="#FF00A2E8"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
