@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <None Remove="Novsu.png" />
+    <None Remove="TestResources\document.xml" />
+    <None Remove="TestResources\Test.docx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +33,8 @@
 
   <ItemGroup>
     <Resource Include="Novsu.png" />
+    <Resource Include="TestResources\document.xml" />
+    <Resource Include="TestResources\Test.docx" />
   </ItemGroup>
 
 </Project>
