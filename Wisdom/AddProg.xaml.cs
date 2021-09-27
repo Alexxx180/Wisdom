@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Data;
 using Wisdom.Binds;
 using Microsoft.Win32;
+using static Wisdom.Model.ProgramContent;
 
 namespace Wisdom
 {
@@ -29,9 +30,29 @@ namespace Wisdom
         {
             InitializeComponent();
         }
+        //public static string MaxHours = "58";
+        //public static string EduHours = "48";
+        //public static string SelfHours = "10";
 
+        ////Form 2
+        //public static string Lections = "18";
+        //public static string Practices = "25";
+        //public static string ControlWs = "10";
+        //public static string CourseWs = "0";
         private void Create_Click(object sender, RoutedEventArgs e)
         {
+            DisciplineName = DpSelect.Text;
+            ProfessionName = SpSelect.Text;
+            MaxHours = Max.Content.ToString();
+            SelfHours = Self.Text;
+            EduHours = Usual.Text;
+
+            Lections = Lectures.Text;
+            Practice = Practices.Text;
+            LabWorks = Labs.Text;
+            ControlWs = Controls.Text;
+            CourseWs = Course.Text;
+            //Usual.Text
             //SaveFileDialog dialog = new SaveFileDialog
             //{
             //    FileName = FileName,

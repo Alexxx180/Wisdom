@@ -308,7 +308,7 @@
                 </Border>
             </Grid>
 
-            <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.35*"/>
@@ -420,7 +420,8 @@
                     <Label Content="Самостоятельная работа обучающегося (всего)" FontWeight="Bold"></Label>
                 </Viewbox>
                 
-                <TextBox x:Name="SelfWork"  TextChanged="Hours" PreviewTextInput="Numbers"  Grid.Row="5" Grid.Column="5"  Style="{StaticResource HoursBox}"></TextBox>
+                <!--<TextBox   TextChanged="Hours" PreviewTextInput="Numbers"  Grid.Row="5" Grid.Column="5"  ></TextBox>-->
+                <TextBlock x:Name="SelfWork" Text="{Binding ElementName=Self, Path=Text}" Grid.Row="5" Grid.Column="5" Style="{StaticResource HoursBox}"></TextBlock>
 
                 <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="13">
                     <Grid.ColumnDefinitions>
@@ -918,7 +919,7 @@
                 </ScrollViewer>
             </Grid>
 
-            <Grid x:Name="Form4" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <Grid x:Name="Form4" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.05*"/>
