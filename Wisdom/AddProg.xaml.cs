@@ -8,7 +8,7 @@ using static Wisdom.Writers.ResultRenderer;
 using static Wisdom.Binds.EasyBindings;
 using static Wisdom.Writers.Content;
 using static Wisdom.Customing.Converters;
-using System;
+using System.Diagnostics;
 using static Wisdom.Customing.ResourceHelper;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -16,6 +16,8 @@ using System.Windows.Data;
 using Wisdom.Binds;
 using Microsoft.Win32;
 using static Wisdom.Model.ProgramContent;
+using System.Collections.Generic;
+using Wisdom.Model;
 
 namespace Wisdom
 {
@@ -30,15 +32,121 @@ namespace Wisdom
         {
             InitializeComponent();
         }
-        //public static string MaxHours = "58";
-        //public static string EduHours = "48";
-        //public static string SelfHours = "10";
+        
 
-        ////Form 2
-        //public static string Lections = "18";
-        //public static string Practices = "25";
-        //public static string ControlWs = "10";
-        //public static string CourseWs = "0";
+        private List<string> GetListFromElements(StackPanel panel, byte index)
+        {
+            List<string> list = new List<string>();
+            int cnt = panel.Children.Count - 1;
+            for (byte i = 0; i < cnt; i++)
+            {
+                Grid element = panel.Children[i] as Grid;
+                TextBox box = element.Children[index] as TextBox;
+                list.Add(box.Text);
+            }
+            return list;
+        }
+        private List<HashList<string>> GetHashListFromElements(StackPanel panel, byte index, byte index2)
+        {
+            List<HashList<string>> sources = new List<HashList<string>>();
+            int cnt = panel.Children.Count - 1;
+            for (byte i = 0; i < cnt; i++)
+                sources.Add(GetHashs(panel.Children[i] as Grid, index, index2));
+            return sources;
+        }
+
+        private HashList<string> GetHashs(Grid grid, byte index, byte index2)
+        {
+            Label caption = grid.Children[index] as Label; //1
+            HashList<string> source = new HashList<string>(caption.Content.ToString());
+            int optimum = index + 1;
+            StackPanel panel2 = grid.Children[optimum] as StackPanel;
+            source.Values = GetListFromElements(panel2, index2);
+            return source;
+        }
+        private String2 GetString2(Grid grid, byte no1, byte no2)
+        {
+            string name = (grid.Children[no1] as TextBox).Text;
+            string value = (grid.Children[no2] as TextBox).Text;
+            String2 string2 = new String2(name, value);
+            return string2;
+        }
+        //2, 3
+        //DisciplinePlan - Grid - StackPanel - Grid - StackPanel - Grid - StackPanel
+        //Раздел 1. - Тема 1.1. - Содержание - 1.; 2. ...
+        private List<String2> GetListFromElements2(StackPanel panel, byte no1, byte no2)
+        {
+            List<String2> list = new List<String2>();
+            int cnt = panel.Children.Count - 1;
+            for (byte i = 0; i < cnt; i++)
+            {
+                Grid element = panel.Children[i] as Grid;
+                list.Add(GetString2(element, no1, no2));
+            }
+            return list;
+        }
+        //0
+        //DisciplinePlan - Grid - StackPanel - Grid - StackPanel - Grid
+        //Раздел 1. - Тема 1.1. - Содержание 
+        private HashList<String2> GetHashs(Grid grid, byte index, byte index2, byte index3)
+        {
+            Label caption = grid.Children[index] as Label; //1
+            HashList<String2> source = new HashList<String2>(caption.Content.ToString());
+            int optimum = index + 4;
+            StackPanel panel2 = grid.Children[optimum] as StackPanel;
+            source.Values = GetListFromElements2(panel2, index2, index3);
+            return source;
+        }
+
+
+        //2, 3
+        //DisciplinePlan - Grid - StackPanel - Grid
+        //Раздел 1. - Тема 1.1.
+        private HoursList<HashList<String2>> GetHours(Grid grid,
+            byte index, byte index2, byte index4, byte index5, byte index6)
+        { //byte index3, 
+            TextBox caption = grid.Children[index] as TextBox;
+            TextBox hours = grid.Children[index2] as TextBox;
+            HoursList<HashList<String2>> source = new HoursList<HashList<String2>>(caption.Text, hours.Text); // Exces
+            int optimum = index2 + 1;
+            StackPanel panel2 = grid.Children[optimum] as StackPanel;
+            int cnt = panel2.Children.Count - 1;
+            for (byte i = 0; i < cnt; i++)
+                source.Values.Add(GetHashs(panel2.Children[i] as Grid, index4, index5, index6));
+            return source;
+        }
+        //2, 3
+        //DisciplinePlan - Grid
+        //Раздел 1.
+        private HoursList<HoursList<HashList<String2>>> GetHours2(Grid grid,
+            byte index, byte index2, byte index4, byte index5, byte index6, byte index7, byte index8)
+        { //byte index3, 
+            TextBox caption = grid.Children[index] as TextBox;
+            TextBox hours = grid.Children[index2] as TextBox;
+            HoursList<HoursList<HashList<String2>>> source = new HoursList<HoursList<HashList<String2>>>(caption.Text, hours.Text);
+            int optimum = index2 + 1;
+            StackPanel panel2 = grid.Children[optimum] as StackPanel;
+            int cnt = panel2.Children.Count - 1;
+            for (byte i = 0; i < cnt; i++)
+                source.Values.Add(GetHours(panel2.Children[i] as Grid, index4, index5, index6, index7, index8));
+            return source;
+        }
+
+        //2, 3, 2, 3, 0, 2, 3
+        //DisciplinePlan
+        private List<HoursList<HoursList<HashList<String2>>>> GetAbsoleteList(StackPanel panel,
+            byte index, byte index2, byte index4, byte index5, byte index6, byte index7, byte index8)
+        {
+            List<HoursList<HoursList<HashList<String2>>>> source = new List<HoursList<HoursList<HashList<String2>>>>();
+            int cnt = panel.Children.Count - 1;
+            for (byte i = 0; i < cnt; i++)
+            {
+                Grid grid = panel.Children[i] as Grid;
+                source.Add(GetHours2(grid, index, index2, index4, index5, index6, index7, index8));
+            }   
+            return source;
+        }
+
         private void Create_Click(object sender, RoutedEventArgs e)
         {
             DisciplineName = DpSelect.Text;
@@ -52,6 +160,46 @@ namespace Wisdom
             LabWorks = Labs.Text;
             ControlWs = Controls.Text;
             CourseWs = Course.Text;
+
+            ShallCan = GetListFromElements(SkillsAddSpace, 2);
+            ShallKnow = GetListFromElements(KnowledgeAddSpace, 2);
+            TotalCompetetion = GetListFromElements(TotalAddSpace, 2);
+
+            EducationControl = GetListFromElements(EducationAddSpace, 2);
+            MarkControl = GetListFromElements(MarkControlAddSpace, 2);
+            SourcesControl = GetHashListFromElements(EducationSources, 1, 2);
+
+            Applyment = GetListFromElements(ApplyAddSpace, 2);
+
+            Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 0, 2, 3);
+
+            //Сложная система вложенностей:
+            //Разделы -> Темы -> Типы работ
+            //List< HoursList< HoursList< HashList<String2> > > > Plan = List< HoursList< HoursList< HashList<String2> > > >();
+
+            foreach (HoursList<HoursList<HashList<String2>>> l1 in Plan)
+            {
+                Trace.WriteLine("Раздел ...");
+                Trace.WriteLine("Название: " + l1.Name);
+                Trace.WriteLine("Часы: " + l1.Hours);
+                foreach (HoursList<HashList<String2>> l2 in l1.Values)
+                {
+                    Trace.WriteLine("Тема ...");
+                    Trace.WriteLine("Название: " + l2.Name);
+                    Trace.WriteLine("Уровень освоения: " + l2.Hours);
+                    foreach (HashList<String2> l3 in l2.Values)
+                    {
+                        Trace.WriteLine("Элемент темы ...");
+                        Trace.WriteLine("Название: " + l3.Name);
+                        foreach (String2 l4 in l3.Values)
+                        {
+                            Trace.WriteLine("Элемент темы ...");
+                            Trace.WriteLine("Название: " + l4.Name);
+                            Trace.WriteLine("Часы: " + l4.Value);
+                        }
+                    }
+                }
+            }
             //Usual.Text
             //SaveFileDialog dialog = new SaveFileDialog
             //{

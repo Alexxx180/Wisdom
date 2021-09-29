@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Wisdom.Model
 {
@@ -18,5 +16,21 @@ namespace Wisdom.Model
         }
         public string Name { get; set; }
         public List<T> Values { get; set; }
+    }
+
+    public class HashList2<T>
+    {
+        public HashList2(string name)
+        {
+            Name = name;
+            Values = default(T);
+        }
+        public HashList2(string name, T values)
+        {
+            Name = name;
+            Values = values;
+        }
+        public string Name { get; set; }
+        public T Values { get; set; }
     }
 }

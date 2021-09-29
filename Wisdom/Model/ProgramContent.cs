@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Wisdom.Model
 {
@@ -29,7 +27,10 @@ namespace Wisdom.Model
 
         //Сложная система вложенностей:
         //Разделы -> Темы -> Типы работ
-        public static List<HashList<HashList<string>>> Plan = new List<HashList<HashList<string>>>();
+        //public static List<HashList<HashList<string>>> Plan = new List<HashList<HashList<string>>>();
+        public static List< HoursList< HoursList< HashList<String2> > > >
+            Plan = new List< HoursList< HoursList< HashList<String2> > > >();
+
 
         public static StringList StudyLevels = new StringList(" (", ")");
 

@@ -15,6 +15,7 @@ using W15 = DocumentFormat.OpenXml.Office2013.Word;
 using Thm15 = DocumentFormat.OpenXml.Office2013.Theme;
 using Ds = DocumentFormat.OpenXml.CustomXmlDataProperties;
 using static Wisdom.Model.ProgramContent;
+using Wisdom.Model;
 using System.Collections.Generic;
 
 namespace Wisdom.Writers
@@ -24,12 +25,10 @@ namespace Wisdom.Writers
         // Creates a WordprocessingDocument.
         public void CreatePackage(string filePath)
         {
-            using (WordprocessingDocument package = WordprocessingDocument.Create(filePath, WordprocessingDocumentType.Document))
-            {
-                CreateParts(package);
-            }
+            using WordprocessingDocument package = WordprocessingDocument.Create(filePath, WordprocessingDocumentType.Document);
+            CreateParts(package);
         }
-        private Paragraph WordParagraph(string value, string sequence)
+        private Paragraph WordParagraph(string value, string sequence, object[] optionalPar = null, object[] optionalRuns = null)
         {
             Paragraph paragraph127 = new Paragraph() { RsidParagraphAddition = "00E769EC", RsidRunAdditionDefault = "009B27E8" };
 
@@ -52,6 +51,9 @@ namespace Wisdom.Writers
             paragraphMarkRunProperties119.Append(color199);
             paragraphMarkRunProperties119.Append(fontSize211);
             paragraphMarkRunProperties119.Append(fontSizeComplexScript199);
+            if (optionalPar != null)
+                foreach (OpenXmlElement markProp in optionalPar)
+                    paragraphMarkRunProperties119.Append(markProp);
             paragraphMarkRunProperties119.Append(languages194);
 
             paragraphProperties127.Append(widowControl72);
@@ -70,20 +72,21 @@ namespace Wisdom.Writers
             FontSize fontSize213 = new FontSize() { Val = "28" };
             FontSizeComplexScript fontSizeComplexScript201 = new FontSizeComplexScript() { Val = "24" };
             Languages languages196 = new Languages() { Val = "ru" };
-
             runProperties221.Append(runFonts216);
+            if (optionalRuns != null)
+                foreach (OpenXmlElement markProp in optionalRuns)
+                    runProperties221.Append(markProp);
             runProperties221.Append(color201);
             runProperties221.Append(fontSize213);
             runProperties221.Append(fontSizeComplexScript201);
             runProperties221.Append(languages196);
-            Break break8 = new Break();
+            //Break break8 = new Break();
             Text text129 = new Text();
             text129.Text = sequence + value;
             //"1. - ознакомительный (узнавание ран ее изученных объектов, свойств)"
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             run231.Append(runProperties221);
-            run231.Append(break8);
             run231.Append(text129);
 
             paragraph127.Append(paragraphProperties127);
@@ -91,25 +94,33 @@ namespace Wisdom.Writers
 
             return paragraph127;
         }
-        private List<Paragraph> NumberList(List<string> values)
+        /*private List<Paragraph> NumberList(List<string> values)
         {
             List<Paragraph> paragraphs = new List<Paragraph>();
             for (byte i = 0; i < values.Count; i++)
                 paragraphs.Add(WordParagraph(values[i], i + " "));
             return paragraphs;
-        }
+        }*/
         private List<Paragraph> NumberList(List<string> values, char symbol)
         {
             List<Paragraph> paragraphs = new List<Paragraph>();
             for (byte i = 0; i < values.Count; i++)
-                paragraphs.Add(WordParagraph(values[i], i + symbol + " "));
+            {
+                int no = i + 1;
+                paragraphs.Add(WordParagraph(values[i], no + "" + symbol + " "));
+            }
+                
             return paragraphs;
         }
         private List<Paragraph> NumberList(List<string> values, char symbol, string marker)
         {
             List<Paragraph> paragraphs = new List<Paragraph>();
             for (byte i = 0; i < values.Count; i++)
-                paragraphs.Add(WordParagraph(values[i], marker + i + symbol + " "));
+            {
+                int no = i + 1;
+                paragraphs.Add(WordParagraph(values[i], marker + no + "" + symbol + " "));
+            }
+                
             return paragraphs;
         }
         private List<Paragraph> MarkerList(List<string> values, char symbol)
@@ -8003,7 +8014,9 @@ namespace Wisdom.Writers
 
             TableGrid tableGrid4 = new TableGrid();
             GridColumn gridColumn7 = new GridColumn() { Width = "2113" };
-            GridColumn gridColumn8 = new GridColumn() { Width = "5386" };
+            //GridColumn gridColumn8 = new GridColumn() { Width = "5386" };
+            GridColumn gridColumn8 = new GridColumn() { Width = "186" };
+            GridColumn gridColumn8_1 = new GridColumn() { Width = "5200" };
             GridColumn gridColumn9 = new GridColumn() { Width = "992" };
             GridColumn gridColumn10 = new GridColumn() { Width = "1276" };
 
@@ -8085,7 +8098,9 @@ namespace Wisdom.Writers
             TableCellProperties tableCellProperties29 = new TableCellProperties();
             TableCellWidth tableCellWidth29 = new TableCellWidth() { Width = "5386", Type = TableWidthUnitValues.Dxa };
 
+            GridSpan myGridSpan1 = new GridSpan() { Val = 2 };
             tableCellProperties29.Append(tableCellWidth29);
+            tableCellProperties29.Append(myGridSpan1);
 
             Paragraph paragraph110 = new Paragraph() { RsidParagraphAddition = "009B27E8", RsidRunAdditionDefault = "009B27E8" };
 
@@ -8356,7 +8371,9 @@ namespace Wisdom.Writers
             TableCellProperties tableCellProperties33 = new TableCellProperties();
             TableCellWidth tableCellWidth33 = new TableCellWidth() { Width = "5386", Type = TableWidthUnitValues.Dxa };
 
+            GridSpan myGridSpan2 = new GridSpan() { Val = 2 };
             tableCellProperties33.Append(tableCellWidth33);
+            tableCellProperties33.Append(myGridSpan2);
 
             Paragraph paragraph114 = new Paragraph() { RsidParagraphAddition = "009B27E8", RsidRunAdditionDefault = "009B27E8" };
 
@@ -8627,7 +8644,9 @@ namespace Wisdom.Writers
             TableCellProperties tableCellProperties37 = new TableCellProperties();
             TableCellWidth tableCellWidth37 = new TableCellWidth() { Width = "5386", Type = TableWidthUnitValues.Dxa };
 
+            GridSpan myGridSpan3 = new GridSpan() { Val = 2 };
             tableCellProperties37.Append(tableCellWidth37);
+            tableCellProperties37.Append(myGridSpan3);
 
             Paragraph paragraph118 = new Paragraph() { RsidParagraphAddition = "009B27E8", RsidRunAdditionDefault = "009B27E8" };
 
@@ -8838,8 +8857,64 @@ namespace Wisdom.Writers
             tableCellProperties41.Append(tableCellWidth41);
             tableCellProperties41.Append(gridSpan2);
 
-            Table table5 = new Table();
+            Paragraph paragraph122 = new Paragraph() { RsidParagraphAddition = "009B27E8", RsidParagraphProperties = "00DA092C", RsidRunAdditionDefault = "009B27E8" };
 
+            ParagraphProperties paragraphProperties122 = new ParagraphProperties();
+            WidowControl widowControl67 = new WidowControl() { Val = false };
+            AutoSpaceDE autoSpaceDE94 = new AutoSpaceDE() { Val = false };
+            AutoSpaceDN autoSpaceDN94 = new AutoSpaceDN() { Val = false };
+            AdjustRightIndent adjustRightIndent94 = new AdjustRightIndent() { Val = false };
+            SpacingBetweenLines spacingBetweenLines94 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            Indentation indentation1 = new Indentation() { Start = "-3", FirstLine = "3" };
+            Justification justification76 = new Justification() { Val = JustificationValues.Both };
+
+            ParagraphMarkRunProperties paragraphMarkRunProperties114 = new ParagraphMarkRunProperties();
+            RunFonts runFonts208 = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman", EastAsia = "Times New Roman", ComplexScript = "Times New Roman" };
+            Color color193 = new Color() { Val = "000000" };
+            FontSize fontSize205 = new FontSize() { Val = "28" };
+            FontSizeComplexScript fontSizeComplexScript193 = new FontSizeComplexScript() { Val = "24" };
+            Languages languages188 = new Languages() { Val = "ru" };
+
+            paragraphMarkRunProperties114.Append(runFonts208);
+            paragraphMarkRunProperties114.Append(color193);
+            paragraphMarkRunProperties114.Append(fontSize205);
+            paragraphMarkRunProperties114.Append(fontSizeComplexScript193);
+            paragraphMarkRunProperties114.Append(languages188);
+
+            paragraphProperties122.Append(widowControl67);
+            paragraphProperties122.Append(autoSpaceDE94);
+            paragraphProperties122.Append(autoSpaceDN94);
+            paragraphProperties122.Append(adjustRightIndent94);
+            paragraphProperties122.Append(spacingBetweenLines94);
+            paragraphProperties122.Append(indentation1);
+            paragraphProperties122.Append(justification76);
+            paragraphProperties122.Append(paragraphMarkRunProperties114);
+
+            Run run229 = new Run();
+
+            RunProperties runProperties219 = new RunProperties();
+            RunFonts runFonts209 = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman", EastAsia = "Times New Roman", ComplexScript = "Times New Roman" };
+            Color color194 = new Color() { Val = "000000" };
+            FontSize fontSize206 = new FontSize() { Val = "28" };
+            FontSizeComplexScript fontSizeComplexScript194 = new FontSizeComplexScript() { Val = "24" };
+            Languages languages189 = new Languages() { Val = "ru" };
+
+            runProperties219.Append(runFonts209);
+            runProperties219.Append(color194);
+            runProperties219.Append(fontSize206);
+            runProperties219.Append(fontSizeComplexScript194);
+            runProperties219.Append(languages189);
+            Text text127 = new Text();
+            text127.Text = "Содержание учебного материала";
+
+            run229.Append(runProperties219);
+            run229.Append(text127);
+
+            paragraph122.Append(paragraphProperties122);
+            paragraph122.Append(run229);
+
+            //Table table5 = new Table();
+            /*
             TableProperties tableProperties5 = new TableProperties();
             TableWidth tableWidth5 = new TableWidth() { Width = "6400", Type = TableWidthUnitValues.Dxa };
 
@@ -9025,43 +9100,45 @@ namespace Wisdom.Writers
             table5.Append(tableProperties5);
             table5.Append(tableGrid5);
             table5.Append(tableRow19);
+            */
 
-            Paragraph paragraph124 = new Paragraph() { RsidParagraphAddition = "009B27E8", RsidRunAdditionDefault = "009B27E8" };
+            //Paragraph paragraph124 = new Paragraph() { RsidParagraphAddition = "009B27E8", RsidRunAdditionDefault = "009B27E8" };
 
-            ParagraphProperties paragraphProperties124 = new ParagraphProperties();
-            WidowControl widowControl69 = new WidowControl() { Val = false };
-            AutoSpaceDE autoSpaceDE96 = new AutoSpaceDE() { Val = false };
-            AutoSpaceDN autoSpaceDN96 = new AutoSpaceDN() { Val = false };
-            AdjustRightIndent adjustRightIndent96 = new AdjustRightIndent() { Val = false };
-            SpacingBetweenLines spacingBetweenLines96 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
-            Justification justification78 = new Justification() { Val = JustificationValues.Both };
+            //ParagraphProperties paragraphProperties124 = new ParagraphProperties();
+            //WidowControl widowControl69 = new WidowControl() { Val = false };
+            //AutoSpaceDE autoSpaceDE96 = new AutoSpaceDE() { Val = false };
+            //AutoSpaceDN autoSpaceDN96 = new AutoSpaceDN() { Val = false };
+            //AdjustRightIndent adjustRightIndent96 = new AdjustRightIndent() { Val = false };
+            //SpacingBetweenLines spacingBetweenLines96 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            //Justification justification78 = new Justification() { Val = JustificationValues.Both };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties116 = new ParagraphMarkRunProperties();
-            RunFonts runFonts211 = new RunFonts() { Ascii = "Georgia", HighAnsi = "Georgia", EastAsia = "Times New Roman", ComplexScript = "Times New Roman" };
-            Color color196 = new Color() { Val = "000000" };
-            FontSize fontSize208 = new FontSize() { Val = "24" };
-            FontSizeComplexScript fontSizeComplexScript196 = new FontSizeComplexScript() { Val = "24" };
-            Languages languages191 = new Languages() { Val = "ru" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties116 = new ParagraphMarkRunProperties();
+            //RunFonts runFonts211 = new RunFonts() { Ascii = "Georgia", HighAnsi = "Georgia", EastAsia = "Times New Roman", ComplexScript = "Times New Roman" };
+            //Color color196 = new Color() { Val = "000000" };
+            //FontSize fontSize208 = new FontSize() { Val = "24" };
+            //FontSizeComplexScript fontSizeComplexScript196 = new FontSizeComplexScript() { Val = "24" };
+            //Languages languages191 = new Languages() { Val = "ru" };
 
-            paragraphMarkRunProperties116.Append(runFonts211);
-            paragraphMarkRunProperties116.Append(color196);
-            paragraphMarkRunProperties116.Append(fontSize208);
-            paragraphMarkRunProperties116.Append(fontSizeComplexScript196);
-            paragraphMarkRunProperties116.Append(languages191);
+            //paragraphMarkRunProperties116.Append(runFonts211);
+            //paragraphMarkRunProperties116.Append(color196);
+            //paragraphMarkRunProperties116.Append(fontSize208);
+            //paragraphMarkRunProperties116.Append(fontSizeComplexScript196);
+            //paragraphMarkRunProperties116.Append(languages191);
 
-            paragraphProperties124.Append(widowControl69);
-            paragraphProperties124.Append(autoSpaceDE96);
-            paragraphProperties124.Append(autoSpaceDN96);
-            paragraphProperties124.Append(adjustRightIndent96);
-            paragraphProperties124.Append(spacingBetweenLines96);
-            paragraphProperties124.Append(justification78);
-            paragraphProperties124.Append(paragraphMarkRunProperties116);
+            //paragraphProperties124.Append(widowControl69);
+            //paragraphProperties124.Append(autoSpaceDE96);
+            //paragraphProperties124.Append(autoSpaceDN96);
+            //paragraphProperties124.Append(adjustRightIndent96);
+            //paragraphProperties124.Append(spacingBetweenLines96);
+            //paragraphProperties124.Append(justification78);
+            //paragraphProperties124.Append(paragraphMarkRunProperties116);
 
-            paragraph124.Append(paragraphProperties124);
+            //paragraph124.Append(paragraphProperties124);
 
             tableCell41.Append(tableCellProperties41);
-            tableCell41.Append(table5);
-            tableCell41.Append(paragraph124);
+            //tableCell41.Append(table5);
+            tableCell41.Append(paragraph122);
+            //tableCell41.Append(paragraph124);
 
             TableCell tableCell44 = new TableCell();
 
@@ -9108,10 +9185,57 @@ namespace Wisdom.Writers
             tableCell44.Append(tableCellProperties44);
             tableCell44.Append(paragraph125);
 
+            TableCell tableCell44_1 = new TableCell();
+
+            TableCellProperties tableCellProperties44_1 = new TableCellProperties();
+            TableCellWidth tableCellWidth44_1 = new TableCellWidth() { Width = "1276", Type = TableWidthUnitValues.Dxa };
+
+            tableCellProperties44_1.Append(tableCellWidth44_1);
+
+            Paragraph paragraph125_1 = new Paragraph() { RsidParagraphAddition = "009B27E8", RsidParagraphProperties = "0031269F", RsidRunAdditionDefault = "009B27E8" };
+
+            ParagraphProperties paragraphProperties125_1 = new ParagraphProperties();
+            WidowControl widowControl70_1 = new WidowControl() { Val = false };
+            AutoSpaceDE autoSpaceDE97_1 = new AutoSpaceDE() { Val = false };
+            AutoSpaceDN autoSpaceDN97_1 = new AutoSpaceDN() { Val = false };
+            AdjustRightIndent adjustRightIndent97_1 = new AdjustRightIndent() { Val = false };
+            SpacingBetweenLines spacingBetweenLines97_1 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            Indentation indentation2_1 = new Indentation() { Start = "426" };
+            Justification justification79_1 = new Justification() { Val = JustificationValues.Center };
+
+            ParagraphMarkRunProperties paragraphMarkRunProperties117_1 = new ParagraphMarkRunProperties();
+            RunFonts runFonts212_1 = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman", EastAsia = "Times New Roman", ComplexScript = "Times New Roman" };
+            Color color197_1 = new Color() { Val = "000000" };
+            FontSize fontSize209_1 = new FontSize() { Val = "28" };
+            FontSizeComplexScript fontSizeComplexScript197_1 = new FontSizeComplexScript() { Val = "24" };
+            Languages languages192_1 = new Languages() { Val = "ru" };
+
+            paragraphMarkRunProperties117_1.Append(runFonts212_1);
+            paragraphMarkRunProperties117_1.Append(color197_1);
+            paragraphMarkRunProperties117_1.Append(fontSize209_1);
+            paragraphMarkRunProperties117_1.Append(fontSizeComplexScript197_1);
+            paragraphMarkRunProperties117_1.Append(languages192_1);
+
+            paragraphProperties125_1.Append(widowControl70_1);
+            paragraphProperties125_1.Append(autoSpaceDE97_1);
+            paragraphProperties125_1.Append(autoSpaceDN97_1);
+            paragraphProperties125_1.Append(adjustRightIndent97_1);
+            paragraphProperties125_1.Append(spacingBetweenLines97_1);
+            paragraphProperties125_1.Append(indentation2_1);
+            paragraphProperties125_1.Append(justification79_1);
+            paragraphProperties125_1.Append(paragraphMarkRunProperties117_1);
+
+            paragraph125_1.Append(paragraphProperties125_1);
+
+            tableCell44_1.Append(tableCellProperties44_1);
+            tableCell44_1.Append(paragraph125_1);
+
+
             tableRow18.Append(tableRowProperties4);
             tableRow18.Append(tableCell40);
             tableRow18.Append(tableCell41);
             tableRow18.Append(tableCell44);
+            tableRow18.Append(tableCell44_1);
 
             table4.Append(tableProperties4);
             table4.Append(tableGrid4);
@@ -9592,63 +9716,63 @@ namespace Wisdom.Writers
 
             paragraph135.Append(paragraphProperties135);
 
-            Paragraph paragraph136 = new Paragraph() { RsidParagraphAddition = "003106D5", RsidRunAdditionDefault = "009B27E8" };
+            //Paragraph paragraph136 = new Paragraph() { RsidParagraphAddition = "003106D5", RsidRunAdditionDefault = "009B27E8" };
 
-            ParagraphProperties paragraphProperties136 = new ParagraphProperties();
-            WidowControl widowControl79 = new WidowControl() { Val = false };
-            AutoSpaceDE autoSpaceDE106 = new AutoSpaceDE() { Val = false };
-            AutoSpaceDN autoSpaceDN106 = new AutoSpaceDN() { Val = false };
-            AdjustRightIndent adjustRightIndent106 = new AdjustRightIndent() { Val = false };
-            SpacingBetweenLines spacingBetweenLines106 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
-            Justification justification88 = new Justification() { Val = JustificationValues.Both };
+            //ParagraphProperties paragraphProperties136 = new ParagraphProperties();
+            //WidowControl widowControl79 = new WidowControl() { Val = false };
+            //AutoSpaceDE autoSpaceDE106 = new AutoSpaceDE() { Val = false };
+            //AutoSpaceDN autoSpaceDN106 = new AutoSpaceDN() { Val = false };
+            //AdjustRightIndent adjustRightIndent106 = new AdjustRightIndent() { Val = false };
+            //SpacingBetweenLines spacingBetweenLines106 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
+            //Justification justification88 = new Justification() { Val = JustificationValues.Both };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties127 = new ParagraphMarkRunProperties();
-            RunFonts runFonts235 = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman", EastAsia = "Times New Roman", ComplexScript = "Times New Roman" };
-            Bold bold37 = new Bold();
-            Color color220 = new Color() { Val = "000000" };
-            FontSize fontSize232 = new FontSize() { Val = "28" };
-            FontSizeComplexScript fontSizeComplexScript220 = new FontSizeComplexScript() { Val = "24" };
-            Languages languages215 = new Languages() { Val = "ru" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties127 = new ParagraphMarkRunProperties();
+            //RunFonts runFonts235 = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman", EastAsia = "Times New Roman", ComplexScript = "Times New Roman" };
+            //Bold bold37 = new Bold();
+            //Color color220 = new Color() { Val = "000000" };
+            //FontSize fontSize232 = new FontSize() { Val = "28" };
+            //FontSizeComplexScript fontSizeComplexScript220 = new FontSizeComplexScript() { Val = "24" };
+            //Languages languages215 = new Languages() { Val = "ru" };
 
-            paragraphMarkRunProperties127.Append(runFonts235);
-            paragraphMarkRunProperties127.Append(bold37);
-            paragraphMarkRunProperties127.Append(color220);
-            paragraphMarkRunProperties127.Append(fontSize232);
-            paragraphMarkRunProperties127.Append(fontSizeComplexScript220);
-            paragraphMarkRunProperties127.Append(languages215);
+            //paragraphMarkRunProperties127.Append(runFonts235);
+            //paragraphMarkRunProperties127.Append(bold37);
+            //paragraphMarkRunProperties127.Append(color220);
+            //paragraphMarkRunProperties127.Append(fontSize232);
+            //paragraphMarkRunProperties127.Append(fontSizeComplexScript220);
+            //paragraphMarkRunProperties127.Append(languages215);
 
-            paragraphProperties136.Append(widowControl79);
-            paragraphProperties136.Append(autoSpaceDE106);
-            paragraphProperties136.Append(autoSpaceDN106);
-            paragraphProperties136.Append(adjustRightIndent106);
-            paragraphProperties136.Append(spacingBetweenLines106);
-            paragraphProperties136.Append(justification88);
-            paragraphProperties136.Append(paragraphMarkRunProperties127);
+            //paragraphProperties136.Append(widowControl79);
+            //paragraphProperties136.Append(autoSpaceDE106);
+            //paragraphProperties136.Append(autoSpaceDN106);
+            //paragraphProperties136.Append(adjustRightIndent106);
+            //paragraphProperties136.Append(spacingBetweenLines106);
+            //paragraphProperties136.Append(justification88);
+            //paragraphProperties136.Append(paragraphMarkRunProperties127);
 
-            Run run249 = new Run();
+            //Run run249 = new Run();
 
-            RunProperties runProperties237 = new RunProperties();
-            RunFonts runFonts236 = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman", EastAsia = "Times New Roman", ComplexScript = "Times New Roman" };
-            Bold bold38 = new Bold();
-            Color color221 = new Color() { Val = "000000" };
-            FontSize fontSize233 = new FontSize() { Val = "28" };
-            FontSizeComplexScript fontSizeComplexScript221 = new FontSizeComplexScript() { Val = "24" };
-            Languages languages216 = new Languages() { Val = "ru" };
+            //RunProperties runProperties237 = new RunProperties();
+            //RunFonts runFonts236 = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman", EastAsia = "Times New Roman", ComplexScript = "Times New Roman" };
+            //Bold bold38 = new Bold();
+            //Color color221 = new Color() { Val = "000000" };
+            //FontSize fontSize233 = new FontSize() { Val = "28" };
+            //FontSizeComplexScript fontSizeComplexScript221 = new FontSizeComplexScript() { Val = "24" };
+            //Languages languages216 = new Languages() { Val = "ru" };
 
-            runProperties237.Append(runFonts236);
-            runProperties237.Append(bold38);
-            runProperties237.Append(color221);
-            runProperties237.Append(fontSize233);
-            runProperties237.Append(fontSizeComplexScript221);
-            runProperties237.Append(languages216);
-            Text text143 = new Text();
-            text143.Text = "Основные источники:";
+            //runProperties237.Append(runFonts236);
+            //runProperties237.Append(bold38);
+            //runProperties237.Append(color221);
+            //runProperties237.Append(fontSize233);
+            //runProperties237.Append(fontSizeComplexScript221);
+            //runProperties237.Append(languages216);
+            //Text text143 = new Text();
+            //text143.Text = "Основные источники:";
 
-            run249.Append(runProperties237);
-            run249.Append(text143);
+            //run249.Append(runProperties237);
+            //run249.Append(text143);
 
-            paragraph136.Append(paragraphProperties136);
-            paragraph136.Append(run249);
+            //paragraph136.Append(paragraphProperties136);
+            //paragraph136.Append(run249);
 
             Paragraph paragraph137 = new Paragraph() { RsidParagraphAddition = "009B27E8", RsidParagraphProperties = "00FF310F", RsidRunAdditionDefault = "003106D5" };
 
@@ -14641,7 +14765,19 @@ namespace Wisdom.Writers
             body1.Append(paragraph133);
             body1.Append(paragraph134);
             body1.Append(paragraph135);
-            body1.Append(paragraph136);
+
+            foreach (HashList<string> source in SourcesControl)
+            {
+                Bold bold = new Bold();
+                Bold boldRun = new Bold();
+                Paragraph caption = WordParagraph(source.Name + ":", "",
+                    new OpenXmlElement[] { bold }, new OpenXmlElement[] { boldRun });
+                //caption.ParagraphProperties.ParagraphMarkRunProperties.Append(bold);
+                body1.Append(caption);
+                body1.Append(NumberList(source.Values, '.'));
+            }
+            //body1.Append(paragraph136);
+
             body1.Append(paragraph137);
             body1.Append(paragraph138);
             body1.Append(paragraph139);
@@ -14653,8 +14789,8 @@ namespace Wisdom.Writers
             body1.Append(paragraph150);
             body1.Append(paragraph151);
             body1.Append(paragraph152);
-            body1.Append(NumberList(Applyment, '.'));
             body1.Append(paragraph153);
+            body1.Append(NumberList(Applyment, '.'));
             body1.Append(paragraph154);
             body1.Append(paragraph155);
             body1.Append(paragraph156);

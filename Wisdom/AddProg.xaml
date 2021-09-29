@@ -308,7 +308,7 @@
                 </Border>
             </Grid>
 
-            <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.35*"/>
@@ -462,7 +462,7 @@
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
 
-                                    <StackPanel Grid.ColumnSpan="4" Tag="{x:Reference RS}">
+                                    <StackPanel Grid.ColumnSpan="4" Tag="{x:Reference RS}" x:Name="SkillsAddSpace">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="0.05*" />
@@ -503,7 +503,7 @@
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
 
-                                    <StackPanel Grid.ColumnSpan="4"  Tag="{x:Reference RK}">
+                                    <StackPanel Grid.ColumnSpan="4"  Tag="{x:Reference RK}" x:Name="KnowledgeAddSpace">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="0.05*" />
@@ -544,7 +544,7 @@
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
 
-                                    <StackPanel Grid.ColumnSpan="4">
+                                    <StackPanel Grid.ColumnSpan="4" x:Name="TotalAddSpace">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="0.05*" />
@@ -568,7 +568,7 @@
             </Grid>
 
             <!--RCompetentions-->
-            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.05*"/>
@@ -695,7 +695,7 @@
                 </Grid>
 
                 <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="9">
-                    <StackPanel Background="#FFFFFCC7" Tag="{x:Reference AllSectionsContents}">
+                    <StackPanel Background="#FFFFFCC7" Tag="{x:Reference AllSectionsContents}" x:Name="DisciplinePlan">
                         <Grid Tag="{x:Reference Name=Topic1}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.05*" />
@@ -994,7 +994,7 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel Grid.ColumnSpan="4">
+                                <StackPanel Grid.ColumnSpan="4" x:Name="EducationAddSpace">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="0.05*" />
@@ -1027,7 +1027,7 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <StackPanel Grid.ColumnSpan="4">
+                                <StackPanel Grid.ColumnSpan="4" x:Name="MarkControlAddSpace">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="0.05*" />
@@ -1047,36 +1047,36 @@
                 </Grid>
 
                 <ScrollViewer Grid.Row="10" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="9">
-                <StackPanel Background="#FFFFFCC7">
-                        <Grid Tag="{x:Reference EduSources}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.05*" />
-                                <ColumnDefinition Width="0.15*" />
-                                <ColumnDefinition Width="0.7*" />
-                                <ColumnDefinition Width="0.1*" />
-                            </Grid.ColumnDefinitions>
+                <StackPanel Background="#FFFFFCC7" x:Name="EducationSources">
+                    <Grid Tag="{x:Reference EduSources}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.15*" />
+                            <ColumnDefinition Width="0.7*" />
+                            <ColumnDefinition Width="0.1*" />
+                        </Grid.ColumnDefinitions>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Button Click="DeleteSources" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                            <Label Grid.Column="1" Content="Основные источники" Grid.ColumnSpan="3" Style="{StaticResource ListCaptions}" />
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.05*" />
-                                        <ColumnDefinition Width="0.15*" />
-                                        <ColumnDefinition Width="0.7*" />
-                                        <ColumnDefinition Width="0.1*" />
-                                    </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Button Click="DeleteSources" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
+                        <Label Grid.Column="1" Content="Основные источники" Grid.ColumnSpan="3" Style="{StaticResource ListCaptions}" />
+                        <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.05*" />
+                                    <ColumnDefinition Width="0.15*" />
+                                    <ColumnDefinition Width="0.7*" />
+                                    <ColumnDefinition Width="0.1*" />
+                                </Grid.ColumnDefinitions>
 
-                                    <Button Click="AddSource" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                    <Label x:Name="SourceNo1" Grid.Column="1" Content="1." Style="{StaticResource No1}" />
-                                    <TextBox x:Name="Source1"  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                                </Grid>
-                            </StackPanel>
-                        </Grid>
+                                <Button Click="AddSource" Style="{StaticResource ResourceKey=AddButton}"></Button>
+                                <Label x:Name="SourceNo1" Grid.Column="1" Content="1." Style="{StaticResource No1}" />
+                                <TextBox x:Name="Source1"  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
                     <Grid Tag="{x:Reference Sheet7}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.05*" />
@@ -1157,7 +1157,7 @@
                             <RowDefinition Height="0.99*"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
+                        <StackPanel Grid.Row="1" Grid.ColumnSpan="4" x:Name="ApplyAddSpace">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.05*" />
