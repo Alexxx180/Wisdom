@@ -177,29 +177,7 @@ namespace Wisdom
             //Разделы -> Темы -> Типы работ
             //List< HoursList< HoursList< HashList<String2> > > > Plan = List< HoursList< HoursList< HashList<String2> > > >();
 
-            foreach (HoursList<HoursList<HashList<String2>>> l1 in Plan)
-            {
-                Trace.WriteLine("Раздел ...");
-                Trace.WriteLine("Название: " + l1.Name);
-                Trace.WriteLine("Часы: " + l1.Hours);
-                foreach (HoursList<HashList<String2>> l2 in l1.Values)
-                {
-                    Trace.WriteLine("Тема ...");
-                    Trace.WriteLine("Название: " + l2.Name);
-                    Trace.WriteLine("Уровень освоения: " + l2.Hours);
-                    foreach (HashList<String2> l3 in l2.Values)
-                    {
-                        Trace.WriteLine("Элемент темы ...");
-                        Trace.WriteLine("Название: " + l3.Name);
-                        foreach (String2 l4 in l3.Values)
-                        {
-                            Trace.WriteLine("Элемент темы ...");
-                            Trace.WriteLine("Название: " + l4.Name);
-                            Trace.WriteLine("Часы: " + l4.Value);
-                        }
-                    }
-                }
-            }
+            
             //Usual.Text
             //SaveFileDialog dialog = new SaveFileDialog
             //{
