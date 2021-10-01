@@ -18,6 +18,7 @@ using static Wisdom.Model.ProgramContent;
 using static Wisdom.Writers.Markup;
 using Wisdom.Model;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Wisdom.Writers
 {
@@ -32,14 +33,6 @@ namespace Wisdom.Writers
         
         private List<TableRow> PlanTableRows()
         {
-            List<TableRow> rows = new List<TableRow>();
-            rows.Add(SectionAdd(Plan[0].Name, Plan[0].Hours));
-            rows.AddRange(ThemeAdd(Plan[0].Values[0].Name, Plan[0].Values[0].Hours, Plan[0].Values[0].Values));
-            return rows;
-            //ChangeAble TABLE ZONE
-
-            //HoursList<HashList<String2>> data
-
             /*foreach (HoursList<HoursList<HashList<String2>>> l1 in Plan)
             {
                 Trace.WriteLine("Раздел ...");
@@ -63,7 +56,19 @@ namespace Wisdom.Writers
                     }
                 }
             }*/
+            List<TableRow> rows = new List<TableRow>();
+            for (byte i = 0; i < Plan.Count; i++)
+            {
+                rows.Add(SectionAdd($"Раздел {(i + 1)}. {Plan[i].Name}", Plan[i].Hours));
+                for (byte ii = 0; ii < Plan[i].Values.Count; ii++)
+                {
+                    rows.AddRange(ThemeAdd($"Тема {(i + 1)}.{(ii + 1)}. {Plan[i].Values[ii].Name}", Plan[i].Values[ii].Hours, Plan[i].Values[ii].Values));
+                }
+            }
+            return rows;
+            //ChangeAble TABLE ZONE
 
+            //HoursList<HashList<String2>> data
         }
 
         // Adds child parts and generates content of the specified part.

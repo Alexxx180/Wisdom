@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Wisdom.Model;
 
 namespace Wisdom.Writers
@@ -173,6 +174,13 @@ namespace Wisdom.Writers
 
             for (byte i = 1; i < data.Count; i++)
             {
+                Trace.WriteLine(data[i].Name + ": " + data[i].Values.Count);
+                if (data[i].Values.Count <= 1)
+                {
+                    themeContents.Add(ThemeContent1(data[i].Name + " "
+                        + data[i].Values[0].Name, data[i].Values[0].Value));
+                    continue;
+                }
                 Run descriptionRun = RunAdd(data[i].Name);
 
                 Paragraph sectionP = ParagraphAdd(JustificationValues.Center);
@@ -181,12 +189,12 @@ namespace Wisdom.Writers
                 Paragraph levelsP = ParagraphAdd(JustificationValues.Center);
 
                 TableCell[] subCells = new TableCell[] {
-                    TableCellAdd(sectionP, 1971, new VerticalMerge
-                    { Val = MergedCellValues.Restart }),
-                    TableCellAdd(desriptionP, 5528, new GridSpan { Val = 2 }),
-                    TableCellAdd(hoursP, 992),
-                    TableCellAdd(levelsP, 1276, new VerticalMerge
-                    { Val = MergedCellValues.Restart })
+                        TableCellAdd(sectionP, 1971, new VerticalMerge
+                        { Val = MergedCellValues.Restart }),
+                        TableCellAdd(desriptionP, 5528, new GridSpan { Val = 2 }),
+                        TableCellAdd(hoursP, 992),
+                        TableCellAdd(levelsP, 1276, new VerticalMerge
+                        { Val = MergedCellValues.Restart })
                 };
 
                 TableRow subHeaderRow = TableRowAdd(subCells);
@@ -201,18 +209,44 @@ namespace Wisdom.Writers
         {
             List<TableRow> themeContent = new List<TableRow>();
             for (byte ii = 0; ii < rows.Count; ii++)
-            {
-                Run no = RunAdd((ii + 1).ToString());
-                Run descriptionRun2 = RunAdd(rows[ii].Name);
-                Run hoursRun = RunAdd(rows[ii].Value);
+                themeContent.Add(ThemeContent2(ii + 1, rows[ii].Name, rows[ii].Value));
+            return themeContent;
+        }
 
-                Paragraph sectionP2 = ParagraphAdd(JustificationValues.Center);
-                Paragraph headerNo = ParagraphAdd(JustificationValues.Center, no);
-                Paragraph desriptionP2 = ParagraphAdd(JustificationValues.Both, descriptionRun2);
-                Paragraph hoursP2 = ParagraphAdd(JustificationValues.Center, hoursRun);
-                Paragraph levelsP2 = ParagraphAdd(JustificationValues.Center);
+        private static TableRow ThemeContent1(string name, string hours)
+        {
+            Run descriptionRun2 = RunAdd(name);
+            Run hoursRun = RunAdd(hours);
 
-                TableCell[] subCells2 = new TableCell[] {
+            Paragraph sectionP2 = ParagraphAdd(JustificationValues.Center);
+            Paragraph desriptionP2 = ParagraphAdd(JustificationValues.Both, descriptionRun2);
+            Paragraph hoursP2 = ParagraphAdd(JustificationValues.Center, hoursRun);
+            Paragraph levelsP2 = ParagraphAdd(JustificationValues.Center);
+
+            TableCell[] subCells2 = new TableCell[] {
+                    TableCellAdd(sectionP2, 1971, new VerticalMerge()),
+                    TableCellAdd(desriptionP2, 5528, new GridSpan { Val = 2 }),
+                    TableCellAdd(hoursP2, 992),
+                    TableCellAdd(levelsP2, 1276, new VerticalMerge())
+                };
+
+            TableRow valueRow = TableRowAdd(subCells2);
+            return valueRow;
+        }
+
+        private static TableRow ThemeContent2(int no1, string name, string hours)
+        {
+            Run no = RunAdd(no1.ToString());
+            Run descriptionRun2 = RunAdd(name);
+            Run hoursRun = RunAdd(hours);
+
+            Paragraph sectionP2 = ParagraphAdd(JustificationValues.Center);
+            Paragraph headerNo = ParagraphAdd(JustificationValues.Center, no);
+            Paragraph desriptionP2 = ParagraphAdd(JustificationValues.Both, descriptionRun2);
+            Paragraph hoursP2 = ParagraphAdd(JustificationValues.Center, hoursRun);
+            Paragraph levelsP2 = ParagraphAdd(JustificationValues.Center);
+
+            TableCell[] subCells2 = new TableCell[] {
                         TableCellAdd(sectionP2, 1971, new VerticalMerge()),
                         TableCellAdd(headerNo, 425),
                         TableCellAdd(desriptionP2, 5103),
@@ -220,11 +254,8 @@ namespace Wisdom.Writers
                         TableCellAdd(levelsP2, 1276, new VerticalMerge())
                     };
 
-                TableRow valueRow = TableRowAdd(subCells2);
-
-                themeContent.Add(valueRow);
-            }
-            return themeContent;
+            TableRow valueRow = TableRowAdd(subCells2);
+            return valueRow;
         }
 
         public static Paragraph WordParagraph(string value, string sequence, object[] optionalPar = null, object[] optionalRuns = null)

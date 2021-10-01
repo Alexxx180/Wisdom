@@ -710,9 +710,9 @@
                             </Grid.RowDefinitions>
 
                             <Button Click="DeleteTopicClick" Tag="{x:Reference Name=Themes}" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                            <Viewbox Grid.Column="1">
-                                <Label x:Name="SectionNo" Content="Раздел 1."   Style="{StaticResource CaptionSections}"></Label>
-                            </Viewbox>
+                            <!--<Viewbox Grid.Column="1">-->
+                            <Label x:Name="SectionNo" Grid.Column="1" Content="Раздел 1."   Style="{StaticResource CaptionSections}"></Label>
+                            <!--</Viewbox>-->
                             <TextBox x:Name="SectionName" FontWeight="Bold" Text="" Grid.Column="2" Style="{StaticResource RegularBox}"></TextBox>
                             <TextBox x:Name="SectionHours" Tag="{x:Reference TotalHoursUsed}" Grid.Column="3" Text="" Style="{StaticResource HoursBox}">
                                 <TextBox.Resources>
@@ -741,9 +741,9 @@
                                     </Grid.RowDefinitions>
 
                                     <Button Click="DeleteThemeClick" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                                    <Viewbox Grid.Column="1">
-                                        <Label x:Name="ThemeNo" Content="Тема 1.1." Style="{StaticResource CaptionSections}"></Label>
-                                    </Viewbox>
+                                    <!--<Viewbox Grid.Column="1">-->
+                                    <Label x:Name="ThemeNo" Grid.Column="1" Content="Тема 1.1." Style="{StaticResource CaptionSections}"></Label>
+                                    <!--</Viewbox>-->
                                     <TextBox x:Name="ThemeName" Grid.Column="2" Text="" Style="{StaticResource SubCaptionBox}"></TextBox>
                                     <TextBox x:Name="ThemeLevel" Grid.Column="3" Text="" Style="{StaticResource HoursBox}"></TextBox>
 

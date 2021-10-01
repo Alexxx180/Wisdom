@@ -90,11 +90,23 @@ namespace Wisdom
         //Раздел 1. - Тема 1.1. - Содержание 
         private HashList<String2> GetHashs(Grid grid, byte index, byte index2, byte index3)
         {
-            Label caption = grid.Children[index] as Label; //1
-            HashList<String2> source = new HashList<String2>(caption.Content.ToString());
-            int optimum = index + 4;
-            StackPanel panel2 = grid.Children[optimum] as StackPanel;
-            source.Values = GetListFromElements2(panel2, index2, index3);
+            HashList<String2> source = null;
+            Label caption = grid.Children[index] as Label;
+            if (caption == null)
+            {
+                caption = grid.Children[1] as Label;
+                source = new HashList<String2>(caption.Content.ToString());
+                String2 str2 = new String2((grid.Children[2] as TextBox).Text, (grid.Children[3] as TextBox).Text);
+                source.Values = new List<String2>();
+                source.Values.Add(str2);
+            }
+            else
+            {
+                int optimum = index + 4;
+                source = new HashList<String2>(caption.Content.ToString());
+                StackPanel panel2 = grid.Children[optimum] as StackPanel;
+                source.Values = GetListFromElements2(panel2, index2, index3);
+            }            
             return source;
         }
 
@@ -453,6 +465,7 @@ namespace Wisdom
             Grid section = themes.Parent as Grid;
             StackPanel sections = section.Parent as StackPanel;
             int optimization = sections.Children.IndexOf(section) + 1;
+            //Error
             AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
         }
         
