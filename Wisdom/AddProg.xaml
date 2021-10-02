@@ -1066,7 +1066,7 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Button Click="DeleteSources" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                        <Label Grid.Column="1" Content="Основные источники" Grid.ColumnSpan="3" Style="{StaticResource ListCaptions}" />
+                            <Label Grid.Column="1" Content="Основная литература" Grid.ColumnSpan="3" Style="{StaticResource ListCaptions}" />
                         <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -1091,14 +1091,14 @@
                         </Grid.ColumnDefinitions>
 
                             <Button Click="AddSources" Grid.Row="3" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                        <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource SubCaptionBox}">
+                            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource SubCaptionBox}">
                             <ComboBox.ItemContainerStyle>
                                 <StaticResource ResourceKey="ItemsBox"></StaticResource>
                             </ComboBox.ItemContainerStyle>
-                            <ComboBoxItem>Основные источники</ComboBoxItem>
-                            <ComboBoxItem>Дополнительные источники</ComboBoxItem>
-                            <ComboBoxItem>Интернет-ресурсы</ComboBoxItem>
-                            <ComboBoxItem>Перечень методических указаний, разработанных преподавателем</ComboBoxItem>
+                            <ComboBoxItem>Основная литература</ComboBoxItem>
+                            <ComboBoxItem>Дополнительная литература</ComboBoxItem>
+                            <ComboBoxItem>Программное обеспечение</ComboBoxItem>
+                            <ComboBoxItem>Базы данных, информационно-справочные и поисковые системы</ComboBoxItem>
                         </ComboBox>
                     </Grid>
                 </StackPanel>

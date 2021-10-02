@@ -24,6 +24,11 @@ namespace Wisdom.Model
         public static string CourseWs = "-";
 
         //Компетенции
+        /*
+         Вопрос такого плана:
+            Нужно ли делать для компетенций что-то наподобие
+         Компетенция - знания и умения или там по-другому надо
+         */
         public static List<string> ShallKnow = new List<string>();
         public static List<string> ShallCan = new List<string>();
         public static List<string> TotalCompetetion = new List<string>();

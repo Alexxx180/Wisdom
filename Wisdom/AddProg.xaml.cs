@@ -46,6 +46,22 @@ namespace Wisdom
             }
             return list;
         }
+        private List<List<string>> GetListFromElements3(StackPanel panel, byte rangeStart, byte rangeEnd)
+        {
+            List<List<string>> list = new List<List<string>>();
+            int cnt = panel.Children.Count - 1;
+            for (byte i = 0; i < cnt; i++)
+            {
+                list.Add(new List<string>());
+                Grid element = panel.Children[i] as Grid;
+                for (byte ii = rangeStart; ii < rangeEnd; ii++)
+                {
+                    TextBox box = element.Children[ii] as TextBox;
+                    list[i].Add(box.Text);
+                }
+            }
+            return list;
+        }
         private List<HashList<string>> GetHashListFromElements(StackPanel panel, byte index, byte index2)
         {
             List<HashList<string>> sources = new List<HashList<string>>();
@@ -184,12 +200,16 @@ namespace Wisdom
             Applyment = GetListFromElements(ApplyAddSpace, 2);
 
             Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 0, 2, 3);
+            StudyLevels.Values = new List<string>();
+            List<List<string>> levels = GetListFromElements3(Levels, 2, 4);
+            for (byte i = 0; i < levels.Count; i++)
+                StudyLevels.Add(levels[i][0], levels[i][1]);
 
             //Сложная система вложенностей:
             //Разделы -> Темы -> Типы работ
             //List< HoursList< HoursList< HashList<String2> > > > Plan = List< HoursList< HoursList< HashList<String2> > > >();
 
-            
+
             //Usual.Text
             //SaveFileDialog dialog = new SaveFileDialog
             //{

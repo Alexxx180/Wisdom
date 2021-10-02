@@ -326,17 +326,65 @@ namespace Wisdom.Writers
 
             paragraph1.Append(paragraphProperties1);
 
+            Paragraph paragraph2 = new Paragraph() { RsidParagraphMarkRevision = "00D933D9", RsidParagraphAddition = "00D933D9", RsidParagraphProperties = "00D933D9", RsidRunAdditionDefault = "00D933D9" };
+
+            ParagraphProperties paragraphProperties2 = new ParagraphProperties();
+            Justification justification2 = new Justification() { Val = JustificationValues.Center };
+
+            paragraphProperties2.Append(justification2);
+
             Run run1 = RunPreAdd("Министерство науки и высшего образования Российской Федерации");
-            Paragraph paragraph2 = ParagraphPreAdd2(JustificationValues.Center, run1);
 
-            Run run2 = RunPreAdd("Федеральное государственное бюджетное образовательное учреждение   ");
-            Paragraph paragraph3 = ParagraphPreAdd1(JustificationValues.Center, run2);
+            paragraph2.Append(paragraphProperties2);
+            paragraph2.Append(run1);
 
-            Run run3 = RunPreAdd("высшего образования");
-            Paragraph paragraph4 = ParagraphPreAdd2(JustificationValues.Center, run3);
+            Paragraph paragraph3 = new Paragraph() { RsidParagraphAddition = "00D933D9", RsidParagraphProperties = "00D933D9", RsidRunAdditionDefault = "00D933D9" };
 
-            Run run4 = RunPreAdd("«Новгородский государственный университет имени Ярослава Мудрого»");
-            Paragraph paragraph5 = ParagraphPreAdd2(JustificationValues.Center, run4);
+            ParagraphProperties paragraphProperties3 = new ParagraphProperties();
+            Justification justification3 = new Justification() { Val = JustificationValues.Center };
+
+            paragraphProperties3.Append(justification3);
+
+            Run run2 = new Run() { RsidRunProperties = "00D933D9" };
+            Text text2 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text2.Text = "Федеральное государственное бюджетное образовательное учреждение   ";
+
+            run2.Append(text2);
+
+            paragraph3.Append(paragraphProperties3);
+            paragraph3.Append(run2);
+
+            Paragraph paragraph4 = new Paragraph() { RsidParagraphMarkRevision = "00D933D9", RsidParagraphAddition = "00D933D9", RsidParagraphProperties = "00D933D9", RsidRunAdditionDefault = "00D933D9" };
+
+            ParagraphProperties paragraphProperties4 = new ParagraphProperties();
+            Justification justification4 = new Justification() { Val = JustificationValues.Center };
+
+            paragraphProperties4.Append(justification4);
+
+            Run run3 = new Run() { RsidRunProperties = "00D933D9" };
+            Text text3 = new Text();
+            text3.Text = "высшего образования";
+
+            run3.Append(text3);
+
+            paragraph4.Append(paragraphProperties4);
+            paragraph4.Append(run3);
+
+            Paragraph paragraph5 = new Paragraph() { RsidParagraphMarkRevision = "00D933D9", RsidParagraphAddition = "00D933D9", RsidParagraphProperties = "00D933D9", RsidRunAdditionDefault = "00D933D9" };
+
+            ParagraphProperties paragraphProperties5 = new ParagraphProperties();
+            Justification justification5 = new Justification() { Val = JustificationValues.Center };
+
+            paragraphProperties5.Append(justification5);
+
+            Run run4 = new Run() { RsidRunProperties = "00D933D9" };
+            Text text4 = new Text();
+            text4.Text = "«Новгородский государственный университет имени Ярослава Мудрого»";
+
+            run4.Append(text4);
+
+            paragraph5.Append(paragraphProperties5);
+            paragraph5.Append(run4);
 
             Paragraph paragraph6 = new Paragraph() { RsidParagraphMarkRevision = "00D933D9", RsidParagraphAddition = "00D933D9", RsidParagraphProperties = "00D933D9", RsidRunAdditionDefault = "00D933D9" };
 
@@ -12943,6 +12991,55 @@ namespace Wisdom.Writers
             paragraph348.Append(paragraphProperties339);
             paragraph348.Append(run395);
 
+            Paragraph paragraph353 = new Paragraph() { RsidParagraphAddition = "00F2786A", RsidParagraphProperties = "001E708A", RsidRunAdditionDefault = "00F2786A" };
+
+            ParagraphProperties paragraphProperties343 = new ParagraphProperties();
+
+            Tabs tabs228_1 = new Tabs();
+            TabStop tabStop29101 = new TabStop() { Val = TabStopValues.Left, Position = 916 };
+            TabStop tabStop29111 = new TabStop() { Val = TabStopValues.Left, Position = 1832 };
+            TabStop tabStop29121 = new TabStop() { Val = TabStopValues.Left, Position = 2748 };
+            TabStop tabStop29131 = new TabStop() { Val = TabStopValues.Left, Position = 3664 };
+            TabStop tabStop29141 = new TabStop() { Val = TabStopValues.Left, Position = 4580 };
+            TabStop tabStop29151 = new TabStop() { Val = TabStopValues.Left, Position = 5496 };
+            TabStop tabStop29161 = new TabStop() { Val = TabStopValues.Left, Position = 6412 };
+            TabStop tabStop29171 = new TabStop() { Val = TabStopValues.Left, Position = 7328 };
+            TabStop tabStop29181 = new TabStop() { Val = TabStopValues.Left, Position = 8244 };
+            TabStop tabStop29191 = new TabStop() { Val = TabStopValues.Left, Position = 9160 };
+            TabStop tabStop29201 = new TabStop() { Val = TabStopValues.Left, Position = 10076 };
+            TabStop tabStop29211 = new TabStop() { Val = TabStopValues.Left, Position = 10992 };
+            TabStop tabStop29221 = new TabStop() { Val = TabStopValues.Left, Position = 11908 };
+            TabStop tabStop29231 = new TabStop() { Val = TabStopValues.Left, Position = 12824 };
+            TabStop tabStop29241 = new TabStop() { Val = TabStopValues.Left, Position = 13740 };
+            TabStop tabStop29251 = new TabStop() { Val = TabStopValues.Left, Position = 14656 };
+
+            tabs228_1.Append(tabStop29101);
+            tabs228_1.Append(tabStop29111);
+            tabs228_1.Append(tabStop29121);
+            tabs228_1.Append(tabStop29131);
+            tabs228_1.Append(tabStop29141);
+            tabs228_1.Append(tabStop29151);
+            tabs228_1.Append(tabStop29161);
+            tabs228_1.Append(tabStop29171);
+            tabs228_1.Append(tabStop29181);
+            tabs228_1.Append(tabStop29191);
+            tabs228_1.Append(tabStop29201);
+            tabs228_1.Append(tabStop29211);
+            tabs228_1.Append(tabStop29221);
+            tabs228_1.Append(tabStop29231);
+            tabs228_1.Append(tabStop29241);
+            tabs228_1.Append(tabStop29251);
+
+            ParagraphMarkRunProperties paragraphMarkRunProperties2201 = new ParagraphMarkRunProperties();
+            Bold bold1461 = new Bold();
+
+            paragraphMarkRunProperties2201.Append(bold1461);
+
+            paragraphProperties343.Append(tabs228_1);
+            paragraphProperties343.Append(paragraphMarkRunProperties2201);
+
+            paragraph353.Append(paragraphProperties343);
+
             Paragraph paragraph354 = new Paragraph() { RsidParagraphAddition = "00F2786A", RsidParagraphProperties = "001E708A", RsidRunAdditionDefault = "00F2786A" };
 
             ParagraphProperties paragraphProperties344 = new ParagraphProperties();
@@ -15998,813 +16095,6 @@ namespace Wisdom.Writers
 
             paragraph395.Append(paragraphProperties385);
 
-            Paragraph paragraph396 = new Paragraph() { RsidParagraphMarkRevision = "00735832", RsidParagraphAddition = "000335B5", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00A761B0" };
-
-            ParagraphProperties paragraphProperties386 = new ParagraphProperties();
-
-            Tabs tabs258 = new Tabs();
-            TabStop tabStop3374 = new TabStop() { Val = TabStopValues.Left, Position = 916 };
-            TabStop tabStop3375 = new TabStop() { Val = TabStopValues.Left, Position = 1832 };
-            TabStop tabStop3376 = new TabStop() { Val = TabStopValues.Left, Position = 2748 };
-            TabStop tabStop3377 = new TabStop() { Val = TabStopValues.Left, Position = 3664 };
-            TabStop tabStop3378 = new TabStop() { Val = TabStopValues.Left, Position = 4580 };
-            TabStop tabStop3379 = new TabStop() { Val = TabStopValues.Left, Position = 5496 };
-            TabStop tabStop3380 = new TabStop() { Val = TabStopValues.Left, Position = 6412 };
-            TabStop tabStop3381 = new TabStop() { Val = TabStopValues.Left, Position = 7328 };
-            TabStop tabStop3382 = new TabStop() { Val = TabStopValues.Left, Position = 8244 };
-            TabStop tabStop3383 = new TabStop() { Val = TabStopValues.Left, Position = 9160 };
-            TabStop tabStop3384 = new TabStop() { Val = TabStopValues.Left, Position = 10076 };
-            TabStop tabStop3385 = new TabStop() { Val = TabStopValues.Left, Position = 10992 };
-            TabStop tabStop3386 = new TabStop() { Val = TabStopValues.Left, Position = 11908 };
-            TabStop tabStop3387 = new TabStop() { Val = TabStopValues.Left, Position = 12824 };
-            TabStop tabStop3388 = new TabStop() { Val = TabStopValues.Left, Position = 13740 };
-            TabStop tabStop3389 = new TabStop() { Val = TabStopValues.Left, Position = 14656 };
-
-            tabs258.Append(tabStop3374);
-            tabs258.Append(tabStop3375);
-            tabs258.Append(tabStop3376);
-            tabs258.Append(tabStop3377);
-            tabs258.Append(tabStop3378);
-            tabs258.Append(tabStop3379);
-            tabs258.Append(tabStop3380);
-            tabs258.Append(tabStop3381);
-            tabs258.Append(tabStop3382);
-            tabs258.Append(tabStop3383);
-            tabs258.Append(tabStop3384);
-            tabs258.Append(tabStop3385);
-            tabs258.Append(tabStop3386);
-            tabs258.Append(tabStop3387);
-            tabs258.Append(tabStop3388);
-            tabs258.Append(tabStop3389);
-            Indentation indentation79 = new Indentation() { FirstLine = "709" };
-            Justification justification269 = new Justification() { Val = JustificationValues.Both };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties252 = new ParagraphMarkRunProperties();
-            Bold bold180 = new Bold();
-            BoldComplexScript boldComplexScript270 = new BoldComplexScript();
-
-            paragraphMarkRunProperties252.Append(bold180);
-            paragraphMarkRunProperties252.Append(boldComplexScript270);
-
-            paragraphProperties386.Append(tabs258);
-            paragraphProperties386.Append(indentation79);
-            paragraphProperties386.Append(justification269);
-            paragraphProperties386.Append(paragraphMarkRunProperties252);
-
-            Run run503 = new Run() { RsidRunProperties = "00735832" };
-
-            RunProperties runProperties336 = new RunProperties();
-            Bold bold181 = new Bold();
-            BoldComplexScript boldComplexScript271 = new BoldComplexScript();
-
-            runProperties336.Append(bold181);
-            runProperties336.Append(boldComplexScript271);
-            Text text485 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text485.Text = "а) ";
-
-            run503.Append(runProperties336);
-            run503.Append(text485);
-
-            Run run504 = new Run() { RsidRunProperties = "00735832", RsidRunAddition = "00BD32E0" };
-
-            RunProperties runProperties337 = new RunProperties();
-            Bold bold182 = new Bold();
-            BoldComplexScript boldComplexScript272 = new BoldComplexScript();
-
-            runProperties337.Append(bold182);
-            runProperties337.Append(boldComplexScript272);
-            Text text486 = new Text();
-            text486.Text = "Основная литература";
-
-            run504.Append(runProperties337);
-            run504.Append(text486);
-
-            paragraph396.Append(paragraphProperties386);
-            paragraph396.Append(run503);
-            paragraph396.Append(run504);
-
-            Paragraph paragraph397 = new Paragraph() { RsidParagraphAddition = "00BD32E0", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00BD32E0" };
-
-            ParagraphProperties paragraphProperties387 = new ParagraphProperties();
-
-            Tabs tabs259 = new Tabs();
-            TabStop tabStop3390 = new TabStop() { Val = TabStopValues.Left, Position = 916 };
-            TabStop tabStop3391 = new TabStop() { Val = TabStopValues.Left, Position = 1832 };
-            TabStop tabStop3392 = new TabStop() { Val = TabStopValues.Left, Position = 2748 };
-            TabStop tabStop3393 = new TabStop() { Val = TabStopValues.Left, Position = 3664 };
-            TabStop tabStop3394 = new TabStop() { Val = TabStopValues.Left, Position = 4580 };
-            TabStop tabStop3395 = new TabStop() { Val = TabStopValues.Left, Position = 5496 };
-            TabStop tabStop3396 = new TabStop() { Val = TabStopValues.Left, Position = 6412 };
-            TabStop tabStop3397 = new TabStop() { Val = TabStopValues.Left, Position = 7328 };
-            TabStop tabStop3398 = new TabStop() { Val = TabStopValues.Left, Position = 8244 };
-            TabStop tabStop3399 = new TabStop() { Val = TabStopValues.Left, Position = 9160 };
-            TabStop tabStop3400 = new TabStop() { Val = TabStopValues.Left, Position = 10076 };
-            TabStop tabStop3401 = new TabStop() { Val = TabStopValues.Left, Position = 10992 };
-            TabStop tabStop3402 = new TabStop() { Val = TabStopValues.Left, Position = 11908 };
-            TabStop tabStop3403 = new TabStop() { Val = TabStopValues.Left, Position = 12824 };
-            TabStop tabStop3404 = new TabStop() { Val = TabStopValues.Left, Position = 13740 };
-            TabStop tabStop3405 = new TabStop() { Val = TabStopValues.Left, Position = 14656 };
-
-            tabs259.Append(tabStop3390);
-            tabs259.Append(tabStop3391);
-            tabs259.Append(tabStop3392);
-            tabs259.Append(tabStop3393);
-            tabs259.Append(tabStop3394);
-            tabs259.Append(tabStop3395);
-            tabs259.Append(tabStop3396);
-            tabs259.Append(tabStop3397);
-            tabs259.Append(tabStop3398);
-            tabs259.Append(tabStop3399);
-            tabs259.Append(tabStop3400);
-            tabs259.Append(tabStop3401);
-            tabs259.Append(tabStop3402);
-            tabs259.Append(tabStop3403);
-            tabs259.Append(tabStop3404);
-            tabs259.Append(tabStop3405);
-            Indentation indentation80 = new Indentation() { FirstLine = "709" };
-            Justification justification270 = new Justification() { Val = JustificationValues.Both };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties253 = new ParagraphMarkRunProperties();
-            BoldComplexScript boldComplexScript273 = new BoldComplexScript();
-
-            paragraphMarkRunProperties253.Append(boldComplexScript273);
-
-            paragraphProperties387.Append(tabs259);
-            paragraphProperties387.Append(indentation80);
-            paragraphProperties387.Append(justification270);
-            paragraphProperties387.Append(paragraphMarkRunProperties253);
-
-            paragraph397.Append(paragraphProperties387);
-
-            Paragraph paragraph398 = new Paragraph() { RsidParagraphMarkRevision = "00B500CA", RsidParagraphAddition = "00B500CA", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00B500CA" };
-
-            ParagraphProperties paragraphProperties388 = new ParagraphProperties();
-
-            Tabs tabs260 = new Tabs();
-            TabStop tabStop3406 = new TabStop() { Val = TabStopValues.Left, Position = 916 };
-            TabStop tabStop3407 = new TabStop() { Val = TabStopValues.Left, Position = 1832 };
-            TabStop tabStop3408 = new TabStop() { Val = TabStopValues.Left, Position = 2748 };
-            TabStop tabStop3409 = new TabStop() { Val = TabStopValues.Left, Position = 3664 };
-            TabStop tabStop3410 = new TabStop() { Val = TabStopValues.Left, Position = 4580 };
-            TabStop tabStop3411 = new TabStop() { Val = TabStopValues.Left, Position = 5496 };
-            TabStop tabStop3412 = new TabStop() { Val = TabStopValues.Left, Position = 6412 };
-            TabStop tabStop3413 = new TabStop() { Val = TabStopValues.Left, Position = 7328 };
-            TabStop tabStop3414 = new TabStop() { Val = TabStopValues.Left, Position = 8244 };
-            TabStop tabStop3415 = new TabStop() { Val = TabStopValues.Left, Position = 9160 };
-            TabStop tabStop3416 = new TabStop() { Val = TabStopValues.Left, Position = 10076 };
-            TabStop tabStop3417 = new TabStop() { Val = TabStopValues.Left, Position = 10992 };
-            TabStop tabStop3418 = new TabStop() { Val = TabStopValues.Left, Position = 11908 };
-            TabStop tabStop3419 = new TabStop() { Val = TabStopValues.Left, Position = 12824 };
-            TabStop tabStop3420 = new TabStop() { Val = TabStopValues.Left, Position = 13740 };
-            TabStop tabStop3421 = new TabStop() { Val = TabStopValues.Left, Position = 14656 };
-
-            tabs260.Append(tabStop3406);
-            tabs260.Append(tabStop3407);
-            tabs260.Append(tabStop3408);
-            tabs260.Append(tabStop3409);
-            tabs260.Append(tabStop3410);
-            tabs260.Append(tabStop3411);
-            tabs260.Append(tabStop3412);
-            tabs260.Append(tabStop3413);
-            tabs260.Append(tabStop3414);
-            tabs260.Append(tabStop3415);
-            tabs260.Append(tabStop3416);
-            tabs260.Append(tabStop3417);
-            tabs260.Append(tabStop3418);
-            tabs260.Append(tabStop3419);
-            tabs260.Append(tabStop3420);
-            tabs260.Append(tabStop3421);
-            Indentation indentation81 = new Indentation() { FirstLine = "709" };
-            Justification justification271 = new Justification() { Val = JustificationValues.Both };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties254 = new ParagraphMarkRunProperties();
-            BoldComplexScript boldComplexScript274 = new BoldComplexScript();
-
-            paragraphMarkRunProperties254.Append(boldComplexScript274);
-
-            paragraphProperties388.Append(tabs260);
-            paragraphProperties388.Append(indentation81);
-            paragraphProperties388.Append(justification271);
-            paragraphProperties388.Append(paragraphMarkRunProperties254);
-
-            Run run505 = new Run();
-
-            RunProperties runProperties338 = new RunProperties();
-            BoldComplexScript boldComplexScript275 = new BoldComplexScript();
-            Languages languages78 = new Languages() { Val = "en-US" };
-
-            runProperties338.Append(boldComplexScript275);
-            runProperties338.Append(languages78);
-            Text text487 = new Text();
-            text487.Text = "#";
-
-            run505.Append(runProperties338);
-            run505.Append(text487);
-
-            Run run506 = new Run();
-
-            RunProperties runProperties339 = new RunProperties();
-            BoldComplexScript boldComplexScript276 = new BoldComplexScript();
-
-            runProperties339.Append(boldComplexScript276);
-            Text text488 = new Text();
-            text488.Text = "ЛИТ1";
-
-            run506.Append(runProperties339);
-            run506.Append(text488);
-
-            paragraph398.Append(paragraphProperties388);
-            paragraph398.Append(run505);
-            paragraph398.Append(run506);
-
-            Paragraph paragraph399 = new Paragraph() { RsidParagraphMarkRevision = "00980D85", RsidParagraphAddition = "00B500CA", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00B500CA" };
-
-            ParagraphProperties paragraphProperties389 = new ParagraphProperties();
-
-            Tabs tabs261 = new Tabs();
-            TabStop tabStop3422 = new TabStop() { Val = TabStopValues.Left, Position = 916 };
-            TabStop tabStop3423 = new TabStop() { Val = TabStopValues.Left, Position = 1832 };
-            TabStop tabStop3424 = new TabStop() { Val = TabStopValues.Left, Position = 2748 };
-            TabStop tabStop3425 = new TabStop() { Val = TabStopValues.Left, Position = 3664 };
-            TabStop tabStop3426 = new TabStop() { Val = TabStopValues.Left, Position = 4580 };
-            TabStop tabStop3427 = new TabStop() { Val = TabStopValues.Left, Position = 5496 };
-            TabStop tabStop3428 = new TabStop() { Val = TabStopValues.Left, Position = 6412 };
-            TabStop tabStop3429 = new TabStop() { Val = TabStopValues.Left, Position = 7328 };
-            TabStop tabStop3430 = new TabStop() { Val = TabStopValues.Left, Position = 8244 };
-            TabStop tabStop3431 = new TabStop() { Val = TabStopValues.Left, Position = 9160 };
-            TabStop tabStop3432 = new TabStop() { Val = TabStopValues.Left, Position = 10076 };
-            TabStop tabStop3433 = new TabStop() { Val = TabStopValues.Left, Position = 10992 };
-            TabStop tabStop3434 = new TabStop() { Val = TabStopValues.Left, Position = 11908 };
-            TabStop tabStop3435 = new TabStop() { Val = TabStopValues.Left, Position = 12824 };
-            TabStop tabStop3436 = new TabStop() { Val = TabStopValues.Left, Position = 13740 };
-            TabStop tabStop3437 = new TabStop() { Val = TabStopValues.Left, Position = 14656 };
-
-            tabs261.Append(tabStop3422);
-            tabs261.Append(tabStop3423);
-            tabs261.Append(tabStop3424);
-            tabs261.Append(tabStop3425);
-            tabs261.Append(tabStop3426);
-            tabs261.Append(tabStop3427);
-            tabs261.Append(tabStop3428);
-            tabs261.Append(tabStop3429);
-            tabs261.Append(tabStop3430);
-            tabs261.Append(tabStop3431);
-            tabs261.Append(tabStop3432);
-            tabs261.Append(tabStop3433);
-            tabs261.Append(tabStop3434);
-            tabs261.Append(tabStop3435);
-            tabs261.Append(tabStop3436);
-            tabs261.Append(tabStop3437);
-            Indentation indentation82 = new Indentation() { FirstLine = "709" };
-            Justification justification272 = new Justification() { Val = JustificationValues.Both };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties255 = new ParagraphMarkRunProperties();
-            BoldComplexScript boldComplexScript277 = new BoldComplexScript();
-
-            paragraphMarkRunProperties255.Append(boldComplexScript277);
-
-            paragraphProperties389.Append(tabs261);
-            paragraphProperties389.Append(indentation82);
-            paragraphProperties389.Append(justification272);
-            paragraphProperties389.Append(paragraphMarkRunProperties255);
-
-            paragraph399.Append(paragraphProperties389);
-
-            Paragraph paragraph400 = new Paragraph() { RsidParagraphMarkRevision = "00735832", RsidParagraphAddition = "000335B5", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00A761B0" };
-
-            ParagraphProperties paragraphProperties390 = new ParagraphProperties();
-
-            Tabs tabs262 = new Tabs();
-            TabStop tabStop3438 = new TabStop() { Val = TabStopValues.Left, Position = 916 };
-            TabStop tabStop3439 = new TabStop() { Val = TabStopValues.Left, Position = 1832 };
-            TabStop tabStop3440 = new TabStop() { Val = TabStopValues.Left, Position = 2748 };
-            TabStop tabStop3441 = new TabStop() { Val = TabStopValues.Left, Position = 3664 };
-            TabStop tabStop3442 = new TabStop() { Val = TabStopValues.Left, Position = 4580 };
-            TabStop tabStop3443 = new TabStop() { Val = TabStopValues.Left, Position = 5496 };
-            TabStop tabStop3444 = new TabStop() { Val = TabStopValues.Left, Position = 6412 };
-            TabStop tabStop3445 = new TabStop() { Val = TabStopValues.Left, Position = 7328 };
-            TabStop tabStop3446 = new TabStop() { Val = TabStopValues.Left, Position = 8244 };
-            TabStop tabStop3447 = new TabStop() { Val = TabStopValues.Left, Position = 9160 };
-            TabStop tabStop3448 = new TabStop() { Val = TabStopValues.Left, Position = 10076 };
-            TabStop tabStop3449 = new TabStop() { Val = TabStopValues.Left, Position = 10992 };
-            TabStop tabStop3450 = new TabStop() { Val = TabStopValues.Left, Position = 11908 };
-            TabStop tabStop3451 = new TabStop() { Val = TabStopValues.Left, Position = 12824 };
-            TabStop tabStop3452 = new TabStop() { Val = TabStopValues.Left, Position = 13740 };
-            TabStop tabStop3453 = new TabStop() { Val = TabStopValues.Left, Position = 14656 };
-
-            tabs262.Append(tabStop3438);
-            tabs262.Append(tabStop3439);
-            tabs262.Append(tabStop3440);
-            tabs262.Append(tabStop3441);
-            tabs262.Append(tabStop3442);
-            tabs262.Append(tabStop3443);
-            tabs262.Append(tabStop3444);
-            tabs262.Append(tabStop3445);
-            tabs262.Append(tabStop3446);
-            tabs262.Append(tabStop3447);
-            tabs262.Append(tabStop3448);
-            tabs262.Append(tabStop3449);
-            tabs262.Append(tabStop3450);
-            tabs262.Append(tabStop3451);
-            tabs262.Append(tabStop3452);
-            tabs262.Append(tabStop3453);
-            Indentation indentation83 = new Indentation() { FirstLine = "709" };
-            Justification justification273 = new Justification() { Val = JustificationValues.Both };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties256 = new ParagraphMarkRunProperties();
-            Bold bold183 = new Bold();
-            BoldComplexScript boldComplexScript278 = new BoldComplexScript();
-
-            paragraphMarkRunProperties256.Append(bold183);
-            paragraphMarkRunProperties256.Append(boldComplexScript278);
-
-            paragraphProperties390.Append(tabs262);
-            paragraphProperties390.Append(indentation83);
-            paragraphProperties390.Append(justification273);
-            paragraphProperties390.Append(paragraphMarkRunProperties256);
-
-            Run run507 = new Run() { RsidRunProperties = "00735832" };
-
-            RunProperties runProperties340 = new RunProperties();
-            Bold bold184 = new Bold();
-            BoldComplexScript boldComplexScript279 = new BoldComplexScript();
-
-            runProperties340.Append(bold184);
-            runProperties340.Append(boldComplexScript279);
-            Text text489 = new Text();
-            text489.Text = "б)";
-
-            run507.Append(runProperties340);
-            run507.Append(text489);
-
-            Run run508 = new Run() { RsidRunProperties = "00735832", RsidRunAddition = "00426F3D" };
-
-            RunProperties runProperties341 = new RunProperties();
-            Bold bold185 = new Bold();
-            BoldComplexScript boldComplexScript280 = new BoldComplexScript();
-
-            runProperties341.Append(bold185);
-            runProperties341.Append(boldComplexScript280);
-            Text text490 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text490.Text = " ";
-
-            run508.Append(runProperties341);
-            run508.Append(text490);
-
-            Run run509 = new Run() { RsidRunProperties = "00735832", RsidRunAddition = "000335B5" };
-
-            RunProperties runProperties342 = new RunProperties();
-            Bold bold186 = new Bold();
-            BoldComplexScript boldComplexScript281 = new BoldComplexScript();
-
-            runProperties342.Append(bold186);
-            runProperties342.Append(boldComplexScript281);
-            Text text491 = new Text();
-            text491.Text = "Дополнительн";
-
-            run509.Append(runProperties342);
-            run509.Append(text491);
-
-            Run run510 = new Run() { RsidRunProperties = "00735832", RsidRunAddition = "00BD32E0" };
-
-            RunProperties runProperties343 = new RunProperties();
-            Bold bold187 = new Bold();
-            BoldComplexScript boldComplexScript282 = new BoldComplexScript();
-
-            runProperties343.Append(bold187);
-            runProperties343.Append(boldComplexScript282);
-            Text text492 = new Text();
-            text492.Text = "ая литература";
-
-            run510.Append(runProperties343);
-            run510.Append(text492);
-
-            paragraph400.Append(paragraphProperties390);
-            paragraph400.Append(run507);
-            paragraph400.Append(run508);
-            paragraph400.Append(run509);
-            paragraph400.Append(run510);
-
-            Paragraph paragraph401 = new Paragraph() { RsidParagraphAddition = "00025401", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00025401" };
-
-            ParagraphProperties paragraphProperties391 = new ParagraphProperties();
-
-            Tabs tabs263 = new Tabs();
-            TabStop tabStop3454 = new TabStop() { Val = TabStopValues.Left, Position = 916 };
-            TabStop tabStop3455 = new TabStop() { Val = TabStopValues.Left, Position = 1832 };
-            TabStop tabStop3456 = new TabStop() { Val = TabStopValues.Left, Position = 2748 };
-            TabStop tabStop3457 = new TabStop() { Val = TabStopValues.Left, Position = 3664 };
-            TabStop tabStop3458 = new TabStop() { Val = TabStopValues.Left, Position = 4580 };
-            TabStop tabStop3459 = new TabStop() { Val = TabStopValues.Left, Position = 5496 };
-            TabStop tabStop3460 = new TabStop() { Val = TabStopValues.Left, Position = 6412 };
-            TabStop tabStop3461 = new TabStop() { Val = TabStopValues.Left, Position = 7328 };
-            TabStop tabStop3462 = new TabStop() { Val = TabStopValues.Left, Position = 8244 };
-            TabStop tabStop3463 = new TabStop() { Val = TabStopValues.Left, Position = 9160 };
-            TabStop tabStop3464 = new TabStop() { Val = TabStopValues.Left, Position = 10076 };
-            TabStop tabStop3465 = new TabStop() { Val = TabStopValues.Left, Position = 10992 };
-            TabStop tabStop3466 = new TabStop() { Val = TabStopValues.Left, Position = 11908 };
-            TabStop tabStop3467 = new TabStop() { Val = TabStopValues.Left, Position = 12824 };
-            TabStop tabStop3468 = new TabStop() { Val = TabStopValues.Left, Position = 13740 };
-            TabStop tabStop3469 = new TabStop() { Val = TabStopValues.Left, Position = 14656 };
-
-            tabs263.Append(tabStop3454);
-            tabs263.Append(tabStop3455);
-            tabs263.Append(tabStop3456);
-            tabs263.Append(tabStop3457);
-            tabs263.Append(tabStop3458);
-            tabs263.Append(tabStop3459);
-            tabs263.Append(tabStop3460);
-            tabs263.Append(tabStop3461);
-            tabs263.Append(tabStop3462);
-            tabs263.Append(tabStop3463);
-            tabs263.Append(tabStop3464);
-            tabs263.Append(tabStop3465);
-            tabs263.Append(tabStop3466);
-            tabs263.Append(tabStop3467);
-            tabs263.Append(tabStop3468);
-            tabs263.Append(tabStop3469);
-            Indentation indentation84 = new Indentation() { FirstLine = "709" };
-            Justification justification274 = new Justification() { Val = JustificationValues.Both };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties257 = new ParagraphMarkRunProperties();
-            BoldComplexScript boldComplexScript283 = new BoldComplexScript();
-
-            paragraphMarkRunProperties257.Append(boldComplexScript283);
-
-            paragraphProperties391.Append(tabs263);
-            paragraphProperties391.Append(indentation84);
-            paragraphProperties391.Append(justification274);
-            paragraphProperties391.Append(paragraphMarkRunProperties257);
-
-            paragraph401.Append(paragraphProperties391);
-
-            Paragraph paragraph402 = new Paragraph() { RsidParagraphMarkRevision = "00B500CA", RsidParagraphAddition = "00B500CA", RsidParagraphProperties = "00B500CA", RsidRunAdditionDefault = "00B500CA" };
-
-            ParagraphProperties paragraphProperties392 = new ParagraphProperties();
-
-            Tabs tabs264 = new Tabs();
-            TabStop tabStop3470 = new TabStop() { Val = TabStopValues.Left, Position = 916 };
-            TabStop tabStop3471 = new TabStop() { Val = TabStopValues.Left, Position = 1832 };
-            TabStop tabStop3472 = new TabStop() { Val = TabStopValues.Left, Position = 2748 };
-            TabStop tabStop3473 = new TabStop() { Val = TabStopValues.Left, Position = 3664 };
-            TabStop tabStop3474 = new TabStop() { Val = TabStopValues.Left, Position = 4580 };
-            TabStop tabStop3475 = new TabStop() { Val = TabStopValues.Left, Position = 5496 };
-            TabStop tabStop3476 = new TabStop() { Val = TabStopValues.Left, Position = 6412 };
-            TabStop tabStop3477 = new TabStop() { Val = TabStopValues.Left, Position = 7328 };
-            TabStop tabStop3478 = new TabStop() { Val = TabStopValues.Left, Position = 8244 };
-            TabStop tabStop3479 = new TabStop() { Val = TabStopValues.Left, Position = 9160 };
-            TabStop tabStop3480 = new TabStop() { Val = TabStopValues.Left, Position = 10076 };
-            TabStop tabStop3481 = new TabStop() { Val = TabStopValues.Left, Position = 10992 };
-            TabStop tabStop3482 = new TabStop() { Val = TabStopValues.Left, Position = 11908 };
-            TabStop tabStop3483 = new TabStop() { Val = TabStopValues.Left, Position = 12824 };
-            TabStop tabStop3484 = new TabStop() { Val = TabStopValues.Left, Position = 13740 };
-            TabStop tabStop3485 = new TabStop() { Val = TabStopValues.Left, Position = 14656 };
-
-            tabs264.Append(tabStop3470);
-            tabs264.Append(tabStop3471);
-            tabs264.Append(tabStop3472);
-            tabs264.Append(tabStop3473);
-            tabs264.Append(tabStop3474);
-            tabs264.Append(tabStop3475);
-            tabs264.Append(tabStop3476);
-            tabs264.Append(tabStop3477);
-            tabs264.Append(tabStop3478);
-            tabs264.Append(tabStop3479);
-            tabs264.Append(tabStop3480);
-            tabs264.Append(tabStop3481);
-            tabs264.Append(tabStop3482);
-            tabs264.Append(tabStop3483);
-            tabs264.Append(tabStop3484);
-            tabs264.Append(tabStop3485);
-            Indentation indentation85 = new Indentation() { FirstLine = "709" };
-            Justification justification275 = new Justification() { Val = JustificationValues.Both };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties258 = new ParagraphMarkRunProperties();
-            BoldComplexScript boldComplexScript284 = new BoldComplexScript();
-
-            paragraphMarkRunProperties258.Append(boldComplexScript284);
-
-            paragraphProperties392.Append(tabs264);
-            paragraphProperties392.Append(indentation85);
-            paragraphProperties392.Append(justification275);
-            paragraphProperties392.Append(paragraphMarkRunProperties258);
-
-            Run run511 = new Run();
-
-            RunProperties runProperties344 = new RunProperties();
-            BoldComplexScript boldComplexScript285 = new BoldComplexScript();
-            Languages languages79 = new Languages() { Val = "en-US" };
-
-            runProperties344.Append(boldComplexScript285);
-            runProperties344.Append(languages79);
-            Text text493 = new Text();
-            text493.Text = "#";
-
-            run511.Append(runProperties344);
-            run511.Append(text493);
-
-            Run run512 = new Run();
-
-            RunProperties runProperties345 = new RunProperties();
-            BoldComplexScript boldComplexScript286 = new BoldComplexScript();
-
-            runProperties345.Append(boldComplexScript286);
-            Text text494 = new Text();
-            text494.Text = "ЛИТ2";
-
-            run512.Append(runProperties345);
-            run512.Append(text494);
-
-            paragraph402.Append(paragraphProperties392);
-            paragraph402.Append(run511);
-            paragraph402.Append(run512);
-
-            Paragraph paragraph403 = new Paragraph() { RsidParagraphAddition = "00B500CA", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00B500CA" };
-
-            ParagraphProperties paragraphProperties393 = new ParagraphProperties();
-
-            Tabs tabs265 = new Tabs();
-            TabStop tabStop3486 = new TabStop() { Val = TabStopValues.Left, Position = 916 };
-            TabStop tabStop3487 = new TabStop() { Val = TabStopValues.Left, Position = 1832 };
-            TabStop tabStop3488 = new TabStop() { Val = TabStopValues.Left, Position = 2748 };
-            TabStop tabStop3489 = new TabStop() { Val = TabStopValues.Left, Position = 3664 };
-            TabStop tabStop3490 = new TabStop() { Val = TabStopValues.Left, Position = 4580 };
-            TabStop tabStop3491 = new TabStop() { Val = TabStopValues.Left, Position = 5496 };
-            TabStop tabStop3492 = new TabStop() { Val = TabStopValues.Left, Position = 6412 };
-            TabStop tabStop3493 = new TabStop() { Val = TabStopValues.Left, Position = 7328 };
-            TabStop tabStop3494 = new TabStop() { Val = TabStopValues.Left, Position = 8244 };
-            TabStop tabStop3495 = new TabStop() { Val = TabStopValues.Left, Position = 9160 };
-            TabStop tabStop3496 = new TabStop() { Val = TabStopValues.Left, Position = 10076 };
-            TabStop tabStop3497 = new TabStop() { Val = TabStopValues.Left, Position = 10992 };
-            TabStop tabStop3498 = new TabStop() { Val = TabStopValues.Left, Position = 11908 };
-            TabStop tabStop3499 = new TabStop() { Val = TabStopValues.Left, Position = 12824 };
-            TabStop tabStop3500 = new TabStop() { Val = TabStopValues.Left, Position = 13740 };
-            TabStop tabStop3501 = new TabStop() { Val = TabStopValues.Left, Position = 14656 };
-
-            tabs265.Append(tabStop3486);
-            tabs265.Append(tabStop3487);
-            tabs265.Append(tabStop3488);
-            tabs265.Append(tabStop3489);
-            tabs265.Append(tabStop3490);
-            tabs265.Append(tabStop3491);
-            tabs265.Append(tabStop3492);
-            tabs265.Append(tabStop3493);
-            tabs265.Append(tabStop3494);
-            tabs265.Append(tabStop3495);
-            tabs265.Append(tabStop3496);
-            tabs265.Append(tabStop3497);
-            tabs265.Append(tabStop3498);
-            tabs265.Append(tabStop3499);
-            tabs265.Append(tabStop3500);
-            tabs265.Append(tabStop3501);
-            Indentation indentation86 = new Indentation() { FirstLine = "709" };
-            Justification justification276 = new Justification() { Val = JustificationValues.Both };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties259 = new ParagraphMarkRunProperties();
-            BoldComplexScript boldComplexScript287 = new BoldComplexScript();
-
-            paragraphMarkRunProperties259.Append(boldComplexScript287);
-
-            paragraphProperties393.Append(tabs265);
-            paragraphProperties393.Append(indentation86);
-            paragraphProperties393.Append(justification276);
-            paragraphProperties393.Append(paragraphMarkRunProperties259);
-
-            paragraph403.Append(paragraphProperties393);
-
-            Paragraph paragraph404 = new Paragraph() { RsidParagraphMarkRevision = "00735832", RsidParagraphAddition = "00617B67", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00A761B0" };
-
-            ParagraphProperties paragraphProperties394 = new ParagraphProperties();
-
-            Tabs tabs266 = new Tabs();
-            TabStop tabStop3502 = new TabStop() { Val = TabStopValues.Left, Position = 916 };
-            TabStop tabStop3503 = new TabStop() { Val = TabStopValues.Left, Position = 1832 };
-            TabStop tabStop3504 = new TabStop() { Val = TabStopValues.Left, Position = 2748 };
-            TabStop tabStop3505 = new TabStop() { Val = TabStopValues.Left, Position = 3664 };
-            TabStop tabStop3506 = new TabStop() { Val = TabStopValues.Left, Position = 4580 };
-            TabStop tabStop3507 = new TabStop() { Val = TabStopValues.Left, Position = 5496 };
-            TabStop tabStop3508 = new TabStop() { Val = TabStopValues.Left, Position = 6412 };
-            TabStop tabStop3509 = new TabStop() { Val = TabStopValues.Left, Position = 7328 };
-            TabStop tabStop3510 = new TabStop() { Val = TabStopValues.Left, Position = 8244 };
-            TabStop tabStop3511 = new TabStop() { Val = TabStopValues.Left, Position = 9160 };
-            TabStop tabStop3512 = new TabStop() { Val = TabStopValues.Left, Position = 10076 };
-            TabStop tabStop3513 = new TabStop() { Val = TabStopValues.Left, Position = 10992 };
-            TabStop tabStop3514 = new TabStop() { Val = TabStopValues.Left, Position = 11908 };
-            TabStop tabStop3515 = new TabStop() { Val = TabStopValues.Left, Position = 12824 };
-            TabStop tabStop3516 = new TabStop() { Val = TabStopValues.Left, Position = 13740 };
-            TabStop tabStop3517 = new TabStop() { Val = TabStopValues.Left, Position = 14656 };
-
-            tabs266.Append(tabStop3502);
-            tabs266.Append(tabStop3503);
-            tabs266.Append(tabStop3504);
-            tabs266.Append(tabStop3505);
-            tabs266.Append(tabStop3506);
-            tabs266.Append(tabStop3507);
-            tabs266.Append(tabStop3508);
-            tabs266.Append(tabStop3509);
-            tabs266.Append(tabStop3510);
-            tabs266.Append(tabStop3511);
-            tabs266.Append(tabStop3512);
-            tabs266.Append(tabStop3513);
-            tabs266.Append(tabStop3514);
-            tabs266.Append(tabStop3515);
-            tabs266.Append(tabStop3516);
-            tabs266.Append(tabStop3517);
-            Indentation indentation87 = new Indentation() { FirstLine = "709" };
-            Justification justification277 = new Justification() { Val = JustificationValues.Both };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties260 = new ParagraphMarkRunProperties();
-            Bold bold188 = new Bold();
-            BoldComplexScript boldComplexScript288 = new BoldComplexScript();
-
-            paragraphMarkRunProperties260.Append(bold188);
-            paragraphMarkRunProperties260.Append(boldComplexScript288);
-
-            paragraphProperties394.Append(tabs266);
-            paragraphProperties394.Append(indentation87);
-            paragraphProperties394.Append(justification277);
-            paragraphProperties394.Append(paragraphMarkRunProperties260);
-
-            Run run513 = new Run() { RsidRunProperties = "00E16B5D" };
-
-            RunProperties runProperties346 = new RunProperties();
-            Bold bold189 = new Bold();
-            BoldComplexScript boldComplexScript289 = new BoldComplexScript();
-
-            runProperties346.Append(bold189);
-            runProperties346.Append(boldComplexScript289);
-            Text text495 = new Text();
-            text495.Text = "в)";
-
-            run513.Append(runProperties346);
-            run513.Append(text495);
-
-            Run run514 = new Run() { RsidRunProperties = "00E16B5D" };
-
-            RunProperties runProperties347 = new RunProperties();
-            Bold bold190 = new Bold();
-            FontSize fontSize52 = new FontSize() { Val = "28" };
-            FontSizeComplexScript fontSizeComplexScript50 = new FontSizeComplexScript() { Val = "28" };
-
-            runProperties347.Append(bold190);
-            runProperties347.Append(fontSize52);
-            runProperties347.Append(fontSizeComplexScript50);
-            Text text496 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text496.Text = " ";
-
-            run514.Append(runProperties347);
-            run514.Append(text496);
-
-            Run run515 = new Run() { RsidRunProperties = "00E16B5D" };
-
-            RunProperties runProperties348 = new RunProperties();
-            Bold bold191 = new Bold();
-
-            runProperties348.Append(bold191);
-            Text text497 = new Text();
-            text497.Text = "Программное обеспечение";
-
-            run515.Append(runProperties348);
-            run515.Append(text497);
-
-            paragraph404.Append(paragraphProperties394);
-            paragraph404.Append(run513);
-            paragraph404.Append(run514);
-            paragraph404.Append(run515);
-
-            Paragraph paragraph405 = new Paragraph() { RsidParagraphAddition = "00A761B0", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00A761B0" };
-
-            ParagraphProperties paragraphProperties395 = new ParagraphProperties();
-            Indentation indentation88 = new Indentation() { FirstLine = "709" };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties261 = new ParagraphMarkRunProperties();
-            Bold bold192 = new Bold();
-            Italic italic207 = new Italic();
-
-            paragraphMarkRunProperties261.Append(bold192);
-            paragraphMarkRunProperties261.Append(italic207);
-
-            paragraphProperties395.Append(indentation88);
-            paragraphProperties395.Append(paragraphMarkRunProperties261);
-
-            paragraph405.Append(paragraphProperties395);
-
-            Paragraph paragraph406 = new Paragraph() { RsidParagraphMarkRevision = "00E16B5D", RsidParagraphAddition = "00E16B5D", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00E16B5D" };
-
-            ParagraphProperties paragraphProperties396 = new ParagraphProperties();
-            Indentation indentation89 = new Indentation() { FirstLine = "709" };
-
-            paragraphProperties396.Append(indentation89);
-
-            Run run516 = new Run() { RsidRunProperties = "00E16B5D" };
-
-            RunProperties runProperties349 = new RunProperties();
-            Languages languages80 = new Languages() { Val = "en-US" };
-
-            runProperties349.Append(languages80);
-            Text text498 = new Text();
-            text498.Text = "#";
-
-            run516.Append(runProperties349);
-            run516.Append(text498);
-
-            Run run517 = new Run() { RsidRunProperties = "00E16B5D" };
-            Text text499 = new Text();
-            text499.Text = "ЛИТ3";
-
-            run517.Append(text499);
-
-            paragraph406.Append(paragraphProperties396);
-            paragraph406.Append(run516);
-            paragraph406.Append(run517);
-
-            Paragraph paragraph407 = new Paragraph() { RsidParagraphMarkRevision = "00735832", RsidParagraphAddition = "00E16B5D", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00E16B5D" };
-
-            ParagraphProperties paragraphProperties397 = new ParagraphProperties();
-            Indentation indentation90 = new Indentation() { FirstLine = "709" };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties262 = new ParagraphMarkRunProperties();
-            Bold bold193 = new Bold();
-            Italic italic208 = new Italic();
-
-            paragraphMarkRunProperties262.Append(bold193);
-            paragraphMarkRunProperties262.Append(italic208);
-
-            paragraphProperties397.Append(indentation90);
-            paragraphProperties397.Append(paragraphMarkRunProperties262);
-
-            paragraph407.Append(paragraphProperties397);
-
-            Paragraph paragraph408 = new Paragraph() { RsidParagraphAddition = "00A761B0", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00A761B0" };
-
-            ParagraphProperties paragraphProperties398 = new ParagraphProperties();
-            SpacingBetweenLines spacingBetweenLines68 = new SpacingBetweenLines() { Line = "360", LineRule = LineSpacingRuleValues.Auto };
-            Indentation indentation91 = new Indentation() { FirstLine = "709" };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties263 = new ParagraphMarkRunProperties();
-            Bold bold194 = new Bold();
-
-            paragraphMarkRunProperties263.Append(bold194);
-
-            paragraphProperties398.Append(spacingBetweenLines68);
-            paragraphProperties398.Append(indentation91);
-            paragraphProperties398.Append(paragraphMarkRunProperties263);
-
-            Run run518 = new Run() { RsidRunProperties = "00E16B5D" };
-
-            RunProperties runProperties350 = new RunProperties();
-            Bold bold195 = new Bold();
-
-            runProperties350.Append(bold195);
-            Text text500 = new Text();
-            text500.Text = "г) Базы данных, информационно-справочные и поисковые системы";
-
-            run518.Append(runProperties350);
-            run518.Append(text500);
-
-            paragraph408.Append(paragraphProperties398);
-            paragraph408.Append(run518);
-
-            Paragraph paragraph409 = new Paragraph() { RsidParagraphAddition = "00E16B5D", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00E16B5D" };
-
-            ParagraphProperties paragraphProperties399 = new ParagraphProperties();
-            SpacingBetweenLines spacingBetweenLines69 = new SpacingBetweenLines() { Line = "360", LineRule = LineSpacingRuleValues.Auto };
-            Indentation indentation92 = new Indentation() { FirstLine = "709" };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties264 = new ParagraphMarkRunProperties();
-            Bold bold196 = new Bold();
-
-            paragraphMarkRunProperties264.Append(bold196);
-
-            paragraphProperties399.Append(spacingBetweenLines69);
-            paragraphProperties399.Append(indentation92);
-            paragraphProperties399.Append(paragraphMarkRunProperties264);
-
-            paragraph409.Append(paragraphProperties399);
-
-            Paragraph paragraph410 = new Paragraph() { RsidParagraphMarkRevision = "00E16B5D", RsidParagraphAddition = "00E16B5D", RsidParagraphProperties = "00E16B5D", RsidRunAdditionDefault = "00E16B5D" };
-
-            ParagraphProperties paragraphProperties400 = new ParagraphProperties();
-            Indentation indentation93 = new Indentation() { FirstLine = "709" };
-
-            paragraphProperties400.Append(indentation93);
-
-            Run run519 = new Run() { RsidRunProperties = "00B500CA" };
-            Text text501 = new Text();
-            text501.Text = "#";
-
-            run519.Append(text501);
-
-            Run run520 = new Run();
-            Text text502 = new Text();
-            text502.Text = "ЛИТ4";
-
-            run520.Append(text502);
-
-            paragraph410.Append(paragraphProperties400);
-            paragraph410.Append(run519);
-            paragraph410.Append(run520);
-
             Paragraph paragraph411 = new Paragraph() { RsidParagraphMarkRevision = "00735832", RsidParagraphAddition = "00E16B5D", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "00E16B5D" };
 
             ParagraphProperties paragraphProperties401 = new ParagraphProperties();
@@ -19608,93 +18898,6 @@ namespace Wisdom.Writers
             paragraph476.Append(run610);
             paragraph476.Append(run611);
 
-            Paragraph paragraph477 = new Paragraph() { RsidParagraphMarkRevision = "00C25C87", RsidParagraphAddition = "00C25C87", RsidParagraphProperties = "00735832", RsidRunAdditionDefault = "00C25C87" };
-
-            ParagraphProperties paragraphProperties466 = new ParagraphProperties();
-            WidowControl widowControl89 = new WidowControl() { Val = false };
-            SuppressAutoHyphens suppressAutoHyphens64 = new SuppressAutoHyphens();
-            Indentation indentation135 = new Indentation() { FirstLine = "709" };
-            Justification justification337 = new Justification() { Val = JustificationValues.Both };
-
-            ParagraphMarkRunProperties paragraphMarkRunProperties324 = new ParagraphMarkRunProperties();
-            Italic italic254 = new Italic();
-
-            paragraphMarkRunProperties324.Append(italic254);
-
-            paragraphProperties466.Append(widowControl89);
-            paragraphProperties466.Append(suppressAutoHyphens64);
-            paragraphProperties466.Append(indentation135);
-            paragraphProperties466.Append(justification337);
-            paragraphProperties466.Append(paragraphMarkRunProperties324);
-
-            paragraph477.Append(paragraphProperties466);
-
-            Paragraph paragraph478 = new Paragraph() { RsidParagraphAddition = "005335ED", RsidParagraphProperties = "00735832", RsidRunAdditionDefault = "005335ED" };
-
-            ParagraphProperties paragraphProperties467 = new ParagraphProperties();
-            WidowControl widowControl90 = new WidowControl() { Val = false };
-            SuppressAutoHyphens suppressAutoHyphens65 = new SuppressAutoHyphens();
-            Indentation indentation136 = new Indentation() { FirstLine = "709" };
-            Justification justification338 = new Justification() { Val = JustificationValues.Both };
-
-            paragraphProperties467.Append(widowControl90);
-            paragraphProperties467.Append(suppressAutoHyphens65);
-            paragraphProperties467.Append(indentation136);
-            paragraphProperties467.Append(justification338);
-
-            Run run612 = new Run();
-            Text text594 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text594.Text = "1. ";
-
-            run612.Append(text594);
-
-            paragraph478.Append(paragraphProperties467);
-            paragraph478.Append(run612);
-
-            Paragraph paragraph479 = new Paragraph() { RsidParagraphAddition = "005335ED", RsidParagraphProperties = "00735832", RsidRunAdditionDefault = "005335ED" };
-
-            ParagraphProperties paragraphProperties468 = new ParagraphProperties();
-            WidowControl widowControl91 = new WidowControl() { Val = false };
-            SuppressAutoHyphens suppressAutoHyphens66 = new SuppressAutoHyphens();
-            Indentation indentation137 = new Indentation() { FirstLine = "709" };
-            Justification justification339 = new Justification() { Val = JustificationValues.Both };
-
-            paragraphProperties468.Append(widowControl91);
-            paragraphProperties468.Append(suppressAutoHyphens66);
-            paragraphProperties468.Append(indentation137);
-            paragraphProperties468.Append(justification339);
-
-            Run run613 = new Run();
-            Text text595 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text595.Text = "2. ";
-
-            run613.Append(text595);
-
-            paragraph479.Append(paragraphProperties468);
-            paragraph479.Append(run613);
-
-            Paragraph paragraph480 = new Paragraph() { RsidParagraphAddition = "005335ED", RsidParagraphProperties = "00735832", RsidRunAdditionDefault = "005335ED" };
-
-            ParagraphProperties paragraphProperties469 = new ParagraphProperties();
-            WidowControl widowControl92 = new WidowControl() { Val = false };
-            SuppressAutoHyphens suppressAutoHyphens67 = new SuppressAutoHyphens();
-            Indentation indentation138 = new Indentation() { FirstLine = "709" };
-            Justification justification340 = new Justification() { Val = JustificationValues.Both };
-
-            paragraphProperties469.Append(widowControl92);
-            paragraphProperties469.Append(suppressAutoHyphens67);
-            paragraphProperties469.Append(indentation138);
-            paragraphProperties469.Append(justification340);
-
-            Run run614 = new Run();
-            Text text596 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text596.Text = "3. ";
-
-            run614.Append(text596);
-
-            paragraph480.Append(paragraphProperties469);
-            paragraph480.Append(run614);
-
             Paragraph paragraph481 = new Paragraph() { RsidParagraphAddition = "005335ED", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "005335ED" };
 
             ParagraphProperties paragraphProperties470 = new ParagraphProperties();
@@ -20890,7 +20093,8 @@ namespace Wisdom.Writers
             body1.Append(paragraph346);
             body1.Append(paragraph347);
             body1.Append(paragraph348);
-            body1.Append(NumberList(StudyLevels.Values, " –"));
+            body1.Append(paragraph353);
+            body1.Append(NumberList(StudyLevels.Values, " – "));
             body1.Append(paragraph354);
             body1.Append(paragraph355);
             body1.Append(paragraph356);
@@ -20933,21 +20137,7 @@ namespace Wisdom.Writers
             body1.Append(paragraph393);
             body1.Append(paragraph394);
             body1.Append(paragraph395);
-            body1.Append(paragraph396);
-            body1.Append(paragraph397);
-            body1.Append(paragraph398);
-            body1.Append(paragraph399);
-            body1.Append(paragraph400);
-            body1.Append(paragraph401);
-            body1.Append(paragraph402);
-            body1.Append(paragraph403);
-            body1.Append(paragraph404);
-            body1.Append(paragraph405);
-            body1.Append(paragraph406);
-            body1.Append(paragraph407);
-            body1.Append(paragraph408);
-            body1.Append(paragraph409);
-            body1.Append(paragraph410);
+            body1.Append(Literature());
             body1.Append(paragraph411);
             body1.Append(paragraph412);
             body1.Append(paragraph413);
@@ -20987,10 +20177,7 @@ namespace Wisdom.Writers
             body1.Append(paragraph474);
             body1.Append(paragraph475);
             body1.Append(paragraph476);
-            body1.Append(paragraph477);
-            body1.Append(paragraph478);
-            body1.Append(paragraph479);
-            body1.Append(paragraph480);
+            body1.Append(NumberList(Applyment, '.'));
             body1.Append(paragraph481);
             body1.Append(paragraph482);
             body1.Append(paragraph483);

@@ -364,12 +364,47 @@ namespace Wisdom.Writers
         }
 
 
+        public static List<Paragraph> Literature()
+        {
+            List<Paragraph> proccessedSources = new List<Paragraph>();
+            Dictionary<string, List<Paragraph>> sources = new
+                Dictionary<string, List<Paragraph>>
+            {
+                { "Основная литература", new List<Paragraph>() },
+                { "Дополнительная литература", new List<Paragraph>() },
+                { "Программное обеспечение", new List<Paragraph>() },
+                { "Базы данных, информационно-справочные и поисковые системы", new List<Paragraph>() },
+            };
+            for(byte i = 0; i < SourcesControl.Count; i++)
+                sources[SourcesControl[i].Name] = NumberList(
+                    sources[SourcesControl[i].Name].Count + 1, SourcesControl[i].Values, ". ");
+            foreach (KeyValuePair<string, List<Paragraph>> sourceType in sources)
+            {
+                if (sourceType.Value.Count <= 0)
+                    continue;
+                Run run = RunAdd(sourceType.Key, new Bold());
+                proccessedSources.Add(ParagraphAdd(JustificationValues.Both, run));
+            }
+            return proccessedSources;
+        }
+
         public static Paragraph WordParagraph(string value, string sequence,
             JustificationValues justification = JustificationValues.Both, params OpenXmlElement[] optionalRuns)
         {
             Run newRun = RunAdd(sequence + value, optionalRuns);
             Paragraph newParagraph = ParagraphAdd(justification, newRun);
             return newParagraph;
+        }
+        public static List<Paragraph> NumberList(in int start, List<string> values, string sequence)
+        {
+            List<Paragraph> paragraphs = new List<Paragraph>();
+            for (byte i = 0; i < values.Count; i++)
+            {
+                int no = i + start;
+                paragraphs.Add(WordParagraph(values[i], no + sequence));
+            }
+
+            return paragraphs;
         }
         public static List<Paragraph> NumberList(List<string> values, char symbol)
         {

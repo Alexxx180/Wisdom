@@ -13,7 +13,7 @@ namespace Wisdom.Model
             Values = new List<string>();
         }
 
-        private void Add(params string[] values)
+        public void Add(params string[] values)
         {
             if (values == null || values.Length <= 0)
                 return;
