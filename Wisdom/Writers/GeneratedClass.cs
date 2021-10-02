@@ -61,9 +61,8 @@ namespace Wisdom.Writers
             {
                 rows.Add(SectionAdd($"Раздел {(i + 1)}. {Plan[i].Name}", Plan[i].Hours));
                 for (byte ii = 0; ii < Plan[i].Values.Count; ii++)
-                {
-                    rows.AddRange(ThemeAdd($"Тема {(i + 1)}.{(ii + 1)}. {Plan[i].Values[ii].Name}", Plan[i].Values[ii].Hours, Plan[i].Values[ii].Values));
-                }
+                    rows.AddRange(ThemeAdd($"Тема {(i + 1)}.{(ii + 1)}. {Plan[i].Values[ii].Name}",
+                        Plan[i].Values[ii].Hours, Plan[i].Values[ii].Values));
             }
             return rows;
             //ChangeAble TABLE ZONE
@@ -6614,7 +6613,7 @@ namespace Wisdom.Writers
             runProperties196.Append(fontSizeComplexScript138);
             runProperties196.Append(languages133);
             Text text102 = new Text();
-            text102.Text = "0";
+            text102.Text = MaxHours;
 
             run203.Append(runProperties196);
             run203.Append(text102);
@@ -7360,7 +7359,7 @@ namespace Wisdom.Writers
             controlWorksInjectionProperties1.Append(controlWorksInjectionFontSizeComplexScript1);
             controlWorksInjectionProperties1.Append(controlWorksInjectionLanguages1);
             Text controlWorksInjectionText1 = new Text();
-            controlWorksInjectionText1.Text = Practice;
+            controlWorksInjectionText1.Text = ControlWs;
 
             controlWorksInjection1.Append(controlWorksInjectionProperties1);
             controlWorksInjection1.Append(controlWorksInjectionText1);
@@ -7495,7 +7494,7 @@ namespace Wisdom.Writers
             courseWorksInjectionProperties1.Append(courseWorksInjectionFontSizeComplexScript1);
             courseWorksInjectionProperties1.Append(courseWorksInjectionLanguages1);
             Text courseWorksInjectionText1 = new Text();
-            courseWorksInjectionText1.Text = Practice;
+            courseWorksInjectionText1.Text = CourseWs;
 
             courseWorksInjection1.Append(courseWorksInjectionProperties1);
             courseWorksInjection1.Append(courseWorksInjectionText1);

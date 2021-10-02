@@ -253,9 +253,9 @@ namespace Wisdom
         {
             Button step = sender as Button;
             Grid form = step.Tag as Grid;
-            StylesX(GetStyle("Steps2"), Step1, Step2, Step3, Step4, Step5);
+            StylesX(GetStyle("Steps2"), Step1, Step2, Step3, Step4, Step5, Step6);
             Styles(GetStyle("Steps"), step);
-            AnyHideX(Form1, Form2, Form3, Form4, Form5);
+            AnyHideX(Form1, Form2, Form3, Form4, Form5, Form6);
             AnyShow(form);
         }
         private void DeleteLevel(object sender, RoutedEventArgs e)

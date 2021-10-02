@@ -96,30 +96,35 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.225*"/>
                     <ColumnDefinition Width="0.025*"/>
-                    <ColumnDefinition Width="0.075*"/>
+                    <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.025*"/>
-                    <ColumnDefinition Width="0.075*"/>
+                    <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.025*"/>
-                    <ColumnDefinition Width="0.075*"/>
+                    <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.025*"/>
-                    <ColumnDefinition Width="0.075*"/>
+                    <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.025*"/>
-                    <ColumnDefinition Width="0.075*"/>
+                    <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.025*"/>
-                    <ColumnDefinition Width="0.075*"/>
+                    <ColumnDefinition Width="0.05*"/>
+                    <ColumnDefinition Width="0.025*"/>
+                    <ColumnDefinition Width="0.05*"/>
+                    <ColumnDefinition Width="0.025*"/>
+                    <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.025*"/>
                     <ColumnDefinition Width="0.15*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBox x:Name="Program" Text="Программа" Style="{StaticResource CaptionBox}" Grid.ColumnSpan="3"/>
 
-                <Button Click="Stepping" Tag="{x:Reference Name=Form1}" x:Name="Step1" Content="Шаг 1" Grid.Column="4" Style="{StaticResource Steps}"/>
-                <Button Click="Stepping" Tag="{x:Reference Name=Form2}" x:Name="Step2" Content="Шаг 2" Grid.Column="6" Style="{StaticResource Steps2}"/>
-                <Button Click="Stepping" Tag="{x:Reference Name=Form3}" x:Name="Step3" Content="Шаг 3" Grid.Column="8" Style="{StaticResource Steps2}"/>
-                <Button Click="Stepping" Tag="{x:Reference Name=Form4}" x:Name="Step4" Content="Шаг 4" Grid.Column="10" Style="{StaticResource Steps2}"/>
-                <Button Click="Stepping" Tag="{x:Reference Name=Form5}" x:Name="Step5" Content="Шаг 5" Grid.Column="12" Style="{StaticResource Steps2}"/>
+                <Button Click="Stepping" Tag="{x:Reference Name=Form1}" x:Name="Step1" Content="1" Grid.Column="4" Style="{StaticResource Steps}"/>
+                <Button Click="Stepping" Tag="{x:Reference Name=Form2}" x:Name="Step2" Content="2" Grid.Column="6" Style="{StaticResource Steps2}"/>
+                <Button Click="Stepping" Tag="{x:Reference Name=Form3}" x:Name="Step3" Content="3" Grid.Column="8" Style="{StaticResource Steps2}"/>
+                <Button Click="Stepping" Tag="{x:Reference Name=Form4}" x:Name="Step4" Content="4" Grid.Column="10" Style="{StaticResource Steps2}"/>
+                <Button Click="Stepping" Tag="{x:Reference Name=Form5}" x:Name="Step5" Content="5" Grid.Column="12" Style="{StaticResource Steps2}"/>
+                <Button Click="Stepping" Tag="{x:Reference Name=Form6}" x:Name="Step6" Content="6" Grid.Column="14" Style="{StaticResource Steps2}"/>
 
-                <Button x:Name="Create" Click="Create_Click" Content="Подтвердить" Grid.Column="14" IsDefault="True" Style="{StaticResource Steps}"/>
+                <Button x:Name="Create" Click="Create_Click" Content="Подтвердить" Grid.Column="18" IsDefault="True" Style="{StaticResource Steps}"/>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1" Visibility="Hidden">
@@ -568,7 +573,7 @@
             </Grid>
 
             <!--RCompetentions-->
-            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.05*"/>
@@ -1100,7 +1105,7 @@
                 </ScrollViewer>
             </Grid>
 
-            <Grid x:Name="Form5" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <Grid x:Name="Form5" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.05*"/>
@@ -1173,6 +1178,64 @@
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>
+            </Grid>
+
+            <Grid x:Name="Form6" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.05*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="0.15*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="0.15*"/>
+                    <ColumnDefinition Width="0.05*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Viewbox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Left">
+                    <TextBlock Text="приказ министерства образования и науки РФ от" Style="{StaticResource No1}" />
+                </Viewbox>
+                <DatePicker Grid.Column="1" Grid.Row="2" Text="18.04.2014" TextBlock.TextAlignment="Center" Style="{StaticResource RegularBox}" />
+
+                <Viewbox Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="1" >
+                    <TextBlock Text="№" Style="{StaticResource No1}" />
+                </Viewbox>
+                <TextBox  Grid.Column="3" Grid.Row="2" Text="349" TextAlignment="Right" Style="{StaticResource RegularBox}" />
+
+                <Viewbox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Left">
+                    <TextBlock Text="Оборудование учебного кабинета №" Style="{StaticResource No1}" />
+                </Viewbox>
+                <TextBox  Grid.Column="4" Grid.Row="4" Text="" TextAlignment="Right" Style="{StaticResource RegularBox}" />
+
+                <Viewbox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" HorizontalAlignment="Left">
+                    <TextBlock Text="Технические средства обучения:" Style="{StaticResource No1}" />
+                </Viewbox>
+                <TextBox  Grid.Column="1" Grid.Row="7" Text="" Grid.ColumnSpan="4" Style="{StaticResource RegularBox}" />
+
             </Grid>
 
 
