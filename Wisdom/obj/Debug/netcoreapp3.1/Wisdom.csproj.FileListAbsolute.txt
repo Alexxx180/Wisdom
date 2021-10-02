@@ -18,8 +18,6 @@ D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\W
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\AddProg.g.cs
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\AddProg.baml
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.CopyComplete
-D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\bin\Debug\netcoreapp3.1\Xceed.Document.NET.dll
-D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\bin\Debug\netcoreapp3.1\Xceed.Words.NET.dll
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.CoreCompileInputs.cache
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\bin\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Word.dll
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Word.dll

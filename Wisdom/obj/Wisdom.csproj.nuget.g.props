@@ -15,7 +15,4 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgDocX Condition=" '$(PkgDocX)' == '' ">C:\Users\Администратор\.nuget\packages\docx\1.8.0</PkgDocX>
-  </PropertyGroup>
 </Project>

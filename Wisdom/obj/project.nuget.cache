@@ -1,25 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "3YHADmrmQPpdiHBrhYx/yre2tu+14UjvmalDXQecIDQ+OXzbfIPzIdBfnpF1D8YEihSXRElWsqDY1ixC+1RGUQ==",
+  "dgSpecHash": "GyPlYAvZu8zjAFatILNinGVZLo1nM9BxSQY5F2HBpX+g7LMH35C4wPd4Z790dIXlCXapSxVIFZ+E8BQPY+BTPA==",
   "success": true,
   "projectFilePath": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Администратор\\.nuget\\packages\\documentformat.openxml\\2.13.1\\documentformat.openxml.2.13.1.nupkg.sha512",
-    "C:\\Users\\Администратор\\.nuget\\packages\\docx\\1.8.0\\docx.1.8.0.nupkg.sha512",
     "C:\\Users\\Администратор\\.nuget\\packages\\open-xml-sdk\\2.5.0\\open-xml-sdk.2.5.0.nupkg.sha512",
     "C:\\Users\\Администратор\\.nuget\\packages\\system.io.packaging\\4.7.0\\system.io.packaging.4.7.0.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Пакет \"DocX 1.8.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \".NETCoreApp,Version=v3.1\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "libraryId": "DocX",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",

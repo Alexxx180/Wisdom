@@ -200,7 +200,7 @@ namespace Wisdom
             //    "Текст в формате RTF (*.rtf)|*.rtf"
             //};
             //if (dialog.ShowDialog().Value) dialog.FileName
-            WriteDoc(Struct, FileName);
+            WriteDoc();
         }
 
         private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)

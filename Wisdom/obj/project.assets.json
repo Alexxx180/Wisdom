@@ -14,17 +14,6 @@
           "lib/netstandard2.0/DocumentFormat.OpenXml.dll": {}
         }
       },
-      "DocX/1.8.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Xceed.Document.NET.dll": {},
-          "lib/net40/Xceed.Words.NET.dll": {}
-        },
-        "runtime": {
-          "lib/net40/Xceed.Document.NET.dll": {},
-          "lib/net40/Xceed.Words.NET.dll": {}
-        }
-      },
       "Open-XML-SDK/2.5.0": {
         "type": "package",
         "compile": {
@@ -66,23 +55,6 @@
         "lib/netstandard1.3/DocumentFormat.OpenXml.xml",
         "lib/netstandard2.0/DocumentFormat.OpenXml.dll",
         "lib/netstandard2.0/DocumentFormat.OpenXml.xml"
-      ]
-    },
-    "DocX/1.8.0": {
-      "sha512": "KYZ8BaS/yC7SuwKon9DQ1sc3sRkgJpcYf5UNiUcDnyzWwooBcbIzWVnwQrwjb6q+mrUr5vOQPUCSJo2wz8tjdw==",
-      "type": "package",
-      "path": "docx/1.8.0",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.txt",
-        "Xceed_Logo_Retina-400x400.png",
-        "docx.1.8.0.nupkg.sha512",
-        "docx.nuspec",
-        "lib/net40/Xceed.Document.NET.dll",
-        "lib/net40/Xceed.Words.NET.dll",
-        "tools/install.ps1"
       ]
     },
     "Open-XML-SDK/2.5.0": {
@@ -128,7 +100,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "DocX >= 1.8.0",
       "DocumentFormat.OpenXml >= 2.13.1",
       "Open-XML-SDK >= 2.5.0"
     ]
@@ -172,10 +143,6 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
-          "DocX": {
-            "target": "Package",
-            "version": "[1.8.0, )"
-          },
           "DocumentFormat.OpenXml": {
             "target": "Package",
             "version": "[2.13.1, )"
@@ -208,16 +175,6 @@
     }
   },
   "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Пакет \"DocX 1.8.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \".NETCoreApp,Version=v3.1\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "libraryId": "DocX",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",

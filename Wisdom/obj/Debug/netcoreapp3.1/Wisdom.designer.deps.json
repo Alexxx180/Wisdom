@@ -17,18 +17,6 @@
           }
         }
       },
-      "DocX/1.8.0": {
-        "runtime": {
-          "lib/net40/Xceed.Document.NET.dll": {
-            "assemblyVersion": "1.8.0.0",
-            "fileVersion": "1.8.0.0"
-          },
-          "lib/net40/Xceed.Words.NET.dll": {
-            "assemblyVersion": "1.8.0.0",
-            "fileVersion": "1.8.0.0"
-          }
-        }
-      },
       "Open-XML-SDK/2.5.0": {
         "runtime": {
           "lib/net45/DocumentFormat.OpenXml.dll": {
@@ -54,13 +42,6 @@
       "sha512": "sha512-iLoOw/9rhoxPbhxUa8rcHRANpnPlUs3DGqqRlScVjZutGwcUkD2UCRo8YteUUva6nSvAm7ebAXKf5aGF4nQC6Q==",
       "path": "documentformat.openxml/2.13.1",
       "hashPath": "documentformat.openxml.2.13.1.nupkg.sha512"
-    },
-    "DocX/1.8.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-KYZ8BaS/yC7SuwKon9DQ1sc3sRkgJpcYf5UNiUcDnyzWwooBcbIzWVnwQrwjb6q+mrUr5vOQPUCSJo2wz8tjdw==",
-      "path": "docx/1.8.0",
-      "hashPath": "docx.1.8.0.nupkg.sha512"
     },
     "Open-XML-SDK/2.5.0": {
       "type": "package",
