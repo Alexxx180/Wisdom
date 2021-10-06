@@ -130,12 +130,12 @@ namespace Wisdom
         //2, 3
         //DisciplinePlan - Grid - StackPanel - Grid
         //Раздел 1. - Тема 1.1.
-        private HoursList<HashList<String2>> GetHours(Grid grid,
+        private LevelsList<HashList<String2>> GetHours(Grid grid,
             byte index, byte index2, byte index4, byte index5, byte index6)
         { //byte index3, 
             TextBox caption = grid.Children[index] as TextBox;
             TextBox hours = grid.Children[index2] as TextBox;
-            HoursList<HashList<String2>> source = new HoursList<HashList<String2>>(caption.Text, hours.Text); // Exces
+            LevelsList<HashList<String2>> source = new LevelsList<HashList<String2>>(caption.Text, hours.Text, ""); // Exces
             int optimum = index2 + 1;
             StackPanel panel2 = grid.Children[optimum] as StackPanel;
             int cnt = panel2.Children.Count - 1;
@@ -146,12 +146,12 @@ namespace Wisdom
         //2, 3
         //DisciplinePlan - Grid
         //Раздел 1.
-        private HoursList<HoursList<HashList<String2>>> GetHours2(Grid grid,
+        private HoursList<LevelsList<HashList<String2>>> GetHours2(Grid grid,
             byte index, byte index2, byte index4, byte index5, byte index6, byte index7, byte index8)
         { //byte index3, 
             TextBox caption = grid.Children[index] as TextBox;
             TextBox hours = grid.Children[index2] as TextBox;
-            HoursList<HoursList<HashList<String2>>> source = new HoursList<HoursList<HashList<String2>>>(caption.Text, hours.Text);
+            HoursList<LevelsList<HashList<String2>>> source = new HoursList<LevelsList<HashList<String2>>>(caption.Text, hours.Text);
             int optimum = index2 + 1;
             StackPanel panel2 = grid.Children[optimum] as StackPanel;
             int cnt = panel2.Children.Count - 1;
@@ -162,10 +162,10 @@ namespace Wisdom
 
         //2, 3, 2, 3, 0, 2, 3
         //DisciplinePlan
-        private List<HoursList<HoursList<HashList<String2>>>> GetAbsoleteList(StackPanel panel,
+        private List<HoursList<LevelsList<HashList<String2>>>> GetAbsoleteList(StackPanel panel,
             byte index, byte index2, byte index4, byte index5, byte index6, byte index7, byte index8)
         {
-            List<HoursList<HoursList<HashList<String2>>>> source = new List<HoursList<HoursList<HashList<String2>>>>();
+            List<HoursList<LevelsList<HashList<String2>>>> source = new List<HoursList<LevelsList<HashList<String2>>>>();
             int cnt = panel.Children.Count - 1;
             for (byte i = 0; i < cnt; i++)
             {
@@ -177,12 +177,18 @@ namespace Wisdom
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
+            CollegeName = College.Text;
+            DisciplineRelation = DisciplineRelation1.Text;
+            WorkAround = WorkAround1.Text;
+            DistanceEducation = DisctanceEdu.Text;
+
             DisciplineName = DpSelect.Text;
             ProfessionName = SpSelect.Text;
             MaxHours = Max.Content.ToString();
             SelfHours = Self.Text;
             EduHours = Usual.Text;
 
+            PracticePrepare = Prepare.Text;
             Lections = Lectures.Text;
             Practice = Practices.Text;
             LabWorks = Labs.Text;
@@ -219,7 +225,8 @@ namespace Wisdom
             //    "Документ Word 97-2003 (*.doc)|*.doc|" +
             //    "Текст в формате RTF (*.rtf)|*.rtf"
             //};
-            //if (dialog.ShowDialog().Value) dialog.FileName
+            //if (dialog.ShowDialog().Value)
+            //    WriteDoc(dialog.FileName); 
             WriteDoc();
         }
 
@@ -230,7 +237,7 @@ namespace Wisdom
                 return;
             //RichText(box);
         }
-        private void BSbSelect_Click(object sender, RoutedEventArgs e)
+        /*private void BSbSelect_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
@@ -245,7 +252,7 @@ namespace Wisdom
         private void CustomingText(object sender, RoutedEventArgs e)
         {
             MenuItemTemplating(sender as MenuItem, NText);
-        }
+        }*/
         private void Numbers(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !numbers.IsMatch(e.Text);

@@ -402,13 +402,28 @@ namespace Wisdom.Writers
 
             paragraphProperties7.Append(justification7);
 
+            Run runCn = new Run();
+
+            RunProperties runPropCn = new RunProperties();
+            Underline underline_Cn = new Underline() { Val = UnderlineValues.Single };
+            Languages languagesCn = new Languages() { Val = "ru-RU" };
+
+            runPropCn.Append(underline_Cn);
+            runPropCn.Append(languagesCn);
+            Text textCn = new Text();
+            textCn.Text = CollegeName;
+
+            runCn.Append(runPropCn);
+            runCn.Append(textCn);
+
             Run run5 = new Run() { RsidRunProperties = "00D933D9" };
-            Text text5 = new Text();
-            text5.Text = "____________________________КОЛЛЕДЖ";
+            Text text5 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text5.Text = " КОЛЛЕДЖ";
 
             run5.Append(text5);
 
             paragraph7.Append(paragraphProperties7);
+            paragraph7.Append(runCn);
             paragraph7.Append(run5);
 
             Paragraph paragraph8 = new Paragraph() { RsidParagraphAddition = "00B50A06", RsidParagraphProperties = "00B50A06", RsidRunAdditionDefault = "00B50A06" };
@@ -7107,14 +7122,29 @@ namespace Wisdom.Writers
 
             Run run166 = new Run();
             Text text164 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text164.Text = " относится _______________ ";
+            text164.Text = " относится ";
 
             run166.Append(text164);
+
+            Run runDr = new Run() { RsidRunAddition = "00311CF7" };
+
+            RunProperties runPropDr = new RunProperties();
+            Underline underline_dr = new Underline() { Val = UnderlineValues.Single };
+            Languages languagesDr = new Languages() { Val = "ru-RU" };
+
+            runPropDr.Append(underline_dr);
+            runPropDr.Append(languagesDr);
+            Text textDr = new Text();
+            textDr.Text = DisciplineRelation + ".";
+
+            runDr.Append(runPropDr);
+            runDr.Append(textDr);
 
             paragraph164.Append(paragraphProperties155);
             paragraph164.Append(run163);
             paragraph164.Append(run165);
             paragraph164.Append(run166);
+            paragraph164.Append(runDr);
 
             Paragraph paragraph165 = new Paragraph() { RsidParagraphMarkRevision = "001E708A",
                 RsidParagraphAddition = "008F57C1", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "008F57C1" };
@@ -8646,15 +8676,37 @@ namespace Wisdom.Writers
 
             Run run213 = new Run() { RsidRunProperties = "00B24015" };
             Text text211 = new Text();
-            text211.Text = "________ часов";
+            text211.Text = "______";
 
             run213.Append(text211);
+
+            Run run213_1 = new Run() { RsidRunProperties = "00A62F3C", RsidRunAddition = "00311CF7" };
+
+            RunProperties runProperties213_1 = new RunProperties();
+            Underline underline213_1 = new Underline() { Val = UnderlineValues.Single };
+            Languages languages213_1 = new Languages() { Val = "en-US" };
+
+            runProperties213_1.Append(underline213_1);
+            runProperties213_1.Append(languages213_1);
+            Text text210_1 = new Text();
+            text210_1.Text = PracticePrepare;
+
+            run213_1.Append(runProperties213_1);
+            run213_1.Append(text210_1);
+
+            Run run213_2 = new Run() { RsidRunProperties = "00B24015" };
+            Text text211_2 = new Text();
+            text211_2.Text = "______ часов";
+
+            run213_2.Append(text211_2);
 
             paragraph189.Append(paragraphProperties180);
             paragraph189.Append(run210);
             paragraph189.Append(run211);
             paragraph189.Append(run212);
             paragraph189.Append(run213);
+            paragraph189.Append(run213_1);
+            paragraph189.Append(run213_2);
 
             Paragraph paragraph190 = new Paragraph() { RsidParagraphAddition = "001E708A", RsidParagraphProperties = "00EC4881", RsidRunAdditionDefault = "001E708A" };
 
@@ -9539,6 +9591,12 @@ namespace Wisdom.Writers
             Italic italic20 = new Italic();
             ItalicComplexScript italicComplexScript46 = new ItalicComplexScript();
 
+            Run run240_1 = new Run() { RsidRunProperties = "00800168", RsidRunAddition = "003E0D21" };
+            Text text238_1 = new Text();
+            text238_1.Text = PracticePrepare;
+
+            run240_1.Append(text238_1);
+
             paragraphMarkRunProperties104.Append(italic20);
             paragraphMarkRunProperties104.Append(italicComplexScript46);
 
@@ -9546,6 +9604,7 @@ namespace Wisdom.Writers
             paragraphProperties195.Append(paragraphMarkRunProperties104);
 
             paragraph204.Append(paragraphProperties195);
+            paragraph204.Append(run240_1);
 
             tableCell89.Append(tableCellProperties89);
             tableCell89.Append(paragraph204);
@@ -13333,7 +13392,21 @@ namespace Wisdom.Writers
 
             Run run411 = new Run() { RsidRunProperties = "0089791A", RsidRunAddition = "00515571" };
             Text text409 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text409.Text = " организуется путем проведения __________";
+            text409.Text = " организуется путем проведения ";
+
+            Run runWa = new Run() { RsidRunAddition = "00311CF7" };
+
+            RunProperties runPropWa = new RunProperties();
+            Underline underline_Wa = new Underline() { Val = UnderlineValues.Single };
+            Languages languagesWa = new Languages() { Val = "ru-RU" };
+
+            runPropWa.Append(underline_Wa);
+            runPropWa.Append(languagesWa);
+            Text textWa = new Text();
+            textWa.Text = WorkAround;
+
+            runWa.Append(runPropWa);
+            runWa.Append(textWa);
 
             run411.Append(text409);
 
@@ -13439,13 +13512,35 @@ namespace Wisdom.Writers
             paragraphProperties353.Append(justification240);
 
             Run run418 = new Run() { RsidRunProperties = "0089791A" };
-            Text text416 = new Text();
-            text416.Text = "1) непосредственно в __________ колледже НовГУ, в том числе в структурном подразделении ______________, предназначенном для проведения практической подготовки;";
+            Text text416 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text416.Text = "1) непосредственно в ";
 
             run418.Append(text416);
 
+            Run runCn2 = new Run();
+
+            RunProperties runPropCn2 = new RunProperties();
+            Underline underline_Cn2 = new Underline() { Val = UnderlineValues.Single };
+            Languages languagesCn2 = new Languages() { Val = "ru-RU" };
+
+            runPropCn2.Append(underline_Cn2);
+            runPropCn2.Append(languagesCn2);
+            Text textCn2 = new Text();
+            textCn2.Text = CollegeName[0..^2].ToLower() + "ом";
+
+            runCn2.Append(runPropCn2);
+            runCn2.Append(textCn2);
+
+            Run run418_1 = new Run() { RsidRunProperties = "0089791A" };
+            Text text416_1 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text416_1.Text = " колледже НовГУ, в том числе в структурном подразделении ______________, предназначенном для проведения практической подготовки;";
+
+            run418_1.Append(text416_1);
+
             paragraph363.Append(paragraphProperties353);
             paragraph363.Append(run418);
+            paragraph363.Append(runCn2);
+            paragraph363.Append(run418_1);
 
             Paragraph paragraph364 = new Paragraph() { RsidParagraphMarkRevision = "0089791A", RsidParagraphAddition = "00515571", RsidParagraphProperties = "00735832", RsidRunAdditionDefault = "00515571" };
 
@@ -16170,10 +16265,24 @@ namespace Wisdom.Writers
 
             runProperties351.Append(boldComplexScript291);
             Text text503 = new Text();
-            text503.Text = "Обучение по учебной дисц";
+            text503.Text = "Обучение по учебной дисциплине _";
 
             run521.Append(runProperties351);
             run521.Append(text503);
+
+            Run runDn = new Run() { RsidRunAddition = "00311CF7" };
+
+            RunProperties runPropDn = new RunProperties();
+            Underline underline_Dn = new Underline() { Val = UnderlineValues.Single };
+            Languages languagesDn = new Languages() { Val = "ru-RU" };
+
+            runPropDn.Append(underline_Dn);
+            runPropDn.Append(languagesDn);
+            Text textDn = new Text();
+            textDn.Text = DisciplineName;
+
+            runDn.Append(runPropDn);
+            runDn.Append(textDn);
 
             Run run522 = new Run();
 
@@ -16182,7 +16291,7 @@ namespace Wisdom.Writers
 
             runProperties352.Append(boldComplexScript292);
             Text text504 = new Text();
-            text504.Text = "иплине _______________________";
+            text504.Text = "_";
 
             run522.Append(runProperties352);
             run522.Append(text504);
@@ -16210,24 +16319,24 @@ namespace Wisdom.Writers
             runProperties354.Append(runStyle1);
             runProperties354.Append(boldComplexScript294);
             Text text506 = new Text();
-            text506.Text = "http://do.novsu.ru/course/";
+            text506.Text = "http://do.novsu.ru/course/" + DistanceEducation;
 
             run524.Append(runProperties354);
             run524.Append(text506);
 
             hyperlink1.Append(run524);
 
-            Run run525 = new Run();
+            //Run run525 = new Run();
 
-            RunProperties runProperties355 = new RunProperties();
-            BoldComplexScript boldComplexScript295 = new BoldComplexScript();
+            //RunProperties runProperties355 = new RunProperties();
+            //BoldComplexScript boldComplexScript295 = new BoldComplexScript();
 
-            runProperties355.Append(boldComplexScript295);
-            Text text507 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text507.Text = " ____";
+            //runProperties355.Append(boldComplexScript295);
+            //Text text507 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            //text507.Text = " ____";
 
-            run525.Append(runProperties355);
-            run525.Append(text507);
+            //run525.Append(runProperties355);
+            //run525.Append(text507);
 
             Run run526 = new Run() { RsidRunAddition = "0024239F" };
 
@@ -16236,7 +16345,7 @@ namespace Wisdom.Writers
 
             runProperties356.Append(boldComplexScript296);
             Text text508 = new Text();
-            text508.Text = "_________________ .";
+            text508.Text = ".";
 
             run526.Append(runProperties356);
             run526.Append(text508);
@@ -16257,10 +16366,11 @@ namespace Wisdom.Writers
 
             paragraph412.Append(paragraphProperties402);
             paragraph412.Append(run521);
+            paragraph412.Append(runDn);
             paragraph412.Append(run522);
             paragraph412.Append(run523);
             paragraph412.Append(hyperlink1);
-            paragraph412.Append(run525);
+            //paragraph412.Append(run525);
             paragraph412.Append(run526);
             paragraph412.Append(run527);
             Paragraph paragraph413 = new Paragraph() { RsidParagraphAddition = "006377D7", RsidParagraphProperties = "000335B5", RsidRunAdditionDefault = "006377D7" };

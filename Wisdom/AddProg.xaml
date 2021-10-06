@@ -58,7 +58,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <ContextMenu x:Key="CtxMenu" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0">
+        <!--<ContextMenu x:Key="CtxMenu" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0">
             <ContextMenu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel Orientation="Horizontal"/>
@@ -68,7 +68,7 @@
             <MenuItem FontFamily="Times New Roman" Tag="1" Click="CustomingText" Style="{StaticResource MenuItemStyle}" Padding="7,2,7,0" FontStyle="Italic" Header="I" ></MenuItem>
             <MenuItem FontFamily="Times New Roman" Tag="2" Click="CustomingText" Style="{StaticResource MenuItemTextStyle}" Padding="7,5,7,5" Header="Ч" ></MenuItem>
             <MenuItem Click="ToCase" Style="{StaticResource MenuItemStyle}" Padding="2,2,2,0" Header="Aa" ></MenuItem>
-        </ContextMenu>
+        </ContextMenu>-->
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -277,9 +277,14 @@
                     </Label>
                 </Grid>
 
-                
 
-                <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5">
+                <ComboBox x:Name="College" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5" Style="{StaticResource SubCaptionBox}">
+                    <ComboBox.ItemContainerStyle>
+                        <StaticResource ResourceKey="ItemsBox"></StaticResource>
+                    </ComboBox.ItemContainerStyle>
+                    <ComboBoxItem>ПОЛИТЕХНИЧЕСКИЙ</ComboBoxItem>
+                </ComboBox>
+                <!--<Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.2*"/>
@@ -310,7 +315,7 @@
                             </Button>
                         </Border>
                     </Grid>
-                </Border>
+                </Border>-->
             </Grid>
 
             <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
@@ -398,18 +403,18 @@
                 </Border>
 
                 <Viewbox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
-                    <Label Content="Лекции"/>
+                    <TextBlock Text="Лекции"/>
                 </Viewbox>
                 <TextBox x:Name="Lectures" TextChanged="Hours" PreviewTextInput="Numbers"  Grid.Row="2" Grid.Column="2" Style="{StaticResource HoursBox}"></TextBox>
+
                 <Viewbox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left">
                     <Label Content="Лабораторные работы" />
                 </Viewbox>
-                
                 <TextBox x:Name="Labs" TextChanged="Hours" PreviewTextInput="Numbers" Grid.Row="3" Grid.Column="2" Style="{StaticResource HoursBox}"></TextBox>
+
                 <Viewbox Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left">
                     <Label Content="Практические занятия"></Label>
                 </Viewbox>
-                
                 <TextBox x:Name="Practices"  TextChanged="Hours" PreviewTextInput="Numbers" Grid.Row="2" Grid.Column="5" Style="{StaticResource HoursBox}"></TextBox>
                 
                 <Viewbox Grid.Row="3" Grid.Column="4" HorizontalAlignment="Left">
@@ -418,15 +423,19 @@
                 <TextBox x:Name="Controls"  TextChanged="Hours"  PreviewTextInput="Numbers" Grid.Row="3" Grid.Column="5" Style="{StaticResource HoursBox}"></TextBox>
 
                 <Viewbox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left">
-                    <Label Content="Курсовая работа (если предусмотрена)"></Label>
+                    <Label Content="Практическая подготовка"></Label>
                 </Viewbox>
-                <TextBox x:Name="Course"  TextChanged="Hours" PreviewTextInput="Numbers"  Grid.Row="4" Grid.Column="5"  Style="{StaticResource HoursBox}"></TextBox>
-                <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left">
-                    <Label Content="Самостоятельная работа обучающегося (всего)" FontWeight="Bold"></Label>
-                </Viewbox>
+                <TextBox x:Name="Prepare"  TextChanged="Hours" PreviewTextInput="Numbers"  Grid.Row="4" Grid.Column="5"  Style="{StaticResource HoursBox}"></TextBox>
                 
-                <!--<TextBox   TextChanged="Hours" PreviewTextInput="Numbers"  Grid.Row="5" Grid.Column="5"  ></TextBox>-->
-                <TextBlock x:Name="SelfWork" Text="{Binding ElementName=Self, Path=Text}" Grid.Row="5" Grid.Column="5" Style="{StaticResource HoursBox}"></TextBlock>
+                <Viewbox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left">
+                    <Label Content="Курсовая работа"></Label>
+                </Viewbox>
+                <TextBox Grid.Row="5" Grid.Column="2" x:Name="Course" TextChanged="Hours" PreviewTextInput="Numbers" Style="{StaticResource HoursBox}"></TextBox>
+
+                <Viewbox Grid.Row="5" Grid.Column="4" HorizontalAlignment="Left">
+                    <Label Content="Самостоятельная работа" FontWeight="Bold"></Label>
+                </Viewbox>
+                <TextBlock Grid.Row="5" Grid.Column="5" x:Name="SelfWork" Text="{Binding ElementName=Self, Path=Text}"  Style="{StaticResource HoursBox}"></TextBlock>
 
                 <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="13">
                     <Grid.ColumnDefinitions>
@@ -1226,15 +1235,25 @@
                 </Viewbox>
                 <TextBox  Grid.Column="3" Grid.Row="2" Text="349" TextAlignment="Right" Style="{StaticResource RegularBox}" />
 
-                <Viewbox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" HorizontalAlignment="Left">
-                    <TextBlock Text="Оборудование учебного кабинета №" Style="{StaticResource No1}" />
-                </Viewbox>
-                <TextBox  Grid.Column="4" Grid.Row="4" Text="" TextAlignment="Right" Style="{StaticResource RegularBox}" />
-
                 <Viewbox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="4" HorizontalAlignment="Left">
                     <TextBlock Text="Технические средства обучения:" Style="{StaticResource No1}" />
                 </Viewbox>
                 <TextBox  Grid.Column="1" Grid.Row="7" Text="" Grid.ColumnSpan="4" Style="{StaticResource RegularBox}" />
+
+                <Viewbox Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="4" HorizontalAlignment="Left">
+                    <TextBlock Text="Учебная дисциплина относится к" Style="{StaticResource No1}" />
+                </Viewbox>
+                <TextBox x:Name="DisciplineRelation1" Grid.Column="1" Grid.Row="10" Text="" Grid.ColumnSpan="4" Style="{StaticResource RegularBox}" />
+
+                <Viewbox Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="4" HorizontalAlignment="Left">
+                    <TextBlock Text="Практическая подготовка по дисциплине организуется путем" Style="{StaticResource No1}" />
+                </Viewbox>
+                <TextBox x:Name="WorkAround1" Grid.Column="1" Grid.Row="13" Text="" Grid.ColumnSpan="4" Style="{StaticResource RegularBox}" />
+
+                <Viewbox Grid.Column="1" Grid.Row="15" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                    <TextBlock Text="Курс ДО: http://do.novsu.ru/course/" Style="{StaticResource No1}" />
+                </Viewbox>
+                <TextBox x:Name="DisctanceEdu" Grid.Column="3" Grid.Row="15" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
 
             </Grid>
 
