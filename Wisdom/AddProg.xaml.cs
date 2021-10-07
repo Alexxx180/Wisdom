@@ -31,8 +31,8 @@ namespace Wisdom
         public AddProg()
         {
             InitializeComponent();
+            DataContext = this;
         }
-        
 
         private List<string> GetListFromElements(StackPanel panel, byte index)
         {
@@ -80,34 +80,34 @@ namespace Wisdom
             source.Values = GetListFromElements(panel2, index2);
             return source;
         }
-        private String2 GetString2(Grid grid, byte no1, byte no2)
+        private String2 GetString2(Grid grid, byte nameNo, byte hoursNo)
         {
-            string name = (grid.Children[no1] as TextBox).Text;
-            string value = (grid.Children[no2] as TextBox).Text;
+            string name = (grid.Children[nameNo] as TextBox).Text;
+            string value = (grid.Children[hoursNo] as TextBox).Text;
             String2 string2 = new String2(name, value);
             return string2;
         }
         //2, 3
         //DisciplinePlan - Grid - StackPanel - Grid - StackPanel - Grid - StackPanel
         //Раздел 1. - Тема 1.1. - Содержание - 1.; 2. ...
-        private List<String2> GetListFromElements2(StackPanel panel, byte no1, byte no2)
+        private List<String2> GetListFromElements2(StackPanel panel, byte nameNo, byte hoursNo)
         {
             List<String2> list = new List<String2>();
             int cnt = panel.Children.Count - 1;
             for (byte i = 0; i < cnt; i++)
             {
                 Grid element = panel.Children[i] as Grid;
-                list.Add(GetString2(element, no1, no2));
+                list.Add(GetString2(element, nameNo, hoursNo));
             }
             return list;
         }
         //0
         //DisciplinePlan - Grid - StackPanel - Grid - StackPanel - Grid
         //Раздел 1. - Тема 1.1. - Содержание 
-        private HashList<String2> GetHashs(Grid grid, byte index, byte index2, byte index3)
+        private HashList<String2> GetHashs(Grid grid, byte captionNo, byte nameNo, byte hoursNo)
         {
             HashList<String2> source = null;
-            Label caption = grid.Children[index] as Label;
+            Label caption = grid.Children[captionNo] as Label;
             if (caption == null)
             {
                 caption = grid.Children[1] as Label;
@@ -118,59 +118,63 @@ namespace Wisdom
             }
             else
             {
-                int optimum = index + 4;
+                int optimum = captionNo + 4;
                 source = new HashList<String2>(caption.Content.ToString());
                 StackPanel panel2 = grid.Children[optimum] as StackPanel;
-                source.Values = GetListFromElements2(panel2, index2, index3);
+                source.Values = GetListFromElements2(panel2, nameNo, hoursNo);
             }            
             return source;
         }
 
-
         //2, 3
         //DisciplinePlan - Grid - StackPanel - Grid
         //Раздел 1. - Тема 1.1.
-        private LevelsList<HashList<String2>> GetHours(Grid grid,
-            byte index, byte index2, byte index4, byte index5, byte index6)
+        private LevelsList<HashList<String2>> GetHours(Grid grid, byte nameNo, byte hoursNo,
+            byte levelNo, byte contentCaptionNo, byte contentNameNo, byte contentHoursNo)
         { //byte index3, 
-            TextBox caption = grid.Children[index] as TextBox;
-            TextBox hours = grid.Children[index2] as TextBox;
-            LevelsList<HashList<String2>> source = new LevelsList<HashList<String2>>(caption.Text, hours.Text, ""); // Exces
-            int optimum = index2 + 1;
+            TextBox caption = grid.Children[nameNo] as TextBox;
+            TextBox hours = grid.Children[hoursNo] as TextBox;
+            ComboBox level = grid.Children[levelNo] as ComboBox;
+            LevelsList<HashList<String2>> source = new LevelsList<HashList<String2>>(caption.Text, hours.Text, level.Text); // Exces
+            int optimum = levelNo + 1;
             StackPanel panel2 = grid.Children[optimum] as StackPanel;
             int cnt = panel2.Children.Count - 1;
             for (byte i = 0; i < cnt; i++)
-                source.Values.Add(GetHashs(panel2.Children[i] as Grid, index4, index5, index6));
+                source.Values.Add(GetHashs(panel2.Children[i] as Grid, contentCaptionNo, contentNameNo, contentHoursNo));
             return source;
         }
         //2, 3
         //DisciplinePlan - Grid
         //Раздел 1.
-        private HoursList<LevelsList<HashList<String2>>> GetHours2(Grid grid,
-            byte index, byte index2, byte index4, byte index5, byte index6, byte index7, byte index8)
+        private HoursList<LevelsList<HashList<String2>>> GetHours2(Grid grid, byte topicNameNo, byte topicHoursNo,
+            byte themeNameNo, byte themeHoursNo, byte themeLevelNo, byte contentCaptionNo, byte contentNameNo, byte contentHoursNo)
         { //byte index3, 
-            TextBox caption = grid.Children[index] as TextBox;
-            TextBox hours = grid.Children[index2] as TextBox;
+            TextBox caption = grid.Children[topicNameNo] as TextBox;
+            TextBox hours = grid.Children[topicHoursNo] as TextBox;
             HoursList<LevelsList<HashList<String2>>> source = new HoursList<LevelsList<HashList<String2>>>(caption.Text, hours.Text);
-            int optimum = index2 + 1;
+            int optimum = topicHoursNo + 1;
             StackPanel panel2 = grid.Children[optimum] as StackPanel;
             int cnt = panel2.Children.Count - 1;
             for (byte i = 0; i < cnt; i++)
-                source.Values.Add(GetHours(panel2.Children[i] as Grid, index4, index5, index6, index7, index8));
+                source.Values.Add(GetHours(panel2.Children[i] as Grid, themeNameNo, themeHoursNo,
+                    themeLevelNo, contentCaptionNo, contentNameNo, contentHoursNo));
             return source;
         }
 
+        //2, 3, | 2, 3, 4, | 0, | 2, 3
+
         //2, 3, 2, 3, 0, 2, 3
         //DisciplinePlan
-        private List<HoursList<LevelsList<HashList<String2>>>> GetAbsoleteList(StackPanel panel,
-            byte index, byte index2, byte index4, byte index5, byte index6, byte index7, byte index8)
+        private List<HoursList<LevelsList<HashList<String2>>>> GetAbsoleteList(StackPanel panel, byte topicNameNo, byte topicHoursNo,
+            byte themeNameNo, byte themeHoursNo, byte themeLevelNo, byte contentCaptionNo, byte contentNameNo, byte contentHoursNo)
         {
             List<HoursList<LevelsList<HashList<String2>>>> source = new List<HoursList<LevelsList<HashList<String2>>>>();
             int cnt = panel.Children.Count - 1;
             for (byte i = 0; i < cnt; i++)
             {
                 Grid grid = panel.Children[i] as Grid;
-                source.Add(GetHours2(grid, index, index2, index4, index5, index6, index7, index8));
+                source.Add(GetHours2(grid, topicNameNo, topicHoursNo, themeNameNo, themeHoursNo,
+                    themeLevelNo, contentCaptionNo, contentNameNo, contentHoursNo));
             }   
             return source;
         }
@@ -205,7 +209,7 @@ namespace Wisdom
 
             Applyment = GetListFromElements(ApplyAddSpace, 2);
 
-            Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 0, 2, 3);
+            Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 4, 0, 2, 3);
             StudyLevels.Values = new List<string>();
             List<List<string>> levels = GetListFromElements3(Levels, 2, 4);
             for (byte i = 0; i < levels.Count; i++)
@@ -291,6 +295,13 @@ namespace Wisdom
             RemoveRun(grid.Tag);
             AutoIndexing(RemoveGrid(grid), 1, '.');
         }
+
+        private void Levels_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox combobox = sender as ComboBox;
+            BindingExpression binding = BindingOperations.GetBindingExpression(combobox, ComboBox.ItemsSourceProperty);
+            binding.UpdateTarget();
+        }
         private void DeleteContents(object sender, RoutedEventArgs e)
         {
             Grid grid = ((Button)sender).Tag as Grid;
@@ -299,7 +310,7 @@ namespace Wisdom
         }
         private void AddLevel(object sender, RoutedEventArgs e)
         {
-            TextContent(sender as Button, null).Click += DeleteContents;
+            TextContent(sender as Button, null).Click += DeleteLevel;
         }
         private void AddContent(object sender, RoutedEventArgs e)
         {
@@ -397,11 +408,20 @@ namespace Wisdom
         }
         private void AnyDeleteAuto(object sender, RoutedEventArgs e)
         {
-            Grid grid = (sender as Button).Tag as Grid;
+            Grid subContent = (sender as Button).Tag as Grid;
+            Binding bind = (subContent.Children[3] as TextBox).Tag as Binding;
 
-            Binding bind = (grid.Children[3] as TextBox).Tag as Binding;
-            TextBox refer = ((((((grid.Parent as StackPanel).Parent as Grid).Parent as StackPanel).Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox; ;
-            //throw new Exception(refer.Name);
+            StackPanel contentStack = subContent.Parent as StackPanel;
+            Grid content = contentStack.Parent as Grid;
+            StackPanel themeStack = content.Parent as StackPanel;
+            Grid theme = themeStack.Parent as Grid;
+
+            //Trace.WriteLine(refer.Name);
+            //Trace.WriteLine(refer.Text);
+            //Trace.WriteLine(refer.Background);
+            //Trace.WriteLine(BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty));
+
+            TextBox refer = theme.Children[3] as TextBox;
             MultiBinding old = BindingOperations.GetMultiBindingExpression(refer, BackgroundProperty).ParentMultiBinding;
             BindingOperations.ClearBinding(refer, BackgroundProperty);
             MultiBinding multi2 = new MultiBinding { Converter = new UsedValuesConverter() };
@@ -414,13 +434,31 @@ namespace Wisdom
 
             _ = SetBind(refer, BackgroundProperty, multi2);
 
-            RemoveTableRow(grid.Tag); 
-            AutoIndexing(RemoveGrid(grid), 1, '.');
+            RemoveTableRow(subContent.Tag); 
+            AutoIndexing(RemoveGrid(subContent), 1, '.');
         }
         private void DeleteThemeClick(object sender, RoutedEventArgs e)
         {
             Grid current = (sender as Button).Parent as Grid;
             StackPanel themes = current.Parent as StackPanel;
+            Grid topic = themes.Parent as Grid;
+            TextBox refer = topic.Children[3] as TextBox;
+            Trace.WriteLine(refer.Name);
+            Trace.WriteLine(refer.Text);
+            Trace.WriteLine(refer.Background);
+            Trace.WriteLine(topic.Tag);
+            MultiBinding multi = BindingOperations.GetMultiBindingExpression(refer, BackgroundProperty).ParentMultiBinding;
+            BindingOperations.ClearBinding(refer, BackgroundProperty);
+            MultiBinding multi2 = new MultiBinding { Converter = new SumConverter() };
+
+            for (int i = 0; i < multi.Bindings.Count; i++)
+            {
+                if (i == themes.Children.IndexOf(current))
+                    continue;
+                multi2.Bindings.Add(multi.Bindings[i]);
+            }
+            _ = SetBind(refer, BackgroundProperty, multi2);
+
             DeleteSection(current);
             Grid section = themes.Parent as Grid;
             StackPanel sections = section.Parent as StackPanel;
@@ -463,11 +501,16 @@ namespace Wisdom
         private void AddTopic(object sender, RoutedEventArgs e)
         {
             Grid topic = (sender as Button).Parent as Grid;
+            TextBox topicName = topic.Children[2] as TextBox;
+            TextBox topicHours = topic.Children[3] as TextBox;
             NewTopic(AllSectionsContents, topic.Parent as StackPanel,
                 out Button BTbutton, out Button Cadd, out Button NewTypeAdd,
                 out Button deleteOmni, out Button addNew, out TextBox hours,
-                (topic.Children[2] as TextBox).Text,
-                (topic.Children[3] as TextBox).Text, TotalHoursUsed);
+                topicName.Text, topicHours.Text, TotalHoursUsed, out ComboBox newThemeLevels, out ComboBox themeLevelsAdd);
+            SetBind(newThemeLevels, ComboBox.ItemsSourceProperty, FastBind(Levels, "Children", new CompetetionsConverter()));
+            newThemeLevels.SelectionChanged += Levels_SelectionChanged;
+            SetBind(themeLevelsAdd, ComboBox.ItemsSourceProperty, FastBind(Levels, "Children", new CompetetionsConverter()));
+            themeLevelsAdd.SelectionChanged += Levels_SelectionChanged;
             BTbutton.Click += DeleteThemeClick;
             Cadd.Click += AddContent;
             NewTypeAdd.Click += NewTypeContent;
@@ -481,13 +524,18 @@ namespace Wisdom
             Grid current = (sender as Button).Parent as Grid;
             StackPanel themes = current.Parent as StackPanel;
             themes.Children.Remove(current);
-            NewTheme((current.Children[1] as Label).Content.ToString(), themes,
-                AllSectionsContents, out Button BTbutton, out Button Cadd,
-                out Button NewTypeAdd, (current.Children[2] as TextBox).Text,
-                (current.Children[3] as TextBox).Text);
+            Label themeNo = current.Children[1] as Label;
+            TextBox themeName = current.Children[2] as TextBox;
+            TextBox themeHours = current.Children[3] as TextBox;
+            ComboBox themeLevel = current.Children[4] as ComboBox;
+            NewTheme(themeNo.Content.ToString(), themes, AllSectionsContents,
+                out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out ComboBox themeLevelsAdd,
+                themeName.Text, themeHours.Text, themeLevel.Text);
             BTbutton.Click += DeleteThemeClick;
             Cadd.Click += AddContent;
             NewTypeAdd.Click += NewTypeContent;
+            SetBind(themeLevelsAdd, ComboBox.ItemsSourceProperty, FastBind(Levels, "Children", new CompetetionsConverter()));
+            themeLevelsAdd.SelectionChanged += Levels_SelectionChanged;
             themes.Children.Add(current);
             Grid section = themes.Parent as Grid;
             StackPanel sections = section.Parent as StackPanel;

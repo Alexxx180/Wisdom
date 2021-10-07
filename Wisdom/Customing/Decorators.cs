@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -53,6 +54,17 @@ namespace Wisdom.Customing
         {
             foreach (UIElement element in elements) grid.Children.Add(element);
         }
+        public static void GridAddX2(Grid grid, byte startno, params FrameworkElement[] elements)
+        {
+            List<object> slots = new List<object>();
+            foreach (FrameworkElement element in elements)
+            {
+                grid.Children.Add(element);
+                slots.Add(startno);
+                startno++;
+            }
+            SetPropX(Grid.ColumnProperty, slots.ToArray(), elements);
+        }
         public static void SetProp(UIElement cntrl, DependencyProperty property, object value)
         {
             cntrl.SetValue(property, value);
@@ -64,6 +76,10 @@ namespace Wisdom.Customing
         public static void SetPropX(DependencyProperty property, object[] value, Control[] cntrl)
         {
             for (int i=0;i<cntrl.Length;i++) SetProp(cntrl[i], property, value[i]);
+        }
+        public static void SetPropX(DependencyProperty property, object[] value, UIElement[] cntrl)
+        {
+            for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value[i]);
         }
         public static void SetPropX(DependencyProperty property, object value, Control[] cntrl)
         {

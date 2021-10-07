@@ -177,15 +177,16 @@ namespace Wisdom.Writers
             Grid content = panel.Parent as Grid;
             StackPanel themeStack = content.Parent as StackPanel;
             Grid theme = themeStack.Parent as Grid;
-            StackPanel topicStack = theme.Parent as StackPanel;
-            Grid topic = topicStack.Parent as Grid;
+            //StackPanel topicStack = theme.Parent as StackPanel;
+            //Grid topic = topicStack.Parent as Grid;
 
-            TextBox refer = topic.Children[3] as TextBox;
+            TextBox refer = theme.Children[3] as TextBox;
 
-            Trace.WriteLine(refer.Name);
-            Trace.WriteLine(refer.Text);
-            Trace.WriteLine(refer.Background);
-            Trace.WriteLine(BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty));
+            //Trace.WriteLine(refer.Name);
+            //Trace.WriteLine(refer.Text);
+            //Trace.WriteLine(refer.Background);
+            //Trace.WriteLine(BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty));
+
             MultiBinding multi = BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty).ParentMultiBinding;
             BindingOperations.ClearBinding(refer, Control.BackgroundProperty);
             MultiBinding multi2 = new MultiBinding { Converter = new UsedValuesConverter() };
@@ -233,8 +234,19 @@ namespace Wisdom.Writers
             _ = panel.Children.Add(grid2);
             _ = panel.Children.Add(grid);
 
-            //throw new System.Exception( ((((panel.Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox).Name+"");
-            TextBox refer = (((panel.Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox; //
+            Grid content = panel.Parent as Grid;
+            //StackPanel themeStack = content.Parent as StackPanel;
+            //Grid theme = themeStack.Parent as Grid;
+            //StackPanel topicStack = theme.Parent as StackPanel;
+            //Grid topic = topicStack.Parent as Grid;
+
+            TextBox refer = content.Children[3] as TextBox;
+
+            //Trace.WriteLine(refer.Name);
+            //Trace.WriteLine(refer.Text);
+            //Trace.WriteLine(refer.Background);
+            //Trace.WriteLine(BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty));
+
             MultiBinding old = BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty).ParentMultiBinding;
             BindingOperations.ClearBinding(refer, Control.BackgroundProperty);
             MultiBinding multi2 = new MultiBinding { Converter = new UsedValuesConverter() };
@@ -412,19 +424,21 @@ namespace Wisdom.Writers
             StackPanel panel = parent.Parent as StackPanel;
             panel.Children.Remove(parent);
         }
-        public static void NewTopic(TableRowGroup mainBinding, StackPanel master, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out Button deleteOmni, out Button addNew, out TextBox newHours, string name, string hours, Label hoursToBind)
+        public static void NewTopic(TableRowGroup mainBinding, StackPanel master, out Button BTbutton, out Button Cadd, out Button NewTypeAdd,
+            out Button deleteOmni, out Button addNew, out TextBox newHours, string name, string hours, Label hoursToBind, out ComboBox newThemeLevels,
+            out ComboBox themeLevelAdd)
         {
 
             int cnt = master.Children.Count;
             //Topic
-            Grid omniGrid = GridItem();
+            Grid omniGrid = GridItem4();
             AddRows(omniGrid, 2);
             deleteOmni = new Button { Style = GetStyle("DeleteButton") };
             Label topicNo = new Label { Content = $"Раздел {cnt}.", Style = GetStyle("CaptionSections") };
-            TextBox topicName = new TextBox { FontWeight = FontWeights.Bold, Text=name, Style = GetStyle("RegularBox") };
-            TextBox topicHours = new TextBox { FontWeight = FontWeights.Bold, Text=hours, Style = GetStyle("HoursBox") };
+            TextBox topicName = new TextBox { FontWeight = FontWeights.Bold, Text = name, Style = GetStyle("RegularBox") };
+            TextBox topicHours = new TextBox { FontWeight = FontWeights.Bold, Text = hours, Style = GetStyle("HoursBox") };
             MultiBinding colorFromText = Multi(new UsedValuesConverter(), FastBind(topicHours, "Text"));
-            _ = SetBind(topicHours, Control.BackgroundProperty, colorFromText); //https://www.youtube.com/watch?v=i1Z0jiKKYcA
+            _ = SetBind(topicHours, Control.BackgroundProperty, colorFromText);
             StackPanel Themes = new StackPanel { Background = new SolidColorBrush(Color.FromRgb(238, 235, 182)) };
             GridAddX(omniGrid, deleteOmni, topicNo, topicName, topicHours, Themes);
             SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3 }, new Control[] { topicNo, topicName, topicHours });
@@ -450,8 +464,6 @@ namespace Wisdom.Writers
             newBind.Bindings.Add(FastBind(topicHours, "Text"));
             _ = SetBind(hoursToBind, ContentControl.ContentProperty, newBind);
 
-
-
             MultiBinding multi = Multi(new SectionsConverter(), FastBind(topicNo, "Content"), FastBind(topicName, "Text"));
             Binding bindHours = FastBind(topicHours, "Text");
             TableRow newTopicRow = new TableRow();
@@ -463,38 +475,60 @@ namespace Wisdom.Writers
             omniGrid.Tag = newTopicRow;
             mainBinding.Rows.Add(newTopicRow);
             deleteOmni.Tag = Themes;
-            NewTheme(cnt, Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd);
+            NewTheme(cnt, Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd, out newThemeLevels);
 
-            Grid AddThemeGrid = GridItem();
+            Grid AddThemeGrid = GridItem4();
             addNew = new Button { Style = GetStyle("AddButton") };
             Label newTitle = new Label { Content = $"Тема {cnt}.2.", Style = GetStyle("CaptionSections") };
             TextBox newName = new TextBox { Style = GetStyle("RegularBox") };
             newHours = new TextBox { Style = GetStyle("HoursBox") };
-            GridAddX(AddThemeGrid, addNew, newTitle, newName, newHours);
-            SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3 }, new Control[] { newTitle, newName, newHours });
+            themeLevelAdd = new ComboBox { Text = "", Style = GetStyle("HoursBox"), IsEditable = true };
+            GridAddX(AddThemeGrid, addNew, newTitle, newName, newHours, themeLevelAdd);
+            SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3, 4 }, new Control[] { newTitle, newName, newHours, themeLevelAdd });
             Themes.Children.Add(AddThemeGrid);
         }
 
-        public static void NewTheme(int cnt, StackPanel Themes, TableRowGroup mainBinding, out Button BTbutton, out Button Cadd, out Button NewTypeAdd)
+        public static void NewTheme(int cnt, StackPanel Themes, TableRowGroup mainBinding, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out ComboBox newThemeLevels)
         {
-            NewTheme($"Тема {cnt}.1.", Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd, "", "");
+            NewTheme($"Тема {cnt}.1.", Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd, out newThemeLevels, "", "", "");
         }
 
-        public static void NewTheme(string themeTitle, StackPanel Themes, TableRowGroup mainBinding, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, string themeNameVal, string themeLevelVal)
+        public static void NewTheme(string themeTitle, StackPanel Themes, TableRowGroup mainBinding,
+            out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out ComboBox newLevels,
+            string themeNameVal, string themeHoursVal, string themeLevelVal)
         {
             //Theme
-            Grid mainGrid = GridItem();
+            Grid mainGrid = GridItem4();
             AddRows(mainGrid, 2);
             BTbutton = new Button { Style = GetStyle("DeleteButton") };
             Label themeNo = new Label { Content = themeTitle, Style = GetStyle("CaptionSections") };
             TextBox themeName = new TextBox { Text = themeNameVal, Style = GetStyle("SubCaptionBox") };
-            TextBox themeLevel = new TextBox { Text = themeLevelVal, Style = GetStyle("HoursBox") };
+            TextBox themeHours = new TextBox { Text = themeHoursVal, Style = GetStyle("HoursBox") };
+            MultiBinding colorFromText = Multi(new UsedValuesConverter(), FastBind(themeHours, "Text"));
+            _ = SetBind(themeHours, Control.BackgroundProperty, colorFromText);
+            newLevels = new ComboBox { Text = themeLevelVal, Style = GetStyle("HoursBox"), IsEditable = true };
             StackPanel themes = new StackPanel { Background = new SolidColorBrush(Color.FromRgb(238, 235, 182)) }; //"#FFEEEBB6"
-            GridAddX(mainGrid, BTbutton, themeNo, themeName, themeLevel, themes);
-            SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3 }, new Control[] { themeNo, themeName, themeLevel });
+            GridAddX(mainGrid, BTbutton, themeNo, themeName, themeHours, newLevels, themes);
+            SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3, 4 }, new Control[] { themeNo, themeName, themeHours, newLevels });
             SetPropX(new DependencyProperty[] { Grid.RowProperty, Grid.ColumnProperty, Grid.ColumnSpanProperty },
                 new object[] { 1, 0, 5 }, themes);
             Themes.Children.Add(mainGrid);
+
+            Grid topic = Themes.Parent as Grid;
+
+            TextBox refer = topic.Children[3] as TextBox;
+
+            MultiBinding oldHoursMark = BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty).ParentMultiBinding;
+            BindingOperations.ClearBinding(refer, Control.BackgroundProperty);
+            MultiBinding newHoursMark = new MultiBinding { Converter = new UsedValuesConverter() };
+
+            foreach (Binding binding in oldHoursMark.Bindings)
+                newHoursMark.Bindings.Add(binding);
+
+            Binding newBind = FastBind(themeHours, "Text");
+            themeHours.Tag = newBind;
+            newHoursMark.Bindings.Add(newBind);
+            _ = SetBind(refer, Control.BackgroundProperty, newHoursMark);
 
             //ThemeContent
             Grid content = GridItem();
@@ -521,8 +555,9 @@ namespace Wisdom.Writers
             SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3 }, new Control[] { levelNo, levelName, levelHours });
             themeContent.Children.Add(levelContent);
 
+            //Table Contents
             MultiBinding multi2 = Multi(new SectionsConverter(), FastBind(themeNo, "Content"), FastBind(themeName, "Text"));
-            Binding bindLevel = FastBind(themeLevel, "Text");
+            Binding bindLevel = FastBind(themeHours, "Text");
             TableRow newTheme = new TableRow();
             TableCell themeNameCell = new TableCell { Style = GetStyle("RegularCells"), Blocks = { TextCB(multi2) } };
             TableCell contentsCell = new TableCell { Style = GetStyle("RegularCells"), ColumnSpan = 2 };

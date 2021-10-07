@@ -16,9 +16,7 @@ namespace Wisdom.Binds
                     return new SolidColorBrush(Color.FromRgb(255, 252, 199));
             int max = Itry(values[0].ToString()), sum = 0;
             for (int i = 1; i < values.Length; i++)
-            {
                 sum += Itry(values[i].ToString());
-            }
             object[] colors = { Color.FromRgb(255, 152, 99), Color.FromRgb(155, 252, 199) };
             Color defaultColor = Color.FromRgb(255, 252, 199);
             bool[] conditions = { sum > max, sum == max };

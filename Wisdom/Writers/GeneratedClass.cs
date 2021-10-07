@@ -13526,7 +13526,7 @@ namespace Wisdom.Writers
             runPropCn2.Append(underline_Cn2);
             runPropCn2.Append(languagesCn2);
             Text textCn2 = new Text();
-            textCn2.Text = CollegeName[0..^2].ToLower() + "ом";
+            textCn2.Text = CollegeName.Length > 2 ? CollegeName[0..^2].ToLower() + "ом" : "";
 
             runCn2.Append(runPropCn2);
             runCn2.Append(textCn2);

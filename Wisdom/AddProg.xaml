@@ -5,13 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wisdom"
         xmlns:bind="clr-namespace:Wisdom.Binds"
+        xmlns:model="clr-namespace:Wisdom.Model"
         xmlns:writer="clr-namespace:Wisdom.Writers"
         xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main Jump "
-        xmlns:docx="clr-namespace:DocumentFormat.OpenXml.Wordprocessing;assembly=DocumentFormat.OpenXml" xmlns:docx1="clr-namespace:DocumentFormat.OpenXml.Packaging;assembly=DocumentFormat.OpenXml"
+        xmlns:docx="clr-namespace:DocumentFormat.OpenXml.Wordprocessing;assembly=DocumentFormat.OpenXml"
+        xmlns:controls="clr-namespace:Wisdom.Controls"
         mc:Ignorable="d"
         Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized">
+    <!--<Window.DataContext>
+        <model:ViewModel/>
+    </Window.DataContext>-->
     <Window.Resources>
-
+        <bind:CompetetionsConverter x:Key="CompetetionsConverter" />
+        <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
         <Style TargetType="{x:Type MenuItem}" x:Key="MenuItemTextStyle" >
             <Setter Property="Template">
                 <Setter.Value>
@@ -189,7 +195,7 @@
                 <Viewbox Grid.Row="7" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">
                     <Label Content="Код и название дисциплины" Padding="0" />
                 </Viewbox>
-                
+
                 <ComboBox x:Name="DpSelect" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" Grid.Row="8" VerticalAlignment="Stretch"  Style="{StaticResource SubCaptionBox}" IsEditable="True">
                     <ComboBox.ItemContainerStyle>
                         <StaticResource ResourceKey="ItemsBox"></StaticResource>
@@ -219,7 +225,7 @@
                     <Viewbox HorizontalAlignment="Left">
                         <Label Content="Аудиторная нагрузка, часы"/>
                     </Viewbox>
-                    
+
                     <Grid Grid.Column="1" HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.8*"></ColumnDefinition>
@@ -284,38 +290,6 @@
                     </ComboBox.ItemContainerStyle>
                     <ComboBoxItem>ПОЛИТЕХНИЧЕСКИЙ</ComboBoxItem>
                 </ComboBox>
-                <!--<Border BorderThickness="1" BorderBrush="Black" Grid.Row="1" Grid.Column="1" Grid.RowSpan="5">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.2*"/>
-                            <ColumnDefinition Width="0.8*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.8*"/>
-                            <RowDefinition Height="0.2*"/>
-                        </Grid.RowDefinitions>
-
-                        <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="0" Grid.RowSpan="1">
-                            <RichTextBox x:Name="NText" Grid.Column="1"  FontSize="26" VerticalAlignment="Stretch" FontFamily="Times New Roman" TextChanged="RichTextBox_TextChanged" Background="{x:Null}" BorderBrush="{x:Null}"  SelectionBrush="#FF00A2E8" SelectionTextBrush="#FFEFE4B0" ContextMenu="{StaticResource CtxMenu}" Tag="{x:Reference Name=Cell0}">
-                                <FlowDocument TextAlignment="Center">
-                                    <Paragraph x:Name="Paragraph">
-                                        <Run x:Name="NText1" Text="Министерство образования и науки Российской Федерации Федеральное государственное бюджетное образовательное учреждение высшего образования&#xA;«Новгородский государственный университет имени Ярослава Мудрого»"/>
-                                        <Run x:Name="NText2" Text="&#xA;ПОЛИТЕХНИЧЕСКИЙ КОЛЛЕДЖ" FontWeight="Bold"/>
-                                    </Paragraph>
-                                </FlowDocument>
-                            </RichTextBox>
-                        </Border>
-                        <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1">
-                            <TextBox x:Name="OText" Grid.Column="1" TextAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1" Text="Учебно-методическая документация" TextWrapping="Wrap" VerticalAlignment="Stretch" FontFamily="Times New Roman" FontSize="26" FontWeight="Bold" BorderBrush="{x:Null}" Background="{x:Null}" SelectionBrush="#FF00A2E8" SelectionTextBrush="#FFEFE4B0" />
-                        </Border>
-                        <Border BorderThickness="1" BorderBrush="Black" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-                            <Button x:Name="BSbSelect" Grid.ColumnSpan="1" HorizontalAlignment="Center" Margin="0,0,0,0"  VerticalAlignment="Stretch" Padding="0,0,0,0" Click="BSbSelect_Click" Background="{x:Null}" Foreground="{x:Null}" BorderBrush="{x:Null}">
-                                <Image x:Name="SmbSelect"  Source="/Novsu.png"/>
-                            </Button>
-                        </Border>
-                    </Grid>
-                </Border>-->
             </Grid>
 
             <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
@@ -374,9 +348,6 @@
                 </Border>
 
                 <Border Grid.Row="1" Grid.Column="5">
-                    <Border.Resources>
-                        <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
-                    </Border.Resources>
                     <Border.Background>
                         <MultiBinding Converter="{StaticResource UsedValuesConverter}">
                             <Binding Path="Content" ElementName="Available"></Binding>
@@ -416,7 +387,7 @@
                     <Label Content="Практические занятия"></Label>
                 </Viewbox>
                 <TextBox x:Name="Practices"  TextChanged="Hours" PreviewTextInput="Numbers" Grid.Row="2" Grid.Column="5" Style="{StaticResource HoursBox}"></TextBox>
-                
+
                 <Viewbox Grid.Row="3" Grid.Column="4" HorizontalAlignment="Left">
                     <Label Content="Контрольные работы"></Label>
                 </Viewbox>
@@ -426,7 +397,7 @@
                     <Label Content="Практическая подготовка"></Label>
                 </Viewbox>
                 <TextBox x:Name="Prepare"  TextChanged="Hours" PreviewTextInput="Numbers"  Grid.Row="4" Grid.Column="5"  Style="{StaticResource HoursBox}"></TextBox>
-                
+
                 <Viewbox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left">
                     <Label Content="Курсовая работа"></Label>
                 </Viewbox>
@@ -578,11 +549,11 @@
                     </Grid>
 
                 </Grid>
-                
+
             </Grid>
 
             <!--RCompetentions-->
-            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.05*"/>
@@ -652,9 +623,6 @@
                             </Viewbox>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="4">
-                            <Border.Resources>
-                                <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
-                            </Border.Resources>
                             <Border.Background>
                                 <MultiBinding Converter="{StaticResource UsedValuesConverter}">
                                     <Binding Path="Content" ElementName="AvailableInputted"></Binding>
@@ -681,8 +649,9 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.05*" />
                             <ColumnDefinition Width="0.15*" />
-                            <ColumnDefinition Width="0.73*" />
-                            <ColumnDefinition Width="0.101*" />
+                            <ColumnDefinition Width="0.626*" />
+                            <ColumnDefinition Width="0.102*" />
+                            <ColumnDefinition Width="0.103*" />
                             <ColumnDefinition Width="0.019*" />
                         </Grid.ColumnDefinitions>
 
@@ -704,6 +673,12 @@
                             </Viewbox>
                         </Border>
 
+                        <Border Grid.Column="4" Style="{StaticResource ListCaptions}">
+                            <Viewbox HorizontalAlignment="Right">
+                                <Label Content="УК" Style="{StaticResource ListCaptions}"></Label>
+                            </Viewbox>
+                        </Border>
+
                     </Grid>
 
                 </Grid>
@@ -714,7 +689,8 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.05*" />
                                 <ColumnDefinition Width="0.15*" />
-                                <ColumnDefinition Width="0.7*" />
+                                <ColumnDefinition Width="0.6*" />
+                                <ColumnDefinition Width="0.1*" />
                                 <ColumnDefinition Width="0.1*" />
                             </Grid.ColumnDefinitions>
 
@@ -729,12 +705,10 @@
                             <!--</Viewbox>-->
                             <TextBox x:Name="SectionName" FontWeight="Bold" Text="" Grid.Column="2" Style="{StaticResource RegularBox}"></TextBox>
                             <TextBox x:Name="SectionHours" Tag="{x:Reference TotalHoursUsed}" Grid.Column="3" Text="" Style="{StaticResource HoursBox}">
-                                <TextBox.Resources>
-                                    <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
-                                </TextBox.Resources>
                                 <TextBox.Background>
                                     <MultiBinding Converter="{StaticResource UsedValuesConverter}">
                                         <Binding Path="Text" ElementName="SectionHours"></Binding>
+                                        <Binding Path="Text" ElementName="ThemeHours"></Binding>
                                     </MultiBinding>
                                 </TextBox.Background>
                             </TextBox>
@@ -745,7 +719,8 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.05*" />
                                         <ColumnDefinition Width="0.15*" />
-                                        <ColumnDefinition Width="0.7*" />
+                                        <ColumnDefinition Width="0.6*" />
+                                        <ColumnDefinition Width="0.1*" />
                                         <ColumnDefinition Width="0.1*" />
                                     </Grid.ColumnDefinitions>
 
@@ -759,7 +734,18 @@
                                     <Label x:Name="ThemeNo" Grid.Column="1" Content="Тема 1.1." Style="{StaticResource CaptionSections}"></Label>
                                     <!--</Viewbox>-->
                                     <TextBox x:Name="ThemeName" Grid.Column="2" Text="" Style="{StaticResource SubCaptionBox}"></TextBox>
-                                    <TextBox x:Name="ThemeLevel" Grid.Column="3" Text="" Style="{StaticResource HoursBox}"></TextBox>
+                                    <TextBox x:Name="ThemeHours" Grid.Column="3" Text="" Style="{StaticResource HoursBox}">
+                                        <TextBox.Background>
+                                            <MultiBinding Converter="{StaticResource UsedValuesConverter}">
+                                                <Binding Path="Text" ElementName="ThemeHours"></Binding>
+                                            </MultiBinding>
+                                        </TextBox.Background>
+                                    </TextBox>
+                                    <ComboBox x:Name="ThemeLevel" Grid.Column="4" Style="{StaticResource HoursBox}" SelectionChanged="Levels_SelectionChanged"  IsEditable="True">
+                                        <ComboBox.ItemsSource>
+                                            <Binding Path="Children" ElementName="Levels" Converter="{StaticResource CompetetionsConverter}"></Binding>
+                                        </ComboBox.ItemsSource>
+                                    </ComboBox>
 
 
                                     <StackPanel Background="#FFEEEBB6" Tag="{x:Reference Name=ThemeContents}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
@@ -826,7 +812,8 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.05*" />
                                         <ColumnDefinition Width="0.15*" />
-                                        <ColumnDefinition Width="0.7*" />
+                                        <ColumnDefinition Width="0.6*" />
+                                        <ColumnDefinition Width="0.1*" />
                                         <ColumnDefinition Width="0.1*" />
                                     </Grid.ColumnDefinitions>
 
@@ -834,6 +821,11 @@
                                     <Label Content="Тема 1.2." Grid.Column="1" Style="{StaticResource CaptionSections}"></Label>
                                     <TextBox Grid.Column="2" Style="{StaticResource RegularBox}"></TextBox>
                                     <TextBox Grid.Column="3" Style="{StaticResource HoursBox}" PreviewTextInput="Numbers" TextChanged="Hours"></TextBox>
+                                    <ComboBox Grid.Column="4" Style="{StaticResource HoursBox}" SelectionChanged="Levels_SelectionChanged" IsEditable="True">
+                                        <ComboBox.ItemsSource>
+                                            <Binding Path="Children" ElementName="Levels" Converter="{StaticResource CompetetionsConverter}"></Binding>
+                                        </ComboBox.ItemsSource>
+                                    </ComboBox>
                                 </Grid>
                             </StackPanel>
                         </Grid>
@@ -841,7 +833,8 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.05*" />
                                 <ColumnDefinition Width="0.15*" />
-                                <ColumnDefinition Width="0.7*" />
+                                <ColumnDefinition Width="0.6*" />
+                                <ColumnDefinition Width="0.1*" />
                                 <ColumnDefinition Width="0.1*" />
                             </Grid.ColumnDefinitions>
 
@@ -874,7 +867,7 @@
                         <Label Content="Описание" Style="{StaticResource ListCaptions}"></Label>
                     </Viewbox>
                 </Grid>
-                    
+
                 <ScrollViewer  Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="3">
                     <StackPanel x:Name="Levels"  Background="#FFFFFCC7">
                         <Grid x:Name="Level1" Tag="{x:Reference Name=LevelsText1}">
@@ -992,7 +985,7 @@
                             <TextBlock x:Name="TMethods" Style="{StaticResource ResourceKey=ListCaptions}" Text="Методы оценки результатов обучения"></TextBlock>
                         </Viewbox>
                     </Border>
-                    
+
                     <ScrollViewer Grid.Row="1" Grid.ColumnSpan="1" Grid.Column="1" Grid.RowSpan="1">
                         <StackPanel Background="#FFFFFCC7">
                             <Grid Tag="{x:Reference RF}">
@@ -1061,60 +1054,60 @@
                 </Grid>
 
                 <ScrollViewer Grid.Row="10" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="9">
-                <StackPanel Background="#FFFFFCC7" x:Name="EducationSources">
-                    <Grid Tag="{x:Reference EduSources}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.05*" />
-                            <ColumnDefinition Width="0.15*" />
-                            <ColumnDefinition Width="0.7*" />
-                            <ColumnDefinition Width="0.1*" />
-                        </Grid.ColumnDefinitions>
+                    <StackPanel Background="#FFFFFCC7" x:Name="EducationSources">
+                        <Grid Tag="{x:Reference EduSources}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.05*" />
+                                <ColumnDefinition Width="0.15*" />
+                                <ColumnDefinition Width="0.7*" />
+                                <ColumnDefinition Width="0.1*" />
+                            </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Button Click="DeleteSources" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Button Click="DeleteSources" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
                             <Label Grid.Column="1" Content="Основная литература" Grid.ColumnSpan="3" Style="{StaticResource ListCaptions}" />
-                        <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.05*" />
-                                    <ColumnDefinition Width="0.15*" />
-                                    <ColumnDefinition Width="0.7*" />
-                                    <ColumnDefinition Width="0.1*" />
-                                </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.05*" />
+                                        <ColumnDefinition Width="0.15*" />
+                                        <ColumnDefinition Width="0.7*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                    </Grid.ColumnDefinitions>
 
-                                <Button Click="AddSource" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                <Label x:Name="SourceNo1" Grid.Column="1" Content="1." Style="{StaticResource No1}" />
-                                <TextBox x:Name="Source1"  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
-                    <Grid Tag="{x:Reference Sheet7}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.05*" />
-                            <ColumnDefinition Width="0.15*" />
-                            <ColumnDefinition Width="0.7*" />
-                            <ColumnDefinition Width="0.1*" />
-                        </Grid.ColumnDefinitions>
+                                    <Button Click="AddSource" Style="{StaticResource ResourceKey=AddButton}"></Button>
+                                    <Label x:Name="SourceNo1" Grid.Column="1" Content="1." Style="{StaticResource No1}" />
+                                    <TextBox x:Name="Source1"  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Tag="{x:Reference Sheet7}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.05*" />
+                                <ColumnDefinition Width="0.15*" />
+                                <ColumnDefinition Width="0.7*" />
+                                <ColumnDefinition Width="0.1*" />
+                            </Grid.ColumnDefinitions>
 
                             <Button Click="AddSources" Grid.Row="3" Style="{StaticResource ResourceKey=AddButton}"></Button>
                             <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource SubCaptionBox}">
-                            <ComboBox.ItemContainerStyle>
-                                <StaticResource ResourceKey="ItemsBox"></StaticResource>
-                            </ComboBox.ItemContainerStyle>
-                            <ComboBoxItem>Основная литература</ComboBoxItem>
-                            <ComboBoxItem>Дополнительная литература</ComboBoxItem>
-                            <ComboBoxItem>Программное обеспечение</ComboBoxItem>
-                            <ComboBoxItem>Базы данных, информационно-справочные и поисковые системы</ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
-                </StackPanel>
+                                <ComboBox.ItemContainerStyle>
+                                    <StaticResource ResourceKey="ItemsBox"></StaticResource>
+                                </ComboBox.ItemContainerStyle>
+                                <ComboBoxItem>Основная литература</ComboBoxItem>
+                                <ComboBoxItem>Дополнительная литература</ComboBoxItem>
+                                <ComboBoxItem>Программное обеспечение</ComboBoxItem>
+                                <ComboBoxItem>Базы данных, информационно-справочные и поисковые системы</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
+                    </StackPanel>
                 </ScrollViewer>
             </Grid>
 
-            <Grid x:Name="Form5" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <Grid x:Name="Form5" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.05*"/>
@@ -1156,7 +1149,7 @@
                         <TextBlock Style="{StaticResource ResourceKey=ListCaptions}" Text="ПРИЛОЖЕНИЕ" Padding="5"></TextBlock>
                     </Viewbox>
                 </Border>
-                
+
                 <ScrollViewer Grid.Row="2" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="16">
                     <Grid Tag="{x:Reference Questions}" Background="#FFFFFCC7">
                         <Grid.ColumnDefinitions>
@@ -1267,17 +1260,16 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="277*"/>
-                    <RowDefinition Height="734*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-
-                <ScrollViewer Grid.Column="1" Grid.RowSpan="2" Height="900" HorizontalScrollBarVisibility="Visible">
+                
+                <ScrollViewer Grid.Column="1" Grid.RowSpan="2" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
+                    
                     <Border BorderThickness="1" BorderBrush="Black" Width="795"  Margin="0,0,0,0">
-                        <FlowDocumentReader x:Name="FlowReader" Grid.Row="1" Grid.Column="1" Height="1122.519685" Width="793.700787" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="14pt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Language="RU" >
-                            
+                        <controls:CustomPageViewer x:Name="FlowReader" IsEnabled="True" Grid.Row="1" Grid.Column="1" Height="1122.519685" Width="793.700787" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="14pt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Language="RU" >
+
                             <FlowDocument x:Name="Struct" PagePadding="3cm,2cm,1cm,2cm">
 
-                                
                                 <Section x:Name="Sheet1" BreakPageBefore="True">
                                     <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0">
                                         <Table.Columns>
@@ -1302,7 +1294,7 @@
                                             <TableRow>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
                                                     <Paragraph TextAlignment="Center" FontSize="14pt" FontFamily="Times New Roman" ScrollViewer.VerticalScrollBarVisibility="Disabled" FontWeight="Bold" >
-                                                        <Run x:Name="OLab" Text="{Binding ElementName=OText,Path=Text}"></Run>
+                                                        <Run x:Name="OLab" Text="-"></Run>
                                                     </Paragraph>
                                                 </TableCell>
                                             </TableRow>
@@ -1423,7 +1415,8 @@
                                     <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
                                         <Run FontWeight="Bold" Text="1. ПАСПОРТ РАБОЧЕЙ  ПРОГРАММЫ УЧЕБНОЙ ДИСЦИПЛИНЫ"></Run>
                                         <LineBreak/>
-                                        «<Run x:Name="D3" Text="{Binding ElementName=DpSelect, Path=Text}"></Run>»
+                                        «
+                                        <Run x:Name="D3" Text="{Binding ElementName=DpSelect, Path=Text}"></Run> »
                                     </Paragraph>
                                     <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
                                         <Run FontWeight="Bold" Text="1.1. Область применения рабочей программы"></Run>
@@ -2045,7 +2038,7 @@
                                     </Table>
                                 </Section>
                             </FlowDocument>
-                        </FlowDocumentReader>
+                        </controls:CustomPageViewer>
                     </Border>
                 </ScrollViewer>
 

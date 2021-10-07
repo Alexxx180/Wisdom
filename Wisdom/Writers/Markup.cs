@@ -142,16 +142,17 @@ namespace Wisdom.Writers
 
         public static void TestData()
         {
-            foreach (HoursList<HoursList<HashList<String2>>> l1 in Plan)
+            foreach (HoursList<LevelsList<HashList<String2>>> l1 in Plan)
             {
                 Trace.WriteLine("Раздел ...");
                 Trace.WriteLine("Название: " + l1.Name);
                 Trace.WriteLine("Часы: " + l1.Hours);
-                foreach (HoursList<HashList<String2>> l2 in l1.Values)
+                foreach (LevelsList<HashList<String2>> l2 in l1.Values)
                 {
                     Trace.WriteLine("Тема ...");
                     Trace.WriteLine("Название: " + l2.Name);
-                    Trace.WriteLine("Уровень освоения: " + l2.Hours);
+                    Trace.WriteLine("Часы: " + l2.Hours);
+                    Trace.WriteLine("Уровень освоения: " + l2.Level);
                     foreach (HashList<String2> l3 in l2.Values)
                     {
                         Trace.WriteLine("Элемент темы ...");
@@ -175,7 +176,7 @@ namespace Wisdom.Writers
                 rows.Add(SectionAdd($"Раздел {(i + 1)}. {Plan[i].Name}", Plan[i].Hours));
                 for (byte ii = 0; ii < Plan[i].Values.Count; ii++)
                     rows.AddRange(ThemeAdd($"Тема {(i + 1)}.{(ii + 1)}. {Plan[i].Values[ii].Name}",
-                        Plan[i].Values[ii].Hours, Plan[i].Values[ii].Values));
+                        Plan[i].Values[ii].Hours, Plan[i].Values[ii].Level, Plan[i].Values[ii].Values));
             }
             return rows;
         }
@@ -198,20 +199,21 @@ namespace Wisdom.Writers
             TableRow tableRow = TableRowAdd(cells);
             return tableRow;
         }
-        public static List<TableRow> ThemeAdd(string title, string level,
-            List<HashList<String2>> data)
+        public static List<TableRow> ThemeAdd(string title, string hours,
+            string level, List<HashList<String2>> data)
         {
             List<TableRow> themeContents = new List<TableRow>();
 
             Run themeRun1 = RunAdd(title, new Bold());
             Run descriptionRun1 = RunAdd(data[0].Name);
+            Run hoursRun1 = RunAdd(hours);
             Run levelRun1 = RunAdd(level);
 
             Paragraph sectionP1 = ParagraphAdd(JustificationValues.Center, themeRun1);
             sectionP1.ParagraphProperties.Append(TableTabs());
             Paragraph desriptionP1 = ParagraphAdd(JustificationValues.Both, descriptionRun1);
             desriptionP1.ParagraphProperties.Append(TableTabs());
-            Paragraph hoursP1 = ParagraphAdd(JustificationValues.Center);
+            Paragraph hoursP1 = ParagraphAdd(JustificationValues.Center, hoursRun1);
             hoursP1.ParagraphProperties.Append(TableTabs());
             Paragraph levelsP1 = ParagraphAdd(JustificationValues.Center, levelRun1);
             levelsP1.ParagraphProperties.Append(TableTabs());

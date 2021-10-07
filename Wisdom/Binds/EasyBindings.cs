@@ -17,6 +17,15 @@ namespace Wisdom.Binds
                 Path = new PropertyPath(path)
             };
         }
+        public static Binding FastBind(object source, string path, IValueConverter converter)
+        {
+            return new Binding
+            {
+                Source = source,
+                Path = new PropertyPath(path),
+                Converter = converter
+            };
+        }
 
         public static DependencyObject SetBind(DependencyObject @object, DependencyProperty property, BindingBase @base)
         {
