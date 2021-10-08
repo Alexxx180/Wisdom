@@ -34,6 +34,43 @@ namespace Wisdom
             DataContext = this;
         }
 
+        private List<HoursList<String2>> ExtractCompetetions(StackPanel panel,
+            byte idNo, byte nameNo)
+        {
+            List<HoursList<String2>> list = new List<HoursList<String2>>();
+            int cnt = panel.Children.Count - 1;
+            for (byte i = 0; i < cnt; i++)
+            {
+                Grid element = panel.Children[i] as Grid;
+                Label competetionNo = element.Children[idNo] as Label;
+                TextBox competetionName = element.Children[nameNo] as TextBox;
+                HoursList<String2> competetion = new HoursList<String2>
+                    (competetionNo.Content.ToString(), competetionName.Text);
+                for (int ii = nameNo + 1; ii < element.Children.Count; ii += 2)
+                {
+                    Label skillsName = element.Children[ii] as Label;
+                    TextBox skillsDescription = element.Children[ii + 1] as TextBox;
+                    competetion.Values.Add(new String2(skillsName.Content.ToString(),
+                        skillsDescription.Text));
+                }
+                list.Add(competetion);
+            }
+            return list;
+        }
+
+        private List<HoursList<String2>> ExtractCompetetions2(StackPanel panel,
+            byte idNo, byte nameNo)
+        {
+            List<HoursList<String2>> list = new List<HoursList<String2>>();
+            for (byte i = 0; i < panel.Children.Count - 1; i++)
+            {
+                Grid item = panel.Children[i] as Grid;
+                StackPanel competetion = item.Children[2] as StackPanel;
+                list.AddRange(ExtractCompetetions(competetion, idNo, nameNo));
+            }
+            return list;
+        }
+
         private List<string> GetListFromElements(StackPanel panel, byte index)
         {
             List<string> list = new List<string>();
@@ -178,6 +215,23 @@ namespace Wisdom
             }   
             return source;
         }
+        private void ProfessionalCompettionSectionAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Button add = sender as Button;
+            Grid next = add.Parent as Grid;
+            Border border = next.Children[1] as Border;
+            Label title = border.Child as Label;
+            StackPanel comps = next.Parent as StackPanel;
+            Button deleteSection = new Button();
+            Button addCompettion = new Button();
+            string no = comps.Children.Count.ToString();
+            comps.Children.Remove(next);
+            comps.Children.Add(ProfessionSection("ПК ", no, out deleteSection, out addCompettion));
+            comps.Children.Add(next);
+            title.Content = "ПК " + comps.Children.Count.ToString() + ".";
+            deleteSection.Click += DeleteProfessional;
+            addCompettion.Click += AddProfessionalCompetetion;
+        }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
@@ -199,9 +253,12 @@ namespace Wisdom
             ControlWs = Controls.Text;
             CourseWs = Course.Text;
 
-            ShallCan = GetListFromElements(SkillsAddSpace, 2);
-            ShallKnow = GetListFromElements(KnowledgeAddSpace, 2);
-            TotalCompetetion = GetListFromElements(TotalAddSpace, 2);
+            Order = new String2(OrderDate.Text, OrderNo.Text);
+            GeneralCompetetions = ExtractCompetetions(TotalCompAddSpace, 1, 2);
+            ProfessionalCompetetions = ExtractCompetetions2(ProfCompAddSpace, 1, 2);
+            //ShallCan = GetListFromElements(SkillsAddSpace, 2);
+            //ShallKnow = GetListFromElements(KnowledgeAddSpace, 2);
+            //TotalCompetetion = GetListFromElements(TotalAddSpace, 2);
 
             EducationControl = GetListFromElements(EducationAddSpace, 2);
             MarkControl = GetListFromElements(MarkControlAddSpace, 2);
@@ -239,24 +296,7 @@ namespace Wisdom
             RichTextBox box = sender as RichTextBox;
             if (NAN(box) || NA(box.Tag))
                 return;
-            //RichText(box);
         }
-        /*private void BSbSelect_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                Symbol.Source = SmbSelect.Source = Bmper(openFileDialog.FileName);
-        }
-        private void ToCase(object sender, RoutedEventArgs e)
-        {
-            NText.Selection.Text = NText.Selection.Text.ToString() == NText.Selection.Text.ToUpper().ToString()
-                ? NText.Selection.Text.ToLower()
-                : NText.Selection.Text.ToUpper();
-        }
-        private void CustomingText(object sender, RoutedEventArgs e)
-        {
-            MenuItemTemplating(sender as MenuItem, NText);
-        }*/
         private void Numbers(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !numbers.IsMatch(e.Text);
@@ -326,9 +366,13 @@ namespace Wisdom
         {
             TextContent2(sender as Button, null).Click += DeleteSource;
         }
-        private void AddListItem(object sender, RoutedEventArgs e)
+        private void AddTotalCompetetion(object sender, RoutedEventArgs e)
         {
-            TextContent3(sender as Button, null).Click += DeleteListItem;
+            TextContent4(sender as Button).Click += DeleteListItem;
+        }
+        private void AddProfessionalCompetetion(object sender, RoutedEventArgs e)
+        {
+            TextContent5(sender as Button).Click += DeleteProfessionalItem;
         }
         private void AddListItem2(object sender, RoutedEventArgs e)
         {
@@ -357,9 +401,34 @@ namespace Wisdom
             Grid current = btn.Parent as Grid;
             StackPanel panel = current.Parent as StackPanel;
             panel.Children.Remove(current);
-            RemoveListItem((current.Tag as ListItem).Tag);
-            RemoveListItem(current.Tag);
-            AutoIndexing(panel, 1, '.');
+            string prefix = "ОК ";
+            AutoIndexing2(panel, 1, "", prefix);
+        }
+        private void DeleteProfessionalItem(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Grid current = btn.Parent as Grid;
+            StackPanel items = current.Parent as StackPanel;
+            Grid section = items.Parent as Grid;
+
+            Border border = section.Children[1] as Border;
+            Label title = border.Child as Label;
+            StackPanel panel = current.Parent as StackPanel;
+            panel.Children.Remove(current);
+            string prefix = title.Content.ToString();
+            AutoIndexing(panel, 1, "", prefix);
+        }
+
+        private void DeleteProfessional(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            Grid current = btn.Parent as Grid;
+            //Border border = current.Children[1] as Border;
+            //Label title = border.Child as Label;
+            StackPanel panel = current.Parent as StackPanel;
+            panel.Children.Remove(current);
+            string prefix = "ПК ";
+            AutoIndexingBorder(panel, 1, '.', prefix);
         }
         private void DeleteListItem2(object sender, RoutedEventArgs e)
         {
@@ -443,10 +512,10 @@ namespace Wisdom
             StackPanel themes = current.Parent as StackPanel;
             Grid topic = themes.Parent as Grid;
             TextBox refer = topic.Children[3] as TextBox;
-            Trace.WriteLine(refer.Name);
-            Trace.WriteLine(refer.Text);
-            Trace.WriteLine(refer.Background);
-            Trace.WriteLine(topic.Tag);
+            //Trace.WriteLine(refer.Name);
+            //Trace.WriteLine(refer.Text);
+            //Trace.WriteLine(refer.Background);
+            //Trace.WriteLine(topic.Tag);
             MultiBinding multi = BindingOperations.GetMultiBindingExpression(refer, BackgroundProperty).ParentMultiBinding;
             BindingOperations.ClearBinding(refer, BackgroundProperty);
             MultiBinding multi2 = new MultiBinding { Converter = new SumConverter() };
@@ -547,9 +616,9 @@ namespace Wisdom
         private void SwitchSections(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            AnyHideX(AbilitiesAdd, KnowledgeAdd, TotalAdd);
+            AnyHideX(TotalCompetetions, ProfCompetetions);
             AnyShow(btn.Tag as Grid);
-            EnableX(true, AbAdd, KnAdd, TtAdd);
+            EnableX(true, TotalComp, ProfComp);
             btn.IsEnabled = false;
         }
     }

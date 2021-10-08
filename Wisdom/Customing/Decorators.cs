@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -50,20 +51,35 @@ namespace Wisdom.Customing
             for (byte i = 0; i < elements.Length; i++)
                 elements[i].IsEnabled = value;
         }
+        public static void GridAdd(Grid grid, UIElement element)
+        {
+            grid.Children.Add(element);
+        }
         public static void GridAddX(Grid grid, params UIElement[] elements)
         {
-            foreach (UIElement element in elements) grid.Children.Add(element);
+            foreach (UIElement element in elements)
+                GridAdd(grid, element);
         }
-        public static void GridAddX2(Grid grid, byte startno, params FrameworkElement[] elements)
+        public static void GridAddX2(Grid grid, int startno, params FrameworkElement[] elements)
         {
-            List<object> slots = new List<object>();
-            foreach (FrameworkElement element in elements)
+            foreach(FrameworkElement element in elements)
             {
-                grid.Children.Add(element);
-                slots.Add(startno);
+                GridAdd(grid, element);
+                SetProp(element, Grid.ColumnProperty, startno);
                 startno++;
             }
-            SetPropX(Grid.ColumnProperty, slots.ToArray(), elements);
+        }
+        public static void GridAddX3(Grid grid, int rowNo, int startNo, int step, params FrameworkElement[] elements)
+        {
+            foreach (FrameworkElement element in elements)
+            {
+                //Trace.WriteLine(startNo);
+                grid.Children.Add(element);
+                SetProp(element, Grid.ColumnProperty, startNo);
+                SetProp(element, Grid.RowProperty, rowNo);
+                SetProp(element, Grid.ColumnSpanProperty, step);
+                startNo = startNo + step;
+            }
         }
         public static void SetProp(UIElement cntrl, DependencyProperty property, object value)
         {

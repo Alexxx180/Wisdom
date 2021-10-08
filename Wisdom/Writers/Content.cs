@@ -111,6 +111,145 @@ namespace Wisdom.Writers
             _ = levels.Children.Add(next);
             return delete;
         }
+        //List p = (levels.Parent as Grid).Tag as List;
+        /*ListItem litems = new ListItem();
+        Run run2 = new Run();
+        _ = SetBind(run2, Run.TextProperty, FastBind(name, "Text"));
+        ListItem litem = new ListItem();
+
+        litems.Blocks.Add(new Paragraph(run2) { Style = GetStyle("RegularParagraph") });
+        p.ListItems.Add(litems);
+
+        if (levels.Tag != null)
+        {
+            List p2 = levels.Tag as List;
+            Run run = new Run();
+            _ = SetBind(run, Run.TextProperty, FastBind(name, "Text"));
+            litem.Blocks.Add(new Paragraph(run) { Style = GetStyle("RegularParagraph") });
+            p2.ListItems.Add(litem);
+        }*/
+        //litems.Tag = litem;
+        //grid.Tag = litems;
+        public static Button TextContent4(Button add)
+        {
+            Grid next = add.Parent as Grid;
+            StackPanel levels = next.Parent as StackPanel;
+            FrameworkElement[][] elements = new FrameworkElement[][] {
+                new FrameworkElement[] { ListNo("Умения:"), UsualBox("") },
+                new FrameworkElement[] { ListNo("Знания:"), UsualBox("") }
+            };
+            Grid grid = Competetions(GridItem5(), levels, next, out Button delete, 3, 1, "ОК", elements);
+
+            levels.Children.Remove(next);
+            _ = levels.Children.Add(grid);
+            int id = levels.Children.Count + 1;
+            (next.Children[1] as Label).Content = $"ОК {id / 10}{id % 10}";
+            _ = levels.Children.Add(next);
+            return delete;
+        }
+
+        public static Button TextContent5(Button add)
+        {
+            Grid next = add.Parent as Grid;
+            StackPanel levels = next.Parent as StackPanel;
+            Grid current = levels.Parent as Grid;
+            Border border = current.Children[1] as Border;
+            Label title = border.Child as Label;
+            FrameworkElement[][] elements = new FrameworkElement[][] {
+                new FrameworkElement[] { ListNo("Практический опыт:"), UsualBox("") },
+                new FrameworkElement[] { ListNo("Умения:"), UsualBox("") },
+                new FrameworkElement[] { ListNo("Знания:"), UsualBox("") }
+            };
+            string prefix = title.Content.ToString();
+            Grid grid = Competetions2(GridItem5(), levels, next, out Button delete, 4, 1, prefix, elements);
+
+            levels.Children.Remove(next);
+            _ = levels.Children.Add(grid);
+            int id = levels.Children.Count + 1;
+            (next.Children[1] as Label).Content = $"{prefix}{id}";
+            _ = levels.Children.Add(next);
+            return delete;
+        }
+        public static Button NewProfessionalSection(Button add)
+        {
+
+            Grid next = add.Parent as Grid;
+            StackPanel levels = next.Parent as StackPanel;
+            FrameworkElement[][] elements = new FrameworkElement[][] {
+                new FrameworkElement[] { ListNo("Практический опыт:"), UsualBox("") },
+                new FrameworkElement[] { ListNo("Умения:"), UsualBox("") },
+                new FrameworkElement[] { ListNo("Знания:"), UsualBox("") }
+            };
+            Grid grid = Competetions(GridItem5(), levels, next, out Button delete, 4, 1, "ПК", elements);
+
+            levels.Children.Remove(next);
+            _ = levels.Children.Add(grid);
+            int id = levels.Children.Count + 1;
+            (next.Children[1] as Label).Content = $"ПК {id}";
+            _ = levels.Children.Add(next);
+            return delete;
+        }
+        public static Grid ProfessionSection(string prefix, string no, out Button delete, out Button addComp)
+        {
+            Grid grid = GridItem6();
+            AddRows(grid, 2);
+            delete = new Button { Style = GetStyle("DeleteButton") };
+            Border border = new Border { Background = new SolidColorBrush(Color.FromRgb(3, 198, 255)) };
+            Label no1 = Caption($"{prefix}{no}.");
+            border.Child = no1;
+            StackPanel competetions = new StackPanel();
+            competetions.Children.Add(CompetetionAddGrid($"{prefix} {no}.", out addComp));
+            GridAddX2(grid, 0, delete, border);
+            GridAdd(grid, competetions);
+            SetProp(border, Grid.ColumnProperty, 2);
+            SetProp(competetions, Grid.RowProperty, 1);
+            SetProp(competetions, Grid.ColumnSpanProperty, 2);
+            return grid;
+        }
+        public static Grid CompetetionAddGrid(string prefix, out Button add)
+        {
+            Grid subGrid = GridItem5();
+            add = new Button { Style = GetStyle("AddButton") };
+            Label no1 = ListNo($"{prefix}1");
+            TextBox level = UsualBox("");
+            GridAddX2(subGrid, 0, add, no1, level);
+            SetProp(level, Grid.ColumnSpanProperty, 3);
+            return subGrid;
+        }
+        private static Grid Competetions(Grid grid, StackPanel levels, Grid next, out Button delete, int rows, int startRow, string prefix, FrameworkElement[][] elements)
+        {
+            AddRows(grid, rows);
+            TextBox competetionName = next.Children[2] as TextBox;
+            delete = new Button { Style = GetStyle("DeleteButton"), Tag = grid };
+            Label no = ListNo($"{prefix} {levels.Children.Count / 10}{levels.Children.Count % 10}");
+            TextBox name = UsualBox(competetionName.Text);
+
+            GridAddX2(grid, 0, delete, no, name);
+            SetProp(name, Grid.ColumnSpanProperty, 3);
+            
+            for (int i = 0; i < elements.Length; i++)
+                GridAddX3(grid, i + startRow, 1, 2, elements[i]);
+            return grid;
+        }
+        private static Grid Competetions2(Grid grid, StackPanel levels, Grid next, out Button delete, int rows, int startRow, string prefix, FrameworkElement[][] elements)
+        {
+            AddRows(grid, rows);
+            TextBox competetionName = next.Children[2] as TextBox;
+            delete = new Button { Style = GetStyle("DeleteButton"), Tag = grid };
+            Label no = ListNo($"{prefix}{levels.Children.Count}");
+            TextBox name = UsualBox(competetionName.Text);
+
+            GridAddX2(grid, 0, delete, no, name);
+            SetProp(name, Grid.ColumnSpanProperty, 3);
+
+            for (int i = 0; i < elements.Length; i++)
+                GridAddX3(grid, i + startRow, 1, 2, elements[i]);
+            return grid;
+        }
+        public static Label ListNo(string content) => new Label { Style = GetStyle("No1"), Content = content };
+        public static Label Caption(string content) => new Label { Style = GetStyle("ListCaptions"), Content = content };
+        public static TextBox UsualBox(string text) => new TextBox { Style = GetStyle("RegularBox"), Text = text };
+
         public static void ParagraphText(Button btn, out Button delete, out Button add)
         {
             Grid next = btn.Parent as Grid;
@@ -368,10 +507,45 @@ namespace Wisdom.Writers
             for (int no = 0; no < grandGrid.Children.Count; no++)
                 ((grandGrid.Children[no] as Grid).Children[pos] as Label).Content = $"{prefix}{no + 1}{mark}";
         }*/
+        public static void AutoIndexingBorder(StackPanel grandGrid, int pos, char mark, string prefix)
+        {
+            for (int no = 0; no < grandGrid.Children.Count; no++)
+            {
+                Grid section = grandGrid.Children[no] as Grid;
+                Border border = section.Children[pos] as Border;
+                Label nolab = border.Child as Label;
+                nolab.Content = $"{prefix}{no + 1}{mark}";
+                StackPanel panel = section.Children[pos + 1] as StackPanel;
+                AutoIndexing(panel, 1, "", $"{prefix} {no + 1}.");
+            }
+        }
+        public static void AutoIndexing(StackPanel grandGrid, int pos, string mark, string prefix)
+        {
+            for (int no = 0; no < grandGrid.Children.Count; no++)
+            {
+                Grid section = grandGrid.Children[no] as Grid;
+                Label nolab = section.Children[pos] as Label; //Label nolab = section.Children[pos] as Label;
+                nolab.Content = $"{prefix}{no + 1}{mark}";
+            }
+        }
+        public static void AutoIndexing2(StackPanel grandGrid, int pos, string mark, string prefix)
+        {
+            for (int no = 0; no < grandGrid.Children.Count; no++)
+            {
+                Grid section = grandGrid.Children[no] as Grid;
+                Label nolab = section.Children[pos] as Label;
+                int calc = no + 1;
+                nolab.Content = $"{prefix}{calc / 10}{calc % 10}{mark}";
+            }
+        }
         public static void AutoIndexing(StackPanel grandGrid, int pos, char mark, string prefix)
         {
             for (int no = 0; no < grandGrid.Children.Count; no++)
-                ((grandGrid.Children[no] as Grid).Children[pos] as Label).Content = $"{prefix}{no + 1}{mark}";
+            {
+                Grid section = grandGrid.Children[no] as Grid;
+                Label nolab = section.Children[pos] as Label; //Label nolab = section.Children[pos] as Label;
+                nolab.Content = $"{prefix}{no + 1}{mark}";
+            }
         }
         public static void AutoIndexing(StackPanel grandGrid, int pos, char mark)
         {

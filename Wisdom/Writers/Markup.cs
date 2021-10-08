@@ -117,19 +117,39 @@ namespace Wisdom.Writers
                 paragraph117.Append(runs[i]);
             return paragraph117;
         }
+        private static TableCell CellBase(ushort width)
+        {
+            TableCell tableCell = new TableCell();
+            TableCellProperties tableCellProperties = new TableCellProperties();
+            TableCellWidth tableCellWidth = new TableCellWidth()
+            { Width = width.ToString(), Type = TableWidthUnitValues.Dxa };
+            tableCellProperties.Append(tableCellWidth);
+            tableCell.Append(tableCellProperties);
+            return tableCell;
+        }
+        public static TableCell TableCellAdd(Paragraph par, ushort width, OpenXmlElement cellProp)
+        {
+            TableCell tableCell36 = CellBase(width);
+            Trace.WriteLine(cellProp.Parent);
+            tableCell36.Append(cellProp);
+            tableCell36.Append(par);
+            return tableCell36;
+        }
         public static TableCell TableCellAdd(Paragraph par, ushort width, params OpenXmlElement[] cellProps)
         {
-            TableCell tableCell36 = new TableCell();
-
-            TableCellProperties tableCellProperties36 = new TableCellProperties();
-            TableCellWidth tableCellWidth36 = new TableCellWidth() { Width = width.ToString(), Type = TableWidthUnitValues.Dxa };
-
-            tableCellProperties36.Append(tableCellWidth36);
-
-            tableCell36.Append(tableCellProperties36);
+            TableCell tableCell36 = CellBase(width);
             for (byte i = 0; i < cellProps.Length; i++)
                 tableCell36.Append(cellProps[i]);
             tableCell36.Append(par);
+            return tableCell36;
+        }
+        public static TableCell TableCellAdd(Paragraph[] pars, ushort width, params OpenXmlElement[] cellProps)
+        {
+            TableCell tableCell36 = CellBase(width);
+            for (byte i = 0; i < cellProps.Length; i++)
+                tableCell36.Append(cellProps[i]);
+            for (byte i = 0; i < pars.Length; i++)
+                tableCell36.Append(pars[i]);
             return tableCell36;
         }
         public static TableRow TableRowAdd(params TableCell[] cells)
@@ -166,6 +186,43 @@ namespace Wisdom.Writers
                     }
                 }
             }
+        }
+
+        public static List<TableRow> CompetetionsTableRows()
+        {
+            List<TableRow> rows = new List<TableRow>();
+            for (byte i = 0; i < GeneralCompetetions.Count; i++)
+                rows.AddRange(CompetetionAdd(GeneralCompetetions[i].Name, GeneralCompetetions[i].Hours, GeneralCompetetions[i].Values));
+            for (byte i = 0; i < ProfessionalCompetetions.Count; i++)
+                rows.AddRange(CompetetionAdd(ProfessionalCompetetions[i].Name, ProfessionalCompetetions[i].Hours, ProfessionalCompetetions[i].Values));
+            return rows;
+        }
+        public static List<TableRow> CompetetionAdd(string id, string name, List<String2> skills)
+        {
+            Run idRun = RunAdd(id);
+            Run nameRun = RunAdd(name);
+
+            List<TableRow> rows = new List<TableRow>();
+            Paragraph idParagraph = ParagraphAdd(JustificationValues.Left, idRun);
+            Paragraph nameParagraph = ParagraphAdd(JustificationValues.Left, nameRun);
+            List<Paragraph> skillsParagraph = new List<Paragraph>();
+            for (byte i = 0; i < skills.Count; i++)
+            {
+                Run skillsName = RunAdd(skills[i].Name + " ", new Bold());
+                Run skillsDescription = RunAdd(skills[i].Value);
+                Paragraph skillsParagraphPart = ParagraphAdd(JustificationValues.Left, skillsName, skillsDescription);
+                skillsParagraph.Add(skillsParagraphPart);
+            }
+            TableCell[] cells = TableCellsTemplate3(idParagraph, nameParagraph, skillsParagraph[0], new VerticalMerge { Val = MergedCellValues.Restart }, new VerticalMerge { Val = MergedCellValues.Restart });
+            TableRow tableRow = TableRowAdd(cells);
+            rows.Add(tableRow);
+            for (byte i = 1; i < skillsParagraph.Count; i++)
+            {
+                TableCell[] cells3 = TableCellsTemplate3(ParagraphAdd(JustificationValues.Left), ParagraphAdd(JustificationValues.Left), skillsParagraph[i], new VerticalMerge(), new VerticalMerge());
+                TableRow tableRow2 = TableRowAdd(cells3);
+                rows.Add(tableRow2);
+            }
+            return rows;
         }
 
         public static List<TableRow> PlanTableRows()
@@ -272,6 +329,15 @@ namespace Wisdom.Writers
                 TableCellAdd(p3, 3544),
                 TableCellAdd(p4, 992),
                 TableCellAdd(p5, 2551)
+            };
+        }
+        private static TableCell[] TableCellsTemplate3(Paragraph p1, Paragraph p2,
+            Paragraph p3, OpenXmlElement property1, OpenXmlElement property2)
+        {
+            return new TableCell[] {
+                TableCellAdd(p1, 1565, property1),
+                TableCellAdd(p2, 3298, property2),
+                TableCellAdd(p3, 4482),
             };
         }
         private static List<TableRow> ThemeContentAdd(List<String2> rows)

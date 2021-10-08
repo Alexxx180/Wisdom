@@ -6,10 +6,12 @@ namespace Wisdom.Model
     public static class ProgramContent
     {
         //Form 1
-        //Названия колледжа/дисциплины/специальности
+        //Названия колледжа/дисциплины/специальности|приказ
         public static string CollegeName = "";
         public static string DisciplineName = "";
         public static string ProfessionName = "";
+
+        public static String2 Order;
 
         //Общие часы
         public static string MaxHours = "-";
@@ -27,8 +29,11 @@ namespace Wisdom.Model
 
         //Компетенции
         /*
-         Компетенция - знания и умения
+         Общая компетенция - знания и умения (+ практический опыт если профессиональная)
          */
+        public static List<HoursList<String2>> GeneralCompetetions;
+        public static List<HoursList<String2>> ProfessionalCompetetions;
+
         public static List<string> ShallKnow = new List<string>();
         public static List<string> ShallCan = new List<string>();
         public static List<string> TotalCompetetion = new List<string>();

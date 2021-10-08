@@ -2989,9 +2989,11 @@ namespace Wisdom.Writers
             paragraphProperties77.Append(adjustRightIndent24);
             paragraphProperties77.Append(spacingBetweenLines6);
 
+            string[] dates = Order.Name.Split(".");
+
             Run run59 = new Run() { RsidRunProperties = "00BC6D6D" };
             Text text59 = new Text();
-            text59.Text = "приказ Министерства образования и науки РФ от «___» _________ 20___ г. № _______";
+            text59.Text = $"приказ Министерства образования и науки РФ от «{dates[0]}» {dates[1]} 20{dates[2]} г. № {Order.Value}";
 
             run59.Append(text59);
 
@@ -7665,601 +7667,601 @@ namespace Wisdom.Writers
             tableRow23.Append(tableCell68);
             tableRow23.Append(tableCell69);
 
-            TableRow tableRow24 = new TableRow() { RsidTableRowMarkRevision = "00D551C2", RsidTableRowAddition = "00D551C2", RsidTableRowProperties = "00D82FF5" };
+            //TableRow tableRow24 = new TableRow() { RsidTableRowMarkRevision = "00D551C2", RsidTableRowAddition = "00D551C2", RsidTableRowProperties = "00D82FF5" };
 
-            TableCell tableCell70 = new TableCell();
+            //TableCell tableCell70 = new TableCell();
 
-            TableCellProperties tableCellProperties70 = new TableCellProperties();
-            TableCellWidth tableCellWidth70 = new TableCellWidth() { Width = "1565", Type = TableWidthUnitValues.Dxa };
-            Shading shading70 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties70 = new TableCellProperties();
+            //TableCellWidth tableCellWidth70 = new TableCellWidth() { Width = "1565", Type = TableWidthUnitValues.Dxa };
+            //Shading shading70 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties70.Append(tableCellWidth70);
-            tableCellProperties70.Append(shading70);
+            //tableCellProperties70.Append(tableCellWidth70);
+            //tableCellProperties70.Append(shading70);
 
-            Paragraph paragraph173 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
+            //Paragraph paragraph173 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
 
-            ParagraphProperties paragraphProperties164 = new ParagraphProperties();
-            KeepNext keepNext5 = new KeepNext();
-            Justification justification110 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel5 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties164 = new ParagraphProperties();
+            //KeepNext keepNext5 = new KeepNext();
+            //Justification justification110 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel5 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties81 = new ParagraphMarkRunProperties();
-            ItalicComplexScript italicComplexScript12 = new ItalicComplexScript();
-            Languages languages15 = new Languages() { EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties81 = new ParagraphMarkRunProperties();
+            //ItalicComplexScript italicComplexScript12 = new ItalicComplexScript();
+            //Languages languages15 = new Languages() { EastAsia = "x-none" };
 
-            paragraphMarkRunProperties81.Append(italicComplexScript12);
-            paragraphMarkRunProperties81.Append(languages15);
+            //paragraphMarkRunProperties81.Append(italicComplexScript12);
+            //paragraphMarkRunProperties81.Append(languages15);
 
-            paragraphProperties164.Append(keepNext5);
-            paragraphProperties164.Append(justification110);
-            paragraphProperties164.Append(outlineLevel5);
-            paragraphProperties164.Append(paragraphMarkRunProperties81);
+            //paragraphProperties164.Append(keepNext5);
+            //paragraphProperties164.Append(justification110);
+            //paragraphProperties164.Append(outlineLevel5);
+            //paragraphProperties164.Append(paragraphMarkRunProperties81);
 
-            Run run179 = new Run() { RsidRunProperties = "00D551C2" };
+            //Run run179 = new Run() { RsidRunProperties = "00D551C2" };
 
-            RunProperties runProperties77 = new RunProperties();
-            ItalicComplexScript italicComplexScript13 = new ItalicComplexScript();
-            Languages languages16 = new Languages() { EastAsia = "x-none" };
+            //RunProperties runProperties77 = new RunProperties();
+            //ItalicComplexScript italicComplexScript13 = new ItalicComplexScript();
+            //Languages languages16 = new Languages() { EastAsia = "x-none" };
 
-            runProperties77.Append(italicComplexScript13);
-            runProperties77.Append(languages16);
-            Text text177 = new Text();
-            text177.Text = "ОК";
+            //runProperties77.Append(italicComplexScript13);
+            //runProperties77.Append(languages16);
+            //Text text177 = new Text();
+            //text177.Text = "ОК";
 
-            run179.Append(runProperties77);
-            run179.Append(text177);
+            //run179.Append(runProperties77);
+            //run179.Append(text177);
 
-            Run run180 = new Run() { RsidRunProperties = "00D551C2", RsidRunAddition = "00D82FF5" };
+            //Run run180 = new Run() { RsidRunProperties = "00D551C2", RsidRunAddition = "00D82FF5" };
 
-            RunProperties runProperties78 = new RunProperties();
-            ItalicComplexScript italicComplexScript14 = new ItalicComplexScript();
-            Languages languages17 = new Languages() { EastAsia = "x-none" };
+            //RunProperties runProperties78 = new RunProperties();
+            //ItalicComplexScript italicComplexScript14 = new ItalicComplexScript();
+            //Languages languages17 = new Languages() { EastAsia = "x-none" };
 
-            runProperties78.Append(italicComplexScript14);
-            runProperties78.Append(languages17);
-            Text text178 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text178.Text = " ";
+            //runProperties78.Append(italicComplexScript14);
+            //runProperties78.Append(languages17);
+            //Text text178 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            //text178.Text = " ";
 
-            run180.Append(runProperties78);
-            run180.Append(text178);
+            //run180.Append(runProperties78);
+            //run180.Append(text178);
 
-            paragraph173.Append(paragraphProperties164);
-            paragraph173.Append(run179);
-            paragraph173.Append(run180);
+            //paragraph173.Append(paragraphProperties164);
+            //paragraph173.Append(run179);
+            //paragraph173.Append(run180);
 
-            tableCell70.Append(tableCellProperties70);
-            tableCell70.Append(paragraph173);
+            //tableCell70.Append(tableCellProperties70);
+            //tableCell70.Append(paragraph173);
 
-            TableCell tableCell71 = new TableCell();
+            //TableCell tableCell71 = new TableCell();
 
-            TableCellProperties tableCellProperties71 = new TableCellProperties();
-            TableCellWidth tableCellWidth71 = new TableCellWidth() { Width = "3363", Type = TableWidthUnitValues.Dxa };
-            Shading shading71 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties71 = new TableCellProperties();
+            //TableCellWidth tableCellWidth71 = new TableCellWidth() { Width = "3363", Type = TableWidthUnitValues.Dxa };
+            //Shading shading71 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties71.Append(tableCellWidth71);
-            tableCellProperties71.Append(shading71);
+            //tableCellProperties71.Append(tableCellWidth71);
+            //tableCellProperties71.Append(shading71);
 
-            Paragraph paragraph174 = new Paragraph() { RsidParagraphMarkRevision = "00B44E8D", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00AE7AC5", RsidRunAdditionDefault = "00B44E8D" };
+            //Paragraph paragraph174 = new Paragraph() { RsidParagraphMarkRevision = "00B44E8D", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00AE7AC5", RsidRunAdditionDefault = "00B44E8D" };
 
-            ParagraphProperties paragraphProperties165 = new ParagraphProperties();
-            KeepNext keepNext6 = new KeepNext();
-            Justification justification111 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel6 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties165 = new ParagraphProperties();
+            //KeepNext keepNext6 = new KeepNext();
+            //Justification justification111 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel6 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties82 = new ParagraphMarkRunProperties();
-            ItalicComplexScript italicComplexScript15 = new ItalicComplexScript();
-            Languages languages18 = new Languages() { Val = "en-US", EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties82 = new ParagraphMarkRunProperties();
+            //ItalicComplexScript italicComplexScript15 = new ItalicComplexScript();
+            //Languages languages18 = new Languages() { Val = "en-US", EastAsia = "x-none" };
 
-            paragraphMarkRunProperties82.Append(italicComplexScript15);
-            paragraphMarkRunProperties82.Append(languages18);
+            //paragraphMarkRunProperties82.Append(italicComplexScript15);
+            //paragraphMarkRunProperties82.Append(languages18);
 
-            paragraphProperties165.Append(keepNext6);
-            paragraphProperties165.Append(justification111);
-            paragraphProperties165.Append(outlineLevel6);
-            paragraphProperties165.Append(paragraphMarkRunProperties82);
+            //paragraphProperties165.Append(keepNext6);
+            //paragraphProperties165.Append(justification111);
+            //paragraphProperties165.Append(outlineLevel6);
+            //paragraphProperties165.Append(paragraphMarkRunProperties82);
 
-            Run run181 = new Run();
+            //Run run181 = new Run();
 
-            RunProperties runProperties79 = new RunProperties();
-            ItalicComplexScript italicComplexScript16 = new ItalicComplexScript();
-            Languages languages19 = new Languages() { Val = "en-US", EastAsia = "x-none" };
+            //RunProperties runProperties79 = new RunProperties();
+            //ItalicComplexScript italicComplexScript16 = new ItalicComplexScript();
+            //Languages languages19 = new Languages() { Val = "en-US", EastAsia = "x-none" };
 
-            runProperties79.Append(italicComplexScript16);
-            runProperties79.Append(languages19);
-            Text text179 = new Text();
-            text179.Text = "#";
+            //runProperties79.Append(italicComplexScript16);
+            //runProperties79.Append(languages19);
+            //Text text179 = new Text();
+            //text179.Text = "#";
 
-            run181.Append(runProperties79);
-            run181.Append(text179);
+            //run181.Append(runProperties79);
+            //run181.Append(text179);
 
-            Run run182 = new Run() { RsidRunProperties = "00B44E8D" };
+            //Run run182 = new Run() { RsidRunProperties = "00B44E8D" };
 
-            RunProperties runProperties80 = new RunProperties();
-            ItalicComplexScript italicComplexScript17 = new ItalicComplexScript();
-            Languages languages20 = new Languages() { Val = "en-US", EastAsia = "x-none" };
+            //RunProperties runProperties80 = new RunProperties();
+            //ItalicComplexScript italicComplexScript17 = new ItalicComplexScript();
+            //Languages languages20 = new Languages() { Val = "en-US", EastAsia = "x-none" };
 
-            runProperties80.Append(italicComplexScript17);
-            runProperties80.Append(languages20);
-            Text text180 = new Text();
-            text180.Text = "TotalCompetetion,";
+            //runProperties80.Append(italicComplexScript17);
+            //runProperties80.Append(languages20);
+            //Text text180 = new Text();
+            //text180.Text = "TotalCompetetion,";
 
-            run182.Append(runProperties80);
-            run182.Append(text180);
+            //run182.Append(runProperties80);
+            //run182.Append(text180);
 
-            paragraph174.Append(paragraphProperties165);
-            paragraph174.Append(run181);
-            paragraph174.Append(run182);
+            //paragraph174.Append(paragraphProperties165);
+            //paragraph174.Append(run181);
+            //paragraph174.Append(run182);
 
-            tableCell71.Append(tableCellProperties71);
-            tableCell71.Append(paragraph174);
+            //tableCell71.Append(tableCellProperties71);
+            //tableCell71.Append(paragraph174);
 
-            TableCell tableCell72 = new TableCell();
+            //TableCell tableCell72 = new TableCell();
 
-            TableCellProperties tableCellProperties72 = new TableCellProperties();
-            TableCellWidth tableCellWidth72 = new TableCellWidth() { Width = "4643", Type = TableWidthUnitValues.Dxa };
-            Shading shading72 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties72 = new TableCellProperties();
+            //TableCellWidth tableCellWidth72 = new TableCellWidth() { Width = "4643", Type = TableWidthUnitValues.Dxa };
+            //Shading shading72 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties72.Append(tableCellWidth72);
-            tableCellProperties72.Append(shading72);
+            //tableCellProperties72.Append(tableCellWidth72);
+            //tableCellProperties72.Append(shading72);
 
-            Paragraph paragraph175 = new Paragraph() { RsidParagraphMarkRevision = "00C91DE6", RsidParagraphAddition = "00D82FF5", RsidParagraphProperties = "00D57054", RsidRunAdditionDefault = "00E07330" };
+            //Paragraph paragraph175 = new Paragraph() { RsidParagraphMarkRevision = "00C91DE6", RsidParagraphAddition = "00D82FF5", RsidParagraphProperties = "00D57054", RsidRunAdditionDefault = "00E07330" };
 
-            ParagraphProperties paragraphProperties166 = new ParagraphProperties();
-            KeepNext keepNext7 = new KeepNext();
-            Justification justification112 = new Justification() { Val = JustificationValues.Center };
-            OutlineLevel outlineLevel7 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties166 = new ParagraphProperties();
+            //KeepNext keepNext7 = new KeepNext();
+            //Justification justification112 = new Justification() { Val = JustificationValues.Center };
+            //OutlineLevel outlineLevel7 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties83 = new ParagraphMarkRunProperties();
-            Italic italic9 = new Italic();
-            ItalicComplexScript italicComplexScript18 = new ItalicComplexScript();
-            Languages languages21 = new Languages() { Val = "en-US", EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties83 = new ParagraphMarkRunProperties();
+            //Italic italic9 = new Italic();
+            //ItalicComplexScript italicComplexScript18 = new ItalicComplexScript();
+            //Languages languages21 = new Languages() { Val = "en-US", EastAsia = "x-none" };
 
-            paragraphMarkRunProperties83.Append(italic9);
-            paragraphMarkRunProperties83.Append(italicComplexScript18);
-            paragraphMarkRunProperties83.Append(languages21);
+            //paragraphMarkRunProperties83.Append(italic9);
+            //paragraphMarkRunProperties83.Append(italicComplexScript18);
+            //paragraphMarkRunProperties83.Append(languages21);
 
-            paragraphProperties166.Append(keepNext7);
-            paragraphProperties166.Append(justification112);
-            paragraphProperties166.Append(outlineLevel7);
-            paragraphProperties166.Append(paragraphMarkRunProperties83);
+            //paragraphProperties166.Append(keepNext7);
+            //paragraphProperties166.Append(justification112);
+            //paragraphProperties166.Append(outlineLevel7);
+            //paragraphProperties166.Append(paragraphMarkRunProperties83);
 
-            Run run183 = new Run();
+            //Run run183 = new Run();
 
-            RunProperties runProperties81 = new RunProperties();
-            Italic italic10 = new Italic();
-            ItalicComplexScript italicComplexScript19 = new ItalicComplexScript();
-            Languages languages22 = new Languages() { Val = "en-US", EastAsia = "x-none" };
+            //RunProperties runProperties81 = new RunProperties();
+            //Italic italic10 = new Italic();
+            //ItalicComplexScript italicComplexScript19 = new ItalicComplexScript();
+            //Languages languages22 = new Languages() { Val = "en-US", EastAsia = "x-none" };
 
-            runProperties81.Append(italic10);
-            runProperties81.Append(italicComplexScript19);
-            runProperties81.Append(languages22);
-            Text text181 = new Text();
-            text181.Text = "#";
+            //runProperties81.Append(italic10);
+            //runProperties81.Append(italicComplexScript19);
+            //runProperties81.Append(languages22);
+            //Text text181 = new Text();
+            //text181.Text = "#";
 
-            run183.Append(runProperties81);
-            run183.Append(text181);
+            //run183.Append(runProperties81);
+            //run183.Append(text181);
 
-            Run run184 = new Run() { RsidRunProperties = "00A62F3C", RsidRunAddition = "00A62F3C" };
+            //Run run184 = new Run() { RsidRunProperties = "00A62F3C", RsidRunAddition = "00A62F3C" };
 
-            RunProperties runProperties82 = new RunProperties();
-            Italic italic11 = new Italic();
-            ItalicComplexScript italicComplexScript20 = new ItalicComplexScript();
-            Languages languages23 = new Languages() { Val = "en-US", EastAsia = "x-none" };
+            //RunProperties runProperties82 = new RunProperties();
+            //Italic italic11 = new Italic();
+            //ItalicComplexScript italicComplexScript20 = new ItalicComplexScript();
+            //Languages languages23 = new Languages() { Val = "en-US", EastAsia = "x-none" };
 
-            runProperties82.Append(italic11);
-            runProperties82.Append(italicComplexScript20);
-            runProperties82.Append(languages23);
-            Text text182 = new Text();
-            text182.Text = "ShallCan";
+            //runProperties82.Append(italic11);
+            //runProperties82.Append(italicComplexScript20);
+            //runProperties82.Append(languages23);
+            //Text text182 = new Text();
+            //text182.Text = "ShallCan";
 
-            run184.Append(runProperties82);
-            run184.Append(text182);
+            //run184.Append(runProperties82);
+            //run184.Append(text182);
 
-            Run run185 = new Run() { RsidRunAddition = "00A62F3C" };
+            //Run run185 = new Run() { RsidRunAddition = "00A62F3C" };
 
-            RunProperties runProperties83 = new RunProperties();
-            Italic italic12 = new Italic();
-            ItalicComplexScript italicComplexScript21 = new ItalicComplexScript();
-            Languages languages24 = new Languages() { Val = "en-US", EastAsia = "x-none" };
+            //RunProperties runProperties83 = new RunProperties();
+            //Italic italic12 = new Italic();
+            //ItalicComplexScript italicComplexScript21 = new ItalicComplexScript();
+            //Languages languages24 = new Languages() { Val = "en-US", EastAsia = "x-none" };
 
-            runProperties83.Append(italic12);
-            runProperties83.Append(italicComplexScript21);
-            runProperties83.Append(languages24);
-            Text text183 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text183.Text = ", ";
+            //runProperties83.Append(italic12);
+            //runProperties83.Append(italicComplexScript21);
+            //runProperties83.Append(languages24);
+            //Text text183 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            //text183.Text = ", ";
 
-            run185.Append(runProperties83);
-            run185.Append(text183);
+            //run185.Append(runProperties83);
+            //run185.Append(text183);
 
-            Run run186 = new Run();
+            //Run run186 = new Run();
 
-            RunProperties runProperties84 = new RunProperties();
-            Italic italic13 = new Italic();
-            ItalicComplexScript italicComplexScript22 = new ItalicComplexScript();
-            Languages languages25 = new Languages() { Val = "en-US", EastAsia = "x-none" };
+            //RunProperties runProperties84 = new RunProperties();
+            //Italic italic13 = new Italic();
+            //ItalicComplexScript italicComplexScript22 = new ItalicComplexScript();
+            //Languages languages25 = new Languages() { Val = "en-US", EastAsia = "x-none" };
 
-            runProperties84.Append(italic13);
-            runProperties84.Append(italicComplexScript22);
-            runProperties84.Append(languages25);
-            Text text184 = new Text();
-            text184.Text = "#";
+            //runProperties84.Append(italic13);
+            //runProperties84.Append(italicComplexScript22);
+            //runProperties84.Append(languages25);
+            //Text text184 = new Text();
+            //text184.Text = "#";
 
-            run186.Append(runProperties84);
-            run186.Append(text184);
+            //run186.Append(runProperties84);
+            //run186.Append(text184);
 
-            Run run187 = new Run() { RsidRunProperties = "00A62F3C", RsidRunAddition = "00A62F3C" };
+            //Run run187 = new Run() { RsidRunProperties = "00A62F3C", RsidRunAddition = "00A62F3C" };
 
-            RunProperties runProperties85 = new RunProperties();
-            Italic italic14 = new Italic();
-            ItalicComplexScript italicComplexScript23 = new ItalicComplexScript();
-            Languages languages26 = new Languages() { Val = "en-US", EastAsia = "x-none" };
+            //RunProperties runProperties85 = new RunProperties();
+            //Italic italic14 = new Italic();
+            //ItalicComplexScript italicComplexScript23 = new ItalicComplexScript();
+            //Languages languages26 = new Languages() { Val = "en-US", EastAsia = "x-none" };
 
-            runProperties85.Append(italic14);
-            runProperties85.Append(italicComplexScript23);
-            runProperties85.Append(languages26);
-            Text text185 = new Text();
-            text185.Text = "ShallKnow";
+            //runProperties85.Append(italic14);
+            //runProperties85.Append(italicComplexScript23);
+            //runProperties85.Append(languages26);
+            //Text text185 = new Text();
+            //text185.Text = "ShallKnow";
 
-            run187.Append(runProperties85);
-            run187.Append(text185);
+            //run187.Append(runProperties85);
+            //run187.Append(text185);
 
-            paragraph175.Append(paragraphProperties166);
-            paragraph175.Append(run183);
-            paragraph175.Append(run184);
-            paragraph175.Append(run185);
-            paragraph175.Append(run186);
-            paragraph175.Append(run187);
+            //paragraph175.Append(paragraphProperties166);
+            //paragraph175.Append(run183);
+            //paragraph175.Append(run184);
+            //paragraph175.Append(run185);
+            //paragraph175.Append(run186);
+            //paragraph175.Append(run187);
 
-            tableCell72.Append(tableCellProperties72);
-            tableCell72.Append(paragraph175);
+            //tableCell72.Append(tableCellProperties72);
+            //tableCell72.Append(paragraph175);
 
-            tableRow24.Append(tableCell70);
-            tableRow24.Append(tableCell71);
-            tableRow24.Append(tableCell72);
+            //tableRow24.Append(tableCell70);
+            //tableRow24.Append(tableCell71);
+            //tableRow24.Append(tableCell72);
 
-            TableRow tableRow25 = new TableRow() { RsidTableRowMarkRevision = "00D551C2", RsidTableRowAddition = "00D551C2", RsidTableRowProperties = "00D82FF5" };
+            //TableRow tableRow25 = new TableRow() { RsidTableRowMarkRevision = "00D551C2", RsidTableRowAddition = "00D551C2", RsidTableRowProperties = "00D82FF5" };
 
-            TableCell tableCell73 = new TableCell();
+            //TableCell tableCell73 = new TableCell();
 
-            TableCellProperties tableCellProperties73 = new TableCellProperties();
-            TableCellWidth tableCellWidth73 = new TableCellWidth() { Width = "1565", Type = TableWidthUnitValues.Dxa };
-            Shading shading73 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties73 = new TableCellProperties();
+            //TableCellWidth tableCellWidth73 = new TableCellWidth() { Width = "1565", Type = TableWidthUnitValues.Dxa };
+            //Shading shading73 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties73.Append(tableCellWidth73);
-            tableCellProperties73.Append(shading73);
+            //tableCellProperties73.Append(tableCellWidth73);
+            //tableCellProperties73.Append(shading73);
 
-            Paragraph paragraph176 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
+            //Paragraph paragraph176 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
 
-            ParagraphProperties paragraphProperties167 = new ParagraphProperties();
-            KeepNext keepNext8 = new KeepNext();
-            Justification justification113 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel8 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties167 = new ParagraphProperties();
+            //KeepNext keepNext8 = new KeepNext();
+            //Justification justification113 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel8 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties84 = new ParagraphMarkRunProperties();
-            ItalicComplexScript italicComplexScript24 = new ItalicComplexScript();
-            Languages languages27 = new Languages() { EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties84 = new ParagraphMarkRunProperties();
+            //ItalicComplexScript italicComplexScript24 = new ItalicComplexScript();
+            //Languages languages27 = new Languages() { EastAsia = "x-none" };
 
-            paragraphMarkRunProperties84.Append(italicComplexScript24);
-            paragraphMarkRunProperties84.Append(languages27);
+            //paragraphMarkRunProperties84.Append(italicComplexScript24);
+            //paragraphMarkRunProperties84.Append(languages27);
 
-            paragraphProperties167.Append(keepNext8);
-            paragraphProperties167.Append(justification113);
-            paragraphProperties167.Append(outlineLevel8);
-            paragraphProperties167.Append(paragraphMarkRunProperties84);
+            //paragraphProperties167.Append(keepNext8);
+            //paragraphProperties167.Append(justification113);
+            //paragraphProperties167.Append(outlineLevel8);
+            //paragraphProperties167.Append(paragraphMarkRunProperties84);
 
-            paragraph176.Append(paragraphProperties167);
+            //paragraph176.Append(paragraphProperties167);
 
-            tableCell73.Append(tableCellProperties73);
-            tableCell73.Append(paragraph176);
+            //tableCell73.Append(tableCellProperties73);
+            //tableCell73.Append(paragraph176);
 
-            TableCell tableCell74 = new TableCell();
+            //TableCell tableCell74 = new TableCell();
 
-            TableCellProperties tableCellProperties74 = new TableCellProperties();
-            TableCellWidth tableCellWidth74 = new TableCellWidth() { Width = "3363", Type = TableWidthUnitValues.Dxa };
-            Shading shading74 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties74 = new TableCellProperties();
+            //TableCellWidth tableCellWidth74 = new TableCellWidth() { Width = "3363", Type = TableWidthUnitValues.Dxa };
+            //Shading shading74 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties74.Append(tableCellWidth74);
-            tableCellProperties74.Append(shading74);
+            //tableCellProperties74.Append(tableCellWidth74);
+            //tableCellProperties74.Append(shading74);
 
-            Paragraph paragraph177 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
+            //Paragraph paragraph177 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
 
-            ParagraphProperties paragraphProperties168 = new ParagraphProperties();
-            KeepNext keepNext9 = new KeepNext();
-            Justification justification114 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel9 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties168 = new ParagraphProperties();
+            //KeepNext keepNext9 = new KeepNext();
+            //Justification justification114 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel9 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties85 = new ParagraphMarkRunProperties();
-            ItalicComplexScript italicComplexScript25 = new ItalicComplexScript();
-            Languages languages28 = new Languages() { EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties85 = new ParagraphMarkRunProperties();
+            //ItalicComplexScript italicComplexScript25 = new ItalicComplexScript();
+            //Languages languages28 = new Languages() { EastAsia = "x-none" };
 
-            paragraphMarkRunProperties85.Append(italicComplexScript25);
-            paragraphMarkRunProperties85.Append(languages28);
+            //paragraphMarkRunProperties85.Append(italicComplexScript25);
+            //paragraphMarkRunProperties85.Append(languages28);
 
-            paragraphProperties168.Append(keepNext9);
-            paragraphProperties168.Append(justification114);
-            paragraphProperties168.Append(outlineLevel9);
-            paragraphProperties168.Append(paragraphMarkRunProperties85);
+            //paragraphProperties168.Append(keepNext9);
+            //paragraphProperties168.Append(justification114);
+            //paragraphProperties168.Append(outlineLevel9);
+            //paragraphProperties168.Append(paragraphMarkRunProperties85);
 
-            paragraph177.Append(paragraphProperties168);
+            //paragraph177.Append(paragraphProperties168);
 
-            tableCell74.Append(tableCellProperties74);
-            tableCell74.Append(paragraph177);
+            //tableCell74.Append(tableCellProperties74);
+            //tableCell74.Append(paragraph177);
 
-            TableCell tableCell75 = new TableCell();
+            //TableCell tableCell75 = new TableCell();
 
-            TableCellProperties tableCellProperties75 = new TableCellProperties();
-            TableCellWidth tableCellWidth75 = new TableCellWidth() { Width = "4643", Type = TableWidthUnitValues.Dxa };
-            Shading shading75 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties75 = new TableCellProperties();
+            //TableCellWidth tableCellWidth75 = new TableCellWidth() { Width = "4643", Type = TableWidthUnitValues.Dxa };
+            //Shading shading75 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties75.Append(tableCellWidth75);
-            tableCellProperties75.Append(shading75);
+            //tableCellProperties75.Append(tableCellWidth75);
+            //tableCellProperties75.Append(shading75);
 
-            Paragraph paragraph178 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
+            //Paragraph paragraph178 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
 
-            ParagraphProperties paragraphProperties169 = new ParagraphProperties();
-            KeepNext keepNext10 = new KeepNext();
-            Justification justification115 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel10 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties169 = new ParagraphProperties();
+            //KeepNext keepNext10 = new KeepNext();
+            //Justification justification115 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel10 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties86 = new ParagraphMarkRunProperties();
-            ItalicComplexScript italicComplexScript26 = new ItalicComplexScript();
-            Languages languages29 = new Languages() { EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties86 = new ParagraphMarkRunProperties();
+            //ItalicComplexScript italicComplexScript26 = new ItalicComplexScript();
+            //Languages languages29 = new Languages() { EastAsia = "x-none" };
 
-            paragraphMarkRunProperties86.Append(italicComplexScript26);
-            paragraphMarkRunProperties86.Append(languages29);
+            //paragraphMarkRunProperties86.Append(italicComplexScript26);
+            //paragraphMarkRunProperties86.Append(languages29);
 
-            paragraphProperties169.Append(keepNext10);
-            paragraphProperties169.Append(justification115);
-            paragraphProperties169.Append(outlineLevel10);
-            paragraphProperties169.Append(paragraphMarkRunProperties86);
+            //paragraphProperties169.Append(keepNext10);
+            //paragraphProperties169.Append(justification115);
+            //paragraphProperties169.Append(outlineLevel10);
+            //paragraphProperties169.Append(paragraphMarkRunProperties86);
 
-            paragraph178.Append(paragraphProperties169);
+            //paragraph178.Append(paragraphProperties169);
 
-            tableCell75.Append(tableCellProperties75);
-            tableCell75.Append(paragraph178);
+            //tableCell75.Append(tableCellProperties75);
+            //tableCell75.Append(paragraph178);
 
-            tableRow25.Append(tableCell73);
-            tableRow25.Append(tableCell74);
-            tableRow25.Append(tableCell75);
+            //tableRow25.Append(tableCell73);
+            //tableRow25.Append(tableCell74);
+            //tableRow25.Append(tableCell75);
 
-            TableRow tableRow26 = new TableRow() { RsidTableRowMarkRevision = "00D551C2", RsidTableRowAddition = "00D551C2", RsidTableRowProperties = "00D82FF5" };
+            //TableRow tableRow26 = new TableRow() { RsidTableRowMarkRevision = "00D551C2", RsidTableRowAddition = "00D551C2", RsidTableRowProperties = "00D82FF5" };
 
-            TableCell tableCell76 = new TableCell();
+            //TableCell tableCell76 = new TableCell();
 
-            TableCellProperties tableCellProperties76 = new TableCellProperties();
-            TableCellWidth tableCellWidth76 = new TableCellWidth() { Width = "1565", Type = TableWidthUnitValues.Dxa };
-            Shading shading76 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties76 = new TableCellProperties();
+            //TableCellWidth tableCellWidth76 = new TableCellWidth() { Width = "1565", Type = TableWidthUnitValues.Dxa };
+            //Shading shading76 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties76.Append(tableCellWidth76);
-            tableCellProperties76.Append(shading76);
+            //tableCellProperties76.Append(tableCellWidth76);
+            //tableCellProperties76.Append(shading76);
 
-            Paragraph paragraph179 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00091317" };
+            //Paragraph paragraph179 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00091317" };
 
-            ParagraphProperties paragraphProperties170 = new ParagraphProperties();
-            KeepNext keepNext11 = new KeepNext();
-            Justification justification116 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel11 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties170 = new ParagraphProperties();
+            //KeepNext keepNext11 = new KeepNext();
+            //Justification justification116 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel11 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties87 = new ParagraphMarkRunProperties();
-            ItalicComplexScript italicComplexScript27 = new ItalicComplexScript();
-            Languages languages30 = new Languages() { EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties87 = new ParagraphMarkRunProperties();
+            //ItalicComplexScript italicComplexScript27 = new ItalicComplexScript();
+            //Languages languages30 = new Languages() { EastAsia = "x-none" };
 
-            paragraphMarkRunProperties87.Append(italicComplexScript27);
-            paragraphMarkRunProperties87.Append(languages30);
+            //paragraphMarkRunProperties87.Append(italicComplexScript27);
+            //paragraphMarkRunProperties87.Append(languages30);
 
-            paragraphProperties170.Append(keepNext11);
-            paragraphProperties170.Append(justification116);
-            paragraphProperties170.Append(outlineLevel11);
-            paragraphProperties170.Append(paragraphMarkRunProperties87);
+            //paragraphProperties170.Append(keepNext11);
+            //paragraphProperties170.Append(justification116);
+            //paragraphProperties170.Append(outlineLevel11);
+            //paragraphProperties170.Append(paragraphMarkRunProperties87);
 
-            Run run188 = new Run() { RsidRunProperties = "00D551C2" };
+            //Run run188 = new Run() { RsidRunProperties = "00D551C2" };
 
-            RunProperties runProperties86 = new RunProperties();
-            ItalicComplexScript italicComplexScript28 = new ItalicComplexScript();
-            Languages languages31 = new Languages() { EastAsia = "x-none" };
+            //RunProperties runProperties86 = new RunProperties();
+            //ItalicComplexScript italicComplexScript28 = new ItalicComplexScript();
+            //Languages languages31 = new Languages() { EastAsia = "x-none" };
 
-            runProperties86.Append(italicComplexScript28);
-            runProperties86.Append(languages31);
-            Text text186 = new Text();
-            text186.Text = "ПК";
+            //runProperties86.Append(italicComplexScript28);
+            //runProperties86.Append(languages31);
+            //Text text186 = new Text();
+            //text186.Text = "ПК";
 
-            run188.Append(runProperties86);
-            run188.Append(text186);
+            //run188.Append(runProperties86);
+            //run188.Append(text186);
 
-            paragraph179.Append(paragraphProperties170);
-            paragraph179.Append(run188);
+            //paragraph179.Append(paragraphProperties170);
+            //paragraph179.Append(run188);
 
-            tableCell76.Append(tableCellProperties76);
-            tableCell76.Append(paragraph179);
+            //tableCell76.Append(tableCellProperties76);
+            //tableCell76.Append(paragraph179);
 
-            TableCell tableCell77 = new TableCell();
+            //TableCell tableCell77 = new TableCell();
 
-            TableCellProperties tableCellProperties77 = new TableCellProperties();
-            TableCellWidth tableCellWidth77 = new TableCellWidth() { Width = "3363", Type = TableWidthUnitValues.Dxa };
-            Shading shading77 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties77 = new TableCellProperties();
+            //TableCellWidth tableCellWidth77 = new TableCellWidth() { Width = "3363", Type = TableWidthUnitValues.Dxa };
+            //Shading shading77 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties77.Append(tableCellWidth77);
-            tableCellProperties77.Append(shading77);
+            //tableCellProperties77.Append(tableCellWidth77);
+            //tableCellProperties77.Append(shading77);
 
-            Paragraph paragraph180 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
+            //Paragraph paragraph180 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
 
-            ParagraphProperties paragraphProperties171 = new ParagraphProperties();
-            KeepNext keepNext12 = new KeepNext();
-            Justification justification117 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel12 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties171 = new ParagraphProperties();
+            //KeepNext keepNext12 = new KeepNext();
+            //Justification justification117 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel12 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties88 = new ParagraphMarkRunProperties();
-            ItalicComplexScript italicComplexScript29 = new ItalicComplexScript();
-            Languages languages32 = new Languages() { EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties88 = new ParagraphMarkRunProperties();
+            //ItalicComplexScript italicComplexScript29 = new ItalicComplexScript();
+            //Languages languages32 = new Languages() { EastAsia = "x-none" };
 
-            paragraphMarkRunProperties88.Append(italicComplexScript29);
-            paragraphMarkRunProperties88.Append(languages32);
+            //paragraphMarkRunProperties88.Append(italicComplexScript29);
+            //paragraphMarkRunProperties88.Append(languages32);
 
-            paragraphProperties171.Append(keepNext12);
-            paragraphProperties171.Append(justification117);
-            paragraphProperties171.Append(outlineLevel12);
-            paragraphProperties171.Append(paragraphMarkRunProperties88);
+            //paragraphProperties171.Append(keepNext12);
+            //paragraphProperties171.Append(justification117);
+            //paragraphProperties171.Append(outlineLevel12);
+            //paragraphProperties171.Append(paragraphMarkRunProperties88);
 
-            paragraph180.Append(paragraphProperties171);
+            //paragraph180.Append(paragraphProperties171);
 
-            tableCell77.Append(tableCellProperties77);
-            tableCell77.Append(paragraph180);
+            //tableCell77.Append(tableCellProperties77);
+            //tableCell77.Append(paragraph180);
 
-            TableCell tableCell78 = new TableCell();
+            //TableCell tableCell78 = new TableCell();
 
-            TableCellProperties tableCellProperties78 = new TableCellProperties();
-            TableCellWidth tableCellWidth78 = new TableCellWidth() { Width = "4643", Type = TableWidthUnitValues.Dxa };
-            Shading shading78 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties78 = new TableCellProperties();
+            //TableCellWidth tableCellWidth78 = new TableCellWidth() { Width = "4643", Type = TableWidthUnitValues.Dxa };
+            //Shading shading78 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties78.Append(tableCellWidth78);
-            tableCellProperties78.Append(shading78);
+            //tableCellProperties78.Append(tableCellWidth78);
+            //tableCellProperties78.Append(shading78);
 
-            Paragraph paragraph181 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
+            //Paragraph paragraph181 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
 
-            ParagraphProperties paragraphProperties172 = new ParagraphProperties();
-            KeepNext keepNext13 = new KeepNext();
-            Justification justification118 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel13 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties172 = new ParagraphProperties();
+            //KeepNext keepNext13 = new KeepNext();
+            //Justification justification118 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel13 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties89 = new ParagraphMarkRunProperties();
-            ItalicComplexScript italicComplexScript30 = new ItalicComplexScript();
-            Languages languages33 = new Languages() { EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties89 = new ParagraphMarkRunProperties();
+            //ItalicComplexScript italicComplexScript30 = new ItalicComplexScript();
+            //Languages languages33 = new Languages() { EastAsia = "x-none" };
 
-            paragraphMarkRunProperties89.Append(italicComplexScript30);
-            paragraphMarkRunProperties89.Append(languages33);
+            //paragraphMarkRunProperties89.Append(italicComplexScript30);
+            //paragraphMarkRunProperties89.Append(languages33);
 
-            paragraphProperties172.Append(keepNext13);
-            paragraphProperties172.Append(justification118);
-            paragraphProperties172.Append(outlineLevel13);
-            paragraphProperties172.Append(paragraphMarkRunProperties89);
+            //paragraphProperties172.Append(keepNext13);
+            //paragraphProperties172.Append(justification118);
+            //paragraphProperties172.Append(outlineLevel13);
+            //paragraphProperties172.Append(paragraphMarkRunProperties89);
 
-            paragraph181.Append(paragraphProperties172);
+            //paragraph181.Append(paragraphProperties172);
 
-            tableCell78.Append(tableCellProperties78);
-            tableCell78.Append(paragraph181);
+            //tableCell78.Append(tableCellProperties78);
+            //tableCell78.Append(paragraph181);
 
-            tableRow26.Append(tableCell76);
-            tableRow26.Append(tableCell77);
-            tableRow26.Append(tableCell78);
+            //tableRow26.Append(tableCell76);
+            //tableRow26.Append(tableCell77);
+            //tableRow26.Append(tableCell78);
 
-            TableRow tableRow27 = new TableRow() { RsidTableRowMarkRevision = "00C1505B", RsidTableRowAddition = "00D551C2", RsidTableRowProperties = "00D82FF5" };
+            //TableRow tableRow27 = new TableRow() { RsidTableRowMarkRevision = "00C1505B", RsidTableRowAddition = "00D551C2", RsidTableRowProperties = "00D82FF5" };
 
-            TableCell tableCell79 = new TableCell();
+            //TableCell tableCell79 = new TableCell();
 
-            TableCellProperties tableCellProperties79 = new TableCellProperties();
-            TableCellWidth tableCellWidth79 = new TableCellWidth() { Width = "1565", Type = TableWidthUnitValues.Dxa };
-            Shading shading79 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties79 = new TableCellProperties();
+            //TableCellWidth tableCellWidth79 = new TableCellWidth() { Width = "1565", Type = TableWidthUnitValues.Dxa };
+            //Shading shading79 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties79.Append(tableCellWidth79);
-            tableCellProperties79.Append(shading79);
+            //tableCellProperties79.Append(tableCellWidth79);
+            //tableCellProperties79.Append(shading79);
 
-            Paragraph paragraph182 = new Paragraph() { RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
+            //Paragraph paragraph182 = new Paragraph() { RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
 
-            ParagraphProperties paragraphProperties173 = new ParagraphProperties();
-            KeepNext keepNext14 = new KeepNext();
-            Justification justification119 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel14 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties173 = new ParagraphProperties();
+            //KeepNext keepNext14 = new KeepNext();
+            //Justification justification119 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel14 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties90 = new ParagraphMarkRunProperties();
-            Bold bold104 = new Bold();
-            ItalicComplexScript italicComplexScript31 = new ItalicComplexScript();
-            Languages languages34 = new Languages() { EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties90 = new ParagraphMarkRunProperties();
+            //Bold bold104 = new Bold();
+            //ItalicComplexScript italicComplexScript31 = new ItalicComplexScript();
+            //Languages languages34 = new Languages() { EastAsia = "x-none" };
 
-            paragraphMarkRunProperties90.Append(bold104);
-            paragraphMarkRunProperties90.Append(italicComplexScript31);
-            paragraphMarkRunProperties90.Append(languages34);
+            //paragraphMarkRunProperties90.Append(bold104);
+            //paragraphMarkRunProperties90.Append(italicComplexScript31);
+            //paragraphMarkRunProperties90.Append(languages34);
 
-            paragraphProperties173.Append(keepNext14);
-            paragraphProperties173.Append(justification119);
-            paragraphProperties173.Append(outlineLevel14);
-            paragraphProperties173.Append(paragraphMarkRunProperties90);
+            //paragraphProperties173.Append(keepNext14);
+            //paragraphProperties173.Append(justification119);
+            //paragraphProperties173.Append(outlineLevel14);
+            //paragraphProperties173.Append(paragraphMarkRunProperties90);
 
-            paragraph182.Append(paragraphProperties173);
+            //paragraph182.Append(paragraphProperties173);
 
-            tableCell79.Append(tableCellProperties79);
-            tableCell79.Append(paragraph182);
+            //tableCell79.Append(tableCellProperties79);
+            //tableCell79.Append(paragraph182);
 
-            TableCell tableCell80 = new TableCell();
+            //TableCell tableCell80 = new TableCell();
 
-            TableCellProperties tableCellProperties80 = new TableCellProperties();
-            TableCellWidth tableCellWidth80 = new TableCellWidth() { Width = "3363", Type = TableWidthUnitValues.Dxa };
-            Shading shading80 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties80 = new TableCellProperties();
+            //TableCellWidth tableCellWidth80 = new TableCellWidth() { Width = "3363", Type = TableWidthUnitValues.Dxa };
+            //Shading shading80 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties80.Append(tableCellWidth80);
-            tableCellProperties80.Append(shading80);
+            //tableCellProperties80.Append(tableCellWidth80);
+            //tableCellProperties80.Append(shading80);
 
-            Paragraph paragraph183 = new Paragraph() { RsidParagraphMarkRevision = "00C1505B", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
+            //Paragraph paragraph183 = new Paragraph() { RsidParagraphMarkRevision = "00C1505B", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
 
-            ParagraphProperties paragraphProperties174 = new ParagraphProperties();
-            KeepNext keepNext15 = new KeepNext();
-            Justification justification120 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel15 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties174 = new ParagraphProperties();
+            //KeepNext keepNext15 = new KeepNext();
+            //Justification justification120 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel15 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties91 = new ParagraphMarkRunProperties();
-            Bold bold105 = new Bold();
-            ItalicComplexScript italicComplexScript32 = new ItalicComplexScript();
-            Languages languages35 = new Languages() { EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties91 = new ParagraphMarkRunProperties();
+            //Bold bold105 = new Bold();
+            //ItalicComplexScript italicComplexScript32 = new ItalicComplexScript();
+            //Languages languages35 = new Languages() { EastAsia = "x-none" };
 
-            paragraphMarkRunProperties91.Append(bold105);
-            paragraphMarkRunProperties91.Append(italicComplexScript32);
-            paragraphMarkRunProperties91.Append(languages35);
+            //paragraphMarkRunProperties91.Append(bold105);
+            //paragraphMarkRunProperties91.Append(italicComplexScript32);
+            //paragraphMarkRunProperties91.Append(languages35);
 
-            paragraphProperties174.Append(keepNext15);
-            paragraphProperties174.Append(justification120);
-            paragraphProperties174.Append(outlineLevel15);
-            paragraphProperties174.Append(paragraphMarkRunProperties91);
+            //paragraphProperties174.Append(keepNext15);
+            //paragraphProperties174.Append(justification120);
+            //paragraphProperties174.Append(outlineLevel15);
+            //paragraphProperties174.Append(paragraphMarkRunProperties91);
 
-            paragraph183.Append(paragraphProperties174);
+            //paragraph183.Append(paragraphProperties174);
 
-            tableCell80.Append(tableCellProperties80);
-            tableCell80.Append(paragraph183);
+            //tableCell80.Append(tableCellProperties80);
+            //tableCell80.Append(paragraph183);
 
-            TableCell tableCell81 = new TableCell();
+            //TableCell tableCell81 = new TableCell();
 
-            TableCellProperties tableCellProperties81 = new TableCellProperties();
-            TableCellWidth tableCellWidth81 = new TableCellWidth() { Width = "4643", Type = TableWidthUnitValues.Dxa };
-            Shading shading81 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            //TableCellProperties tableCellProperties81 = new TableCellProperties();
+            //TableCellWidth tableCellWidth81 = new TableCellWidth() { Width = "4643", Type = TableWidthUnitValues.Dxa };
+            //Shading shading81 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties81.Append(tableCellWidth81);
-            tableCellProperties81.Append(shading81);
+            //tableCellProperties81.Append(tableCellWidth81);
+            //tableCellProperties81.Append(shading81);
 
-            Paragraph paragraph184 = new Paragraph() { RsidParagraphMarkRevision = "00C1505B", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
+            //Paragraph paragraph184 = new Paragraph() { RsidParagraphMarkRevision = "00C1505B", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00C1505B", RsidRunAdditionDefault = "00D551C2" };
 
-            ParagraphProperties paragraphProperties175 = new ParagraphProperties();
-            KeepNext keepNext16 = new KeepNext();
-            Justification justification121 = new Justification() { Val = JustificationValues.Both };
-            OutlineLevel outlineLevel16 = new OutlineLevel() { Val = 1 };
+            //ParagraphProperties paragraphProperties175 = new ParagraphProperties();
+            //KeepNext keepNext16 = new KeepNext();
+            //Justification justification121 = new Justification() { Val = JustificationValues.Both };
+            //OutlineLevel outlineLevel16 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties92 = new ParagraphMarkRunProperties();
-            Bold bold106 = new Bold();
-            ItalicComplexScript italicComplexScript33 = new ItalicComplexScript();
-            Languages languages36 = new Languages() { EastAsia = "x-none" };
+            //ParagraphMarkRunProperties paragraphMarkRunProperties92 = new ParagraphMarkRunProperties();
+            //Bold bold106 = new Bold();
+            //ItalicComplexScript italicComplexScript33 = new ItalicComplexScript();
+            //Languages languages36 = new Languages() { EastAsia = "x-none" };
 
-            paragraphMarkRunProperties92.Append(bold106);
-            paragraphMarkRunProperties92.Append(italicComplexScript33);
-            paragraphMarkRunProperties92.Append(languages36);
+            //paragraphMarkRunProperties92.Append(bold106);
+            //paragraphMarkRunProperties92.Append(italicComplexScript33);
+            //paragraphMarkRunProperties92.Append(languages36);
 
-            paragraphProperties175.Append(keepNext16);
-            paragraphProperties175.Append(justification121);
-            paragraphProperties175.Append(outlineLevel16);
-            paragraphProperties175.Append(paragraphMarkRunProperties92);
+            //paragraphProperties175.Append(keepNext16);
+            //paragraphProperties175.Append(justification121);
+            //paragraphProperties175.Append(outlineLevel16);
+            //paragraphProperties175.Append(paragraphMarkRunProperties92);
 
-            paragraph184.Append(paragraphProperties175);
+            //paragraph184.Append(paragraphProperties175);
 
-            tableCell81.Append(tableCellProperties81);
-            tableCell81.Append(paragraph184);
+            //tableCell81.Append(tableCellProperties81);
+            //tableCell81.Append(paragraph184);
 
-            tableRow27.Append(tableCell79);
-            tableRow27.Append(tableCell80);
-            tableRow27.Append(tableCell81);
+            //tableRow27.Append(tableCell79);
+            //tableRow27.Append(tableCell80);
+            //tableRow27.Append(tableCell81);
 
             table3.Append(tableProperties3);
             table3.Append(tableGrid3);
             table3.Append(tableRow23);
-            table3.Append(tableRow24);
-            table3.Append(tableRow25);
-            table3.Append(tableRow26);
-            table3.Append(tableRow27);
+            table3.Append(CompetetionsTableRows());
+            //table3.Append(tableRow25);
+            //table3.Append(tableRow26);
+            //table3.Append(tableRow27);
 
             Paragraph paragraph185 = new Paragraph() { RsidParagraphMarkRevision = "008B60F0", RsidParagraphAddition = "001E708A", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "001E708A" };
 
