@@ -12,9 +12,6 @@
         xmlns:controls="clr-namespace:Wisdom.Controls"
         mc:Ignorable="d"
         Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized">
-    <!--<Window.DataContext>
-        <model:ViewModel/>
-    </Window.DataContext>-->
     <Window.Resources>
         <bind:CompetetionsConverter x:Key="CompetetionsConverter" />
         <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
@@ -64,17 +61,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--<ContextMenu x:Key="CtxMenu" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0">
-            <ContextMenu.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ContextMenu.ItemsPanel>
-            <MenuItem FontWeight="Bold" Header="Ж" Tag="0" Click="CustomingText" Style="{StaticResource MenuItemStyle}"></MenuItem>
-            <MenuItem FontFamily="Times New Roman" Tag="1" Click="CustomingText" Style="{StaticResource MenuItemStyle}" Padding="7,2,7,0" FontStyle="Italic" Header="I" ></MenuItem>
-            <MenuItem FontFamily="Times New Roman" Tag="2" Click="CustomingText" Style="{StaticResource MenuItemTextStyle}" Padding="7,5,7,5" Header="Ч" ></MenuItem>
-            <MenuItem Click="ToCase" Style="{StaticResource MenuItemStyle}" Padding="2,2,2,0" Header="Aa" ></MenuItem>
-        </ContextMenu>-->
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -196,7 +182,7 @@
                     <Label Content="Код и название дисциплины" Padding="0" />
                 </Viewbox>
 
-                <ComboBox x:Name="DpSelect" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" Grid.Row="8" VerticalAlignment="Stretch"  Style="{StaticResource SubCaptionBox}" IsEditable="True">
+                <ComboBox x:Name="DpSelect" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" Grid.Row="8" VerticalAlignment="Stretch" SelectionChanged="ResetAllDisciplineFields" Style="{StaticResource SubCaptionBox}" IsEditable="True">
                     <ComboBox.ItemContainerStyle>
                         <StaticResource ResourceKey="ItemsBox"></StaticResource>
                     </ComboBox.ItemContainerStyle>

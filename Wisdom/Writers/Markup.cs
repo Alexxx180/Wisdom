@@ -310,36 +310,7 @@ namespace Wisdom.Writers
 
             return themeContents;
         }
-        private static TableCell[] TableCellsTemplate1(Paragraph p1,
-            Paragraph p2, Paragraph p3, Paragraph p4)
-        {
-            return new TableCell[] {
-                TableCellAdd(p1, 2235),
-                TableCellAdd(p2, 3969, new GridSpan { Val = 2 }),
-                TableCellAdd(p3, 992),
-                TableCellAdd(p4, 2551)
-            };
-        }
-        private static TableCell[] TableCellsTemplate2(Paragraph p1,
-            Paragraph p2, Paragraph p3, Paragraph p4, Paragraph p5)
-        {
-            return new TableCell[] {
-                TableCellAdd(p1, 2235),
-                TableCellAdd(p2, 425),
-                TableCellAdd(p3, 3544),
-                TableCellAdd(p4, 992),
-                TableCellAdd(p5, 2551)
-            };
-        }
-        private static TableCell[] TableCellsTemplate3(Paragraph p1, Paragraph p2,
-            Paragraph p3, OpenXmlElement property1, OpenXmlElement property2)
-        {
-            return new TableCell[] {
-                TableCellAdd(p1, 1565, property1),
-                TableCellAdd(p2, 3298, property2),
-                TableCellAdd(p3, 4482),
-            };
-        }
+        
         private static List<TableRow> ThemeContentAdd(List<String2> rows)
         {
             List<TableRow> themeContent = new List<TableRow>();
@@ -392,6 +363,67 @@ namespace Wisdom.Writers
             return valueRow;
         }
 
+        
+
+
+        public static List<Paragraph> Literature()
+        {
+            List<Paragraph> proccessedSources = new List<Paragraph>();
+            Dictionary<string, List<Paragraph>> sources = new
+                Dictionary<string, List<Paragraph>>
+            {
+                { "Основная литература", new List<Paragraph>() },
+                { "Дополнительная литература", new List<Paragraph>() },
+                { "Программное обеспечение", new List<Paragraph>() },
+                { "Базы данных, информационно-справочные и поисковые системы", new List<Paragraph>() },
+            };
+            for(byte i = 0; i < SourcesControl.Count; i++)
+            {
+                sources[SourcesControl[i].Name] = NumberList(
+                    sources[SourcesControl[i].Name].Count + 1, SourcesControl[i].Values, ". ");
+            }
+            foreach (KeyValuePair<string, List<Paragraph>> sourceType in sources)
+            {
+                if (sourceType.Value.Count <= 0)
+                    continue;
+                Run run = RunAdd(sourceType.Key, new Bold());
+                proccessedSources.Add(ParagraphAdd(JustificationValues.Both, run));
+                proccessedSources.AddRange(sourceType.Value);
+            }
+            return proccessedSources;
+        }
+
+        private static TableCell[] TableCellsTemplate1(Paragraph p1,
+            Paragraph p2, Paragraph p3, Paragraph p4)
+        {
+            return new TableCell[] {
+                TableCellAdd(p1, 2235),
+                TableCellAdd(p2, 3969, new GridSpan { Val = 2 }),
+                TableCellAdd(p3, 992),
+                TableCellAdd(p4, 2551)
+            };
+        }
+        private static TableCell[] TableCellsTemplate2(Paragraph p1,
+            Paragraph p2, Paragraph p3, Paragraph p4, Paragraph p5)
+        {
+            return new TableCell[] {
+                TableCellAdd(p1, 2235),
+                TableCellAdd(p2, 425),
+                TableCellAdd(p3, 3544),
+                TableCellAdd(p4, 992),
+                TableCellAdd(p5, 2551)
+            };
+        }
+        private static TableCell[] TableCellsTemplate3(Paragraph p1, Paragraph p2,
+            Paragraph p3, OpenXmlElement property1, OpenXmlElement property2)
+        {
+            return new TableCell[] {
+                TableCellAdd(p1, 1565, property1),
+                TableCellAdd(p2, 3298, property2),
+                TableCellAdd(p3, 4482),
+            };
+        }
+
         private static Tabs TableTabs()
         {
             Tabs tabs114 = new Tabs();
@@ -429,31 +461,6 @@ namespace Wisdom.Writers
             tabs114.Append(tabStop1084);
             tabs114.Append(tabStop1085);
             return tabs114;
-        }
-
-
-        public static List<Paragraph> Literature()
-        {
-            List<Paragraph> proccessedSources = new List<Paragraph>();
-            Dictionary<string, List<Paragraph>> sources = new
-                Dictionary<string, List<Paragraph>>
-            {
-                { "Основная литература", new List<Paragraph>() },
-                { "Дополнительная литература", new List<Paragraph>() },
-                { "Программное обеспечение", new List<Paragraph>() },
-                { "Базы данных, информационно-справочные и поисковые системы", new List<Paragraph>() },
-            };
-            for(byte i = 0; i < SourcesControl.Count; i++)
-                sources[SourcesControl[i].Name] = NumberList(
-                    sources[SourcesControl[i].Name].Count + 1, SourcesControl[i].Values, ". ");
-            foreach (KeyValuePair<string, List<Paragraph>> sourceType in sources)
-            {
-                if (sourceType.Value.Count <= 0)
-                    continue;
-                Run run = RunAdd(sourceType.Key, new Bold());
-                proccessedSources.Add(ParagraphAdd(JustificationValues.Both, run));
-            }
-            return proccessedSources;
         }
 
         public static Paragraph WordParagraph(string value, string sequence,

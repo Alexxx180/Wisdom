@@ -22,12 +22,8 @@ namespace Wisdom.Writers
         // Creates a WordprocessingDocument.
         public void CreatePackage(string filePath)
         {
-            if (File.Exists(filePath))
-                File.Delete(filePath);
             using (WordprocessingDocument package = WordprocessingDocument.Create(filePath, WordprocessingDocumentType.Document))
-            {
-                CreateParts(package);
-            }
+            CreateParts(package);
         }
 
         // Adds child parts and generates content of the specified part.
@@ -2993,7 +2989,7 @@ namespace Wisdom.Writers
 
             Run run59 = new Run() { RsidRunProperties = "00BC6D6D" };
             Text text59 = new Text();
-            text59.Text = $"приказ Министерства образования и науки РФ от «{dates[0]}» {dates[1]} 20{dates[2]} г. № {Order.Value}";
+            text59.Text = $"приказ Министерства образования и науки РФ от «{dates[0]}» {dates[1]} {dates[2]} г. № {Order.Value}";
 
             run59.Append(text59);
 
@@ -17163,9 +17159,11 @@ namespace Wisdom.Writers
             tableRow71.Append(tableCell221);
             tableRow71.Append(tableCell222);
 
-//START
+            table6.Append(tableRow71);
+            
+            //START
 
-//END
+            //END
 
             Paragraph paragraph435 = new Paragraph() { RsidParagraphMarkRevision = "001E708A", RsidParagraphAddition = "00BF3BD1", RsidParagraphProperties = "00BF3BD1", RsidRunAdditionDefault = "00BF3BD1" };
 
@@ -17219,6 +17217,19 @@ namespace Wisdom.Writers
             paragraphProperties424.Append(paragraphMarkRunProperties286);
 
             paragraph435.Append(paragraphProperties424);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             Paragraph paragraph436 = new Paragraph() { RsidParagraphAddition = "00BF3BD1", RsidParagraphProperties = "006D4215", RsidRunAdditionDefault = "00BF3BD1" };
 

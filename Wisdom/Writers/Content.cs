@@ -111,25 +111,7 @@ namespace Wisdom.Writers
             _ = levels.Children.Add(next);
             return delete;
         }
-        //List p = (levels.Parent as Grid).Tag as List;
-        /*ListItem litems = new ListItem();
-        Run run2 = new Run();
-        _ = SetBind(run2, Run.TextProperty, FastBind(name, "Text"));
-        ListItem litem = new ListItem();
 
-        litems.Blocks.Add(new Paragraph(run2) { Style = GetStyle("RegularParagraph") });
-        p.ListItems.Add(litems);
-
-        if (levels.Tag != null)
-        {
-            List p2 = levels.Tag as List;
-            Run run = new Run();
-            _ = SetBind(run, Run.TextProperty, FastBind(name, "Text"));
-            litem.Blocks.Add(new Paragraph(run) { Style = GetStyle("RegularParagraph") });
-            p2.ListItems.Add(litem);
-        }*/
-        //litems.Tag = litem;
-        //grid.Tag = litems;
         public static Button TextContent4(Button add)
         {
             Grid next = add.Parent as Grid;
@@ -310,9 +292,6 @@ namespace Wisdom.Writers
             panel.Children.Remove(grid);
             panel.Children.Add(grid2);
 
-            //throw new System.Exception(((((((panel.Parent as Grid).Parent as StackPanel).Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox).Text + "");
-            //throw new System.Exception(((((((panel.Parent as Grid).Parent as StackPanel).Parent as Grid).Parent as StackPanel).Parent as Grid).Children[3] as TextBox).Name+"");
-
             Grid content = panel.Parent as Grid;
             StackPanel themeStack = content.Parent as StackPanel;
             Grid theme = themeStack.Parent as Grid;
@@ -320,11 +299,6 @@ namespace Wisdom.Writers
             //Grid topic = topicStack.Parent as Grid;
 
             TextBox refer = theme.Children[3] as TextBox;
-
-            //Trace.WriteLine(refer.Name);
-            //Trace.WriteLine(refer.Text);
-            //Trace.WriteLine(refer.Background);
-            //Trace.WriteLine(BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty));
 
             MultiBinding multi = BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty).ParentMultiBinding;
             BindingOperations.ClearBinding(refer, Control.BackgroundProperty);
@@ -380,11 +354,6 @@ namespace Wisdom.Writers
             //Grid topic = topicStack.Parent as Grid;
 
             TextBox refer = content.Children[3] as TextBox;
-
-            //Trace.WriteLine(refer.Name);
-            //Trace.WriteLine(refer.Text);
-            //Trace.WriteLine(refer.Background);
-            //Trace.WriteLine(BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty));
 
             MultiBinding old = BindingOperations.GetMultiBindingExpression(refer, Control.BackgroundProperty).ParentMultiBinding;
             BindingOperations.ClearBinding(refer, Control.BackgroundProperty);
@@ -502,11 +471,6 @@ namespace Wisdom.Writers
             grandGrid.Children.Remove(element);
             return grandGrid;
         }
-        /*public static void AutoIndexingI1(StackPanel grandGrid, int pos, char mark, string prefix)
-        {
-            for (int no = 0; no < grandGrid.Children.Count; no++)
-                ((grandGrid.Children[no] as Grid).Children[pos] as Label).Content = $"{prefix}{no + 1}{mark}";
-        }*/
         public static void AutoIndexingBorder(StackPanel grandGrid, int pos, char mark, string prefix)
         {
             for (int no = 0; no < grandGrid.Children.Count; no++)
@@ -598,6 +562,7 @@ namespace Wisdom.Writers
             StackPanel panel = parent.Parent as StackPanel;
             panel.Children.Remove(parent);
         }
+
         public static void NewTopic(TableRowGroup mainBinding, StackPanel master, out Button BTbutton, out Button Cadd, out Button NewTypeAdd,
             out Button deleteOmni, out Button addNew, out TextBox newHours, string name, string hours, Label hoursToBind, out ComboBox newThemeLevels,
             out ComboBox themeLevelAdd)

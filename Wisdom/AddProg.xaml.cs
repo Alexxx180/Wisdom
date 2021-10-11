@@ -28,10 +28,52 @@ namespace Wisdom
     {
         private static readonly Regex numbers = new Regex("^[\\d]");
         private string FileName => $@"{Program.Text}.docx";
+
         public AddProg()
         {
             InitializeComponent();
             DataContext = this;
+        }
+
+        private void ResetAllCompetetionFields(object sender, SelectionChangedEventArgs e)
+        {
+            GeneralCompetetions = ExtractCompetetions(TotalCompAddSpace, 1, 2);
+            ProfessionalCompetetions = ExtractCompetetions2(ProfCompAddSpace, 1, 2);
+        }
+
+        private void ResetAllDisciplineFields(object sender, SelectionChangedEventArgs e)
+        {
+            //ComboBox combobox = sender as ComboBox;
+            CollegeName = "";
+            DisciplineRelation = "";
+            WorkAround = "";
+            DistanceEducation = "";
+
+            DisciplineName = "";
+            ProfessionName = "";
+            MaxHours = "";
+            SelfHours = "";
+            EduHours = "";
+
+            PracticePrepare = "";
+            Lections = "";
+            Practice = "";
+            LabWorks = "";
+            ControlWs = "";
+            CourseWs = "";
+
+            OrderDate.Text = "";
+            OrderNo.Text = "";
+
+            DeleteAllSources();
+            Trace.WriteLine("GOT IT");
+            Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 4, 0, 2, 3);
+
+            //Plan
+            DropAllTopics();
+            //Levels
+            
+            DropAllLevels();
         }
 
         private List<HoursList<String2>> ExtractCompetetions(StackPanel panel,
@@ -256,12 +298,7 @@ namespace Wisdom
             Order = new String2(OrderDate.Text, OrderNo.Text);
             GeneralCompetetions = ExtractCompetetions(TotalCompAddSpace, 1, 2);
             ProfessionalCompetetions = ExtractCompetetions2(ProfCompAddSpace, 1, 2);
-            //ShallCan = GetListFromElements(SkillsAddSpace, 2);
-            //ShallKnow = GetListFromElements(KnowledgeAddSpace, 2);
-            //TotalCompetetion = GetListFromElements(TotalAddSpace, 2);
 
-            EducationControl = GetListFromElements(EducationAddSpace, 2);
-            MarkControl = GetListFromElements(MarkControlAddSpace, 2);
             SourcesControl = GetHashListFromElements(EducationSources, 1, 2);
 
             Applyment = GetListFromElements(ApplyAddSpace, 2);
@@ -271,11 +308,6 @@ namespace Wisdom
             List<List<string>> levels = GetListFromElements3(Levels, 2, 4);
             for (byte i = 0; i < levels.Count; i++)
                 StudyLevels.Add(levels[i][0], levels[i][1]);
-
-            //Сложная система вложенностей:
-            //Разделы -> Темы -> Типы работ
-            //List< HoursList< HoursList< HashList<String2> > > > Plan = List< HoursList< HoursList< HashList<String2> > > >();
-
 
             //Usual.Text
             //SaveFileDialog dialog = new SaveFileDialog
@@ -331,9 +363,18 @@ namespace Wisdom
         }
         private void DeleteLevel(object sender, RoutedEventArgs e)
         {
-            Grid grid = (sender as Button).Parent as Grid;
-            RemoveRun(grid.Tag);
-            AutoIndexing(RemoveGrid(grid), 1, '.');
+            Button addLevel = sender as Button;
+            DropLevel(addLevel.Parent as Grid);
+        }
+        private void DropAllLevels()
+        {
+            while (Levels.Children.Count > 1)
+                DropLevel(Levels.Children[0] as Grid);
+        }
+        private void DropLevel(Grid level)
+        {
+            RemoveRun(level.Tag);
+            AutoIndexing(RemoveGrid(level), 1, '.');
         }
 
         private void Levels_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -378,13 +419,22 @@ namespace Wisdom
         {
             TextContent3(sender as Button, null).Click += DeleteListItem2;
         }
+        private void DeleteAllSources()
+        {
+            while (EducationSources.Children.Count > 1)
+                DeleteSourceGroup(EducationSources.Children[0] as Grid);
+        }
         private void DeleteSources(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
             Grid current = btn.Parent as Grid;
-            StackPanel panel = current.Parent as StackPanel;
-            panel.Children.Remove(current);
-            RemoveParagraph(current.Tag);
+            DeleteSourceGroup(current);
+        }
+        private void DeleteSourceGroup(Grid sourceGroupGrid)
+        {
+            StackPanel panel = sourceGroupGrid.Parent as StackPanel;
+            panel.Children.Remove(sourceGroupGrid);
+            RemoveParagraph(sourceGroupGrid.Tag);
         }
         private void DeleteSource(object sender, RoutedEventArgs e)
         {
@@ -534,27 +584,33 @@ namespace Wisdom
             int optimization = sections.Children.IndexOf(section) + 1;
             AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
         }
-        private void DeleteTopicClick(object sender, RoutedEventArgs e)
+        private void DropAllTopics()
         {
-            Button btn = sender as Button;
-            StackPanel stack = btn.Tag as StackPanel;
-            while(stack.Children.Count > 1)
+            while (DisciplinePlan.Children.Count > 1)
+            {
+                Grid topic = DisciplinePlan.Children[0] as Grid;
+                DropTopic(topic.Children[0] as Button, topic);
+            }
+        }
+        private void DropTopic(Button deleteTopic, Grid topic)
+        {
+            StackPanel stack = deleteTopic.Tag as StackPanel;
+            while (stack.Children.Count > 1)
                 DeleteSection(stack.Children[0] as Grid);
-            Grid current = btn.Parent as Grid;
-            StackPanel sections = current.Parent as StackPanel;
+            StackPanel sections = topic.Parent as StackPanel;
 
-            Label refer = (current.Children[3] as TextBox).Tag as Label;
+            Label refer = (topic.Children[3] as TextBox).Tag as Label;
             MultiBinding multi = BindingOperations.GetMultiBindingExpression(refer, ContentProperty).ParentMultiBinding;
             MultiBinding multi2 = new MultiBinding { Converter = new SumConverter() };
 
             for (int i = 0; i < multi.Bindings.Count; i++)
             {
-                if (i == sections.Children.IndexOf(current))
+                if (i == sections.Children.IndexOf(topic))
                     continue;
                 multi2.Bindings.Add(multi.Bindings[i]);
             }
 
-            DeleteSection(current);
+            DeleteSection(topic);
             AutoIndexing(sections, 1, '.', "Раздел ");
             for (int i = 0; i < sections.Children.Count - 1; i++)
             {
@@ -563,8 +619,13 @@ namespace Wisdom
                 int optimization = i + 1;
                 AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
             }
-            
+
             _ = SetBind(refer, ContentProperty, multi2);
+        }
+        private void DeleteTopicClick(object sender, RoutedEventArgs e)
+        {
+            Button deleteTopic = sender as Button;
+            DropTopic(deleteTopic, deleteTopic.Parent as Grid);
         }
 
         private void AddTopic(object sender, RoutedEventArgs e)
