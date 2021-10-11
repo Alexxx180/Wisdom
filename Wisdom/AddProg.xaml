@@ -194,7 +194,7 @@
                     <Label Content="Код и название специальности" Padding="0"/>
                 </Viewbox>
 
-                <ComboBox x:Name="SpSelect" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="11" VerticalAlignment="Stretch"  Style="{StaticResource SubCaptionBox}" IsEditable="True">
+                <ComboBox x:Name="SpSelect" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="11" VerticalAlignment="Stretch" SelectionChanged="ResetAllCompetetionFields" Style="{StaticResource SubCaptionBox}" IsEditable="True">
                     <ComboBox.ItemContainerStyle>
                         <StaticResource ResourceKey="ItemsBox"></StaticResource>
                     </ComboBox.ItemContainerStyle>
@@ -440,7 +440,7 @@
                                                 <RowDefinition></RowDefinition>
                                             </Grid.RowDefinitions>
                                             
-                                            <Button Click="DeleteListItem" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
+                                            <Button Click="DeleteGeneralCompetetion" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
                                             <Label  Grid.Column="1" Content="ОК 01" Style="{StaticResource No1}" />
                                             <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="3" Style="{StaticResource RegularBox}" />
                                             <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="Умения:" Style="{StaticResource No1}" />

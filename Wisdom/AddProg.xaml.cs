@@ -37,8 +37,10 @@ namespace Wisdom
 
         private void ResetAllCompetetionFields(object sender, SelectionChangedEventArgs e)
         {
-            GeneralCompetetions = ExtractCompetetions(TotalCompAddSpace, 1, 2);
-            ProfessionalCompetetions = ExtractCompetetions2(ProfCompAddSpace, 1, 2);
+            DropAllGeneral();
+            DropAllProfessional();
+            //GeneralCompetetions = ExtractCompetetions(TotalCompAddSpace, 1, 2);
+            //ProfessionalCompetetions = ExtractCompetetions2(ProfCompAddSpace, 1, 2);
         }
 
         private void ResetAllDisciplineFields(object sender, SelectionChangedEventArgs e)
@@ -409,7 +411,7 @@ namespace Wisdom
         }
         private void AddTotalCompetetion(object sender, RoutedEventArgs e)
         {
-            TextContent4(sender as Button).Click += DeleteListItem;
+            TextContent4(sender as Button).Click += DeleteGeneralCompetetion;
         }
         private void AddProfessionalCompetetion(object sender, RoutedEventArgs e)
         {
@@ -445,40 +447,58 @@ namespace Wisdom
             RemoveRunLB(current.Tag);
             AutoIndexing(panel, 1, '.');
         }
-        private void DeleteListItem(object sender, RoutedEventArgs e)
+        private void DeleteGeneralCompetetion(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            Grid current = btn.Parent as Grid;
-            StackPanel panel = current.Parent as StackPanel;
-            panel.Children.Remove(current);
+            DropGeneral(btn.Parent as Grid);
+        }
+        private void DropGeneral(Grid generalCompetetion)
+        {
+            StackPanel panel = generalCompetetion.Parent as StackPanel;
+            panel.Children.Remove(generalCompetetion);
             string prefix = "ОК ";
             AutoIndexing2(panel, 1, "", prefix);
+        }
+        private void DropAllGeneral()
+        {
+            while (TotalCompAddSpace.Children.Count > 1)
+                DropGeneral(TotalCompAddSpace.Children[0] as Grid);
         }
         private void DeleteProfessionalItem(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            Grid current = btn.Parent as Grid;
-            StackPanel items = current.Parent as StackPanel;
+            DropProfessional(btn.Parent as Grid);
+        }
+        private void DropProfessional(Grid profCompetetion)
+        {
+            StackPanel items = profCompetetion.Parent as StackPanel;
             Grid section = items.Parent as Grid;
 
             Border border = section.Children[1] as Border;
             Label title = border.Child as Label;
-            StackPanel panel = current.Parent as StackPanel;
-            panel.Children.Remove(current);
+            StackPanel panel = profCompetetion.Parent as StackPanel;
+            panel.Children.Remove(profCompetetion);
             string prefix = title.Content.ToString();
             AutoIndexing(panel, 1, "", prefix);
+        }
+        private void DropAllProfessional()
+        {
+            while (ProfCompAddSpace.Children.Count > 1)
+                DropProfessionalTopic(ProfCompAddSpace.Children[0] as Grid);
+        }
+
+        private void DropProfessionalTopic(Grid profCompetetionTopic)
+        {
+            StackPanel panel = profCompetetionTopic.Parent as StackPanel;
+            panel.Children.Remove(profCompetetionTopic);
+            string prefix = "ПК ";
+            AutoIndexingBorder(panel, 1, '.', prefix);
         }
 
         private void DeleteProfessional(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            Grid current = btn.Parent as Grid;
-            //Border border = current.Children[1] as Border;
-            //Label title = border.Child as Label;
-            StackPanel panel = current.Parent as StackPanel;
-            panel.Children.Remove(current);
-            string prefix = "ПК ";
-            AutoIndexingBorder(panel, 1, '.', prefix);
+            DropProfessionalTopic(btn.Parent as Grid);
         }
         private void DeleteListItem2(object sender, RoutedEventArgs e)
         {
