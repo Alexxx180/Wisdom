@@ -6,7 +6,7 @@ namespace Wisdom.Model
     {
         public SpecialityBase(string name,
             List<HoursList<String2>> generalCompetetions,
-            List<HoursList<String2>> professionalCompetetions)
+            List<List<HoursList<String2>>> professionalCompetetions)
         {
             Name = name;
             GeneralCompetetions = generalCompetetions;
@@ -14,6 +14,6 @@ namespace Wisdom.Model
         }
         public string Name { get; set; }
         public List<HoursList<String2>> GeneralCompetetions { get; set; }
-        public List<HoursList<String2>> ProfessionalCompetetions { get; set; }
+        public List<List<HoursList<String2>>> ProfessionalCompetetions { get; set; }
     }
 }

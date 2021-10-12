@@ -63,22 +63,101 @@ namespace Wisdom.Model
 
         public static readonly SpecialityBase[] Specialities = {
             new SpecialityBase(
+
                 "15.02.07 Автоматизация технологических процессов и производств (по отраслям)",
-                new List<HoursList<String2>>(),
-                new List<HoursList<String2>>()
+                new List<HoursList<String2>> {
+                    new HoursList<String2>("ОК 1", "Общая компетенция №1.1")
+                    {
+                        Values = new List<String2>
+                        {
+                            new String2("Умения:", "Умение 1.1"),
+                            new String2("Знания:", "Знание 1.1")
+                        }
+                    },
+                    new HoursList<String2>("ОК 2", "Общая компетенция №1.2")
+                    {
+                        Values = new List<String2>
+                        {
+                            new String2("Умения:", "Умение 1.2"),
+                            new String2("Знания:", "Знание 1.2")
+                        }
+                    }
+                },
+                new List<List<HoursList<String2>>>
+                {
+                    new List<HoursList<String2>> {
+                        new HoursList<String2>("ПК 1.1", "Профессиональная компетенция №1.1")
+                        {
+                            Values = new List<String2>
+                            {
+                                new String2("Умения:", "Умение 1.1"),
+                                new String2("Знания:", "Знание 1.1")
+                            }
+                        },
+                        new HoursList<String2>("ПК 1.2", "Профессиональная компетенция №1.2")
+                        {
+                            Values = new List<String2>
+                            {
+                                new String2("Умения:", "Умение 1.2"),
+                                new String2("Знания:", "Знание 1.2")
+                            }
+                        }
+                    }
+                }
+
                 ),
 
             new SpecialityBase(
                 "09.02.03 Программирование в компьютерных системах",
-                new List<HoursList<String2>>(),
-                new List<HoursList<String2>>()
+                new List<HoursList<String2>> {
+                    new HoursList<String2>("ОК+1", "Общая компетенция №2.1")
+                    {
+                        Values = new List<String2>
+                        {
+                            new String2("Умения:", "Умение 2.1"),
+                            new String2("Знания:", "Знание 2.1")
+                        }
+                    },
+                    new HoursList<String2>("ОК+2", "Общая компетенция №2.2")
+                    {
+                        Values = new List<String2>
+                        {
+                            new String2("Умения:", "Умение 2.2"),
+                            new String2("Знания:", "Знание 2.2")
+                        }
+                    }
+                },
+                new List<List<HoursList<String2>>>
+                {
+                    new List<HoursList<String2>> {
+                        new HoursList<String2>("ПК 2.1", "Профессиональная компетенция №2.1")
+                        {
+                            Values = new List<String2>
+                            {
+                                new String2("Практический опыт:", "Умение 2.1"),
+                                new String2("Умения:", "Умение 2.1"),
+                                new String2("Знания:", "Знание 2.1")
+                            }
+                        },
+                        new HoursList<String2>("ПК 2.2", "Профессиональная компетенция №2.2")
+                        {
+                            Values = new List<String2>
+                            {
+                                new String2("Практический опыт:", "Умение 2.2"),
+                                new String2("Умения:", "Умение 2.2"),
+                                new String2("Знания:", "Знание 2.2")
+                            }
+                        }
+                    }
+                }
+
                 )
         };
 
         public static readonly DisciplineBase[] Disciplines = {
             new DisciplineBase(
                 "ОГСЭ.01 Основы философии",
-                new HeaderHours(),
+                new HeaderHours("68", "58", "10", "", "25", "13", "", "8", ""),
                 new List<HoursList<LevelsList<HashList<String2>>>>(),
                 "Общеобязательному направлению",
                 "Курс практики 1",
@@ -88,7 +167,7 @@ namespace Wisdom.Model
 
             new DisciplineBase(
                 "ОГСЭ.02 Технология разработки и защиты баз данных",
-                new HeaderHours(),
+                new HeaderHours("68", "58", "10", "", "25", "13", "", "8", ""),
                 new List<HoursList<LevelsList<HashList<String2>>>>(),
                 "Профессиональному направлению",
                 "Курс практики 2",

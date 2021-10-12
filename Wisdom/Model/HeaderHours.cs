@@ -14,18 +14,18 @@
             ControlWs = "-";
             CourseWs = "-";
         }
-        public HeaderHours(byte max, byte edu, byte self, byte prepare,
-            byte lections, byte practice, byte labs, byte controls, byte courses)
+        public HeaderHours(string max, string edu, string self, string prepare,
+            string lections, string practice, string labs, string controls, string courses)
         {
-            MaxHours = max.ToString();
-            EduHours = edu.ToString();
-            SelfHours = self.ToString();
-            PracticePrepare = prepare.ToString();
-            Lections = lections.ToString();
-            Practice = practice.ToString();
-            LabWorks = labs.ToString();
-            ControlWs = controls.ToString();
-            CourseWs = courses.ToString();
+            MaxHours = max;
+            EduHours = edu;
+            SelfHours = self;
+            PracticePrepare = prepare;
+            Lections = lections;
+            Practice = practice;
+            LabWorks = labs;
+            ControlWs = controls;
+            CourseWs = courses;
         }
         // Общие часы
         public string MaxHours { get; set; }
