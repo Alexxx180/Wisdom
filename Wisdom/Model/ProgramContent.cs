@@ -158,21 +158,82 @@ namespace Wisdom.Model
             new DisciplineBase(
                 "ОГСЭ.01 Основы философии",
                 new HeaderHours("68", "58", "10", "", "25", "13", "", "8", ""),
-                new List<HoursList<LevelsList<HashList<String2>>>>(),
+                new List<HoursList<LevelsList<HashList<String2>>>> {
+                    new HoursList<LevelsList<HashList<String2>>>("Раздел 1. Пример", "21")
+                    {
+                        Values = new List<LevelsList<HashList<String2>>>
+                        {
+                            new LevelsList<HashList<String2>>("Тема 1.1. Пример", "11", "1")
+                            {
+                                Values = new List<HashList<String2>>()
+                                {
+                                    new HashList<String2> ("Содержание", new List<String2>() {
+                                        new String2("Прохождение основ","5"),
+                                        new String2("Изучение предмета","6")
+                                    })
+                                }
+                            },
+                            new LevelsList<HashList<String2>>("Тема 1.2. Пример", "10", "2")
+                            {
+                                Values = new List<HashList<String2>>()
+                                {
+                                    new HashList<String2> ("Содержание", new List<String2>() {
+                                        new String2("Обучение азам","5")
+                                    }),
+                                    new HashList<String2> ("Практическая работа", new List<String2>() {
+                                        new String2("Кто есть Я?","5")
+                                    })
+                                }
+                            }
+                        }
+                    }
+                },
                 "Общеобязательному направлению",
                 "Курс практики 1",
                 "/1",
-                new List<HashList<string>>()
+                new List<HashList<string>>
+                {
+                    new HashList<string>("Основные источники", new List<string>() {
+                        "Пример источника",
+                        "Пример источника 2",
+                        "Пример источника 3",
+                        "Пример источника 4",
+                    })
+                }
             ),
 
             new DisciplineBase(
                 "ОГСЭ.02 Технология разработки и защиты баз данных",
                 new HeaderHours("68", "58", "10", "", "25", "13", "", "8", ""),
-                new List<HoursList<LevelsList<HashList<String2>>>>(),
+                new List<HoursList<LevelsList<HashList<String2>>>>{
+                    new HoursList<LevelsList<HashList<String2>>>("Раздел 1. Пример", "12")
+                    {
+                        Values = new List<LevelsList<HashList<String2>>>
+                        {
+                            new LevelsList<HashList<String2>>("Тема 1.1. Пример", "12", "1")
+                            {
+                                Values = new List<HashList<String2>>()
+                                {
+                                    new HashList<String2> ("Содержание", new List<String2>() {
+                                        new String2("Изучение предмета","12")
+                                    })
+                                }
+                            }
+                        }
+                    }
+                },
                 "Профессиональному направлению",
                 "Курс практики 2",
                 "/2",
-                new List<HashList<string>>()
+                new List<HashList<string>>
+                {
+                    new HashList<string>("Основные источники", new List<string>() {
+                        "Пример источника 5",
+                        "Пример источника 6",
+                        "Пример источника 7",
+                        "Пример источника 8",
+                    })
+                }
             )
         }; 
     }
