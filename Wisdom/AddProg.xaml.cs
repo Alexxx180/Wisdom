@@ -34,11 +34,30 @@ namespace Wisdom
             InitializeComponent();
             DataContext = this;
         }
+        private void SetProfessionalCompetetions(int no)
+        {
+            Grid next = TotalCompAddSpace.Children[0] as Grid;
+            //for (byte i = 0; i < Specialities[no].GeneralCompetetions; i++)
+            //{
 
+            //}
+            //TextContent4(AddGeneralBtn).Click += DeleteGeneralCompetetion;
+            //Specialities
+            //TotalCompAddSpace
+        }
+        private void SetGeneralCompetetions()
+        {
+            //Specialities
+        }
         private void ResetAllCompetetionFields(object sender, SelectionChangedEventArgs e)
         {
             DropAllGeneral();
             DropAllProfessional();
+
+
+            //TotalCompAddSpace
+            //ProfCompAddSpace
+
             //GeneralCompetetions = ExtractCompetetions(TotalCompAddSpace, 1, 2);
             //ProfessionalCompetetions = ExtractCompetetions2(ProfCompAddSpace, 1, 2);
         }
