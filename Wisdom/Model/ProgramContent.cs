@@ -60,5 +60,41 @@ namespace Wisdom.Model
         public static string WorkAround = "";
         // Курс дистанционного обучения ...
         public static string DistanceEducation = "";
+
+        public static readonly SpecialityBase[] Specialities = {
+            new SpecialityBase(
+                "15.02.07 Автоматизация технологических процессов и производств (по отраслям)",
+                new List<HoursList<String2>>(),
+                new List<HoursList<String2>>()
+                ),
+
+            new SpecialityBase(
+                "09.02.03 Программирование в компьютерных системах",
+                new List<HoursList<String2>>(),
+                new List<HoursList<String2>>()
+                )
+        };
+
+        public static readonly DisciplineBase[] Disciplines = {
+            new DisciplineBase(
+                "ОГСЭ.01 Основы философии",
+                new HeaderHours(),
+                new List<HoursList<LevelsList<HashList<String2>>>>(),
+                "Общеобязательному направлению",
+                "Курс практики 1",
+                "/1",
+                new List<HashList<string>>()
+            ),
+
+            new DisciplineBase(
+                "ОГСЭ.02 Технология разработки и защиты баз данных",
+                new HeaderHours(),
+                new List<HoursList<LevelsList<HashList<String2>>>>(),
+                "Профессиональному направлению",
+                "Курс практики 2",
+                "/2",
+                new List<HashList<string>>()
+            )
+        }; 
     }
 }

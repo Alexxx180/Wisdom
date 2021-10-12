@@ -32,3 +32,38 @@ D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\W
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\FlowDocuments.baml
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\8901\Татаринцев\Wisdom\bin\Debug\netcoreapp3.1\Wisdom.exe
+C:\8901\Татаринцев\Wisdom\bin\Debug\netcoreapp3.1\Wisdom.deps.json
+C:\8901\Татаринцев\Wisdom\bin\Debug\netcoreapp3.1\Wisdom.runtimeconfig.json
+C:\8901\Татаринцев\Wisdom\bin\Debug\netcoreapp3.1\Wisdom.runtimeconfig.dev.json
+C:\8901\Татаринцев\Wisdom\bin\Debug\netcoreapp3.1\Wisdom.dll
+C:\8901\Татаринцев\Wisdom\bin\Debug\netcoreapp3.1\Wisdom.pdb
+C:\8901\Татаринцев\Wisdom\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\8901\Татаринцев\Wisdom\bin\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Word.dll
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Word.dll
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.ResolveComReference.cache
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\Buttons.baml
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\CheckBoxes.baml
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\ComboBoxes.baml
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\FlowDocuments.baml
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\Labels.baml
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Resources\Styles\TextBoxes.baml
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\AddProg.g.cs
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\App.g.cs
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom_MarkupCompile.cache
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom_MarkupCompile.lref
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\App.baml
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\AddProg.baml
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\MainWindow.baml
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.g.resources
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.GeneratedMSBuildEditorConfig.editorconfig
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.AssemblyInfoInputs.cache
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.AssemblyInfo.cs
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.CoreCompileInputs.cache
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.CopyComplete
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.dll
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.pdb
+C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.genruntimeconfig.cache

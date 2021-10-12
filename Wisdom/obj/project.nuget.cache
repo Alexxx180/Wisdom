@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "GyPlYAvZu8zjAFatILNinGVZLo1nM9BxSQY5F2HBpX+g7LMH35C4wPd4Z790dIXlCXapSxVIFZ+E8BQPY+BTPA==",
+  "dgSpecHash": "ThgraRuLXN3tZsRRppP8rGAEpHMjjg3nq03qtbJ/WRcc47ZdNAajBsPSzqPvD9WlMMT8LqA39irDsXyoVZUDJg==",
   "success": true,
-  "projectFilePath": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+  "projectFilePath": "C:\\8901\\Татаринцев\\Wisdom\\Wisdom.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Администратор\\.nuget\\packages\\documentformat.openxml\\2.13.1\\documentformat.openxml.2.13.1.nupkg.sha512",
-    "C:\\Users\\Администратор\\.nuget\\packages\\open-xml-sdk\\2.5.0\\open-xml-sdk.2.5.0.nupkg.sha512",
-    "C:\\Users\\Администратор\\.nuget\\packages\\system.io.packaging\\4.7.0\\system.io.packaging.4.7.0.nupkg.sha512"
+    "C:\\Users\\Student\\.nuget\\packages\\documentformat.openxml\\2.13.1\\documentformat.openxml.2.13.1.nupkg.sha512",
+    "C:\\Users\\Student\\.nuget\\packages\\open-xml-sdk\\2.5.0\\open-xml-sdk.2.5.0.nupkg.sha512",
+    "C:\\Users\\Student\\.nuget\\packages\\system.io.packaging\\4.7.0\\system.io.packaging.4.7.0.nupkg.sha512"
   ],
   "logs": [
     {
