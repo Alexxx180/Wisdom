@@ -278,7 +278,7 @@
                 </ComboBox>
             </Grid>
 
-            <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.35*"/>
@@ -439,7 +439,7 @@
                                                 <RowDefinition></RowDefinition>
                                                 <RowDefinition></RowDefinition>
                                             </Grid.RowDefinitions>
-                                            
+
                                             <Button Click="DeleteGeneralCompetetion" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
                                             <Label  Grid.Column="1" Content="ОК 01" Style="{StaticResource No1}" />
                                             <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="3" Style="{StaticResource RegularBox}" />
@@ -554,67 +554,9 @@
                 </Grid>
 
             </Grid>
-            
-            <!--
-            <Grid Tag="{x:Reference RSkills}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.05*" />
-                    <ColumnDefinition Width="0.15*" />
-                    <ColumnDefinition Width="0.7*" />
-                    <ColumnDefinition Width="0.1*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.ColumnSpan="4" Tag="{x:Reference RS}" x:Name="ProfCompAddSpace">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.05*" />
-                            <ColumnDefinition Width="0.125*" />
-                            <ColumnDefinition Width="0.075*" />
-                            <ColumnDefinition Width="0.65*" />
-                            <ColumnDefinition Width="0.1*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        <Button Click="DeleteListItem" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                        <Label  Grid.Column="1" Content="ПК 1." Style="{StaticResource No1}" />
-                        <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="3" Style="{StaticResource RegularBox}" />
-                        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="Практический опыт:" Style="{StaticResource No1}" />
-                        <TextBox Grid.Row="1" Grid.Column="3" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                        <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="Умения:" Style="{StaticResource No1}" />
-                        <TextBox Grid.Row="2" Grid.Column="3" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                        <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Знания:" Style="{StaticResource No1}" />
-                        <TextBox Grid.Row="3" Grid.Column="3" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-
-                    </Grid>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.05*" />
-                            <ColumnDefinition Width="0.125*" />
-                            <ColumnDefinition Width="0.725*" />
-                            <ColumnDefinition Width="0.1*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Button Click="AddProfessionalCompetetion" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                        <Label  Grid.Column="1" Content="ПК 2." Style="{StaticResource No1}" />
-                        <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                    </Grid>
-                </StackPanel>
-            </Grid>
-            -->
 
             <!--RCompetentions-->
-            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.05*"/>
@@ -1323,9 +1265,9 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <ScrollViewer Grid.Column="1" Grid.RowSpan="2" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
-                    
+
                     <Border BorderThickness="1" BorderBrush="Black" Width="795"  Margin="0,0,0,0">
                         <controls:CustomPageViewer x:Name="FlowReader" IsEnabled="True" Grid.Row="1" Grid.Column="1" Height="1122.519685" Width="793.700787" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="14pt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Language="RU" >
 

@@ -90,6 +90,7 @@ namespace Wisdom.Model
                         {
                             Values = new List<String2>
                             {
+                                new String2("Практический опыт:", "Опыт 1.1"),
                                 new String2("Умения:", "Умение 1.1"),
                                 new String2("Знания:", "Знание 1.1")
                             }
@@ -98,6 +99,27 @@ namespace Wisdom.Model
                         {
                             Values = new List<String2>
                             {
+                                new String2("Практический опыт:", "Опыт 1.2"),
+                                new String2("Умения:", "Умение 1.2"),
+                                new String2("Знания:", "Знание 1.2")
+                            }
+                        }
+                    },
+                    new List<HoursList<String2>> {
+                        new HoursList<String2>("ПК 1.1", "Профессиональная компетенция №1.1")
+                        {
+                            Values = new List<String2>
+                            {
+                                new String2("Практический опыт:", "Опыт 1.1"),
+                                new String2("Умения:", "Умение 1.1"),
+                                new String2("Знания:", "Знание 1.1")
+                            }
+                        },
+                        new HoursList<String2>("ПК 1.2", "Профессиональная компетенция №1.2")
+                        {
+                            Values = new List<String2>
+                            {
+                                new String2("Практический опыт:", "Опыт 1.2"),
                                 new String2("Умения:", "Умение 1.2"),
                                 new String2("Знания:", "Знание 1.2")
                             }
@@ -134,7 +156,7 @@ namespace Wisdom.Model
                         {
                             Values = new List<String2>
                             {
-                                new String2("Практический опыт:", "Умение 2.1"),
+                                new String2("Практический опыт:", "Опыт 2.1"),
                                 new String2("Умения:", "Умение 2.1"),
                                 new String2("Знания:", "Знание 2.1")
                             }
@@ -143,7 +165,7 @@ namespace Wisdom.Model
                         {
                             Values = new List<String2>
                             {
-                                new String2("Практический опыт:", "Умение 2.2"),
+                                new String2("Практический опыт:", "Опыт 2.2"),
                                 new String2("Умения:", "Умение 2.2"),
                                 new String2("Знания:", "Знание 2.2")
                             }
@@ -159,28 +181,28 @@ namespace Wisdom.Model
                 "ОГСЭ.01 Основы философии",
                 new HeaderHours("68", "58", "10", "", "25", "13", "", "8", ""),
                 new List<HoursList<LevelsList<HashList<String2>>>> {
-                    new HoursList<LevelsList<HashList<String2>>>("Раздел 1. Пример", "21")
+                    new HoursList<LevelsList<HashList<String2>>>("Пример", "21")
                     {
                         Values = new List<LevelsList<HashList<String2>>>
                         {
-                            new LevelsList<HashList<String2>>("Тема 1.1. Пример", "11", "1")
+                            new LevelsList<HashList<String2>>("Пример", "11", "1")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
-                                    new HashList<String2> ("Содержание", new List<String2>() {
+                                    new HashList<String2> ("255", new List<String2>() {
                                         new String2("Прохождение основ","5"),
                                         new String2("Изучение предмета","6")
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Тема 1.2. Пример", "10", "2")
+                            new LevelsList<HashList<String2>>("Пример", "10", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
-                                    new HashList<String2> ("Содержание", new List<String2>() {
+                                    new HashList<String2> ("255", new List<String2>() {
                                         new String2("Обучение азам","5")
                                     }),
-                                    new HashList<String2> ("Практическая работа", new List<String2>() {
+                                    new HashList<String2> ("0", new List<String2>() {
                                         new String2("Кто есть Я?","5")
                                     })
                                 }
@@ -193,7 +215,7 @@ namespace Wisdom.Model
                 "/1",
                 new List<HashList<string>>
                 {
-                    new HashList<string>("Основные источники", new List<string>() {
+                    new HashList<string>("0", new List<string>() {
                         "Пример источника",
                         "Пример источника 2",
                         "Пример источника 3",
@@ -206,15 +228,15 @@ namespace Wisdom.Model
                 "ОГСЭ.02 Технология разработки и защиты баз данных",
                 new HeaderHours("68", "58", "10", "", "25", "13", "", "8", ""),
                 new List<HoursList<LevelsList<HashList<String2>>>>{
-                    new HoursList<LevelsList<HashList<String2>>>("Раздел 1. Пример", "12")
+                    new HoursList<LevelsList<HashList<String2>>>("Пример", "12")
                     {
                         Values = new List<LevelsList<HashList<String2>>>
                         {
-                            new LevelsList<HashList<String2>>("Тема 1.1. Пример", "12", "1")
+                            new LevelsList<HashList<String2>>("Пример", "12", "1")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
-                                    new HashList<String2> ("Содержание", new List<String2>() {
+                                    new HashList<String2> ("255", new List<String2>() {
                                         new String2("Изучение предмета","12")
                                     })
                                 }
@@ -227,7 +249,7 @@ namespace Wisdom.Model
                 "/2",
                 new List<HashList<string>>
                 {
-                    new HashList<string>("Основные источники", new List<string>() {
+                    new HashList<string>("0", new List<string>() {
                         "Пример источника 5",
                         "Пример источника 6",
                         "Пример источника 7",
@@ -235,6 +257,6 @@ namespace Wisdom.Model
                     })
                 }
             )
-        }; 
+        };
     }
 }

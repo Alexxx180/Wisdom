@@ -567,8 +567,34 @@ namespace Wisdom.Writers
             out Button deleteOmni, out Button addNew, out TextBox newHours, string name, string hours, Label hoursToBind, out ComboBox newThemeLevels,
             out ComboBox themeLevelAdd)
         {
-
             int cnt = master.Children.Count;
+            StackPanel Themes = TopicBase(mainBinding, master, 
+            out deleteOmni, name, hours, hoursToBind, cnt);
+
+            NewTheme(cnt, Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd, out newThemeLevels);
+
+            Grid newThemeGrid = NewThemeGrid(out addNew, out newHours, out themeLevelAdd, cnt, "2");
+            Themes.Children.Add(newThemeGrid);
+        }
+
+        public static void NewTopic(TableRowGroup mainBinding, StackPanel master,
+            out Button deleteOmni, out Button addNew, out TextBox newHours,
+            Label hoursToBind,  out ComboBox themeLevelAdd, string name, string hours)
+        {
+            int cnt = master.Children.Count;
+            StackPanel Themes = TopicBase(mainBinding, master,
+            out deleteOmni, name, hours, hoursToBind, cnt);
+
+            //NewTheme(cnt, Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd, out newThemeLevels);
+
+            Grid newThemeGrid = NewThemeGrid(out addNew, out newHours, out themeLevelAdd, cnt, "1");
+            Themes.Children.Add(newThemeGrid);
+        }
+
+        private static StackPanel TopicBase(TableRowGroup mainBinding, StackPanel master, 
+            out Button deleteOmni, string name, string hours, Label hoursToBind, int cnt)
+        {
+            
             //Topic
             Grid omniGrid = GridItem4();
             AddRows(omniGrid, 2);
@@ -584,7 +610,7 @@ namespace Wisdom.Writers
             SetPropX(new DependencyProperty[] { Grid.RowProperty, Grid.ColumnProperty, Grid.ColumnSpanProperty },
                 new object[] { 1, 0, 5 }, Themes);
             Grid addTopic = master.Children[cnt - 1] as Grid;
-            (addTopic.Children[1] as Label).Content = $"Раздел {cnt+1}.";
+            (addTopic.Children[1] as Label).Content = $"Раздел {cnt + 1}.";
             master.Children.Remove(addTopic);
             master.Children.Add(omniGrid);
             master.Children.Add(addTopic);
@@ -595,11 +621,7 @@ namespace Wisdom.Writers
             MultiBinding newBind = new MultiBinding { Converter = new SumConverter() };
 
             for (int i = 0; i < oldBind.Bindings.Count; i++)
-            {
-                //if (i == master.Children.IndexOf(omniGrid))
-                //    continue;
-                newBind.Bindings.Add(oldBind.Bindings[i]); 
-            }
+                newBind.Bindings.Add(oldBind.Bindings[i]);
             newBind.Bindings.Add(FastBind(topicHours, "Text"));
             _ = SetBind(hoursToBind, ContentControl.ContentProperty, newBind);
 
@@ -614,17 +636,20 @@ namespace Wisdom.Writers
             omniGrid.Tag = newTopicRow;
             mainBinding.Rows.Add(newTopicRow);
             deleteOmni.Tag = Themes;
-            NewTheme(cnt, Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd, out newThemeLevels);
+            return Themes;
+        }
 
+        private static Grid NewThemeGrid(out Button addNew, out TextBox newHours, out ComboBox themeLevelAdd, int cnt, string start)
+        {
             Grid AddThemeGrid = GridItem4();
             addNew = new Button { Style = GetStyle("AddButton") };
-            Label newTitle = new Label { Content = $"Тема {cnt}.2.", Style = GetStyle("CaptionSections") };
+            Label newTitle = new Label { Content = $"Тема {cnt}.{start}.", Style = GetStyle("CaptionSections") };
             TextBox newName = new TextBox { Style = GetStyle("RegularBox") };
             newHours = new TextBox { Style = GetStyle("HoursBox") };
             themeLevelAdd = new ComboBox { Text = "", Style = GetStyle("HoursBox"), IsEditable = true };
             GridAddX(AddThemeGrid, addNew, newTitle, newName, newHours, themeLevelAdd);
             SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3, 4 }, new Control[] { newTitle, newName, newHours, themeLevelAdd });
-            Themes.Children.Add(AddThemeGrid);
+            return AddThemeGrid;
         }
 
         public static void NewTheme(int cnt, StackPanel Themes, TableRowGroup mainBinding, out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out ComboBox newThemeLevels)
