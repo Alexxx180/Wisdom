@@ -2989,7 +2989,14 @@ namespace Wisdom.Writers
 
             Run run59 = new Run() { RsidRunProperties = "00BC6D6D" };
             Text text59 = new Text();
-            text59.Text = $"приказ Министерства образования и науки РФ от «{dates[0]}» {dates[1]} {dates[2]} г. № {Order.Value}";
+            text59.Text = "приказ Министерства образования и науки РФ от «";
+            if (dates != null && dates.Length >= 3)
+            {
+                text59.Text += dates[0];
+                text59.Text += $"» {dates[1]} ";
+                text59.Text += dates[2];
+            }
+            text59.Text += $" г. № {Order.Value}";
 
             run59.Append(text59);
 

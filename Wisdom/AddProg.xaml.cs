@@ -115,6 +115,7 @@ namespace Wisdom
                 TextBox nextThemeName = nextTheme.Children[2] as TextBox;
                 TextBox nextThemeHours = nextTheme.Children[3] as TextBox;
                 ComboBox nextThemeLevel = nextTheme.Children[4] as ComboBox;
+                Trace.WriteLine("Topic: " + i);
 
                 //Themes
                 for (byte ii = 0; ii < Disciplines[no].Plan[i].Values.Count; ii++)
@@ -131,6 +132,8 @@ namespace Wisdom
                     Button nextTasksAdd = nextTasks.Children[0] as Button;
                     ComboBox nextTasksType = nextTasks.Children[1] as ComboBox;
                     CheckBox nextTasksMultiplier = nextTasks.Children[2] as CheckBox;
+
+                    Trace.WriteLine("Theme: " + ii);
 
                     //Theme content
                     for (byte iii = 0; iii < Disciplines[no].Plan[i].Values[ii].Values.Count; iii++)
@@ -154,10 +157,12 @@ namespace Wisdom
                             continue;
                         }
 
+                        Trace.WriteLine(Disciplines[no].Plan[i].Values[ii].Values[iii].Name);
+
                         bool isLastTask = Disciplines[no].Plan[i].Values[ii].Values[iii].Values.Count <= 1;
                         nextTasksType.SelectedIndex = Ints(Disciplines[no].Plan[i].Values[ii].Values[iii].Name);
                         nextTasksMultiplier.IsChecked = !isLastTask;
-                        NewTypeContentTasks(nextTasksAdd);
+                        Button deleteAddedTasks = NewTypeContentTasks(nextTasksAdd);
 
                         Grid nextTask;
                         Button nextTaskAdd;
@@ -165,17 +170,22 @@ namespace Wisdom
 
                         if (isLastTask)
                         {
-                            nextTask = nextTasksGroup.Children[iii] as Grid;
+                            //nextTask = nextTasksGroup.Children[iii] as Grid;
+                            nextTask = deleteAddedTasks.Parent as Grid;
 
                             nextTaskName = nextTask.Children[2] as TextBox;
                             nextTaskHours = nextTask.Children[3] as TextBox;
+
+                            foreach(UIElement el in nextTask.Children)
+                                Trace.WriteLine(el);
 
                             nextTaskName.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[0].Name;
                             nextTaskHours.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[0].Value;
                             continue;
                         }
 
-                        Grid task = nextTasksGroup.Children[iii] as Grid;
+                        //Grid task = nextTasksGroup.Children[iii] as Grid;
+                        Grid task = deleteAddedTasks.Parent as Grid;
                         StackPanel taskStack = task.Children[4] as StackPanel;
 
                         nextTask = taskStack.Children[0] as Grid;
@@ -230,22 +240,22 @@ namespace Wisdom
             ComboBox box = sender as ComboBox;
             //Disciplines
             //CollegeName = "";
-            DisciplineRelation = Disciplines[box.SelectedIndex].Relation;
-            WorkAround = Disciplines[box.SelectedIndex].PracticePrepare;
-            DistanceEducation = Disciplines[box.SelectedIndex].DistanceEducation;
+            DisciplineRelation1.Text = DisciplineRelation = Disciplines[box.SelectedIndex].Relation;
+            WorkAround1.Text = WorkAround = Disciplines[box.SelectedIndex].PracticePrepare;
+            DisctanceEdu.Text = DistanceEducation = Disciplines[box.SelectedIndex].DistanceEducation;
 
             DisciplineName = Disciplines[box.SelectedIndex].Name;
-            
-            MaxHours = Disciplines[box.SelectedIndex].Hours.MaxHours;
-            SelfHours = Disciplines[box.SelectedIndex].Hours.SelfHours;
-            EduHours = Disciplines[box.SelectedIndex].Hours.EduHours;
 
-            PracticePrepare = Disciplines[box.SelectedIndex].Hours.PracticePrepare;
-            Lections = Disciplines[box.SelectedIndex].Hours.Lections;
-            Practice = Disciplines[box.SelectedIndex].Hours.Practice;
-            LabWorks = Disciplines[box.SelectedIndex].Hours.LabWorks;
-            ControlWs = Disciplines[box.SelectedIndex].Hours.ControlWs;
-            CourseWs = Disciplines[box.SelectedIndex].Hours.CourseWs;
+            MaxHours = Disciplines[box.SelectedIndex].Hours.MaxHours;
+            Self.Text = SelfHours = Disciplines[box.SelectedIndex].Hours.SelfHours;
+            Usual.Text = EduHours = Disciplines[box.SelectedIndex].Hours.EduHours;
+
+            Prepare.Text = PracticePrepare = Disciplines[box.SelectedIndex].Hours.PracticePrepare;
+            Lectures.Text = Lections = Disciplines[box.SelectedIndex].Hours.Lections;
+            Practices.Text = Practice = Disciplines[box.SelectedIndex].Hours.Practice;
+            Labs.Text = LabWorks = Disciplines[box.SelectedIndex].Hours.LabWorks;
+            Controls.Text = ControlWs = Disciplines[box.SelectedIndex].Hours.ControlWs;
+            Course.Text = CourseWs = Disciplines[box.SelectedIndex].Hours.CourseWs;
 
             SetSources(box.SelectedIndex);
             SetPlan(box.SelectedIndex);
@@ -497,17 +507,17 @@ namespace Wisdom
             for (byte i = 0; i < levels.Count; i++)
                 StudyLevels.Add(levels[i][0], levels[i][1]);
 
-            //SaveFileDialog dialog = new SaveFileDialog
-            //{
-            //    FileName = FileName,
-            //    Filter =
-            //    "Документ Microsoft Word (*.docx)|*.docx|" +
-            //    "Документ Word 97-2003 (*.doc)|*.doc|" +
-            //    "Текст в формате RTF (*.rtf)|*.rtf"
-            //};
-            //if (dialog.ShowDialog().Value)
-            //    WriteDoc(dialog.FileName);
-            WriteDoc();
+            SaveFileDialog dialog = new SaveFileDialog
+            {
+                FileName = FileName,
+                Filter =
+                "Документ Microsoft Word (*.docx)|*.docx|" +
+                "Документ Word 97-2003 (*.doc)|*.doc|" +
+                "Текст в формате RTF (*.rtf)|*.rtf"
+            };
+            if (dialog.ShowDialog().Value)
+                WriteDoc(dialog.FileName);
+            //WriteDoc();
         }
 
         private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -708,7 +718,7 @@ namespace Wisdom
             delete.Click += AnyDelete;
             if (add != null)
                 add.Click += AddContent;
-            return add;
+            return delete;
         }
         private void AnyDelete(object sender, RoutedEventArgs e)
         {

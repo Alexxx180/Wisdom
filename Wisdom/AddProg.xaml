@@ -188,6 +188,7 @@
                     </ComboBox.ItemContainerStyle>
                     <ComboBoxItem Content="ОГСЭ.01 Основы философии"/>
                     <ComboBoxItem Content="ОГСЭ.02 Технология разработки и защиты баз данных"/>
+                    <ComboBoxItem Content="ОГСЭ.03 Иностранный язык в профессиональной деятельности (английский язык)"/>
                 </ComboBox>
 
                 <Viewbox Grid.Row="10" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">
@@ -200,6 +201,7 @@
                     </ComboBox.ItemContainerStyle>
                     <ComboBoxItem Content="15.02.07 Автоматизация технологических процессов и производств (по отраслям)"/>
                     <ComboBoxItem Content="09.02.03 Программирование в компьютерных системах"/>
+                    <ComboBoxItem Content="15.02.14 Оснащение средствами автоматизации технологических процессов и производств (по отраслям)" />
                 </ComboBox>
 
                 <Grid Grid.Column="1" Grid.Row="13" Background="#FFFCC7">
