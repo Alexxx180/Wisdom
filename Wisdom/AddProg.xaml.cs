@@ -154,17 +154,34 @@ namespace Wisdom
                             continue;
                         }
 
+                        bool isLastTask = Disciplines[no].Plan[i].Values[ii].Values[iii].Values.Count <= 1;
                         nextTasksType.SelectedIndex = Ints(Disciplines[no].Plan[i].Values[ii].Values[iii].Name);
-                        nextTasksMultiplier.IsChecked = true;
+                        nextTasksMultiplier.IsChecked = !isLastTask;
                         NewTypeContentTasks(nextTasksAdd);
+
+                        Grid nextTask;
+                        Button nextTaskAdd;
+                        TextBox nextTaskName, nextTaskHours;
+
+                        if (isLastTask)
+                        {
+                            nextTask = nextTasksGroup.Children[iii] as Grid;
+
+                            nextTaskName = nextTask.Children[2] as TextBox;
+                            nextTaskHours = nextTask.Children[3] as TextBox;
+
+                            nextTaskName.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[0].Name;
+                            nextTaskHours.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[0].Value;
+                            continue;
+                        }
 
                         Grid task = nextTasksGroup.Children[iii] as Grid;
                         StackPanel taskStack = task.Children[4] as StackPanel;
 
-                        Grid nextTask = taskStack.Children[0] as Grid;
-                        Button nextTaskAdd = nextTask.Children[0] as Button;
-                        TextBox nextTaskName = nextTask.Children[2] as TextBox;
-                        TextBox nextTaskHours = nextTask.Children[3] as TextBox;
+                        nextTask = taskStack.Children[0] as Grid;
+                        nextTaskAdd = nextTask.Children[0] as Button;
+                        nextTaskName = nextTask.Children[2] as TextBox;
+                        nextTaskHours = nextTask.Children[3] as TextBox;
 
                         //Content tasks
                         for (byte iv = 0; iv < Disciplines[no].Plan[i].Values[ii].Values[iii].Values.Count; iv++)
