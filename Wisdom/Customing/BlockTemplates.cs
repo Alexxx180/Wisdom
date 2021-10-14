@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using static Wisdom.Customing.ResourceHelper;
 using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Customing
@@ -61,6 +62,7 @@ namespace Wisdom.Customing
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.95, GridUnitType.Star) });
             return grid;
         }
+
         public static void AddItems(ComboBox box, params string[] names)
         {
             foreach (string name in names) box.Items.Add(new ComboBoxItem { Content = name });
@@ -105,5 +107,13 @@ namespace Wisdom.Customing
             object[] cls = { FontWeights.Normal, FontStyles.Normal, null };
             box.Selection.ApplyPropertyValue(dps[p], box.Selection.GetPropertyValue(dps[p]).Equals(obs[p]) ? cls[p] : obs[p]);
         }
+        public static Label ListNo(string content) => new Label { Style = GetStyle("No1"), Content = content };
+        public static Label ListNo2(string content) => new Label { Style = GetStyle("No2"), Content = content };
+        public static Label Caption(string content) => new Label { Style = GetStyle("ListCaptions"), Content = content };
+        public static TextBox UsualBox(string text) => new TextBox { Style = GetStyle("RegularBox"), Text = text };
+        public static TextBox HoursBox(string text) => new TextBox { Style = GetStyle("HoursBox"), Text = text };
+        public static Button DropButton(Grid grid) => new Button { Style = GetStyle("DeleteButton"), Tag = grid };
+
+        public static Paragraph FromTag(Grid grid) => grid.Tag as Paragraph;
     }
 }

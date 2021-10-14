@@ -43,8 +43,6 @@ namespace Wisdom.Model
         }
         private static void AddLevel(object sender, RoutedEventArgs e)
         {
-            //TextContent(sender as Button, null).Click += DeleteContents;
-            TextContent(sender as Button, null);
             //ThemeLevel.GetBindingExpression(ComboBox.ItemsSourceProperty).UpdateTarget();
             //OnPropertyChanged(nameof(ThemeLevel.ItemsSource));
         }

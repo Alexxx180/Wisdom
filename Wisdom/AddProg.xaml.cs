@@ -26,7 +26,8 @@ namespace Wisdom
     /// </summary>
     public partial class AddProg : Window
     {
-        private static readonly Regex numbers = new Regex("^[\\d]");
+        //private static readonly Regex _numbers = new Regex("^[\\d]");
+
         private string FileName => $@"{Program.Text}.docx";
 
         public AddProg()
@@ -230,7 +231,7 @@ namespace Wisdom
                 for (byte ii = 0; ii < Disciplines[no].Sources[i].Values.Count; ii++)
                 {
                     name.Text = Disciplines[no].Sources[i].Values[ii];
-                    TextContent2(subAdd, null).Click += DeleteSource;
+                    TextContent2(subAdd).Click += DeleteSource;
                 }
             }
         }
@@ -259,14 +260,6 @@ namespace Wisdom
 
             SetSources(box.SelectedIndex);
             SetPlan(box.SelectedIndex);
-            //Trace.WriteLine("GOT IT");
-            //Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 4, 0, 2, 3);
-
-            //Plan
-            //DropAllTopics();
-
-            //Levels
-            //DropAllLevels();
         }
 
         private List<HoursList<String2>> ExtractCompetetions(StackPanel panel,
@@ -519,27 +512,14 @@ namespace Wisdom
                 WriteDoc(dialog.FileName);
             //WriteDoc();
         }
+        private static readonly Regex _hours = new Regex("^([1-9]|[1-9]\\d\\d?)$");//v\\d
+        private void Hours(object sender, TextCompositionEventArgs e)
+        {
+            TextBox box = e.OriginalSource as TextBox;
+            string full = box.Text.Insert(box.CaretIndex, e.Text);
+            e.Handled = !_hours.IsMatch(full);
+        }
 
-        private void RichTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            RichTextBox box = sender as RichTextBox;
-            if (NAN(box) || NA(box.Tag))
-                return;
-        }
-        private void Numbers(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = !numbers.IsMatch(e.Text);
-        }
-        private void Hours(object sender, TextChangedEventArgs e)
-        {
-            TextBox box = sender as TextBox;
-            RejectCondition(box, (box.Text != "") && box.Text.Substring(0, 1) == "0");
-        }
-        private void RejectCondition(TextBox box, bool cond)
-        {
-            if (cond)
-                box.Text = box.Text[1..];
-        }
         private void Counting(object sender, RoutedEventArgs e)
         {
             NumbersBox(sender as Button, 1);
@@ -588,7 +568,7 @@ namespace Wisdom
         }
         private void AddLevel(object sender, RoutedEventArgs e)
         {
-            TextContent(sender as Button, null).Click += DeleteLevel;
+            StudyLevel(sender as Button).Click += DeleteLevel;
         }
         private void AddContent(object sender, RoutedEventArgs e)
         {
@@ -602,7 +582,7 @@ namespace Wisdom
         }
         private void AddSource(object sender, RoutedEventArgs e)
         {
-            TextContent2(sender as Button, null).Click += DeleteSource;
+            TextContent2(sender as Button).Click += DeleteSource;
         }
         private void AddTotalCompetetion(object sender, RoutedEventArgs e)
         {
@@ -713,8 +693,7 @@ namespace Wisdom
             Button add = null, delete = null;
             TextBox hours = null;
             AutoDetectContentType(newContent, out hours, out delete, ref add);
-            hours.TextChanged += Hours;
-            hours.PreviewTextInput += Numbers;
+            hours.PreviewTextInput += Hours;
             delete.Click += AnyDelete;
             if (add != null)
                 add.Click += AddContent;
@@ -745,6 +724,8 @@ namespace Wisdom
 
             _ = RemoveGrid(grid);
         }
+        
+
         private void AnyDeleteAuto(object sender, RoutedEventArgs e)
         {
             Grid subContent = (sender as Button).Tag as Grid;
@@ -782,10 +763,7 @@ namespace Wisdom
             StackPanel themes = current.Parent as StackPanel;
             Grid topic = themes.Parent as Grid;
             TextBox refer = topic.Children[3] as TextBox;
-            //Trace.WriteLine(refer.Name);
-            //Trace.WriteLine(refer.Text);
-            //Trace.WriteLine(refer.Background);
-            //Trace.WriteLine(topic.Tag);
+            
             MultiBinding multi = BindingOperations.GetMultiBindingExpression(refer, BackgroundProperty).ParentMultiBinding;
             BindingOperations.ClearBinding(refer, BackgroundProperty);
             MultiBinding multi2 = new MultiBinding { Converter = new SumConverter() };
@@ -879,8 +857,7 @@ namespace Wisdom
 
             deleteOmni.Click += DeleteTopicClick;
             
-            hours.TextChanged += Hours;
-            hours.PreviewTextInput += Numbers;
+            hours.PreviewTextInput += Hours;
         }
         private void TopicAdd2(Grid topic)
         {
@@ -899,8 +876,7 @@ namespace Wisdom
 
             deleteOmni.Click += DeleteTopicClick;
 
-            hours.TextChanged += Hours;
-            hours.PreviewTextInput += Numbers;
+            hours.PreviewTextInput += Hours;
         }
         private void AddTheme(object sender, RoutedEventArgs e)
         {

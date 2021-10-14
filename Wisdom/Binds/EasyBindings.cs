@@ -46,6 +46,11 @@ namespace Wisdom.Binds
                 multi.Bindings.Add(bind);
             return multi;
         }
+        public static DependencyObject SetRunMultiBind(Run run, IMultiValueConverter converter, params Binding[] bindings)
+        {
+            return SetBind(run, Run.TextProperty, Multi(converter, bindings));
+        }
+
         public static Paragraph Text(Binding binding)
         {
             return new Paragraph()
@@ -122,25 +127,5 @@ namespace Wisdom.Binds
         {
             return Text(FastBind(lab, "Content"));
         }
-        /*public static void RichText(RichTextBox box)
-        {
-            if (box.Tag.GetType() == typeof(TableCell))
-            {
-                TableCell cl = box.Tag as TableCell;
-                cl.Blocks.Clear();
-                Section sec = BoXaml(box);
-                while (sec.Blocks.Count > 0)
-                    cl.Blocks.Add(sec.Blocks.FirstBlock);
-            }
-            else if (box.Tag.GetType() == typeof(List))
-            {
-                List cl = box.Tag as List;
-                cl.ListItems.Clear();
-                List lst = box.Document.Blocks.FirstBlock as List;
-                foreach (ListItem item in lst.ListItems)
-                    if (item.ToString() != "")
-                        cl.ListItems.Add(item);
-            }
-        }*/
     }
 }

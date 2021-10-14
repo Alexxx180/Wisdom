@@ -15,6 +15,12 @@ namespace Wisdom.Customing
 
         public static CheckBox Chx(Grid grid, int no) => grid.Children[no] as CheckBox;
 
+        public static Grid Parent(StackPanel stack) => stack.Parent as Grid;
+
+        public static Grid Parent(Button button) => button.Parent as Grid;
+
+        public static StackPanel Parent(Grid stack) => stack.Parent as StackPanel;
+
         public static int Itry(string value)
         {
             if (value == "")

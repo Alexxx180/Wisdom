@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -60,20 +58,19 @@ namespace Wisdom.Customing
             foreach (UIElement element in elements)
                 GridAdd(grid, element);
         }
-        public static void GridAddX2(Grid grid, int startno, params FrameworkElement[] elements)
+        public static void GridAddX2(Grid grid, int columnStartNo, params FrameworkElement[] elements)
         {
             foreach(FrameworkElement element in elements)
             {
                 GridAdd(grid, element);
-                SetProp(element, Grid.ColumnProperty, startno);
-                startno++;
+                SetProp(element, Grid.ColumnProperty, columnStartNo);
+                columnStartNo++;
             }
         }
         public static void GridAddX3(Grid grid, int rowNo, int startNo, int step, params FrameworkElement[] elements)
         {
             foreach (FrameworkElement element in elements)
             {
-                //Trace.WriteLine(startNo);
                 grid.Children.Add(element);
                 SetProp(element, Grid.ColumnProperty, startNo);
                 SetProp(element, Grid.RowProperty, rowNo);

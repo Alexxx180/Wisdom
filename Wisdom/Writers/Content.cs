@@ -19,55 +19,79 @@ namespace Wisdom.Writers
 {
     public static class Content
     {
-        public static Button TextContent(Button btn, Button delete)
+        private static int Restack(StackPanel stack, Grid toMove, Grid toAdd)
         {
-            Grid next = btn.Parent as Grid;
-            StackPanel levels = next.Parent as StackPanel;
+            stack.Children.Remove(toMove);
+            stack.Children.Add(toAdd);
+            stack.Children.Add(toMove);
+            return stack.Children.Count;
+        }
+
+        public static Button StudyLevel(Button addNext)
+        {
+            Grid next = Parent(addNext);
+            StackPanel levels = Parent(next);
+
+            Label nextNo = Lab(next, 1);
+            TextBox nextName = Box(next, 2);
+            TextBox nextHours = Box(next, 3);
+
             Grid grid = GridItem3();
-            Paragraph p = next.Tag as Paragraph;
-            delete = new Button { Style = GetStyle("DeleteButton"), Tag = grid };
-            Label no = new Label { Style = GetStyle("No1"), Content = levels.Children.Count + "." };
-            TextBox name = new TextBox { Text = ((TextBox)next.Children[2]).Text, Style = GetStyle("RegularBox") };
-            TextBox hours = new TextBox { Text = ((TextBox)next.Children[3]).Text, Style = GetStyle("HoursBox") };
-            Run run2 = new Run();
-            _ = SetBind(run2, Run.TextProperty, Multi(new LevelsConverter(), FastBind(no, "Content"), FastBind(name, "Text"), FastBind(hours, "Text")));
-            p.Inlines.Add(run2);
-            GridAddX(grid, delete, no, name, hours);
-            SetPropX(Grid.ColumnProperty, new object[] { 1, 2, 3 }, new Control[] { no, name, hours });
-            grid.Tag = run2;
-            levels.Children.Remove(next);
-            levels.Children.Add(grid);
-            int id = levels.Children.Count + 1;
-            ((Label)next.Children[1]).Content = $"{id}.";
-            levels.Children.Add(next);
+            Button delete = DropButton(grid);
+            Label no = ListNo(levels.Children.Count + ".");
+            TextBox name = UsualBox(nextName.Text);
+            TextBox hours = UsualBox(nextHours.Text);
+
+            Paragraph studyLevels = FromTag(next);
+            Run newStudyLevel = new Run();
+            studyLevels.Inlines.Add(newStudyLevel);
+
+            Binding bindNo = FastBind(no, "Content");
+            Binding bindName = FastBind(name, "Text");
+            Binding bindHours = FastBind(hours, "Text");
+            _ = SetRunMultiBind(newStudyLevel, new LevelsConverter(),
+                bindNo, bindName, bindHours);
+
+            GridAddX2(grid, 0, delete, no, name, hours);
+            grid.Tag = newStudyLevel;
+
+            int count = Restack(levels, next, grid);
+            nextNo.Content = $"{count}.";
             return delete;
         }
-        public static Button TextContent2(Button btn, Button delete)
+
+        public static Button TextContent2(Button addNext)
         {
-            Grid next = btn.Parent as Grid;
-            StackPanel levels = next.Parent as StackPanel;
+            Grid next = Parent(addNext);
+            StackPanel levels = Parent(next);
+            Grid captionGrid = Parent(levels);
+
+            Label nextNo = Lab(next, 1);
+            TextBox nextName = Box(next, 2);
+
             Grid grid = GridItem3();
-            Paragraph p = (levels.Parent as Grid).Tag as Paragraph;
+            Button delete = DropButton(grid);
+            Label no = ListNo(levels.Children.Count + ".");
+            TextBox name = UsualBox(nextName.Text);
 
-            delete = new Button { Style = GetStyle("DeleteButton"), Tag = grid };
-            Label no = new Label { Style = GetStyle("No1"), Content = levels.Children.Count + "." };
-            TextBox name = new TextBox { Text = ((TextBox)next.Children[2]).Text, Style = GetStyle("RegularBox") };
-            Run run2 = new Run();
-            _ = SetBind(run2, Run.TextProperty, Multi(new SectionsConverter(), FastBind(no, "Content"), FastBind(name, "Text")));
-            LineBreak lb = new LineBreak();
-            p.Inlines.Add(lb);
-            run2.Tag = lb;
-            p.Inlines.Add(run2);
-            GridAddX(grid, delete, no, name);
-            grid.Tag = run2;
-            SetPropX(Grid.ColumnProperty, new object[] { 1, 2 }, new Control[] { no, name });
+            Paragraph sources = FromTag(captionGrid);
+            Run source = new Run();
+            LineBreak lineBreak = new LineBreak();
+            sources.Inlines.Add(lineBreak);
+            source.Tag = lineBreak;
+            sources.Inlines.Add(source);
+
+            Binding bindNo = FastBind(no, "Content");
+            Binding bindName = FastBind(name, "Text");
+            _ = SetRunMultiBind(source, new SectionsConverter(),
+                bindNo, bindName);
+            
+            GridAddX2(grid, 0, delete, no, name);
             SetProp(name, Grid.ColumnSpanProperty, 3);
+            grid.Tag = source;
 
-            levels.Children.Remove(next);
-            levels.Children.Add(grid);
-            int id = levels.Children.Count + 1;
-            (next.Children[1] as Label).Content = $"{id}.";
-            levels.Children.Add(next);
+            int count = Restack(levels, next, grid);
+            nextNo.Content = $"{count}.";
             return delete;
         }
         public static Button TextContent3(Button btn, Button delete)
@@ -217,7 +241,7 @@ namespace Wisdom.Writers
         {
             AddRows(grid, rows);
             TextBox competetionName = next.Children[2] as TextBox;
-            delete = new Button { Style = GetStyle("DeleteButton"), Tag = grid };
+            delete = DropButton(grid);
             Label no = ListNo($"{prefix}{levels.Children.Count}");
             TextBox name = UsualBox(competetionName.Text);
 
@@ -228,9 +252,7 @@ namespace Wisdom.Writers
                 GridAddX3(grid, i + startRow, 1, 2, elements[i]);
             return grid;
         }
-        public static Label ListNo(string content) => new Label { Style = GetStyle("No1"), Content = content };
-        public static Label Caption(string content) => new Label { Style = GetStyle("ListCaptions"), Content = content };
-        public static TextBox UsualBox(string text) => new TextBox { Style = GetStyle("RegularBox"), Text = text };
+        
 
         public static void ParagraphText(Button btn, out Button delete, out Button add)
         {
@@ -271,7 +293,7 @@ namespace Wisdom.Writers
         public static Button TableContent(Button btn, Button delete)
         {
             Grid grid = btn.Parent as Grid;
-            Label lab = new Label { Content = Lab(grid, 1).Content, Style = GetStyle("No2") };
+            Label lab = ListNo2(Lab(grid, 1).Content.ToString());
             TextBox txt1 = new TextBox { Text = Box(grid, 2).Text, Style = GetStyle("RegularBox") };
             TextBox txt2 = new TextBox { Text = Box(grid, 3).Text, Style = GetStyle("HoursBox") };
 
@@ -295,8 +317,6 @@ namespace Wisdom.Writers
             Grid content = panel.Parent as Grid;
             StackPanel themeStack = content.Parent as StackPanel;
             Grid theme = themeStack.Parent as Grid;
-            //StackPanel topicStack = theme.Parent as StackPanel;
-            //Grid topic = topicStack.Parent as Grid;
 
             TextBox refer = theme.Children[3] as TextBox;
 
@@ -348,10 +368,6 @@ namespace Wisdom.Writers
             _ = panel.Children.Add(grid);
 
             Grid content = panel.Parent as Grid;
-            //StackPanel themeStack = content.Parent as StackPanel;
-            //Grid theme = themeStack.Parent as Grid;
-            //StackPanel topicStack = theme.Parent as StackPanel;
-            //Grid topic = topicStack.Parent as Grid;
 
             TextBox refer = content.Children[3] as TextBox;
 
@@ -584,8 +600,6 @@ namespace Wisdom.Writers
             int cnt = master.Children.Count;
             StackPanel Themes = TopicBase(mainBinding, master,
             out deleteOmni, name, hours, hoursToBind, cnt);
-
-            //NewTheme(cnt, Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd, out newThemeLevels);
 
             Grid newThemeGrid = NewThemeGrid(out addNew, out newHours, out themeLevelAdd, cnt, "1");
             Themes.Children.Add(newThemeGrid);
