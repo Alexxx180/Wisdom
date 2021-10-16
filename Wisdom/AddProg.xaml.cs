@@ -19,6 +19,8 @@ using static Wisdom.Model.ProgramContent;
 using System.Collections.Generic;
 using Wisdom.Model;
 using static Wisdom.Competetions;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Wisdom
 {
@@ -27,10 +29,54 @@ namespace Wisdom
     /// </summary>
     public partial class AddProg : Window
     {
-        //private static readonly Regex _numbers = new Regex("^[\\d]");
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Raises this object's PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">The property that has a new value.</param>
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
+        }
+        #endregion
+
+
+        private List<ComboBoxItem> _DisciplinesSelect = new List<ComboBoxItem>();
+
+        public List<ComboBoxItem> DisciplinesSelect
+        {
+            get => _DisciplinesSelect;
+            set
+            {
+                _DisciplinesSelect.Clear();
+                _DisciplinesSelect.AddRange(value);
+                foreach(ComboBoxItem s in _DisciplinesSelect)
+                    Trace.WriteLine(s);
+                OnPropertyChanged();
+                foreach (ComboBoxItem s in DpSelect.Items)
+                    Trace.WriteLine(s.Content);
+                DpSelect.Items.Refresh();
+            }
+        }
+
+        private int SpecNo => SpSelect.SelectedIndex;
+
+        private void SetDisciplineSelect()
+        {
+            List<ComboBoxItem> reload = new List<ComboBoxItem>();
+            for (byte i = 0; i < Disciplines[SpecNo].Count; i++)
+                reload.Add(new ComboBoxItem { Content = Disciplines[SpecNo][i].Name });
+            DisciplinesSelect = reload;
+        }
 
         private string FileName => $@"{Program.Text}.docx";
-
         public AddProg()
         {
             InitializeComponent();
@@ -41,6 +87,7 @@ namespace Wisdom
         private void ResetAllCompetetionFields(object sender, SelectionChangedEventArgs e)
         {
             ComboBox box = sender as ComboBox;
+            SetDisciplineSelect();
             ProfessionName = Specialities[box.SelectedIndex].Name;
             Form2.SetGeneralCompetetions(box.SelectedIndex);
             Form2.SetProfessionalCompetetions(box.SelectedIndex);
@@ -50,9 +97,8 @@ namespace Wisdom
 
         private void SetPlan(int no)
         {
-            DropAllTopics();
             Grid nextTopic = GridChild(DisciplinePlan, 0);
-            List<HoursList<LevelsList<HashList<String2>>>> planTopic = Disciplines[no].Plan;
+            List<HoursList<LevelsList<HashList<String2>>>> planTopic = Disciplines[SpecNo][no].Plan;
             SetTopics(planTopic, nextTopic);
         }
 
@@ -188,9 +234,9 @@ namespace Wisdom
             Button add = next.Children[0] as Button;
             ComboBox box = next.Children[1] as ComboBox;
 
-            for (byte i = 0; i < Disciplines[no].Sources.Count; i++)
+            for (byte i = 0; i < Disciplines[SpecNo][no].Sources.Count; i++)
             {
-                box.SelectedIndex = Ints(Disciplines[no].Sources[i].Name);
+                box.SelectedIndex = Ints(Disciplines[SpecNo][no].Sources[i].Name);
                 ParagraphText(add, out Button delete2, out Button add2);
                 add2.Click += AddSource;
                 delete2.Click += DeleteSources;
@@ -202,9 +248,9 @@ namespace Wisdom
                 Button subAdd = subSubNext.Children[0] as Button;
                 TextBox name = subSubNext.Children[2] as TextBox;
 
-                for (byte ii = 0; ii < Disciplines[no].Sources[i].Values.Count; ii++)
+                for (byte ii = 0; ii < Disciplines[SpecNo][no].Sources[i].Values.Count; ii++)
                 {
-                    name.Text = Disciplines[no].Sources[i].Values[ii];
+                    name.Text = Disciplines[SpecNo][no].Sources[i].Values[ii];
                     Source(subAdd).Click += DeleteSource;
                 }
             }
@@ -213,24 +259,29 @@ namespace Wisdom
         private void ResetAllDisciplineFields(object sender, SelectionChangedEventArgs e)
         {
             ComboBox box = sender as ComboBox;
+            
+            if (SpecNo < 0 || box.SelectedIndex < 0)
+                return;
+            DropAllTopics();
             //Disciplines
             //CollegeName = "";
-            DisciplineRelation1.Text = DisciplineRelation = Disciplines[box.SelectedIndex].Relation;
-            WorkAround1.Text = WorkAround = Disciplines[box.SelectedIndex].PracticePrepare;
-            DisctanceEdu.Text = DistanceEducation = Disciplines[box.SelectedIndex].DistanceEducation;
+            DisciplineBase discipline = Disciplines[SpecNo][box.SelectedIndex];
+            DisciplineRelation1.Text = discipline.Relation;
+            WorkAround1.Text = discipline.PracticePrepare;
+            DisctanceEdu.Text = discipline.DistanceEducation;
 
-            DisciplineName = Disciplines[box.SelectedIndex].Name;
+            DisciplineName = discipline.Name;
 
-            MaxHours = Disciplines[box.SelectedIndex].Hours.MaxHours;
-            Self.Text = SelfHours = Disciplines[box.SelectedIndex].Hours.SelfHours;
-            Usual.Text = EduHours = Disciplines[box.SelectedIndex].Hours.EduHours;
+            MaxHours = discipline.Hours.MaxHours;
+            Self.Text = discipline.Hours.SelfHours;
+            Usual.Text = discipline.Hours.EduHours;
 
-            Form2.Prepare.Text = PracticePrepare = Disciplines[box.SelectedIndex].Hours.PracticePrepare;
-            Form2.Lectures.Text = Lections = Disciplines[box.SelectedIndex].Hours.Lections;
-            Form2.Practices.Text = Practice = Disciplines[box.SelectedIndex].Hours.Practice;
-            Form2.Labs.Text = LabWorks = Disciplines[box.SelectedIndex].Hours.LabWorks;
-            Form2.Controls.Text = ControlWs = Disciplines[box.SelectedIndex].Hours.ControlWs;
-            Form2.Course.Text = CourseWs = Disciplines[box.SelectedIndex].Hours.CourseWs;
+            Form2.Prepare.Text = discipline.Hours.PracticePrepare;
+            Form2.Lectures.Text = discipline.Hours.Lections;
+            Form2.Practices.Text = discipline.Hours.Practice;
+            Form2.Labs.Text = discipline.Hours.LabWorks;
+            Form2.Controls.Text = discipline.Hours.ControlWs;
+            Form2.Course.Text = discipline.Hours.CourseWs;
 
             SetSources(box.SelectedIndex);
             SetPlan(box.SelectedIndex);

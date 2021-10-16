@@ -389,54 +389,58 @@ namespace Wisdom.Model
                 )
         };
 
-        public static readonly DisciplineBase[] Disciplines = {
-            new DisciplineBase(
-                "ОГСЭ.01 Основы философии",
-                new HeaderHours("68", "58", "10", "", "25", "13", "", "8", ""),
-                new List<HoursList<LevelsList<HashList<String2>>>> {
-                    new HoursList<LevelsList<HashList<String2>>>("Пример", "21")
-                    {
-                        Values = new List<LevelsList<HashList<String2>>>
+        public static readonly List<DisciplineBase>[] Disciplines = {
+            new List<DisciplineBase>()
+            {
+                new DisciplineBase(
+                    "ОГСЭ.01 Основы философии",
+                    new HeaderHours("68", "58", "10", "", "25", "13", "", "8", ""),
+                    new List<HoursList<LevelsList<HashList<String2>>>> {
+                        new HoursList<LevelsList<HashList<String2>>>("Пример", "21")
                         {
-                            new LevelsList<HashList<String2>>("Пример", "11", "1")
+                            Values = new List<LevelsList<HashList<String2>>>
                             {
-                                Values = new List<HashList<String2>>()
+                                new LevelsList<HashList<String2>>("Пример", "11", "1")
                                 {
-                                    new HashList<String2> ("255", new List<String2>() {
-                                        new String2("Прохождение основ","5"),
-                                        new String2("Изучение предмета","6")
-                                    })
-                                }
-                            },
-                            new LevelsList<HashList<String2>>("Пример", "10", "2")
-                            {
-                                Values = new List<HashList<String2>>()
+                                    Values = new List<HashList<String2>>()
+                                    {
+                                        new HashList<String2> ("255", new List<String2>() {
+                                            new String2("Прохождение основ","5"),
+                                            new String2("Изучение предмета","6")
+                                        })
+                                    }
+                                },
+                                new LevelsList<HashList<String2>>("Пример", "10", "2")
                                 {
-                                    new HashList<String2> ("255", new List<String2>() {
-                                        new String2("Обучение азам","5")
-                                    }),
-                                    new HashList<String2> ("0", new List<String2>() {
-                                        new String2("Кто есть Я?","5")
-                                    })
+                                    Values = new List<HashList<String2>>()
+                                    {
+                                        new HashList<String2> ("255", new List<String2>() {
+                                            new String2("Обучение азам","5")
+                                        }),
+                                        new HashList<String2> ("0", new List<String2>() {
+                                            new String2("Кто есть Я?","5")
+                                        })
+                                    }
                                 }
                             }
                         }
+                    },
+                    "Общеобязательному направлению",
+                    "Курс практики 1",
+                    "/1",
+                    new List<HashList<string>>
+                    {
+                        new HashList<string>("0", new List<string>() {
+                            "Пример источника",
+                            "Пример источника 2",
+                            "Пример источника 3",
+                            "Пример источника 4",
+                        })
                     }
-                },
-                "Общеобязательному направлению",
-                "Курс практики 1",
-                "/1",
-                new List<HashList<string>>
-                {
-                    new HashList<string>("0", new List<string>() {
-                        "Пример источника",
-                        "Пример источника 2",
-                        "Пример источника 3",
-                        "Пример источника 4",
-                    })
-                }
-            ),
-
+                )
+        },
+        new List<DisciplineBase>()
+        {
             new DisciplineBase(
                 "ОГСЭ.02 Технология разработки и защиты баз данных",
                 new HeaderHours("68", "58", "10", "", "25", "13", "", "8", ""),
@@ -469,9 +473,11 @@ namespace Wisdom.Model
                         "Пример источника 8",
                     })
                 }
-            ),
-
-            new DisciplineBase(
+            )
+        },
+        new List<DisciplineBase>()
+        {
+             new DisciplineBase(
                 "ОГСЭ.03 Иностранный язык в профессиональной деятельности (английский язык)",
                 new HeaderHours("176", "175", "1", "", "14", "161", "", "", ""),
                 new List<HoursList<LevelsList<HashList<String2>>>>{
@@ -755,6 +761,8 @@ namespace Wisdom.Model
                     })
                 }
             )
+        }
+           
         };
     }
 }

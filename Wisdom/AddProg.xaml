@@ -182,13 +182,13 @@
                     <Label Content="Код и название дисциплины" Padding="0" />
                 </Viewbox>
 
-                <ComboBox x:Name="DpSelect" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" Grid.Row="8" VerticalAlignment="Stretch" SelectionChanged="ResetAllDisciplineFields" Style="{StaticResource SubCaptionBox}" IsEditable="True">
+                <ComboBox x:Name="DpSelect" ItemsSource="{Binding Path=DisciplinesSelect}" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0" Grid.Row="8" VerticalAlignment="Stretch" SelectionChanged="ResetAllDisciplineFields" Style="{StaticResource SubCaptionBox}" IsEditable="True">
                     <ComboBox.ItemContainerStyle>
                         <StaticResource ResourceKey="ItemsBox"></StaticResource>
                     </ComboBox.ItemContainerStyle>
-                    <ComboBoxItem Content="ОГСЭ.01 Основы философии"/>
+                    <!--<ComboBoxItem Content="ОГСЭ.01 Основы философии"/>
                     <ComboBoxItem Content="ОГСЭ.02 Технология разработки и защиты баз данных"/>
-                    <ComboBoxItem Content="ОГСЭ.03 Иностранный язык в профессиональной деятельности (английский язык)"/>
+                    <ComboBoxItem Content="ОГСЭ.03 Иностранный язык в профессиональной деятельности (английский язык)"/>-->
                 </ComboBox>
 
                 <Viewbox Grid.Row="10" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">
