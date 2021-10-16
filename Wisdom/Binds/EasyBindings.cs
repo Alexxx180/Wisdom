@@ -46,6 +46,30 @@ namespace Wisdom.Binds
                 multi.Bindings.Add(bind);
             return multi;
         }
+        public static MultiBinding ResetMulti(DependencyObject @object,
+            DependencyProperty property, IMultiValueConverter converter)
+        {
+            MultiBinding oldCalculation = GetMulti(@object, property);
+            UnBind(@object, property);
+            MultiBinding newCalculation = new MultiBinding { Converter = converter };
+
+            foreach (Binding binding in oldCalculation.Bindings)
+                newCalculation.Bindings.Add(binding);
+            return newCalculation;
+        }
+        public static MultiBinding GetMulti(DependencyObject @object, DependencyProperty property)
+        {
+            return BindingOperations.GetMultiBindingExpression(@object, property).ParentMultiBinding;
+        }
+        public static Binding GetBind(DependencyObject @object, DependencyProperty property)
+        {
+            return BindingOperations.GetBindingExpression(@object, property).ParentBinding;
+        }
+        public static DependencyObject UnBind(DependencyObject @object, DependencyProperty property)
+        {
+            BindingOperations.ClearBinding(@object, property);
+            return @object;
+        }
         public static DependencyObject SetRunMultiBind(Run run, IMultiValueConverter converter, params Binding[] bindings)
         {
             return SetBind(run, Run.TextProperty, Multi(converter, bindings));

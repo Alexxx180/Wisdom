@@ -13,9 +13,9 @@
         <Setter Property="Control.VerticalAlignment" Value="Stretch"/>
     </Style>
     <Style x:Key="SubCaptionBox">
-        <Setter Property="Control.Background" Value="#FF00A2E8"/>
-        <Setter Property="Control.Foreground" Value="White"/>
-        <Setter Property="Control.BorderBrush" Value="White"/>
+        <Setter Property="Control.Background" Value="#FFAAFFFF"/>
+        <Setter Property="Control.Foreground" Value="Black"/>
+        <Setter Property="Control.BorderBrush" Value="Black"/>
         <Setter Property="Control.BorderThickness" Value="2"/>
         <Setter Property="Control.FontSize" Value="26"/>
         <Setter Property="Control.Margin" Value="0"/>

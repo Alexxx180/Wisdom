@@ -78,6 +78,14 @@ namespace Wisdom.Customing
                 startNo = startNo + step;
             }
         }
+        public static int Restack(StackPanel stack, Grid toMove, Grid toAdd)
+        {
+            stack.Children.Remove(toMove);
+            stack.Children.Add(toAdd);
+            stack.Children.Add(toMove);
+            return stack.Children.Count;
+        }
+
         public static void SetProp(UIElement cntrl, DependencyProperty property, object value)
         {
             cntrl.SetValue(property, value);
@@ -95,6 +103,10 @@ namespace Wisdom.Customing
             for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value[i]);
         }
         public static void SetPropX(DependencyProperty property, object value, Control[] cntrl)
+        {
+            for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value);
+        }
+        public static void SetPropX(DependencyProperty property, object value, params FrameworkElement[] cntrl)
         {
             for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value);
         }

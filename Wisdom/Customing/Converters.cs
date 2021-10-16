@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Windows.Media;
 using System.Windows.Controls;
+using System.Collections.Generic;
 
 namespace Wisdom.Customing
 {
@@ -15,11 +17,15 @@ namespace Wisdom.Customing
 
         public static CheckBox Chx(Grid grid, int no) => grid.Children[no] as CheckBox;
 
+        public static Border Border(Grid grid, int no) => grid.Children[no] as Border;
+
         public static Grid Parent(StackPanel stack) => stack.Parent as Grid;
 
         public static Grid Parent(Button button) => button.Parent as Grid;
 
         public static StackPanel Parent(Grid stack) => stack.Parent as StackPanel;
+
+        public static Label Child(Border border) => border.Child as Label;
 
         public static int Itry(string value)
         {

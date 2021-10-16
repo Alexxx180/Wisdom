@@ -76,7 +76,7 @@ namespace Wisdom
             for (byte i = 0; i < Specialities[no].GeneralCompetetions.Count; i++)
             {
                 name.Text = Specialities[no].GeneralCompetetions[i].Hours;
-                Button delete = TextContent4(add);
+                Button delete = GeneralCompetetion(add);
                 delete.Click += DeleteGeneralCompetetion;
                 Grid current = delete.Parent as Grid;
                 TextBox skills = current.Children[4] as TextBox;
@@ -153,12 +153,12 @@ namespace Wisdom
                             {
                                 nextContentName.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[iv].Name;
                                 nextContentHours.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[iv].Value;
-                                TableContent(nextContentAdd, null).Click += AnyDeleteAuto;
+                                TableContent(nextContentAdd).Click += AnyDeleteAuto;
                             }
                             continue;
                         }
 
-                        Trace.WriteLine(Disciplines[no].Plan[i].Values[ii].Values[iii].Name);
+                        //Trace.WriteLine(Disciplines[no].Plan[i].Values[ii].Values[iii].Name);
 
                         bool isLastTask = Disciplines[no].Plan[i].Values[ii].Values[iii].Values.Count <= 1;
                         nextTasksType.SelectedIndex = Ints(Disciplines[no].Plan[i].Values[ii].Values[iii].Name);
@@ -199,7 +199,7 @@ namespace Wisdom
                         {
                             nextTaskName.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[iv].Name;
                             nextTaskHours.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[iv].Value;
-                            TableContent(nextTaskAdd, null).Click += AnyDeleteAuto;
+                            TableContent(nextTaskAdd).Click += AnyDeleteAuto;
                         }
                     }
                 }
@@ -231,7 +231,7 @@ namespace Wisdom
                 for (byte ii = 0; ii < Disciplines[no].Sources[i].Values.Count; ii++)
                 {
                     name.Text = Disciplines[no].Sources[i].Values[ii];
-                    TextContent2(subAdd).Click += DeleteSource;
+                    Source(subAdd).Click += DeleteSource;
                 }
             }
         }
@@ -570,9 +570,17 @@ namespace Wisdom
         {
             StudyLevel(sender as Button).Click += DeleteLevel;
         }
+        private void AddSource(object sender, RoutedEventArgs e)
+        {
+            Source(sender as Button).Click += DeleteSource;
+        }
+        private void AddTotalCompetetion(object sender, RoutedEventArgs e)
+        {
+            GeneralCompetetion(sender as Button).Click += DeleteGeneralCompetetion;
+        }
         private void AddContent(object sender, RoutedEventArgs e)
         {
-            TableContent(sender as Button, null).Click += AnyDeleteAuto;
+            TableContent(sender as Button).Click += AnyDeleteAuto;
         }
         private void AddSources(object sender, RoutedEventArgs e)
         {
@@ -580,21 +588,15 @@ namespace Wisdom
             add.Click += AddSource;
             delete.Click += DeleteSources;
         }
-        private void AddSource(object sender, RoutedEventArgs e)
-        {
-            TextContent2(sender as Button).Click += DeleteSource;
-        }
-        private void AddTotalCompetetion(object sender, RoutedEventArgs e)
-        {
-            TextContent4(sender as Button).Click += DeleteGeneralCompetetion;
-        }
+        
+        
         private void AddProfessionalCompetetion(object sender, RoutedEventArgs e)
         {
             TextContent5(sender as Button).Click += DeleteProfessionalItem;
         }
-        private void AddListItem2(object sender, RoutedEventArgs e)
+        private void AddMarkControls(object sender, RoutedEventArgs e)
         {
-            TextContent3(sender as Button, null).Click += DeleteListItem2;
+            TextContent3(sender as Button).Click += DeleteListItem2;
         }
         private void DeleteAllSources()
         {
