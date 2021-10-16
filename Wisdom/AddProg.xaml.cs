@@ -51,114 +51,133 @@ namespace Wisdom
         private void SetPlan(int no)
         {
             DropAllTopics();
-            Grid nextTopic = DisciplinePlan.Children[0] as Grid;
-            TextBox topicName = nextTopic.Children[2] as TextBox;
-            TextBox topicHours = nextTopic.Children[3] as TextBox;
-            
-            //Topics
-            for (byte i = 0; i < Disciplines[no].Plan.Count; i++)
+            Grid nextTopic = GridChild(DisciplinePlan, 0);
+            List<HoursList<LevelsList<HashList<String2>>>> planTopic = Disciplines[no].Plan;
+            SetTopics(planTopic, nextTopic);
+        }
+
+        //Topics
+        private void SetTopics(List<HoursList<LevelsList<HashList<String2>>>> planTopic,
+            Grid nextTopic)
+        {
+            TextBox topicName = Box(nextTopic, 2);
+            TextBox topicHours = Box(nextTopic, 3);
+
+            for (byte i = 0; i < planTopic.Count; i++)
             {
-                topicName.Text = Disciplines[no].Plan[i].Name;
-                topicHours.Text = Disciplines[no].Plan[i].Hours;
+                topicName.Text = planTopic[i].Name;
+                topicHours.Text = planTopic[i].Hours;
                 TopicAdd2(nextTopic);
 
-                Grid topic = DisciplinePlan.Children[i] as Grid;
-                StackPanel nextThemeGroup = topic.Children[4] as StackPanel;
+                Grid topic = GridChild(DisciplinePlan, i);
+                StackPanel nextThemeGroup = Panel(topic, 4);
 
-                Grid nextTheme = nextThemeGroup.Children[0] as Grid;
-                TextBox nextThemeName = nextTheme.Children[2] as TextBox;
-                TextBox nextThemeHours = nextTheme.Children[3] as TextBox;
-                ComboBox nextThemeLevel = nextTheme.Children[4] as ComboBox;
                 Trace.WriteLine("Topic: " + i);
+                HoursList<LevelsList<HashList<String2>>> topicTheme = planTopic[i];
+                SetTheme(topicTheme, nextThemeGroup);
+            }
+        }
+        //Themes
+        private void SetTheme(HoursList<LevelsList<HashList<String2>>> topicTheme, StackPanel nextThemeGroup)
+        {
+            Grid nextTheme = GridChild(nextThemeGroup, 0);
+            TextBox nextThemeName = Box(nextTheme, 2);
+            TextBox nextThemeHours = Box(nextTheme, 3);
+            ComboBox nextThemeLevel = Cbx(nextTheme, 4);
 
-                //Themes
-                for (byte ii = 0; ii < Disciplines[no].Plan[i].Values.Count; ii++)
+            for (byte ii = 0; ii < topicTheme.Values.Count; ii++)
+            {
+                nextThemeName.Text = topicTheme.Values[ii].Name;
+                nextThemeHours.Text = topicTheme.Values[ii].Hours;
+                nextThemeLevel.Text = topicTheme.Values[ii].Level;
+                ThemeAdd(nextTheme);
+
+                Grid theme = GridChild(nextThemeGroup, ii);
+                foreach (UIElement el in theme.Children)
+                    Trace.WriteLine(el);
+                StackPanel nextTasksGroup = Panel(theme, 5);
+
+                Trace.WriteLine("Theme: " + ii);
+                LevelsList<HashList<String2>> themeContent = topicTheme.Values[ii];
+                SetThemeContent(themeContent, nextTasksGroup);
+            }
+        }
+
+        //Content
+        private void SetThemeContent(LevelsList<HashList<String2>> themeContent,
+            StackPanel nextTasksGroup)
+        {
+            Grid nextTasks = GridChild(nextTasksGroup, 1);
+            Button nextTasksAdd = Btn(nextTasks, 0);
+            ComboBox nextTasksType = Cbx(nextTasks, 1);
+            CheckBox nextTasksMultiplier = Chx(nextTasks, 2);
+
+            for (byte iii = 0; iii < themeContent.Values.Count; iii++)
+            {
+                HashList<String2> contentTasks = themeContent.Values[iii];
+                if (themeContent.Values[iii].Name == "255")
                 {
-                    nextThemeName.Text = Disciplines[no].Plan[i].Values[ii].Name;
-                    nextThemeHours.Text = Disciplines[no].Plan[i].Values[ii].Hours;
-                    nextThemeLevel.Text = Disciplines[no].Plan[i].Values[ii].Level;
-                    ThemeAdd(nextTheme);
-
-                    Grid theme = nextThemeGroup.Children[ii] as Grid;
-                    foreach (UIElement el in theme.Children)
-                        Trace.WriteLine(el);
-                    StackPanel nextTasksGroup = theme.Children[5] as StackPanel;
-
-                    Grid nextTasks = nextTasksGroup.Children[1] as Grid;
-                    Button nextTasksAdd = nextTasks.Children[0] as Button;
-                    ComboBox nextTasksType = nextTasks.Children[1] as ComboBox;
-                    CheckBox nextTasksMultiplier = nextTasks.Children[2] as CheckBox;
-
-                    Trace.WriteLine("Theme: " + ii);
-
-                    //Theme content
-                    for (byte iii = 0; iii < Disciplines[no].Plan[i].Values[ii].Values.Count; iii++)
-                    {
-                        if (Disciplines[no].Plan[i].Values[ii].Values[iii].Name == "255")
-                        {
-                            Grid content = nextTasksGroup.Children[0] as Grid;
-                            StackPanel contentStack = content.Children[4] as StackPanel;
-
-                            Grid nextContent = contentStack.Children[0] as Grid;
-                            Button nextContentAdd = nextContent.Children[0] as Button;
-                            TextBox nextContentName = nextContent.Children[2] as TextBox;
-                            TextBox nextContentHours = nextContent.Children[3] as TextBox;
-
-                            for (byte iv = 0; iv < Disciplines[no].Plan[i].Values[ii].Values[iii].Values.Count; iv++)
-                            {
-                                nextContentName.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[iv].Name;
-                                nextContentHours.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[iv].Value;
-                                TableContent(nextContentAdd).Click += AnyDeleteAuto;
-                            }
-                            continue;
-                        }
-
-                        //Trace.WriteLine(Disciplines[no].Plan[i].Values[ii].Values[iii].Name);
-
-                        bool isLastTask = Disciplines[no].Plan[i].Values[ii].Values[iii].Values.Count <= 1;
-                        nextTasksType.SelectedIndex = Ints(Disciplines[no].Plan[i].Values[ii].Values[iii].Name);
-                        nextTasksMultiplier.IsChecked = !isLastTask;
-                        Button deleteAddedTasks = NewTypeContentTasks(nextTasksAdd);
-
-                        Grid nextTask;
-                        Button nextTaskAdd;
-                        TextBox nextTaskName, nextTaskHours;
-
-                        if (isLastTask)
-                        {
-                            //nextTask = nextTasksGroup.Children[iii] as Grid;
-                            nextTask = deleteAddedTasks.Parent as Grid;
-
-                            nextTaskName = nextTask.Children[2] as TextBox;
-                            nextTaskHours = nextTask.Children[3] as TextBox;
-
-                            foreach(UIElement el in nextTask.Children)
-                                Trace.WriteLine(el);
-
-                            nextTaskName.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[0].Name;
-                            nextTaskHours.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[0].Value;
-                            continue;
-                        }
-
-                        //Grid task = nextTasksGroup.Children[iii] as Grid;
-                        Grid task = deleteAddedTasks.Parent as Grid;
-                        StackPanel taskStack = task.Children[4] as StackPanel;
-
-                        nextTask = taskStack.Children[0] as Grid;
-                        nextTaskAdd = nextTask.Children[0] as Button;
-                        nextTaskName = nextTask.Children[2] as TextBox;
-                        nextTaskHours = nextTask.Children[3] as TextBox;
-
-                        //Content tasks
-                        for (byte iv = 0; iv < Disciplines[no].Plan[i].Values[ii].Values[iii].Values.Count; iv++)
-                        {
-                            nextTaskName.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[iv].Name;
-                            nextTaskHours.Text = Disciplines[no].Plan[i].Values[ii].Values[iii].Values[iv].Value;
-                            TableContent(nextTaskAdd).Click += AnyDeleteAuto;
-                        }
-                    }
+                    SetMaterial(contentTasks, nextTasksGroup);
+                    return;
                 }
 
+                bool isLastTask = themeContent.Values[iii].Values.Count <= 1;
+                nextTasksType.SelectedIndex = Ints(themeContent.Values[iii].Name);
+                nextTasksMultiplier.IsChecked = !isLastTask;
+                Button deleteAddedTasks = NewTypeContentTasks(nextTasksAdd);
+                
+                if (isLastTask)
+                    SetTask(contentTasks, deleteAddedTasks);
+                else
+                    SetTasksGroup(contentTasks, deleteAddedTasks);
+            }
+        }
+
+        //Content material
+        private void SetMaterial(HashList<String2> contentTasks, StackPanel nextTasksGroup)
+        {
+            Grid content = GridChild(nextTasksGroup, 0);
+            StackPanel contentStack = Panel(content, 4);
+
+            Grid nextContent = GridChild(contentStack, 0);
+            Button nextContentAdd = Btn(nextContent, 0);
+            TextBox nextContentName = Box(nextContent, 2);
+            TextBox nextContentHours = Box(nextContent, 3);
+
+            for (byte iv = 0; iv < contentTasks.Values.Count; iv++)
+            {
+                nextContentName.Text = contentTasks.Values[iv].Name;
+                nextContentHours.Text = contentTasks.Values[iv].Value;
+                TableContent(nextContentAdd).Click += AnyDeleteAuto;
+            }
+        }
+
+        //Content single task
+        private void SetTask(HashList<String2> contentTasks, Button deleteAddedTasks)
+        {
+            Grid nextTask = Parent(deleteAddedTasks);
+            TextBox nextTaskName = Box(nextTask, 2);
+            TextBox nextTaskHours = Box(nextTask, 3);
+            nextTaskName.Text = contentTasks.Values[0].Name;
+            nextTaskHours.Text = contentTasks.Values[0].Value;
+        }
+
+        //Content tasks group
+        private void SetTasksGroup(HashList<String2> contentTasks, Button deleteAddedTasks)
+        {
+            Grid task = Parent(deleteAddedTasks);
+            StackPanel taskStack = Panel(task, 4);
+
+            Grid nextTask = GridChild(taskStack, 0);
+            Button nextTaskAdd = Btn(nextTask, 0);
+            TextBox nextTaskName = Box(nextTask, 2);
+            TextBox nextTaskHours = Box(nextTask, 3);
+
+            for (byte iv = 0; iv < contentTasks.Values.Count; iv++)
+            {
+                nextTaskName.Text = contentTasks.Values[iv].Name;
+                nextTaskHours.Text = contentTasks.Values[iv].Value;
+                TableContent(nextTaskAdd).Click += AnyDeleteAuto;
             }
         }
 
