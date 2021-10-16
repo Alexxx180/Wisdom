@@ -12,9 +12,15 @@
     <Compile Update="AddProg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\AddProgram\Competetions.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddProg.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\AddProgram\Competetions.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

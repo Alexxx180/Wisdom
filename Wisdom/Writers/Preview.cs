@@ -10,19 +10,19 @@ namespace Wisdom.Writers
     public static class Preview
     {
         public static TableRow ThemePreviewRow(Label no,
-            TextBox name, TextBox hours, out TableCell contentsCell)
+            TextBox name, TextBox hours, out TableCell contentGroup)
         {
-            Binding bindThemeNo = FastBind(no, "Content");
-            Binding bindThemeName = FastBind(name, "Text");
-            MultiBinding bindTheme = Multi(new SectionsConverter(), bindThemeNo, bindThemeName);
+            Binding bindNo = FastBind(no, "Content");
+            Binding bindName = FastBind(name, "Text");
+            MultiBinding bindTheme = Multi(new SectionsConverter(), bindNo, bindName);
             Binding bindLevel = FastBind(hours, "Text");
 
-            TableRow newTheme = new TableRow();
-            TableCell themeNameCell = UsualTableCell(TextCB(bindTheme));
-            contentsCell = Span2TableCell();
-            TableCell themeLevelCell = UsualTableCell(TextCenter(bindLevel));
-            AddRCells(newTheme, themeNameCell, contentsCell, themeLevelCell);
-            return newTheme;
+            TableRow theme = new TableRow();
+            TableCell themeName = UsualTableCell(TextCB(bindTheme));
+            contentGroup = Span2TableCell();
+            TableCell themeLevel = UsualTableCell(TextCenter(bindLevel));
+            AddRCells(theme, themeName, contentGroup, themeLevel);
+            return theme;
         }
 
         public static Table ContentPreviewTable(out TableRowGroup contentGroup)
@@ -38,6 +38,7 @@ namespace Wisdom.Writers
             content.RowGroups.Add(contentGroup);
             return content;
         }
+
         public static TableRow TasksPreviewRow(out TableCell task)
         {
             TableRow tasks = new TableRow();
@@ -45,6 +46,7 @@ namespace Wisdom.Writers
             AddRCells(tasks, task);
             return tasks;
         }
+
         public static TableRowGroup TaskPreviewGroup(TableCell task)
         {
             Table taskTable = UsualTable();

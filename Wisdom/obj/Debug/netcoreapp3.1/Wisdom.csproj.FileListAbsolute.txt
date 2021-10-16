@@ -67,3 +67,5 @@ C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.csproj.CopyCo
 C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.dll
 C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.pdb
 C:\8901\Татаринцев\Wisdom\obj\Debug\netcoreapp3.1\Wisdom.genruntimeconfig.cache
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Windows\AddProgram\Competetions.g.cs
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Debug\netcoreapp3.1\Windows\AddProgram\Competetions.baml

@@ -75,6 +75,13 @@ namespace Wisdom.Binds
             return SetBind(run, Run.TextProperty, Multi(converter, bindings));
         }
 
+        public static DependencyObject BindHourColor(TextBox hours)
+        {
+            Binding bindThemeHours = FastBind(hours, "Text");
+            MultiBinding colorFromText = Multi(new UsedValuesConverter(), bindThemeHours);
+            return SetBind(hours, Control.BackgroundProperty, colorFromText);
+        }
+
         public static Paragraph Text(Binding binding)
         {
             return new Paragraph()

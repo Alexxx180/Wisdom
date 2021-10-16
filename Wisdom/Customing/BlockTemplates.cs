@@ -165,6 +165,17 @@ namespace Wisdom.Customing
             box.Selection.ApplyPropertyValue(dps[p], box.Selection.GetPropertyValue(dps[p]).Equals(obs[p]) ? cls[p] : obs[p]);
         }
 
+        public static Grid NextCompetetion(string prefix, out Button add)
+        {
+            Grid subGrid = GridItem5();
+            add = AddButton();
+            Label no = ListNo($"{prefix}1");
+            TextBox level = UsualBox("");
+            GridAddX2(subGrid, 0, add, no, level);
+            SetColSpan(level, 3);
+            return subGrid;
+        }
+
         public static Label ListNo(string content) => new Label { Style = GetStyle("No1"), Content = content };
         public static Label ListNo2(string content) => new Label { Style = GetStyle("No2"), Content = content };
         public static Label Caption(string content) => new Label { Style = GetStyle("ListCaptions"), Content = content };
@@ -184,7 +195,7 @@ namespace Wisdom.Customing
         public static Button AddButton() => new Button { Style = GetStyle("AddButton") };
         public static Button AddButton(Grid grid) => new Button { Style = GetStyle("AddButton"), Tag = grid };
 
-        public static Border SolidBorder(byte red, byte green, byte blue) => new Border { Background = new SolidColorBrush(Color.FromRgb(red, green, blue)) };
+        public static Border SolidBorder(SolidColorBrush backColor) => new Border { Background = backColor };
 
         public static Paragraph FromTag(Grid grid) => grid.Tag as Paragraph;
         public static List ListFromTag(Grid grid) => grid.Tag as List;
@@ -204,6 +215,7 @@ namespace Wisdom.Customing
         //public static SolidColorBrush Red = new SolidColorBrush(Color.FromRgb(238, 235, 182));
         public static SolidColorBrush Yellow = new SolidColorBrush(Color.FromRgb(238, 235, 182));
         //public static SolidColorBrush Green = new SolidColorBrush(Color.FromRgb(238, 235, 182));
+        public static SolidColorBrush Blue = new SolidColorBrush(Color.FromRgb(3, 198, 255));
 
     }
 }

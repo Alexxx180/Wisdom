@@ -62,7 +62,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="AddProgMain">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -280,7 +280,8 @@
                 </ComboBox>
             </Grid>
 
-            <Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <local:Competetions x:Name="Form2" Visibility="Hidden" />
+            <!--<Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.35*"/>
@@ -555,7 +556,7 @@
 
                 </Grid>
 
-            </Grid>
+            </Grid>-->
 
             <!--RCompetentions-->
             <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
