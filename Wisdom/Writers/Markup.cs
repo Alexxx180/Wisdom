@@ -233,7 +233,7 @@ namespace Wisdom.Writers
                 rows.Add(SectionAdd($"Раздел {(i + 1)}. {Plan[i].Name}", Plan[i].Hours));
                 for (byte ii = 0; ii < Plan[i].Values.Count; ii++)
                     rows.AddRange(ThemeAdd($"Тема {(i + 1)}.{(ii + 1)}. {Plan[i].Values[ii].Name}",
-                        Plan[i].Values[ii].Hours, Plan[i].Values[ii].Level, Plan[i].Values[ii].Values));
+                        Plan[i].Values[ii].Hours, Plan[i].Values[ii].Competetions, Plan[i].Values[ii].Level, Plan[i].Values[ii].Values));
             }
             return rows;
         }
@@ -261,19 +261,20 @@ namespace Wisdom.Writers
             return tableRow;
         }
         public static List<TableRow> ThemeAdd(string title, string hours,
-            string level, List<HashList<String2>> data)
+            string competetions, string level, List<HashList<String2>> data)
         {
             List<TableRow> themeContents = new List<TableRow>();
 
             Run themeRun1 = RunAdd(title, new Bold());
             Run descriptionRun1 = RunAdd(data[0].Name);
             Run hoursRun1 = RunAdd(hours);
+            Run competetionRun1 = RunAdd(competetions);
             Run levelRun1 = RunAdd(level);
 
             Paragraph sectionP1 = ParagraphAdd(JustificationValues.Center, themeRun1);
             Paragraph desriptionP1 = ParagraphAdd(JustificationValues.Both, descriptionRun1);
             Paragraph hoursP1 = ParagraphAdd(JustificationValues.Center, hoursRun1);
-            Paragraph competetionsP1 = ParagraphAdd(JustificationValues.Center);
+            Paragraph competetionsP1 = ParagraphAdd(JustificationValues.Center, competetionRun1);
             Paragraph levelsP1 = ParagraphAdd(JustificationValues.Center, levelRun1);
             
             sectionP1.ParagraphProperties.Append(TableTabs());

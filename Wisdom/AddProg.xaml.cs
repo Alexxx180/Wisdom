@@ -128,6 +128,7 @@ namespace Wisdom
             Grid nextTheme = GridChild(nextThemeGroup, 0);
             TextBox nextThemeName = Box(nextTheme, 2);
             TextBox nextThemeHours = Box(nextTheme, 3);
+            TextBox nextThemeCompetetions = Box(nextTheme, 4);
             ComboBox nextThemeLevel = Cbx(nextTheme, 5);
 
             for (byte ii = 0; ii < topicTheme.Values.Count; ii++)
@@ -135,6 +136,7 @@ namespace Wisdom
                 nextThemeName.Text = topicTheme.Values[ii].Name;
                 nextThemeHours.Text = topicTheme.Values[ii].Hours;
                 nextThemeLevel.Text = topicTheme.Values[ii].Level;
+                nextThemeCompetetions.Text = topicTheme.Values[ii].Competetions;
                 ThemeAdd(nextTheme);
 
                 Grid theme = GridChild(nextThemeGroup, ii);
@@ -445,12 +447,13 @@ namespace Wisdom
         //DisciplinePlan - Grid - StackPanel - Grid
         //Раздел 1. - Тема 1.1.
         private LevelsList<HashList<String2>> GetHours(Grid grid, byte nameNo, byte hoursNo,
-            byte levelNo, byte contentCaptionNo, byte contentNameNo, byte contentHoursNo)
+            byte competetionsNo, byte levelNo, byte contentCaptionNo, byte contentNameNo, byte contentHoursNo)
         { //byte index3, 
             TextBox caption = Box(grid, nameNo);
             TextBox hours = Box(grid, hoursNo);
+            TextBox competetions = Box(grid, competetionsNo);
             ComboBox level = Cbx(grid, levelNo);
-            LevelsList<HashList<String2>> source = new LevelsList<HashList<String2>>(caption.Text, hours.Text, level.Text); // Exces
+            LevelsList<HashList<String2>> source = new LevelsList<HashList<String2>>(caption.Text, hours.Text, competetions.Text, level.Text); // Exces
             int optimum = levelNo + 1;
             StackPanel panel2 = grid.Children[optimum] as StackPanel;
             int cnt = panel2.Children.Count - 1;
@@ -473,26 +476,27 @@ namespace Wisdom
         //DisciplinePlan - Grid
         //Раздел 1.
         private HoursList<LevelsList<HashList<String2>>> GetHours2(Grid grid, byte topicNameNo, byte topicHoursNo,
-            byte themeNameNo, byte themeHoursNo, byte themeLevelNo, byte contentCaptionNo, byte contentNameNo, byte contentHoursNo)
+            byte themeNameNo, byte themeHoursNo, byte themeCompetetionsNo, byte themeLevelNo,
+            byte contentCaptionNo, byte contentNameNo, byte contentHoursNo)
         { //byte index3, 
-            TextBox caption = grid.Children[topicNameNo] as TextBox;
-            TextBox hours = grid.Children[topicHoursNo] as TextBox;
+            TextBox caption = Box(grid, topicNameNo);
+            TextBox hours = Box(grid, topicHoursNo);
             HoursList<LevelsList<HashList<String2>>> source = new HoursList<LevelsList<HashList<String2>>>(caption.Text, hours.Text);
             int optimum = topicHoursNo + 1;
             StackPanel panel2 = grid.Children[optimum] as StackPanel;
             int cnt = panel2.Children.Count - 1;
             for (byte i = 0; i < cnt; i++)
                 source.Values.Add(GetHours(panel2.Children[i] as Grid, themeNameNo, themeHoursNo,
-                    themeLevelNo, contentCaptionNo, contentNameNo, contentHoursNo));
+                    themeCompetetionsNo, themeLevelNo, contentCaptionNo, contentNameNo, contentHoursNo));
             return source;
         }
+        //Topics| Themes      | Content
+        //2, 3, | 2, 3, 4, 5, | 0, | 2, 3
 
-        //2, 3, | 2, 3, 4, | 0, | 2, 3
-
-        //2, 3, 2, 3, 0, 2, 3
+        //2, 3, 2, 3, 4, 5, 0, 2, 3
         //DisciplinePlan
         private List<HoursList<LevelsList<HashList<String2>>>> GetAbsoleteList(StackPanel panel, byte topicNameNo, byte topicHoursNo,
-            byte themeNameNo, byte themeHoursNo, byte themeLevelNo, byte contentCaptionNo, byte contentNameNo, byte contentHoursNo)
+            byte themeNameNo, byte themeHoursNo, byte themeCompetetionsNo, byte themeLevelNo, byte contentCaptionNo, byte contentNameNo, byte contentHoursNo)
         {
             List<HoursList<LevelsList<HashList<String2>>>> source = new List<HoursList<LevelsList<HashList<String2>>>>();
             int cnt = panel.Children.Count - 1;
@@ -500,7 +504,7 @@ namespace Wisdom
             {
                 Grid grid = panel.Children[i] as Grid;
                 source.Add(GetHours2(grid, topicNameNo, topicHoursNo, themeNameNo, themeHoursNo,
-                    themeLevelNo, contentCaptionNo, contentNameNo, contentHoursNo));
+                    themeCompetetionsNo, themeLevelNo, contentCaptionNo, contentNameNo, contentHoursNo));
             }
             return source;
         }
@@ -532,8 +536,10 @@ namespace Wisdom
             SourcesControl = GetSources(EducationSources, 1, 2);
 
             Applyment = GetSourceList(ApplyAddSpace, 2);
-
-            Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 5, 0, 2, 3);
+            
+            //Topics| Themes      | Content
+            //2, 3, | 2, 3, 4, 5, | 0, | 2, 3
+            Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 4, 5, 0, 2, 3);
             StudyLevels.Values = new List<string>();
             List<List<string>> levels = GetListFromElements3(Levels, 2, 4);
             for (byte i = 0; i < levels.Count; i++)
@@ -865,8 +871,10 @@ namespace Wisdom
             Label themeNo = Lab(current, 1);
             TextBox themeName = Box(current, 2);
             TextBox themeHours = Box(current, 3);
+            TextBox themeCompetetions = Box(current, 4);
             ComboBox themeLevel = Cbx(current, 5);
-            NewTheme(themeNo.Content.ToString(), themes, AllSectionsContents,
+            NewTheme(themeNo.Content.ToString(), themeCompetetions.Text,
+                themes, AllSectionsContents,
                 out Button deleteTheme, out Button addContent,
                 out Button addNextTask, out ComboBox themeLevels,
                 themeName.Text, themeHours.Text, themeLevel.Text);

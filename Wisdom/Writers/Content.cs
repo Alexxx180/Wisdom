@@ -626,7 +626,7 @@ namespace Wisdom.Writers
             deleteTopic.Tag = themes;
             return themes;
         }
-        private static Grid ThemeBase(string no, string name, string hours, string level,
+        private static Grid ThemeBase(string no, string name, string hours, string competetions, string level,
             out Button dropTheme, out ComboBox themeLevels, out StackPanel contentGroup,
             out TextBox themeHours)
         {
@@ -634,7 +634,7 @@ namespace Wisdom.Writers
             dropTheme = DropButton();
             Label themeNo = Caption(no);
             TextBox themeName = SubCaptionBox(name);
-            TextBox themeCompetetions = UsualBox("");
+            TextBox themeCompetetions = UsualBox(competetions);
             themeHours = HoursBox(hours);
             themeLevels = HoursCombo(level, true);
             contentGroup = new StackPanel { Background = Yellow };
@@ -664,17 +664,17 @@ namespace Wisdom.Writers
         public static void NewTheme(int cnt, StackPanel themes, TableRowGroup themePlan,
             out Button BTbutton, out Button addContent, out Button NewTypeAdd, out ComboBox newThemeLevels)
         {
-            NewTheme($"Тема {cnt}.1.", themes, themePlan, out BTbutton, out addContent, out NewTypeAdd, out newThemeLevels, "", "", "");
+            NewTheme($"Тема {cnt}.1.", "", themes, themePlan, out BTbutton, out addContent, out NewTypeAdd, out newThemeLevels, "", "", "");
         }
 
-        public static void NewTheme(string no,
+        public static void NewTheme(string no, string competetions,
             StackPanel themes, TableRowGroup themePlan,
             out Button dropTheme, out Button addContent,
             out Button addNextTask, out ComboBox themeLevels,
             string name, string hours, string level)
         {
             //Theme
-            Grid theme = ThemeBase(no, name, hours, level, out dropTheme,
+            Grid theme = ThemeBase(no, name, hours, competetions, level, out dropTheme,
                 out themeLevels, out StackPanel contentGroup, out TextBox themeHours);
             
             Grid topic = Parent(themes);

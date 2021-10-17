@@ -400,7 +400,7 @@ namespace Wisdom.Model
                         {
                             Values = new List<LevelsList<HashList<String2>>>
                             {
-                                new LevelsList<HashList<String2>>("Пример", "11", "1")
+                                new LevelsList<HashList<String2>>("Пример", "11", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "1")
                                 {
                                     Values = new List<HashList<String2>>()
                                     {
@@ -410,7 +410,7 @@ namespace Wisdom.Model
                                         })
                                     }
                                 },
-                                new LevelsList<HashList<String2>>("Пример", "10", "2")
+                                new LevelsList<HashList<String2>>("Пример", "10", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                                 {
                                     Values = new List<HashList<String2>>()
                                     {
@@ -449,7 +449,7 @@ namespace Wisdom.Model
                     {
                         Values = new List<LevelsList<HashList<String2>>>
                         {
-                            new LevelsList<HashList<String2>>("Пример", "12", "1")
+                            new LevelsList<HashList<String2>>("Пример", "12", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "1")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -485,7 +485,7 @@ namespace Wisdom.Model
                     {
                         Values = new List<LevelsList<HashList<String2>>>
                         {
-                            new LevelsList<HashList<String2>>("Механизация. Mechanization.", "10", "1")
+                            new LevelsList<HashList<String2>>("Механизация. Mechanization.", "10", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "1")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -496,7 +496,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Из истории роботов и гибких производственных систем. History of Robots and Flexible  Manufacturing Systems.", "11", "2")
+                            new LevelsList<HashList<String2>>("Из истории роботов и гибких производственных систем. History of Robots and Flexible  Manufacturing Systems.", "11","ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -506,7 +506,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Автоматизация и общество. Automation and Society.", "11", "2")
+                            new LevelsList<HashList<String2>>("Автоматизация и общество. Automation and Society.", "11","ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -522,7 +522,7 @@ namespace Wisdom.Model
                     {
                         Values = new List<LevelsList<HashList<String2>>>
                         {
-                            new LevelsList<HashList<String2>>("Основные элементы автоматических систем. Basic Elements of Automation.", "10", "2")
+                            new LevelsList<HashList<String2>>("Основные элементы автоматических систем. Basic Elements of Automation.", "10", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -532,7 +532,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Контроль обратной связи и вероятностный контроль. Feedback and Stochastic Control.", "10", "2")
+                            new LevelsList<HashList<String2>>("Контроль обратной связи и вероятностный контроль. Feedback and Stochastic Control.", "10","ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -542,7 +542,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Типы автоматизации. Types of Automation.", "11", "2")
+                            new LevelsList<HashList<String2>>("Типы автоматизации. Types of Automation.", "11", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -558,7 +558,7 @@ namespace Wisdom.Model
                     {
                         Values = new List<LevelsList<HashList<String2>>>
                         {
-                            new LevelsList<HashList<String2>>("ЧПУ типа CNC. CNC Machines.", "11", "2")
+                            new LevelsList<HashList<String2>>("ЧПУ типа CNC. CNC Machines.", "11", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -568,7 +568,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Робототехника. Виды роботов. Robotics.Types of Robots.", "20", "2")
+                            new LevelsList<HashList<String2>>("Робототехника. Виды роботов. Robotics.Types of Robots.", "20", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -578,7 +578,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Автоматизированная сервисная система. Material Handling System.", "7", "2")
+                            new LevelsList<HashList<String2>>("Автоматизированная сервисная система. Material Handling System.", "7", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -588,7 +588,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Автоматические производственные линии. Automated Production Lines.", "7", "2")
+                            new LevelsList<HashList<String2>>("Автоматические производственные линии. Automated Production Lines.", "7", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -604,7 +604,7 @@ namespace Wisdom.Model
                     {
                         Values = new List<LevelsList<HashList<String2>>>
                         {
-                            new LevelsList<HashList<String2>>("Характерные особенности гибких производственных систем. Features of Flexible Manufacturing Systems.", "6", "2")
+                            new LevelsList<HashList<String2>>("Характерные особенности гибких производственных систем. Features of Flexible Manufacturing Systems.", "6", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -614,7 +614,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Гибкие элементы системы. Flexible Cells.", "6", "2")
+                            new LevelsList<HashList<String2>>("Гибкие элементы системы. Flexible Cells.", "6", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -624,7 +624,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Иерархический контроль. Hierarchial Control.", "6", "2")
+                            new LevelsList<HashList<String2>>("Иерархический контроль. Hierarchial Control.", "6", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -640,7 +640,7 @@ namespace Wisdom.Model
                     {
                         Values = new List<LevelsList<HashList<String2>>>
                         {
-                            new LevelsList<HashList<String2>>("Классификация датчиков. Classification of Sensors.", "12", "2")
+                            new LevelsList<HashList<String2>>("Классификация датчиков. Classification of Sensors.", "12", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -650,7 +650,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Датчики приближения и скольжения. Proximity and Slip Sensors.", "12", "2")
+                            new LevelsList<HashList<String2>>("Датчики приближения и скольжения. Proximity and Slip Sensors.", "12", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -666,7 +666,7 @@ namespace Wisdom.Model
                     {
                         Values = new List<LevelsList<HashList<String2>>>
                         {
-                            new LevelsList<HashList<String2>>("Содержание программы. Content of the Program.", "5", "2")
+                            new LevelsList<HashList<String2>>("Содержание программы. Content of the Program.", "5", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -676,7 +676,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Программирование на машинном уровне. Machine-Level Programming.", "5", "2")
+                            new LevelsList<HashList<String2>>("Программирование на машинном уровне. Machine-Level Programming.", "5", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -686,7 +686,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Программирование на уровне задач. Task-Level Programming.", "4", "2")
+                            new LevelsList<HashList<String2>>("Программирование на уровне задач. Task-Level Programming.", "4", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -702,7 +702,7 @@ namespace Wisdom.Model
                     {
                         Values = new List<LevelsList<HashList<String2>>>
                         {
-                            new LevelsList<HashList<String2>>("Электроприводы. Electric Actuators.", "4", "2")
+                            new LevelsList<HashList<String2>>("Электроприводы. Electric Actuators.", "4", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -712,7 +712,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Пневматические приводы (линейные и вращающиеся). Pneumatic Actuators (Linear and Rotary)", "4", "2")
+                            new LevelsList<HashList<String2>>("Пневматические приводы (линейные и вращающиеся). Pneumatic Actuators (Linear and Rotary)", "4", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
@@ -722,7 +722,7 @@ namespace Wisdom.Model
                                     })
                                 }
                             },
-                            new LevelsList<HashList<String2>>("Приводы контура обратной связи. Feedback Loop Actuators.", "4", "2")
+                            new LevelsList<HashList<String2>>("Приводы контура обратной связи. Feedback Loop Actuators.", "4", "ОК 01. ОК 02. ОК 03. ОК 04. ОК 05. ОК 06. ОК 09. ОК 10. ПК 1.1.-1.5. ПК 2.1- 2.3. ПК 3.1-3.5. ПК 4.1.- 4.3.", "2")
                             {
                                 Values = new List<HashList<String2>>()
                                 {
