@@ -243,15 +243,19 @@ namespace Wisdom.Writers
             Run hoursRun = RunAdd(hours, new Bold());
 
             Paragraph sectionP = ParagraphAdd(JustificationValues.Left, sectionRun);
-            sectionP.ParagraphProperties.Append(TableTabs());
             Paragraph desriptionP = ParagraphAdd(JustificationValues.Both);
-            desriptionP.ParagraphProperties.Append(TableTabs());
             Paragraph hoursP = ParagraphAdd(JustificationValues.Center, hoursRun);
-            hoursP.ParagraphProperties.Append(TableTabs());
+            Paragraph competetionsP = ParagraphAdd(JustificationValues.Center);
             Paragraph levelsP = ParagraphAdd(JustificationValues.Center);
+            
+            sectionP.ParagraphProperties.Append(TableTabs());
+            desriptionP.ParagraphProperties.Append(TableTabs());
+            hoursP.ParagraphProperties.Append(TableTabs());
+            competetionsP.ParagraphProperties.Append(TableTabs());
             levelsP.ParagraphProperties.Append(TableTabs());
 
-            TableCell[] cells = TableCellsTemplate1(sectionP, desriptionP, hoursP, levelsP);
+            TableCell[] cells = TableCellsTemplate4(sectionP, desriptionP, hoursP, competetionsP, levelsP);
+            //TableCell[] cells = TableCellsTemplate1(sectionP, desriptionP, hoursP, levelsP);
 
             TableRow tableRow = TableRowAdd(cells);
             return tableRow;
@@ -267,15 +271,19 @@ namespace Wisdom.Writers
             Run levelRun1 = RunAdd(level);
 
             Paragraph sectionP1 = ParagraphAdd(JustificationValues.Center, themeRun1);
-            sectionP1.ParagraphProperties.Append(TableTabs());
             Paragraph desriptionP1 = ParagraphAdd(JustificationValues.Both, descriptionRun1);
-            desriptionP1.ParagraphProperties.Append(TableTabs());
             Paragraph hoursP1 = ParagraphAdd(JustificationValues.Center, hoursRun1);
-            hoursP1.ParagraphProperties.Append(TableTabs());
+            Paragraph competetionsP1 = ParagraphAdd(JustificationValues.Center);
             Paragraph levelsP1 = ParagraphAdd(JustificationValues.Center, levelRun1);
+            
+            sectionP1.ParagraphProperties.Append(TableTabs());
+            desriptionP1.ParagraphProperties.Append(TableTabs());
+            hoursP1.ParagraphProperties.Append(TableTabs());
+            competetionsP1.ParagraphProperties.Append(TableTabs());
             levelsP1.ParagraphProperties.Append(TableTabs());
 
-            TableCell[] cells1 = TableCellsTemplate1(sectionP1, desriptionP1, hoursP1, levelsP1);
+            TableCell[] cells1 = TableCellsTemplate4(sectionP1, desriptionP1, hoursP1, competetionsP1, levelsP1);
+            //TableCell[] cells1 = TableCellsTemplate1(sectionP1, desriptionP1, hoursP1, levelsP1);
 
             TableRow headerRow = TableRowAdd(cells1);
 
@@ -293,15 +301,18 @@ namespace Wisdom.Writers
                 Run descriptionRun = RunAdd(data[i].Name);
 
                 Paragraph sectionP = ParagraphAdd(JustificationValues.Center);
-                sectionP.ParagraphProperties.Append(TableTabs());
                 Paragraph desriptionP = ParagraphAdd(JustificationValues.Both, descriptionRun);
-                desriptionP.ParagraphProperties.Append(TableTabs());
                 Paragraph hoursP = ParagraphAdd(JustificationValues.Center);
-                hoursP.ParagraphProperties.Append(TableTabs());
+                Paragraph competetionsP = ParagraphAdd(JustificationValues.Center);
                 Paragraph levelsP = ParagraphAdd(JustificationValues.Center);
+
+                sectionP.ParagraphProperties.Append(TableTabs());
+                desriptionP.ParagraphProperties.Append(TableTabs());
+                hoursP.ParagraphProperties.Append(TableTabs());
+                competetionsP.ParagraphProperties.Append(TableTabs());
                 levelsP.ParagraphProperties.Append(TableTabs());
 
-                TableCell[] subCells = TableCellsTemplate1(sectionP, desriptionP, hoursP, levelsP);
+                TableCell[] subCells = TableCellsTemplate4(sectionP, desriptionP, hoursP, competetionsP, levelsP);
                 TableRow subHeaderRow = TableRowAdd(subCells);
 
                 themeContents.Add(subHeaderRow);
@@ -325,15 +336,20 @@ namespace Wisdom.Writers
             Run hoursRun = RunAdd(hours);
 
             Paragraph sectionP2 = ParagraphAdd(JustificationValues.Center);
-            sectionP2.ParagraphProperties.Append(TableTabs());
             Paragraph desriptionP2 = ParagraphAdd(JustificationValues.Both, descriptionRun2);
-            desriptionP2.ParagraphProperties.Append(TableTabs());
             Paragraph hoursP2 = ParagraphAdd(JustificationValues.Center, hoursRun);
-            hoursP2.ParagraphProperties.Append(TableTabs());
+            Paragraph competetionsP2 = ParagraphAdd(JustificationValues.Center);
             Paragraph levelsP2 = ParagraphAdd(JustificationValues.Center);
+
+            sectionP2.ParagraphProperties.Append(TableTabs());
+            desriptionP2.ParagraphProperties.Append(TableTabs());
+            hoursP2.ParagraphProperties.Append(TableTabs());
+            competetionsP2.ParagraphProperties.Append(TableTabs());
             levelsP2.ParagraphProperties.Append(TableTabs());
 
-            TableCell[] subCells2 = TableCellsTemplate1(sectionP2, desriptionP2, hoursP2, levelsP2);
+            TableCell[] subCells2 = TableCellsTemplate4(sectionP2, desriptionP2, hoursP2, competetionsP2, levelsP2);
+
+            //TableCell[] subCells2 = TableCellsTemplate1(sectionP2, desriptionP2, hoursP2, levelsP2);
 
             TableRow valueRow = TableRowAdd(subCells2);
             return valueRow;
@@ -346,25 +362,25 @@ namespace Wisdom.Writers
             Run hoursRun = RunAdd(hours);
 
             Paragraph sectionP2 = ParagraphAdd(JustificationValues.Center);
-            sectionP2.ParagraphProperties.Append(TableTabs());
             Paragraph headerNo = ParagraphAdd(JustificationValues.Center, no);
-            headerNo.ParagraphProperties.Append(TableTabs());
             Paragraph desriptionP2 = ParagraphAdd(JustificationValues.Both, descriptionRun2);
-            desriptionP2.ParagraphProperties.Append(TableTabs());
             Paragraph hoursP2 = ParagraphAdd(JustificationValues.Center, hoursRun);
-            hoursP2.ParagraphProperties.Append(TableTabs());
+            Paragraph competetionsP2 = ParagraphAdd(JustificationValues.Center);
             Paragraph levelsP2 = ParagraphAdd(JustificationValues.Center);
+
+            sectionP2.ParagraphProperties.Append(TableTabs());
+            headerNo.ParagraphProperties.Append(TableTabs());
+            desriptionP2.ParagraphProperties.Append(TableTabs());
+            hoursP2.ParagraphProperties.Append(TableTabs());
+            competetionsP2.ParagraphProperties.Append(TableTabs());
             levelsP2.ParagraphProperties.Append(TableTabs());
 
-            TableCell[] subCells2 = TableCellsTemplate2(sectionP2,
-                headerNo, desriptionP2, hoursP2, levelsP2);
+            TableCell[] subCells2 = TableCellsTemplate5(sectionP2,
+                headerNo, desriptionP2, hoursP2, competetionsP2, levelsP2);
 
             TableRow valueRow = TableRowAdd(subCells2);
             return valueRow;
         }
-
-        
-
 
         public static List<Paragraph> Literature()
         {
@@ -423,8 +439,30 @@ namespace Wisdom.Writers
                 TableCellAdd(p3, 4482),
             };
         }
-
-        private static Tabs TableTabs()
+        private static TableCell[] TableCellsTemplate4(Paragraph p1,
+            Paragraph p2, Paragraph p3, Paragraph p4, Paragraph p5)
+        {
+            return new TableCell[] {
+                TableCellAdd(p1, 2235),
+                TableCellAdd(p2, 3969, new GridSpan { Val = 2 }),
+                TableCellAdd(p3, 992),
+                TableCellAdd(p4, 1559),
+                TableCellAdd(p5, 992)
+            };
+        }
+        private static TableCell[] TableCellsTemplate5(Paragraph p1,
+            Paragraph p2, Paragraph p3, Paragraph p4, Paragraph p5, Paragraph p6)
+        {
+            return new TableCell[] {
+                TableCellAdd(p1, 2235),
+                TableCellAdd(p2, 425),
+                TableCellAdd(p3, 3544),
+                TableCellAdd(p4, 992),
+                TableCellAdd(p5, 1559),
+                TableCellAdd(p6, 992)
+            };
+        }
+        public static Tabs TableTabs()
         {
             Tabs tabs114 = new Tabs();
             TabStop tabStop1070 = new TabStop() { Val = TabStopValues.Left, Position = 916 };

@@ -11268,7 +11268,8 @@ namespace Wisdom.Writers
             GridColumn gridColumn15_1 = new GridColumn() { Width = "425" };
             GridColumn gridColumn16 = new GridColumn() { Width = "3544" };
             GridColumn gridColumn17 = new GridColumn() { Width = "992" };
-            GridColumn gridColumn18 = new GridColumn() { Width = "2551" };
+            GridColumn gridColumn18 = new GridColumn() { Width = "1559" };
+            GridColumn gridColumn18_1 = new GridColumn() { Width = "992" };
 
             tableGrid5.Append(gridColumn15);
             tableGrid5.Append(gridColumn15_1);
@@ -11539,7 +11540,7 @@ namespace Wisdom.Writers
             TableCell tableCell114 = new TableCell();
 
             TableCellProperties tableCellProperties114 = new TableCellProperties();
-            TableCellWidth tableCellWidth114 = new TableCellWidth() { Width = "2551", Type = TableWidthUnitValues.Dxa };
+            TableCellWidth tableCellWidth114 = new TableCellWidth() { Width = "1559", Type = TableWidthUnitValues.Dxa };
 
             tableCellProperties114.Append(tableCellWidth114);
 
@@ -11662,10 +11663,51 @@ namespace Wisdom.Writers
             tableCell114.Append(paragraph236);
             tableCell114.Append(paragraph237);
 
+            TableCell tableCell114_1 = new TableCell();
+
+            TableCellProperties tableCellProperties114_1 = new TableCellProperties();
+            TableCellWidth tableCellWidth114_1 = new TableCellWidth() { Width = "992", Type = TableWidthUnitValues.Dxa };
+
+            tableCellProperties114_1.Append(tableCellWidth114_1);
+
+            Paragraph paragraph236_1 = new Paragraph() { RsidParagraphMarkRevision = "00015275", RsidParagraphAddition = "0026510F", RsidParagraphProperties = "0026510F", RsidRunAdditionDefault = "00015275" };
+
+            ParagraphProperties paragraphProperties227_1 = new ParagraphProperties();
+
+            Justification justification166_1 = new Justification() { Val = JustificationValues.Center };
+
+            ParagraphMarkRunProperties paragraphMarkRunProperties129_1 = new ParagraphMarkRunProperties();
+            BoldComplexScript boldComplexScript15_1 = new BoldComplexScript();
+
+            paragraphMarkRunProperties129_1.Append(boldComplexScript15_1);
+
+            paragraphProperties227_1.Append(TableTabs());
+            paragraphProperties227_1.Append(justification166_1);
+            paragraphProperties227_1.Append(paragraphMarkRunProperties129_1);
+
+            Run run314_1 = new Run() { RsidRunProperties = "00015275" };
+
+            RunProperties runProperties166_1 = new RunProperties();
+            BoldComplexScript boldComplexScript16_1 = new BoldComplexScript();
+
+            runProperties166_1.Append(boldComplexScript16_1);
+            Text text312_1 = new Text();
+            text312_1.Text = "Уровни освоения";
+
+            run314_1.Append(runProperties166_1);
+            run314_1.Append(text312_1);
+
+            paragraph236_1.Append(paragraphProperties227_1);
+            paragraph236_1.Append(run314_1);
+
+            tableCell114_1.Append(tableCellProperties114_1);
+            tableCell114_1.Append(paragraph236_1);
+
             tableRow43.Append(tableCell111);
             tableRow43.Append(tableCell112);
             tableRow43.Append(tableCell113);
             tableRow43.Append(tableCell114);
+            tableRow43.Append(tableCell114_1);
 
             TableRow tableRow44 = new TableRow() { RsidTableRowAddition = "00015275", RsidTableRowProperties = "00015275" };
 
@@ -11866,7 +11908,7 @@ namespace Wisdom.Writers
             TableCell tableCell118 = new TableCell();
 
             TableCellProperties tableCellProperties118 = new TableCellProperties();
-            TableCellWidth tableCellWidth118 = new TableCellWidth() { Width = "2551", Type = TableWidthUnitValues.Dxa };
+            TableCellWidth tableCellWidth118 = new TableCellWidth() { Width = "1559", Type = TableWidthUnitValues.Dxa };
 
             tableCellProperties118.Append(tableCellWidth118);
 
@@ -11937,10 +11979,51 @@ namespace Wisdom.Writers
             tableCell118.Append(tableCellProperties118);
             tableCell118.Append(paragraph241);
 
+            TableCell tableCell118_1 = new TableCell();
+
+            TableCellProperties tableCellProperties118_1 = new TableCellProperties();
+            TableCellWidth tableCellWidth118_1 = new TableCellWidth() { Width = "992", Type = TableWidthUnitValues.Dxa };
+
+            tableCellProperties118_1.Append(tableCellWidth118_1);
+
+            Paragraph paragraph241_1 = new Paragraph() { RsidParagraphMarkRevision = "0076108B", RsidParagraphAddition = "00015275", RsidParagraphProperties = "00C32A4C", RsidRunAdditionDefault = "0076108B" };
+
+            ParagraphProperties paragraphProperties232_1 = new ParagraphProperties();
+
+            Justification justification171_1 = new Justification() { Val = JustificationValues.Center };
+
+            ParagraphMarkRunProperties paragraphMarkRunProperties131_1 = new ParagraphMarkRunProperties();
+            Languages languages56_1 = new Languages() { Val = "en-US" };
+
+            paragraphMarkRunProperties131_1.Append(languages56_1);
+
+            paragraphProperties232_1.Append(TableTabs());
+            paragraphProperties232_1.Append(justification171_1);
+            paragraphProperties232_1.Append(paragraphMarkRunProperties131_1);
+
+            Run run318_1 = new Run();
+
+            RunProperties runProperties167_1 = new RunProperties();
+            Languages languages57_1 = new Languages() { Val = "en-US" };
+
+            runProperties167_1.Append(languages57_1);
+            Text text316_1 = new Text();
+            text316_1.Text = "5";
+
+            run318_1.Append(runProperties167_1);
+            run318_1.Append(text316_1);
+
+            paragraph241_1.Append(paragraphProperties232_1);
+            paragraph241_1.Append(run318_1);
+
+            tableCell118_1.Append(tableCellProperties118_1);
+            tableCell118_1.Append(paragraph241_1);
+
             tableRow44.Append(tableCell115);
             tableRow44.Append(tableCell116);
             tableRow44.Append(tableCell117);
             tableRow44.Append(tableCell118);
+            tableRow44.Append(tableCell118_1);
 
             TableRow tableRow68 = new TableRow() { RsidTableRowAddition = "00015275", RsidTableRowProperties = "00015275" };
 
@@ -12122,7 +12205,7 @@ namespace Wisdom.Writers
             TableCell tableCell213 = new TableCell();
 
             TableCellProperties tableCellProperties213 = new TableCellProperties();
-            TableCellWidth tableCellWidth213 = new TableCellWidth() { Width = "2551", Type = TableWidthUnitValues.Dxa };
+            TableCellWidth tableCellWidth213 = new TableCellWidth() { Width = "1559", Type = TableWidthUnitValues.Dxa };
 
             tableCellProperties213.Append(tableCellWidth213);
 
@@ -12182,9 +12265,40 @@ namespace Wisdom.Writers
             tableCell213.Append(tableCellProperties213);
             tableCell213.Append(paragraph336);
 
+            TableCell tableCell213_1 = new TableCell();
+
+            TableCellProperties tableCellProperties213_1 = new TableCellProperties();
+            TableCellWidth tableCellWidth213_1 = new TableCellWidth() { Width = "992", Type = TableWidthUnitValues.Dxa };
+
+            tableCellProperties213_1.Append(tableCellWidth213_1);
+
+            Paragraph paragraph336_1 = new Paragraph() { RsidParagraphMarkRevision = "00C32A4C", RsidParagraphAddition = "00015275", RsidParagraphProperties = "00C32A4C", RsidRunAdditionDefault = "00015275" };
+
+            ParagraphProperties paragraphProperties327_1 = new ParagraphProperties();
+
+            Tabs tabs217_1 = new Tabs();
+            Justification justification224_1 = new Justification() { Val = JustificationValues.Center };
+
+            ParagraphMarkRunProperties paragraphMarkRunProperties204_1 = new ParagraphMarkRunProperties();
+            BoldComplexScript boldComplexScript149_1 = new BoldComplexScript();
+            Italic italic151_1 = new Italic();
+
+            paragraphMarkRunProperties204_1.Append(boldComplexScript149_1);
+            paragraphMarkRunProperties204_1.Append(italic151_1);
+
+            paragraphProperties327_1.Append(TableTabs());
+            paragraphProperties327_1.Append(justification224_1);
+            paragraphProperties327_1.Append(paragraphMarkRunProperties204_1);
+
+            paragraph336_1.Append(paragraphProperties327_1);
+
+            tableCell213_1.Append(tableCellProperties213_1);
+            tableCell213_1.Append(paragraph336_1);
+
             tableRow68.Append(tableCell211);
             tableRow68.Append(tableCell212);
             tableRow68.Append(tableCell213);
+            tableRow68.Append(tableCell213_1);
 
             TableRow tableRow69 = new TableRow() { RsidTableRowAddition = "00015275", RsidTableRowProperties = "00015275" };
 
@@ -12364,7 +12478,7 @@ namespace Wisdom.Writers
             TableCell tableCell216 = new TableCell();
 
             TableCellProperties tableCellProperties216 = new TableCellProperties();
-            TableCellWidth tableCellWidth216 = new TableCellWidth() { Width = "2551", Type = TableWidthUnitValues.Dxa };
+            TableCellWidth tableCellWidth216 = new TableCellWidth() { Width = "1559", Type = TableWidthUnitValues.Dxa };
 
             tableCellProperties216.Append(tableCellWidth216);
 
@@ -12424,9 +12538,40 @@ namespace Wisdom.Writers
             tableCell216.Append(tableCellProperties216);
             tableCell216.Append(paragraph339);
 
+            TableCell tableCell216_1 = new TableCell();
+
+            TableCellProperties tableCellProperties216_1 = new TableCellProperties();
+            TableCellWidth tableCellWidth216_1 = new TableCellWidth() { Width = "992", Type = TableWidthUnitValues.Dxa };
+
+            tableCellProperties216_1.Append(tableCellWidth216_1);
+
+            Paragraph paragraph339_1 = new Paragraph() { RsidParagraphMarkRevision = "00C32A4C", RsidParagraphAddition = "00015275", RsidParagraphProperties = "00C32A4C", RsidRunAdditionDefault = "00015275" };
+
+            ParagraphProperties paragraphProperties330_1 = new ParagraphProperties();
+
+            Tabs tabs220_1 = new Tabs();
+            Justification justification226_1 = new Justification() { Val = JustificationValues.Center };
+
+            ParagraphMarkRunProperties paragraphMarkRunProperties207_1 = new ParagraphMarkRunProperties();
+            BoldComplexScript boldComplexScript155_1 = new BoldComplexScript();
+            Italic italic155_1 = new Italic();
+
+            paragraphMarkRunProperties207_1.Append(boldComplexScript155_1);
+            paragraphMarkRunProperties207_1.Append(italic155_1);
+
+            paragraphProperties330_1.Append(TableTabs());
+            paragraphProperties330_1.Append(justification226_1);
+            paragraphProperties330_1.Append(paragraphMarkRunProperties207_1);
+
+            paragraph339_1.Append(paragraphProperties330_1);
+
+            tableCell216_1.Append(tableCellProperties216_1);
+            tableCell216_1.Append(paragraph339_1);
+
             tableRow69.Append(tableCell214);
             tableRow69.Append(tableCell215);
             tableRow69.Append(tableCell216);
+            tableRow69.Append(tableCell216_1);
 
             TableRow tableRow70 = new TableRow() { RsidTableRowAddition = "00015275", RsidTableRowProperties = "00015275" };
 
@@ -12609,7 +12754,7 @@ namespace Wisdom.Writers
             TableCell tableCell219 = new TableCell();
 
             TableCellProperties tableCellProperties219 = new TableCellProperties();
-            TableCellWidth tableCellWidth219 = new TableCellWidth() { Width = "2551", Type = TableWidthUnitValues.Dxa };
+            TableCellWidth tableCellWidth219 = new TableCellWidth() { Width = "1559", Type = TableWidthUnitValues.Dxa };
 
             tableCellProperties219.Append(tableCellWidth219);
 
@@ -12673,9 +12818,42 @@ namespace Wisdom.Writers
             tableCell219.Append(tableCellProperties219);
             tableCell219.Append(paragraph342);
 
+            TableCell tableCell219_1 = new TableCell();
+
+            TableCellProperties tableCellProperties219_1 = new TableCellProperties();
+            TableCellWidth tableCellWidth219_1 = new TableCellWidth() { Width = "992", Type = TableWidthUnitValues.Dxa };
+
+            tableCellProperties219_1.Append(tableCellWidth219_1);
+
+            Paragraph paragraph342_1 = new Paragraph() { RsidParagraphMarkRevision = "00C32A4C", RsidParagraphAddition = "00015275", RsidParagraphProperties = "00C32A4C", RsidRunAdditionDefault = "00015275" };
+
+            ParagraphProperties paragraphProperties333_1 = new ParagraphProperties();
+            Justification justification229_1 = new Justification() { Val = JustificationValues.Center };
+
+            ParagraphMarkRunProperties paragraphMarkRunProperties210_1 = new ParagraphMarkRunProperties();
+            BoldComplexScript boldComplexScript160_1 = new BoldComplexScript();
+            Italic italic158_1 = new Italic();
+            FontSize fontSize43_1 = new FontSize() { Val = "20" };
+            FontSizeComplexScript fontSizeComplexScript41_1 = new FontSizeComplexScript() { Val = "20" };
+
+            paragraphMarkRunProperties210_1.Append(boldComplexScript160_1);
+            paragraphMarkRunProperties210_1.Append(italic158_1);
+            paragraphMarkRunProperties210_1.Append(fontSize43_1);
+            paragraphMarkRunProperties210_1.Append(fontSizeComplexScript41_1);
+
+            paragraphProperties333_1.Append(TableTabs());
+            paragraphProperties333_1.Append(justification229_1);
+            paragraphProperties333_1.Append(paragraphMarkRunProperties210_1);
+
+            paragraph342_1.Append(paragraphProperties333_1);
+
+            tableCell219_1.Append(tableCellProperties219_1);
+            tableCell219_1.Append(paragraph342_1);
+
             tableRow70.Append(tableCell217);
             tableRow70.Append(tableCell218);
             tableRow70.Append(tableCell219);
+            tableRow70.Append(tableCell219_1);
 
             table5.Append(tableProperties5);
             table5.Append(tableGrid5);

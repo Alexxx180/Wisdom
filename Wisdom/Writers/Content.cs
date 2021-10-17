@@ -331,7 +331,7 @@ namespace Wisdom.Writers
             delete = DropButton(newSection);
             TextBox nameBox = UsualBox("«»");
             hoursBox = HoursBox("");
-            GridAddX(newSection, delete, type, nameBox, hoursBox);
+            GridAddX2(newSection, 0, delete, type, nameBox, hoursBox);
 
             Binding bindType = FastBind(type, "Content");
             Binding bindName = FastBind(nameBox, "Text");
@@ -665,8 +665,10 @@ namespace Wisdom.Writers
             NewTheme($"Тема {cnt}.1.", themes, themePlan, out BTbutton, out addContent, out NewTypeAdd, out newThemeLevels, "", "", "");
         }
 
-        public static void NewTheme(string no, StackPanel themes, TableRowGroup themePlan,
-            out Button dropTheme, out Button addContent, out Button addNextTask, out ComboBox themeLevels,
+        public static void NewTheme(string no,
+            StackPanel themes, TableRowGroup themePlan,
+            out Button dropTheme, out Button addContent,
+            out Button addNextTask, out ComboBox themeLevels,
             string name, string hours, string level)
         {
             //Theme

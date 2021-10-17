@@ -18,9 +18,9 @@ using Microsoft.Win32;
 using static Wisdom.Model.ProgramContent;
 using System.Collections.Generic;
 using Wisdom.Model;
-using static Wisdom.Competetions;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using static Wisdom.Tests.TotalTest;
 
 namespace Wisdom
 {
@@ -57,11 +57,9 @@ namespace Wisdom
             {
                 _DisciplinesSelect.Clear();
                 _DisciplinesSelect.AddRange(value);
-                foreach(ComboBoxItem s in _DisciplinesSelect)
-                    Trace.WriteLine(s);
+                TraceItems(_DisciplinesSelect);
                 OnPropertyChanged();
-                foreach (ComboBoxItem s in DpSelect.Items)
-                    Trace.WriteLine(s.Content);
+                TraceItems(DpSelect);
                 DpSelect.Items.Refresh();
             }
         }
@@ -118,7 +116,8 @@ namespace Wisdom
                 Grid topic = GridChild(DisciplinePlan, i);
                 StackPanel nextThemeGroup = Panel(topic, 4);
 
-                Trace.WriteLine("Topic: " + i);
+                //TraceChildren(topic);
+                //Trace.WriteLine("Topic: " + i);
                 HoursList<LevelsList<HashList<String2>>> topicTheme = planTopic[i];
                 SetTheme(topicTheme, nextThemeGroup);
             }
@@ -139,11 +138,10 @@ namespace Wisdom
                 ThemeAdd(nextTheme);
 
                 Grid theme = GridChild(nextThemeGroup, ii);
-                foreach (UIElement el in theme.Children)
-                    Trace.WriteLine(el);
                 StackPanel nextTasksGroup = Panel(theme, 5);
 
-                Trace.WriteLine("Theme: " + ii);
+                //TraceChildren(theme);
+                //Trace.WriteLine("Theme: " + ii);
                 LevelsList<HashList<String2>> themeContent = topicTheme.Values[ii];
                 SetThemeContent(themeContent, nextTasksGroup);
             }
@@ -160,6 +158,7 @@ namespace Wisdom
 
             for (byte iii = 0; iii < themeContent.Values.Count; iii++)
             {
+                Trace.WriteLine("Content info/tasks: " + iii);
                 HashList<String2> contentTasks = themeContent.Values[iii];
                 if (themeContent.Values[iii].Name == "255")
                 {
@@ -196,6 +195,8 @@ namespace Wisdom
                 nextContentHours.Text = contentTasks.Values[iv].Value;
                 TableContent(nextContentAdd).Click += AnyDeleteAuto;
             }
+            //TraceChildren(contentStack);
+            //Trace.WriteLine("Content group");
         }
 
         //Content single task
@@ -206,6 +207,8 @@ namespace Wisdom
             TextBox nextTaskHours = Box(nextTask, 3);
             nextTaskName.Text = contentTasks.Values[0].Name;
             nextTaskHours.Text = contentTasks.Values[0].Value;
+            //TraceChildren(nextTask);
+            //Trace.WriteLine("Task");
         }
 
         //Content tasks group
@@ -225,6 +228,8 @@ namespace Wisdom
                 nextTaskHours.Text = contentTasks.Values[iv].Value;
                 TableContent(nextTaskAdd).Click += AnyDeleteAuto;
             }
+            //TraceChildren(taskStack);
+            //Trace.WriteLine("Task group");
         }
 
         private void SetSources(int no)
@@ -324,18 +329,7 @@ namespace Wisdom
             return list;
         }
 
-        private List<string> GetListFromElements(StackPanel panel, byte index)
-        {
-            List<string> list = new List<string>();
-            int cnt = panel.Children.Count - 1;
-            for (byte i = 0; i < cnt; i++)
-            {
-                Grid element = panel.Children[i] as Grid;
-                TextBox box = element.Children[index] as TextBox;
-                list.Add(box.Text);
-            }
-            return list;
-        }
+        
         private List<List<string>> GetListFromElements3(StackPanel panel, byte rangeStart, byte rangeEnd)
         {
             List<List<string>> list = new List<List<string>>();
@@ -352,67 +346,97 @@ namespace Wisdom
             }
             return list;
         }
-        private List<HashList<string>> GetHashListFromElements(StackPanel panel, byte index, byte index2)
+        private List<HashList<string>> GetSources(StackPanel list, byte index, byte index2)
         {
             List<HashList<string>> sources = new List<HashList<string>>();
-            int cnt = panel.Children.Count - 1;
+            int cnt = list.Children.Count - 1;
             for (byte i = 0; i < cnt; i++)
-                sources.Add(GetHashs(panel.Children[i] as Grid, index, index2));
+            {
+                Grid source = GridChild(list, i);
+                sources.Add(GetSource(source, index, index2));
+            }
             return sources;
         }
 
-        private HashList<string> GetHashs(Grid grid, byte index, byte index2)
+        private HashList<string> GetSource(Grid grid, byte index, byte index2)
         {
-            Label caption = grid.Children[index] as Label; //1
+            Label caption = Lab(grid, index);
             HashList<string> source = new HashList<string>(caption.Content.ToString());
             int optimum = index + 1;
-            StackPanel panel2 = grid.Children[optimum] as StackPanel;
-            source.Values = GetListFromElements(panel2, index2);
+            StackPanel sourceValues = Panel(grid, optimum);
+            source.Values = GetSourceList(sourceValues, index2);
             return source;
         }
+        private List<string> GetSourceList(StackPanel sourceValues, byte index)
+        {
+            List<string> list = new List<string>();
+            int cnt = sourceValues.Children.Count - 1;
+            for (byte i = 0; i < cnt; i++)
+            {
+                Grid element = GridChild(sourceValues, i);
+                TextBox box = Box(element, index);
+                list.Add(box.Text);
+            }
+            return list;
+        }
+
         private String2 GetString2(Grid grid, byte nameNo, byte hoursNo)
         {
-            string name = (grid.Children[nameNo] as TextBox).Text;
-            string value = (grid.Children[hoursNo] as TextBox).Text;
+            TextBox nameBox = Box(grid, nameNo);
+            TextBox hoursBox = Box(grid, hoursNo);
+            string name = nameBox.Text;
+            string value = hoursBox.Text;
             String2 string2 = new String2(name, value);
             return string2;
         }
         //2, 3
         //DisciplinePlan - Grid - StackPanel - Grid - StackPanel - Grid - StackPanel
         //Раздел 1. - Тема 1.1. - Содержание - 1.; 2. ...
-        private List<String2> GetListFromElements2(StackPanel panel, byte nameNo, byte hoursNo)
+        private List<String2> GetTasks(StackPanel panel, byte nameNo, byte hoursNo)
         {
             List<String2> list = new List<String2>();
             int cnt = panel.Children.Count - 1;
             for (byte i = 0; i < cnt; i++)
             {
-                Grid element = panel.Children[i] as Grid;
+                Grid element = GridChild(panel, i);
                 list.Add(GetString2(element, nameNo, hoursNo));
             }
             return list;
         }
-        //0
         //DisciplinePlan - Grid - StackPanel - Grid - StackPanel - Grid
-        //Раздел 1. - Тема 1.1. - Содержание 
-        private HashList<String2> GetHashs(Grid grid, byte captionNo, byte nameNo, byte hoursNo)
+        //Раздел 1. - Тема 1.1. - Практические работы/Контрольные работы...
+        private HashList<String2> GetTaskGroup(Grid grid, byte captionNo, byte nameNo, byte hoursNo)
         {
-            HashList<String2> source = null;
-            Label caption = grid.Children[captionNo] as Label;
+            HashList<String2> source;
+            Label caption = Lab(grid, captionNo);
             if (caption == null)
             {
-                caption = grid.Children[1] as Label;
+                caption = Lab(grid, 1);
                 source = new HashList<String2>(caption.Content.ToString());
-                String2 str2 = new String2((grid.Children[2] as TextBox).Text, (grid.Children[3] as TextBox).Text);
+                TextBox name = Box(grid, 2);
+                TextBox hours = Box(grid, 3);
+                String2 str2 = new String2(name.Text, hours.Text);
                 source.Values = new List<String2>();
                 source.Values.Add(str2);
             }
             else
             {
-                int optimum = captionNo + 4;
                 source = new HashList<String2>(caption.Content.ToString());
-                StackPanel panel2 = grid.Children[optimum] as StackPanel;
-                source.Values = GetListFromElements2(panel2, nameNo, hoursNo);
+                StackPanel panel2 = Panel(grid, 4);
+                source.Values = GetTasks(panel2, nameNo, hoursNo);
             }
+            return source;
+        }
+        //0
+        //DisciplinePlan - Grid - StackPanel - Grid - StackPanel - Grid
+        //Раздел 1. - Тема 1.1. - Содержание 
+        private HashList<String2> GetMaterial(Grid grid, byte captionNo, byte nameNo, byte hoursNo)
+        {
+            HashList<String2> source;
+            Label caption = Lab(grid, captionNo);
+            source = new HashList<String2>(caption.Content.ToString());
+            StackPanel panel2 = Panel(grid, 4);
+            source.Values = GetTasks(panel2, nameNo, hoursNo);
             return source;
         }
 
@@ -422,15 +446,26 @@ namespace Wisdom
         private LevelsList<HashList<String2>> GetHours(Grid grid, byte nameNo, byte hoursNo,
             byte levelNo, byte contentCaptionNo, byte contentNameNo, byte contentHoursNo)
         { //byte index3, 
-            TextBox caption = grid.Children[nameNo] as TextBox;
-            TextBox hours = grid.Children[hoursNo] as TextBox;
-            ComboBox level = grid.Children[levelNo] as ComboBox;
+            TextBox caption = Box(grid, nameNo);
+            TextBox hours = Box(grid, hoursNo);
+            ComboBox level = Cbx(grid, levelNo);
             LevelsList<HashList<String2>> source = new LevelsList<HashList<String2>>(caption.Text, hours.Text, level.Text); // Exces
             int optimum = levelNo + 1;
             StackPanel panel2 = grid.Children[optimum] as StackPanel;
             int cnt = panel2.Children.Count - 1;
-            for (byte i = 0; i < cnt; i++)
-                source.Values.Add(GetHashs(panel2.Children[i] as Grid, contentCaptionNo, contentNameNo, contentHoursNo));
+            Trace.WriteLine(contentCaptionNo);
+            TraceChildren(grid);
+            Grid content = GridChild(panel2, 0);
+            Trace.WriteLine(0);
+            TraceChildren(content);
+            source.Values.Add(GetMaterial(content, contentCaptionNo, contentNameNo, contentHoursNo));
+            for (byte i = 1; i < cnt; i++)
+            {
+                Grid tasks = GridChild(panel2, i);
+                Trace.WriteLine(i);
+                TraceChildren(tasks);
+                source.Values.Add(GetTaskGroup(tasks, 3, contentNameNo, contentHoursNo));
+            }
             return source;
         }
         //2, 3
@@ -493,9 +528,9 @@ namespace Wisdom
             GeneralCompetetions = ExtractCompetetions(Form2.TotalCompAddSpace, 1, 2);
             ProfessionalCompetetions = ExtractCompetetions2(Form2.ProfCompAddSpace, 1, 2);
 
-            SourcesControl = GetHashListFromElements(EducationSources, 1, 2);
+            SourcesControl = GetSources(EducationSources, 1, 2);
 
-            Applyment = GetListFromElements(ApplyAddSpace, 2);
+            Applyment = GetSourceList(ApplyAddSpace, 2);
 
             Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 4, 0, 2, 3);
             StudyLevels.Values = new List<string>();
@@ -503,18 +538,10 @@ namespace Wisdom
             for (byte i = 0; i < levels.Count; i++)
                 StudyLevels.Add(levels[i][0], levels[i][1]);
 
-            SaveFileDialog dialog = new SaveFileDialog
-            {
-                FileName = FileName,
-                Filter =
-                "Документ Microsoft Word (*.docx)|*.docx|" +
-                "Документ Word 97-2003 (*.doc)|*.doc|" +
-                "Текст в формате RTF (*.rtf)|*.rtf"
-            };
-            if (dialog.ShowDialog().Value)
-                WriteDoc(dialog.FileName);
-            //WriteDoc();
+            //CallWriter(FileName);
+            WriteDoc();
         }
+
         private static readonly Regex _hours = new Regex("^([1-9]|[1-9]\\d\\d?)$");//v\\d
         private void Hours(object sender, TextCompositionEventArgs e)
         {
@@ -826,7 +853,8 @@ namespace Wisdom
         private void AddTheme(object sender, RoutedEventArgs e)
         {
             Button addTheme = sender as Button;
-            ThemeAdd(addTheme.Parent as Grid);
+            Grid theme = addTheme.Parent as Grid;
+            ThemeAdd(theme);
         }
 
         private void ThemeAdd(Grid current)
@@ -838,17 +866,18 @@ namespace Wisdom
             TextBox themeHours = Box(current, 3);
             ComboBox themeLevel = Cbx(current, 4);
             NewTheme(themeNo.Content.ToString(), themes, AllSectionsContents,
-                out Button BTbutton, out Button Cadd, out Button NewTypeAdd, out ComboBox themeLevelsAdd,
+                out Button deleteTheme, out Button addContent,
+                out Button addNextTask, out ComboBox themeLevels,
                 themeName.Text, themeHours.Text, themeLevel.Text);
-            BTbutton.Click += DeleteThemeClick;
-            Cadd.Click += AddContent;
-            NewTypeAdd.Click += NewTypeContent;
+            deleteTheme.Click += DeleteThemeClick;
+            addContent.Click += AddContent;
+            addNextTask.Click += NewTypeContent;
             Binding bindLevels = FastBind(Levels, "Children", new CompetetionsConverter());
-            _ = SetBind(themeLevelsAdd, ItemsControl.ItemsSourceProperty, bindLevels);
-            themeLevelsAdd.SelectionChanged += Levels_SelectionChanged;
+            _ = SetBind(themeLevels, ItemsControl.ItemsSourceProperty, bindLevels);
+            themeLevels.SelectionChanged += Levels_SelectionChanged;
             themes.Children.Add(current);
-            Grid section = themes.Parent as Grid;
-            StackPanel sections = section.Parent as StackPanel;
+            Grid section = Parent(themes);
+            StackPanel sections = Parent(section);
             int optimization = sections.Children.IndexOf(section) + 1;
             AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
         }
