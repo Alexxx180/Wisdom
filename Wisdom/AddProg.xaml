@@ -664,9 +664,10 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.05*" />
                                 <ColumnDefinition Width="0.15*" />
-                                <ColumnDefinition Width="0.626*" />
-                                <ColumnDefinition Width="0.102*" />
-                                <ColumnDefinition Width="0.103*" />
+                                <ColumnDefinition Width="0.491*" />
+                                <ColumnDefinition Width="0.09*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.05*" />
                                 <ColumnDefinition Width="0.019*" />
                             </Grid.ColumnDefinitions>
 
@@ -690,7 +691,13 @@
 
                             <Border Grid.Column="4" Style="{StaticResource ListCaptions}">
                                 <Viewbox HorizontalAlignment="Right">
-                                    <Label Content="УК" Style="{StaticResource ListCaptions}"></Label>
+                                    <Label Content="Компетенции" Style="{StaticResource ListCaptions}"></Label>
+                                </Viewbox>
+                            </Border>
+                            
+                            <Border Grid.Column="5" Style="{StaticResource ListCaptions}">
+                                <Viewbox HorizontalAlignment="Right">
+                                    <Label Content="УО" Style="{StaticResource ListCaptions}"></Label>
                                 </Viewbox>
                             </Border>
 
@@ -705,9 +712,10 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.05*" />
                                     <ColumnDefinition Width="0.15*" />
-                                    <ColumnDefinition Width="0.6*" />
-                                    <ColumnDefinition Width="0.1*" />
-                                    <ColumnDefinition Width="0.1*" />
+                                    <ColumnDefinition Width="0.475*" />
+                                    <ColumnDefinition Width="0.085*" />
+                                    <ColumnDefinition Width="0.19*" />
+                                    <ColumnDefinition Width="0.05*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Grid.RowDefinitions>
@@ -730,14 +738,15 @@
                                 </TextBox>
 
 
-                                <StackPanel x:Name="Themes" Background="#FFEEEBB6" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+                                <StackPanel x:Name="Themes" Background="#FFEEEBB6" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6">
                                     <Grid Tag="{x:Reference Name=Theme1}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="0.05*" />
                                             <ColumnDefinition Width="0.15*" />
-                                            <ColumnDefinition Width="0.6*" />
-                                            <ColumnDefinition Width="0.1*" />
-                                            <ColumnDefinition Width="0.1*" />
+                                            <ColumnDefinition Width="0.475*" />
+                                            <ColumnDefinition Width="0.085*" />
+                                            <ColumnDefinition Width="0.19*" />
+                                            <ColumnDefinition Width="0.05*" />
                                         </Grid.ColumnDefinitions>
 
                                         <Grid.RowDefinitions>
@@ -750,21 +759,22 @@
                                         <Label x:Name="ThemeNo" Grid.Column="1" Content="Тема 1.1." Style="{StaticResource CaptionSections}"></Label>
                                         <!--</Viewbox>-->
                                         <TextBox x:Name="ThemeName" Grid.Column="2" Text="" Style="{StaticResource SubCaptionBox}"></TextBox>
-                                        <TextBox x:Name="ThemeHours" Grid.Column="3" Text="" Style="{StaticResource HoursBox}">
+                                        <TextBox x:Name="ThemeHours" Grid.Column="3" Text="" Style="{StaticResource HoursBox}" PreviewTextInput="Hours">
                                             <TextBox.Background>
                                                 <MultiBinding Converter="{StaticResource UsedValuesConverter}">
                                                     <Binding Path="Text" ElementName="ThemeHours"></Binding>
                                                 </MultiBinding>
                                             </TextBox.Background>
                                         </TextBox>
-                                        <ComboBox x:Name="ThemeLevel" Grid.Column="4" Style="{StaticResource HoursBox}" SelectionChanged="Levels_SelectionChanged"  IsEditable="True">
+                                        <TextBox x:Name="ThemeCompetetions" Grid.Column="4" Text="" Style="{StaticResource RegularBox}"></TextBox>
+                                        <ComboBox x:Name="ThemeLevel" Grid.Column="5" Style="{StaticResource HoursBox}" SelectionChanged="Levels_SelectionChanged"  IsEditable="True">
                                             <ComboBox.ItemsSource>
                                                 <Binding Path="Children" ElementName="Levels" Converter="{StaticResource CompetetionsConverter}"></Binding>
                                             </ComboBox.ItemsSource>
                                         </ComboBox>
 
 
-                                        <StackPanel Background="#FFEEEBB6" Tag="{x:Reference Name=ThemeContents}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+                                        <StackPanel Background="#FFEEEBB6" Tag="{x:Reference Name=ThemeContents}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6">
                                             <Grid Tag="{x:Reference Name=ThemeContents}">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="0.05*" />
@@ -828,16 +838,18 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="0.05*" />
                                             <ColumnDefinition Width="0.15*" />
-                                            <ColumnDefinition Width="0.6*" />
-                                            <ColumnDefinition Width="0.1*" />
-                                            <ColumnDefinition Width="0.1*" />
+                                            <ColumnDefinition Width="0.475*" />
+                                            <ColumnDefinition Width="0.085*" />
+                                            <ColumnDefinition Width="0.19*" />
+                                            <ColumnDefinition Width="0.05*" />
                                         </Grid.ColumnDefinitions>
 
                                         <Button Click="AddTheme" Style="{StaticResource ResourceKey=AddButton}"></Button>
                                         <Label Content="Тема 1.2." Grid.Column="1" Style="{StaticResource CaptionSections}"></Label>
                                         <TextBox Grid.Column="2" Style="{StaticResource RegularBox}"></TextBox>
                                         <TextBox Grid.Column="3" Style="{StaticResource HoursBox}" PreviewTextInput="Hours" ></TextBox>
-                                        <ComboBox Grid.Column="4" Style="{StaticResource HoursBox}" SelectionChanged="Levels_SelectionChanged" IsEditable="True">
+                                        <TextBox Grid.Column="4" Style="{StaticResource RegularBox}"></TextBox>
+                                        <ComboBox Grid.Column="5" Style="{StaticResource HoursBox}" SelectionChanged="Levels_SelectionChanged" IsEditable="True">
                                             <ComboBox.ItemsSource>
                                                 <Binding Path="Children" ElementName="Levels" Converter="{StaticResource CompetetionsConverter}"></Binding>
                                             </ComboBox.ItemsSource>
@@ -849,9 +861,10 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.05*" />
                                     <ColumnDefinition Width="0.15*" />
-                                    <ColumnDefinition Width="0.6*" />
-                                    <ColumnDefinition Width="0.1*" />
-                                    <ColumnDefinition Width="0.1*" />
+                                    <ColumnDefinition Width="0.475*" />
+                                    <ColumnDefinition Width="0.085*" />
+                                    <ColumnDefinition Width="0.19*" />
+                                    <ColumnDefinition Width="0.05*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Button Click="AddTopic" Style="{StaticResource ResourceKey=AddButton}"></Button>

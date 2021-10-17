@@ -128,7 +128,7 @@ namespace Wisdom
             Grid nextTheme = GridChild(nextThemeGroup, 0);
             TextBox nextThemeName = Box(nextTheme, 2);
             TextBox nextThemeHours = Box(nextTheme, 3);
-            ComboBox nextThemeLevel = Cbx(nextTheme, 4);
+            ComboBox nextThemeLevel = Cbx(nextTheme, 5);
 
             for (byte ii = 0; ii < topicTheme.Values.Count; ii++)
             {
@@ -138,7 +138,7 @@ namespace Wisdom
                 ThemeAdd(nextTheme);
 
                 Grid theme = GridChild(nextThemeGroup, ii);
-                StackPanel nextTasksGroup = Panel(theme, 5);
+                StackPanel nextTasksGroup = Panel(theme, 6);
 
                 //TraceChildren(theme);
                 //Trace.WriteLine("Theme: " + ii);
@@ -151,6 +151,7 @@ namespace Wisdom
         private void SetThemeContent(LevelsList<HashList<String2>> themeContent,
             StackPanel nextTasksGroup)
         {
+            TraceChildren(nextTasksGroup);
             Grid nextTasks = GridChild(nextTasksGroup, 1);
             Button nextTasksAdd = Btn(nextTasks, 0);
             ComboBox nextTasksType = Cbx(nextTasks, 1);
@@ -532,7 +533,7 @@ namespace Wisdom
 
             Applyment = GetSourceList(ApplyAddSpace, 2);
 
-            Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 4, 0, 2, 3);
+            Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 5, 0, 2, 3);
             StudyLevels.Values = new List<string>();
             List<List<string>> levels = GetListFromElements3(Levels, 2, 4);
             for (byte i = 0; i < levels.Count; i++)
@@ -864,7 +865,7 @@ namespace Wisdom
             Label themeNo = Lab(current, 1);
             TextBox themeName = Box(current, 2);
             TextBox themeHours = Box(current, 3);
-            ComboBox themeLevel = Cbx(current, 4);
+            ComboBox themeLevel = Cbx(current, 5);
             NewTheme(themeNo.Content.ToString(), themes, AllSectionsContents,
                 out Button deleteTheme, out Button addContent,
                 out Button addNextTask, out ComboBox themeLevels,

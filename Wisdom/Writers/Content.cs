@@ -583,7 +583,7 @@ namespace Wisdom.Writers
         private static StackPanel TopicBase(TableRowGroup mainBinding, StackPanel master, 
             out Button deleteTopic, string name, string hours, Label hoursToBind, int cnt)
         {
-            Grid topic = GridItem4(2);
+            Grid topic = GridItem7(2);
             deleteTopic = DropButton();
             Label topicNo = Caption($"Раздел {cnt}.");
             TextBox topicName = UsualBox(name);
@@ -596,7 +596,7 @@ namespace Wisdom.Writers
             GridAddX2(topic, 0, deleteTopic, topicNo, topicName, topicHours);
             GridAdd(topic, themes);
             SetRow(themes, 1);
-            SetColSpan(themes, 5);
+            SetColSpan(themes, 6);
             Grid addTopic = master.Children[cnt - 1] as Grid;
             Label addTopicNo = Lab(addTopic, 1);
             addTopicNo.Content = $"Раздел {cnt + 1}.";
@@ -630,32 +630,34 @@ namespace Wisdom.Writers
             out Button dropTheme, out ComboBox themeLevels, out StackPanel contentGroup,
             out TextBox themeHours)
         {
-            Grid theme = GridItem4(2);
+            Grid theme = GridItem7(2);
             dropTheme = DropButton();
             Label themeNo = Caption(no);
             TextBox themeName = SubCaptionBox(name);
+            TextBox themeCompetetions = UsualBox("");
             themeHours = HoursBox(hours);
             themeLevels = HoursCombo(level, true);
             contentGroup = new StackPanel { Background = Yellow };
 
             _ = BindHourColor(themeHours);
 
-            GridAddX2(theme, 0, dropTheme, themeNo, themeName, themeHours, themeLevels);
+            GridAddX2(theme, 0, dropTheme, themeNo, themeName, themeHours, themeCompetetions, themeLevels);
             GridAdd(theme, contentGroup);
             SetRow(contentGroup, 1);
-            SetColSpan(contentGroup, 5);
+            SetColSpan(contentGroup, 6);
             return theme;
         }
         private static Grid NewThemeGrid(out Button addTheme, out TextBox hours,
             out ComboBox level, int cnt, string start)
         {
-            Grid theme = GridItem4();
+            Grid theme = GridItem7();
             addTheme = AddButton();
             Label title = Caption($"Тема {cnt}.{start}.");
             TextBox name = UsualBox("");
             hours = HoursBox("");
+            TextBox competetions = UsualBox("");
             level = HoursCombo("", true);
-            GridAddX2(theme, 0, addTheme, title, name, hours, level);
+            GridAddX2(theme, 0, addTheme, title, name, hours, competetions, level);
             return theme;
         }
 

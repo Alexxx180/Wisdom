@@ -70,6 +70,18 @@ namespace Wisdom.Customing
             AddRows(grid, rows);
             return grid;
         }
+        public static Grid GridItem7(int rows = 0)
+        {
+            Grid grid = new Grid();
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.05, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.15, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.475, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.085, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.19, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.05, GridUnitType.Star) });
+            AddRows(grid, rows);
+            return grid;
+        }
 
         public static void AddItems(ComboBox box, params string[] names)
         {
