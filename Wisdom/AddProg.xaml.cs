@@ -856,9 +856,9 @@ namespace Wisdom
         private void SwitchSections(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            AnyHideX(Form2.TotalCompetetions, Form2.ProfCompetetions);
+            AnyHideX(ThemePlan, LearnLevels);
             AnyShow(btn.Tag as Grid);
-            EnableX(true, Form2.TotalComp, Form2.ProfComp);
+            EnableX(true, ThemePlanSwitch, LearnLevelsSwitch);
             btn.IsEnabled = false;
         }
     }
