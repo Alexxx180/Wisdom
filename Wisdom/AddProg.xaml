@@ -145,7 +145,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="Form1" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <Grid x:Name="Form1" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.9*"/>
@@ -635,7 +635,7 @@
             </Grid>-->
 
             <!--RCompetentions-->
-            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.05*"/>
@@ -1378,11 +1378,11 @@
                 <ScrollViewer Grid.Column="1" Grid.RowSpan="2" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
 
                     <Border BorderThickness="1" BorderBrush="Black" Width="795"  Margin="0,0,0,0">
-                        <controls:CustomPageViewer x:Name="FlowReader" IsEnabled="True" Grid.Row="1" Grid.Column="1" Height="1122.519685" Width="793.700787" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="14pt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Language="RU" >
+                        <controls:CustomPageViewer x:Name="FlowReader" IsEnabled="True" Grid.Row="1" Grid.Column="1" Height="1122.519685" Width="793.700787" ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="12pt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Language="RU" >
 
                             <FlowDocument x:Name="Struct" PagePadding="3cm,2cm,1cm,2cm">
 
-                                <Section x:Name="Sheet1" BreakPageBefore="True">
+                                <!--<Section x:Name="Sheet1" BreakPageBefore="True">
                                     <Table>
                                         <Table.Columns>
                                             <TableColumn />
@@ -1390,7 +1390,7 @@
                                         <TableRowGroup>
                                             <TableRow>
                                                 <TableCell x:Name="Cell0" TextAlignment="Center">
-                                                    <Paragraph x:Name="NLab" TextAlignment="Center" FontFamily="Times New Roman" FontSize="14pt">
+                                                    <Paragraph x:Name="NLab" TextAlignment="Center" FontFamily="Times New Roman" FontSize="12pt">
                                                         <Run>Министерство науки и высшего образования Российской Федерации Федеральное государственное бюджетное образовательное учреждение высшего образования «Новгородский государственный университет имени Ярослава Мудрого»</Run>
                                                         <LineBreak></LineBreak>
                                                     </Paragraph>
@@ -1398,7 +1398,7 @@
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell >
-                                                    <Paragraph TextAlignment="Center" FontSize="14pt" FontFamily="Times New Roman" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <Paragraph TextAlignment="Center" FontSize="12pt" FontFamily="Times New Roman" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                                         <Underline>
                                                             <Run x:Name="OLab" Text="{Binding ElementName=College, Path=Text}" ></Run>
                                                         </Underline>
@@ -1418,7 +1418,7 @@
                                             <TableRow>
                                                 <TableCell></TableCell>
                                                 <TableCell>
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Left" Padding="0,0,0,0">
+                                                    <Paragraph FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Left" Padding="0,0,0,0">
                                                         <Run Text="УТВЕРЖДАЮ&#xA;Директор ПТК НовГУ&#xA;_________"></Run>
                                                         <Run Text="{Binding ElementName=Director, Path=Text}"></Run>
                                                         <Run Text="&#xA;«__» _________ 20__г."></Run>
@@ -1433,7 +1433,7 @@
                                             <Run x:Name="DpRep" Text="{Binding ElementName=DpSelect, Path=Text}"></Run>
                                         </Underline>
                                     </Paragraph>
-                                    <Paragraph  Margin="Auto,24pt,Auto,16pt" FontSize="14pt" FontFamily="Times New Roman" Padding="0,0,0,0" TextAlignment="Center" >
+                                    <Paragraph  Margin="Auto,24pt,Auto,16pt" FontSize="12pt" FontFamily="Times New Roman" Padding="0,0,0,0" TextAlignment="Center" >
                                         <Run>Специальность:</Run>
                                     </Paragraph>
                                     <Paragraph Margin="0,0,0,0" FontSize="14pt" FontFamily="Times New Roman" Padding="0,0,0,0" FontWeight="Bold" TextAlignment="Center">
@@ -1442,13 +1442,13 @@
                                         </Underline>
                                     </Paragraph>
 
-                                    <Paragraph Margin="0,0,0,0" FontSize="14pt" FontFamily="Times New Roman" FontWeight="Normal" Padding="0,0,0,0" TextAlignment="Center">
+                                    <Paragraph Margin="0,0,0,0" FontSize="12pt" FontFamily="Times New Roman" FontWeight="Normal" Padding="0,0,0,0" TextAlignment="Center">
                                         <Run>Квалификация выпускника:</Run>
                                         <LineBreak/>
                                         <Run>техник</Run>
                                     </Paragraph>
 
-                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt"  Margin="Auto,90pt,Auto,Auto">
+                                    <Paragraph FontFamily="Times New Roman" FontSize="12pt"  Margin="Auto,90pt,Auto,Auto">
                                         <Run Text="Согласовано&#xA;Зам. начальника УМУ НовГУ по СПО&#xA;__________________ /"></Run>
                                         <Run Text="{Binding ElementName=SubManager, Path=Text}"></Run>
                                         <Run Text="/&#xA;          (подпись)&#xA;«__» __________________ 20__г.&#xA;&#xA;&#xA;Заместитель директора по УМ и ВР&#xA;_____________________ /"></Run>
@@ -1458,30 +1458,30 @@
                                 </Section>
 
                                 <Section x:Name="Sheet2" BreakPageBefore="True">
-                                    <Paragraph x:Name="About1" TextAlignment="Justify" FontFamily="Times New Roman" FontSize="14pt">
+                                    <Paragraph x:Name="About1" TextAlignment="Justify" FontFamily="Times New Roman" FontSize="12pt">
                                         <Run Text="    Рабочая программа учебной дисциплины разработана на основе Федерального государственного образовательного стандарта (далее - ФГОС) (приказ Министерства образования и науки РФ от 18.04.2014 № 349) по специальности среднего профессионального образования (далее СПО) 15.02.07 Автоматизация технологических процессов и производств (по отраслям), в соответствии с учебным планом."></Run>
                                     </Paragraph>
-                                    <Paragraph x:Name="About2" TextAlignment="Justify" FontFamily="Times New Roman" FontSize="14pt">
+                                    <Paragraph x:Name="About2" TextAlignment="Justify" FontFamily="Times New Roman" FontSize="12pt">
                                         <Run Text="    Организация разработчик:" FontWeight="Bold"></Run>
                                         <Run Text=" Федеральное государственное бюджетное образовательное учреждение высшего образования «Новгородский государственный университет имени Ярослава Мудрого» Многопрофильный колледж НовГУ, Политехнический колледж."></Run>
                                     </Paragraph>
-                                    <Paragraph x:Name="About3" FontWeight="Bold" FontFamily="Times New Roman" FontSize="14pt" Padding="0,0,0,0" Foreground="Black">
+                                    <Paragraph x:Name="About3" FontWeight="Bold" FontFamily="Times New Roman" FontSize="12pt" Padding="0,0,0,0" Foreground="Black">
                                         <Run>Разработчик:</Run>
                                     </Paragraph>
-                                    <Paragraph x:Name="About4" TextAlignment="Justify" FontFamily="Times New Roman" FontSize="14pt" >
+                                    <Paragraph x:Name="About4" TextAlignment="Justify" FontFamily="Times New Roman" FontSize="12pt" >
                                         <Run>Спиров А.М. - преподаватель гуманитарных и социально-экономических дисциплин ПТК МПК НовГУ</Run>
                                     </Paragraph>
-                                    <Paragraph x:Name="About5" TextAlignment="Justify" FontFamily="Times New Roman" FontSize="14pt">
+                                    <Paragraph x:Name="About5" TextAlignment="Justify" FontFamily="Times New Roman" FontSize="12pt">
                                         <Run>Методические рекомендации (указания) по практическим заданиям приняты на заседании общеобразовательных, общих гуманитарных и социально-экономических и естественно-научных дисциплин колледжа, протокол №___ от___________</Run>
                                     </Paragraph>
-                                    <Paragraph x:Name="About6" TextAlignment="Justify" FontFamily="Times New Roman" FontSize="14pt" >
+                                    <Paragraph x:Name="About6" TextAlignment="Justify" FontFamily="Times New Roman" FontSize="12pt" >
                                         <Run>Председатель предметной (цикловой) комиссии ________ Л.П. Белорусова</Run>
                                     </Paragraph>
                                 </Section>
 
                                 <Section x:Name="Sheet3" BreakPageBefore="True">
 
-                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center" FontWeight="Bold">
+                                    <Paragraph FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Center" FontWeight="Bold">
                                         СОДЕРЖАНИЕ
                                     </Paragraph>
 
@@ -2040,67 +2040,78 @@
                                             </TableRow>
                                         </TableRowGroup>
                                     </Table>
-                                </Section>
+                                </Section>-->
 
                                 <Section BreakPageBefore="True" x:Name="Sheet6">
-                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
+                                    <Paragraph FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Justify">
                                         <Run FontWeight="Bold" Text="    2.2 Тематический план и содержание учебной дисциплины "></Run>
                                     </Paragraph>
-                                    <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0" >
+                                    <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0" FontSize="12pt">
                                         <Table.Columns>
-                                            <TableColumn Width="0.2*"></TableColumn>
-                                            <TableColumn Width="0.55*"></TableColumn>
-                                            <TableColumn Width="0.1*"></TableColumn>
-                                            <TableColumn Width="0.15*"></TableColumn>
+                                            <TableColumn Width="0.17*"></TableColumn>
+                                            <TableColumn Width="0.45*"></TableColumn>
+                                            <TableColumn Width="0.08*"></TableColumn>
+                                            <TableColumn Width="0.18*"></TableColumn>
+                                            <TableColumn Width="0.12*"></TableColumn>
                                         </Table.Columns>
                                         <TableRowGroup x:Name="AllSectionsContents">
                                             <TableRow>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman"  TextAlignment="Center">
                                                         <Run FontWeight="Bold" Text="Наименование разделов и тем"></Run>
                                                     </Paragraph>
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold" Text="Содержание учебного материала, лабораторные и практические работы, самостоятельная работа обучающихся, курсовая работа (проект)"></Run>
                                                     </Paragraph>
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold" Text="Объем часов"></Run>
                                                     </Paragraph>
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="Коды компетенций, формированию которых способствует элемент программы"></Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold" Text="Уровень освоения"></Run>
                                                     </Paragraph>
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold" Text="1"></Run>
                                                     </Paragraph>
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold" Text="2"></Run>
                                                     </Paragraph>
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold" Text="3"></Run>
                                                     </Paragraph>
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold" Text="4"></Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="5"></Run>
                                                     </Paragraph>
                                                 </TableCell>
                                             </TableRow>
                                             <TableRow x:Name="Topic1">
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold">
                                                             <Run.Resources>
                                                                 <bind:SectionsConverter x:Key="SectionsConverter" />
@@ -2117,17 +2128,19 @@
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold" Text="{Binding ElementName=SectionHours, Path=Text}">
                                                         </Run>
                                                     </Paragraph>
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
                                                 </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                </TableCell>
                                             </TableRow>
                                             <TableRow x:Name="Theme1">
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold">
                                                             <Run.Resources>
                                                                 <bind:SectionsConverter x:Key="SectionsConverter" />
@@ -2144,13 +2157,13 @@
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5" ColumnSpan="2">
                                                     <Table BorderBrush="Black" BorderThickness="0.5" CellSpacing="0" Margin="0" Padding="0">
                                                         <Table.Columns>
-                                                            <TableColumn Width="0.848*"></TableColumn>
-                                                            <TableColumn Width="0.152*"></TableColumn>
+                                                            <TableColumn Width="0.851*"></TableColumn>
+                                                            <TableColumn Width="0.149*"></TableColumn>
                                                         </Table.Columns>
                                                         <TableRowGroup x:Name="ThemeContents">
                                                             <TableRow>
                                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                                    <Paragraph FontSize="14pt" FontFamily="Times New Roman">
+                                                                    <Paragraph FontFamily="Times New Roman">
                                                                         <Run Text="Содержание учебного материала"></Run>
                                                                     </Paragraph>
                                                                 </TableCell>
@@ -2174,7 +2187,13 @@
                                                     </Table>
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
+                                                        <Run FontWeight="Bold" Text="{Binding ElementName=ThemeCompetetions, Path=Text}">
+                                                        </Run>
+                                                    </Paragraph>
+                                                </TableCell>
+                                                <TableCell BorderBrush="Black" BorderThickness="0.5">
+                                                    <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
                                                         <Run FontWeight="Bold" Text="{Binding ElementName=ThemeLevel, Path=Text}">
                                                         </Run>
                                                     </Paragraph>
@@ -2256,11 +2275,11 @@
                                 </Section>
 
                                 <Section x:Name="Sheet7" BreakPageBefore="True">
-                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
+                                    <Paragraph FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Justify">
                                         <Run FontWeight="Bold" Text="    3. УСЛОВИЯ РЕАЛИЗАЦИИ УЧЕБНОЙ ДИСЦИПЛИНЫ"></Run>
                                         <LineBreak/>
                                     </Paragraph>
-                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
+                                    <Paragraph FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Justify">
                                         <Run FontWeight="Bold" Text="    3.1. Требования к материально-техническому обеспечению дисциплины"></Run>
                                         <LineBreak/>
                                         <Run Text="    Реализация учебной дисциплины требует наличия:"></Run>
@@ -2271,13 +2290,13 @@
                                         <LineBreak/>
                                         <Run Text="    лабораторий ……………………..…………………"></Run>
                                     </Paragraph>
-                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
+                                    <Paragraph FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Justify">
                                         <Run FontWeight="Bold" Text="    3.2 Учебно-методическое и информационное обеспечение дисциплины"></Run>
                                     </Paragraph>
-                                    <Paragraph x:Name="EduSources" FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
+                                    <Paragraph x:Name="EduSources" FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Justify">
                                         <Run Text="Основная литература" FontWeight="Bold"></Run>
                                     </Paragraph>
-                                    <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Justify">
+                                    <Paragraph FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Justify">
                                         <Run Text="Обучение по учебной дисциплине"></Run>
                                         <Underline>
                                             <Run Text="{Binding ElementName=DpSelect, Path=Text}"></Run>
@@ -2300,36 +2319,36 @@
                                     <TableRowGroup>
                                         <TableRow>
                                             <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                <Paragraph FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Center">
                                                     <Run FontWeight="Bold" Text="Результаты обучения (освоенные умения, усвоенные знания)"></Run>
                                                 </Paragraph>
                                             </TableCell>
                                             <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                <Paragraph FontFamily="Times New Roman" FontSize="14pt" TextAlignment="Center">
+                                                <Paragraph FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Center">
                                                     <Run FontWeight="Bold" Text="Формы и методы контроля и оценки результатов обучения"></Run>
                                                 </Paragraph>
                                             </TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                <Paragraph FontFamily="Times New Roman" FontSize="14pt" >
+                                                <Paragraph FontFamily="Times New Roman" FontSize="12pt" >
                                                     <Run Text="{Binding ElementName=TSkills, Path=Content}" />
                                                 </Paragraph>
                                                 <List x:Name="RS">
                                                 </List>
-                                                <Paragraph FontFamily="Times New Roman" FontSize="14pt" >
+                                                <Paragraph FontFamily="Times New Roman" FontSize="12pt" >
                                                     <Run Text="{Binding ElementName=TKnowledge, Path=Content}" />
                                                 </Paragraph>
                                                 <List x:Name="RK">
                                                 </List>
                                             </TableCell>
                                             <TableCell BorderBrush="Black" BorderThickness="0.5">
-                                                <Paragraph FontFamily="Times New Roman" FontSize="14pt" >
+                                                <Paragraph FontFamily="Times New Roman" FontSize="12pt" >
                                                     <Run Text="{Binding ElementName=TForms, Path=Text}" /> :
                                                 </Paragraph>
                                                 <List x:Name="RF">
                                                 </List>
-                                                <Paragraph FontFamily="Times New Roman" FontSize="14pt" >
+                                                <Paragraph FontFamily="Times New Roman" FontSize="12pt" >
                                                     <Run Text="{Binding ElementName=TMethods, Path=Text}" /> :
                                                 </Paragraph>
                                                 <List x:Name="RM">

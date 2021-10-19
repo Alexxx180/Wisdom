@@ -268,7 +268,7 @@ namespace Wisdom.Writers
             TextBox newHours, Label refer, DependencyProperty property)
         {
             Binding bindHours = FastBind(newHours, "Text");
-            newHours.Tag = bindHours;
+            newHours.Tag = refer; //bindHours
             calculation.Bindings.Add(bindHours);
             return SetBind(refer, property, calculation);
         }
@@ -626,13 +626,13 @@ namespace Wisdom.Writers
         }
         private static Grid ThemeBase(string no, string name, string hours, string competetions, string level,
             out Button dropTheme, out ComboBox themeLevels, out StackPanel contentGroup,
-            out TextBox themeHours)
+            out TextBox themeHours, out TextBox themeCompetetions)
         {
             Grid theme = GridItem7(2);
             dropTheme = DropButton();
             Label themeNo = Caption(no);
             TextBox themeName = SubCaptionBox(name);
-            TextBox themeCompetetions = UsualBox(competetions);
+            themeCompetetions = UsualBox(competetions);
             themeHours = HoursBox(hours);
             themeLevels = HoursCombo(level, true);
             contentGroup = new StackPanel { Background = Yellow };
@@ -673,7 +673,8 @@ namespace Wisdom.Writers
         {
             //Theme
             Grid theme = ThemeBase(no, name, hours, competetions, level, out dropTheme,
-                out themeLevels, out StackPanel contentGroup, out TextBox themeHours);
+                out themeLevels, out StackPanel contentGroup, out TextBox themeHours,
+                out TextBox themeCompetetions);
             
             Grid topic = Parent(themes);
             TextBox referHours = Box(topic, 3);
@@ -692,7 +693,8 @@ namespace Wisdom.Writers
             TextBox themeName = Box(theme, 2);
 
             //Doc theme
-            TableRow docTheme = ThemePreviewRow(themeNo, themeName, themeHours, out TableCell contentsCell);
+            TableRow docTheme = ThemePreviewRow(themeNo, themeName, themeHours,
+                themeCompetetions, out TableCell contentsCell);
             themePlan.Rows.Add(docTheme);
             theme.Tag = docTheme;
 

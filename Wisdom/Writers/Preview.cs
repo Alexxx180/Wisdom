@@ -10,25 +10,27 @@ namespace Wisdom.Writers
     public static class Preview
     {
         public static TableRow ThemePreviewRow(Label no,
-            TextBox name, TextBox hours, out TableCell contentGroup)
+            TextBox name, TextBox hours, TextBox competetions, out TableCell contentGroup)
         {
             Binding bindNo = FastBind(no, "Content");
             Binding bindName = FastBind(name, "Text");
             MultiBinding bindTheme = Multi(new SectionsConverter(), bindNo, bindName);
+            Binding bindCompetetion = FastBind(competetions, "Text");
             Binding bindLevel = FastBind(hours, "Text");
 
             TableRow theme = new TableRow();
             TableCell themeName = UsualTableCell(TextCB(bindTheme));
             contentGroup = Span2TableCell();
+            TableCell themeCompetetions = UsualTableCell(TextCenter(bindCompetetion));
             TableCell themeLevel = UsualTableCell(TextCenter(bindLevel));
-            AddRCells(theme, themeName, contentGroup, themeLevel);
+            AddRCells(theme, themeName, contentGroup, themeCompetetions, themeLevel);
             return theme;
         }
 
         public static Table ContentPreviewTable(out TableRowGroup contentGroup)
         {
             Table content = UsualTable();
-            AddTCols(content, 0.848, 0.152);
+            AddTCols(content, 0.851, 0.149);
             contentGroup = new TableRowGroup();
             TableRow caption = new TableRow();
             TableCell name = UsualTableCell(Text("Содержание учебного материала"));

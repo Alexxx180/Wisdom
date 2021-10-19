@@ -777,10 +777,18 @@ namespace Wisdom
         {
             StackPanel stack = deleteTopic.Tag as StackPanel;
             while (stack.Children.Count > 1)
-                DeleteSection(stack.Children[0] as Grid);
-            StackPanel sections = topic.Parent as StackPanel;
+                DeleteSection(GridChild(stack, 0));
+            StackPanel sections = Parent(topic);
+            Trace.WriteLine("");
+            TraceChildren(topic);
+            Trace.WriteLine("");
+            TextBox hours = Box(topic, 3);
+            Trace.WriteLine(hours);
+            Trace.WriteLine("");
+            Trace.WriteLine(hours.Tag);
+            
+            Label refer = hours.Tag as Label;
 
-            Label refer = (topic.Children[3] as TextBox).Tag as Label;
             MultiBinding multi = BindingOperations.GetMultiBindingExpression(refer, ContentProperty).ParentMultiBinding;
             MultiBinding multi2 = new MultiBinding { Converter = new SumConverter() };
 
