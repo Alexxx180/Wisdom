@@ -512,3 +512,5 @@ D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\W
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\win-x64\Wisdom.dll
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\win-x64\Wisdom.pdb
 D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\win-x64\Wisdom.genruntimeconfig.cache
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\win-x64\Windows\AddProgram\Competetions.g.cs
+D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\win-x64\Windows\AddProgram\Competetions.baml

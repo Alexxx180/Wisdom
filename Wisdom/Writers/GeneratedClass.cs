@@ -23,7 +23,7 @@ namespace Wisdom.Writers
         public void CreatePackage(string filePath)
         {
             using (WordprocessingDocument package = WordprocessingDocument.Create(filePath, WordprocessingDocumentType.Document))
-            CreateParts(package);
+                CreateParts(package);
         }
 
         // Adds child parts and generates content of the specified part.
@@ -514,7 +514,7 @@ namespace Wisdom.Writers
 
             Run run8 = new Run() { RsidRunProperties = "00D933D9" };
             Text text8 = new Text();
-            text8.Text = "______________  _______________";
+            text8.Text = "______________  " + DirectorName;
 
             run8.Append(text8);
 
@@ -1696,7 +1696,7 @@ namespace Wisdom.Writers
 
             Run run32 = new Run();
             Text text32 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text32.Text = " _______________";
+            text32.Text = " " + SubDirectorName;
 
             run32.Append(text32);
 
@@ -2220,7 +2220,7 @@ namespace Wisdom.Writers
 
             Run run49 = new Run();
             Text text49 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text49.Text = " _______________";
+            text49.Text = " " + SubManagerName;
 
             run49.Append(text49);
 
@@ -7151,8 +7151,13 @@ namespace Wisdom.Writers
             paragraph164.Append(run166);
             paragraph164.Append(runDr);
 
-            Paragraph paragraph165 = new Paragraph() { RsidParagraphMarkRevision = "001E708A",
-                RsidParagraphAddition = "008F57C1", RsidParagraphProperties = "00B24015", RsidRunAdditionDefault = "008F57C1" };
+            Paragraph paragraph165 = new Paragraph()
+            {
+                RsidParagraphMarkRevision = "001E708A",
+                RsidParagraphAddition = "008F57C1",
+                RsidParagraphProperties = "00B24015",
+                RsidRunAdditionDefault = "008F57C1"
+            };
 
             ParagraphProperties paragraphProperties156 = new ParagraphProperties();
 
@@ -9749,7 +9754,7 @@ namespace Wisdom.Writers
             text243.Text = Lections;
 
             run245.Append(runProperties117);
-            run245.Append(text243);            
+            run245.Append(text243);
 
             paragraph207.Append(paragraphProperties198);
             paragraph207.Append(run245);
@@ -11351,7 +11356,7 @@ namespace Wisdom.Writers
 
             paragraph233.Append(paragraphProperties224);
             paragraph233.Append(run309);
-            
+
             tableCell111.Append(tableCellProperties111);
             tableCell111.Append(paragraph233);
 
@@ -17345,7 +17350,7 @@ namespace Wisdom.Writers
             tableRow71.Append(tableCell222);
 
             table6.Append(tableRow71);
-            
+
             //START
 
             //END

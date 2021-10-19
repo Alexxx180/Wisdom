@@ -81,7 +81,7 @@ namespace Wisdom
             DataContext = this;
             Form2.BindInclude(Max, Self);
         }
-        
+
         private void ResetAllCompetetionFields(object sender, SelectionChangedEventArgs e)
         {
             ComboBox box = sender as ComboBox;
@@ -173,7 +173,7 @@ namespace Wisdom
                 nextTasksType.SelectedIndex = Ints(themeContent.Values[iii].Name);
                 nextTasksMultiplier.IsChecked = !isLastTask;
                 Button deleteAddedTasks = NewTypeContentTasks(nextTasksAdd);
-                
+
                 if (isLastTask)
                     SetTask(contentTasks, deleteAddedTasks);
                 else
@@ -267,7 +267,7 @@ namespace Wisdom
         private void ResetAllDisciplineFields(object sender, SelectionChangedEventArgs e)
         {
             ComboBox box = sender as ComboBox;
-            
+
             if (SpecNo < 0 || box.SelectedIndex < 0)
                 return;
             DropAllTopics();
@@ -332,7 +332,7 @@ namespace Wisdom
             return list;
         }
 
-        
+
         private List<List<string>> GetListFromElements3(StackPanel panel, byte rangeStart, byte rangeEnd)
         {
             List<List<string>> list = new List<List<string>>();
@@ -511,6 +511,10 @@ namespace Wisdom
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
+            DirectorName = Director.Text;
+            SubDirectorName = SubDirector.Text;
+            SubManagerName = SubManager.Text;
+
             CollegeName = College.Text;
             DisciplineRelation = DisciplineRelation1.Text;
             WorkAround = WorkAround1.Text;
@@ -536,7 +540,7 @@ namespace Wisdom
             SourcesControl = GetSources(EducationSources, 1, 2);
 
             Applyment = GetSourceList(ApplyAddSpace, 2);
-            
+
             //Topics| Themes      | Content
             //2, 3, | 2, 3, 4, 5, | 0, | 2, 3
             Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 4, 5, 0, 2, 3);
@@ -612,7 +616,7 @@ namespace Wisdom
         {
             Source(sender as Button).Click += DeleteSource;
         }
-        
+
         private void AddContent(object sender, RoutedEventArgs e)
         {
             TableContent(sender as Button).Click += AnyDeleteAuto;
@@ -623,7 +627,7 @@ namespace Wisdom
             add.Click += AddSource;
             delete.Click += DeleteSources;
         }
-        
+
         private void AddMarkControls(object sender, RoutedEventArgs e)
         {
             //TextContent3(sender as Button).Click += DeleteListItem2;
@@ -703,7 +707,7 @@ namespace Wisdom
 
             _ = RemoveGrid(grid);
         }
-        
+
 
         private void AnyDeleteAuto(object sender, RoutedEventArgs e)
         {
@@ -742,7 +746,7 @@ namespace Wisdom
             StackPanel themes = current.Parent as StackPanel;
             Grid topic = themes.Parent as Grid;
             TextBox refer = topic.Children[3] as TextBox;
-            
+
             MultiBinding multi = BindingOperations.GetMultiBindingExpression(refer, BackgroundProperty).ParentMultiBinding;
             BindingOperations.ClearBinding(refer, BackgroundProperty);
             MultiBinding multi2 = new MultiBinding { Converter = new SumConverter() };
@@ -835,7 +839,7 @@ namespace Wisdom
             addNew.Click += AddTheme;
 
             deleteOmni.Click += DeleteTopicClick;
-            
+
             hours.PreviewTextInput += Hours;
         }
         private void TopicAdd2(Grid topic)

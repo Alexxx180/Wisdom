@@ -95,39 +95,39 @@
         </Border>
 
         <Viewbox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
-            <TextBlock Text="Лекции"/>
+            <TextBlock Padding="1" Text="Лекции"/>
         </Viewbox>
         <TextBox x:Name="Lectures"  PreviewTextInput="Hours"  Grid.Row="2" Grid.Column="2" Style="{StaticResource HoursBox}"></TextBox>
 
         <Viewbox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left">
-            <Label Content="Лабораторные работы" />
+            <TextBlock Padding="1" Text="Лабораторные работы" />
         </Viewbox>
         <TextBox x:Name="Labs"  PreviewTextInput="Hours" Grid.Row="3" Grid.Column="2" Style="{StaticResource HoursBox}"></TextBox>
 
         <Viewbox Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left">
-            <Label Content="Практические занятия"></Label>
+            <TextBlock Padding="1" Text="Практические занятия"></TextBlock>
         </Viewbox>
         <TextBox x:Name="Practices"   PreviewTextInput="Hours" Grid.Row="2" Grid.Column="5" Style="{StaticResource HoursBox}"></TextBox>
 
         <Viewbox Grid.Row="3" Grid.Column="4" HorizontalAlignment="Left">
-            <Label Content="Контрольные работы"></Label>
+            <TextBlock Padding="1" Text="Контрольные работы"></TextBlock>
         </Viewbox>
         <TextBox x:Name="Controls"    PreviewTextInput="Hours" Grid.Row="3" Grid.Column="5" Style="{StaticResource HoursBox}"></TextBox>
 
-        <Viewbox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left">
-            <Label Content="Практическая подготовка"></Label>
+        <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left">
+            <TextBlock Padding="1" Text="Практическая подготовка"></TextBlock>
         </Viewbox>
-        <TextBox x:Name="Prepare"   PreviewTextInput="Hours"  Grid.Row="4" Grid.Column="5"  Style="{StaticResource HoursBox}"></TextBox>
+        <TextBox x:Name="Prepare" PreviewTextInput="Hours"  Grid.Row="5" Grid.Column="5"  Style="{StaticResource HoursBox}"></TextBox>
 
-        <Viewbox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left">
-            <Label Content="Курсовая работа"></Label>
+        <Viewbox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left">
+            <TextBlock Padding="1" Text="Курсовая работа"></TextBlock>
         </Viewbox>
-        <TextBox Grid.Row="5" Grid.Column="2" x:Name="Course"  PreviewTextInput="Hours" Style="{StaticResource HoursBox}"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="2" x:Name="Course"  PreviewTextInput="Hours" Style="{StaticResource HoursBox}"></TextBox>
 
-        <Viewbox Grid.Row="5" Grid.Column="4" HorizontalAlignment="Left">
-            <Label Content="Самостоятельная работа" FontWeight="Bold"></Label>
+        <Viewbox Grid.Row="4" Grid.Column="4" HorizontalAlignment="Left">
+            <TextBlock Padding="1" Text="Самостоятельная работа" FontWeight="Bold"></TextBlock>
         </Viewbox>
-        <TextBlock Grid.Row="5" Grid.Column="5" x:Name="SelfWork"   Style="{StaticResource HoursBox}"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="5" x:Name="SelfWork"  Style="{StaticResource HoursBox}"></TextBlock>
         <!---->
         <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="12">
             <Grid.ColumnDefinitions>

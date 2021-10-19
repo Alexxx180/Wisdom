@@ -11,7 +11,11 @@ namespace Wisdom.Model
         public static string DisciplineName = "";
         public static string ProfessionName = "";
 
+        //Прочие изменяемые данные - приказ, лица...
         public static String2 Order;
+        public static string DirectorName;
+        public static string SubDirectorName;
+        public static string SubManagerName;
 
         // Общие часы
         public static string MaxHours = "-";
@@ -762,7 +766,7 @@ namespace Wisdom.Model
                 }
             )
         }
-           
+
         };
     }
 }

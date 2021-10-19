@@ -4,7 +4,6 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using static Wisdom.Customing.Converters;
 using static Wisdom.Customing.BlockTemplates;
-using static Wisdom.Customing.ResourceHelper;
 using static Wisdom.Customing.Decorators;
 using static Wisdom.Binds.EasyBindings;
 using static Wisdom.Writers.Preview;
@@ -14,7 +13,6 @@ using System.Text;
 using System.Xml;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Diagnostics;
 
 namespace Wisdom.Writers
 {
