@@ -224,9 +224,7 @@ namespace Wisdom.Customing
             cell.Blocks.AddRange(blocks);
             return cell;
         }
-        //public static SolidColorBrush Red = new SolidColorBrush(Color.FromRgb(238, 235, 182));
         public static SolidColorBrush Yellow = new SolidColorBrush(Color.FromRgb(238, 235, 182));
-        //public static SolidColorBrush Green = new SolidColorBrush(Color.FromRgb(238, 235, 182));
         public static SolidColorBrush Blue = new SolidColorBrush(Color.FromRgb(3, 198, 255));
 
     }

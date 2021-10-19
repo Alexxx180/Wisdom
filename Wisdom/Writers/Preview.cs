@@ -9,6 +9,22 @@ namespace Wisdom.Writers
 {
     public static class Preview
     {
+        public static TableRow TopicPreviewRow(Label topicNo, TextBox topicName,
+            TextBox topicHours)
+        {
+            Binding bindNo = FastBind(topicNo, "Content");
+            Binding bindName = FastBind(topicName, "Text");
+            MultiBinding multi = Multi(new SectionsConverter(), bindNo, bindName);
+            Binding bindHours = FastBind(topicHours, "Text");
+
+            TableRow docTopic = new TableRow();
+            TableCell docTopicName = UsualTableCell(TextCB(multi));
+            TableCell docEmptyDescription = UsualTableCell();
+            TableCell docTopicHours = UsualTableCell(TextCB(bindHours));
+            TableCell docEmptyLevel = UsualTableCell();
+            AddRCells(docTopic, docTopicName, docEmptyDescription, docTopicHours, docEmptyLevel);
+            return docTopic;
+        }
         public static TableRow ThemePreviewRow(Label no,
             TextBox name, TextBox hours, TextBox competetions, out TableCell contentGroup)
         {
@@ -52,7 +68,7 @@ namespace Wisdom.Writers
         public static TableRowGroup TaskPreviewGroup(TableCell task)
         {
             Table taskTable = UsualTable();
-            AddTCols(taskTable, 0.048, 0.8, 0.152);
+            AddTCols(taskTable, 0.048, 0.804, 0.148);
             task.Blocks.Add(taskTable);
             TableRowGroup taskGroup = new TableRowGroup();
             taskTable.RowGroups.Add(taskGroup);

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Win32;
+using System;
 using System.IO;
+using System.Windows;
 
 namespace Wisdom.Writers
 {
@@ -9,16 +11,27 @@ namespace Wisdom.Writers
 
         public static void WriteDoc(string fileName)
         {
-            if (File.Exists(fileName))
-                File.Delete(fileName);
-            renderer.CreatePackage(fileName);
+            try
+            {
+                if (File.Exists(fileName))
+                    File.Delete(fileName);
+                renderer.CreatePackage(fileName);
+            }
+            catch (IOException exception)
+            {
+                string message = "Файл открыт в другой программе или используется другим процессом. Дальнейшая запись в файл невозможна.\nПолное сообщение:\n";
+                _ = MessageBox.Show(message + exception.Message);
+            }
+
         }
 
         //Write document method used for tests
         public static void WriteDoc()
         {
-            string testFile = @"D:\Александр\Windows 7\misc\Надгробные плиты\C#\Wisdom\Wisdom\TestResources\Output\Result.docx";
-            WriteDoc(testFile);
+            string testFile = @"TestResources\Output\Result.docx";
+            string exutingDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            string fullName = $"{exutingDirectory}\\{testFile}";
+            WriteDoc(fullName);
         }
 
         public static void CallWriter(string fileName)

@@ -12,7 +12,6 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Windows.Markup;
-using System.Windows.Media;
 
 namespace Wisdom.Writers
 {
@@ -368,7 +367,6 @@ namespace Wisdom.Writers
             GridAddX2(taskGroup, 0, delete, taskNo, taskDescription);
             GridAdd(taskGroup, taskType);
             SetCol(taskType, 1);
-            //SetColX(new int[] { 1, 1, 2 }, taskType, taskNo, taskDescription);
             SetRowX(1, taskDescription, taskNo);
             SetColSpanX(2, taskDescription, taskType);
 
@@ -429,26 +427,27 @@ namespace Wisdom.Writers
         public static void RemoveRun(object value)
         {
             Run run = value as Run;
-            Paragraph prg = run.Parent as Paragraph;
+            Paragraph prg = Parent(run);
             _ = prg.Inlines.Remove(run);
         }
         public static void RemoveRunLB(object value)
         {
             Run run = value as Run;
-            Paragraph prg = run.Parent as Paragraph;
+            Paragraph prg = Parent(run);
+            LineBreak lbreak = run.Tag as LineBreak;
             _ = prg.Inlines.Remove(run);
-            _ = prg.Inlines.Remove(run.Tag as LineBreak);
+            _ = prg.Inlines.Remove(lbreak);
         }
         public static void RemoveListItem(object value)
         {
             ListItem item = value as ListItem;
-            List list = item.Parent as List;
+            List list = Parent(item);
             _ = list.ListItems.Remove(item);
         }
         public static void RemoveTableRow(object value)
         {
             TableRow row = value as TableRow;
-            TableRowGroup rgr = row.Parent as TableRowGroup;
+            TableRowGroup rgr = Parent(row);
             rgr.Rows.Remove(row);
         }
         public static StackPanel RemoveGrid(FrameworkElement element)
@@ -461,11 +460,11 @@ namespace Wisdom.Writers
         {
             for (int no = 0; no < grandGrid.Children.Count; no++)
             {
-                Grid section = grandGrid.Children[no] as Grid;
-                Border border = section.Children[pos] as Border;
+                Grid section = GridChild(grandGrid, no);
+                Border border = Border(section, pos);
                 Label nolab = Child(border);
                 nolab.Content = $"{prefix}{no + 1}{mark}";
-                StackPanel panel = section.Children[pos + 1] as StackPanel;
+                StackPanel panel = Panel(section, pos + 1);
                 AutoIndexing(panel, 1, "", $"{prefix} {no + 1}.");
             }
         }
@@ -473,18 +472,19 @@ namespace Wisdom.Writers
         {
             for (int no = 0; no < grandGrid.Children.Count; no++)
             {
-                Grid section = grandGrid.Children[no] as Grid;
-                Label nolab = section.Children[pos] as Label; //Label nolab = section.Children[pos] as Label;
-                nolab.Content = $"{prefix}{no + 1}{mark}";
+                int calc = no + 1;
+                Grid section = GridChild(grandGrid, no);
+                Label themeNo = Lab(section, pos);
+                themeNo.Content = $"{prefix}{calc}{mark}";
             }
         }
         public static void AutoIndexing2(StackPanel grandGrid, int pos, string mark, string prefix)
         {
             for (int no = 0; no < grandGrid.Children.Count; no++)
             {
-                Grid section = grandGrid.Children[no] as Grid;
-                Label nolab = section.Children[pos] as Label;
                 int calc = no + 1;
+                Grid section = GridChild(grandGrid, no);
+                Label nolab = Lab(section, pos);
                 nolab.Content = $"{prefix}{calc / 10}{calc % 10}{mark}";
             }
         }
@@ -492,21 +492,21 @@ namespace Wisdom.Writers
         {
             for (int no = 0; no < grandGrid.Children.Count; no++)
             {
-                Grid section = grandGrid.Children[no] as Grid;
-                Label nolab = section.Children[pos] as Label; //Label nolab = section.Children[pos] as Label;
+                Grid section = GridChild(grandGrid, no);
+                Label nolab = Lab(section, pos);
                 nolab.Content = $"{prefix}{no + 1}{mark}";
             }
         }
         public static void AutoIndexing(StackPanel grandGrid, int pos, char mark)
         {
             for (int no = 0; no < grandGrid.Children.Count; no++)
-                ((grandGrid.Children[no] as Grid).Children[pos] as Label).Content = $"{no + 1}{mark}";
+            {
+                Grid content = GridChild(grandGrid, no);
+                Label taskNo = Lab(content, pos);
+                taskNo.Content = $"{no + 1}{mark}";
+            }
         }
-        public static void AutoIndexing(StackPanel grandGrid, int pos)
-        {
-            for (int no = 0; no < grandGrid.Children.Count; no++)
-                ((grandGrid.Children[no] as Grid).Children[pos] as Label).Content = $"{no + 1}";
-        }
+        
         public static Section BoXaml(RichTextBox box)
         {
             StringReader stringReader = new StringReader(XamlText(box));
@@ -529,7 +529,7 @@ namespace Wisdom.Writers
         }
         public static void NumbersBox(Button btn, int defaultValue)
         {
-            StackPanel stp = btn.Parent as StackPanel;
+            StackPanel stp = ParentStack(btn);
             TextBox box = stp.Tag as TextBox;
             int p = Ints(btn.Tag.ToString());
             if (box.Text == "")
@@ -590,12 +590,12 @@ namespace Wisdom.Writers
 
             _ = BindHourColor(topicHours);
 
-            StackPanel themes = new StackPanel { Background = new SolidColorBrush(Color.FromRgb(238, 235, 182)) };
+            StackPanel themes = new StackPanel { Background = Yellow };
             GridAddX2(topic, 0, deleteTopic, topicNo, topicName, topicHours);
             GridAdd(topic, themes);
             SetRow(themes, 1);
             SetColSpan(themes, 6);
-            Grid addTopic = master.Children[cnt - 1] as Grid;
+            Grid addTopic = GridChild(master, cnt - 1);
             Label addTopicNo = Lab(addTopic, 1);
             addTopicNo.Content = $"Раздел {cnt + 1}.";
             Restack(master, addTopic, topic);
@@ -605,19 +605,8 @@ namespace Wisdom.Writers
                 ContentControl.ContentProperty, new SumConverter());
 
             _ = ReferNewBind(reCalculation, topicHours, hoursToBind, ContentControl.ContentProperty);
-            
-            //Doc topic
-            Binding bindNo = FastBind(topicNo, "Content");
-            Binding bindName = FastBind(topicName, "Text");
-            MultiBinding multi = Multi(new SectionsConverter(), bindNo, bindName);
-            Binding bindHours = FastBind(topicHours, "Text");
 
-            TableRow docTopic = new TableRow();
-            TableCell docTopicName = UsualTableCell(TextCB(multi));
-            TableCell docEmptyDescription = UsualTableCell();
-            TableCell docTopicHours = UsualTableCell(TextCB(bindHours));
-            TableCell docEmptyLevel = UsualTableCell();
-            AddRCells(docTopic, docTopicName, docEmptyDescription, docTopicHours, docEmptyLevel);
+            TableRow docTopic = TopicPreviewRow(topicNo, topicName, topicHours);
 
             topic.Tag = docTopic;
             mainBinding.Rows.Add(docTopic);

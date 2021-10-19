@@ -57,6 +57,33 @@ namespace Wisdom.Binds
                 newCalculation.Bindings.Add(binding);
             return newCalculation;
         }
+        public static MultiBinding DeleteBindFromMulti(DependencyObject @object,
+            DependencyProperty property, IMultiValueConverter converter, Binding toDrop)
+        {
+            MultiBinding oldCalculation = GetMulti(@object, property);
+            UnBind(@object, property);
+            MultiBinding newCalculation = new MultiBinding { Converter = converter };
+
+            foreach (Binding binding in oldCalculation.Bindings)
+                if (!toDrop.Equals(binding))
+                    newCalculation.Bindings.Add(binding);
+            return newCalculation;
+        }
+        public static MultiBinding DeleteElemFromMulti(DependencyObject @object,
+            DependencyProperty property, IMultiValueConverter converter,
+            Panel childToDrop, Panel parentHandler)
+        {
+            MultiBinding oldCalculation = GetMulti(@object, property);
+            UnBind(@object, property);
+            MultiBinding newCalculation = new MultiBinding { Converter = converter };
+
+            for (int i = 0; i < oldCalculation.Bindings.Count; i++)
+            {
+                if (i != parentHandler.Children.IndexOf(childToDrop))
+                    newCalculation.Bindings.Add(oldCalculation.Bindings[i]);
+            }
+            return newCalculation;
+        }
         public static MultiBinding GetMulti(DependencyObject @object, DependencyProperty property)
         {
             return BindingOperations.GetMultiBindingExpression(@object, property).ParentMultiBinding;
@@ -65,6 +92,11 @@ namespace Wisdom.Binds
         {
             return BindingOperations.GetBindingExpression(@object, property).ParentBinding;
         }
+        public static BindingExpression GetBindExpress(DependencyObject @object, DependencyProperty property)
+        {
+            return BindingOperations.GetBindingExpression(@object, property);
+        }
+
         public static DependencyObject UnBind(DependencyObject @object, DependencyProperty property)
         {
             BindingOperations.ClearBinding(@object, property);

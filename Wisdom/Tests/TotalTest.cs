@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using Wisdom.Model;
 
 namespace Wisdom.Tests
 {
@@ -22,15 +23,43 @@ namespace Wisdom.Tests
                 Trace.WriteLine(element);
         }
 
-        public static void TraceItems(Selector selector)
+        public static void TraceItems(ComboBox selector)
         {
-            foreach (ContentControl item in selector.Items)
+            foreach (ComboBoxItem item in selector.Items)
                 Trace.WriteLine(item);
         }
         public static void TraceItems<T>(List<T> items)
         {
             foreach (T item in items)
                 Trace.WriteLine(item);
+        }
+
+        public static void TestData(List<HoursList<LevelsList<HashList<String2>>>> plan)
+        {
+            foreach (HoursList<LevelsList<HashList<String2>>> l1 in plan)
+            {
+                Trace.WriteLine("Раздел ...");
+                Trace.WriteLine("Название: " + l1.Name);
+                Trace.WriteLine("Часы: " + l1.Hours);
+                foreach (LevelsList<HashList<String2>> l2 in l1.Values)
+                {
+                    Trace.WriteLine("Тема ...");
+                    Trace.WriteLine("Название: " + l2.Name);
+                    Trace.WriteLine("Часы: " + l2.Hours);
+                    Trace.WriteLine("Уровень освоения: " + l2.Level);
+                    foreach (HashList<String2> l3 in l2.Values)
+                    {
+                        Trace.WriteLine("Элемент темы ...");
+                        Trace.WriteLine("Название: " + l3.Name);
+                        foreach (String2 l4 in l3.Values)
+                        {
+                            Trace.WriteLine("Элемент темы ...");
+                            Trace.WriteLine("Название: " + l4.Name);
+                            Trace.WriteLine("Часы: " + l4.Value);
+                        }
+                    }
+                }
+            }
         }
     }
 }

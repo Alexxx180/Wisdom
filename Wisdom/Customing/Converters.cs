@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Windows.Media;
 using System.Windows.Controls;
-using System.Collections.Generic;
+using System.Windows.Documents;
 
 namespace Wisdom.Customing
 {
@@ -25,13 +24,21 @@ namespace Wisdom.Customing
 
         public static Grid GridChild(StackPanel stack, int no) => stack.Children[no] as Grid;
 
+        public static Label Child(Border border) => border.Child as Label;
+
         public static Grid Parent(StackPanel stack) => stack.Parent as Grid;
 
         public static Grid Parent(Button button) => button.Parent as Grid;
 
         public static StackPanel Parent(Grid stack) => stack.Parent as StackPanel;
 
-        public static Label Child(Border border) => border.Child as Label;
+        public static StackPanel ParentStack(Button button) => button.Parent as StackPanel;
+
+        public static TableRowGroup Parent(TableRow row) => row.Parent as TableRowGroup;
+
+        public static List Parent(ListItem item) => item.Parent as List;
+
+        public static Paragraph Parent(Run run) => run.Parent as Paragraph;
 
         public static int Itry(string value)
         {

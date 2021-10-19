@@ -224,13 +224,10 @@
                         <Label Content="Код и название специальности" Padding="0"/>
                     </Viewbox>
 
-                    <ComboBox x:Name="SpSelect" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Stretch" SelectionChanged="ResetAllCompetetionFields" Style="{StaticResource SubCaptionBox}" IsEditable="True">
+                    <ComboBox x:Name="SpSelect" ItemsSource="{Binding Path=SpecialitySelect}" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Stretch" SelectionChanged="ResetAllCompetetionFields" Style="{StaticResource SubCaptionBox}" IsEditable="True">
                         <ComboBox.ItemContainerStyle>
                             <StaticResource ResourceKey="ItemsBox"></StaticResource>
                         </ComboBox.ItemContainerStyle>
-                        <ComboBoxItem Content="15.02.07 Автоматизация технологических процессов и производств (по отраслям)"/>
-                        <ComboBoxItem Content="09.02.03 Программирование в компьютерных системах"/>
-                        <ComboBoxItem Content="15.02.14 Оснащение средствами автоматизации технологических процессов и производств (по отраслям)" />
                     </ComboBox>
                 </Grid>
 
@@ -356,8 +353,9 @@
 
             </Grid>
 
-            <local:Competetions x:Name="Form2" Visibility="Hidden" />
-            <!--<Grid x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <!--<local:Competetions  />-->
+            <Grid  x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+                <!--x:Name="Form2" -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.35*"/>
@@ -404,6 +402,7 @@
                     <Viewbox HorizontalAlignment="Center">
                         <Label x:Name="Available" Content="{Binding ElementName=Max,Path=Content}" Style="{StaticResource CaptionSections}" Background="#FFFFFCC7"></Label>
                     </Viewbox>
+                    <!--Content="{Binding ElementName=Max,Path=Content}"-->
                 </Border>
 
                 <Border Background="#FFFFFCC7" Grid.Row="1" Grid.Column="4">
@@ -439,40 +438,40 @@
                 </Border>
 
                 <Viewbox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
-                    <TextBlock Text="Лекции"/>
+                    <TextBlock Padding="1" Text="Лекции"/>
                 </Viewbox>
                 <TextBox x:Name="Lectures"  PreviewTextInput="Hours"  Grid.Row="2" Grid.Column="2" Style="{StaticResource HoursBox}"></TextBox>
 
                 <Viewbox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left">
-                    <Label Content="Лабораторные работы" />
+                    <TextBlock Padding="1" Text="Лабораторные работы" />
                 </Viewbox>
                 <TextBox x:Name="Labs"  PreviewTextInput="Hours" Grid.Row="3" Grid.Column="2" Style="{StaticResource HoursBox}"></TextBox>
 
                 <Viewbox Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left">
-                    <Label Content="Практические занятия"></Label>
+                    <TextBlock Padding="1" Text="Практические занятия"></TextBlock>
                 </Viewbox>
                 <TextBox x:Name="Practices"   PreviewTextInput="Hours" Grid.Row="2" Grid.Column="5" Style="{StaticResource HoursBox}"></TextBox>
 
                 <Viewbox Grid.Row="3" Grid.Column="4" HorizontalAlignment="Left">
-                    <Label Content="Контрольные работы"></Label>
+                    <TextBlock Padding="1" Text="Контрольные работы"></TextBlock>
                 </Viewbox>
                 <TextBox x:Name="Controls"    PreviewTextInput="Hours" Grid.Row="3" Grid.Column="5" Style="{StaticResource HoursBox}"></TextBox>
 
-                <Viewbox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left">
-                    <Label Content="Практическая подготовка"></Label>
+                <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left">
+                    <TextBlock Padding="1" Text="Практическая подготовка"></TextBlock>
                 </Viewbox>
-                <TextBox x:Name="Prepare"   PreviewTextInput="Hours"  Grid.Row="4" Grid.Column="5"  Style="{StaticResource HoursBox}"></TextBox>
+                <TextBox x:Name="Prepare" PreviewTextInput="Hours"  Grid.Row="5" Grid.Column="5"  Style="{StaticResource HoursBox}"></TextBox>
 
-                <Viewbox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left">
-                    <Label Content="Курсовая работа"></Label>
+                <Viewbox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left">
+                    <TextBlock Padding="1" Text="Курсовая работа"></TextBlock>
                 </Viewbox>
-                <TextBox Grid.Row="5" Grid.Column="2" x:Name="Course"  PreviewTextInput="Hours" Style="{StaticResource HoursBox}"></TextBox>
+                <TextBox Grid.Row="4" Grid.Column="2" x:Name="Course"  PreviewTextInput="Hours" Style="{StaticResource HoursBox}"></TextBox>
 
-                <Viewbox Grid.Row="5" Grid.Column="4" HorizontalAlignment="Left">
-                    <Label Content="Самостоятельная работа" FontWeight="Bold"></Label>
+                <Viewbox Grid.Row="4" Grid.Column="4" HorizontalAlignment="Left">
+                    <TextBlock Padding="1" Text="Самостоятельная работа" FontWeight="Bold"></TextBlock>
                 </Viewbox>
-                <TextBlock Grid.Row="5" Grid.Column="5" x:Name="SelfWork" Text="{Binding ElementName=Self, Path=Text}"  Style="{StaticResource HoursBox}"></TextBlock>
-
+                <TextBlock Grid.Row="4" Grid.Column="5" x:Name="SelfWork" Text="{Binding ElementName=Self, Path=Text}" Style="{StaticResource HoursBox}"></TextBlock>
+                <!---->
                 <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -490,7 +489,8 @@
                     <Grid x:Name="TotalCompetetions" Grid.Row="1" Grid.ColumnSpan="2" Visibility="Visible">
                         <ScrollViewer>
                             <StackPanel Background="#FFFFFCC7">
-                                <Grid Tag="{x:Reference RSkills}">
+                                <Grid x:Name="GeneralCompGroup">
+                                    <!--Tag="{x:Reference RSkills}"-->
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.05*" />
                                         <ColumnDefinition Width="0.15*" />
@@ -503,7 +503,8 @@
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
 
-                                    <StackPanel Grid.ColumnSpan="4" Tag="{x:Reference RS}" x:Name="TotalCompAddSpace">
+                                    <StackPanel Grid.ColumnSpan="4" x:Name="TotalCompAddSpace">
+                                        <!--Tag="{x:Reference RS}"-->
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="0.05*" />
@@ -563,7 +564,8 @@
                                         <Label Style="{StaticResource ResourceKey=ListCaptions}" Content="ПК 1." Padding="5"></Label>
                                     </Border>
 
-                                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Tag="{x:Reference RS}" >
+                                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2" x:Name="ProfStack">
+                                        <!--Tag="{x:Reference RS}"-->
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="0.05*" />
@@ -632,7 +634,7 @@
 
                 </Grid>
 
-            </Grid>-->
+            </Grid>
 
             <!--RCompetentions-->
             <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Visible">
@@ -1382,7 +1384,7 @@
 
                             <FlowDocument x:Name="Struct" PagePadding="3cm,2cm,1cm,2cm">
 
-                                <!--<Section x:Name="Sheet1" BreakPageBefore="True">
+                                <Section x:Name="Sheet1" BreakPageBefore="True">
                                     <Table>
                                         <Table.Columns>
                                             <TableColumn />
@@ -2040,7 +2042,7 @@
                                             </TableRow>
                                         </TableRowGroup>
                                     </Table>
-                                </Section>-->
+                                </Section>
 
                                 <Section BreakPageBefore="True" x:Name="Sheet6">
                                     <Paragraph FontFamily="Times New Roman" FontSize="12pt" TextAlignment="Justify">
@@ -2332,12 +2334,13 @@
                                         <TableRow>
                                             <TableCell BorderBrush="Black" BorderThickness="0.5">
                                                 <Paragraph FontFamily="Times New Roman" FontSize="12pt" >
-                                                    <Run Text="{Binding ElementName=TSkills, Path=Content}" />
+                                                    <Run Text="" />
+                                                    <!--{Binding ElementName=TSkills, Path=Content}-->
                                                 </Paragraph>
                                                 <List x:Name="RS">
                                                 </List>
                                                 <Paragraph FontFamily="Times New Roman" FontSize="12pt" >
-                                                    <Run Text="{Binding ElementName=TKnowledge, Path=Content}" />
+                                                    <Run Text="" />
                                                 </Paragraph>
                                                 <List x:Name="RK">
                                                 </List>

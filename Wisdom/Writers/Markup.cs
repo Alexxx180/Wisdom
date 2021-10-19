@@ -130,7 +130,6 @@ namespace Wisdom.Writers
         public static TableCell TableCellAdd(Paragraph par, ushort width, OpenXmlElement cellProp)
         {
             TableCell tableCell36 = CellBase(width);
-            Trace.WriteLine(cellProp.Parent);
             tableCell36.Append(cellProp);
             tableCell36.Append(par);
             return tableCell36;
@@ -158,34 +157,6 @@ namespace Wisdom.Writers
             for (byte i = 0; i < cells.Length; i++)
                 tableRow.Append(cells[i]);
             return tableRow;
-        }
-
-        public static void TestData()
-        {
-            foreach (HoursList<LevelsList<HashList<String2>>> l1 in Plan)
-            {
-                Trace.WriteLine("Раздел ...");
-                Trace.WriteLine("Название: " + l1.Name);
-                Trace.WriteLine("Часы: " + l1.Hours);
-                foreach (LevelsList<HashList<String2>> l2 in l1.Values)
-                {
-                    Trace.WriteLine("Тема ...");
-                    Trace.WriteLine("Название: " + l2.Name);
-                    Trace.WriteLine("Часы: " + l2.Hours);
-                    Trace.WriteLine("Уровень освоения: " + l2.Level);
-                    foreach (HashList<String2> l3 in l2.Values)
-                    {
-                        Trace.WriteLine("Элемент темы ...");
-                        Trace.WriteLine("Название: " + l3.Name);
-                        foreach (String2 l4 in l3.Values)
-                        {
-                            Trace.WriteLine("Элемент темы ...");
-                            Trace.WriteLine("Название: " + l4.Name);
-                            Trace.WriteLine("Часы: " + l4.Value);
-                        }
-                    }
-                }
-            }
         }
 
         public static List<TableRow> CompetetionsTableRows()

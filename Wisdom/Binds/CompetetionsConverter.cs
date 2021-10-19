@@ -14,10 +14,6 @@ namespace Wisdom.Binds
             UIElementCollection grids = value as UIElementCollection;
             for (byte i = 1; i < grids.Count; i++)
             {
-                /*Grid grid = grids[i] as Grid;
-                Label lab = grid.Children[1] as Label;
-                string text = lab.Content.ToString();
-                Trace.WriteLine(text);*/
                 items.Add(i.ToString());
             }
             return items;
