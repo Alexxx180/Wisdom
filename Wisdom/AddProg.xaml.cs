@@ -340,7 +340,9 @@ namespace Wisdom
             {
                 nextContentName.Text = contentTasks.Values[iv].Name;
                 nextContentHours.Text = contentTasks.Values[iv].Value;
-                TableContent(nextContentAdd).Click += AnyDeleteAuto;
+                TableContent(nextContentAdd, out TextBox hours).Click += AnyDeleteAuto;
+                hours.PreviewTextInput += Hours;
+                DataObject.AddPastingHandler(hours, PastingHours);
             }
         }
 
@@ -369,7 +371,9 @@ namespace Wisdom
             {
                 nextTaskName.Text = contentTasks.Values[iv].Name;
                 nextTaskHours.Text = contentTasks.Values[iv].Value;
-                TableContent(nextTaskAdd).Click += AnyDeleteAuto;
+                TableContent(nextTaskAdd, out TextBox hours).Click += AnyDeleteAuto;
+                hours.PreviewTextInput += Hours;
+                DataObject.AddPastingHandler(hours, PastingHours);
             }
         }
 
@@ -484,6 +488,38 @@ namespace Wisdom
             string full = box.Text.Insert(box.CaretIndex, e.Text);
             e.Handled = !_hours.IsMatch(full);
         }
+        private static string GetProposedText(TextBox textBox, string newText)
+        {
+            var text = textBox.Text;
+
+            if (textBox.SelectionStart != -1)
+            {
+                text = text.Remove(textBox.SelectionStart, textBox.SelectionLength);
+            }
+
+            text = text.Insert(textBox.CaretIndex, newText);
+
+            return text;
+        }
+        private void PastingHours(object sender, DataObjectPastingEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            if (e.DataObject.GetDataPresent(typeof(string)))
+            {
+                string pastedText = e.DataObject.GetData(typeof(string)) as string;
+                string proposedText = GetProposedText(textBox, pastedText);
+
+                if (!_hours.IsMatch(proposedText))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
 
         private void Counting(object sender, RoutedEventArgs e)
         {
@@ -539,7 +575,10 @@ namespace Wisdom
 
         private void AddContent(object sender, RoutedEventArgs e)
         {
-            TableContent(sender as Button).Click += AnyDeleteAuto;
+            Button addNext = sender as Button;
+            TableContent(addNext, out TextBox hours).Click += AnyDeleteAuto;
+            hours.PreviewTextInput += Hours;
+            DataObject.AddPastingHandler(hours, PastingHours);
         }
         private void AddSources(object sender, RoutedEventArgs e)
         {
@@ -600,6 +639,7 @@ namespace Wisdom
             TextBox hours = null;
             AutoDetectContentType(newContent, out hours, out delete, ref add);
             hours.PreviewTextInput += Hours;
+            DataObject.AddPastingHandler(hours, PastingHours);
             delete.Click += AnyDelete;
             if (add != null)
                 add.Click += AddContent;
@@ -742,9 +782,11 @@ namespace Wisdom
 
             NewTopic(AllSectionsContents, topicStack, out Button BTbutton,
                 out Button Cadd, out Button NewTypeAdd, out Button deleteOmni,
-                out Button addNew, out TextBox hours,
+                out Button addNew, out TextBox nextThemehours,
                 topicName.Text, topicHours.Text, TotalHoursUsed,
-                out ComboBox newThemeLevels, out ComboBox themeLevelsAdd);
+                out ComboBox newThemeLevels, out ComboBox themeLevelsAdd,
+                out TextBox themeHours, out TextBox contentHours,
+                out TextBox hours);
 
             //Theme
             _ = SetBind(newThemeLevels, ComboBox.ItemsSourceProperty,
@@ -765,6 +807,13 @@ namespace Wisdom
             deleteOmni.Click += DeleteTopicClick;
 
             hours.PreviewTextInput += Hours;
+            DataObject.AddPastingHandler(hours, PastingHours);
+            themeHours.PreviewTextInput += Hours;
+            DataObject.AddPastingHandler(themeHours, PastingHours);
+            nextThemehours.PreviewTextInput += Hours;
+            DataObject.AddPastingHandler(nextThemehours, PastingHours);
+            contentHours.PreviewTextInput += Hours;
+            DataObject.AddPastingHandler(contentHours, PastingHours);
         }
         private void TopicAdd2(Grid topic)
         {
@@ -773,8 +822,9 @@ namespace Wisdom
             StackPanel topicStack = Parent(topic);
 
             NewTopic(AllSectionsContents, topicStack,
-                out Button deleteOmni, out Button addNew, out TextBox hours,
-                 TotalHoursUsed, out ComboBox themeLevelsAdd, topicName.Text, topicHours.Text);
+                out Button deleteOmni, out Button addNew, out TextBox themeHours,
+                 TotalHoursUsed, out ComboBox themeLevelsAdd, topicName.Text,
+                 topicHours.Text, out TextBox hours);
 
             //Content
             _ = SetBind(themeLevelsAdd, ComboBox.ItemsSourceProperty, 
@@ -786,6 +836,9 @@ namespace Wisdom
             deleteOmni.Click += DeleteTopicClick;
 
             hours.PreviewTextInput += Hours;
+            DataObject.AddPastingHandler(hours, PastingHours);
+            themeHours.PreviewTextInput += Hours;
+            DataObject.AddPastingHandler(themeHours, PastingHours);
         }
         private void AddTheme(object sender, RoutedEventArgs e)
         {
@@ -807,7 +860,8 @@ namespace Wisdom
                 themes, AllSectionsContents,
                 out Button deleteTheme, out Button addContent,
                 out Button addNextTask, out ComboBox themeLevels,
-                themeName.Text, themeHours.Text, themeLevel.Text);
+                themeName.Text, themeHours.Text, themeLevel.Text,
+                out TextBox hours, out TextBox contentHours);
             deleteTheme.Click += DeleteThemeClick;
             addContent.Click += AddContent;
             addNextTask.Click += NewTypeContent;
@@ -819,6 +873,10 @@ namespace Wisdom
             StackPanel sections = Parent(section);
             int optimization = sections.Children.IndexOf(section) + 1;
             AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
+            hours.PreviewTextInput += Hours;
+            DataObject.AddPastingHandler(hours, PastingHours);
+            contentHours.PreviewTextInput += Hours;
+            DataObject.AddPastingHandler(contentHours, PastingHours);
         }
 
         private void SwitchSections(object sender, RoutedEventArgs e)

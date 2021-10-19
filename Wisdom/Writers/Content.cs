@@ -280,7 +280,7 @@ namespace Wisdom.Writers
             return SetBind(refer, Control.BackgroundProperty, calculation);
         }
 
-        public static Button TableContent(Button addNext)
+        public static Button TableContent(Button addNext, out TextBox newHours)
         {
             Grid next = Parent(addNext);
             StackPanel tasks = Parent(next);
@@ -293,7 +293,7 @@ namespace Wisdom.Writers
             Button delete = DropButton(newTask);
             Label newNo = ListNo2(nextNo.Content.ToString());
             TextBox newName = UsualBox(nextName.Text);
-            TextBox newHours = HoursBox(nextHours.Text);
+            newHours = HoursBox(nextHours.Text);
             GridAddX2(newTask, 0, delete, newNo, newName, newHours);
 
             TableCell no = UsualTableCell(Text(newNo));
@@ -553,13 +553,14 @@ namespace Wisdom.Writers
             out Button BTbutton, out Button Cadd, out Button NewTypeAdd,
             out Button deleteOmni, out Button addNew, out TextBox newHours,
             string name, string hours, Label hoursToBind,
-            out ComboBox newThemeLevels, out ComboBox themeLevelAdd)
+            out ComboBox newThemeLevels, out ComboBox themeLevelAdd, out TextBox themeHours,
+            out TextBox levelHours, out TextBox topicHours)
         {
             int cnt = master.Children.Count;
             StackPanel Themes = TopicBase(mainBinding, master, 
-            out deleteOmni, name, hours, hoursToBind, cnt);
+            out deleteOmni, name, hours, hoursToBind, cnt, out topicHours);
 
-            NewTheme(cnt, Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd, out newThemeLevels);
+            NewTheme(cnt, Themes, mainBinding, out BTbutton, out Cadd, out NewTypeAdd, out newThemeLevels, out themeHours, out levelHours);
 
             Grid newThemeGrid = NewThemeGrid(out addNew, out newHours, out themeLevelAdd, cnt, "2");
             Themes.Children.Add(newThemeGrid);
@@ -567,11 +568,11 @@ namespace Wisdom.Writers
 
         public static void NewTopic(TableRowGroup mainBinding, StackPanel master,
             out Button deleteOmni, out Button addNew, out TextBox newHours,
-            Label hoursToBind,  out ComboBox themeLevelAdd, string name, string hours)
+            Label hoursToBind,  out ComboBox themeLevelAdd, string name, string hours, out TextBox topicHours)
         {
             int cnt = master.Children.Count;
             StackPanel Themes = TopicBase(mainBinding, master,
-            out deleteOmni, name, hours, hoursToBind, cnt);
+            out deleteOmni, name, hours, hoursToBind, cnt, out topicHours);
 
             Grid newThemeGrid = NewThemeGrid(out addNew, out newHours, out themeLevelAdd, cnt, "1");
             Themes.Children.Add(newThemeGrid);
@@ -579,13 +580,13 @@ namespace Wisdom.Writers
 
         //Topic
         private static StackPanel TopicBase(TableRowGroup mainBinding, StackPanel master, 
-            out Button deleteTopic, string name, string hours, Label hoursToBind, int cnt)
+            out Button deleteTopic, string name, string hours, Label hoursToBind, int cnt, out TextBox topicHours)
         {
             Grid topic = GridItem7(2);
             deleteTopic = DropButton();
             Label topicNo = Caption($"Раздел {cnt}.");
             TextBox topicName = UsualBox(name);
-            TextBox topicHours = HoursBox(hours);
+            topicHours = HoursBox(hours);
             SetPropX(TextElement.FontWeightProperty, FontWeights.Bold, topicName, topicHours);
 
             _ = BindHourColor(topicHours);
@@ -649,20 +650,21 @@ namespace Wisdom.Writers
         }
 
         public static void NewTheme(int cnt, StackPanel themes, TableRowGroup themePlan,
-            out Button BTbutton, out Button addContent, out Button NewTypeAdd, out ComboBox newThemeLevels)
+            out Button BTbutton, out Button addContent, out Button NewTypeAdd, out ComboBox newThemeLevels, out TextBox themeHours, out TextBox levelHours)
         {
-            NewTheme($"Тема {cnt}.1.", "", themes, themePlan, out BTbutton, out addContent, out NewTypeAdd, out newThemeLevels, "", "", "");
+            NewTheme($"Тема {cnt}.1.", "", themes, themePlan, out BTbutton, out addContent, out NewTypeAdd, out newThemeLevels, "", "", "", out themeHours, out levelHours);
         }
 
         public static void NewTheme(string no, string competetions,
             StackPanel themes, TableRowGroup themePlan,
             out Button dropTheme, out Button addContent,
             out Button addNextTask, out ComboBox themeLevels,
-            string name, string hours, string level)
+            string name, string hours, string level, out TextBox themeHours,
+            out TextBox levelHours)
         {
             //Theme
             Grid theme = ThemeBase(no, name, hours, competetions, level, out dropTheme,
-                out themeLevels, out StackPanel contentGroup, out TextBox themeHours,
+                out themeLevels, out StackPanel contentGroup, out themeHours,
                 out TextBox themeCompetetions);
             
             Grid topic = Parent(themes);
@@ -671,7 +673,7 @@ namespace Wisdom.Writers
                 Control.BackgroundProperty, new UsedValuesConverter());
             _ = ReferNewBind(reCalculation, themeHours, referHours);
 
-            Grid content = NewThemeContent(out addContent, out StackPanel themeContent);
+            Grid content = NewThemeContent(out addContent, out StackPanel themeContent, out levelHours);
             _ = contentGroup.Children.Add(content);
 
             Grid nextTask = NextThemeTask(out addNextTask);
@@ -696,7 +698,8 @@ namespace Wisdom.Writers
             themeContent.Tag = taskGroup;
             contentGroup.Tag = docContentGroup;
         }
-        private static Grid NewThemeContent(out Button addContent, out StackPanel themeContent)
+        private static Grid NewThemeContent(out Button addContent,
+            out StackPanel themeContent, out TextBox levelHours)
         {
             Grid content = GridItem(3);
             Label title = Section("Содержание учебного материала");
@@ -713,17 +716,17 @@ namespace Wisdom.Writers
             SetRow(themeContent, 2);
             SetColSpan(themeContent, 5);
 
-            Grid levelContent = NextContentLevel(out addContent);
+            Grid levelContent = NextContentLevel(out addContent, out levelHours);
             _ = themeContent.Children.Add(levelContent);
             return content;
         }
-        private static Grid NextContentLevel(out Button addContent)
+        private static Grid NextContentLevel(out Button addContent, out TextBox levelHours)
         {
             Grid levelContent = GridItem();
             addContent = AddButton();
             Label levelNo = ListNo2("1");
             TextBox levelName = UsualBox("");
-            TextBox levelHours = HoursBox("");
+            levelHours = HoursBox("");
             GridAddX2(levelContent, 0, addContent, levelNo, levelName, levelHours);
             return levelContent;
         }
