@@ -9,6 +9,12 @@ namespace Wisdom.Writers
 {
     public static class Markup
     {
+        public static Paragraph PageBreak()
+        {
+            Break pageBreak = new Break() { Type = BreakValues.Page };
+            Run runPageBreak = new Run(pageBreak);
+            return new Paragraph(runPageBreak);
+        }
         public static Run RunPreAdd(string text)
         {
             Run run = new Run() { RsidRunProperties = "00D933D9" };

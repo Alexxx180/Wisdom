@@ -483,8 +483,8 @@
                         <RowDefinition Height="0.92*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Button x:Name="TotalComp" Click="SwitchSections" Tag="{x:Reference TotalCompetetions}" Content="Общие компетенции (ОК)" Style="{StaticResource Steps3}" IsEnabled="False" />
-                    <Button x:Name="ProfComp" Click="SwitchSections" Tag="{x:Reference ProfCompetetions}"  Content="Проф. компетенции (ПК)" Style="{StaticResource Steps3}" Grid.Column="1"  />
+                    <Button x:Name="TotalComp" Click="SwitchCompetetions" Tag="{x:Reference TotalCompetetions}" Content="Общие компетенции (ОК)" Style="{StaticResource Steps3}" IsEnabled="False" />
+                    <Button x:Name="ProfComp" Click="SwitchCompetetions" Tag="{x:Reference ProfCompetetions}"  Content="Проф. компетенции (ПК)" Style="{StaticResource Steps3}" Grid.Column="1"  />
 
                     <Grid x:Name="TotalCompetetions" Grid.Row="1" Grid.ColumnSpan="2" Visibility="Visible">
                         <ScrollViewer>
@@ -674,8 +674,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="ThemePlanSwitch" Click="SwitchSections" Tag="{x:Reference ThemePlan}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  Content="Тематический план" Style="{StaticResource Steps3}" IsEnabled="False" />
-                <Button x:Name="LearnLevelsSwitch" Click="SwitchSections" Tag="{x:Reference LearnLevels}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2"  Content="Уровни освоения" Style="{StaticResource Steps3}"  />
+                <Button x:Name="ThemePlanSwitch" Click="SwitchPlan" Tag="{x:Reference ThemePlan}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  Content="Тематический план" Style="{StaticResource Steps3}" IsEnabled="False" />
+                <Button x:Name="LearnLevelsSwitch" Click="SwitchPlan" Tag="{x:Reference LearnLevels}" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2"  Content="Уровни освоения" Style="{StaticResource Steps3}"  />
 
                 <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="17" x:Name="ThemePlan">
                     <Grid.RowDefinitions>

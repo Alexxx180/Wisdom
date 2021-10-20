@@ -237,6 +237,8 @@ namespace Wisdom
         {
             ComboBox box = sender as ComboBox;
             int selected = box.SelectedIndex;
+            if (selected < 0 || selected >= Disciplines.Length)
+                return;
             SetDisciplineSelect();
             ProfessionName = Specialities[selected].Name;
             SetGeneralCompetetions(selected);
@@ -879,13 +881,25 @@ namespace Wisdom
             DataObject.AddPastingHandler(contentHours, PastingHours);
         }
 
-        private void SwitchSections(object sender, RoutedEventArgs e)
+        private void SwitchPlan(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
-            AnyHideX(ThemePlan, LearnLevels);
-            AnyShow(btn.Tag as Grid);
-            EnableX(true, ThemePlanSwitch, LearnLevelsSwitch);
-            btn.IsEnabled = false;
+            SwitchSections(sender, new Button[] { ThemePlanSwitch,
+                LearnLevelsSwitch }, ThemePlan, LearnLevels);
+        }
+        private void SwitchCompetetions(object sender, RoutedEventArgs e)
+        {
+            SwitchSections(sender, new Button[] { TotalComp,
+                ProfComp }, ProfCompetetions, TotalCompetetions);
+        }
+
+        private void SwitchSections(object sender,
+            Button[] switchs, params Grid[] toHide)
+        {
+            Button mainSwitch = sender as Button;
+            AnyHideX(toHide);
+            AnyShow(mainSwitch.Tag as Grid);
+            EnableX(true, switchs);
+            mainSwitch.IsEnabled = false;
         }
     }
 }
