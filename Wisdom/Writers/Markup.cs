@@ -1,7 +1,6 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Wisdom.Model;
 using static Wisdom.Model.ProgramContent;
 

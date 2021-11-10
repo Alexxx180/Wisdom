@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GyPlYAvZu8zjAFatILNinGVZLo1nM9BxSQY5F2HBpX+g7LMH35C4wPd4Z790dIXlCXapSxVIFZ+E8BQPY+BTPA==",
+  "dgSpecHash": "nw/0F30HmZLKuHLfDyt6F9G0QXN2m+98xtqWm4Y2kIAM7ty+iTWSAe3sF83wD1mbyWV34jiyx+fM1EylQ9DqMw==",
   "success": true,
-  "projectFilePath": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+  "projectFilePath": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Администратор\\.nuget\\packages\\documentformat.openxml\\2.13.1\\documentformat.openxml.2.13.1.nupkg.sha512",
     "C:\\Users\\Администратор\\.nuget\\packages\\open-xml-sdk\\2.5.0\\open-xml-sdk.2.5.0.nupkg.sha512",

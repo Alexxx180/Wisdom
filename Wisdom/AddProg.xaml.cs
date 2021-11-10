@@ -7,7 +7,6 @@ using static Wisdom.Writers.ResultRenderer;
 using static Wisdom.Binds.EasyBindings;
 using static Wisdom.Writers.Content;
 using static Wisdom.Customing.Converters;
-using System.Diagnostics;
 using static Wisdom.Customing.ResourceHelper;
 using System.Windows.Data;
 using Wisdom.Binds;
@@ -16,7 +15,6 @@ using System.Collections.Generic;
 using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using static Wisdom.Tests.TotalTest;
 using static Wisdom.AutoGenerating.AutoWriter;
 
 namespace Wisdom

@@ -110,11 +110,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+      "projectUniqueName": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
       "projectName": "Wisdom",
-      "projectPath": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+      "projectPath": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
       "packagesPath": "C:\\Users\\Администратор\\.nuget\\packages\\",
-      "outputPath": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\C#\\Wisdom\\Wisdom\\obj\\",
+      "outputPath": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Администратор\\AppData\\Roaming\\NuGet\\NuGet.Config",
