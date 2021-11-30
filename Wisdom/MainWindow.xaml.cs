@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Wisdom.Model;
 
 namespace Wisdom
 {
@@ -8,9 +9,12 @@ namespace Wisdom
     public partial class MainWindow : Window
     {
         AddProg prog = null;
+        Sql MySql = new Sql();
+
         public MainWindow()
         {
             InitializeComponent();
+            MySql.GetRecords();
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)

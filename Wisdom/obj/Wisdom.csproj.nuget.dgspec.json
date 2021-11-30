@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj": {}
+    "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj": {}
   },
   "projects": {
-    "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj": {
+    "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+        "projectUniqueName": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
         "projectName": "Wisdom",
-        "projectPath": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+        "projectPath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
         "packagesPath": "C:\\Users\\Администратор\\.nuget\\packages\\",
-        "outputPath": "D:\\Александр\\Windows 7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\obj\\",
+        "outputPath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Администратор\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,9 +44,17 @@
               "target": "Package",
               "version": "[2.13.1, )"
             },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.27, )"
+            },
             "Open-XML-SDK": {
               "target": "Package",
               "version": "[2.5.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
             }
           },
           "imports": [

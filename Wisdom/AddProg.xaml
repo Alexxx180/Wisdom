@@ -145,7 +145,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="Form1" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <Grid x:Name="Form1" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.9*"/>
@@ -1085,26 +1085,18 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="8" Background="#FFFFFCC7">
+                <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="18" Background="#FFFFFCC7" Visibility="Hidden">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"></RowDefinition>
-                        <RowDefinition Height="0.4*"></RowDefinition>
-                        <RowDefinition Height="0.1*"></RowDefinition>
-                        <RowDefinition Height="0.4*"></RowDefinition>
+                        <RowDefinition Height="0.9*"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <Border Background="#FF03C6FF">
                         <Viewbox>
                             <TextBlock x:Name="TForms" Style="{StaticResource ResourceKey=ListCaptions}" Text="Формы контроля обучения"></TextBlock>
-                        </Viewbox>
-                    </Border>
-
-                    <Border Background="#FF03C6FF" Grid.Row="2">
-                        <Viewbox>
-                            <TextBlock x:Name="TMethods" Style="{StaticResource ResourceKey=ListCaptions}" Text="Методы оценки результатов обучения"></TextBlock>
                         </Viewbox>
                     </Border>
 
@@ -1141,41 +1133,10 @@
                         </StackPanel>
                     </ScrollViewer>
 
-                    <ScrollViewer Grid.Row="3" Grid.ColumnSpan="1" Grid.Column="1" Grid.RowSpan="1">
-                        <StackPanel Background="#FFFFFCC7">
-                            <Grid Tag="{x:Reference RM}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.05*" />
-                                    <ColumnDefinition Width="0.15*" />
-                                    <ColumnDefinition Width="0.7*" />
-                                    <ColumnDefinition Width="0.1*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-
-                                <StackPanel Grid.ColumnSpan="4" x:Name="MarkControlAddSpace">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.05*" />
-                                            <ColumnDefinition Width="0.15*" />
-                                            <ColumnDefinition Width="0.7*" />
-                                            <ColumnDefinition Width="0.1*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Button Click="AddMarkControls" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                        <Label  Grid.Column="1" Content="1." Style="{StaticResource No1}" />
-                                        <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                                    </Grid>
-                                </StackPanel>
-                            </Grid>
-                        </StackPanel>
-                    </ScrollViewer>
+                    
                 </Grid>
 
-                <ScrollViewer Grid.Row="10" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="9">
+                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="18">
                     <StackPanel Background="#FFFFFCC7" x:Name="EducationSources">
                         <Grid Tag="{x:Reference EduSources}">
                             <Grid.ColumnDefinitions>
@@ -1304,7 +1265,7 @@
                 </ScrollViewer>
             </Grid>
 
-            <Grid x:Name="Form6" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <Grid x:Name="Form6" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.3*"/>
