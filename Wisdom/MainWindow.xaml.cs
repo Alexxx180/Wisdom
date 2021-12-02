@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 using Wisdom.Model;
+using Wisdom.Model.DataBase;
 using static Wisdom.Customing.Converters;
 using static Wisdom.Tests.TotalTest;
 
@@ -13,7 +14,7 @@ namespace Wisdom
     public partial class MainWindow : Window
     {
         AddProg prog = null;
-        Sql MySql = new Sql();
+        MySQL MySql = new MySQL();
 
         public MainWindow()
         {

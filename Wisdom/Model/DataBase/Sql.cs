@@ -1,146 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using MySql.Data;
-using MySql.Data.MySqlClient;
+using System.Text;
 using static Wisdom.Customing.Converters;
 
-namespace Wisdom.Model
+namespace Wisdom.Model.DataBase
 {
-    public class Sql
+    public abstract class Sql
     {
-        private const string PublishSource =
-            @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = ";
-        private const string PublishLocation =
-            @"\Resources\Database\DesertRageGame.mdf; Integrated Security = True";
-        public Sql()
-        {
-            Con = ParentServerConnection();
-        }
-        
-        public MySqlConnection NewConnection(string path)
-        {
-            return new MySqlConnection(path);
-        }
-        //[EN] Publishing experimental
-        //[RU] Публикация-эксперимент
-        public MySqlConnection PublishExperimentalConnection()
-        {
-            return NewConnection(PublishSource +
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-                + PublishLocation);
-        }
-        //[EN] Server connection
-        //[RU] Подключение через сервер (ПК создателя)
-        public MySqlConnection ParentServerConnection()
-        {
-            string source = "SERVER=127.0.0.1;";
-            string catalog = "DATABASE=prosperity;";
-            string user = "UID=root;";
-            string pass = "PASSWORD=;";
-            return NewConnection(source + catalog + user + pass);
-        }
-        //[EN] Local connection
-        //[RU] Подключение локально
-        public MySqlConnection LocalConnection()
-        {
-            return NewConnection(PublishSource +
-                Directory.GetParent(Environment.CurrentDirectory)
-                .Parent.Parent.FullName + PublishLocation);
-        }
-        //[EN] Publishing local connection
-        //[RU] Публикация с локальным подключением
-        public MySqlConnection PublishLocalConnection()
-        {
-            return NewConnection(PublishSource +
-                Environment.CurrentDirectory + PublishLocation);
-        }
-
-        private void Procedure(in string name)
-        {
-            Cmd = new MySqlCommand(name, Con)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-        }
-
-        private void OnlyExecute()
-        {
-            Cmd.Connection.Open();
-            _ = Cmd.ExecuteNonQuery();
-            Cmd.Connection.Close();
-        }
-
-        private List<object[]> ReadData()
-        {
-            Cmd.Connection.Open();
-            DataReader = Cmd.ExecuteReader();
-            List<object[]> table = new List<object[]>();
-            if (DataReader.HasRows)
-                while (DataReader.Read())
-                {
-                    object[] row = new object[DataReader.FieldCount];
-                    for (int i = 0; i < DataReader.FieldCount; i++)
-                        row[i] = DataReader.GetValue(i);
-                    table.Add(row);
-                }
-            Cmd.Connection.Close();
-            return table;
-        }
-
-        private List<object> ReadData(in int column)
-        {
-            Cmd.Connection.Open();
-            DataReader = Cmd.ExecuteReader();
-            List<object> table = new List<object>();
-            if (DataReader.HasRows)
-                while (DataReader.Read())
-                {
-                    object cell = DataReader.GetValue(column);
-                    table.Add(cell);
-                }
-            Cmd.Connection.Close();
-            return table;
-        }
-
-        private List<object[]> ReadData(in byte StartValue, in byte EndValue)
-        {
-            Cmd.Connection.Open();
-            DataReader = Cmd.ExecuteReader();
-            List<object[]> table = new List<object[]>();
-            int count = EndValue - StartValue;
-            if (DataReader.HasRows)
-                while (DataReader.Read())
-                {
-                    object[] row = new object[count];
-                    for (int i = 0, j = StartValue; j < EndValue; i++, j++)
-                        row[i] = DataReader.GetValue(j);
-                    table.Add(row);
-                }
-            Cmd.Connection.Close();
-            return table;
-        }
-
-        private void PassParameter(in string ParamName, in object newParam)
-        {
-            Dictionary<string, MySqlDbType> types = new Dictionary<string, MySqlDbType>()
-            {
-                { "Boolean", MySqlDbType.Bit }, { "UInt16", MySqlDbType.UInt16 }, //SqlDbType.SmallInt
-                { "Byte", MySqlDbType.UByte }, { "String", MySqlDbType.VarChar }, //MySqlDbType.TinyInt
-                { "UInt32", MySqlDbType.UInt32 }, { "UInt64", MySqlDbType.UInt64 }
-            };
-            Cmd.Parameters.Add(ParamName, types[newParam.GetType().Name]).Value = newParam;
-        }
+        public abstract void PassParameter(in string ParamName, in object newParam);
 
         public void PassParameters(Dictionary<string, object> parameters)
         {
-            foreach(KeyValuePair<string, object> entry in parameters)
+            foreach (KeyValuePair<string, object> entry in parameters)
                 PassParameter(entry.Key, entry.Value);
         }
+
+        public abstract void OnlyExecute();
+
+        public abstract void Procedure(in string name);
 
         public void ExecuteProcedure(string name)
         {
@@ -148,11 +25,19 @@ namespace Wisdom.Model
             OnlyExecute();
         }
 
+        public abstract List<object[]> ReadData();
+
+        public abstract List<object> ReadData(in int column);
+
+        public abstract List<object[]> ReadData(in byte StartValue, in byte EndValue);
+
+        public abstract void ClearParameters();
+
         public List<object[]> GetRecords(string name)
         {
             Procedure(name);
             List<object[]> records = ReadData();
-            Cmd.Parameters.Clear();
+            ClearParameters();
             return records;
         }
 
@@ -161,7 +46,7 @@ namespace Wisdom.Model
             Procedure(name);
             PassParameter(paramName, value);
             List<object[]> records = ReadData();
-            Cmd.Parameters.Clear();
+            ClearParameters();
             return records;
         }
 
@@ -170,7 +55,7 @@ namespace Wisdom.Model
             Procedure(name);
             PassParameters(parameters);
             List<object[]> records = ReadData();
-            Cmd.Parameters.Clear();
+            ClearParameters();
             return records;
         }
 
@@ -225,8 +110,6 @@ namespace Wisdom.Model
                     professionalCompetetions[i][3].ToString()));
 
                 int recount2 = speciality.ProfessionalCompetetions[recount].Count - 1;
-                Trace.WriteLine(i);
-                Trace.WriteLine(speciality.ProfessionalCompetetions[recount].Count);
                 speciality.ProfessionalCompetetions[recount][recount2].Values.Add(
                     new String2("Практический опыт", professionalCompetetions[i][6].ToString()));
                 speciality.ProfessionalCompetetions[recount][recount2].Values.Add(
@@ -299,10 +182,6 @@ namespace Wisdom.Model
                     discipline.Sources.Add(new HashList<string>(sources[i][2].ToString()));
                     no = current;
                 }
-                //Trace.WriteLine(current);
-                //Trace.WriteLine(sources[i][1].ToString());
-                //Trace.WriteLine(no);
-                //Trace.WriteLine(discipline.Sources.Count);
                 discipline.Sources[no - 1].Values.Add(sources[i][1].ToString());
             }
             for (int i = 0; i < totalHours.Count; i++)
@@ -351,9 +230,5 @@ namespace Wisdom.Model
 
             return discipline;
         }
-
-        public MySqlCommand Cmd { get; set; }
-        public MySqlDataReader DataReader { get; set; }
-        public MySqlConnection Con { get; set; }
     }
 }
