@@ -67,7 +67,6 @@ namespace Wisdom.Model
 
         public static readonly SpecialityBase[] Specialities = {
             new SpecialityBase(
-
                 "15.02.07 Автоматизация технологических процессов и производств (по отраслям)",
                 new List<HoursList<String2>> {
                     new HoursList<String2>("ОК 1", "Общая компетенция №1.1")
@@ -179,7 +178,6 @@ namespace Wisdom.Model
 
                 ),
             new SpecialityBase(
-
                 "15.02.14 Оснащение средствами автоматизации технологических процессов и производств (по отраслям)",
                 new List<HoursList<String2>> {
                     new HoursList<String2>("ОК 1", "Выбирать способы решения задач профессиональной деятельности, применительно к различным контекстам.")

@@ -48,8 +48,12 @@ namespace Wisdom.Customing
                 return result;
             return 0;
         }
+
         public static bool Bool(object o) => Convert.ToBoolean(o);
         public static byte Bits(object o) => Convert.ToByte(o);
         public static int Ints(object o) => Convert.ToInt32(o);
+        public static ushort UShorts(object o) => Convert.ToUInt16(o);
+        public static uint UInts(object o) => Convert.ToUInt32(o);
+        public static ulong ULong(object o) => Convert.ToUInt64(o);
     }
 }
