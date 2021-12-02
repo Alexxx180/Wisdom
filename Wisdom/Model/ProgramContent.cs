@@ -93,5 +93,16 @@ namespace Wisdom.Model
                 return max;
             return 0;
         }
+
+        public static Dictionary<string, int> WorkTypes = new Dictionary<string, int>()
+        {
+            { "Содержание", 0 },
+            { "Лабораторная работа", 1 },
+            { "Практические занятия", 2 },
+            { "Контрольная работа", 3 },
+            { "Практическая подготовка", 4 },
+            { "Курсовая работа", 5 },
+            { "Самостоятельная работа", 6 },
+        };
     }
 }

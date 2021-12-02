@@ -132,22 +132,6 @@ namespace Wisdom
             InitializeComponent();
             DataContext = this;
             SetSpecialitySelect();
-            //List<object[]> disciplines = MySql.DisciplinesList();
-
-            //Trace.WriteLine(UInts(disciplines[0][0]));
-            //Trace.WriteLine(disciplines[0].Length);
-            //Trace.WriteLine(disciplines[0][1] + " " + disciplines[0][2]);
-
-            //DisciplineBase discipline = MySql.GetDiscipline(UInts(disciplines[0][0]),
-            //    disciplines[0][1] + " " + disciplines[0][2]);
-            //TestData(discipline.Plan);
-
-            
-
-            //SpecialityBase speciality = MySql.GetSpeciality(UInts(specialities[0][0]),
-            //    specialities[0][1] + " " + specialities[0][2]);
-            //TestCompetetion(speciality.GeneralCompetetions, "ОК ");
-            //TestCompetetion2(speciality.ProfessionalCompetetions, "ПК ");
         }
         private void DropAllProfessional()
         {
@@ -364,17 +348,14 @@ namespace Wisdom
             for (byte iii = 0; iii < themeContent.Values.Count; iii++)
             {
                 HashList<String2> contentTasks = themeContent.Values[iii];
-                Trace.WriteLine("");
-                Trace.WriteLine(contentTasks.Name);
-                Trace.WriteLine("");
                 if (contentTasks.Name == "Содержание")
                 {
                     SetMaterial(contentTasks, nextTasksGroup);
-                    return;
+                    continue;
                 }
 
-                bool isLastTask = themeContent.Values[iii].Values.Count <= 1;
-                nextTasksType.SelectedIndex = Ints(themeContent.Values[iii].Name);
+                bool isLastTask = contentTasks.Values.Count <= 1;
+                nextTasksType.SelectedIndex = WorkTypes[contentTasks.Name];
                 nextTasksMultiplier.IsChecked = !isLastTask;
                 Button deleteAddedTasks = NewTypeContentTasks(nextTasksAdd);
 

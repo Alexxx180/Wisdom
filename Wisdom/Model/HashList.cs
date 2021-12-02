@@ -4,14 +4,16 @@ namespace Wisdom.Model
 {
     public class HashList<T>
     {
-        public HashList(string name)
+        public HashList()
         {
-            Name = name;
             Values = new List<T>();
         }
-        public HashList(string name, List<T> values)
+        public HashList(string name) : this()
         {
             Name = name;
+        }
+        public HashList(string name, List<T> values) : this(name)
+        {
             Values = values;
         }
         public string Name { get; set; }
