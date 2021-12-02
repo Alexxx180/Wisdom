@@ -64,7 +64,7 @@ namespace Wisdom
             Grid next = ProfCompAddSpace.Children[0] as Grid;
             Button add = next.Children[0] as Button;
 
-            for (byte i = 0; i < Specialities[no].ProfessionalCompetetions.Count; i++)
+            for (byte i = 0; i < SelectedSpeciality.ProfessionalCompetetions.Count; i++)
             {
                 ProfessionalSectionAdd(add);
                 Grid subNext = ProfCompAddSpace.Children[i] as Grid;
@@ -74,18 +74,18 @@ namespace Wisdom
                 Button subAdd = subSubNext.Children[0] as Button;
                 TextBox name = subSubNext.Children[2] as TextBox;
 
-                for (byte ii = 0; ii < Specialities[no].ProfessionalCompetetions[i].Count; ii++)
+                for (byte ii = 0; ii < SelectedSpeciality.ProfessionalCompetetions[i].Count; ii++)
                 {
-                    name.Text = Specialities[no].ProfessionalCompetetions[i][ii].Hours;
+                    name.Text = SelectedSpeciality.ProfessionalCompetetions[i][ii].Hours;
                     Button delete = ProfessionalCompetetion(subAdd) as Button;
                     delete.Click += DeleteProfessionalItem;
                     Grid current = delete.Parent as Grid;
                     TextBox experience = current.Children[4] as TextBox;
                     TextBox skills = current.Children[6] as TextBox;
                     TextBox knowledge = current.Children[8] as TextBox;
-                    experience.Text = Specialities[no].ProfessionalCompetetions[i][ii].Values[0].Value;
-                    skills.Text = Specialities[no].ProfessionalCompetetions[i][ii].Values[1].Value;
-                    knowledge.Text = Specialities[no].ProfessionalCompetetions[i][ii].Values[2].Value;
+                    experience.Text = SelectedSpeciality.ProfessionalCompetetions[i][ii].Values[0].Value;
+                    skills.Text = SelectedSpeciality.ProfessionalCompetetions[i][ii].Values[1].Value;
+                    knowledge.Text = SelectedSpeciality.ProfessionalCompetetions[i][ii].Values[2].Value;
                 }
             }
         }
@@ -96,16 +96,16 @@ namespace Wisdom
             Button add = next.Children[0] as Button;
 
             TextBox name = next.Children[2] as TextBox;
-            for (byte i = 0; i < Specialities[no].GeneralCompetetions.Count; i++)
+            for (byte i = 0; i < SelectedSpeciality.GeneralCompetetions.Count; i++)
             {
-                name.Text = Specialities[no].GeneralCompetetions[i].Hours;
+                name.Text = SelectedSpeciality.GeneralCompetetions[i].Hours;
                 Button delete = GeneralCompetetion(add);
                 delete.Click += DeleteGeneralCompetetion;
                 Grid current = delete.Parent as Grid;
                 TextBox skills = current.Children[4] as TextBox;
                 TextBox knowledge = current.Children[6] as TextBox;
-                skills.Text = Specialities[no].GeneralCompetetions[i].Values[0].Value;
-                knowledge.Text = Specialities[no].GeneralCompetetions[i].Values[1].Value;
+                skills.Text = SelectedSpeciality.GeneralCompetetions[i].Values[0].Value;
+                knowledge.Text = SelectedSpeciality.GeneralCompetetions[i].Values[1].Value;
             }
         }
 

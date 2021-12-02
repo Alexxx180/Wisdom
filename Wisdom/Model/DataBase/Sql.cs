@@ -125,6 +125,11 @@ namespace Wisdom.Model.DataBase
             return GetRecords("get_disciplines_full");
         }
 
+        public List<object[]> DisciplinesList(uint value)
+        {
+            return GetRecords("get_speciality_disciplines", "speciality_id", value);
+        }
+
         public List<object[]> TotalHours(uint value)
         {
             return GetRecords("get_discipline_total_hours", "discipline_id", value);
@@ -186,9 +191,17 @@ namespace Wisdom.Model.DataBase
             }
             for (int i = 0; i < totalHours.Count; i++)
             {
-                discipline.TotalHours.Add(
+                if (discipline.TotalHours.ContainsKey(totalHours[i][1].ToString()))
+                {
+                    discipline.TotalHours[totalHours[i][1].ToString()] =
+                        UShorts(discipline.TotalHours[totalHours[i][1].ToString()] + UShorts(totalHours[i][2]));
+                }
+                else
+                {
+                    discipline.TotalHours.Add(
                     totalHours[i][1].ToString(),
                     UShorts(totalHours[i][2]));
+                }
             }
 
 

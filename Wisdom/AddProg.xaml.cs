@@ -16,6 +16,9 @@ using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using static Wisdom.AutoGenerating.AutoWriter;
+using Wisdom.Model.DataBase;
+using static Wisdom.Tests.TotalTest;
+using System.Diagnostics;
 
 namespace Wisdom
 {
@@ -72,28 +75,79 @@ namespace Wisdom
             }
         }
 
+        private List<uint> specialityIDs = new List<uint>();
+
         private void SetSpecialitySelect()
         {
-            List <ComboBoxItem> reload = new List<ComboBoxItem>();
-            for (byte i = 0; i < Specialities.Length; i++)
-                reload.Add(new ComboBoxItem { Content = Specialities[i].Name });
+            specialityIDs.Clear();
+            List<object[]> specialities = MySql.SpecialitiesList();
+            List<ComboBoxItem> reload = new List<ComboBoxItem>();
+            for (byte i = 0; i < specialities.Count; i++)
+            {
+                specialityIDs.Add(UInts(specialities[i][0]));
+                reload.Add(new ComboBoxItem {
+                    Content = specialities[i][1] +
+                    " " + specialities[i][2]
+                });
+            }
+                
             SpecialitySelect = reload;
+
+            //List <ComboBoxItem> reload = new List<ComboBoxItem>();
+            //for (byte i = 0; i < Specialities.Length; i++)
+            //    reload.Add(new ComboBoxItem { Content = Specialities[i].Name });
+            //SpecialitySelect = reload;
         }
+
+        private List<uint> disciplineIDs = new List<uint>();
 
         private void SetDisciplineSelect()
         {
+            disciplineIDs.Clear();
+            List<object[]> disciplines = MySql.DisciplinesList(specialityIDs[SpecNo]);
             List<ComboBoxItem> reload = new List<ComboBoxItem>();
-            for (byte i = 0; i < Disciplines[SpecNo].Count; i++)
-                reload.Add(new ComboBoxItem { Content = Disciplines[SpecNo][i].Name });
+            for (byte i = 0; i < disciplines.Count; i++)
+            {
+                disciplineIDs.Add(UInts(disciplines[i][0]));
+                reload.Add(new ComboBoxItem
+                {
+                    Content = disciplines[i][1] +
+                    " " + disciplines[i][2]
+                });
+            }
+
             DisciplinesSelect = reload;
+
+            //List<ComboBoxItem> reload = new List<ComboBoxItem>();
+            //for (byte i = 0; i < Disciplines[SpecNo].Count; i++)
+            //    reload.Add(new ComboBoxItem { Content = Disciplines[SpecNo][i].Name });
+            //DisciplinesSelect = reload;
         }
 
         private string FileName => $@"{Program.Text}.docx";
+        MySQL MySql = new MySQL();
+
         public AddProg()
         {
             InitializeComponent();
             DataContext = this;
             SetSpecialitySelect();
+            //List<object[]> disciplines = MySql.DisciplinesList();
+
+            //Trace.WriteLine(UInts(disciplines[0][0]));
+            //Trace.WriteLine(disciplines[0].Length);
+            //Trace.WriteLine(disciplines[0][1] + " " + disciplines[0][2]);
+
+            //DisciplineBase discipline = MySql.GetDiscipline(UInts(disciplines[0][0]),
+            //    disciplines[0][1] + " " + disciplines[0][2]);
+            //TestData(discipline.Plan);
+
+            
+
+            //SpecialityBase speciality = MySql.GetSpeciality(UInts(specialities[0][0]),
+            //    specialities[0][1] + " " + specialities[0][2]);
+            //TestCompetetion(speciality.GeneralCompetetions, "ОК ");
+            //TestCompetetion2(speciality.ProfessionalCompetetions, "ПК ");
         }
         private void DropAllProfessional()
         {
@@ -175,13 +229,13 @@ namespace Wisdom
             addCompettion.Click += AddProfessionalCompetetion;
         }
 
-        public void SetProfessionalCompetetions(int no)
+        public void SetProfessionalCompetetions()
         {
             DropAllProfessional();
             Grid next = GridChild(ProfCompAddSpace, 0);
             Button add = Btn(next, 0);
 
-            List<List<HoursList<String2>>> profCompetetions = Specialities[no].ProfessionalCompetetions;
+            List<List<HoursList<String2>>> profCompetetions = SelectedSpeciality.ProfessionalCompetetions;
             for (byte i = 0; i < profCompetetions.Count; i++)
             {
                 ProfessionalSectionAdd(add);
@@ -209,14 +263,14 @@ namespace Wisdom
                 }
             }
         }
-        public void SetGeneralCompetetions(int no)
+        public void SetGeneralCompetetions()
         {
             DropAllGeneral();
             Grid next = GridChild(TotalCompAddSpace, 0);
             Button add = Btn(next, 0);
 
             TextBox name = Box(next, 2);
-            List<HoursList<String2>> totalCompetetions = Specialities[no].GeneralCompetetions;
+            List<HoursList<String2>> totalCompetetions = SelectedSpeciality.GeneralCompetetions;
             for (byte i = 0; i < totalCompetetions.Count; i++)
             {
                 HoursList<String2> totalCompetetion = totalCompetetions[i];
@@ -235,20 +289,23 @@ namespace Wisdom
         {
             ComboBox box = sender as ComboBox;
             int selected = box.SelectedIndex;
-            if (selected < 0 || selected >= Disciplines.Length)
+            string name = box.SelectedItem.ToString();
+            if (selected < 0)
                 return;
+            SelectedSpeciality = MySql.GetSpeciality(specialityIDs[selected], name);
             SetDisciplineSelect();
-            ProfessionName = Specialities[selected].Name;
-            SetGeneralCompetetions(selected);
-            SetProfessionalCompetetions(selected);
+            ProfessionName = SelectedSpeciality.Name;
+            SetGeneralCompetetions();
+            SetProfessionalCompetetions();
             OrderDate.Text = "";
             OrderNo.Text = "";
         }
 
-        private void SetPlan(int no)
+        private void SetPlan()
         {
             Grid nextTopic = GridChild(DisciplinePlan, 0);
-            List<HoursList<LevelsList<HashList<String2>>>> planTopic = Disciplines[SpecNo][no].Plan;
+            List<HoursList<LevelsList<HashList<String2>>>> planTopic = SelectedDiscipline.Plan;
+            TestData(planTopic);
             SetTopics(planTopic, nextTopic);
         }
 
@@ -307,7 +364,10 @@ namespace Wisdom
             for (byte iii = 0; iii < themeContent.Values.Count; iii++)
             {
                 HashList<String2> contentTasks = themeContent.Values[iii];
-                if (themeContent.Values[iii].Name == "255")
+                Trace.WriteLine("");
+                Trace.WriteLine(contentTasks.Name);
+                Trace.WriteLine("");
+                if (contentTasks.Name == "Содержание")
                 {
                     SetMaterial(contentTasks, nextTasksGroup);
                     return;
@@ -377,16 +437,15 @@ namespace Wisdom
             }
         }
 
-        private void SetSources(int no)
+        private void SetSources()
         {
             DeleteAllSources();
             Grid next = GridChild(EducationSources, 0);
             Button add = Btn(next, 0);
             ComboBox box = Cbx(next, 1);
-            DisciplineBase profDiscipline = Disciplines[SpecNo][no];
-            for (byte i = 0; i < profDiscipline.Sources.Count; i++)
+            for (byte i = 0; i < SelectedDiscipline.Sources.Count; i++)
             {
-                box.SelectedIndex = Ints(profDiscipline.Sources[i].Name);
+                box.SelectedIndex = Ints(SelectedDiscipline.Sources[i].Name);
                 ParagraphText(add, out Button delete2, out Button add2);
                 add2.Click += AddSource;
                 delete2.Click += DeleteSources;
@@ -398,7 +457,7 @@ namespace Wisdom
                 Button subAdd = Btn(subSubNext, 0);
                 TextBox name = Box(subSubNext, 2);
 
-                HashList<string> disciplineSources = profDiscipline.Sources[i];
+                HashList<string> disciplineSources = SelectedDiscipline.Sources[i];
                 for (byte ii = 0; ii < disciplineSources.Values.Count; ii++)
                 {
                     name.Text = disciplineSources.Values[ii];
@@ -410,31 +469,36 @@ namespace Wisdom
         private void ResetAllDisciplineFields(object sender, SelectionChangedEventArgs e)
         {
             ComboBox box = sender as ComboBox;
-
-            if (SpecNo < 0 || box.SelectedIndex < 0)
+            int selected = box.SelectedIndex;
+            if (SpecNo < 0 || selected < 0)
                 return;
+            string name = box.SelectedValue.ToString();
             DropAllTopics();
+            SelectedDiscipline = MySql.GetDiscipline(disciplineIDs[selected], name);
+
+            DisciplineRelation1.Text = SelectedDiscipline.Relation;
+            WorkAround1.Text = SelectedDiscipline.PracticePrepare;
+            DisctanceEdu.Text = SelectedDiscipline.DistanceEducation;
+
+            DisciplineName = SelectedDiscipline.Name;
+
+            int study = GetStudyHours();
+            int self = 0;
+            if (SelectedDiscipline.TotalHours.TryGetValue("Самостоятельная работа", out ushort max))
+                self = max;
+            MaxHours = (study + self).ToString();
+            Self.Text = self.ToString();
+            Usual.Text = study.ToString();
+
+            Prepare.Text = TryGetHours("Практическая подготовка").ToString();
+            Lectures.Text = TryGetHours("Содержание").ToString();
+            Practices.Text = TryGetHours("Практические занятия").ToString();
+            Labs.Text = TryGetHours("Лабораторная работа").ToString();
+            Controls.Text = TryGetHours("Контрольная работа").ToString();
+            Course.Text = TryGetHours("Курсовая работа").ToString();
             
-            DisciplineBase discipline = Disciplines[SpecNo][box.SelectedIndex];
-            DisciplineRelation1.Text = discipline.Relation;
-            WorkAround1.Text = discipline.PracticePrepare;
-            DisctanceEdu.Text = discipline.DistanceEducation;
-
-            DisciplineName = discipline.Name;
-
-            MaxHours = discipline.Hours.MaxHours;
-            Self.Text = discipline.Hours.SelfHours;
-            Usual.Text = discipline.Hours.EduHours;
-
-            Prepare.Text = discipline.Hours.PracticePrepare;
-            Lectures.Text = discipline.Hours.Lections;
-            Practices.Text = discipline.Hours.Practice;
-            Labs.Text = discipline.Hours.LabWorks;
-            Controls.Text = discipline.Hours.ControlWs;
-            Course.Text = discipline.Hours.CourseWs;
-            
-            SetSources(box.SelectedIndex);
-            SetPlan(box.SelectedIndex);
+            SetSources();
+            SetPlan();
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
