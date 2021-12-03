@@ -6995,7 +6995,7 @@ namespace Wisdom.Writers
             runPropDr.Append(underline_dr);
             runPropDr.Append(languagesDr);
             Text textDr = new Text();
-            textDr.Text = DisciplineRelation + ".";
+            textDr.Text = MetaDataCollection[0] + ".";
 
             runDr.Append(runPropDr);
             runDr.Append(textDr);
@@ -8554,7 +8554,7 @@ namespace Wisdom.Writers
             runProperties213_1.Append(underline213_1);
             runProperties213_1.Append(languages213_1);
             Text text210_1 = new Text();
-            text210_1.Text = PracticePrepare;
+            text210_1.Text = HoursCollection[4];
 
             run213_1.Append(runProperties213_1);
             run213_1.Append(text210_1);
@@ -9606,7 +9606,7 @@ namespace Wisdom.Writers
             runProperties117.Append(italic22);
             runProperties117.Append(italicComplexScript51);
             Text text243 = new Text();
-            text243.Text = Lections;
+            text243.Text = HoursCollection[0];
 
             run245.Append(runProperties117);
             run245.Append(text243);
@@ -9728,7 +9728,7 @@ namespace Wisdom.Writers
             runProperties120.Append(italicComplexScript54);
             runProperties120.Append(languages50);
             Text text251 = new Text();
-            text251.Text = LabWorks;
+            text251.Text = HoursCollection[5];
 
             run253.Append(runProperties120);
             run253.Append(text251);
@@ -9843,7 +9843,7 @@ namespace Wisdom.Writers
             runProperties123.Append(italicComplexScript57);
             runProperties123.Append(languages53);
             Text text258 = new Text();
-            text258.Text = Practice;
+            text258.Text = HoursCollection[1];
 
             run260.Append(runProperties123);
             run260.Append(text258);
@@ -9961,7 +9961,7 @@ namespace Wisdom.Writers
             runProperties126.Append(italic34);
             runProperties126.Append(italicComplexScript60);
             Text text266 = new Text();
-            text266.Text = ControlWs;
+            text266.Text = HoursCollection[2];
 
             run268.Append(runProperties126);
             run268.Append(text266);
@@ -10086,7 +10086,7 @@ namespace Wisdom.Writers
             runProperties130.Append(italic40);
             runProperties130.Append(italicComplexScript63);
             Text text273 = new Text();
-            text273.Text = CourseWs;
+            text273.Text = HoursCollection[6];
 
             run275.Append(runProperties130);
             run275.Append(text273);
@@ -10175,7 +10175,7 @@ namespace Wisdom.Writers
             runProperties133.Append(italic43);
             runProperties133.Append(italicComplexScript66);
             Text text276 = new Text();
-            text276.Text = SelfHours;
+            text276.Text = HoursCollection[3];
 
             run278.Append(runProperties133);
             run278.Append(text276);
@@ -13436,6 +13436,8 @@ namespace Wisdom.Writers
             Run run411 = new Run() { RsidRunProperties = "0089791A", RsidRunAddition = "00515571" };
             Text text409 = new Text() { Space = SpaceProcessingModeValues.Preserve };
             text409.Text = " организуется путем проведения ";
+                        
+            run411.Append(text409);
 
             Run runWa = new Run() { RsidRunAddition = "00311CF7" };
 
@@ -13446,12 +13448,10 @@ namespace Wisdom.Writers
             runPropWa.Append(underline_Wa);
             runPropWa.Append(languagesWa);
             Text textWa = new Text();
-            textWa.Text = WorkAround;
+            textWa.Text = MetaDataCollection[1];
 
             runWa.Append(runPropWa);
             runWa.Append(textWa);
-
-            run411.Append(text409);
 
             Run run412 = new Run() { RsidRunProperties = "0089791A", RsidRunAddition = "00515571" };
 
@@ -13474,6 +13474,7 @@ namespace Wisdom.Writers
             paragraph360.Append(paragraphProperties350);
             paragraph360.Append(run410);
             paragraph360.Append(run411);
+            paragraph360.Append(runWa);
             paragraph360.Append(run412);
             paragraph360.Append(run413);
 
@@ -16362,7 +16363,7 @@ namespace Wisdom.Writers
             runProperties354.Append(runStyle1);
             runProperties354.Append(boldComplexScript294);
             Text text506 = new Text();
-            text506.Text = "http://do.novsu.ru/course/" + DistanceEducation;
+            text506.Text = "http://do.novsu.ru/course/" + MetaDataCollection[2];
 
             run524.Append(runProperties354);
             run524.Append(text506);

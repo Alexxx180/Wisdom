@@ -57,6 +57,15 @@ namespace Wisdom.Binds
                 newCalculation.Bindings.Add(binding);
             return newCalculation;
         }
+
+        public static MultiBinding TruncateMulti(DependencyObject @object,
+            DependencyProperty property, IMultiValueConverter converter)
+        {
+            UnBind(@object, property);
+            MultiBinding newCalculation = new MultiBinding { Converter = converter };
+            return newCalculation;
+        }
+
         public static MultiBinding DeleteBindFromMulti(DependencyObject @object,
             DependencyProperty property, IMultiValueConverter converter, Binding toDrop)
         {

@@ -12,12 +12,24 @@
     <Compile Update="AddProg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\HourElement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\MetaElement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\AddProgram\Competetions.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddProg.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\HourElement.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\MetaElement.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\AddProgram\Competetions.xaml">

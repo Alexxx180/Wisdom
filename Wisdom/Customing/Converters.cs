@@ -23,12 +23,16 @@ namespace Wisdom.Customing
         public static StackPanel Panel(Grid grid, int no) => grid.Children[no] as StackPanel;
 
         public static Grid GridChild(StackPanel stack, int no) => stack.Children[no] as Grid;
+        
+        public static Grid GridChild(UserControl control) => control.Content as Grid;
 
         public static Label Child(Border border) => border.Child as Label;
 
         public static Grid Parent(StackPanel stack) => stack.Parent as Grid;
 
         public static Grid Parent(Button button) => button.Parent as Grid;
+
+        public static StackPanel Parent(UserControl control) => control.Parent as StackPanel;
 
         public static StackPanel Parent(Grid stack) => stack.Parent as StackPanel;
 

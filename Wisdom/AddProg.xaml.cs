@@ -19,6 +19,8 @@ using static Wisdom.AutoGenerating.AutoWriter;
 using Wisdom.Model.DataBase;
 using static Wisdom.Tests.TotalTest;
 using System.Diagnostics;
+using System;
+using Wisdom.Controls;
 
 namespace Wisdom
 {
@@ -127,10 +129,51 @@ namespace Wisdom
         private string FileName => $@"{Program.Text}.docx";
         MySQL MySql = new MySQL();
 
+        private void SetMetaTypes()
+        {
+            MetaTypes = new List<String2>();
+            List<object[]> types = MySql.MetaTypes();
+            for(byte i = 0; i < types.Count; i++)
+                MetaTypes.Add(new String2(
+                    types[i][0].ToString(),
+                    types[i][1].ToString()));
+            MetaData.Children.Clear();
+            MetaElement.AddElements(MetaTypes, MetaData);
+        }
+
+        private void ResetTotalHourBinds()
+        {
+            MultiBinding multiCount = TruncateMulti(Inputted, ContentProperty, new SumConverter());
+            for (byte i = 0; i < TotalHoursCount.Children.Count; i++)
+            {
+                HourElement hour = TotalHoursCount.Children[i] as HourElement;
+                Grid hourGrid = hour.Content as Grid;
+                TextBox hourValue = Box(hourGrid, 1);
+                Binding bindHours = FastBind(hourValue, "Text");
+                multiCount.Bindings.Add(bindHours);
+            }
+            SetBind(Inputted, ContentProperty, multiCount);
+        }
+
+        private void SetHourTypes()
+        {
+            HourTypes = new List<String2>();
+            List<object[]> types = MySql.WorkTypes();
+            for (byte i = 0; i < types.Count; i++)
+                HourTypes.Add(new String2(
+                    types[i][0].ToString(),
+                    types[i][1].ToString()));
+            TotalHoursCount.Children.Clear();
+            HourElement.AddElements(HourTypes, TotalHoursCount);
+            ResetTotalHourBinds();
+        }
+
         public AddProg()
         {
             InitializeComponent();
             DataContext = this;
+            SetMetaTypes();
+            SetHourTypes();
             SetSpecialitySelect();
         }
         private void DropAllProfessional()
@@ -454,12 +497,22 @@ namespace Wisdom
             if (SpecNo < 0 || selected < 0)
                 return;
             string name = box.SelectedValue.ToString();
+
             DropAllTopics();
             SelectedDiscipline = MySql.GetDiscipline(disciplineIDs[selected], name);
 
-            DisciplineRelation1.Text = SelectedDiscipline.Relation;
-            WorkAround1.Text = SelectedDiscipline.PracticePrepare;
-            DisctanceEdu.Text = SelectedDiscipline.DistanceEducation;
+            for (byte i = 0; i < MetaData.Children.Count; i++)
+            {
+                MetaElement meta = MetaData.Children[i] as MetaElement;
+                Grid metaGrid = meta.Content as Grid;
+                TextBlock metaName = Txt(metaGrid, 0);
+                TextBox metaValue = Box(metaGrid, 1);
+                if (SelectedDiscipline.MetaData.TryGetValue(metaName.Text, out string value))
+                    metaValue.Text = value;
+                else
+                    metaValue.Text = "";
+                MetaDataCollection[i] = metaValue.Text;
+            }
 
             DisciplineName = SelectedDiscipline.Name;
 
@@ -471,12 +524,15 @@ namespace Wisdom
             Self.Text = self.ToString();
             Usual.Text = study.ToString();
 
-            Prepare.Text = TryGetHours("Практическая подготовка").ToString();
-            Lectures.Text = TryGetHours("Содержание").ToString();
-            Practices.Text = TryGetHours("Практические занятия").ToString();
-            Labs.Text = TryGetHours("Лабораторная работа").ToString();
-            Controls.Text = TryGetHours("Контрольная работа").ToString();
-            Course.Text = TryGetHours("Курсовая работа").ToString();
+            for (byte i = 0; i < TotalHoursCount.Children.Count; i++)
+            {
+                HourElement hour = TotalHoursCount.Children[i] as HourElement;
+                Grid hourGrid = hour.Content as Grid;
+                TextBlock hourName = Txt(hourGrid, 0);
+                TextBox hourValue = Box(hourGrid, 1);
+                hourValue.Text = TryGetHours(hourName.Text).ToString();
+                HoursCollection[i] = hourValue.Text;
+            }
             
             SetSources();
             SetPlan();
@@ -489,22 +545,12 @@ namespace Wisdom
             SubManagerName = SubManager.Text;
 
             CollegeName = College.Text;
-            DisciplineRelation = DisciplineRelation1.Text;
-            WorkAround = WorkAround1.Text;
-            DistanceEducation = DisctanceEdu.Text;
 
             DisciplineName = DpSelect.Text;
             ProfessionName = SpSelect.Text;
             MaxHours = Max.Content.ToString();
             SelfHours = Self.Text;
             EduHours = Usual.Text;
-
-            PracticePrepare = Prepare.Text;
-            Lections = Lectures.Text;
-            Practice = Practices.Text;
-            LabWorks = Labs.Text;
-            ControlWs = Controls.Text;
-            CourseWs = Course.Text;
 
             Order = new String2(OrderDate.Text, OrderNo.Text);
             GeneralCompetetions = ExtractCompetetions(TotalCompAddSpace, 1, 2);
@@ -931,8 +977,8 @@ namespace Wisdom
         }
         private void SwitchCompetetions(object sender, RoutedEventArgs e)
         {
-            SwitchSections(sender, new Button[] { TotalComp,
-                ProfComp }, ProfCompetetions, TotalCompetetions);
+            SwitchSections(sender, new Button[] { TotalHourSwitch, TotalComp,
+                ProfComp }, TotalHoursCountPanel, ProfCompetetions, TotalCompetetions);
         }
 
         private void SwitchSections(object sender,

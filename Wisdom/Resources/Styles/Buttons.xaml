@@ -8,6 +8,21 @@
         <Setter Property="Control.FontFamily" Value="Gill Sans MT"/>
         <Setter Property="Button.Content" Value="X"/>
     </Style>
+    <Style x:Key="DeleteButton2">
+        <Setter Property="Control.Background" Value="#FFFF2A2A"/>
+        <Setter Property="Control.Foreground" Value="White"/>
+        <Setter Property="Control.BorderBrush" Value="Black"/>
+        <Setter Property="Control.FontSize" Value="26"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+        <Setter Property="Control.FontFamily" Value="Gill Sans MT"/>
+        <Setter Property="Button.Content">
+            <Setter.Value>
+                <Viewbox>
+                    <TextBlock Text="X" />
+                </Viewbox>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="AddButton">
         <Setter Property="Control.Background" Value="#FF00FF2A"/>
         <Setter Property="Control.Foreground" Value="White"/>
@@ -15,6 +30,20 @@
         <Setter Property="Control.FontSize" Value="32"/>
         <Setter Property="Control.FontFamily" Value="Gill Sans Ultra Bold"/>
         <Setter Property="Button.Content" Value="+"/>
+    </Style>
+    <Style x:Key="AddButton2">
+        <Setter Property="Control.Background" Value="#FF00FF2A"/>
+        <Setter Property="Control.Foreground" Value="White"/>
+        <Setter Property="Control.BorderBrush" Value="Black"/>
+        <Setter Property="Control.FontSize" Value="32"/>
+        <Setter Property="Control.FontFamily" Value="Gill Sans Ultra Bold"/>
+        <Setter Property="Button.Content">
+            <Setter.Value>
+                <Viewbox>
+                    <TextBlock Text="+" />
+                </Viewbox>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style x:Key="Steps">
         <Setter Property="Control.Background" Value="#FFEFE4B0"/>

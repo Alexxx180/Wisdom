@@ -10,6 +10,8 @@ namespace Wisdom.Model
         public static string CollegeName = "";
         public static string DisciplineName = "";
         public static string ProfessionName = "";
+        public static string[] MetaDataCollection = new string[3];
+        public static string[] HoursCollection = new string[7];
 
         //Прочие изменяемые данные - приказ, лица...
         public static String2 Order;
@@ -58,16 +60,11 @@ namespace Wisdom.Model
         // Приложение (доп. вопросы к экзаменам/д. зачетам)
         public static List<string> Applyment = new List<string>();
 
-        // Form 6
-        // Отношение дисциплины к ...
-        public static string DisciplineRelation = "";
-        // Путь проведения практической подготовки ...
-        public static string WorkAround = "";
-        // Курс дистанционного обучения ...
-        public static string DistanceEducation = "";
-
         public static SpecialityBase SelectedSpeciality;
         public static DisciplineBase SelectedDiscipline;
+
+        public static List<String2> MetaTypes;
+        public static List<String2> HourTypes;
 
         public static ushort GetStudyHours()
         {

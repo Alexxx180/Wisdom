@@ -86,6 +86,14 @@ namespace Wisdom.Customing
             return stack.Children.Count;
         }
 
+        public static int Restack(StackPanel stack, UserControl toMove, UserControl toAdd)
+        {
+            stack.Children.Remove(toMove);
+            stack.Children.Add(toAdd);
+            stack.Children.Add(toMove);
+            return stack.Children.Count;
+        }
+
         public static void SetProp(UIElement cntrl, DependencyProperty property, object value)
         {
             cntrl.SetValue(property, value);

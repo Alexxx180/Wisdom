@@ -150,6 +150,11 @@ namespace Wisdom.Model.DataBase
             return GetRecords("get_work_by_theme", "theme_id", value);
         }
 
+        public List<object[]> WorkTypes()
+        {
+            return GetRecords("get_work_types");
+        }
+
         public List<object[]> Tasks(ulong value)
         {
             return GetRecords("get_task_by_work", "work_id", value);
@@ -158,6 +163,11 @@ namespace Wisdom.Model.DataBase
         public List<object[]> MetaData(uint value)
         {
             return GetRecords("get_discipline_meta_data", "discipline_id", value);
+        }
+
+        public List<object[]> MetaTypes()
+        {
+            return GetRecords("get_meta_types");
         }
 
         public List<object[]> Sources(uint value)
@@ -174,9 +184,10 @@ namespace Wisdom.Model.DataBase
 
             for (int i = 0; i < metaData.Count; i++)
             {
-                discipline.MetaData.Add(new String2(
+                discipline.MetaData.Add(
                     metaData[i][1].ToString(),
-                    metaData[i][2].ToString()));
+                    metaData[i][2].ToString()
+                );
             }
             int no = 0;
             for (int i = 0; i < sources.Count; i++)
