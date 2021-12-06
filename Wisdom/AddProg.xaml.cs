@@ -414,19 +414,23 @@ namespace Wisdom
             Grid content = GridChild(nextTasksGroup, 0);
             StackPanel contentStack = Panel(content, 4);
 
-            Grid nextContent = GridChild(contentStack, 0);
-            Button nextContentAdd = Btn(nextContent, 0);
-            TextBox nextContentName = Box(nextContent, 2);
-            TextBox nextContentHours = Box(nextContent, 3);
+            contentStack.Children.RemoveAt(0);
+            PlanTask.AddElements(contentTasks.Values, contentStack);
+            PlanTaskAdditor.AddElement(contentStack);
 
-            for (byte iv = 0; iv < contentTasks.Values.Count; iv++)
-            {
-                nextContentName.Text = contentTasks.Values[iv].Name;
-                nextContentHours.Text = contentTasks.Values[iv].Value;
-                TableContent(nextContentAdd, out TextBox hours).Click += AnyDeleteAuto;
-                hours.PreviewTextInput += Hours;
-                DataObject.AddPastingHandler(hours, PastingHours);
-            }
+            //Grid nextContent = GridChild(contentStack, 0);
+            //Button nextContentAdd = Btn(nextContent, 0);
+            //TextBox nextContentName = Box(nextContent, 2);
+            //TextBox nextContentHours = Box(nextContent, 3);
+
+            //for (byte iv = 0; iv < contentTasks.Values.Count; iv++)
+            //{
+            //    nextContentName.Text = contentTasks.Values[iv].Name;
+            //    nextContentHours.Text = contentTasks.Values[iv].Value;
+            //    TableContent(nextContentAdd, out TextBox hours).Click += AnyDeleteAuto;
+            //    hours.PreviewTextInput += Hours;
+            //    DataObject.AddPastingHandler(hours, PastingHours);
+            //}
         }
 
         //Content single task
@@ -446,6 +450,7 @@ namespace Wisdom
             StackPanel taskStack = Panel(task, 4);
 
             PlanTask.AddElements(contentTasks.Values, taskStack);
+            PlanTaskAdditor.AddElement(taskStack);
             /*Grid nextTask = GridChild(taskStack, 0);
             Button nextTaskAdd = Btn(nextTask, 0);
             TextBox nextTaskName = Box(nextTask, 2);

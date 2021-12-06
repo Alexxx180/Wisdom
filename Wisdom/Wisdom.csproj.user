@@ -21,6 +21,9 @@
     <Compile Update="Controls\PlanTask.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\PlanTaskAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\AddProgram\Competetions.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -36,6 +39,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\PlanTask.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PlanTaskAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\AddProgram\Competetions.xaml">

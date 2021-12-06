@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -17,47 +18,40 @@ using static Wisdom.Customing.Converters;
 namespace Wisdom.Controls
 {
     /// <summary>
-    /// Логика взаимодействия для PlanTask.xaml
+    /// Логика взаимодействия для PlanTaskAditor.xaml
     /// </summary>
-    public partial class PlanTask : UserControl, IAuto
+    public partial class PlanTaskAdditor : UserControl, IAuto
     {
-        public PlanTask()
+        public PlanTaskAdditor()
         {
             InitializeComponent();
         }
 
-        public static void AddElements(List<String2> tasks, StackPanel stack)
+        private static PlanTaskAdditor SetElement()
         {
-            for (byte i = 0; i < tasks.Count; i++)
-                AddElement(tasks[i].Name, tasks[i].Value, stack);
-            //AutoIndexing(stack, 1, '.');
+            PlanTaskAdditor task = new PlanTaskAdditor();
+            return task;
         }
 
-        public static void AddElement(string name, string value, StackPanel stack)
+        public static void AddElement(StackPanel stack)
         {
-            PlanTask element = SetElement(name, value);
+            PlanTaskAdditor element = SetElement();
             _ = stack.Children.Add(element);
+            AutoIndexing(stack, 1, '.');
         }
 
-        private void DropTask(object sender, RoutedEventArgs e)
+        private void AddTask(object sender, RoutedEventArgs e)
         {
-            Button dropButton = sender as Button;
-            Grid taskGrid = Parent(dropButton);
-            PlanTask task = taskGrid.Parent as PlanTask;
-            StackPanel workPanel = Parent(task);
-            workPanel.Children.Remove(task);
-            AutoIndexing(workPanel, 1, '.');
-        }
-
-        private static PlanTask SetElement(string name, string value)
-        {
-            PlanTask task = new PlanTask();
-            Grid taskGrid = task.Content as Grid;
+            Button addButton = sender as Button;
+            Grid taskGrid = Parent(addButton);
             TextBox taskName = Box(taskGrid, 2);
             TextBox taskHours = Box(taskGrid, 3);
-            taskName.Text = name;
-            taskHours.Text = value;
-            return task;
+            PlanTaskAdditor task = taskGrid.Parent as PlanTaskAdditor;
+            StackPanel workPanel = Parent(task);
+            workPanel.Children.Remove(task);
+            PlanTask.AddElement(taskName.Text, taskHours.Text, workPanel);
+            workPanel.Children.Add(task);
+            AutoIndexing(workPanel, 1, '.');
         }
 
         public static void AutoIndexing(StackPanel grandGrid, int pos, char mark)
