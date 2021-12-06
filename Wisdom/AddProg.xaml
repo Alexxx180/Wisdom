@@ -1128,7 +1128,7 @@
                                             <ColumnDefinition Width="0.1*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <Button Click="AddMarkControls" Style="{StaticResource ResourceKey=AddButton}"></Button>
+                                        <Button Style="{StaticResource ResourceKey=AddButton}"></Button>
                                         <Label  Grid.Column="1" Content="1." Style="{StaticResource No1}" />
                                         <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
                                     </Grid>

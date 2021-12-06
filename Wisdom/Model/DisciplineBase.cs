@@ -17,27 +17,20 @@ namespace Wisdom.Model
             Name = name;
         }
 
-        public DisciplineBase(string name, HeaderHours hours,
+        public DisciplineBase(string name,
             List<HoursList<LevelsList<HashList<String2>>>> plan,
-            string relation, string prepare, string distanceEdu,
-            List<HashList<string>> sources)
+            List<HashList<string>> sources,
+            Dictionary<string, string> metaData)
         {
             Name = name;
-            Hours = hours;
             Plan = plan;
-            Relation = relation;
-            PracticePrepare = prepare;
-            DistanceEducation = distanceEdu;
             Sources = sources;
+            MetaData = metaData;
         }
         public string Name { get; set; }
-        public HeaderHours Hours { get; set; }
         public Dictionary<string, ushort> TotalHours { get; set; }
         public List<HoursList<LevelsList<HashList<String2>>>> Plan { get; set; }
         public Dictionary<string, string> MetaData { get; set; }
-        public string Relation { get; set; }
-        public string PracticePrepare { get; set; }
-        public string DistanceEducation { get; set; }
         public List<HashList<string>> Sources { get; set; }
     }
 }

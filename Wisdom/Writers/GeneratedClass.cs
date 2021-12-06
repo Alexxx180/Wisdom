@@ -9458,7 +9458,7 @@ namespace Wisdom.Writers
 
             Run run240_1 = new Run() { RsidRunProperties = "00800168", RsidRunAddition = "003E0D21" };
             Text text238_1 = new Text();
-            text238_1.Text = PracticePrepare;
+            text238_1.Text = HoursCollection[6];
 
             run240_1.Append(text238_1);
 

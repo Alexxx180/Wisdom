@@ -5,13 +5,15 @@ using static Wisdom.Customing.Converters;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.ComponentModel;
 
 namespace Wisdom.Controls
 {
     /// <summary>
     /// Логика взаимодействия для HourElement.xaml
     /// </summary>
-    public partial class HourElement : UserControl
+    
+    public sealed partial class HourElement : UserControl, IAtomicElement
     {
         public HourElement()
         {
@@ -25,6 +27,11 @@ namespace Wisdom.Controls
                 HourElement metaElement = SetElement(metaTypes[i].Value);
                 _ = stack.Children.Add(metaElement);
             }
+        }
+
+        void IAtomicElement.AddElements(List<String2> metaTypes, StackPanel stack)
+        {
+            AddElements(metaTypes, stack);
         }
 
         private static HourElement SetElement(string name)
@@ -43,21 +50,14 @@ namespace Wisdom.Controls
             string full = box.Text.Insert(box.CaretIndex, e.Text);
             e.Handled = !_hours.IsMatch(full);
         }
-
         private static string GetProposedText(TextBox textBox, string newText)
         {
             var text = textBox.Text;
-
             if (textBox.SelectionStart != -1)
-            {
                 text = text.Remove(textBox.SelectionStart, textBox.SelectionLength);
-            }
-
             text = text.Insert(textBox.CaretIndex, newText);
-
             return text;
         }
-
         private void PastingHours(object sender, DataObjectPastingEventArgs e)
         {
             TextBox textBox = sender as TextBox;

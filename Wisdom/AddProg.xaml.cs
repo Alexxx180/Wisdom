@@ -50,31 +50,33 @@ namespace Wisdom
         private int SpecNo => SpSelect.SelectedIndex;
 
         private List<ComboBoxItem> _DisciplinesSelect = new List<ComboBoxItem>();
-
         public List<ComboBoxItem> DisciplinesSelect
         {
             get => _DisciplinesSelect;
             set
             {
-                _DisciplinesSelect.Clear();
-                _DisciplinesSelect.AddRange(value);
+                ListsRefresh(_DisciplinesSelect, value);
                 OnPropertyChanged();
                 DpSelect.Items.Refresh();
             }
         }
 
         private List<ComboBoxItem> _SpecialitySelect = new List<ComboBoxItem>();
-
         public List<ComboBoxItem> SpecialitySelect
         {
             get => _SpecialitySelect;
             set
             {
-                _SpecialitySelect.Clear();
-                _SpecialitySelect.AddRange(value);
+                ListsRefresh(_SpecialitySelect, value);
                 OnPropertyChanged();
                 SpSelect.Items.Refresh();
             }
+        }
+
+        public void ListsRefresh<T>(List<T> list, IEnumerable<T> value)
+        {
+            list.Clear();
+            list.AddRange(value);
         }
 
         private List<uint> specialityIDs = new List<uint>();
@@ -94,11 +96,6 @@ namespace Wisdom
             }
                 
             SpecialitySelect = reload;
-
-            //List <ComboBoxItem> reload = new List<ComboBoxItem>();
-            //for (byte i = 0; i < Specialities.Length; i++)
-            //    reload.Add(new ComboBoxItem { Content = Specialities[i].Name });
-            //SpecialitySelect = reload;
         }
 
         private List<uint> disciplineIDs = new List<uint>();
@@ -119,26 +116,36 @@ namespace Wisdom
             }
 
             DisciplinesSelect = reload;
-
-            //List<ComboBoxItem> reload = new List<ComboBoxItem>();
-            //for (byte i = 0; i < Disciplines[SpecNo].Count; i++)
-            //    reload.Add(new ComboBoxItem { Content = Disciplines[SpecNo][i].Name });
-            //DisciplinesSelect = reload;
         }
 
         private string FileName => $@"{Program.Text}.docx";
         MySQL MySql = new MySQL();
 
-        private void SetMetaTypes()
+        private void SetTypeFields(
+            ref List<String2> fields,
+            List<object[]> rows,
+            StackPanel parentPanel)
         {
-            MetaTypes = new List<String2>();
-            List<object[]> types = MySql.MetaTypes();
-            for(byte i = 0; i < types.Count; i++)
-                MetaTypes.Add(new String2(
+            fields = new List<String2>();
+            List<object[]> types = rows;
+            for (byte i = 0; i < types.Count; i++)
+                fields.Add(new String2(
                     types[i][0].ToString(),
                     types[i][1].ToString()));
-            MetaData.Children.Clear();
+            parentPanel.Children.Clear();
+        }
+
+        private void SetMetaTypes()
+        {
+            SetTypeFields(ref MetaTypes, MySql.MetaTypes(), MetaData);
             MetaElement.AddElements(MetaTypes, MetaData);
+        }
+
+        private void SetHourTypes()
+        {
+            SetTypeFields(ref HourTypes, MySql.WorkTypes(), TotalHoursCount);
+            HourElement.AddElements(HourTypes, TotalHoursCount);
+            ResetTotalHourBinds();
         }
 
         private void ResetTotalHourBinds()
@@ -155,19 +162,6 @@ namespace Wisdom
             SetBind(Inputted, ContentProperty, multiCount);
         }
 
-        private void SetHourTypes()
-        {
-            HourTypes = new List<String2>();
-            List<object[]> types = MySql.WorkTypes();
-            for (byte i = 0; i < types.Count; i++)
-                HourTypes.Add(new String2(
-                    types[i][0].ToString(),
-                    types[i][1].ToString()));
-            TotalHoursCount.Children.Clear();
-            HourElement.AddElements(HourTypes, TotalHoursCount);
-            ResetTotalHourBinds();
-        }
-
         public AddProg()
         {
             InitializeComponent();
@@ -176,24 +170,26 @@ namespace Wisdom
             SetHourTypes();
             SetSpecialitySelect();
         }
+
         private void DropAllProfessional()
         {
             while (ProfCompAddSpace.Children.Count > 1)
-                DropProfessionalTopic(ProfCompAddSpace.Children[0] as Grid);
+                DropProfessionalTopic(GridChild(ProfCompAddSpace, 0));
         }
+
         private void DropAllGeneral()
         {
             while (TotalCompAddSpace.Children.Count > 1)
-                DropGeneral(TotalCompAddSpace.Children[0] as Grid);
+                DropGeneral(GridChild(TotalCompAddSpace, 0));
         }
         private void DeleteGeneralCompetetion(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            DropGeneral(btn.Parent as Grid);
+            DropGeneral(Parent(btn));
         }
         private void DropGeneral(Grid generalCompetetion)
         {
-            StackPanel panel = generalCompetetion.Parent as StackPanel;
+            StackPanel panel = Parent(generalCompetetion);
             panel.Children.Remove(generalCompetetion);
             string prefix = "ОК ";
             AutoIndexing2(panel, 1, "", prefix);
@@ -205,28 +201,27 @@ namespace Wisdom
         private void DeleteProfessional(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            DropProfessionalTopic(btn.Parent as Grid);
+            DropProfessionalTopic(Parent(btn));
         }
         private void DeleteProfessionalItem(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            DropProfessional(btn.Parent as Grid);
+            DropProfessional(Parent(btn));
         }
         private void DropProfessional(Grid profCompetetion)
         {
-            StackPanel items = profCompetetion.Parent as StackPanel;
-            Grid section = items.Parent as Grid;
-
-            Border border = section.Children[1] as Border;
+            StackPanel items = Parent(profCompetetion);
+            Grid section = Parent(items);
+            
+            Border border = Border(section, 1);
             Label title = border.Child as Label;
-            StackPanel panel = profCompetetion.Parent as StackPanel;
-            panel.Children.Remove(profCompetetion);
+            items.Children.Remove(profCompetetion);
             string prefix = title.Content.ToString();
-            AutoIndexing(panel, 1, "", prefix);
+            AutoIndexing(items, 1, "", prefix);
         }
         private void DropProfessionalTopic(Grid profCompetetionTopic)
         {
-            StackPanel panel = profCompetetionTopic.Parent as StackPanel;
+            StackPanel panel = Parent(profCompetetionTopic);
             panel.Children.Remove(profCompetetionTopic);
             string prefix = "ПК ";
             AutoIndexingBorder(panel, 1, '.', prefix);
@@ -271,7 +266,7 @@ namespace Wisdom
                 Grid subSubNext = GridChild(profComps, 0);
 
                 Button subAdd = Btn(subSubNext, 0);
-                TextBox name = Box(subSubNext, 2);
+                TextBox addNew = Box(subSubNext, 2);
 
                 List<HoursList<String2>> profCompetetionSection = profCompetetions[i];
                 for (byte ii = 0; ii < profCompetetionSection.Count; ii++)
@@ -279,11 +274,13 @@ namespace Wisdom
                     HoursList<String2> profCompetetion = profCompetetionSection[ii];
                     Button delete = ProfessionalCompetetion(subAdd);
                     Grid current = Parent(delete);
+                    TextBox name = Box(current, 2);
                     TextBox experience = Box(current, 4);
                     TextBox skills = Box(current, 6);
                     TextBox knowledge = Box(current, 8);
                     delete.Click += DeleteProfessionalItem;
                     name.Text = profCompetetion.Hours;
+                    addNew.Text = name.Text;
                     experience.Text = profCompetetion.Values[0].Value;
                     skills.Text = profCompetetion.Values[1].Value;
                     knowledge.Text = profCompetetion.Values[2].Value;
@@ -296,16 +293,18 @@ namespace Wisdom
             Grid next = GridChild(TotalCompAddSpace, 0);
             Button add = Btn(next, 0);
 
-            TextBox name = Box(next, 2);
+            TextBox addNew = Box(next, 2);
             List<HoursList<String2>> totalCompetetions = SelectedSpeciality.GeneralCompetetions;
             for (byte i = 0; i < totalCompetetions.Count; i++)
             {
                 HoursList<String2> totalCompetetion = totalCompetetions[i];
                 Button delete = GeneralCompetetion(add);
                 Grid current = Parent(delete);
+                TextBox name = Box(current, 2);
                 TextBox skills = Box(current, 4);
                 TextBox knowledge = Box(current, 6);
                 name.Text = totalCompetetion.Hours;
+                addNew.Text = name.Text;
                 delete.Click += DeleteGeneralCompetetion;
                 skills.Text = totalCompetetion.Values[0].Value;
                 knowledge.Text = totalCompetetion.Values[1].Value;
@@ -446,19 +445,21 @@ namespace Wisdom
             Grid task = Parent(deleteAddedTasks);
             StackPanel taskStack = Panel(task, 4);
 
-            Grid nextTask = GridChild(taskStack, 0);
+            PlanTask.AddElements(contentTasks.Values, taskStack);
+            /*Grid nextTask = GridChild(taskStack, 0);
             Button nextTaskAdd = Btn(nextTask, 0);
             TextBox nextTaskName = Box(nextTask, 2);
             TextBox nextTaskHours = Box(nextTask, 3);
 
             for (byte iv = 0; iv < contentTasks.Values.Count; iv++)
             {
+                
                 nextTaskName.Text = contentTasks.Values[iv].Name;
                 nextTaskHours.Text = contentTasks.Values[iv].Value;
                 TableContent(nextTaskAdd, out TextBox hours).Click += AnyDeleteAuto;
                 hours.PreviewTextInput += Hours;
                 DataObject.AddPastingHandler(hours, PastingHours);
-            }
+            }*/
         }
 
         private void SetSources()
@@ -678,10 +679,6 @@ namespace Wisdom
             delete.Click += DeleteSources;
         }
 
-        private void AddMarkControls(object sender, RoutedEventArgs e)
-        {
-            //TextContent3(sender as Button).Click += DeleteListItem2;
-        }
         private void DeleteAllSources()
         {
             while (EducationSources.Children.Count > 1)
@@ -784,6 +781,7 @@ namespace Wisdom
             RemoveTableRow(subContent.Tag);
             AutoIndexing(RemoveGrid(subContent), 1, '.');
         }
+
         private void DeleteThemeClick(object sender, RoutedEventArgs e)
         {
             Button delete = sender as Button;
@@ -828,16 +826,6 @@ namespace Wisdom
             MultiBinding reCalculation = DeleteElemFromMulti(refer,
                 ContentProperty, new SumConverter(), topic, sections);
 
-            //MultiBinding multi = GetMulti(refer, ContentProperty);
-            //MultiBinding multi2 = new MultiBinding { Converter = new SumConverter() };
-
-            //for (int i = 0; i < multi.Bindings.Count; i++)
-            //{
-            //    if (i == sections.Children.IndexOf(topic))
-            //        continue;
-            //    multi2.Bindings.Add(multi.Bindings[i]);
-            //}
-
             _ = SetBind(refer, ContentProperty, reCalculation);
 
             DeleteSection(topic);
@@ -849,8 +837,6 @@ namespace Wisdom
                 StackPanel themes = Panel(section, 4);
                 AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
             }
-            //reCalculation
-            
         }
         private void DeleteTopicClick(object sender, RoutedEventArgs e)
         {
@@ -990,5 +976,7 @@ namespace Wisdom
             EnableX(true, switchs);
             mainSwitch.IsEnabled = false;
         }
+
+
     }
 }
