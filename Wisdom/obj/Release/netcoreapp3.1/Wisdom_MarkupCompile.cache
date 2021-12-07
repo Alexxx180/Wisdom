@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1;
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\App.xaml
-13-29307999
+21-1950096763
 
-42-913692270
+50136423331
 203-185629989
-AddProg.xaml;Controls\HourElement.xaml;Controls\MetaElement.xaml;Controls\PlanTask.xaml;Controls\PlanTaskAdditor.xaml;MainWindow.xaml;Resources\Styles\Buttons.xaml;Resources\Styles\CheckBoxes.xaml;Resources\Styles\ComboBoxes.xaml;Resources\Styles\FlowDocuments.xaml;Resources\Styles\Labels.xaml;Resources\Styles\TextBoxes.xaml;Windows\AddProgram\Competetions.xaml;
+AddProg.xaml;Controls\HourElement.xaml;Controls\MetaElement.xaml;Controls\PlanTask.xaml;Controls\PlanTaskAdditor.xaml;Controls\PlanTheme.xaml;Controls\PlanThemeAdditor.xaml;Controls\PlanThemeContent.xaml;Controls\PlanTopic.xaml;Controls\PlanTopicAdditor.xaml;Controls\PlanWork.xaml;Controls\PlanWorkAdditor.xaml;Controls\PlanWorkTask.xaml;MainWindow.xaml;Resources\Styles\Buttons.xaml;Resources\Styles\CheckBoxes.xaml;Resources\Styles\ComboBoxes.xaml;Resources\Styles\FlowDocuments.xaml;Resources\Styles\Labels.xaml;Resources\Styles\TextBoxes.xaml;Windows\AddProgram\Competetions.xaml;
 
 False
 

@@ -24,6 +24,30 @@
     <Compile Update="Controls\PlanTaskAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\PlanTheme.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PlanThemeAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PlanThemeContent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PlanTopic.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PlanTopicAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PlanWork.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PlanWorkAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PlanWorkTask.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\AddProgram\Competetions.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -42,6 +66,30 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\PlanTaskAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PlanTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PlanThemeAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PlanThemeContent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PlanTopic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PlanTopicAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PlanWork.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PlanWorkAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PlanWorkTask.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\AddProgram\Competetions.xaml">

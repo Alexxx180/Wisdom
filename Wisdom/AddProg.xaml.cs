@@ -862,40 +862,42 @@ namespace Wisdom
             TextBox topicHours = Box(topic, 3);
             StackPanel topicStack = Parent(topic);
 
-            NewTopic(AllSectionsContents, topicStack, out Button BTbutton,
-                out Button Cadd, out Button NewTypeAdd, out Button deleteOmni,
-                out Button addNew, out TextBox nextThemehours,
-                topicName.Text, topicHours.Text, TotalHoursUsed,
-                out ComboBox newThemeLevels, out ComboBox themeLevelsAdd,
-                out TextBox themeHours, out TextBox contentHours,
-                out TextBox hours);
+            //NewTopic(AllSectionsContents, topicStack, out Button BTbutton,
+            //    out Button Cadd, out Button NewTypeAdd, out Button deleteOmni,
+            //    out Button addNew, out TextBox nextThemehours,
+            //    topicName.Text, topicHours.Text, TotalHoursUsed,
+            //    out ComboBox newThemeLevels, out ComboBox themeLevelsAdd,
+            //    out TextBox themeHours, out TextBox contentHours,
+            //    out TextBox hours);
 
-            //Theme
-            _ = SetBind(newThemeLevels, ComboBox.ItemsSourceProperty,
-                FastBind(Levels, "Children", new CompetetionsConverter()));
-            newThemeLevels.SelectionChanged += Levels_SelectionChanged;
+            PlanTopic.AddElement(topicName.Text, topicHours.Text, topicStack);
 
-            //Content
-            _ = SetBind(themeLevelsAdd, ComboBox.ItemsSourceProperty,
-                FastBind(Levels, "Children", new CompetetionsConverter()));
-            themeLevelsAdd.SelectionChanged += Levels_SelectionChanged;
+            ////Theme
+            //_ = SetBind(newThemeLevels, ComboBox.ItemsSourceProperty,
+            //    FastBind(Levels, "Children", new CompetetionsConverter()));
+            //newThemeLevels.SelectionChanged += Levels_SelectionChanged;
 
-            Cadd.Click += AddContent;
-            NewTypeAdd.Click += NewTypeContent;
+            ////Content
+            //_ = SetBind(themeLevelsAdd, ComboBox.ItemsSourceProperty,
+            //    FastBind(Levels, "Children", new CompetetionsConverter()));
+            //themeLevelsAdd.SelectionChanged += Levels_SelectionChanged;
 
-            BTbutton.Click += DeleteThemeClick;
-            addNew.Click += AddTheme;
+            //Cadd.Click += AddContent;
+            //NewTypeAdd.Click += NewTypeContent;
 
-            deleteOmni.Click += DeleteTopicClick;
+            //BTbutton.Click += DeleteThemeClick;
+            //addNew.Click += AddTheme;
 
-            hours.PreviewTextInput += Hours;
-            DataObject.AddPastingHandler(hours, PastingHours);
-            themeHours.PreviewTextInput += Hours;
-            DataObject.AddPastingHandler(themeHours, PastingHours);
-            nextThemehours.PreviewTextInput += Hours;
-            DataObject.AddPastingHandler(nextThemehours, PastingHours);
-            contentHours.PreviewTextInput += Hours;
-            DataObject.AddPastingHandler(contentHours, PastingHours);
+            //deleteOmni.Click += DeleteTopicClick;
+
+            //hours.PreviewTextInput += Hours;
+            //DataObject.AddPastingHandler(hours, PastingHours);
+            //themeHours.PreviewTextInput += Hours;
+            //DataObject.AddPastingHandler(themeHours, PastingHours);
+            //nextThemehours.PreviewTextInput += Hours;
+            //DataObject.AddPastingHandler(nextThemehours, PastingHours);
+            //contentHours.PreviewTextInput += Hours;
+            //DataObject.AddPastingHandler(contentHours, PastingHours);
         }
         private void TopicAdd2(Grid topic)
         {
@@ -933,32 +935,39 @@ namespace Wisdom
         {
             StackPanel themes = Parent(current);
             themes.Children.Remove(current);
+
             Label themeNo = Lab(current, 1);
             TextBox themeName = Box(current, 2);
             TextBox themeHours = Box(current, 3);
             TextBox themeCompetetions = Box(current, 4);
             ComboBox themeLevel = Cbx(current, 5);
-            NewTheme(themeNo.Content.ToString(), themeCompetetions.Text,
-                themes, AllSectionsContents,
-                out Button deleteTheme, out Button addContent,
-                out Button addNextTask, out ComboBox themeLevels,
-                themeName.Text, themeHours.Text, themeLevel.Text,
-                out TextBox hours, out TextBox contentHours);
-            deleteTheme.Click += DeleteThemeClick;
-            addContent.Click += AddContent;
-            addNextTask.Click += NewTypeContent;
-            Binding bindLevels = FastBind(Levels, "Children", new CompetetionsConverter());
-            _ = SetBind(themeLevels, ItemsControl.ItemsSourceProperty, bindLevels);
-            themeLevels.SelectionChanged += Levels_SelectionChanged;
-            themes.Children.Add(current);
-            Grid section = Parent(themes);
-            StackPanel sections = Parent(section);
-            int optimization = sections.Children.IndexOf(section) + 1;
-            AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
-            hours.PreviewTextInput += Hours;
-            DataObject.AddPastingHandler(hours, PastingHours);
-            contentHours.PreviewTextInput += Hours;
-            DataObject.AddPastingHandler(contentHours, PastingHours);
+
+            //NewTheme(themeNo.Content.ToString(), themeCompetetions.Text,
+            //    themes, AllSectionsContents,
+            //    out Button deleteTheme, out Button addContent,
+            //    out Button addNextTask, out ComboBox themeLevels,
+            //    themeName.Text, themeHours.Text, themeLevel.Text,
+            //    out TextBox hours, out TextBox contentHours);
+
+            PlanTheme.AddElement(themeName.Text, themeHours.Text, themeCompetetions.Text, themeLevel.Text, themes);
+
+            //deleteTheme.Click += DeleteThemeClick;
+            //addContent.Click += AddContent;
+            //addNextTask.Click += NewTypeContent;
+
+            //Binding bindLevels = FastBind(Levels, "Children", new CompetetionsConverter());
+            //_ = SetBind(themeLevels, ItemsControl.ItemsSourceProperty, bindLevels);
+
+            //themeLevels.SelectionChanged += Levels_SelectionChanged;
+            //themes.Children.Add(current);
+            //Grid section = Parent(themes);
+            //StackPanel sections = Parent(section);
+            //int optimization = sections.Children.IndexOf(section) + 1;
+            //AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
+            //hours.PreviewTextInput += Hours;
+            //DataObject.AddPastingHandler(hours, PastingHours);
+            //contentHours.PreviewTextInput += Hours;
+            //DataObject.AddPastingHandler(contentHours, PastingHours);
         }
 
         private void SwitchPlan(object sender, RoutedEventArgs e)

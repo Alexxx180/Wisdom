@@ -354,7 +354,7 @@
             </Grid>
 
             <!--<local:Competetions  />-->
-            <Grid  x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <Grid  x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <!--x:Name="Form2" -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
@@ -641,7 +641,7 @@
             </Grid>
 
             <!--RCompetentions-->
-            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.05*"/>

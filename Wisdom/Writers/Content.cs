@@ -12,6 +12,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Windows.Markup;
+using Wisdom.Controls;
 
 namespace Wisdom.Writers
 {
@@ -414,9 +415,18 @@ namespace Wisdom.Writers
             ComboBox cbx = Cbx(grid, 1);
             CheckBox chx = Chx(grid, 2);
             if (chx.IsChecked.Value)
-                TableGroupContent(grid, ref panel, cbx, out hours, out delete, ref add);
+            {
+                //TableGroupContent(grid, ref panel, cbx, out hours, out delete, ref add);
+                PlanWork.AddElement(cbx.Text, panel);
+            }
             else
-                TableSingleContent(grid, panel, cbx, out hours, out delete);
+            {
+                //TableSingleContent(grid, panel, cbx, out hours, out delete);
+                PlanWorkTask.AddElement(cbx.Text, panel);
+            }
+            hours = new TextBox();
+            delete = new Button();
+            
         }
         public static void RemoveParagraph(object value)
         {
