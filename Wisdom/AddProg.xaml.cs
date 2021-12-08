@@ -21,6 +21,7 @@ using static Wisdom.Tests.TotalTest;
 using System.Diagnostics;
 using System;
 using Wisdom.Controls;
+using Wisdom.Controls.ThemePlan;
 
 namespace Wisdom
 {
@@ -504,7 +505,7 @@ namespace Wisdom
                 return;
             string name = box.SelectedValue.ToString();
 
-            DropAllTopics();
+            //DropAllTopics();
             SelectedDiscipline = MySql.GetDiscipline(disciplineIDs[selected], name);
 
             for (byte i = 0; i < MetaData.Children.Count; i++)
@@ -541,7 +542,9 @@ namespace Wisdom
             }
             
             SetSources();
-            SetPlan();
+            //SetPlan();
+            PlanTopic.DropPlan(DisciplinePlan);
+            PlanTopic.AddElements(SelectedDiscipline.Plan, DisciplinePlan);
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
@@ -568,7 +571,9 @@ namespace Wisdom
 
             //Topics| Themes      | Content
             //2, 3, | 2, 3, 4, 5, | 0, | 2, 3
-            Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 4, 5, 0, 2, 3);
+            //Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 4, 5, 0, 2, 3);
+            Plan = PlanTopic.FullThemePlan(DisciplinePlan);
+
             StudyLevels.Values = new List<string>();
             List<List<string>> levels = GetListFromElements3(Levels, 2, 4);
             for (byte i = 0; i < levels.Count; i++)
@@ -949,7 +954,7 @@ namespace Wisdom
             //    themeName.Text, themeHours.Text, themeLevel.Text,
             //    out TextBox hours, out TextBox contentHours);
 
-            PlanTheme.AddElement(themeName.Text, themeHours.Text, themeCompetetions.Text, themeLevel.Text, themes);
+            PlanTheme.AddElement(1, themeName.Text, themeHours.Text, themeCompetetions.Text, themeLevel.Text, themes);
 
             //deleteTheme.Click += DeleteThemeClick;
             //addContent.Click += AddContent;

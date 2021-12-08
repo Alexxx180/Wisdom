@@ -6,8 +6,9 @@ using Wisdom.Model;
 
 namespace Wisdom.Controls
 {
-    interface IAtomicElement
+    interface INameHours
     {
-        public abstract void AddElements(List<String2> metaTypes, StackPanel stack);
+        public string Name { get; set; }
+        public string Hours { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace Wisdom.Controls
     /// <summary>
     /// Логика взаимодействия для MetaElement.xaml
     /// </summary>
-    public partial class MetaElement : UserControl, IAtomicElement
+    public partial class MetaElement : UserControl
     {
         public MetaElement()
         {
@@ -22,11 +22,6 @@ namespace Wisdom.Controls
                 MetaElement metaElement = SetElement(metaTypes[i].Value);
                 _ = stack.Children.Add(metaElement);
             }
-        }
-
-        void IAtomicElement.AddElements(List<String2> metaTypes, StackPanel stack)
-        {
-            AddElements(metaTypes, stack);
         }
 
         private static MetaElement SetElement(string name)

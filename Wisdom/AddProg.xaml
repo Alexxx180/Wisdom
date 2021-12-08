@@ -10,6 +10,7 @@
         xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main Jump "
         xmlns:docx="clr-namespace:DocumentFormat.OpenXml.Wordprocessing;assembly=DocumentFormat.OpenXml"
         xmlns:controls="clr-namespace:Wisdom.Controls"
+        xmlns:plan="clr-namespace:Wisdom.Controls.ThemePlan"
         mc:Ignorable="d"
         Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized">
     <Window.Resources>
@@ -734,7 +735,7 @@
                                         </Label.Resources>
                                         <Label.Content>
                                             <MultiBinding x:Name="TotalHoursUsedBind" Converter="{StaticResource SumConverter}">
-                                                <Binding Path="Text" ElementName="SectionHours"></Binding>
+                                                <!--<Binding Path="Text" ElementName="SectionHours"></Binding>-->
                                             </MultiBinding>
                                         </Label.Content>
                                     </Label>
@@ -791,170 +792,7 @@
                     <ScrollViewer Grid.Row="1">
                         <!-- Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="9"-->
                         <StackPanel Background="#FFFFFCC7" Tag="{x:Reference AllSectionsContents}" x:Name="DisciplinePlan">
-                            <Grid Tag="{x:Reference Name=Topic1}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.05*" />
-                                    <ColumnDefinition Width="0.15*" />
-                                    <ColumnDefinition Width="0.475*" />
-                                    <ColumnDefinition Width="0.085*" />
-                                    <ColumnDefinition Width="0.19*" />
-                                    <ColumnDefinition Width="0.05*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-
-                                <Button Click="DeleteTopicClick" Tag="{x:Reference Name=Themes}" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                                <!--<Viewbox Grid.Column="1">-->
-                                <Label x:Name="SectionNo" Grid.Column="1" Content="Раздел 1."   Style="{StaticResource CaptionSections}"></Label>
-                                <!--</Viewbox>-->
-                                <TextBox x:Name="SectionName" FontWeight="Bold" Text="" Grid.Column="2" Style="{StaticResource RegularBox}"></TextBox>
-                                <TextBox x:Name="SectionHours" Tag="{x:Reference TotalHoursUsed}" Grid.Column="3" Text="" DataObject.Pasting="PastingHours" PreviewTextInput="Hours" Style="{StaticResource HoursBox}">
-                                    <TextBox.Background>
-                                        <MultiBinding Converter="{StaticResource UsedValuesConverter}">
-                                            <Binding Path="Text" ElementName="SectionHours"></Binding>
-                                            <Binding Path="Text" ElementName="ThemeHours"></Binding>
-                                        </MultiBinding>
-                                    </TextBox.Background>
-                                </TextBox>
-
-
-                                <StackPanel x:Name="Themes" Background="#FFEEEBB6" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6">
-                                    <Grid Tag="{x:Reference Name=Theme1}">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.05*" />
-                                            <ColumnDefinition Width="0.15*" />
-                                            <ColumnDefinition Width="0.475*" />
-                                            <ColumnDefinition Width="0.085*" />
-                                            <ColumnDefinition Width="0.19*" />
-                                            <ColumnDefinition Width="0.05*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition></RowDefinition>
-                                            <RowDefinition></RowDefinition>
-                                        </Grid.RowDefinitions>
-
-                                        <Button Click="DeleteThemeClick" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                                        <!--<Viewbox Grid.Column="1">-->
-                                        <Label x:Name="ThemeNo" Grid.Column="1" Content="Тема 1.1." Style="{StaticResource CaptionSections}"></Label>
-                                        <!--</Viewbox>-->
-                                        <TextBox x:Name="ThemeName" Grid.Column="2" Text="" Style="{StaticResource SubCaptionBox}"></TextBox>
-                                        <TextBox x:Name="ThemeHours" Grid.Column="3" Text="" Style="{StaticResource HoursBox}"  DataObject.Pasting="PastingHours" PreviewTextInput="Hours">
-                                            <TextBox.Background>
-                                                <MultiBinding Converter="{StaticResource UsedValuesConverter}">
-                                                    <Binding Path="Text" ElementName="ThemeHours"></Binding>
-                                                </MultiBinding>
-                                            </TextBox.Background>
-                                        </TextBox>
-                                        <TextBox x:Name="ThemeCompetetions" Grid.Column="4" Text="" Style="{StaticResource RegularBox}"></TextBox>
-                                        <ComboBox x:Name="ThemeLevel" Grid.Column="5" Style="{StaticResource HoursBox}" SelectionChanged="Levels_SelectionChanged"  IsEditable="True">
-                                            <ComboBox.ItemsSource>
-                                                <Binding Path="Children" ElementName="Levels" Converter="{StaticResource CompetetionsConverter}"></Binding>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-
-
-                                        <StackPanel Background="#FFEEEBB6" Tag="{x:Reference Name=ThemeContents}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6">
-                                            <Grid Tag="{x:Reference Name=ThemeContents}">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="0.05*" />
-                                                    <ColumnDefinition Width="0.15*" />
-                                                    <ColumnDefinition Width="0.7*" />
-                                                    <ColumnDefinition Width="0.1*" />
-                                                </Grid.ColumnDefinitions>
-
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition></RowDefinition>
-                                                    <RowDefinition></RowDefinition>
-                                                    <RowDefinition></RowDefinition>
-                                                </Grid.RowDefinitions>
-
-                                                <Label Content="Содержание учебного материала" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource RegularSections}"></Label>
-
-                                                <Label Grid.Row="1" Grid.Column="1" Content="№" Style="{StaticResource ListCaptions}"></Label>
-                                                <Label Grid.Row="1" Grid.Column="2" Content="Описание" Style="{StaticResource ListCaptions}"></Label>
-                                                <Label Grid.Row="1" Grid.Column="3" Content="Часы" Style="{StaticResource ListCaptions}"></Label>
-                                                <StackPanel Grid.Row="2" Grid.ColumnSpan="5" Tag="{x:Reference Name=EduContents}">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="0.05*" />
-                                                            <ColumnDefinition Width="0.15*" />
-                                                            <ColumnDefinition Width="0.7*" />
-                                                            <ColumnDefinition Width="0.1*" />
-                                                        </Grid.ColumnDefinitions>
-
-                                                        <Button Click="AddContent" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                                        <Label Grid.Column="1" Content="1"  Style="{StaticResource ResourceKey=No2}"></Label>
-                                                        <TextBox Grid.Column="2" Grid.ColumnSpan="1"  Style="{StaticResource RegularBox}"></TextBox>
-                                                        <TextBox x:Name="ContentsHours1" Grid.Column="3" Grid.ColumnSpan="1"  DataObject.Pasting="PastingHours" Style="{StaticResource HoursBox}"></TextBox>
-                                                    </Grid>
-
-                                                </StackPanel>
-                                            </Grid>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="0.05*" />
-                                                    <ColumnDefinition Width="0.15*" />
-                                                    <ColumnDefinition Width="0.7*" />
-                                                    <ColumnDefinition Width="0.1*" />
-                                                </Grid.ColumnDefinitions>
-
-                                                <Button Click="NewTypeContent" Grid.Row="3" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                                <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource SubCaptionBox}">
-                                                    <ComboBox.ItemContainerStyle>
-                                                        <StaticResource ResourceKey="ItemsBox"></StaticResource>
-                                                    </ComboBox.ItemContainerStyle>
-                                                    <ComboBoxItem>Практические занятия</ComboBoxItem>
-                                                    <ComboBoxItem>Контрольная работа</ComboBoxItem>
-                                                    <ComboBoxItem>Самостоятельная работа</ComboBoxItem>
-                                                </ComboBox>
-                                                <CheckBox Grid.Row="3" Grid.Column="3" Content=" >1" Style="{StaticResource RegularCheckBox}">
-
-                                                </CheckBox>
-                                            </Grid>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.05*" />
-                                            <ColumnDefinition Width="0.15*" />
-                                            <ColumnDefinition Width="0.475*" />
-                                            <ColumnDefinition Width="0.085*" />
-                                            <ColumnDefinition Width="0.19*" />
-                                            <ColumnDefinition Width="0.05*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Button Click="AddTheme" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                        <Label Content="Тема 1.2." Grid.Column="1" Style="{StaticResource CaptionSections}"></Label>
-                                        <TextBox Grid.Column="2" Style="{StaticResource RegularBox}"></TextBox>
-                                        <TextBox Grid.Column="3" Style="{StaticResource HoursBox}" PreviewTextInput="Hours"  DataObject.Pasting="PastingHours"></TextBox>
-                                        <TextBox Grid.Column="4" Style="{StaticResource RegularBox}"></TextBox>
-                                        <ComboBox Grid.Column="5" Style="{StaticResource HoursBox}" SelectionChanged="Levels_SelectionChanged" IsEditable="True">
-                                            <ComboBox.ItemsSource>
-                                                <Binding Path="Children" ElementName="Levels" Converter="{StaticResource CompetetionsConverter}"></Binding>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                    </Grid>
-                                </StackPanel>
-                            </Grid>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.05*" />
-                                    <ColumnDefinition Width="0.15*" />
-                                    <ColumnDefinition Width="0.475*" />
-                                    <ColumnDefinition Width="0.085*" />
-                                    <ColumnDefinition Width="0.19*" />
-                                    <ColumnDefinition Width="0.05*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Button Click="AddTopic" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                <Label Content="Раздел 2." Grid.Column="1"  Style="{StaticResource CaptionSections}"></Label>
-                                <TextBox Grid.Column="2" Style="{StaticResource RegularBox}"></TextBox>
-                                <TextBox x:Name="SectionHours2" Grid.Column="3" Tag="{x:Reference TotalHoursUsed}" DataObject.Pasting="PastingHours" PreviewTextInput="Hours" Style="{StaticResource HoursBox}"></TextBox>
-                            </Grid>
+                            <plan:PlanTopicAdditor/>
                         </StackPanel>
                     </ScrollViewer>
 
@@ -2113,8 +1951,8 @@
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">
                                                     <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
-                                                        <Run FontWeight="Bold" Text="{Binding ElementName=SectionHours, Path=Text}">
-                                                        </Run>
+                                                        <!--<Run FontWeight="Bold" Text="{Binding ElementName=SectionHours, Path=Text}">
+                                                        </Run>-->
                                                     </Paragraph>
                                                 </TableCell>
                                                 <TableCell BorderBrush="Black" BorderThickness="0.5">

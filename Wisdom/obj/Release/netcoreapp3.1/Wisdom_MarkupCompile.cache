@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1;
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\App.xaml
-21-1950096763
+21354958513
 
-50136423331
+53-1755055005
 203-185629989
-AddProg.xaml;Controls\HourElement.xaml;Controls\MetaElement.xaml;Controls\PlanTask.xaml;Controls\PlanTaskAdditor.xaml;Controls\PlanTheme.xaml;Controls\PlanThemeAdditor.xaml;Controls\PlanThemeContent.xaml;Controls\PlanTopic.xaml;Controls\PlanTopicAdditor.xaml;Controls\PlanWork.xaml;Controls\PlanWorkAdditor.xaml;Controls\PlanWorkTask.xaml;MainWindow.xaml;Resources\Styles\Buttons.xaml;Resources\Styles\CheckBoxes.xaml;Resources\Styles\ComboBoxes.xaml;Resources\Styles\FlowDocuments.xaml;Resources\Styles\Labels.xaml;Resources\Styles\TextBoxes.xaml;Windows\AddProgram\Competetions.xaml;
+AddProg.xaml;Controls\HourElement.xaml;Controls\MetaElement.xaml;Controls\ThemePlan\PlanTask.xaml;Controls\ThemePlan\PlanTaskAdditor.xaml;Controls\ThemePlan\PlanTheme.xaml;Controls\ThemePlan\PlanThemeAdditor.xaml;Controls\ThemePlan\PlanThemeContent.xaml;Controls\ThemePlan\PlanTopic.xaml;Controls\ThemePlan\PlanTopicAdditor.xaml;Controls\ThemePlan\PlanWork.xaml;Controls\ThemePlan\PlanWorkAdditor.xaml;Controls\ThemePlan\PlanWorkTask.xaml;MainWindow.xaml;Resources\Styles\Buttons.xaml;Resources\Styles\CheckBoxes.xaml;Resources\Styles\ComboBoxes.xaml;Resources\Styles\FlowDocuments.xaml;Resources\Styles\Labels.xaml;Resources\Styles\TextBoxes.xaml;Windows\AddProgram\Competetions.xaml;
 
 False
 
