@@ -18,6 +18,10 @@ namespace Wisdom.Model
         // Зависимые от рабочих учебных программ (дисциплины)
         public static string[] MetaDataCollection = new string[3];
 
+        // Названия и ключи всех специальностей и сопутствующих им дисциплин
+        public static ComboHeader DisciplineHead = new ComboHeader();
+        public static ComboHeader SpecialityHead = new ComboHeader();
+
         // Выбранная специальность
         public static SpecialityBase SelectedSpeciality;
 

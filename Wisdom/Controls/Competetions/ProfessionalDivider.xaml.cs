@@ -106,7 +106,7 @@ namespace Wisdom.Controls.Competetions
         {
             Button dropButton = sender as Button;
             Grid compGrid = Parent(dropButton);
-            ProfessionalCompetetion competetion = compGrid.Parent as ProfessionalCompetetion;
+            ProfessionalDivider competetion = compGrid.Parent as ProfessionalDivider;
             StackPanel compPanel = Parent(competetion);
             compPanel.Children.Remove(competetion);
             AutoIndexing3(compPanel);

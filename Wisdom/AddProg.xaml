@@ -279,16 +279,7 @@
                     </Viewbox>
 
                     <Grid Grid.Column="1" HorizontalAlignment="Stretch">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.8*"></ColumnDefinition>
-                            <ColumnDefinition Width="0.2*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-
                         <TextBox x:Name="Usual" Style="{StaticResource HoursBox}" PreviewTextInput="Hours"  HorizontalAlignment="Stretch"  DataObject.Pasting="PastingHours"></TextBox>
-                        <StackPanel x:Name="N12" Tag="{x:Reference Name=Usual}" Grid.Column="1" HorizontalAlignment="Right">
-                            <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="1" Click="Counting">▲</Button>
-                            <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="-1" Click="Counting">▼</Button>
-                        </StackPanel>
                     </Grid>
                 </Grid>
 
@@ -302,16 +293,7 @@
                     </Viewbox>
 
                     <Grid Grid.Column="1" HorizontalAlignment="Stretch">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.8*"></ColumnDefinition>
-                            <ColumnDefinition Width="0.2*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-
                         <TextBox x:Name="Self" Style="{StaticResource HoursBox}" HorizontalAlignment="Stretch" PreviewTextInput="Hours" DataObject.Pasting="PastingHours"></TextBox>
-                        <StackPanel Tag="{x:Reference Name=Self}" Grid.Column="1" HorizontalAlignment="Stretch">
-                            <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="1" Click="Counting">▲</Button>
-                            <Button FontFamily="Segoe UI" Style="{StaticResource Steps}" FontSize="13" Tag="-1" Click="Counting">▼</Button>
-                        </StackPanel>
                     </Grid>
                 </Grid>
 

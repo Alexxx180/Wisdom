@@ -29,7 +29,7 @@ namespace Wisdom
     /// <summary>
     /// Логика взаимодействия для AddProg.xaml
     /// </summary>
-    public partial class AddProg : Window
+    public partial class AddProg : Window, INotifyPropertyChanged
     {
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
@@ -81,71 +81,22 @@ namespace Wisdom
             list.AddRange(value);
         }
 
-        private List<uint> specialityIDs = new List<uint>();
-
-        private void SetSpecialitySelect()
-        {
-            specialityIDs.Clear();
-            List<object[]> specialities = MySql.SpecialitiesList();
-            List<ComboBoxItem> reload = new List<ComboBoxItem>();
-            for (byte i = 0; i < specialities.Count; i++)
-            {
-                specialityIDs.Add(UInts(specialities[i][0]));
-                reload.Add(new ComboBoxItem {
-                    Content = specialities[i][1] +
-                    " " + specialities[i][2]
-                });
-            }
-                
-            SpecialitySelect = reload;
-        }
-
-        private List<uint> disciplineIDs = new List<uint>();
-
-        private void SetDisciplineSelect()
-        {
-            disciplineIDs.Clear();
-            List<object[]> disciplines = MySql.DisciplinesList(specialityIDs[SpecNo]);
-            List<ComboBoxItem> reload = new List<ComboBoxItem>();
-            for (byte i = 0; i < disciplines.Count; i++)
-            {
-                disciplineIDs.Add(UInts(disciplines[i][0]));
-                reload.Add(new ComboBoxItem
-                {
-                    Content = disciplines[i][1] +
-                    " " + disciplines[i][2]
-                });
-            }
-
-            DisciplinesSelect = reload;
-        }
-
         private string FileName => $@"{Program.Text}.docx";
-        MySQL MySql = new MySQL();
+        ProgramData Connection = new ProgramData();
 
-        private void SetTypeFields(
-            ref List<String2> fields,
-            List<object[]> rows,
-            StackPanel parentPanel)
-        {
-            fields = new List<String2>();
-            List<object[]> types = rows;
-            for (byte i = 0; i < types.Count; i++)
-                fields.Add(new String2(
-                    types[i][0].ToString(),
-                    types[i][1].ToString()));
-            parentPanel.Children.Clear();
-        }
+        
 
         private void SetMetaTypes()
         {
-            SetTypeFields(ref MetaTypes, MySql.MetaTypes(), MetaData);
+            MetaTypes = Connection.MetaTypesData();
+            MetaElement.DropMetaData(MetaData);
             MetaElement.AddElements(MetaTypes, MetaData);
         }
 
         private void SetHourTypes()
         {
-            SetTypeFields(ref HourTypes, MySql.WorkTypes(), TotalHoursCount);
+            HourTypes = Connection.HourTypesData();
+            HourElement.DropHourElements(TotalHoursCount);
             HourElement.AddElements(HourTypes, TotalHoursCount);
             ResetTotalHourBinds();
         }
@@ -170,146 +121,8 @@ namespace Wisdom
             DataContext = this;
             SetMetaTypes();
             SetHourTypes();
-            SetSpecialitySelect();
+            SpecialitySelect = Connection.ListSpecialities();
         }
-
-        /*private void DropAllProfessional()
-        {
-            while (ProfCompAddSpace.Children.Count > 1)
-                DropProfessionalTopic(GridChild(ProfCompAddSpace, 0));
-        }
-
-        private void DropAllGeneral()
-        {
-            while (TotalCompAddSpace.Children.Count > 1)
-                DropGeneral(GridChild(TotalCompAddSpace, 0));
-        }*/
-        private void DeleteGeneralCompetetion(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            DropGeneral(Parent(btn));
-        }
-        private void DropGeneral(Grid generalCompetetion)
-        {
-            StackPanel panel = Parent(generalCompetetion);
-            panel.Children.Remove(generalCompetetion);
-            string prefix = "ОК ";
-            AutoIndexing2(panel, 1, "", prefix);
-        }
-        /*private void AddTotalCompetetion(object sender, RoutedEventArgs e)
-        {
-            GeneralCompetetion(sender as Button).Click += DeleteGeneralCompetetion;
-        }*/
-        private void DeleteProfessional(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            DropProfessionalTopic(Parent(btn));
-        }
-        private void DeleteProfessionalItem(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            DropProfessional(Parent(btn));
-        }
-        private void DropProfessional(Grid profCompetetion)
-        {
-            StackPanel items = Parent(profCompetetion);
-            Grid section = Parent(items);
-            
-            Border border = Border(section, 1);
-            Label title = border.Child as Label;
-            items.Children.Remove(profCompetetion);
-            string prefix = title.Content.ToString();
-            AutoIndexing(items, 1, "", prefix);
-        }
-        private void DropProfessionalTopic(Grid profCompetetionTopic)
-        {
-            StackPanel panel = Parent(profCompetetionTopic);
-            panel.Children.Remove(profCompetetionTopic);
-            string prefix = "ПК ";
-            AutoIndexingBorder(panel, 1, '.', prefix);
-        }
-        /*private void AddProfessionalCompetetion(object sender, RoutedEventArgs e)
-        {
-            ProfessionalCompetetion(sender as Button).Click += DeleteProfessionalItem;
-        }*/
-        /*private void ProfessionalCompettionSectionAdd_Click(object sender, RoutedEventArgs e)
-        {
-            Button add = sender as Button;
-            ProfessionalSectionAdd(add);
-        }*/
-        /*private void ProfessionalSectionAdd(Button add)
-        {
-            Grid next = Parent(add);
-            Border border = Border(next, 1);
-            Label title = Child(border);
-            StackPanel comps = Parent(next);
-            Button deleteSection = new Button();
-            Button addCompettion = new Button();
-            string no = comps.Children.Count.ToString();
-            Grid competetion = ProfessionSection("ПК ", no, out deleteSection, out addCompettion);
-            Restack(comps, next, competetion);
-            title.Content = "ПК " + comps.Children.Count.ToString() + ".";
-            deleteSection.Click += DeleteProfessional;
-            addCompettion.Click += AddProfessionalCompetetion;
-        }*/
-
-        /*public void SetProfessionalCompetetions(List<List<HoursList<String2>>> profCompetetions)
-        {
-            DropAllProfessional();
-            Grid next = GridChild(ProfCompAddSpace, 0);
-            Button add = Btn(next, 0);
-
-            for (byte i = 0; i < profCompetetions.Count; i++)
-            {
-                ProfessionalSectionAdd(add);
-                Grid subNext = GridChild(ProfCompAddSpace, i);
-                StackPanel profComps = Panel(subNext, 2);
-                Grid subSubNext = GridChild(profComps, 0);
-
-                Button subAdd = Btn(subSubNext, 0);
-                TextBox addNew = Box(subSubNext, 2);
-
-                List<HoursList<String2>> profCompetetionSection = profCompetetions[i];
-                for (byte ii = 0; ii < profCompetetionSection.Count; ii++)
-                {
-                    HoursList<String2> profCompetetion = profCompetetionSection[ii];
-                    Button delete = ProfessionalCompetetion(subAdd);
-                    Grid current = Parent(delete);
-                    TextBox name = Box(current, 2);
-                    TextBox experience = Box(current, 4);
-                    TextBox skills = Box(current, 6);
-                    TextBox knowledge = Box(current, 8);
-                    delete.Click += DeleteProfessionalItem;
-                    name.Text = profCompetetion.Hours;
-                    addNew.Text = name.Text;
-                    experience.Text = profCompetetion.Values[0].Value;
-                    skills.Text = profCompetetion.Values[1].Value;
-                    knowledge.Text = profCompetetion.Values[2].Value;
-                }
-            }
-        }
-        public void SetGeneralCompetetions(List<HoursList<String2>> totalCompetetions)
-        {
-            DropAllGeneral();
-            Grid next = GridChild(TotalCompAddSpace, 0);
-            Button add = Btn(next, 0);
-
-            TextBox addNew = Box(next, 2);
-            for (byte i = 0; i < totalCompetetions.Count; i++)
-            {
-                HoursList<String2> totalCompetetion = totalCompetetions[i];
-                Button delete = GeneralCompetetion(add);
-                Grid current = Parent(delete);
-                TextBox name = Box(current, 2);
-                TextBox skills = Box(current, 4);
-                TextBox knowledge = Box(current, 6);
-                name.Text = totalCompetetion.Hours;
-                addNew.Text = name.Text;
-                delete.Click += DeleteGeneralCompetetion;
-                skills.Text = totalCompetetion.Values[0].Value;
-                knowledge.Text = totalCompetetion.Values[1].Value;
-            }
-        }*/
 
         private void ResetAllCompetetionFields(object sender, SelectionChangedEventArgs e)
         {
@@ -318,158 +131,17 @@ namespace Wisdom
             string name = box.SelectedItem.ToString();
             if (selected < 0)
                 return;
-            SelectedSpeciality = MySql.GetSpeciality(specialityIDs[selected], name);
-            SetDisciplineSelect();
+            SelectedSpeciality = Connection.SpecialityData(SpecialityHead.keys[selected], name);
+            DisciplinesSelect = Connection.ListDisciplines(SpecialityHead.keys[SpecNo]);
+
             ProfessionName = SelectedSpeciality.Name;
-            //SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
-            //SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
-            Controls.Competetions.GeneralCompetetion.DropGeneral(TotalCompAddSpace);
-            Controls.Competetions.GeneralCompetetion.AddElements(SelectedSpeciality.GeneralCompetetions, TotalCompAddSpace);
-            Controls.Competetions.ProfessionalDivider.DropProfessional(ProfCompAddSpace);
-            Controls.Competetions.ProfessionalDivider.AddElements(SelectedSpeciality.ProfessionalCompetetions, ProfCompAddSpace);
+            GeneralCompetetion.DropGeneral(TotalCompAddSpace);
+            GeneralCompetetion.AddElements(SelectedSpeciality.GeneralCompetetions, TotalCompAddSpace);
+            ProfessionalDivider.DropProfessional(ProfCompAddSpace);
+            ProfessionalDivider.AddElements(SelectedSpeciality.ProfessionalCompetetions, ProfCompAddSpace);
             
             OrderDate.Text = "";
             OrderNo.Text = "";
-        }
-
-        private void SetPlan()
-        {
-            Grid nextTopic = GridChild(DisciplinePlan, 0);
-            List<HoursList<LevelsList<HashList<String2>>>> planTopic = SelectedDiscipline.Plan;
-            TestData(planTopic);
-            SetTopics(planTopic, nextTopic);
-        }
-
-        //Topics
-        private void SetTopics(List<HoursList<LevelsList<HashList<String2>>>> planTopic,
-            Grid nextTopic)
-        {
-            TextBox topicName = Box(nextTopic, 2);
-            TextBox topicHours = Box(nextTopic, 3);
-
-            for (byte i = 0; i < planTopic.Count; i++)
-            {
-                topicName.Text = planTopic[i].Name;
-                topicHours.Text = planTopic[i].Hours;
-                TopicAdd2(nextTopic);
-
-                Grid topic = GridChild(DisciplinePlan, i);
-                StackPanel nextThemeGroup = Panel(topic, 4);
-                HoursList<LevelsList<HashList<String2>>> topicTheme = planTopic[i];
-                SetTheme(topicTheme, nextThemeGroup);
-            }
-        }
-        //Themes
-        private void SetTheme(HoursList<LevelsList<HashList<String2>>> topicTheme, StackPanel nextThemeGroup)
-        {
-            Grid nextTheme = GridChild(nextThemeGroup, 0);
-            TextBox nextThemeName = Box(nextTheme, 2);
-            TextBox nextThemeHours = Box(nextTheme, 3);
-            TextBox nextThemeCompetetions = Box(nextTheme, 4);
-            ComboBox nextThemeLevel = Cbx(nextTheme, 5);
-
-            for (byte ii = 0; ii < topicTheme.Values.Count; ii++)
-            {
-                nextThemeName.Text = topicTheme.Values[ii].Name;
-                nextThemeHours.Text = topicTheme.Values[ii].Hours;
-                nextThemeLevel.Text = topicTheme.Values[ii].Level;
-                nextThemeCompetetions.Text = topicTheme.Values[ii].Competetions;
-                ThemeAdd(nextTheme);
-
-                Grid theme = GridChild(nextThemeGroup, ii);
-                StackPanel nextTasksGroup = Panel(theme, 6);
-                LevelsList<HashList<String2>> themeContent = topicTheme.Values[ii];
-                SetThemeContent(themeContent, nextTasksGroup);
-            }
-        }
-
-        //Content
-        private void SetThemeContent(LevelsList<HashList<String2>> themeContent,
-            StackPanel nextTasksGroup)
-        {
-            Grid nextTasks = GridChild(nextTasksGroup, 1);
-            Button nextTasksAdd = Btn(nextTasks, 0);
-            ComboBox nextTasksType = Cbx(nextTasks, 1);
-            CheckBox nextTasksMultiplier = Chx(nextTasks, 2);
-
-            for (byte iii = 0; iii < themeContent.Values.Count; iii++)
-            {
-                HashList<String2> contentTasks = themeContent.Values[iii];
-                if (contentTasks.Name == "Содержание")
-                {
-                    SetMaterial(contentTasks, nextTasksGroup);
-                    continue;
-                }
-
-                bool isLastTask = contentTasks.Values.Count <= 1;
-                nextTasksType.SelectedIndex = WorkTypes[contentTasks.Name];
-                nextTasksMultiplier.IsChecked = !isLastTask;
-                Button deleteAddedTasks = NewTypeContentTasks(nextTasksAdd);
-
-                if (isLastTask)
-                    SetTask(contentTasks, deleteAddedTasks);
-                else
-                    SetTasksGroup(contentTasks, deleteAddedTasks);
-            }
-        }
-
-        //Content material
-        private void SetMaterial(HashList<String2> contentTasks, StackPanel nextTasksGroup)
-        {
-            Grid content = GridChild(nextTasksGroup, 0);
-            StackPanel contentStack = Panel(content, 4);
-
-            contentStack.Children.RemoveAt(0);
-            PlanTask.AddElements(contentTasks.Values, contentStack);
-            PlanTaskAdditor.AddElement(contentStack);
-
-            //Grid nextContent = GridChild(contentStack, 0);
-            //Button nextContentAdd = Btn(nextContent, 0);
-            //TextBox nextContentName = Box(nextContent, 2);
-            //TextBox nextContentHours = Box(nextContent, 3);
-
-            //for (byte iv = 0; iv < contentTasks.Values.Count; iv++)
-            //{
-            //    nextContentName.Text = contentTasks.Values[iv].Name;
-            //    nextContentHours.Text = contentTasks.Values[iv].Value;
-            //    TableContent(nextContentAdd, out TextBox hours).Click += AnyDeleteAuto;
-            //    hours.PreviewTextInput += Hours;
-            //    DataObject.AddPastingHandler(hours, PastingHours);
-            //}
-        }
-
-        //Content single task
-        private void SetTask(HashList<String2> contentTasks, Button deleteAddedTasks)
-        {
-            Grid nextTask = Parent(deleteAddedTasks);
-            TextBox nextTaskName = Box(nextTask, 2);
-            TextBox nextTaskHours = Box(nextTask, 3);
-            nextTaskName.Text = contentTasks.Values[0].Name;
-            nextTaskHours.Text = contentTasks.Values[0].Value;
-        }
-
-        //Content tasks group
-        private void SetTasksGroup(HashList<String2> contentTasks, Button deleteAddedTasks)
-        {
-            Grid task = Parent(deleteAddedTasks);
-            StackPanel taskStack = Panel(task, 4);
-
-            PlanTask.AddElements(contentTasks.Values, taskStack);
-            PlanTaskAdditor.AddElement(taskStack);
-            /*Grid nextTask = GridChild(taskStack, 0);
-            Button nextTaskAdd = Btn(nextTask, 0);
-            TextBox nextTaskName = Box(nextTask, 2);
-            TextBox nextTaskHours = Box(nextTask, 3);
-
-            for (byte iv = 0; iv < contentTasks.Values.Count; iv++)
-            {
-                
-                nextTaskName.Text = contentTasks.Values[iv].Name;
-                nextTaskHours.Text = contentTasks.Values[iv].Value;
-                TableContent(nextTaskAdd, out TextBox hours).Click += AnyDeleteAuto;
-                hours.PreviewTextInput += Hours;
-                DataObject.AddPastingHandler(hours, PastingHours);
-            }*/
         }
 
         private void SetSources()
@@ -510,7 +182,7 @@ namespace Wisdom
             string name = box.SelectedValue.ToString();
 
             //DropAllTopics();
-            SelectedDiscipline = MySql.GetDiscipline(disciplineIDs[selected], name);
+            SelectedDiscipline = Connection.DisciplineData(DisciplineHead.keys[selected], name);
 
             for (byte i = 0; i < MetaData.Children.Count; i++)
             {
@@ -546,13 +218,10 @@ namespace Wisdom
             }
             
             SetSources();
-            //SetPlan();
-            //SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
-            //SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
-            Controls.Competetions.GeneralCompetetion.DropGeneral(TotalCompAddSpace);
-            Controls.Competetions.GeneralCompetetion.AddElements(SelectedDiscipline.GeneralCompetetions, TotalCompAddSpace);
-            Controls.Competetions.ProfessionalDivider.DropProfessional(ProfCompAddSpace);
-            Controls.Competetions.ProfessionalDivider.AddElements(SelectedDiscipline.ProfessionalCompetetions, ProfCompAddSpace);
+            GeneralCompetetion.DropGeneral(TotalCompAddSpace);
+            GeneralCompetetion.AddElements(SelectedDiscipline.GeneralCompetetions, TotalCompAddSpace);
+            ProfessionalDivider.DropProfessional(ProfCompAddSpace);
+            ProfessionalDivider.AddElements(SelectedDiscipline.ProfessionalCompetetions, ProfCompAddSpace);
             
 
             PlanTopic.DropPlan(DisciplinePlan);
@@ -574,16 +243,13 @@ namespace Wisdom
             EduHours = Usual.Text;
 
             Order = new String2(OrderDate.Text, OrderNo.Text);
-            GeneralCompetetions = GeneralCompetetion.FullGeneral(TotalCompAddSpace);  //ExtractCompetetions(TotalCompAddSpace, 1, 2);
+            GeneralCompetetions = GeneralCompetetion.FullGeneral(TotalCompAddSpace); 
             List<List<HoursList<String2>>> fullProfessional = ProfessionalDivider.FullProfessional(ProfCompAddSpace);
-            ProfessionalCompetetions = ProfessionalDivider.Zip(fullProfessional); // ExtractCompetetions2(ProfCompAddSpace, 1, 2);
+            ProfessionalCompetetions = ProfessionalDivider.Zip(fullProfessional); 
             SourcesControl = GetSources(EducationSources, 1, 2);
 
             Applyment = GetSourceList(ApplyAddSpace, 2);
 
-            //Topics| Themes      | Content
-            //2, 3, | 2, 3, 4, 5, | 0, | 2, 3
-            //Plan = GetAbsoleteList(DisciplinePlan, 2, 3, 2, 3, 4, 5, 0, 2, 3);
             Plan = PlanTopic.FullThemePlan(DisciplinePlan);
 
             StudyLevels.Values = new List<string>();
@@ -604,10 +270,6 @@ namespace Wisdom
             CheckForPastingHours(sender, e);
         }
 
-        private void Counting(object sender, RoutedEventArgs e)
-        {
-            NumbersBox(sender as Button, 1);
-        }
         private void ResetLists(object sender, RoutedEventArgs e)
         {
             ListResetMethod(sender as Button);
@@ -773,188 +435,7 @@ namespace Wisdom
             AutoIndexing(RemoveGrid(subContent), 1, '.');
         }
 
-        private void DeleteThemeClick(object sender, RoutedEventArgs e)
-        {
-            Button delete = sender as Button;
-            Grid current = Parent(delete);
-            StackPanel themes = Parent(current);
-            Grid topic = Parent(themes);
-            TextBox refer = Box(topic, 3);
-
-            MultiBinding reCalculation = DeleteElemFromMulti(refer,
-                BackgroundProperty, new SumConverter(), current, themes);
-
-            _ = SetBind(refer, BackgroundProperty, reCalculation);
-
-            DeleteSection(current);
-            Grid section = Parent(themes);
-            StackPanel sections = Parent(section);
-            int optimization = sections.Children.IndexOf(section) + 1;
-            AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
-        }
-        private void DropAllTopics()
-        {
-            while (DisciplinePlan.Children.Count > 1)
-            {
-                Grid topic = GridChild(DisciplinePlan, 0);
-                Button dropButton = Btn(topic, 0);
-                DropTopic(dropButton, topic);
-            }
-        }
-        private void DropTopic(Button deleteTopic, Grid topic)
-        {
-            StackPanel stack = deleteTopic.Tag as StackPanel;
-            while (stack.Children.Count > 1)
-            {
-                Grid theme = GridChild(stack, 0);
-                DeleteSection(theme);
-            }    
-            StackPanel sections = Parent(topic);
-            TextBox hours = Box(topic, 3);
-            
-            Label refer = hours.Tag as Label;
-
-            MultiBinding reCalculation = DeleteElemFromMulti(refer,
-                ContentProperty, new SumConverter(), topic, sections);
-
-            _ = SetBind(refer, ContentProperty, reCalculation);
-
-            DeleteSection(topic);
-            AutoIndexing(sections, 1, '.', "Раздел ");
-            for (int i = 0; i < sections.Children.Count - 1; i++)
-            {
-                int optimization = i + 1;
-                Grid section = GridChild(sections, i);
-                StackPanel themes = Panel(section, 4);
-                AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
-            }
-        }
-        private void DeleteTopicClick(object sender, RoutedEventArgs e)
-        {
-            Button deleteTopic = sender as Button;
-            Grid topic = Parent(deleteTopic);
-            DropTopic(deleteTopic, topic);
-        }
-
-        private void AddTopic(object sender, RoutedEventArgs e)
-        {
-            Button addTopic = sender as Button;
-            Grid nextTopic = Parent(addTopic);
-            TopicAdd(nextTopic);
-        }
-        private void TopicAdd(Grid topic)
-        {
-            TextBox topicName = Box(topic, 2);
-            TextBox topicHours = Box(topic, 3);
-            StackPanel topicStack = Parent(topic);
-
-            //NewTopic(AllSectionsContents, topicStack, out Button BTbutton,
-            //    out Button Cadd, out Button NewTypeAdd, out Button deleteOmni,
-            //    out Button addNew, out TextBox nextThemehours,
-            //    topicName.Text, topicHours.Text, TotalHoursUsed,
-            //    out ComboBox newThemeLevels, out ComboBox themeLevelsAdd,
-            //    out TextBox themeHours, out TextBox contentHours,
-            //    out TextBox hours);
-
-            PlanTopic.AddElement(topicName.Text, topicHours.Text, topicStack);
-
-            ////Theme
-            //_ = SetBind(newThemeLevels, ComboBox.ItemsSourceProperty,
-            //    FastBind(Levels, "Children", new CompetetionsConverter()));
-            //newThemeLevels.SelectionChanged += Levels_SelectionChanged;
-
-            ////Content
-            //_ = SetBind(themeLevelsAdd, ComboBox.ItemsSourceProperty,
-            //    FastBind(Levels, "Children", new CompetetionsConverter()));
-            //themeLevelsAdd.SelectionChanged += Levels_SelectionChanged;
-
-            //Cadd.Click += AddContent;
-            //NewTypeAdd.Click += NewTypeContent;
-
-            //BTbutton.Click += DeleteThemeClick;
-            //addNew.Click += AddTheme;
-
-            //deleteOmni.Click += DeleteTopicClick;
-
-            //hours.PreviewTextInput += Hours;
-            //DataObject.AddPastingHandler(hours, PastingHours);
-            //themeHours.PreviewTextInput += Hours;
-            //DataObject.AddPastingHandler(themeHours, PastingHours);
-            //nextThemehours.PreviewTextInput += Hours;
-            //DataObject.AddPastingHandler(nextThemehours, PastingHours);
-            //contentHours.PreviewTextInput += Hours;
-            //DataObject.AddPastingHandler(contentHours, PastingHours);
-        }
-        private void TopicAdd2(Grid topic)
-        {
-            TextBox topicName = Box(topic, 2);
-            TextBox topicHours = Box(topic, 3);
-            StackPanel topicStack = Parent(topic);
-
-            NewTopic(AllSectionsContents, topicStack,
-                out Button deleteOmni, out Button addNew, out TextBox themeHours,
-                 TotalHoursUsed, out ComboBox themeLevelsAdd, topicName.Text,
-                 topicHours.Text, out TextBox hours);
-
-            //Content
-            _ = SetBind(themeLevelsAdd, ComboBox.ItemsSourceProperty, 
-                FastBind(Levels, "Children", new CompetetionsConverter()));
-            themeLevelsAdd.SelectionChanged += Levels_SelectionChanged;
-
-            addNew.Click += AddTheme;
-
-            deleteOmni.Click += DeleteTopicClick;
-
-            hours.PreviewTextInput += Hours;
-            DataObject.AddPastingHandler(hours, PastingHours);
-            themeHours.PreviewTextInput += Hours;
-            DataObject.AddPastingHandler(themeHours, PastingHours);
-        }
-        private void AddTheme(object sender, RoutedEventArgs e)
-        {
-            Button addTheme = sender as Button;
-            Grid theme = Parent(addTheme);
-            ThemeAdd(theme);
-        }
-
-        private void ThemeAdd(Grid current)
-        {
-            StackPanel themes = Parent(current);
-            themes.Children.Remove(current);
-
-            Label themeNo = Lab(current, 1);
-            TextBox themeName = Box(current, 2);
-            TextBox themeHours = Box(current, 3);
-            TextBox themeCompetetions = Box(current, 4);
-            ComboBox themeLevel = Cbx(current, 5);
-
-            //NewTheme(themeNo.Content.ToString(), themeCompetetions.Text,
-            //    themes, AllSectionsContents,
-            //    out Button deleteTheme, out Button addContent,
-            //    out Button addNextTask, out ComboBox themeLevels,
-            //    themeName.Text, themeHours.Text, themeLevel.Text,
-            //    out TextBox hours, out TextBox contentHours);
-
-            PlanTheme.AddElement(1, themeName.Text, themeHours.Text, themeCompetetions.Text, themeLevel.Text, themes);
-
-            //deleteTheme.Click += DeleteThemeClick;
-            //addContent.Click += AddContent;
-            //addNextTask.Click += NewTypeContent;
-
-            //Binding bindLevels = FastBind(Levels, "Children", new CompetetionsConverter());
-            //_ = SetBind(themeLevels, ItemsControl.ItemsSourceProperty, bindLevels);
-
-            //themeLevels.SelectionChanged += Levels_SelectionChanged;
-            //themes.Children.Add(current);
-            //Grid section = Parent(themes);
-            //StackPanel sections = Parent(section);
-            //int optimization = sections.Children.IndexOf(section) + 1;
-            //AutoIndexing(themes, 1, '.', $"Тема {optimization}.");
-            //hours.PreviewTextInput += Hours;
-            //DataObject.AddPastingHandler(hours, PastingHours);
-            //contentHours.PreviewTextInput += Hours;
-            //DataObject.AddPastingHandler(contentHours, PastingHours);
-        }
+        
 
         private void SwitchPlan(object sender, RoutedEventArgs e)
         {

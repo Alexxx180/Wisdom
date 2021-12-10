@@ -6,9 +6,11 @@ namespace Wisdom.Model
     {
         public DisciplineBase()
         {
-            MetaData = new Dictionary<string, string>();
             TotalHours = new Dictionary<string, ushort>();
+            MetaData = new Dictionary<string, string>();
             Sources = new List<HashList<string>>();
+            GeneralCompetetions = new List<HoursList<String2>>();
+            ProfessionalCompetetions = new List<List<HoursList<String2>>>();
             Plan = new List<HoursList<LevelsList<HashList<String2>>>>();
         }
 

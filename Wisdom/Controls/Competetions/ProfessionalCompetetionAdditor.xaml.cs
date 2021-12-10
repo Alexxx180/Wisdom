@@ -66,12 +66,13 @@ namespace Wisdom.Controls.Competetions
             Button dropButton = sender as Button;
             Grid compGrid = Parent(dropButton);
             TextBox name = Box(compGrid, 2);
-            ProfessionalCompetetion competetion = compGrid.Parent as ProfessionalCompetetion;
+            ProfessionalCompetetionAdditor competetion = compGrid.Parent as ProfessionalCompetetionAdditor;
             StackPanel compPanel = Parent(competetion);
             compPanel.Children.Remove(competetion);
             ProfessionalCompetetion.AddElement(name.Text, compPanel);
             compPanel.Children.Add(competetion);
             AutoIndexing(compPanel);
+            AutoIndexing2(compPanel, _no1);
         }
 
         public static void AutoIndexing(StackPanel grandGrid)
@@ -86,6 +87,20 @@ namespace Wisdom.Controls.Competetions
         {
             IProfessionalIndexing theme = grandGrid.Children[no] as IProfessionalIndexing;
             theme.SetNo2(no + 1);
+        }
+
+        public static void AutoIndexing2(StackPanel grandGrid, int no1)
+        {
+            for (int no = 0; no < grandGrid.Children.Count; no++)
+            {
+                Index2(grandGrid, no, no1);
+            }
+        }
+
+        public static void Index2(StackPanel grandGrid, int no, int no1)
+        {
+            IProfessionalIndexing theme = grandGrid.Children[no] as IProfessionalIndexing;
+            theme.SetNo1(no1);
         }
 
         private static ProfessionalCompetetionAdditor SetElement() => new ProfessionalCompetetionAdditor();

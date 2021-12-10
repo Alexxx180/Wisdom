@@ -53,6 +53,7 @@ namespace Wisdom.Controls.Competetions
             compPanel.Children.Remove(competetion);
             ProfessionalDivider.AddElement(compPanel);
             compPanel.Children.Add(competetion);
+            AutoIndexing3(compPanel);
             AutoIndexing(compPanel);
         }
 
@@ -74,6 +75,19 @@ namespace Wisdom.Controls.Competetions
         {
             IDividerIndexing theme = grandGrid.Children[no] as IDividerIndexing;
             theme.SetNo1(no + 1);
+        }
+
+        public static void AutoIndexing3(StackPanel grandGrid)
+        {
+            for (int no = 0; no < grandGrid.Children.Count; no++)
+                Index3(grandGrid, no);
+        }
+
+        public static void Index3(StackPanel grandGrid, int no)
+        {
+            ProfessionalDivider topic = grandGrid.Children[no] as ProfessionalDivider;
+            if (topic != null)
+                ProfessionalCompetetion.PassNo1(topic.GetCompetetionsStack(), no + 1);
         }
 
         private static ProfessionalDividerAdditor SetElement() => new ProfessionalDividerAdditor();

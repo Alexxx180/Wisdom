@@ -28,6 +28,11 @@ namespace Wisdom.Controls
             }
         }
 
+        public static void DropHourElements(StackPanel panel)
+        {
+            panel.Children.Clear();
+        }
+
         private static HourElement SetElement(string name)
         {
             HourElement metaElement = new HourElement();

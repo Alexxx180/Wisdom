@@ -49,6 +49,7 @@ namespace Wisdom.Controls.Competetions
             StackPanel competetionPanel = Parent(competetionAdd);
             competetionPanel.Children.Remove(competetionAdd);
             GeneralCompetetion.AddElement(name.Text, competetionPanel);
+            competetionPanel.Children.Add(competetionAdd);
             AutoIndexing(competetionPanel);
         }
 

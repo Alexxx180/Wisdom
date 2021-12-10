@@ -24,6 +24,11 @@ namespace Wisdom.Controls
             }
         }
 
+        public static void DropMetaData(StackPanel panel)
+        {
+            panel.Children.Clear();
+        }
+
         private static MetaElement SetElement(string name)
         {
             MetaElement metaElement = new MetaElement();

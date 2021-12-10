@@ -22,7 +22,6 @@ namespace Wisdom.Writers
                 string message = "Файл открыт в другой программе или используется другим процессом. Дальнейшая запись в файл невозможна.\nПолное сообщение:\n";
                 _ = MessageBox.Show(message + exception.Message);
             }
-
         }
 
         //Write document method used for tests

@@ -539,19 +539,7 @@ namespace Wisdom.Writers
             txt.Document.Blocks.Clear();
             txt.Document.Blocks.Add(list);
         }
-        public static void NumbersBox(Button btn, int defaultValue)
-        {
-            StackPanel stp = ParentStack(btn);
-            TextBox box = stp.Tag as TextBox;
-            int p = Ints(btn.Tag.ToString());
-            if (box.Text == "")
-            {
-                box.Text = defaultValue.ToString();
-                return;
-            }
-            int i = Ints(box.Text) + p;
-            box.Text = i > 0 ? (i < 999 ? i.ToString() : defaultValue.ToString()) : "999";
-        }
+        
         public static void DeleteSection(Grid parent)
         {
             TableRow row = parent.Tag as TableRow;
