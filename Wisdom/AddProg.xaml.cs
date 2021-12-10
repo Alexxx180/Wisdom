@@ -252,13 +252,12 @@ namespace Wisdom
             addCompettion.Click += AddProfessionalCompetetion;
         }
 
-        public void SetProfessionalCompetetions()
+        public void SetProfessionalCompetetions(List<List<HoursList<String2>>> profCompetetions)
         {
             DropAllProfessional();
             Grid next = GridChild(ProfCompAddSpace, 0);
             Button add = Btn(next, 0);
 
-            List<List<HoursList<String2>>> profCompetetions = SelectedSpeciality.ProfessionalCompetetions;
             for (byte i = 0; i < profCompetetions.Count; i++)
             {
                 ProfessionalSectionAdd(add);
@@ -288,14 +287,13 @@ namespace Wisdom
                 }
             }
         }
-        public void SetGeneralCompetetions()
+        public void SetGeneralCompetetions(List<HoursList<String2>> totalCompetetions)
         {
             DropAllGeneral();
             Grid next = GridChild(TotalCompAddSpace, 0);
             Button add = Btn(next, 0);
 
             TextBox addNew = Box(next, 2);
-            List<HoursList<String2>> totalCompetetions = SelectedSpeciality.GeneralCompetetions;
             for (byte i = 0; i < totalCompetetions.Count; i++)
             {
                 HoursList<String2> totalCompetetion = totalCompetetions[i];
@@ -322,8 +320,8 @@ namespace Wisdom
             SelectedSpeciality = MySql.GetSpeciality(specialityIDs[selected], name);
             SetDisciplineSelect();
             ProfessionName = SelectedSpeciality.Name;
-            SetGeneralCompetetions();
-            SetProfessionalCompetetions();
+            SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
+            SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
             OrderDate.Text = "";
             OrderNo.Text = "";
         }
@@ -543,6 +541,9 @@ namespace Wisdom
             
             SetSources();
             //SetPlan();
+            SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
+            SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
+
             PlanTopic.DropPlan(DisciplinePlan);
             PlanTopic.AddElements(SelectedDiscipline.Plan, DisciplinePlan);
         }
@@ -583,44 +584,13 @@ namespace Wisdom
             //WriteDoc();
         }
 
-        private static readonly Regex _hours = new Regex("^([1-9]|[1-9]\\d\\d?)$");//v\\d
         private void Hours(object sender, TextCompositionEventArgs e)
         {
-            TextBox box = e.OriginalSource as TextBox;
-            string full = box.Text.Insert(box.CaretIndex, e.Text);
-            e.Handled = !_hours.IsMatch(full);
-        }
-        private static string GetProposedText(TextBox textBox, string newText)
-        {
-            var text = textBox.Text;
-
-            if (textBox.SelectionStart != -1)
-            {
-                text = text.Remove(textBox.SelectionStart, textBox.SelectionLength);
-            }
-
-            text = text.Insert(textBox.CaretIndex, newText);
-
-            return text;
+            CheckForHours(sender, e);
         }
         private void PastingHours(object sender, DataObjectPastingEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-
-            if (e.DataObject.GetDataPresent(typeof(string)))
-            {
-                string pastedText = e.DataObject.GetData(typeof(string)) as string;
-                string proposedText = GetProposedText(textBox, pastedText);
-
-                if (!_hours.IsMatch(proposedText))
-                {
-                    e.CancelCommand();
-                }
-            }
-            else
-            {
-                e.CancelCommand();
-            }
+            CheckForPastingHours(sender, e);
         }
 
         private void Counting(object sender, RoutedEventArgs e)

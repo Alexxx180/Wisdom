@@ -32,5 +32,7 @@ namespace Wisdom.Model
         public List<HoursList<LevelsList<HashList<String2>>>> Plan { get; set; }
         public Dictionary<string, string> MetaData { get; set; }
         public List<HashList<string>> Sources { get; set; }
+        public List<HoursList<String2>> GeneralCompetetions { get; set; }
+        public List<List<HoursList<String2>>> ProfessionalCompetetions { get; set; }
     }
 }

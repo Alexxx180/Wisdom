@@ -31,7 +31,6 @@ namespace Wisdom.Model
         public static List<HoursList<String2>> GeneralCompetetions;
         public static List<HoursList<String2>> ProfessionalCompetetions;
 
-
         // Выбранная дисциплина и ее информация по умолчанию
         public static DisciplineBase SelectedDiscipline;
 
