@@ -42,7 +42,6 @@ namespace Wisdom.Controls.ThemePlan
             for (byte i = 0; i < WorksPanel.Children.Count - 1; i++)
             {
                 IWork work = WorksPanel.Children[i] as IWork;
-                System.Diagnostics.Trace.WriteLine(WorksPanel.Children[i]);
                 works.Add(work.Work);
             }
             return works;

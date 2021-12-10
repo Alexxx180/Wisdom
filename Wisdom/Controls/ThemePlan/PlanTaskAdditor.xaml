@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wisdom.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="600">
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             d:DesignHeight="45" d:DesignWidth="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*" />
@@ -15,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <Button Grid.Column="0" Click="AddTask" Style="{StaticResource ResourceKey=AddButton}"></Button>
-        <TextBlock  Grid.Column="1" Text="" Style="{StaticResource No2}" />
+        <TextBlock  Grid.Column="1" Text="{Binding Path=TaskHeader}" Style="{StaticResource No2}" />
         <TextBox  Grid.Column="2" Text="" Style="{StaticResource RegularBox}" />
         <TextBox  Grid.Column="3" Text="" Style="{StaticResource HoursBox}" DataObject.Pasting="PastingHours" PreviewTextInput="Hours" />
     </Grid>

@@ -28,6 +28,8 @@ namespace Wisdom.Customing
 
         public static Label Child(Border border) => border.Child as Label;
 
+        public static TextBlock TextChild(Border border) => border.Child as TextBlock;
+
         public static Grid Parent(StackPanel stack) => stack.Parent as Grid;
 
         public static Grid Parent(Button button) => button.Parent as Grid;

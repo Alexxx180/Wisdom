@@ -12,6 +12,24 @@
     <Compile Update="AddProg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Competetions\GeneralCompetetion.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Competetions\GeneralCompetetionAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Competetions\ProfessionalCompetetion.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Competetions\ProfessionalCompetetionAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Competetions\ProfessionalDivider.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Competetions\ProfessionalDividerAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\HourElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -48,12 +66,27 @@
     <Compile Update="Controls\ThemePlan\PlanWorkTask.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\AddProgram\Competetions.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddProg.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Competetions\GeneralCompetetion.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Competetions\GeneralCompetetionAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Competetions\ProfessionalCompetetion.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Competetions\ProfessionalCompetetionAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Competetions\ProfessionalDivider.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Competetions\ProfessionalDividerAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\HourElement.xaml">
@@ -90,9 +123,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ThemePlan\PlanWorkTask.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Windows\AddProgram\Competetions.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

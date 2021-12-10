@@ -22,6 +22,7 @@ using System.Diagnostics;
 using System;
 using Wisdom.Controls;
 using Wisdom.Controls.ThemePlan;
+using Wisdom.Controls.Competetions;
 
 namespace Wisdom
 {
@@ -172,7 +173,7 @@ namespace Wisdom
             SetSpecialitySelect();
         }
 
-        private void DropAllProfessional()
+        /*private void DropAllProfessional()
         {
             while (ProfCompAddSpace.Children.Count > 1)
                 DropProfessionalTopic(GridChild(ProfCompAddSpace, 0));
@@ -182,7 +183,7 @@ namespace Wisdom
         {
             while (TotalCompAddSpace.Children.Count > 1)
                 DropGeneral(GridChild(TotalCompAddSpace, 0));
-        }
+        }*/
         private void DeleteGeneralCompetetion(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -195,10 +196,10 @@ namespace Wisdom
             string prefix = "ОК ";
             AutoIndexing2(panel, 1, "", prefix);
         }
-        private void AddTotalCompetetion(object sender, RoutedEventArgs e)
+        /*private void AddTotalCompetetion(object sender, RoutedEventArgs e)
         {
             GeneralCompetetion(sender as Button).Click += DeleteGeneralCompetetion;
-        }
+        }*/
         private void DeleteProfessional(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -227,16 +228,16 @@ namespace Wisdom
             string prefix = "ПК ";
             AutoIndexingBorder(panel, 1, '.', prefix);
         }
-        private void AddProfessionalCompetetion(object sender, RoutedEventArgs e)
+        /*private void AddProfessionalCompetetion(object sender, RoutedEventArgs e)
         {
             ProfessionalCompetetion(sender as Button).Click += DeleteProfessionalItem;
-        }
-        private void ProfessionalCompettionSectionAdd_Click(object sender, RoutedEventArgs e)
+        }*/
+        /*private void ProfessionalCompettionSectionAdd_Click(object sender, RoutedEventArgs e)
         {
             Button add = sender as Button;
             ProfessionalSectionAdd(add);
-        }
-        private void ProfessionalSectionAdd(Button add)
+        }*/
+        /*private void ProfessionalSectionAdd(Button add)
         {
             Grid next = Parent(add);
             Border border = Border(next, 1);
@@ -250,9 +251,9 @@ namespace Wisdom
             title.Content = "ПК " + comps.Children.Count.ToString() + ".";
             deleteSection.Click += DeleteProfessional;
             addCompettion.Click += AddProfessionalCompetetion;
-        }
+        }*/
 
-        public void SetProfessionalCompetetions(List<List<HoursList<String2>>> profCompetetions)
+        /*public void SetProfessionalCompetetions(List<List<HoursList<String2>>> profCompetetions)
         {
             DropAllProfessional();
             Grid next = GridChild(ProfCompAddSpace, 0);
@@ -308,7 +309,7 @@ namespace Wisdom
                 skills.Text = totalCompetetion.Values[0].Value;
                 knowledge.Text = totalCompetetion.Values[1].Value;
             }
-        }
+        }*/
 
         private void ResetAllCompetetionFields(object sender, SelectionChangedEventArgs e)
         {
@@ -320,8 +321,13 @@ namespace Wisdom
             SelectedSpeciality = MySql.GetSpeciality(specialityIDs[selected], name);
             SetDisciplineSelect();
             ProfessionName = SelectedSpeciality.Name;
-            SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
-            SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
+            //SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
+            //SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
+            Controls.Competetions.GeneralCompetetion.DropGeneral(TotalCompAddSpace);
+            Controls.Competetions.GeneralCompetetion.AddElements(SelectedSpeciality.GeneralCompetetions, TotalCompAddSpace);
+            Controls.Competetions.ProfessionalDivider.DropProfessional(ProfCompAddSpace);
+            Controls.Competetions.ProfessionalDivider.AddElements(SelectedSpeciality.ProfessionalCompetetions, ProfCompAddSpace);
+            
             OrderDate.Text = "";
             OrderNo.Text = "";
         }
@@ -541,8 +547,13 @@ namespace Wisdom
             
             SetSources();
             //SetPlan();
-            SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
-            SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
+            //SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
+            //SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
+            Controls.Competetions.GeneralCompetetion.DropGeneral(TotalCompAddSpace);
+            Controls.Competetions.GeneralCompetetion.AddElements(SelectedDiscipline.GeneralCompetetions, TotalCompAddSpace);
+            Controls.Competetions.ProfessionalDivider.DropProfessional(ProfCompAddSpace);
+            Controls.Competetions.ProfessionalDivider.AddElements(SelectedDiscipline.ProfessionalCompetetions, ProfCompAddSpace);
+            
 
             PlanTopic.DropPlan(DisciplinePlan);
             PlanTopic.AddElements(SelectedDiscipline.Plan, DisciplinePlan);
@@ -563,9 +574,9 @@ namespace Wisdom
             EduHours = Usual.Text;
 
             Order = new String2(OrderDate.Text, OrderNo.Text);
-            GeneralCompetetions = ExtractCompetetions(TotalCompAddSpace, 1, 2);
-            ProfessionalCompetetions = ExtractCompetetions2(ProfCompAddSpace, 1, 2);
-
+            GeneralCompetetions = GeneralCompetetion.FullGeneral(TotalCompAddSpace);  //ExtractCompetetions(TotalCompAddSpace, 1, 2);
+            List<List<HoursList<String2>>> fullProfessional = ProfessionalDivider.FullProfessional(ProfCompAddSpace);
+            ProfessionalCompetetions = ProfessionalDivider.Zip(fullProfessional); // ExtractCompetetions2(ProfCompAddSpace, 1, 2);
             SourcesControl = GetSources(EducationSources, 1, 2);
 
             Applyment = GetSourceList(ApplyAddSpace, 2);

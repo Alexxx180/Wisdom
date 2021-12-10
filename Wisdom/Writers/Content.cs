@@ -134,7 +134,7 @@ namespace Wisdom.Writers
         //    return delete;
         //}
 
-        public static Button GeneralCompetetion(Button addNext)
+        /*public static Button GeneralCompetetion(Button addNext)
         {
             Grid next = Parent(addNext);
             StackPanel levels = Parent(next);
@@ -178,7 +178,7 @@ namespace Wisdom.Writers
             int count = Restack(levels, next, grid);
             nextNo.Content = $"{prefix}{count}";
             return delete;
-        }
+        }*/
         public static Grid ProfessionSection(string prefix,
             string no, out Button delete, out Button addComp)
         {

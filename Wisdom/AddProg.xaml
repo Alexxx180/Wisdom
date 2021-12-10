@@ -11,6 +11,7 @@
         xmlns:docx="clr-namespace:DocumentFormat.OpenXml.Wordprocessing;assembly=DocumentFormat.OpenXml"
         xmlns:controls="clr-namespace:Wisdom.Controls"
         xmlns:plan="clr-namespace:Wisdom.Controls.ThemePlan"
+        xmlns:competetions="clr-namespace:Wisdom.Controls.Competetions"
         mc:Ignorable="d"
         Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized">
     <Window.Resources>
@@ -355,7 +356,7 @@
             </Grid>
 
             <!--<local:Competetions  />-->
-            <Grid  x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
+            <Grid  x:Name="Form2" Grid.Row="0" Grid.Column="0" Visibility="Visible">
                 <!--x:Name="Form2" -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
@@ -509,8 +510,9 @@
                                     </Grid.RowDefinitions>
 
                                     <StackPanel Grid.ColumnSpan="4" x:Name="TotalCompAddSpace">
+                                        <competetions:GeneralCompetetionAdditor/>
                                         <!--Tag="{x:Reference RS}"-->
-                                        <Grid>
+                                        <!--<Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="0.05*" />
                                                 <ColumnDefinition Width="0.125*" />
@@ -544,7 +546,7 @@
                                             <Button Click="AddTotalCompetetion" Style="{StaticResource ResourceKey=AddButton}"></Button>
                                             <Label  Grid.Column="1" Content="ОК 02" Style="{StaticResource No1}" />
                                             <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                                        </Grid>
+                                        </Grid>-->
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -553,8 +555,8 @@
                     <Grid x:Name="ProfCompetetions" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden">
                         <ScrollViewer>
                             <StackPanel Background="#FFFFFCC7" x:Name="ProfCompAddSpace">
-
-                                <Grid>
+                                <competetions:ProfessionalDividerAdditor/>
+                                <!--<Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.05*" />
                                         <ColumnDefinition Width="0.95*" />
@@ -570,7 +572,7 @@
                                     </Border>
 
                                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" x:Name="ProfStack">
-                                        <!--Tag="{x:Reference RS}"-->
+                                        Tag="{x:Reference RS}"
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="0.05*" />
@@ -631,7 +633,7 @@
                                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
 
                                     </StackPanel>
-                                </Grid>
+                                </Grid>-->
 
                             </StackPanel>
                         </ScrollViewer>
@@ -642,7 +644,7 @@
             </Grid>
 
             <!--RCompetentions-->
-            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Visible">
+            <Grid x:Name="Form3" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.05*"/>

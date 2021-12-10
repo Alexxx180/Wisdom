@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static Wisdom.Customing.Converters;
@@ -9,11 +11,27 @@ namespace Wisdom.Controls.ThemePlan
     /// <summary>
     /// Логика взаимодействия для PlanTaskAditor.xaml
     /// </summary>
-    public partial class PlanTaskAdditor : UserControl, IAuto
+    public partial class PlanTaskAdditor : UserControl, INotifyPropertyChanged, ITaskIndexing
     {
+        public int No { get; set; }
+        public string TaskHeader => $"{No}.";
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
         public PlanTaskAdditor()
         {
             InitializeComponent();
+        }
+
+        public void SetNo(int no)
+        {
+            No = no;
+            OnPropertyChanged(nameof(TaskHeader));
         }
 
         private static PlanTaskAdditor SetElement()
@@ -26,7 +44,7 @@ namespace Wisdom.Controls.ThemePlan
         {
             PlanTaskAdditor element = SetElement();
             _ = stack.Children.Add(element);
-            AutoIndexing(stack, 1, '.');
+            AutoIndexing(stack);
         }
 
         private void AddTask(object sender, RoutedEventArgs e)
@@ -40,23 +58,21 @@ namespace Wisdom.Controls.ThemePlan
             workPanel.Children.Remove(task);
             PlanTask.AddElement(taskName.Text, taskHours.Text, workPanel);
             workPanel.Children.Add(task);
-            AutoIndexing(workPanel, 1, '.');
+            AutoIndexing(workPanel);
         }
 
-        public static void AutoIndexing(StackPanel grandGrid, int pos, char mark)
+        public static void AutoIndexing(StackPanel grandGrid)
         {
             for (int no = 0; no < grandGrid.Children.Count; no++)
             {
-                Index(grandGrid, no, pos, mark);
+                Index(grandGrid, no);
             }
         }
 
-        public static void Index(StackPanel grandGrid, int no, int pos, char mark)
+        public static void Index(StackPanel grandGrid, int no)
         {
-            UserControl task = grandGrid.Children[no] as UserControl;
-            Grid content = task.Content as Grid;
-            TextBlock taskNo = Txt(content, pos);
-            taskNo.Text = $"{no + 1}{mark}";
+            ITaskIndexing task = grandGrid.Children[no] as ITaskIndexing;
+            task.SetNo(no + 1);
         }
 
         private void Hours(object sender, TextCompositionEventArgs e)

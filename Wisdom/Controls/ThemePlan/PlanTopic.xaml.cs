@@ -80,6 +80,7 @@ namespace Wisdom.Controls.ThemePlan
                 AddElement(topics[i].Name, topics[i].Hours,
                    topics[i].Values, stack);
             PlanTopicAdditor.AddElement(stack);
+            AutoIndexing3(stack);
             AutoIndexing(stack);
         }
 
