@@ -95,7 +95,7 @@ namespace Wisdom.Model.DataBase
             return competetions;
         }
 
-        public static List<HoursList<LevelsList<HashList<String2>>>> SetThemePlan(List<object[]> themePlan)
+        private static List<HoursList<LevelsList<HashList<String2>>>> SetThemePlan(List<object[]> themePlan)
         {
             List<HoursList<LevelsList<HashList<String2>>>> plan =
                 new List<HoursList<LevelsList<HashList<String2>>>>();
@@ -115,7 +115,7 @@ namespace Wisdom.Model.DataBase
             return plan;
         }
 
-        public static List<LevelsList<HashList<String2>>> SetPlanThemes(List<object[]> themes)
+        private static List<LevelsList<HashList<String2>>> SetPlanThemes(List<object[]> themes)
         {
             List<LevelsList<HashList<String2>>> topicSpace =
                 new List<LevelsList<HashList<String2>>>();
@@ -139,7 +139,7 @@ namespace Wisdom.Model.DataBase
             return topicSpace;
         }
 
-        public static List<HashList<String2>> SetPlanWorks(List<object[]> works)
+        private static List<HashList<String2>> SetPlanWorks(List<object[]> works)
         {
             
             List<HashList<String2>> themeSpace = new List<HashList<String2>>();
@@ -158,28 +158,31 @@ namespace Wisdom.Model.DataBase
             return themeSpace;
         }
 
-        public static List<String2> SetPlanTasks(List<object[]> tasks)
+        private static List<String2> SetPlanTasks(List<object[]> tasks)
         {
             List<String2> workSpace = new List<String2>();
             for (int iv = 0; iv < tasks.Count; iv++)
             {
                 object[] row = tasks[iv];
-                String2 task = new String2(
-                    row[1].ToString(),
-                    row[2].ToString());
+                string name = row[1].ToString();
+                string hours = row[2].ToString();
+                String2 task = new String2(name, hours);
                 workSpace.Add(task);
             }
             return workSpace;
         }
 
-        public static List<String2> SetTypeFields(List<object[]> rows)
+        private static List<String2> SetTypeFields(List<object[]> types)
         {
             List<String2> fields = new List<String2>();
-            List<object[]> types = rows;
             for (byte i = 0; i < types.Count; i++)
-                fields.Add(new String2(
-                    types[i][0].ToString(),
-                    types[i][1].ToString()));
+            {
+                object[] row = types[i];
+                string id = row[0].ToString();
+                string name = row[1].ToString();
+                String2 type = new String2(id, name);
+                fields.Add(type);
+            }       
             return fields;
         }
 
@@ -189,15 +192,14 @@ namespace Wisdom.Model.DataBase
             for (int i = 0; i < metaData.Count; i++)
             {
                 object[] row = metaData[i];
-                data.Add(
-                    row[1].ToString(),
-                    row[2].ToString()
-                );
+                string type = row[1].ToString();
+                string value = row[2].ToString();
+                data.Add(type, value);
             }
             return data;
         }
 
-        public static Dictionary<string, ushort> SetTotalHours(List<object[]> totalWorkHours)
+        private static Dictionary<string, ushort> SetTotalHours(List<object[]> totalWorkHours)
         {
             Dictionary<string, ushort> totalHours = new Dictionary<string, ushort>();
             for (int i = 0; i < totalWorkHours.Count; i++)
@@ -213,7 +215,7 @@ namespace Wisdom.Model.DataBase
             return totalHours;
         }
 
-        public static List<HashList<string>> SetSources(List<object[]> sourcesList)
+        private static List<HashList<string>> SetSources(List<object[]> sourcesList)
         {
             List<HashList<string>> sources = new List<HashList<string>>();
             int no = 0;
@@ -231,7 +233,7 @@ namespace Wisdom.Model.DataBase
             return sources;
         }
 
-        public static List<HoursList<String2>> SetGeneral(List<object[]> generalCompetetions)
+        private static List<HoursList<String2>> SetGeneral(List<object[]> generalCompetetions)
         {
             List<HoursList<String2>> competetions = new List<HoursList<String2>>();
             for (int i = 0; i < generalCompetetions.Count; i++)
@@ -249,7 +251,7 @@ namespace Wisdom.Model.DataBase
             return competetions;
         }
 
-        public static List<List<HoursList<String2>>> SetProfessional(List<object[]> professionalCompetetions)
+        private static List<List<HoursList<String2>>> SetProfessional(List<object[]> professionalCompetetions)
         {
             List<List<HoursList<String2>>> competetions = new List<List<HoursList<String2>>>();
             int no1 = 0;
@@ -278,7 +280,7 @@ namespace Wisdom.Model.DataBase
             return competetions;
         }
 
-        public static void ConnectionMessage(string loadProblem, string exception)
+        private static void ConnectionMessage(string loadProblem, string exception)
         {
             string noLoad = "Не удалось загрузить: ";
             string message = "\nОшибка подключения. Вы можете продолжать работу.\n";
@@ -419,6 +421,40 @@ namespace Wisdom.Model.DataBase
                 ConnectionMessage(noLoad, exception.Message);
             }
             return metaTypes;
+        }
+
+        public static List<String2> GetSourceTypes()
+        {
+            List<String2> sourceTypes = new List<String2>();
+            try
+            {
+                List<object[]> types = _dataBase.SourceTypes();
+                List<String2> result = SetTypeFields(types);
+                sourceTypes.AddRange(result);
+            }
+            catch (DbException exception)
+            {
+                string noLoad = "Типы метаданных";
+                ConnectionMessage(noLoad, exception.Message);
+            }
+            return sourceTypes;
+        }
+
+        public static List<String2> GetLevels()
+        {
+            List<String2> educationLevels = new List<String2>();
+            try
+            {
+                List<object[]> levels = _dataBase.Levels();
+                List<String2> result = SetPlanTasks(levels);
+                educationLevels.AddRange(result);
+            }
+            catch (DbException exception)
+            {
+                string noLoad = "Типы метаданных";
+                ConnectionMessage(noLoad, exception.Message);
+            }
+            return educationLevels;
         }
 
         private static Sql _dataBase;

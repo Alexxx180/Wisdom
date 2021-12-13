@@ -23,6 +23,9 @@ using System;
 using Wisdom.Controls;
 using Wisdom.Controls.ThemePlan;
 using Wisdom.Controls.Competetions;
+using Wisdom.Controls.Sources;
+using Wisdom.Controls.EducationLevels;
+using Wisdom.Controls.Applyment;
 
 namespace Wisdom
 {
@@ -84,7 +87,18 @@ namespace Wisdom
         private string FileName => $@"{Program.Text}.docx";
         ProgramData Connection = new ProgramData();
 
-        
+        private void SetLevels()
+        {
+            List<String2> levels = Connection.LevelsData();
+            EducationLevel.DropLevels(Levels);
+            EducationLevel.AddElements(levels, Levels);
+        }
+
+        private void SetSourceTypes()
+        {
+            SourceTypes = Connection.SourceTypesData();
+            SetSourceTypeKeys();            
+        }
 
         private void SetMetaTypes()
         {
@@ -119,8 +133,10 @@ namespace Wisdom
         {
             InitializeComponent();
             DataContext = this;
+            SetLevels();
             SetMetaTypes();
             SetHourTypes();
+            SetSourceTypes();
             SpecialitySelect = Connection.ListSpecialities();
         }
 
@@ -139,38 +155,6 @@ namespace Wisdom
             GeneralCompetetion.AddElements(SelectedSpeciality.GeneralCompetetions, TotalCompAddSpace);
             ProfessionalDivider.DropProfessional(ProfCompAddSpace);
             ProfessionalDivider.AddElements(SelectedSpeciality.ProfessionalCompetetions, ProfCompAddSpace);
-            
-            OrderDate.Text = "";
-            OrderNo.Text = "";
-        }
-
-        private void SetSources()
-        {
-            DeleteAllSources();
-            Grid next = GridChild(EducationSources, 0);
-            Button add = Btn(next, 0);
-            ComboBox box = Cbx(next, 1);
-            for (byte i = 0; i < SelectedDiscipline.Sources.Count; i++)
-            {
-                box.SelectedIndex = Ints(SelectedDiscipline.Sources[i].Name);
-                ParagraphText(add, out Button delete2, out Button add2);
-                add2.Click += AddSource;
-                delete2.Click += DeleteSources;
-
-                Grid subNext = GridChild(EducationSources, i);
-                StackPanel profComps = Panel(subNext, 2);
-                Grid subSubNext = GridChild(profComps, 0);
-
-                Button subAdd = Btn(subSubNext, 0);
-                TextBox name = Box(subSubNext, 2);
-
-                HashList<string> disciplineSources = SelectedDiscipline.Sources[i];
-                for (byte ii = 0; ii < disciplineSources.Values.Count; ii++)
-                {
-                    name.Text = disciplineSources.Values[ii];
-                    Source(subAdd).Click += DeleteSource;
-                }
-            }
         }
 
         private void ResetAllDisciplineFields(object sender, SelectionChangedEventArgs e)
@@ -180,55 +164,34 @@ namespace Wisdom
             if (SpecNo < 0 || selected < 0)
                 return;
             string name = box.SelectedValue.ToString();
-
-            //DropAllTopics();
+            
             SelectedDiscipline = Connection.DisciplineData(DisciplineHead.keys[selected], name);
-
-            for (byte i = 0; i < MetaData.Children.Count; i++)
-            {
-                MetaElement meta = MetaData.Children[i] as MetaElement;
-                Grid metaGrid = meta.Content as Grid;
-                TextBlock metaName = Txt(metaGrid, 0);
-                TextBox metaValue = Box(metaGrid, 1);
-                if (SelectedDiscipline.MetaData.TryGetValue(metaName.Text, out string value))
-                    metaValue.Text = value;
-                else
-                    metaValue.Text = "";
-                MetaDataCollection[i] = metaValue.Text;
-            }
-
             DisciplineName = SelectedDiscipline.Name;
+            MetaElement.FillElements(MetaData, SelectedDiscipline.MetaData);
 
             int study = GetStudyHours();
-            int self = 0;
-            if (SelectedDiscipline.TotalHours.TryGetValue("Самостоятельная работа", out ushort max))
-                self = max;
-            MaxHours = (study + self).ToString();
-            Self.Text = self.ToString();
+            int self = TryGetHours("Самостоятельная работа");
             Usual.Text = study.ToString();
+            Self.Text = self.ToString();
 
-            for (byte i = 0; i < TotalHoursCount.Children.Count; i++)
-            {
-                HourElement hour = TotalHoursCount.Children[i] as HourElement;
-                Grid hourGrid = hour.Content as Grid;
-                TextBlock hourName = Txt(hourGrid, 0);
-                TextBox hourValue = Box(hourGrid, 1);
-                hourValue.Text = TryGetHours(hourName.Text).ToString();
-                HoursCollection[i] = hourValue.Text;
-            }
-            
-            SetSources();
+            HourElement.FillElements(TotalHoursCount);
+
+            SetLevels();
+            List<string> sourceTypes = new List<string>();
+            for (byte i = 0; i < SourceTypes.Count; i++)
+                sourceTypes.Add(SourceTypes[i].Value);
+            SourceTypeElement.DropSourceGroups(EducationSources);
+            SourceTypeElement.AddElements(SelectedDiscipline.Sources, sourceTypes, EducationSources);
             GeneralCompetetion.DropGeneral(TotalCompAddSpace);
             GeneralCompetetion.AddElements(SelectedDiscipline.GeneralCompetetions, TotalCompAddSpace);
             ProfessionalDivider.DropProfessional(ProfCompAddSpace);
             ProfessionalDivider.AddElements(SelectedDiscipline.ProfessionalCompetetions, ProfCompAddSpace);
-            
 
             PlanTopic.DropPlan(DisciplinePlan);
             PlanTopic.AddElements(SelectedDiscipline.Plan, DisciplinePlan);
         }
 
-        private void Create_Click(object sender, RoutedEventArgs e)
+        private void SetUpDocumentBlank()
         {
             DirectorName = Director.Text;
             SubDirectorName = SubDirector.Text;
@@ -242,21 +205,24 @@ namespace Wisdom
             SelfHours = Self.Text;
             EduHours = Usual.Text;
 
+            List<string> factMetaData = MetaElement.GetValues(MetaData);
+            for (byte i = 0; i < factMetaData.Count; i++)
+                MetaDataCollection[i] = factMetaData[i];
+
             Order = new String2(OrderDate.Text, OrderNo.Text);
-            GeneralCompetetions = GeneralCompetetion.FullGeneral(TotalCompAddSpace); 
+            GeneralCompetetions = GeneralCompetetion.FullGeneral(TotalCompAddSpace);
             List<List<HoursList<String2>>> fullProfessional = ProfessionalDivider.FullProfessional(ProfCompAddSpace);
-            ProfessionalCompetetions = ProfessionalDivider.Zip(fullProfessional); 
-            SourcesControl = GetSources(EducationSources, 1, 2);
+            ProfessionalCompetetions = ProfessionalDivider.Zip(fullProfessional);
+            SourcesControl = SourceTypeElement.GetValues(EducationSources); //GetSources(EducationSources, 1, 2);
 
-            Applyment = GetSourceList(ApplyAddSpace, 2);
-
+            Applyment = ApplyElement.GetValues(ApplyAddSpace); //GetSourceList(ApplyAddSpace, 2);
             Plan = PlanTopic.FullThemePlan(DisciplinePlan);
+            StudyLevels = EducationLevel.GetValues(Levels);
+        }
 
-            StudyLevels.Values = new List<string>();
-            List<List<string>> levels = GetListFromElements3(Levels, 2, 4);
-            for (byte i = 0; i < levels.Count; i++)
-                StudyLevels.Add(levels[i][0], levels[i][1]);
-
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+            SetUpDocumentBlank();
             CallWriter(FileName);
             //WriteDoc();
         }
@@ -434,8 +400,6 @@ namespace Wisdom
             RemoveTableRow(subContent.Tag);
             AutoIndexing(RemoveGrid(subContent), 1, '.');
         }
-
-        
 
         private void SwitchPlan(object sender, RoutedEventArgs e)
         {

@@ -12,6 +12,8 @@
         xmlns:controls="clr-namespace:Wisdom.Controls"
         xmlns:plan="clr-namespace:Wisdom.Controls.ThemePlan"
         xmlns:competetions="clr-namespace:Wisdom.Controls.Competetions"
+        xmlns:sources="clr-namespace:Wisdom.Controls.Sources"
+        xmlns:applyment="clr-namespace:Wisdom.Controls.Applyment"
         mc:Ignorable="d"
         Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized">
     <Window.Resources>
@@ -142,10 +144,6 @@
                 <ColumnDefinition Width="0.55*"/>
                 <ColumnDefinition Width="0.45*"/>
             </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
 
             <Grid x:Name="Form1" Grid.Row="0" Grid.Column="0" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
@@ -393,10 +391,6 @@
                     <Button x:Name="TotalComp" Click="SwitchCompetetions" Tag="{x:Reference TotalCompetetions}" Content="Общие компетенции" Style="{StaticResource Steps3}" Grid.Column="1" />
                     <Button x:Name="ProfComp" Click="SwitchCompetetions" Tag="{x:Reference ProfCompetetions}"  Content="Проф. компетенции" Style="{StaticResource Steps3}" Grid.Column="2"  />
 
-                    
-                    
-
-                    
                     <!--TotalHoursCountPanel-->
 
                     <Grid x:Name="TotalHoursCountPanel" Grid.Row="2" Grid.ColumnSpan="3" Visibility="Visible">
@@ -493,42 +487,6 @@
 
                                     <StackPanel Grid.ColumnSpan="4" x:Name="TotalCompAddSpace">
                                         <competetions:GeneralCompetetionAdditor/>
-                                        <!--Tag="{x:Reference RS}"-->
-                                        <!--<Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="0.05*" />
-                                                <ColumnDefinition Width="0.125*" />
-                                                <ColumnDefinition Width="0.075*" />
-                                                <ColumnDefinition Width="0.65*" />
-                                                <ColumnDefinition Width="0.1*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                            </Grid.RowDefinitions>
-
-                                            <Button Click="DeleteGeneralCompetetion" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                                            <Label  Grid.Column="1" Content="ОК 01" Style="{StaticResource No1}" />
-                                            <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="3" Style="{StaticResource RegularBox}" />
-                                            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="Умения:" Style="{StaticResource No1}" />
-                                            <TextBox Grid.Row="1" Grid.Column="3" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                                            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="Знания:" Style="{StaticResource No1}" />
-                                            <TextBox Grid.Row="2" Grid.Column="3" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                                        </Grid>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="0.05*" />
-                                                <ColumnDefinition Width="0.125*" />
-                                                <ColumnDefinition Width="0.725*" />
-                                                <ColumnDefinition Width="0.1*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <Button Click="AddTotalCompetetion" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                            <Label  Grid.Column="1" Content="ОК 02" Style="{StaticResource No1}" />
-                                            <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                                        </Grid>-->
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -538,85 +496,6 @@
                         <ScrollViewer>
                             <StackPanel Background="#FFFFFCC7" x:Name="ProfCompAddSpace">
                                 <competetions:ProfessionalDividerAdditor/>
-                                <!--<Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.05*" />
-                                        <ColumnDefinition Width="0.95*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-
-                                    <Button Click="DeleteProfessional" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                                    <Border Background="#FF03C6FF" Grid.Column="1">
-                                        <Label Style="{StaticResource ResourceKey=ListCaptions}" Content="ПК 1." Padding="5"></Label>
-                                    </Border>
-
-                                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2" x:Name="ProfStack">
-                                        Tag="{x:Reference RS}"
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="0.05*" />
-                                                <ColumnDefinition Width="0.125*" />
-                                                <ColumnDefinition Width="0.075*" />
-                                                <ColumnDefinition Width="0.65*" />
-                                                <ColumnDefinition Width="0.1*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                            </Grid.RowDefinitions>
-
-                                            <Button Click="DeleteProfessionalItem" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                                            <Label  Grid.Column="1" Content="ПК 1.1" Style="{StaticResource No1}" />
-                                            <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="3" Style="{StaticResource RegularBox}" />
-                                            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="Практический опыт:" Style="{StaticResource No1}" />
-                                            <TextBox Grid.Row="1" Grid.Column="3" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                                            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="Умения:" Style="{StaticResource No1}" />
-                                            <TextBox Grid.Row="2" Grid.Column="3" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                                            <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Знания:" Style="{StaticResource No1}" />
-                                            <TextBox Grid.Row="3" Grid.Column="3" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-
-                                        </Grid>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="0.05*" />
-                                                <ColumnDefinition Width="0.125*" />
-                                                <ColumnDefinition Width="0.725*" />
-                                                <ColumnDefinition Width="0.1*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <Button Click="AddProfessionalCompetetion" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                            <Label  Grid.Column="1" Content="ПК 1.2" Style="{StaticResource No1}" />
-                                            <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                                        </Grid>
-                                    </StackPanel>
-                                </Grid>
-
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.05*" />
-                                        <ColumnDefinition Width="0.95*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
-                                    </Grid.RowDefinitions>
-
-                                    <Button Click="ProfessionalCompettionSectionAdd_Click" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                    <Border Background="#FF03C6FF" Grid.Column="1">
-                                        <Label Style="{StaticResource ResourceKey=ListCaptions}" Content="ПК 2." Padding="5"></Label>
-                                    </Border>
-
-                                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-
-                                    </StackPanel>
-                                </Grid>-->
-
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>
@@ -964,54 +843,7 @@
 
                 <ScrollViewer Grid.Row="1" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="18">
                     <StackPanel Background="#FFFFFCC7" x:Name="EducationSources">
-                        <Grid Tag="{x:Reference EduSources}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.05*" />
-                                <ColumnDefinition Width="0.15*" />
-                                <ColumnDefinition Width="0.7*" />
-                                <ColumnDefinition Width="0.1*" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Button Click="DeleteSources" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-                            <Label Grid.Column="1" Content="Основная литература" Grid.ColumnSpan="3" Style="{StaticResource ListCaptions}" />
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.05*" />
-                                        <ColumnDefinition Width="0.15*" />
-                                        <ColumnDefinition Width="0.7*" />
-                                        <ColumnDefinition Width="0.1*" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <Button Click="AddSource" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                    <Label x:Name="SourceNo1" Grid.Column="1" Content="1." Style="{StaticResource No1}" />
-                                    <TextBox x:Name="Source1"  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                                </Grid>
-                            </StackPanel>
-                        </Grid>
-                        <Grid Tag="{x:Reference Sheet7}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.05*" />
-                                <ColumnDefinition Width="0.15*" />
-                                <ColumnDefinition Width="0.7*" />
-                                <ColumnDefinition Width="0.1*" />
-                            </Grid.ColumnDefinitions>
-
-                            <Button Click="AddSources" Grid.Row="3" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                            <ComboBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource SubCaptionBox}">
-                                <ComboBox.ItemContainerStyle>
-                                    <StaticResource ResourceKey="ItemsBox"></StaticResource>
-                                </ComboBox.ItemContainerStyle>
-                                <ComboBoxItem>Основная литература</ComboBoxItem>
-                                <ComboBoxItem>Дополнительная литература</ComboBoxItem>
-                                <ComboBoxItem>Программное обеспечение</ComboBoxItem>
-                                <ComboBoxItem>Базы данных, информационно-справочные и поисковые системы</ComboBoxItem>
-                            </ComboBox>
-                        </Grid>
+                        <sources:SourceTypeElementAdditor/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
@@ -1074,18 +906,7 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="1" Grid.ColumnSpan="4" x:Name="ApplyAddSpace">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.05*" />
-                                    <ColumnDefinition Width="0.15*" />
-                                    <ColumnDefinition Width="0.7*" />
-                                    <ColumnDefinition Width="0.1*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Button Click="AddSource" Style="{StaticResource ResourceKey=AddButton}"></Button>
-                                <Label  Grid.Column="1" Content="1." Style="{StaticResource No1}" />
-                                <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
-                            </Grid>
+                            <applyment:ApplyElementAdditor />
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>

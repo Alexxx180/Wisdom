@@ -30,10 +30,28 @@
     <Compile Update="Controls\Competetions\ProfessionalDividerAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\EducationLevels\EducationLevel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\EducationLevels\EducationLevelAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\HourElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\MetaElement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Sources\SourceElement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Sources\SourceElementAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Sources\SourceTypeElement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Sources\SourceTypeElementAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\ThemePlan\PlanTask.xaml.cs">
@@ -89,10 +107,28 @@
     <Page Update="Controls\Competetions\ProfessionalDividerAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\EducationLevels\EducationLevel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\EducationLevels\EducationLevelAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\HourElement.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\MetaElement.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Sources\SourceElement.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Sources\SourceElementAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Sources\SourceTypeElement.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Sources\SourceTypeElementAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\ThemePlan\PlanTask.xaml">

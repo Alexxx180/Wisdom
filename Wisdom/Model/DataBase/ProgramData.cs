@@ -47,5 +47,15 @@ namespace Wisdom.Model.DataBase
         {
             return GetHourTypes();
         }
+
+        public List<String2> SourceTypesData()
+        {
+            return GetSourceTypes();
+        }
+
+        public List<String2> LevelsData()
+        {
+            return GetLevels();
+        }
     }
 }

@@ -72,21 +72,26 @@ namespace Wisdom.Model
         // Используются для определения кол-ва полей
         public static List<String2> MetaTypes;
         public static List<String2> HourTypes;
+        public static List<String2> SourceTypes;
+        public static Dictionary<string, int> SourceTypeKeys;
+
+        public static void SetSourceTypeKeys()
+        {
+            SourceTypeKeys = new Dictionary<string, int>();
+            for (byte i = 0; i < SourceTypes.Count; i++)
+            {
+                System.Diagnostics.Trace.WriteLine(SourceTypes[i].Name);
+                System.Diagnostics.Trace.WriteLine(SourceTypes[i].Value);
+                SourceTypeKeys.Add(SourceTypes[i].Name, i);
+            }
+        }
 
         public static ushort GetStudyHours()
         {
             ushort total = 0;
-            string[] keys = {
-                "Содержание",
-                "Практические занятия",
-                "Контрольная работа",
-                "Лабораторная работа",
-                "Практическая подготовка",
-                "Курсовая работа"
-            };
-            for (byte i = 0; i < keys.Length; i++)
+            for (byte i = 0; i < HourTypes.Count; i++)
             {
-                total += TryGetHours(keys[i]);
+                total += TryGetHours(HourTypes[i].Value);
             }
             return total;
         }
@@ -98,7 +103,7 @@ namespace Wisdom.Model
             return 0;
         }
 
-        public static Dictionary<string, int> WorkTypes = new Dictionary<string, int>()
+        /*public static Dictionary<string, int> WorkTypes = new Dictionary<string, int>()
         {
             { "Содержание", 0 },
             { "Лабораторная работа", 1 },
@@ -107,6 +112,6 @@ namespace Wisdom.Model
             { "Практическая подготовка", 4 },
             { "Курсовая работа", 5 },
             { "Самостоятельная работа", 6 },
-        };
+        };*/
     }
 }

@@ -3,8 +3,10 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
 using Wisdom.Model;
-using static Wisdom.Customing.Converters;
+using static Wisdom.Model.ProgramContent;
 using static Wisdom.Writers.Content;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Wisdom.Controls
 {
@@ -12,8 +14,37 @@ namespace Wisdom.Controls
     /// Логика взаимодействия для HourElement.xaml
     /// </summary>
     
-    public sealed partial class HourElement : UserControl
+    public sealed partial class HourElement : UserControl, INotifyPropertyChanged
     {
+        public string _type = "";
+        public string WorkType
+        {
+            get { return _type; }
+            set
+            {
+                _type = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string _value = "";
+        public string HourValue
+        {
+            get { return _value; }
+            set
+            {
+                _value = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
         public HourElement()
         {
             InitializeComponent();
@@ -35,11 +66,34 @@ namespace Wisdom.Controls
 
         private static HourElement SetElement(string name)
         {
-            HourElement metaElement = new HourElement();
-            Grid metaGrid = metaElement.Content as Grid;
-            TextBlock metaName = Txt(metaGrid, 0);
-            metaName.Text = name;
-            return metaElement;
+            HourElement hourElement = new HourElement();
+            hourElement.WorkType = name;
+            return hourElement;
+        }
+
+        public static void FillElements(StackPanel stack)
+        {
+            for (byte i = 0; i < stack.Children.Count; i++)
+            {
+                HourElement hour = stack.Children[i] as HourElement;
+                FillElement(hour);
+            }
+        }
+
+        private static void FillElement(HourElement hour)
+        {
+            hour.HourValue = TryGetHours(hour.WorkType).ToString();
+        }
+
+        public static List<string> GetValues(StackPanel stack)
+        {
+            List<string> values = new List<string>();
+            for (byte i = 0; i < stack.Children.Count; i++)
+            {
+                HourElement hour = stack.Children[i] as HourElement;
+                values.Add(hour.HourValue);
+            }
+            return values;
         }
 
         private void Hours(object sender, TextCompositionEventArgs e)

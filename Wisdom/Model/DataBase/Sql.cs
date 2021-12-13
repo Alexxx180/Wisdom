@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using static Wisdom.Customing.Converters;
-using static Wisdom.Model.ProgramContent;
-using static Wisdom.Model.DataBase.Converters;
+﻿using System.Collections.Generic;
 
 namespace Wisdom.Model.DataBase
 {
@@ -139,6 +131,11 @@ namespace Wisdom.Model.DataBase
             return GetRecords("get_discipline_sources", "discipline_id", value);
         }
 
+        public List<object[]> SourceTypes()
+        {
+            return GetRecords("get_source_types");
+        }
+
         public List<object[]> DisciplineGeneralMastering(uint value)
         {
             return GetRecords("get_discipline_general_mastering", "discipline_id", value);
@@ -157,6 +154,11 @@ namespace Wisdom.Model.DataBase
         public List<object[]> ThemeProfessionalMastering(uint value)
         {
             return GetRecords("get_theme_professional_mastering_selection", "theme_id", value);
+        }
+
+        public List<object[]> Levels()
+        {
+            return GetRecords("get_all_levels");
         }
     }
 }

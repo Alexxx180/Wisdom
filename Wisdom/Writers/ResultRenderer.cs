@@ -28,8 +28,8 @@ namespace Wisdom.Writers
         public static void WriteDoc()
         {
             string testFile = @"TestResources\Output\Result.docx";
-            string exutingDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            string fullName = $"{exutingDirectory}\\{testFile}";
+            string executingDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            string fullName = $"{executingDirectory}\\{testFile}";
             WriteDoc(fullName);
         }
 
