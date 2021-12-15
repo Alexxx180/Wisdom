@@ -15,7 +15,6 @@ using System.Collections.Generic;
 using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using static Wisdom.AutoGenerating.AutoWriter;
 using Wisdom.Model.DataBase;
 using static Wisdom.Tests.TotalTest;
 using System.Diagnostics;
@@ -199,12 +198,9 @@ namespace Wisdom
 
             CollegeName = College.Text;
 
-            DisciplineName = DpSelect.Text; //Text SelectedValue.ToString()
-            ProfessionName = SpSelect.Text; //Text
+            DisciplineName = DpSelect.Text;
+            ProfessionName = SpSelect.Text;
 
-            Trace.WriteLine(DpSelect.Text);
-            Trace.WriteLine(DpSelect.SelectedValue.ToString());
-            Trace.WriteLine(DpSelect.SelectedItem.ToString());
             MaxHours = Max.Content.ToString();
             SelfHours = Self.Text;
             EduHours = Usual.Text;
@@ -216,16 +212,14 @@ namespace Wisdom
             HoursCollection.Clear();
             List<string> hours = HourElement.GetValues(TotalHoursCount);
             HoursCollection.AddRange(hours);
-            //for (byte i = 0; i < factMetaData.Count; i++)
-            //    MetaDataCollection[i] = factMetaData[i];
 
             Order = new String2(OrderDate.Text, OrderNo.Text);
             GeneralCompetetions = GeneralCompetetion.FullGeneral(TotalCompAddSpace);
             List<List<HoursList<String2>>> fullProfessional = ProfessionalDivider.FullProfessional(ProfCompAddSpace);
             ProfessionalCompetetions = ProfessionalDivider.Zip(fullProfessional);
-            SourcesControl = SourceTypeElement.GetValues(EducationSources); //GetSources(EducationSources, 1, 2);
+            SourcesControl = SourceTypeElement.GetValues(EducationSources);
 
-            Applyment = ApplyElement.GetValues(ApplyAddSpace); //GetSourceList(ApplyAddSpace, 2);
+            Applyment = ApplyElement.GetValues(ApplyAddSpace);
             Plan = PlanTopic.FullThemePlan(DisciplinePlan);
             StudyLevels = EducationLevel.GetValues(Levels);
         }
@@ -256,28 +250,6 @@ namespace Wisdom
             AnyShow(form);
         }
 
-        private void AnyDeleteAuto(object sender, RoutedEventArgs e)
-        {
-            Button deleteButton = sender as Button;
-            Grid subContent = deleteButton.Tag as Grid;
-            TextBox hours = Box(subContent, 3);
-            Binding bind = hours.Tag as Binding;
-
-            StackPanel contentStack = Parent(subContent);
-            Grid content = Parent(contentStack);
-            StackPanel themeStack = Parent(content);
-            Grid theme = Parent(themeStack);
-
-            TextBox refer = Box(theme, 3);
-            MultiBinding reCalculation = DeleteBindFromMulti(refer, 
-                BackgroundProperty, new UsedValuesConverter(), bind);
-
-            _ = SetBind(refer, BackgroundProperty, reCalculation);
-
-            RemoveTableRow(subContent.Tag);
-            AutoIndexing(RemoveGrid(subContent), 1, '.');
-        }
-
         private void SwitchPlan(object sender, RoutedEventArgs e)
         {
             SwitchSections(sender, new Button[] { ThemePlanSwitch,
@@ -298,7 +270,5 @@ namespace Wisdom
             EnableX(true, switchs);
             mainSwitch.IsEnabled = false;
         }
-
-
     }
 }

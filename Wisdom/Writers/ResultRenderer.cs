@@ -8,9 +8,6 @@ namespace Wisdom.Writers
 {
     public static class ResultRenderer
     {
-        //private static readonly GeneratedClass renderer = new GeneratedClass();
-        //private static readonly AutoFiller renderer = new AutoFiller();
-
         public static void WriteDoc(string fileName)
         {
             try

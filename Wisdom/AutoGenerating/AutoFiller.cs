@@ -1,41 +1,12 @@
-﻿using DocumentFormat.OpenXml.Packaging;
-using Ap = DocumentFormat.OpenXml.ExtendedProperties;
-using Vt = DocumentFormat.OpenXml.VariantTypes;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Wordprocessing;
-using A = DocumentFormat.OpenXml.Drawing;
-using Thm15 = DocumentFormat.OpenXml.Office2013.Theme;
-using Ds = DocumentFormat.OpenXml.CustomXmlDataProperties;
-using M = DocumentFormat.OpenXml.Math;
-using Ovml = DocumentFormat.OpenXml.Vml.Office;
-using V = DocumentFormat.OpenXml.Vml;
-using W14 = DocumentFormat.OpenXml.Office2010.Word;
-using W15 = DocumentFormat.OpenXml.Office2013.Word;
+﻿using System;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
 using static Wisdom.Model.ProgramContent;
 using static Wisdom.Writers.Markup;
-using static Wisdom.Customing.BlockTemplates;
-using static Wisdom.Customing.Decorators;
-using static Wisdom.Writers.ResultRenderer;
-using static Wisdom.Binds.EasyBindings;
-using static Wisdom.Writers.Content;
-using static Wisdom.Customing.Converters;
-using System.Diagnostics;
-using static Wisdom.Customing.ResourceHelper;
-//using System.Windows.Documents;
-using System.Windows.Media;
-using System.Windows.Data;
-using Wisdom.Binds;
-using Microsoft.Win32;
-using System.Collections.Generic;
-using Wisdom.Model;
-using System.Text.RegularExpressions;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using static Wisdom.Tests.TotalTest;
-using System.Threading.Tasks;
-using System;
-using System.Linq;
 
 namespace Wisdom.AutoGenerating
 {
@@ -46,36 +17,10 @@ namespace Wisdom.AutoGenerating
 
         public static void WriteDocX(string filepath)
         {
-            FastProcessing(_template, filepath);
+            FullProcessing(_template, filepath);
         }
 
-        // Bad work with couple of <w:t></w:t>
-        //public static string RegexReplace(string template, string original, string toReplace)
-        //{
-        //    Regex regexText = new Regex(template);
-        //    return regexText.Replace(original, toReplace);
-        //}
-
-        //docText = RegexReplace(discipline, docText, DisciplineName);
-
-        private static void ReplaceInParagraphs(IEnumerable<Paragraph> paragraphs, string find, string replaceWith)
-        {
-            foreach (var p in paragraphs)
-                ReplaceText(p, find, replaceWith);
-        }
-
-        private static void ReplaceInCells(IEnumerable<TableCell> cells, string find, string replaceWith)
-        {
-            foreach (TableCell cell in cells)
-                foreach (var cellData in cell)
-                {
-                    Paragraph p = cellData as Paragraph;
-                    if (p != null)
-                        ReplaceText(p, find, replaceWith);
-                }
-        }
-
-        private static void FastProcessing(string templatePath, string generatePath)
+        private static void FullProcessing(string templatePath, string generatePath)
         {
             byte[] byteArray = File.ReadAllBytes(templatePath);
             using (MemoryStream stream = new MemoryStream())
@@ -93,29 +38,8 @@ namespace Wisdom.AutoGenerating
                     var paragraphs = body.Elements<Paragraph>();
                     var cells = body.Descendants<TableCell>();
 
-                    string discipline = "#DISCIPLINE";
-                    ReplaceInParagraphs(paragraphs, discipline, DisciplineName);
-
-                    string speciality = "#SPECIALITY";
-                    ReplaceInParagraphs(paragraphs, speciality, ProfessionName);
-                    ReplaceInCells(cells, speciality, ProfessionName);
-
-                    string max = "#MAX-HOURS";
-                    ReplaceInParagraphs(paragraphs, max, MaxHours);
-
-                    string auditory = "#AUD-HOURS";
-                    ReplaceInParagraphs(paragraphs, auditory, EduHours);
-
-                    string meta = "#META-";
-                    for (byte i = 0; i < MetaDataCollection.Count; i++)
-                        ReplaceInParagraphs(paragraphs, meta + i, MetaDataCollection[i]);
-
-                    string hours = "#HOURS-";
-                    for (byte i = 0; i < HoursCollection.Count; i++)
-                    {
-                        ReplaceInParagraphs(paragraphs, hours + i, HoursCollection[i]);
-                        ReplaceInCells(cells, hours + i, HoursCollection[i]);
-                    }
+                    FastProcessing(paragraphs, cells);
+                    DetailProcessing(paragraphs);
 
                     using (StreamWriter sw = new StreamWriter(template.MainDocumentPart.GetStream(FileMode.Create)))
                     {
@@ -125,6 +49,65 @@ namespace Wisdom.AutoGenerating
                 // Save the file with the new name
                 File.WriteAllBytes(generatePath, stream.ToArray());
             }
+        }
+
+        private static void FastProcessing(IEnumerable<Paragraph> paragraphs, IEnumerable<TableCell> cells)
+        {
+            string discipline = "#DISCIPLINE";
+            ReplaceInParagraphs(paragraphs, discipline, DisciplineName);
+
+            string speciality = "#SPECIALITY";
+            ReplaceInParagraphs(paragraphs, speciality, ProfessionName);
+            ReplaceInCells(cells, speciality, ProfessionName);
+
+            string max = "#MAX-HOURS";
+            ReplaceInParagraphs(paragraphs, max, MaxHours);
+
+            string auditory = "#AUD-HOURS";
+            ReplaceInParagraphs(paragraphs, auditory, EduHours);
+
+            string meta = "#META-";
+            for (byte i = 0; i < MetaDataCollection.Count; i++)
+                ReplaceInParagraphs(paragraphs, meta + i, MetaDataCollection[i]);
+
+            string hours = "#HOURS-";
+            for (byte i = 0; i < HoursCollection.Count; i++)
+            {
+                ReplaceInParagraphs(paragraphs, hours + i, HoursCollection[i]);
+                ReplaceInCells(cells, hours + i, HoursCollection[i]);
+            }
+        }
+
+        private static void DetailProcessing(IEnumerable<Paragraph> paragraphs)
+        {
+            string competetions = "#COMPETETIONS";
+            ReplaceInParagraphs(paragraphs, competetions, CompetetionsTable());
+
+            string themePlan = "#THEME-PLAN";
+            ReplaceInParagraphs(paragraphs, themePlan, ThemePlanTable());
+        }
+
+        private static void ReplaceInParagraphs(IEnumerable<Paragraph> paragraphs, string find, string replaceWith)
+        {
+            foreach (var p in paragraphs)
+                ReplaceText(p, find, replaceWith);
+        }
+
+        private static void ReplaceInParagraphs(IEnumerable<Paragraph> paragraphs, string find, Table replaceWith)
+        {
+            foreach (var p in paragraphs)
+                ReplaceText(p, find, replaceWith);
+        }
+
+        private static void ReplaceInCells(IEnumerable<TableCell> cells, string find, string replaceWith)
+        {
+            foreach (TableCell cell in cells)
+                foreach (var cellData in cell)
+                {
+                    Paragraph p = cellData as Paragraph;
+                    if (p != null)
+                        ReplaceText(p, find, replaceWith);
+                }
         }
 
         static Match IsMatch(IEnumerable<Text> texts, int t, int c, string find)
@@ -167,7 +150,7 @@ namespace Wisdom.AutoGenerating
                         if (match.EndCharIndex + 1 < texts.ElementAt(match.EndElementIndex).Text.Length)
                             lines[lines.Length - 1] = lines[lines.Length - 1] + texts.ElementAt(match.EndElementIndex).Text.Substring(match.EndCharIndex + 1);
 
-                        txt.Space = new EnumValue<SpaceProcessingModeValues>(SpaceProcessingModeValues.Preserve); // in case your value starts/ends with whitespace
+                        txt.Space = new EnumValue<SpaceProcessingModeValues>(SpaceProcessingModeValues.Preserve); // in case value starts/ends with whitespace
                         txt.Text = lines[0];
 
                         // remove any extra texts.
@@ -205,42 +188,25 @@ namespace Wisdom.AutoGenerating
             }
         }
 
-        
-
-        private static void DetailProcessing()
+        public static void ReplaceText(Paragraph paragraph, string find, Table replaceWith)
         {
-            //WordprocessingDocument wordprocessingDocument = WordprocessingDocument.Open(filepath, true);
-            //Body body = wordprocessingDocument.MainDocumentPart.Document.Body;
-        }
-
-        class Match
-        {
-            /// <summary>
-            /// Last matching element index containing part of the search text
-            /// </summary>
-            public int EndElementIndex { get; set; }
-            /// <summary>
-            /// Last matching char index of the search text in last matching element
-            /// </summary>
-            public int EndCharIndex { get; set; }
-        }
-    }
-
-    
-}
-
-public static class OpenXmlTools
-{
-    // filters control characters but allows only properly-formed surrogate sequences
-    private static Regex _invalidXMLChars = new Regex(
-        @"(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\uFEFF\uFFFE\uFFFF]",
-        RegexOptions.Compiled);
-    /// <summary>
-    /// removes any unusual unicode characters that can't be encoded into XML which give exception on save
-    /// </summary>
-    public static string RemoveInvalidXMLChars(string text)
-    {
-        if (string.IsNullOrEmpty(text)) return "";
-        return _invalidXMLChars.Replace(text, "");
+            var texts = paragraph.Descendants<Text>();
+            int count = texts.Count();
+            for (int t = 0; t < count; t++)
+            {   // figure out which Text element within the paragraph contains the starting point of the search string
+                Text txt = texts.ElementAt(t);
+                for (int c = 0; c < txt.Text.Length; c++)
+                {
+                    var match = IsMatch(texts, t, c, find);
+                    if (match != null)
+                    {   // now replace the text
+                        OpenXmlElement parent = paragraph.Parent;
+                        paragraph.InsertAfterSelf(replaceWith);
+                        parent.RemoveChild(paragraph);
+                        return;
+                    }
+                }
+            }
+        }   
     }
 }
