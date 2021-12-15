@@ -16,7 +16,7 @@ namespace Wisdom.Model
         public static string SubManagerName;
 
         // Зависимые от рабочих учебных программ (дисциплины)
-        public static string[] MetaDataCollection = new string[3];
+        public static List<string> MetaDataCollection = new List<string>();
 
         // Названия и ключи всех специальностей и сопутствующих им дисциплин
         public static ComboHeader DisciplineHead = new ComboHeader();
@@ -66,7 +66,7 @@ namespace Wisdom.Model
         public static string SelfHours = "-";
 
         // Часы подсчитываемые по типам работ (задается пользователем)
-        public static string[] HoursCollection = new string[7];
+        public static List<string> HoursCollection = new List<string>();
 
         // Типы значений
         // Используются для определения кол-ва полей

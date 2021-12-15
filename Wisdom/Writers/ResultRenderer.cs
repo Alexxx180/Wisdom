@@ -2,12 +2,14 @@
 using System;
 using System.IO;
 using System.Windows;
+using Wisdom.AutoGenerating;
 
 namespace Wisdom.Writers
 {
     public static class ResultRenderer
     {
-        private static readonly GeneratedClass renderer = new GeneratedClass();
+        //private static readonly GeneratedClass renderer = new GeneratedClass();
+        //private static readonly AutoFiller renderer = new AutoFiller();
 
         public static void WriteDoc(string fileName)
         {
@@ -15,7 +17,7 @@ namespace Wisdom.Writers
             {
                 if (File.Exists(fileName))
                     File.Delete(fileName);
-                renderer.CreatePackage(fileName);
+                AutoFiller.WriteDocX(fileName);
             }
             catch (IOException exception)
             {

@@ -199,15 +199,25 @@ namespace Wisdom
 
             CollegeName = College.Text;
 
-            DisciplineName = DpSelect.Text;
-            ProfessionName = SpSelect.Text;
+            DisciplineName = DpSelect.Text; //Text SelectedValue.ToString()
+            ProfessionName = SpSelect.Text; //Text
+
+            Trace.WriteLine(DpSelect.Text);
+            Trace.WriteLine(DpSelect.SelectedValue.ToString());
+            Trace.WriteLine(DpSelect.SelectedItem.ToString());
             MaxHours = Max.Content.ToString();
             SelfHours = Self.Text;
             EduHours = Usual.Text;
 
+            MetaDataCollection.Clear();
             List<string> factMetaData = MetaElement.GetValues(MetaData);
-            for (byte i = 0; i < factMetaData.Count; i++)
-                MetaDataCollection[i] = factMetaData[i];
+            MetaDataCollection.AddRange(factMetaData);
+
+            HoursCollection.Clear();
+            List<string> hours = HourElement.GetValues(TotalHoursCount);
+            HoursCollection.AddRange(hours);
+            //for (byte i = 0; i < factMetaData.Count; i++)
+            //    MetaDataCollection[i] = factMetaData[i];
 
             Order = new String2(OrderDate.Text, OrderNo.Text);
             GeneralCompetetions = GeneralCompetetion.FullGeneral(TotalCompAddSpace);
@@ -223,8 +233,8 @@ namespace Wisdom
         private void Create_Click(object sender, RoutedEventArgs e)
         {
             SetUpDocumentBlank();
-            CallWriter(FileName);
-            //WriteDoc();
+            //CallWriter(FileName);
+            WriteDoc();
         }
 
         private void Hours(object sender, TextCompositionEventArgs e)
@@ -236,11 +246,6 @@ namespace Wisdom
             CheckForPastingHours(sender, e);
         }
 
-        private void ResetLists(object sender, RoutedEventArgs e)
-        {
-            ListResetMethod(sender as Button);
-        }
-
         private void Stepping(object sender, RoutedEventArgs e)
         {
             Button step = sender as Button;
@@ -250,134 +255,6 @@ namespace Wisdom
             AnyHideX(Form1, Form2, Form3, Form4, Form5, Form6);
             AnyShow(form);
         }
-        private void DeleteLevel(object sender, RoutedEventArgs e)
-        {
-            Button addLevel = sender as Button;
-            Grid level = Parent(addLevel);
-            DropLevel(level);
-        }
-        private void DropLevel(Grid level)
-        {
-            RemoveRun(level.Tag);
-            AutoIndexing(RemoveGrid(level), 1, '.');
-        }
-
-        private void Levels_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ComboBox combobox = sender as ComboBox;
-            BindingExpression binding = GetBindExpress(combobox, ComboBox.ItemsSourceProperty);
-            binding.UpdateTarget();
-        }
-        private void DeleteContents(object sender, RoutedEventArgs e)
-        {
-            Button dropTask = sender as Button;
-            Grid grid = dropTask.Tag as Grid;
-            RemoveRun(grid.Tag);
-            AutoIndexing(RemoveGrid(grid), 1, '.');
-        }
-        private void AddLevel(object sender, RoutedEventArgs e)
-        {
-            StudyLevel(sender as Button).Click += DeleteLevel;
-        }
-        private void AddSource(object sender, RoutedEventArgs e)
-        {
-            Source(sender as Button).Click += DeleteSource;
-        }
-
-        private void AddContent(object sender, RoutedEventArgs e)
-        {
-            Button addNext = sender as Button;
-            TableContent(addNext, out TextBox hours).Click += AnyDeleteAuto;
-            hours.PreviewTextInput += Hours;
-            DataObject.AddPastingHandler(hours, PastingHours);
-        }
-        private void AddSources(object sender, RoutedEventArgs e)
-        {
-            ParagraphText(sender as Button, out Button delete, out Button add);
-            add.Click += AddSource;
-            delete.Click += DeleteSources;
-        }
-
-        private void DeleteAllSources()
-        {
-            while (EducationSources.Children.Count > 1)
-            {
-                Grid source = GridChild(EducationSources, 0);
-                DeleteSourceGroup(source);
-            }
-        }
-        private void DeleteSources(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            Grid current = Parent(btn);
-            DeleteSourceGroup(current);
-        }
-        private void DeleteSourceGroup(Grid sourceGroupGrid)
-        {
-            StackPanel panel = sourceGroupGrid.Parent as StackPanel;
-            panel.Children.Remove(sourceGroupGrid);
-            RemoveParagraph(sourceGroupGrid.Tag);
-        }
-        private void DeleteSource(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            Grid current = Parent(btn);
-            StackPanel panel = Parent(current);
-            panel.Children.Remove(current);
-            RemoveRunLB(current.Tag);
-            AutoIndexing(panel, 1, '.');
-        }
-        private void DeleteListItem2(object sender, RoutedEventArgs e)
-        {
-            Button btn = sender as Button;
-            Grid current = Parent(btn);
-            StackPanel panel = Parent(current);
-            panel.Children.Remove(current);
-            RemoveListItem(current.Tag);
-            AutoIndexing(panel, 1, '.');
-        }
-        private void NewTypeContent(object sender, RoutedEventArgs e)
-        {
-            NewTypeContentTasks(sender as Button);
-        }
-        private Button NewTypeContentTasks(Button newContent)
-        {
-            Button add = null, delete = null;
-            TextBox hours = null;
-            AutoDetectContentType(newContent, out hours, out delete, ref add);
-            hours.PreviewTextInput += Hours;
-            DataObject.AddPastingHandler(hours, PastingHours);
-            delete.Click += AnyDelete;
-            if (add != null)
-                add.Click += AddContent;
-            return delete;
-        }
-        private void AnyDelete(object sender, RoutedEventArgs e)
-        {
-            Button dropContent = sender as Button;
-            Grid content = dropContent.Tag as Grid;
-            RemoveTableRow(content.Tag);
-
-            TextBox box = content.Children[3] as TextBox;
-            if (box != null && box.Tag != null)
-            {
-                Binding bind = box.Tag as Binding;
-
-                StackPanel contentGroup = Parent(content);
-                Grid theme = Parent(contentGroup);
-                StackPanel themeStack = Parent(theme);
-                Grid topic = Parent(themeStack);
-                TextBox referHours = Box(topic, 3);
-
-                MultiBinding reCalculation = DeleteBindFromMulti(referHours,
-                    BackgroundProperty, new UsedValuesConverter(), bind);
-
-                _ = SetBind(referHours, BackgroundProperty, reCalculation);
-            }
-
-            _ = RemoveGrid(content);
-        }
-
 
         private void AnyDeleteAuto(object sender, RoutedEventArgs e)
         {
