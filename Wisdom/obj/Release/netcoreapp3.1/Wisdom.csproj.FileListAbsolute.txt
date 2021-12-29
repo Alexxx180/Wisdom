@@ -171,3 +171,5 @@ D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdo
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Applyment\ApplyElementAdditor.g.cs
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Applyment\ApplyElement.baml
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Applyment\ApplyElementAdditor.baml
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Competetions\GeneralAutoIndexer.g.cs
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Competetions\GeneralAutoIndexer.baml

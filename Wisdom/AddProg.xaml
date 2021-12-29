@@ -394,7 +394,7 @@
 
                     <!--TotalHoursCountPanel-->
 
-                    <Grid x:Name="TotalHoursCountPanel" Grid.Row="2" Grid.ColumnSpan="3" Visibility="Visible">
+                    <Grid x:Name="TotalHoursCountPanel" Grid.Row="2" Grid.ColumnSpan="3" Visibility="Hidden">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.07*"></RowDefinition>
                             <RowDefinition Height="0.93*"></RowDefinition>
@@ -469,7 +469,12 @@
                         </ScrollViewer>
                     </Grid>
 
-                    <Grid x:Name="TotalCompetetions" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden">
+                    <Grid x:Name="TotalCompetetions" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Visible">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.95*"></RowDefinition>
+                            <RowDefinition Height="0.05*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        
                         <ScrollViewer>
                             <StackPanel Background="#FFFFFCC7">
                                 <Grid x:Name="GeneralCompGroup">
@@ -492,6 +497,8 @@
                                 </Grid>
                             </StackPanel>
                         </ScrollViewer>
+
+                        <competetions:GeneralAutoIndexer Grid.Row="2" Tag="{x:Reference TotalCompAddSpace}" />
                     </Grid>
                     <Grid x:Name="ProfCompetetions" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden">
                         <ScrollViewer>

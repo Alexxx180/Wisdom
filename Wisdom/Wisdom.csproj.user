@@ -12,6 +12,9 @@
     <Compile Update="AddProg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Competetions\GeneralAutoIndexer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Competetions\GeneralCompetetion.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -87,6 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddProg.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Competetions\GeneralAutoIndexer.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Competetions\GeneralCompetetion.xaml">

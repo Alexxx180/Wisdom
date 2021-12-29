@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using static System.Convert;
 using static Wisdom.Customing.Converters;
 using Wisdom.Model;
+using static Wisdom.Writers.Content;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Wisdom.Controls.Competetions
 {
@@ -23,13 +26,23 @@ namespace Wisdom.Controls.Competetions
         };
 
         public int No { get; set; }
-        public string GeneralHeader => string.Format("ОК {0:00}", No);
+
+        public string GeneralPrefix => "ОК";
+        public string GeneralNo { get; set; }
+        public string GeneralHeader => GeneralPrefix + " " + GeneralNo;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        private static byte AutoOption = Bits(Indexing.AUTO);
+
+        public static void SetAuto(byte selection)
+        {
+            AutoOption = selection;
         }
 
         public GeneralCompetetion()
@@ -41,7 +54,34 @@ namespace Wisdom.Controls.Competetions
         public void SetNo(int no)
         {
             No = no;
+            GeneralNo = string.Format("{0:00}", no);
+            OnPropertyChanged(nameof(GeneralNo));
             OnPropertyChanged(nameof(GeneralHeader));
+        }
+
+        private string MemoryNo = "";
+
+        private void GeneralNo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            MemoryNo = GeneralNo;
+            GeneralNo = "";
+            OnPropertyChanged(nameof(GeneralNo));
+        }
+
+        private void GeneralNo_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            string generalNo = box.Text;
+            if (generalNo.Length <= 0)
+            {
+                GeneralNo = MemoryNo;
+                OnPropertyChanged(nameof(GeneralNo));
+            }
+            else
+            {
+                int no = ToInt32(generalNo);
+                SetNo(no);
+            }
         }
 
         public static List<HoursList<String2>> FullGeneral(StackPanel compStack)
@@ -65,7 +105,15 @@ namespace Wisdom.Controls.Competetions
             for (byte i = 0; i < competetions.Count; i++)
                 AddElement(competetions[i].Hours, competetions[i].Values, stack);
             GeneralCompetetionAdditor.AddElement(stack);
-            AutoIndexing(stack);
+            if (AutoOption == Bits(Indexing.AUTO))
+                AutoIndexing(stack);
+        }
+
+        public static void AddElement(int no, string name, StackPanel stack)
+        {
+            GeneralCompetetion element = SetElement(name);
+            element.SetNo(no);
+            _ = stack.Children.Add(element);
         }
 
         public static void AddElement(string name, StackPanel stack)
@@ -94,7 +142,8 @@ namespace Wisdom.Controls.Competetions
             GeneralCompetetion competetion = compGrid.Parent as GeneralCompetetion;
             StackPanel workPanel = Parent(competetion);
             workPanel.Children.Remove(competetion);
-            AutoIndexing(workPanel);
+            if (AutoOption == Bits(Indexing.AUTO))
+                AutoIndexing(workPanel);
         }
 
         private static GeneralCompetetion SetElement(string name)
@@ -132,6 +181,15 @@ namespace Wisdom.Controls.Competetions
         {
             IGeneralIndexing task = grandGrid.Children[no] as IGeneralIndexing;
             task.SetNo(no + 1);
+        }
+
+        private void Hours(object sender, TextCompositionEventArgs e)
+        {
+            CheckForHours(sender, e);
+        }
+        private void PastingHours(object sender, DataObjectPastingEventArgs e)
+        {
+            CheckForPastingHours(sender, e);
         }
     }
 }

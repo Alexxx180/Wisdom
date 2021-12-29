@@ -227,8 +227,8 @@ namespace Wisdom
         private void Create_Click(object sender, RoutedEventArgs e)
         {
             SetUpDocumentBlank();
-            //CallWriter(FileName);
-            WriteDoc();
+            CallWriter(FileName);
+            //WriteDoc();
         }
 
         private void Hours(object sender, TextCompositionEventArgs e)

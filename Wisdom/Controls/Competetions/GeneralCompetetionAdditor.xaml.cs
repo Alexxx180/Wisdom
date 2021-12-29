@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using static System.Convert;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Controls;
 using static Wisdom.Customing.Converters;
+using static Wisdom.Writers.Content;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -12,13 +15,24 @@ namespace Wisdom.Controls.Competetions
     public partial class GeneralCompetetionAdditor : UserControl, INotifyPropertyChanged, IGeneralIndexing
     {
         public int No { get; set; }
-        public string GeneralHeader => string.Format("ОК {0:00}", No);
+
+        public string GeneralPrefix => "ОК";
+        //public string GeneralHeader => string.Format("ОК {0:00}", No);
+        public string GeneralNo { get; set; }
+        public string GeneralHeader => GeneralPrefix + " " + GeneralNo;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        private static byte AutoOption = Bits(Indexing.AUTO);
+
+        public static void SetAuto(byte selection)
+        {
+            AutoOption = selection;
         }
 
         public GeneralCompetetionAdditor()
@@ -30,14 +44,35 @@ namespace Wisdom.Controls.Competetions
         public void SetNo(int no)
         {
             No = no;
+            GeneralNo = string.Format("{0:00}", no);
             OnPropertyChanged(nameof(GeneralHeader));
+        }
+
+        private string MemoryNo = "";
+
+        private void GeneralNo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            MemoryNo = GeneralNo;
+            GeneralNo = "";
+        }
+
+        private void GeneralNo_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (GeneralNo.Length <= 0)
+                GeneralNo = MemoryNo;
+            else
+            {
+                int no = ToInt32(GeneralNo);
+                SetNo(no);
+            }
         }
 
         public static void AddElement(StackPanel stack)
         {
             GeneralCompetetionAdditor element = SetElement();
             _ = stack.Children.Add(element);
-            AutoIndexing(stack);
+            if (AutoOption == Bits(Indexing.AUTO))
+                AutoIndexing(stack);
         }
 
         private void AddCompetetion(object sender, RoutedEventArgs e)
@@ -48,9 +83,20 @@ namespace Wisdom.Controls.Competetions
             GeneralCompetetionAdditor competetionAdd = compGrid.Parent as GeneralCompetetionAdditor;
             StackPanel competetionPanel = Parent(competetionAdd);
             competetionPanel.Children.Remove(competetionAdd);
-            GeneralCompetetion.AddElement(name.Text, competetionPanel);
+            GeneralCompetetion.AddElement(No, name.Text, competetionPanel);
             competetionPanel.Children.Add(competetionAdd);
-            AutoIndexing(competetionPanel);
+            Indexing option = (Indexing)AutoOption;
+            switch (option)
+            {
+                case Indexing.AUTO:
+                    AutoIndexing(competetionPanel);
+                    break;
+                case Indexing.NEW_ONLY:
+                    SetNo(No + 1);
+                    break;
+                default:
+                    break;
+            }   
         }
 
         private static GeneralCompetetionAdditor SetElement() => new GeneralCompetetionAdditor();
@@ -67,6 +113,15 @@ namespace Wisdom.Controls.Competetions
         {
             IGeneralIndexing task = grandGrid.Children[no] as IGeneralIndexing;
             task.SetNo(no + 1);
+        }
+
+        private void Hours(object sender, TextCompositionEventArgs e)
+        {
+            CheckForHours(sender, e);
+        }
+        private void PastingHours(object sender, DataObjectPastingEventArgs e)
+        {
+            CheckForPastingHours(sender, e);
         }
     }
 }

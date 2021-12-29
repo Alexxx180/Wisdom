@@ -16,7 +16,17 @@
         </Grid.ColumnDefinitions>
 
         <Button Click="AddCompetetion" Style="{StaticResource ResourceKey=AddButton}"></Button>
-        <TextBlock  Grid.Column="1" Text="{Binding Path=GeneralHeader}" Style="{StaticResource No1}" />
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Path=GeneralPrefix}" Style="{StaticResource No1}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBox Grid.Column="1" Text="{Binding Path=GeneralNo, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TextAlignment="Right" PreviewTextInput="Hours" DataObject.Pasting="PastingHours" Style="{StaticResource RegularBox}" LostFocus="GeneralNo_LostFocus" GotFocus="GeneralNo_GotFocus" />
+        </Grid>
+
+        
         <TextBox  Grid.Column="2" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />
     </Grid>
 </UserControl>
