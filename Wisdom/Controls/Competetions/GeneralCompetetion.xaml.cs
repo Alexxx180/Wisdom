@@ -27,8 +27,20 @@ namespace Wisdom.Controls.Competetions
 
         public int No { get; set; }
 
+        private string _memoryNo = "";
+        private string _generalNo = "";
+        public string GeneralNo
+        {
+            get => _generalNo;
+            set
+            {
+                _generalNo = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string GeneralPrefix => "ОК";
-        public string GeneralNo { get; set; }
+        
         public string GeneralHeader => GeneralPrefix + " " + GeneralNo;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -38,16 +50,30 @@ namespace Wisdom.Controls.Competetions
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        private static byte AutoOption = Bits(Indexing.AUTO);
+        public byte AutoOption { get; set; }
+        public bool CanBeEdited => AutoOption == Bits(Indexing.MANUAL);
 
-        public static void SetAuto(byte selection)
+        public void SetAuto(byte selection)
         {
             AutoOption = selection;
+            OnPropertyChanged(nameof(CanBeEdited));
+            System.Diagnostics.Trace.WriteLine(AutoOption);
+            System.Diagnostics.Trace.WriteLine(CanBeEdited);
+        }
+
+        public static void SetAutoOptions(StackPanel stack, byte selection)
+        {
+            for (byte i = 0; i < stack.Children.Count; i++)
+            {
+                IGeneralIndexing element = stack.Children[i] as IGeneralIndexing;
+                element.SetAuto(selection);
+            }
         }
 
         public GeneralCompetetion()
         {
             InitializeComponent();
+            SetAuto(Bits(Indexing.AUTO));
             SetNo(1);
         }
 
@@ -55,17 +81,13 @@ namespace Wisdom.Controls.Competetions
         {
             No = no;
             GeneralNo = string.Format("{0:00}", no);
-            OnPropertyChanged(nameof(GeneralNo));
             OnPropertyChanged(nameof(GeneralHeader));
         }
 
-        private string MemoryNo = "";
-
         private void GeneralNo_GotFocus(object sender, RoutedEventArgs e)
         {
-            MemoryNo = GeneralNo;
+            _memoryNo = GeneralNo;
             GeneralNo = "";
-            OnPropertyChanged(nameof(GeneralNo));
         }
 
         private void GeneralNo_LostFocus(object sender, RoutedEventArgs e)
@@ -73,10 +95,7 @@ namespace Wisdom.Controls.Competetions
             TextBox box = sender as TextBox;
             string generalNo = box.Text;
             if (generalNo.Length <= 0)
-            {
-                GeneralNo = MemoryNo;
-                OnPropertyChanged(nameof(GeneralNo));
-            }
+                GeneralNo = _memoryNo;
             else
             {
                 int no = ToInt32(generalNo);
@@ -105,8 +124,19 @@ namespace Wisdom.Controls.Competetions
             for (byte i = 0; i < competetions.Count; i++)
                 AddElement(competetions[i].Hours, competetions[i].Values, stack);
             GeneralCompetetionAdditor.AddElement(stack);
-            if (AutoOption == Bits(Indexing.AUTO))
+            IGeneralIndexing element = GetElement(stack, 0);
+            if (element == null)
+                return;
+            if (element.AutoOption == Bits(Indexing.AUTO))
                 AutoIndexing(stack);
+        }
+
+        public static void AddElement(int no, string name, StackPanel stack, byte auto)
+        {
+            GeneralCompetetion element = SetElement(name);
+            element.SetNo(no);
+            element.SetAuto(auto);
+            _ = stack.Children.Add(element);
         }
 
         public static void AddElement(int no, string name, StackPanel stack)
@@ -167,6 +197,11 @@ namespace Wisdom.Controls.Competetions
             compSkills.Text = skills;
             compKnowledge.Text = knowledge;
             return competetion;
+        }
+
+        public static IGeneralIndexing GetElement(StackPanel stack, in int no)
+        {
+            return stack.Children[no] as IGeneralIndexing;
         }
 
         public static void AutoIndexing(StackPanel grandGrid)

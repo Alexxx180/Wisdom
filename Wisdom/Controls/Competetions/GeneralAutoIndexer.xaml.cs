@@ -8,12 +8,11 @@ namespace Wisdom.Controls.Competetions
     /// </summary>
     public partial class GeneralAutoIndexer : UserControl
     {
-        public StackPanel ToIndex;
+        public StackPanel ToIndex => Tag as StackPanel;
 
         public GeneralAutoIndexer()
         {
             InitializeComponent();
-            ToIndex = Tag as StackPanel;
         }
 
         private void AutoIndexing(object sender, SelectionChangedEventArgs e)
@@ -25,8 +24,7 @@ namespace Wisdom.Controls.Competetions
 
         private void SetAuto(byte selection)
         {
-            GeneralCompetetion.SetAuto(selection);
-            GeneralCompetetionAdditor.SetAuto(selection);
+            GeneralCompetetion.SetAutoOptions(ToIndex, selection);
         }
     }
 }

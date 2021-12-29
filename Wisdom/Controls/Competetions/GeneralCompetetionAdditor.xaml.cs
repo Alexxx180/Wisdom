@@ -16,9 +16,19 @@ namespace Wisdom.Controls.Competetions
     {
         public int No { get; set; }
 
+        private string _memoryNo = "";
+        private string _generalNo = "";
+        public string GeneralNo
+        {
+            get => _generalNo;
+            set
+            {
+                _generalNo = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string GeneralPrefix => "ОК";
-        //public string GeneralHeader => string.Format("ОК {0:00}", No);
-        public string GeneralNo { get; set; }
         public string GeneralHeader => GeneralPrefix + " " + GeneralNo;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -28,16 +38,28 @@ namespace Wisdom.Controls.Competetions
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        private static byte AutoOption = Bits(Indexing.AUTO);
+        public byte AutoOption { get; set; }
+        public bool CanBeEdited => AutoOption == Bits(Indexing.MANUAL);
 
-        public static void SetAuto(byte selection)
+        public void SetAuto(byte selection)
         {
             AutoOption = selection;
+            OnPropertyChanged(nameof(CanBeEdited));
+        }
+
+        public static void SetAutoOptions(StackPanel stack, byte selection)
+        {
+            for (byte i = 0; i < stack.Children.Count; i++)
+            {
+                IGeneralIndexing element = stack.Children[i] as IGeneralIndexing;
+                element.SetAuto(selection);
+            }
         }
 
         public GeneralCompetetionAdditor()
         {
             InitializeComponent();
+            SetAuto(Bits(Indexing.AUTO));
             SetNo(1);
         }
 
@@ -48,21 +70,21 @@ namespace Wisdom.Controls.Competetions
             OnPropertyChanged(nameof(GeneralHeader));
         }
 
-        private string MemoryNo = "";
-
         private void GeneralNo_GotFocus(object sender, RoutedEventArgs e)
         {
-            MemoryNo = GeneralNo;
+            _memoryNo = GeneralNo;
             GeneralNo = "";
         }
 
         private void GeneralNo_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (GeneralNo.Length <= 0)
-                GeneralNo = MemoryNo;
+            TextBox box = sender as TextBox;
+            string generalNo = box.Text;
+            if (generalNo.Length <= 0)
+                GeneralNo = _memoryNo;
             else
             {
-                int no = ToInt32(GeneralNo);
+                int no = ToInt32(generalNo);
                 SetNo(no);
             }
         }
@@ -71,7 +93,10 @@ namespace Wisdom.Controls.Competetions
         {
             GeneralCompetetionAdditor element = SetElement();
             _ = stack.Children.Add(element);
-            if (AutoOption == Bits(Indexing.AUTO))
+            IGeneralIndexing indexing = GetElement(stack, 0);
+            if (indexing == null)
+                return;
+            if (indexing.AutoOption == Bits(Indexing.AUTO))
                 AutoIndexing(stack);
         }
 
@@ -83,7 +108,7 @@ namespace Wisdom.Controls.Competetions
             GeneralCompetetionAdditor competetionAdd = compGrid.Parent as GeneralCompetetionAdditor;
             StackPanel competetionPanel = Parent(competetionAdd);
             competetionPanel.Children.Remove(competetionAdd);
-            GeneralCompetetion.AddElement(No, name.Text, competetionPanel);
+            GeneralCompetetion.AddElement(No, name.Text, competetionPanel, Bits(Indexing.NEW_ONLY));
             competetionPanel.Children.Add(competetionAdd);
             Indexing option = (Indexing)AutoOption;
             switch (option)
@@ -100,6 +125,11 @@ namespace Wisdom.Controls.Competetions
         }
 
         private static GeneralCompetetionAdditor SetElement() => new GeneralCompetetionAdditor();
+
+        public static IGeneralIndexing GetElement(StackPanel stack, in int no)
+        {
+            return stack.Children[no] as IGeneralIndexing;
+        }
 
         public static void AutoIndexing(StackPanel grandGrid)
         {

@@ -498,7 +498,7 @@
                             </StackPanel>
                         </ScrollViewer>
 
-                        <competetions:GeneralAutoIndexer Grid.Row="2" Tag="{x:Reference TotalCompAddSpace}" />
+                        <competetions:GeneralAutoIndexer Grid.Row="2" Tag="{x:Reference Name=TotalCompAddSpace}" />
                     </Grid>
                     <Grid x:Name="ProfCompetetions" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden">
                         <ScrollViewer>

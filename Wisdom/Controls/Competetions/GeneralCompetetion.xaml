@@ -30,7 +30,14 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{Binding Path=GeneralPrefix}" Style="{StaticResource No1}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <TextBox Grid.Column="1" Text="{Binding Path=GeneralNo, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" TextAlignment="Right" PreviewTextInput="Hours" DataObject.Pasting="PastingHours" Style="{StaticResource RegularBox}" LostFocus="GeneralNo_LostFocus" GotFocus="GeneralNo_GotFocus" />
+            <TextBox Grid.Column="1" TextAlignment="Right" PreviewTextInput="Hours" DataObject.Pasting="PastingHours" Style="{StaticResource RegularBox}" LostFocus="GeneralNo_LostFocus" GotFocus="GeneralNo_GotFocus" >
+                <TextBox.Text>
+                    <Binding Path="GeneralNo" Mode="TwoWay" UpdateSourceTrigger="LostFocus" />
+                </TextBox.Text>
+                <TextBox.IsEnabled>
+                    <Binding Path="CanBeEdited"/>
+                </TextBox.IsEnabled>
+            </TextBox>
         </Grid>
 
         <TextBox x:Name="GeneralName" Grid.Column="2" Text="" Grid.ColumnSpan="3" Style="{StaticResource RegularBox}" />
