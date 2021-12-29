@@ -57,8 +57,6 @@ namespace Wisdom.Controls.Competetions
         {
             AutoOption = selection;
             OnPropertyChanged(nameof(CanBeEdited));
-            System.Diagnostics.Trace.WriteLine(AutoOption);
-            System.Diagnostics.Trace.WriteLine(CanBeEdited);
         }
 
         public static void SetAutoOptions(StackPanel stack, byte selection)
@@ -68,6 +66,11 @@ namespace Wisdom.Controls.Competetions
                 IGeneralIndexing element = stack.Children[i] as IGeneralIndexing;
                 element.SetAuto(selection);
             }
+            if (stack.Children.Count < 1)
+                return;
+            IGeneralIndexing indexing = GetElement(stack, 0);
+            if (indexing.AutoOption == Bits(Indexing.AUTO))
+                AutoIndexing(stack);
         }
 
         public GeneralCompetetion()
@@ -119,14 +122,30 @@ namespace Wisdom.Controls.Competetions
             stack.Children.Clear();
         }
 
+        public static void AddElements(List<HoursList<String2>> competetions, StackPanel stack, byte auto)
+        {
+            for (byte i = 0; i < competetions.Count; i++)
+            {
+                HoursList<String2> current = competetions[i];
+                int no = ToInt32(current.Name);
+                string name = current.Hours;
+                List<String2> skills = current.Values;
+                AddElement(no, name, skills, stack, auto);
+            }    
+                
+            GeneralCompetetionAdditor.AddElement(stack);
+            if (auto == Bits(Indexing.AUTO))
+                AutoIndexing(stack);
+        }
+
         public static void AddElements(List<HoursList<String2>> competetions, StackPanel stack)
         {
             for (byte i = 0; i < competetions.Count; i++)
                 AddElement(competetions[i].Hours, competetions[i].Values, stack);
             GeneralCompetetionAdditor.AddElement(stack);
-            IGeneralIndexing element = GetElement(stack, 0);
-            if (element == null)
+            if (stack.Children.Count < 1)
                 return;
+            IGeneralIndexing element = GetElement(stack, 0);
             if (element.AutoOption == Bits(Indexing.AUTO))
                 AutoIndexing(stack);
         }
@@ -152,10 +171,25 @@ namespace Wisdom.Controls.Competetions
             _ = stack.Children.Add(element);
         }
 
+        public static void AddElement(int no, string name,
+            List<String2> abilities, StackPanel stack, byte auto)
+        {
+            AddElement(no, name, abilities[0].Value, abilities[1].Value, stack, auto);
+        }
+
         public static void AddElement(string name,
             List<String2> abilities, StackPanel stack)
         {
             AddElement(name, abilities[0].Value, abilities[1].Value, stack);
+        }
+
+        public static void AddElement(int no, string name,
+            string knowledge, string skills, StackPanel stack, byte auto)
+        {
+            GeneralCompetetion element = SetElement(name, knowledge, skills);
+            element.SetNo(no);
+            element.SetAuto(auto);
+            _ = stack.Children.Add(element);
         }
 
         public static void AddElement(string name,

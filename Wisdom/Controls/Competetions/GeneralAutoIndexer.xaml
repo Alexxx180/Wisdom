@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wisdom.Controls"
              mc:Ignorable="d" 
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="30" d:DesignWidth="400">
     <Grid>
         <ComboBox Style="{StaticResource SubCaptionBox}" SelectionChanged="AutoIndexing">
+            <ComboBox.SelectedIndex>
+                <Binding Path="Selected" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" />
+            </ComboBox.SelectedIndex>
             <ComboBoxItem>Автоматически</ComboBoxItem>
             <ComboBoxItem>Вручную</ComboBoxItem>
             <ComboBoxItem>Только новые</ComboBoxItem>

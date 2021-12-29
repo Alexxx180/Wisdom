@@ -151,7 +151,10 @@ namespace Wisdom
 
             ProfessionName = SelectedSpeciality.Name;
             GeneralCompetetion.DropGeneral(TotalCompAddSpace);
-            GeneralCompetetion.AddElements(SelectedSpeciality.GeneralCompetetions, TotalCompAddSpace);
+            byte manual = Bits(Indexing.MANUAL);
+            GeneralIndexer.Selected = manual;
+            GeneralCompetetion.AddElements(SelectedSpeciality.GeneralCompetetions, TotalCompAddSpace, manual);
+            GeneralCompetetionAdditor.SetAutoOptions(TotalCompAddSpace, manual);
             ProfessionalDivider.DropProfessional(ProfCompAddSpace);
             ProfessionalDivider.AddElements(SelectedSpeciality.ProfessionalCompetetions, ProfCompAddSpace);
         }

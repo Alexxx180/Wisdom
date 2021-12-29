@@ -238,15 +238,14 @@ namespace Wisdom.Model.DataBase
             List<HoursList<String2>> competetions = new List<HoursList<String2>>();
             for (int i = 0; i < generalCompetetions.Count; i++)
             {
-                competetions.Add(new HoursList<String2>("ОК " +
-                    generalCompetetions[i][1], generalCompetetions[i][2].ToString()));
+                string no = generalCompetetions[i][1].ToString(); //"ОК " +
+                string name = generalCompetetions[i][2].ToString();
+                competetions.Add(new HoursList<String2>(no, name));
 
-                competetions[i].Values.Add(
-                    new String2("Умения",
-                    generalCompetetions[i][4].ToString()));
-                competetions[i].Values.Add(
-                    new String2("Знания",
-                    generalCompetetions[i][3].ToString()));
+                string skills = generalCompetetions[i][4].ToString();
+                string knowledge = generalCompetetions[i][3].ToString();
+                competetions[i].Values.Add(new String2("Умения", skills));
+                competetions[i].Values.Add(new String2("Знания", knowledge));
             }
             return competetions;
         }

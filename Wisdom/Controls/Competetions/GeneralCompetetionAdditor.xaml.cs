@@ -108,7 +108,7 @@ namespace Wisdom.Controls.Competetions
             GeneralCompetetionAdditor competetionAdd = compGrid.Parent as GeneralCompetetionAdditor;
             StackPanel competetionPanel = Parent(competetionAdd);
             competetionPanel.Children.Remove(competetionAdd);
-            GeneralCompetetion.AddElement(No, name.Text, competetionPanel, Bits(Indexing.NEW_ONLY));
+            GeneralCompetetion.AddElement(No, name.Text, competetionPanel, AutoOption);
             competetionPanel.Children.Add(competetionAdd);
             Indexing option = (Indexing)AutoOption;
             switch (option)
