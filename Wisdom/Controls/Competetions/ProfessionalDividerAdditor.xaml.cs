@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static System.Convert;
 using static Wisdom.Customing.Converters;
 using static Wisdom.Writers.Content;
 using Wisdom.Model;
@@ -23,7 +24,20 @@ namespace Wisdom.Controls.Competetions
 
         public int No1 { get; set; }
 
-        public string DividerHeader => $"ПК {No1}.";
+        private string _memoryNo = "";
+        private string _dividerNo = "";
+        public string DividerNo
+        {
+            get => _dividerNo;
+            set
+            {
+                _dividerNo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string DividerPrefix => "ПК";
+        public string DividerHeader => DividerPrefix + " " + DividerNo;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
@@ -32,10 +46,38 @@ namespace Wisdom.Controls.Competetions
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
+        public byte AutoOption { get; set; }
+        public bool CanBeEdited => AutoOption == Bits(Indexing.MANUAL);
+
+        public void SetAuto(byte selection)
+        {
+            AutoOption = selection;
+            OnPropertyChanged(nameof(CanBeEdited));
+        }
+
         public void SetNo1(int no)
         {
             No1 = no;
+            DividerNo = no.ToString();
             OnPropertyChanged(nameof(DividerHeader));
+        }
+
+        private void DividerNo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            DividerNo = RememberNo(out _memoryNo, DividerNo);
+        }
+
+        private void DividerNo_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            string dividerNo = box.Text;
+            if (dividerNo.Length <= 0)
+                DividerNo = _memoryNo;
+            else
+            {
+                int no = ToInt32(dividerNo);
+                SetNo1(no);
+            }
         }
 
         public static void AddElement(StackPanel stack)
@@ -51,10 +93,21 @@ namespace Wisdom.Controls.Competetions
             ProfessionalDividerAdditor competetion = compGrid.Parent as ProfessionalDividerAdditor;
             StackPanel compPanel = Parent(competetion);
             compPanel.Children.Remove(competetion);
-            ProfessionalDivider.AddElement(compPanel);
+            ProfessionalDivider.AddElement(compPanel, AutoOption, No1);
             compPanel.Children.Add(competetion);
-            AutoIndexing3(compPanel);
-            AutoIndexing(compPanel);
+            Indexing option = (Indexing)AutoOption;
+            switch (option)
+            {
+                case Indexing.AUTO:
+                    AutoIndexing3(compPanel);
+                    AutoIndexing(compPanel);
+                    break;
+                case Indexing.NEW_ONLY:
+                    SetNo1(No1 + 1);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public StackPanel GetCompetetionsStack()
@@ -87,7 +140,7 @@ namespace Wisdom.Controls.Competetions
         {
             ProfessionalDivider topic = grandGrid.Children[no] as ProfessionalDivider;
             if (topic != null)
-                ProfessionalCompetetion.PassNo1(topic.GetCompetetionsStack(), no + 1);
+                topic.Index2(no + 1);
         }
 
         private static ProfessionalDividerAdditor SetElement() => new ProfessionalDividerAdditor();

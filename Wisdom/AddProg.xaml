@@ -469,7 +469,7 @@
                         </ScrollViewer>
                     </Grid>
 
-                    <Grid x:Name="TotalCompetetions" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Visible">
+                    <Grid x:Name="TotalCompetetions" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.95*"></RowDefinition>
                             <RowDefinition Height="0.05*"></RowDefinition>
@@ -500,12 +500,19 @@
 
                         <competetions:GeneralAutoIndexer x:Name="GeneralIndexer" Grid.Row="2" Tag="{x:Reference Name=TotalCompAddSpace}" />
                     </Grid>
-                    <Grid x:Name="ProfCompetetions" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden">
+                    <Grid x:Name="ProfCompetetions" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Visible">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.95*" />
+                            <RowDefinition Height="0.05*" />
+                        </Grid.RowDefinitions>
+                        
                         <ScrollViewer>
                             <StackPanel Background="#FFFFFCC7" x:Name="ProfCompAddSpace">
                                 <competetions:ProfessionalDividerAdditor/>
                             </StackPanel>
                         </ScrollViewer>
+
+                        <competetions:ProfessionalAutoIndexer x:Name="ProfessionalIndexer" Grid.Row="2" Tag="{x:Reference Name=ProfCompAddSpace}" />
                     </Grid>
 
                 </Grid>

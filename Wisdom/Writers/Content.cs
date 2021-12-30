@@ -209,13 +209,6 @@ namespace Wisdom.Writers
             taskNo.Text = $"{prefix}{no + 1}{mark}";
         }
 
-        private static readonly Regex _hours = new Regex("^([1-9]|[1-9]\\d\\d?)$");//v\\d
-        public static void CheckForHours(object sender, TextCompositionEventArgs e)
-        {
-            TextBox box = e.OriginalSource as TextBox;
-            string full = box.Text.Insert(box.CaretIndex, e.Text);
-            e.Handled = !_hours.IsMatch(full);
-        }
         private static string GetProposedText(TextBox textBox, string newText)
         {
             var text = textBox.Text;
@@ -223,6 +216,20 @@ namespace Wisdom.Writers
                 text = text.Remove(textBox.SelectionStart, textBox.SelectionLength);
             text = text.Insert(textBox.CaretIndex, newText);
             return text;
+        }
+
+        public static string RememberNo(out string memory, string no)
+        {
+            memory = no;
+            return "";
+        }
+
+        private static readonly Regex _hours = new Regex("^([1-9]|[1-9]\\d\\d?)$");//v\\d
+        public static void CheckForHours(object sender, TextCompositionEventArgs e)
+        {
+            TextBox box = e.OriginalSource as TextBox;
+            string full = box.Text.Insert(box.CaretIndex, e.Text);
+            e.Handled = !_hours.IsMatch(full);
         }
         public static void CheckForPastingHours(object sender, DataObjectPastingEventArgs e)
         {
@@ -243,6 +250,7 @@ namespace Wisdom.Writers
                 e.CancelCommand();
             }
         }
+
 
     }
 }

@@ -14,8 +14,25 @@
         </Grid.ColumnDefinitions>
 
         <Button Click="AddDivision" Style="{StaticResource ResourceKey=AddButton}"></Button>
-        <Border Background="#FF03C6FF" Grid.Column="1">
-            <TextBlock Style="{StaticResource ResourceKey=ListCaptions}" Text="{Binding Path=DividerHeader}" Padding="5"></TextBlock>
-        </Border>
+
+        <Grid Grid.Column="1" Background="#FF03C6FF">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="Prefix" Style="{StaticResource ResourceKey=ListCaptions}" Text="{Binding Path=DividerPrefix}" Padding="5"></TextBlock>
+            <TextBox x:Name="Number" Grid.Column="1" TextAlignment="Right" Padding="5" GotFocus="DividerNo_GotFocus" LostFocus="DividerNo_LostFocus">
+                <TextBox.Style>
+                    <Style BasedOn="{StaticResource ResourceKey=ListCaptions}"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="DividerNo" Mode="TwoWay" UpdateSourceTrigger="LostFocus" />
+                </TextBox.Text>
+                <TextBox.IsEnabled>
+                    <Binding Path="CanBeEdited" />
+                </TextBox.IsEnabled>
+            </TextBox>
+        </Grid>
     </Grid>
 </UserControl>

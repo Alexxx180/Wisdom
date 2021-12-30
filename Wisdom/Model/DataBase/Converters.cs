@@ -238,12 +238,13 @@ namespace Wisdom.Model.DataBase
             List<HoursList<String2>> competetions = new List<HoursList<String2>>();
             for (int i = 0; i < generalCompetetions.Count; i++)
             {
-                string no = generalCompetetions[i][1].ToString(); //"ОК " +
-                string name = generalCompetetions[i][2].ToString();
+                object[] row = generalCompetetions[i];
+                string no = row[1].ToString();
+                string name = row[2].ToString();
                 competetions.Add(new HoursList<String2>(no, name));
 
-                string skills = generalCompetetions[i][4].ToString();
-                string knowledge = generalCompetetions[i][3].ToString();
+                string skills = row[4].ToString();
+                string knowledge = row[3].ToString();
                 competetions[i].Values.Add(new String2("Умения", skills));
                 competetions[i].Values.Add(new String2("Знания", knowledge));
             }
@@ -253,28 +254,32 @@ namespace Wisdom.Model.DataBase
         private static List<List<HoursList<String2>>> SetProfessional(List<object[]> professionalCompetetions)
         {
             List<List<HoursList<String2>>> competetions = new List<List<HoursList<String2>>>();
-            int no1 = 0;
+            int memoryNo = 0;
             for (int i = 0; i < professionalCompetetions.Count; i++)
             {
                 int current = Ints(professionalCompetetions[i][1]);
-                if (no1 < current)
+                if (memoryNo < current)
                 {
                     competetions.Add(new List<HoursList<String2>>());
-                    no1 = current;
+                    memoryNo = current;
                 }
-                int recount = no1 - 1;
-                competetions[recount]
-                    .Add(new HoursList<String2>("ПК " + professionalCompetetions[i][1] + "."
-                    + professionalCompetetions[i][2].ToString(),
-                    professionalCompetetions[i][3].ToString()));
+                int recount = memoryNo - 1;
+
+                object[] row = professionalCompetetions[i];
+                string no1 = row[1].ToString();
+                string no2 = row[2].ToString();
+                string name = row[3].ToString();
+                competetions[recount].Add(new HoursList<String2>($"ПК {no1}.{no2}", name));
+
+                string experience = row[6].ToString();
+                string skills = row[5].ToString();
+                string knowledge = row[4].ToString();
 
                 int recount2 = competetions[recount].Count - 1;
-                competetions[recount][recount2].Values.Add(
-                    new String2("Практический опыт", professionalCompetetions[i][6].ToString()));
-                competetions[recount][recount2].Values.Add(
-                    new String2("Умения", professionalCompetetions[i][5].ToString()));
-                competetions[recount][recount2].Values.Add(
-                    new String2("Знания", professionalCompetetions[i][4].ToString()));
+                HoursList<String2> skillsList = competetions[recount][recount2];
+                skillsList.Values.Add(new String2("Практический опыт", experience));
+                skillsList.Values.Add(new String2("Умения", skills));
+                skillsList.Values.Add(new String2("Знания", knowledge));
             }
             return competetions;
         }

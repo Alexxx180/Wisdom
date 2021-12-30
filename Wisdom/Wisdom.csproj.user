@@ -21,6 +21,9 @@
     <Compile Update="Controls\Competetions\GeneralCompetetionAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Competetions\ProfessionalAutoIndexer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Competetions\ProfessionalCompetetion.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -99,6 +102,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Competetions\GeneralCompetetionAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Competetions\ProfessionalAutoIndexer.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Competetions\ProfessionalCompetetion.xaml">

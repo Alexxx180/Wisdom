@@ -47,15 +47,6 @@ namespace Wisdom.Controls.Competetions
             OnPropertyChanged(nameof(CanBeEdited));
         }
 
-        public static void SetAutoOptions(StackPanel stack, byte selection)
-        {
-            for (byte i = 0; i < stack.Children.Count; i++)
-            {
-                IGeneralIndexing element = stack.Children[i] as IGeneralIndexing;
-                element.SetAuto(selection);
-            }
-        }
-
         public GeneralCompetetionAdditor()
         {
             InitializeComponent();
@@ -121,7 +112,7 @@ namespace Wisdom.Controls.Competetions
                     break;
                 default:
                     break;
-            }   
+            }
         }
 
         private static GeneralCompetetionAdditor SetElement() => new GeneralCompetetionAdditor();

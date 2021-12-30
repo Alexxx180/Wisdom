@@ -24,7 +24,16 @@
         </Grid.RowDefinitions>
 
         <Button Click="DropCompetetion" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-        <TextBlock Grid.Column="1" Text="{Binding Path=ProfessionalHeader}" Style="{StaticResource No1}" />
+
+        <TextBox Grid.Column="1" TextAlignment="Right" PreviewTextInput="Hours" DataObject.Pasting="PastingHours" Style="{StaticResource RegularBox}" LostFocus="ProfessionalNo_LostFocus" GotFocus="ProfessionalNo_GotFocus" >
+            <TextBox.Text>
+                <Binding Path="ProfessionalNo" Mode="TwoWay" UpdateSourceTrigger="LostFocus" />
+            </TextBox.Text>
+            <TextBox.IsEnabled>
+                <Binding Path="CanBeEdited"/>
+            </TextBox.IsEnabled>
+        </TextBox>
+
         <TextBox x:Name="ProfessionalName" Grid.Column="2" Text="" Grid.ColumnSpan="3" Style="{StaticResource RegularBox}" />
         <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="Практический опыт:" Style="{StaticResource No1}" />
         <TextBox x:Name="ProfessionalExperience" Grid.Row="1" Grid.Column="3" Text="" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}" />

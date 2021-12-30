@@ -89,8 +89,7 @@ namespace Wisdom.Controls.Competetions
 
         private void GeneralNo_GotFocus(object sender, RoutedEventArgs e)
         {
-            _memoryNo = GeneralNo;
-            GeneralNo = "";
+            GeneralNo = RememberNo(out _memoryNo, GeneralNo);
         }
 
         private void GeneralNo_LostFocus(object sender, RoutedEventArgs e)

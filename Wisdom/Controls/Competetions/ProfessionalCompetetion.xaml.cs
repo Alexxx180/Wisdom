@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static System.Convert;
 using static Wisdom.Customing.Converters;
 using static Wisdom.Writers.Content;
 using Wisdom.Model;
@@ -28,13 +29,49 @@ namespace Wisdom.Controls.Competetions
         private int _no1 { get; set; }
         public int No2 { get; set; }
 
-        public string ProfessionalHeader => $"ПК {_no1}.{No2}.";
+        public string ProfessionalPrefix => "ПК";
+        public string ProfessionalHeader => $"{ProfessionalPrefix} {_no1}.{ProfessionalNo}.";
+
+        private string _memoryNo = "";
+        private string _professionalNo = "";
+        public string ProfessionalNo
+        {
+            get => _professionalNo;
+            set
+            {
+                _professionalNo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public byte AutoOption { get; set; }
+        public bool CanBeEdited => AutoOption == Bits(Indexing.MANUAL);
+
+        public void SetAuto(byte selection)
+        {
+            AutoOption = selection;
+            OnPropertyChanged(nameof(CanBeEdited));
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public static void SetAutoOptions(StackPanel stack, byte selection)
+        {
+            for (byte i = 0; i < stack.Children.Count; i++)
+            {
+                IProfessionalIndexing element = stack.Children[i] as IProfessionalIndexing;
+                element.SetAuto(selection);
+            }
+            if (stack.Children.Count < 1)
+                return;
+            IProfessionalIndexing indexing = GetElement(stack, 0);
+            if (indexing.AutoOption == Bits(Indexing.AUTO))
+                AutoIndexing(stack);
         }
 
         public ProfessionalCompetetion()
@@ -53,6 +90,7 @@ namespace Wisdom.Controls.Competetions
         public void SetNo2(int no)
         {
             No2 = no;
+            ProfessionalNo = no.ToString();
             OnPropertyChanged(nameof(ProfessionalHeader));
         }
 
@@ -62,6 +100,24 @@ namespace Wisdom.Controls.Competetions
             {
                 IProfessionalIndexing theme = themePanel.Children[i] as IProfessionalIndexing;
                 theme.SetNo1(no);
+            }
+        }
+
+        private void ProfessionalNo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ProfessionalNo = RememberNo(out _memoryNo, ProfessionalNo);
+        }
+
+        private void ProfessionalNo_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            string professionalNo = box.Text;
+            if (professionalNo.Length <= 0)
+                ProfessionalNo = _memoryNo;
+            else
+            {
+                int no = ToInt32(professionalNo);
+                SetNo2(no);
             }
         }
 
@@ -89,6 +145,14 @@ namespace Wisdom.Controls.Competetions
             AutoIndexing(stack);
         }
 
+        public static void AddElement(int no, string name, StackPanel stack, byte auto)
+        {
+            ProfessionalCompetetion element = SetElement(name);
+            element.SetAuto(auto);
+            element.SetNo2(no);
+            _ = stack.Children.Add(element);
+        }
+
         public static void AddElement(string name, StackPanel stack)
         {
             ProfessionalCompetetion element = SetElement(name);
@@ -98,8 +162,10 @@ namespace Wisdom.Controls.Competetions
         public static void AddElement(string name,
             List<String2> abilities, StackPanel stack)
         {
-            AddElement(name, abilities[0].Value,
-                abilities[1].Value, abilities[2].Value, stack);
+            string knowledge = abilities[0].Value;
+            string skills = abilities[1].Value;
+            string experience = abilities[2].Value;
+            AddElement(name, knowledge, skills, experience, stack);
         }
 
         public static void AddElement(string name, string knowledge,
@@ -111,12 +177,10 @@ namespace Wisdom.Controls.Competetions
 
         private void DropCompetetion(object sender, RoutedEventArgs e)
         {
-            Button dropButton = sender as Button;
-            Grid compGrid = Parent(dropButton);
-            ProfessionalCompetetion competetion = compGrid.Parent as ProfessionalCompetetion;
-            StackPanel compPanel = Parent(competetion);
-            compPanel.Children.Remove(competetion);
-            AutoIndexing(compPanel);
+            StackPanel compPanel = Parent(this);
+            compPanel.Children.Remove(this);
+            if (AutoOption == Bits(Indexing.AUTO))
+                AutoIndexing(compPanel);
         }
 
         public static void AutoIndexing(StackPanel grandGrid)
@@ -136,26 +200,42 @@ namespace Wisdom.Controls.Competetions
         private static ProfessionalCompetetion SetElement(string name)
         {
             ProfessionalCompetetion competetion = new ProfessionalCompetetion();
-            Grid compGrid = competetion.Content as Grid;
-            TextBox compName = Box(compGrid, 2);
-            compName.Text = name;
+            competetion.SetName(name);
             return competetion;
         }
 
         private static ProfessionalCompetetion SetElement(string name,
             string knowledge, string skills, string experience)
         {
-            ProfessionalCompetetion competetion = new ProfessionalCompetetion();
-            Grid compGrid = competetion.Content as Grid;
-            TextBox compName = Box(compGrid, 2);
-            TextBox compExperince = Box(compGrid, 4);
-            TextBox compSkills = Box(compGrid, 6); 
-            TextBox compKnowledge = Box(compGrid, 8);
-            compName.Text = name;
-            compExperince.Text = experience;
-            compSkills.Text = skills;
-            compKnowledge.Text = knowledge;
+            ProfessionalCompetetion competetion = SetElement(name);
+            competetion.SetInfo(knowledge, skills, experience);
             return competetion;
+        }
+
+        public void SetName(string name)
+        {
+            ProfessionalName.Text = name;
+        }
+
+        public void SetInfo(string knowledge, string skills, string experience)
+        {
+            ProfessionalExperience.Text = experience;
+            ProfessionalSkills.Text = skills;
+            ProfessionalKnowledge.Text = knowledge;
+        }
+
+        public static IProfessionalIndexing GetElement(StackPanel stack, in int no)
+        {
+            return stack.Children[no] as IProfessionalIndexing;
+        }
+
+        private void Hours(object sender, TextCompositionEventArgs e)
+        {
+            CheckForHours(sender, e);
+        }
+        private void PastingHours(object sender, DataObjectPastingEventArgs e)
+        {
+            CheckForPastingHours(sender, e);
         }
     }
 }

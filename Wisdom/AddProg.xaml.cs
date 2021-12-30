@@ -96,7 +96,7 @@ namespace Wisdom
         private void SetSourceTypes()
         {
             SourceTypes = Connection.SourceTypesData();
-            SetSourceTypeKeys();            
+            SetSourceTypeKeys();
         }
 
         private void SetMetaTypes()
@@ -112,6 +112,29 @@ namespace Wisdom
             HourElement.DropHourElements(TotalHoursCount);
             HourElement.AddElements(HourTypes, TotalHoursCount);
             ResetTotalHourBinds();
+        }
+
+        private void SetGeneralCompetetions(byte auto)
+        {
+            GeneralIndexer.Selected = auto;
+            GeneralCompetetion.DropGeneral(TotalCompAddSpace);
+            GeneralCompetetion.AddElements(SelectedSpeciality.GeneralCompetetions, TotalCompAddSpace, auto);
+            GeneralCompetetion.SetAutoOptions(TotalCompAddSpace, auto);
+        }
+
+        private void SetProfessionalCompetetions(byte auto)
+        {
+            ProfessionalIndexer.Selected = auto;
+            ProfessionalDivider.DropProfessional(ProfCompAddSpace);
+            ProfessionalDivider.AddElements(SelectedSpeciality.ProfessionalCompetetions, ProfCompAddSpace, auto);
+            ProfessionalDivider.SetAutoOptions(ProfCompAddSpace, auto);
+        }
+
+        private void SetCompetetions()
+        {
+            byte manual = Bits(Indexing.MANUAL);
+            SetGeneralCompetetions(manual);
+            SetProfessionalCompetetions(manual);
         }
 
         private void ResetTotalHourBinds()
@@ -148,15 +171,8 @@ namespace Wisdom
                 return;
             SelectedSpeciality = Connection.SpecialityData(SpecialityHead.keys[selected], name);
             DisciplinesSelect = Connection.ListDisciplines(SpecialityHead.keys[SpecNo]);
-
             ProfessionName = SelectedSpeciality.Name;
-            GeneralCompetetion.DropGeneral(TotalCompAddSpace);
-            byte manual = Bits(Indexing.MANUAL);
-            GeneralIndexer.Selected = manual;
-            GeneralCompetetion.AddElements(SelectedSpeciality.GeneralCompetetions, TotalCompAddSpace, manual);
-            GeneralCompetetionAdditor.SetAutoOptions(TotalCompAddSpace, manual);
-            ProfessionalDivider.DropProfessional(ProfCompAddSpace);
-            ProfessionalDivider.AddElements(SelectedSpeciality.ProfessionalCompetetions, ProfCompAddSpace);
+            SetCompetetions();
         }
 
         private void ResetAllDisciplineFields(object sender, SelectionChangedEventArgs e)
@@ -184,10 +200,8 @@ namespace Wisdom
                 sourceTypes.Add(SourceTypes[i].Value);
             SourceTypeElement.DropSourceGroups(EducationSources);
             SourceTypeElement.AddElements(SelectedDiscipline.Sources, sourceTypes, EducationSources);
-            GeneralCompetetion.DropGeneral(TotalCompAddSpace);
-            GeneralCompetetion.AddElements(SelectedDiscipline.GeneralCompetetions, TotalCompAddSpace);
-            ProfessionalDivider.DropProfessional(ProfCompAddSpace);
-            ProfessionalDivider.AddElements(SelectedDiscipline.ProfessionalCompetetions, ProfCompAddSpace);
+
+            SetCompetetions();
 
             PlanTopic.DropPlan(DisciplinePlan);
             PlanTopic.AddElements(SelectedDiscipline.Plan, DisciplinePlan);
