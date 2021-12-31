@@ -11,40 +11,27 @@ namespace Wisdom
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static AddProg Discipline { get; set; }
-
         public static void CreateDisciplineProgram()
         {
-            if (Discipline != null)
-                return;
-            Discipline = new AddProg();
+            AddProg Discipline = new AddProg();
             Discipline.Show();
         }
 
         public static void CreateDisciplineProgram(DisciplineProgram program)
         {
-            if (Discipline != null)
-                return;
-            Discipline = new AddProg(program);
+            AddProg Discipline = new AddProg(program);
             Discipline.Show();
         }
 
         public MainWindow()
         {
             InitializeComponent();
-            Discipline = null;
             LoadTemplates();
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
             CreateDisciplineProgram();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (Discipline != null)
-                Discipline.Close();
         }
 
         private void RefreshTemplates(object sender, RoutedEventArgs e)
