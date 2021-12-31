@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <Button Click="DropSourceGroup" Style="{StaticResource ResourceKey=DeleteButton}"></Button>
-        <ComboBox  Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource SubCaptionBox}" ItemsSource="{Binding Path=Sources}" SelectedIndex="{Binding Path=SelectedSource}">
+        <ComboBox x:Name="SourcesGroup" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource SubCaptionBox}" ItemsSource="{Binding Path=Sources}" SelectedIndex="{Binding Path=SelectedSource}">
             <ComboBox.ItemContainerStyle>
                 <StaticResource ResourceKey="ItemsBox"></StaticResource>
             </ComboBox.ItemContainerStyle>

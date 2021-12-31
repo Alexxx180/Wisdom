@@ -138,7 +138,10 @@ namespace Wisdom.Controls.Sources
             for (byte i = 0; i < types.Count; i++)
                 items.Add(types[i]);
             sourceTypeElement.Sources = items;
-            sourceTypeElement.SelectedSource = SourceTypeKeys[name];
+            if (SourceTypeKeys.TryGetValue(name, out int index))
+                sourceTypeElement.SelectedSource = index;
+            else
+                sourceTypeElement.SourcesGroup.Text = name;
             return sourceTypeElement;
         }
 

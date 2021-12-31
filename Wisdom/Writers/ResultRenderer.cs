@@ -3,17 +3,23 @@ using System;
 using System.IO;
 using System.Windows;
 using Wisdom.AutoGenerating;
+using Wisdom.Model;
 
 namespace Wisdom.Writers
 {
     public static class ResultRenderer
     {
+        private static void TruncateFile(string fileName)
+        {
+            if (File.Exists(fileName))
+                File.Delete(fileName);
+        }
+
         public static void WriteDoc(string fileName)
         {
+            TruncateFile(fileName);
             try
             {
-                if (File.Exists(fileName))
-                    File.Delete(fileName);
                 AutoFiller.WriteDocX(fileName);
             }
             catch (IOException exception)
@@ -23,7 +29,7 @@ namespace Wisdom.Writers
             }
         }
 
-        //Write document method used for tests
+        // Write document method used for tests
         public static void WriteDoc()
         {
             string testFile = @"TestResources\Output\Result.docx";
@@ -32,11 +38,21 @@ namespace Wisdom.Writers
             WriteDoc(fullName);
         }
 
+        public static void WriteJson(string fileName, DisciplineProgram program)
+        {
+            TruncateFile(fileName);
+            string testFile = @"Resources\Templates\" + fileName + ".json";
+            string executingDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            string fullName = $"{executingDirectory}\\{testFile}";
+            AutoFiller.WriteUserInput(fullName, program);
+        }
+
         public static void CallWriter(string fileName)
         {
+            string defaultType = ".docx";
             SaveFileDialog dialog = new SaveFileDialog
             {
-                FileName = fileName,
+                FileName = fileName + defaultType,
                 Filter =
                 "Документ Microsoft Word (*.docx)|*.docx|" +
                 "Документ Word 97-2003 (*.doc)|*.doc|" +

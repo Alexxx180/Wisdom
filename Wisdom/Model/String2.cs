@@ -2,6 +2,12 @@
 {
     public class String2
     {
+        public String2()
+        {
+            Name = "";
+            Value = "";
+        }
+
         public String2(string name, string value)
         {
             Name = name;

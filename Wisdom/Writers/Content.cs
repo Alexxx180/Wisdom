@@ -224,7 +224,7 @@ namespace Wisdom.Writers
             return "";
         }
 
-        private static readonly Regex _hours = new Regex("^([1-9]|[1-9]\\d\\d?)$");//v\\d
+        private static readonly Regex _hours = new Regex("^([1-9]|[1-9]\\d\\d?)$");
         public static void CheckForHours(object sender, TextCompositionEventArgs e)
         {
             TextBox box = e.OriginalSource as TextBox;
@@ -251,6 +251,31 @@ namespace Wisdom.Writers
             }
         }
 
+        private static readonly Regex _naming = new Regex(@"^[A-Za-zА-Яа-я0-9\s-_]*$");
+        public static void CheckForNaming(object sender, TextCompositionEventArgs e)
+        {
+            TextBox box = e.OriginalSource as TextBox;
+            string full = box.Text.Insert(box.CaretIndex, e.Text);
+            e.Handled = !_naming.IsMatch(full);
+        }
+        public static void CheckForPastingNaming(object sender, DataObjectPastingEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
 
+            if (e.DataObject.GetDataPresent(typeof(string)))
+            {
+                string pastedText = e.DataObject.GetData(typeof(string)) as string;
+                string proposedText = GetProposedText(textBox, pastedText);
+
+                if (!_naming.IsMatch(proposedText))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
     }
 }

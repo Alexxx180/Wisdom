@@ -1,30 +1,26 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Text.RegularExpressions;
-using static Wisdom.Customing.Decorators;
-using static Wisdom.Writers.ResultRenderer;
-using static Wisdom.Binds.EasyBindings;
-using static Wisdom.Writers.Content;
-using static Wisdom.Customing.Converters;
-using static Wisdom.Customing.ResourceHelper;
 using System.Windows.Data;
-using Wisdom.Binds;
-using static Wisdom.Model.ProgramContent;
 using System.Collections.Generic;
-using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Wisdom.Binds;
+using Wisdom.Model;
 using Wisdom.Model.DataBase;
-using static Wisdom.Tests.TotalTest;
-using System.Diagnostics;
-using System;
 using Wisdom.Controls;
 using Wisdom.Controls.ThemePlan;
 using Wisdom.Controls.Competetions;
 using Wisdom.Controls.Sources;
 using Wisdom.Controls.EducationLevels;
 using Wisdom.Controls.Applyment;
+using static Wisdom.Customing.Decorators;
+using static Wisdom.Writers.ResultRenderer;
+using static Wisdom.Binds.EasyBindings;
+using static Wisdom.Writers.Content;
+using static Wisdom.Customing.Converters;
+using static Wisdom.Customing.ResourceHelper;
+using static Wisdom.Model.ProgramContent;
 
 namespace Wisdom
 {
@@ -83,7 +79,7 @@ namespace Wisdom
             list.AddRange(value);
         }
 
-        private string FileName => $@"{Program.Text}.docx";
+        private string FileName => Program.Text;
         ProgramData Connection = new ProgramData();
 
         private void SetLevels()
@@ -130,6 +126,29 @@ namespace Wisdom
             ProfessionalDivider.SetAutoOptions(ProfCompAddSpace, auto);
         }
 
+        private void SetGeneralCompetetions(List<HoursList<String2>> competetions, byte auto)
+        {
+            GeneralIndexer.Selected = auto;
+            GeneralCompetetion.DropGeneral(TotalCompAddSpace);
+            GeneralCompetetion.AddElements(competetions, TotalCompAddSpace, auto);
+            GeneralCompetetion.SetAutoOptions(TotalCompAddSpace, auto);
+        }
+
+        private void SetProfessionalCompetetions(List<List<HoursList<String2>>> competetions, byte auto)
+        {
+            ProfessionalIndexer.Selected = auto;
+            ProfessionalDivider.DropProfessional(ProfCompAddSpace);
+            ProfessionalDivider.AddElements(competetions, ProfCompAddSpace, auto);
+            ProfessionalDivider.SetAutoOptions(ProfCompAddSpace, auto);
+        }
+
+        private void SetCompetetions(DisciplineProgram program)
+        {
+            byte manual = Bits(Indexing.MANUAL);
+            SetGeneralCompetetions(program.GeneralCompetetions, manual);
+            SetProfessionalCompetetions(program.ProfessionalCompetetions, manual);
+        }
+
         private void SetCompetetions()
         {
             byte manual = Bits(Indexing.MANUAL);
@@ -148,7 +167,7 @@ namespace Wisdom
                 Binding bindHours = FastBind(hourValue, "Text");
                 multiCount.Bindings.Add(bindHours);
             }
-            SetBind(Inputted, ContentProperty, multiCount);
+            _ = SetBind(Inputted, ContentProperty, multiCount);
         }
 
         public AddProg()
@@ -160,6 +179,87 @@ namespace Wisdom
             SetHourTypes();
             SetSourceTypes();
             SpecialitySelect = Connection.ListSpecialities();
+        }
+
+        public AddProg(DisciplineProgram program) : this()
+        {
+            SetProfession(program);
+            SetDiscipline(program);
+        }
+
+        private void MakeUserTemplate(object sender, RoutedEventArgs e)
+        {
+            DisciplineProgram program = new DisciplineProgram();
+            program.DisciplineName = DpSelect.Text;
+            program.ProfessionName = SpSelect.Text;
+
+            program.MaxHours = Max.Content.ToString();
+            program.SelfHours = Self.Text;
+            program.EduHours = Usual.Text;
+
+            program.MetaData.Clear();
+            Dictionary<string, string> factMetaData = MetaElement.GetFullData(MetaData);
+            program.AddMetaData(factMetaData);
+
+            program.Hours.Clear();
+            Dictionary<string, ushort> factHours = HourElement.GetFullData(TotalHoursCount);
+            program.AddHours(factHours);
+
+            program.GeneralCompetetions = GeneralCompetetion.FullGeneral(TotalCompAddSpace);
+            program.ProfessionalCompetetions = ProfessionalDivider.FullProfessional(ProfCompAddSpace);
+            program.Sources = SourceTypeElement.GetValues(EducationSources);
+
+            program.Applyment = ApplyElement.GetValues(ApplyAddSpace);
+            program.Plan = PlanTopic.FullThemePlan(DisciplinePlan);
+            program.StudyLevels = EducationLevel.GetValues(Levels);
+            WriteJson(FileName, program);
+        }
+
+        private void SetProfession(DisciplineProgram program)
+        {
+            ProfessionName = program.ProfessionName;
+        }
+
+        private void SetDiscipline(DisciplineProgram program)
+        {
+            DisciplineName = program.DisciplineName;
+
+            MetaElement.FillElements(MetaData, program.MetaData);
+
+            int study = program.GetStudyHours();
+            int self = program.TryGetHours("Самостоятельная работа");
+            Usual.Text = study.ToString();
+            Self.Text = self.ToString();
+
+            HourElement.FillElements(TotalHoursCount, program.Hours);
+
+            List<string> sourceTypes = new List<string>();
+            for (byte i = 0; i < SourceTypes.Count; i++)
+                sourceTypes.Add(SourceTypes[i].Value);
+            SourceTypeElement.DropSourceGroups(EducationSources);
+
+            for (byte i = 0; i < program.Sources.Count; i++)
+            {
+                HashList<string> source = program.Sources[i];
+                System.Diagnostics.Trace.WriteLine(source.Name);
+                System.Diagnostics.Trace.WriteLine(sourceTypes[i]);
+                for (byte ii = 0; ii < source.Values.Count; ii++)
+                {
+                    System.Diagnostics.Trace.WriteLine(source.Values[ii]);
+                }
+
+            }
+
+            foreach (KeyValuePair<string, int> pair in SourceTypeKeys)
+            {
+                System.Diagnostics.Trace.WriteLine(pair.Value);
+            }
+            SourceTypeElement.AddElements(program.Sources, sourceTypes, EducationSources);
+
+            SetCompetetions(program);
+
+            PlanTopic.DropPlan(DisciplinePlan);
+            PlanTopic.AddElements(program.Plan, DisciplinePlan);
         }
 
         private void ResetAllCompetetionFields(object sender, SelectionChangedEventArgs e)
@@ -209,12 +309,6 @@ namespace Wisdom
 
         private void SetUpDocumentBlank()
         {
-            DirectorName = Director.Text;
-            SubDirectorName = SubDirector.Text;
-            SubManagerName = SubManager.Text;
-
-            CollegeName = College.Text;
-
             DisciplineName = DpSelect.Text;
             ProfessionName = SpSelect.Text;
 
@@ -227,10 +321,9 @@ namespace Wisdom
             MetaDataCollection.AddRange(factMetaData);
 
             HoursCollection.Clear();
-            List<string> hours = HourElement.GetValues(TotalHoursCount);
-            HoursCollection.AddRange(hours);
+            List<string> factHours = HourElement.GetValues(TotalHoursCount);
+            HoursCollection.AddRange(factHours);
 
-            Order = new String2(OrderDate.Text, OrderNo.Text);
             GeneralCompetetions = GeneralCompetetion.FullGeneral(TotalCompAddSpace);
             List<List<HoursList<String2>>> fullProfessional = ProfessionalDivider.FullProfessional(ProfCompAddSpace);
             ProfessionalCompetetions = ProfessionalDivider.Zip(fullProfessional);
@@ -245,7 +338,6 @@ namespace Wisdom
         {
             SetUpDocumentBlank();
             CallWriter(FileName);
-            //WriteDoc();
         }
 
         private void Hours(object sender, TextCompositionEventArgs e)
@@ -255,6 +347,15 @@ namespace Wisdom
         private void PastingHours(object sender, DataObjectPastingEventArgs e)
         {
             CheckForPastingHours(sender, e);
+        }
+
+        private void Naming(object sender, TextCompositionEventArgs e)
+        {
+            CheckForNaming(sender, e);
+        }
+        private void PastingNaming(object sender, DataObjectPastingEventArgs e)
+        {
+            CheckForPastingNaming(sender, e);
         }
 
         private void Stepping(object sender, RoutedEventArgs e)

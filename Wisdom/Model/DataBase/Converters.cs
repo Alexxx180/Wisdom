@@ -222,13 +222,15 @@ namespace Wisdom.Model.DataBase
             for (int i = 0; i < sourcesList.Count; i++)
             {
                 object[] row = sourcesList[i];
-                int current = Ints(row[2]);
+                string name = row[1].ToString();
+                object type = row[2];
+                int current = Ints(type);
                 if (no < current)
                 {
-                    sources.Add(new HashList<string>(row[2].ToString()));
+                    sources.Add(new HashList<string>(type.ToString()));
                     no = current;
                 }
-                sources[no - 1].Values.Add(row[1].ToString());
+                sources[no - 1].Values.Add(name);
             }
             return sources;
         }
@@ -438,7 +440,7 @@ namespace Wisdom.Model.DataBase
             }
             catch (DbException exception)
             {
-                string noLoad = "Типы метаданных";
+                string noLoad = "Типы источников";
                 ConnectionMessage(noLoad, exception.Message);
             }
             return sourceTypes;
@@ -455,7 +457,7 @@ namespace Wisdom.Model.DataBase
             }
             catch (DbException exception)
             {
-                string noLoad = "Типы метаданных";
+                string noLoad = "Типы уровней компетенций";
                 ConnectionMessage(noLoad, exception.Message);
             }
             return educationLevels;

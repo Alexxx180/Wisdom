@@ -6,16 +6,6 @@ namespace Wisdom.Model
     public static class ProgramContent
     {
         // Метаданные
-        // Независимые от рабочих учебных программ
-        public static string CollegeName = "";
-        // Приказ
-        public static String2 Order;
-        // Директор и заместители
-        public static string DirectorName;
-        public static string SubDirectorName;
-        public static string SubManagerName;
-
-        // Зависимые от рабочих учебных программ (дисциплины)
         public static List<string> MetaDataCollection = new List<string>();
 
         // Названия и ключи всех специальностей и сопутствующих им дисциплин
@@ -80,21 +70,21 @@ namespace Wisdom.Model
             SourceTypeKeys = new Dictionary<string, int>();
             for (byte i = 0; i < SourceTypes.Count; i++)
             {
-                System.Diagnostics.Trace.WriteLine(SourceTypes[i].Name);
-                System.Diagnostics.Trace.WriteLine(SourceTypes[i].Value);
                 SourceTypeKeys.Add(SourceTypes[i].Name, i);
             }
         }
 
-        public static ushort GetStudyHours()
+        public static ushort GetStudyHours(List<String2> hours)
         {
             ushort total = 0;
-            for (byte i = 0; i < HourTypes.Count; i++)
+            for (byte i = 0; i < hours.Count; i++)
             {
-                total += TryGetHours(HourTypes[i].Value);
+                total += TryGetHours(hours[i].Value);
             }
             return total;
         }
+
+        public static ushort GetStudyHours() => GetStudyHours(HourTypes);
 
         public static ushort TryGetHours(string name)
         {

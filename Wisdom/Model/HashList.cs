@@ -7,6 +7,7 @@ namespace Wisdom.Model
         public HashList()
         {
             Values = new List<T>();
+            Name = "";
         }
         public HashList(string name) : this()
         {

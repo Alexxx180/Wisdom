@@ -8,6 +8,7 @@ using static Wisdom.Writers.Content;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace Wisdom.Controls.Competetions
 {
@@ -126,9 +127,10 @@ namespace Wisdom.Controls.Competetions
             for (byte i = 0; i < competetions.Count; i++)
             {
                 HoursList<String2> current = competetions[i];
-                int no = ToInt32(current.Name);
+                int no = ToInt32(Regex.Match(current.Name, @"\d+").Value);
                 string name = current.Hours;
                 List<String2> skills = current.Values;
+                
                 AddElement(no, name, skills, stack, auto);
             }    
                 

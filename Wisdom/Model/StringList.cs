@@ -6,6 +6,14 @@ namespace Wisdom.Model
     {
         private readonly string startSequence;
         private readonly string endSequence;
+
+        public StringList()
+        {
+            startSequence = " (";
+            endSequence = ")";
+            Values = new List<string>();
+        }
+
         public StringList(string start, string end)
         {
             startSequence = start;

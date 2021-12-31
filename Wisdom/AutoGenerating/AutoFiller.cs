@@ -2,9 +2,12 @@
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Windows;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using Wisdom.Model;
 using static Wisdom.Model.ProgramContent;
 using static Wisdom.Writers.Markup;
 
@@ -14,6 +17,17 @@ namespace Wisdom.AutoGenerating
     {
         private const string fileName = @"\TestResources\Templates\BaseTemplate.docx";
         private static string _template => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + fileName;
+
+        public static void WriteUserInput(string path, DisciplineProgram program)
+        {
+            ProcessJson(path, program);
+        }
+
+        private static void ProcessJson(string path, DisciplineProgram program)
+        {
+            byte[] jsonUtf8Bytes = JsonSerializer.SerializeToUtf8Bytes(program);
+            Save(path, jsonUtf8Bytes);
+        }
 
         public static void WriteDocX(string filepath)
         {
@@ -47,7 +61,7 @@ namespace Wisdom.AutoGenerating
                     }
                 }
                 // Save the file with the new name
-                File.WriteAllBytes(generatePath, stream.ToArray());
+                Save(generatePath, stream);
             }
         }
 
@@ -85,6 +99,31 @@ namespace Wisdom.AutoGenerating
 
             string themePlan = "#THEME-PLAN";
             ReplaceInParagraphs(paragraphs, themePlan, ThemePlanTable());
+        }
+
+        private static void SaveMessage(string exception)
+        {
+            string noLoad = "Не удалось сохранить файл.";
+            string message = "\nУбедитесь, что посторонние процессы не мешают операции.\n";
+            string advice = "Свяжитесь с администратором насчет установления причины проблемы.\nПолное сообщение:\n";
+            _ = MessageBox.Show(noLoad + message + advice + exception);
+        }
+
+        private static void Save(string path, byte[] bytes)
+        {
+            try
+            {
+                File.WriteAllBytes(path, bytes);
+            }
+            catch (IOException exception)
+            {
+                SaveMessage(exception.Message);
+            }
+        }
+
+        private static void Save(string path, MemoryStream stream)
+        {
+            Save(path, stream.ToArray());
         }
 
         private static void ReplaceInParagraphs(IEnumerable<Paragraph> paragraphs, string find, string replaceWith)

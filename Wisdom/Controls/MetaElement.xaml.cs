@@ -89,5 +89,16 @@ namespace Wisdom.Controls
             }
             return values;
         }
+
+        public static Dictionary<string, string> GetFullData(StackPanel stack)
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            for (byte i = 0; i < stack.Children.Count; i++)
+            {
+                MetaElement meta = stack.Children[i] as MetaElement;
+                values.Add(meta.MetaName, meta.MetaValue);
+            }
+            return values;
+        }
     }
 }

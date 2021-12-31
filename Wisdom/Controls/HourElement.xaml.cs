@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
+using static System.Convert;
 using Wisdom.Model;
 using static Wisdom.Model.ProgramContent;
 using static Wisdom.Writers.Content;
@@ -85,6 +86,21 @@ namespace Wisdom.Controls
             hour.HourValue = TryGetHours(hour.WorkType).ToString();
         }
 
+        public static void FillElements(StackPanel stack, Dictionary<string, ushort> values)
+        {
+            for (byte i = 0; i < stack.Children.Count; i++)
+            {
+                HourElement hour = stack.Children[i] as HourElement;
+                FillElement(hour, values);
+            }
+        }
+
+        private static void FillElement(HourElement hour, Dictionary<string, ushort> values)
+        {
+            if (values.TryGetValue(hour.WorkType, out ushort value))
+                hour.HourValue = value.ToString();
+        }
+
         public static List<string> GetValues(StackPanel stack)
         {
             List<string> values = new List<string>();
@@ -92,6 +108,17 @@ namespace Wisdom.Controls
             {
                 HourElement hour = stack.Children[i] as HourElement;
                 values.Add(hour.HourValue);
+            }
+            return values;
+        }
+
+        public static Dictionary<string, ushort> GetFullData(StackPanel stack)
+        {
+            Dictionary<string, ushort> values = new Dictionary<string, ushort>();
+            for (byte i = 0; i < stack.Children.Count; i++)
+            {
+                HourElement hour = stack.Children[i] as HourElement;
+                values.Add(hour.WorkType, ToUInt16(hour.HourValue));
             }
             return values;
         }

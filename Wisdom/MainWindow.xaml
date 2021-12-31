@@ -43,124 +43,50 @@
                 <Label Content="Мудрость" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Padding="0,0,0,0" FontFamily="Cambria" FontSize="30" Panel.ZIndex="2" FontWeight="Bold"/>
                 <Button x:Name="Create" Content="Программа" Grid.Column="1" Margin="37,0,0,0"  VerticalAlignment="Bottom" FontSize="23" IsDefault="True" FontFamily="Cambria" FontWeight="Bold" Background="#FF00A2E8" BorderBrush="#FFEFE4B0" Foreground="#FFEFE4B0" Grid.ColumnSpan="2" Height="36" Click="Create_Click"/>
             </Grid>
-
-            <Grid Grid.Row="1" Grid.Column="1" Visibility="Hidden">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.675*"/>
-                    <ColumnDefinition Width="0.05*"/>
-                    <ColumnDefinition Width="0.225*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Label Content="Программа" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Padding="0,0,0,0" FontFamily="Cambria" FontSize="30" Panel.ZIndex="2" FontWeight="Bold"/>
-                <Button x:Name="Accept" Content="Подтвердить" Grid.Column="2" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="23" IsDefault="True" FontFamily="Cambria" FontWeight="Bold" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0" Foreground="#FF00A2E8" BorderThickness="3,3,3,3"/>
-            </Grid>
         </Grid>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.05*"/>
-                <ColumnDefinition Width="0.85*"/>
-                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.025*"/>
+                <ColumnDefinition Width="0.9*"/>
+                <ColumnDefinition Width="0.025*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.5*"/>
-                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.05*"/>
+                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="0.05*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.32385*"/>
-                    <ColumnDefinition Width="0.016*"/>
-                    <ColumnDefinition Width="0.32385*"/>
-                    <ColumnDefinition Width="0.015*"/>
-                    <ColumnDefinition Width="0.131*"/>
-                    <ColumnDefinition Width="0.016*"/>
-                    <ColumnDefinition Width="0.129*"/>
-                    <ColumnDefinition Width="0.016*"/>
-                    <ColumnDefinition Width="0.129*"/>
-                </Grid.ColumnDefinitions>
-
+            <Grid Grid.Column="1" Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.125*" />
+                    <RowDefinition Height="0.875*" />
                 </Grid.RowDefinitions>
 
-                <TextBox x:Name="Discp" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="Прикладное программирование" TextWrapping="Wrap" VerticalAlignment="Stretch" FontSize="10" Grid.Row="1"/>
-                <TextBox x:Name="Specs" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="Программирование в компьютерных системах" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Column="2" FontSize="10" Grid.Row="1"/>
-                <TextBox x:Name="DCode" Grid.ColumnSpan="1" Grid.Column="4" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="ОГСЭ.01" TextWrapping="Wrap" VerticalAlignment="Stretch" FontSize="15" Grid.Row="1"/>
-                <TextBox x:Name="SCode" Grid.ColumnSpan="1" Grid.Column="6" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="15.02.07" TextWrapping="Wrap" VerticalAlignment="Stretch" FontSize="15" Grid.Row="1"/>
-                <TextBox x:Name="PDate" Grid.ColumnSpan="1" Grid.Column="8" HorizontalAlignment="Stretch" Margin="0,0,0,0" Text="25.04.21" TextWrapping="Wrap" VerticalAlignment="Stretch" FontSize="15" Grid.Row="1"/>
-                <Label x:Name="LDiscp" Content="Дисциплина" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" FontSize="15"/>
-                <Label x:Name="LSpecs" Content="Специальность" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="15" Grid.Column="2"/>
-                <Label x:Name="LDCode" Content="Код дисц." HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="15" Grid.Column="4"/>
-                <Label x:Name="LSCode" Content="Код спец." HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="15" Grid.Column="6"/>
-                <Label x:Name="LPDate" Content="Дата" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="15" Grid.Column="9"/>
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.05*" />
+                        <ColumnDefinition Width="0.9*" />
+                        <ColumnDefinition Width="0.05*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--<Image Source="/Resources/Images/Icons/Search.png"  />
+                    <TextBox Grid.Column="1" x:Name="Discp" HorizontalAlignment="Stretch" Style="{StaticResource RegularBox}" Text="Прикладное программирование" TextWrapping="Wrap" VerticalAlignment="Stretch" FontSize="20" />-->
+                    <Button x:Name="Refresh" Grid.Column="2" Click="RefreshTemplates">
+                        <Viewbox>
+                            <Image Source="/Refresh.png" Stretch="Fill" />
+                        </Viewbox>
+                    </Button>
+                </Grid>
+
+                <ScrollViewer Grid.Row="1">
+                    <StackPanel x:Name="Templates">
+
+                    </StackPanel>
+                </ScrollViewer>
             </Grid>
-
-            <StackPanel x:Name="Progs" Grid.Row="4" Grid.Column="1">
-                <StackPanel.ScrollOwner>
-                    <ScrollViewer/>
-                </StackPanel.ScrollOwner>
-
-                <Grid x:Name="Prog1" Background="#FFB9E6F0" Height="Auto">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.36885*"/>
-                        <ColumnDefinition Width="0.016*"/>
-                        <ColumnDefinition Width="0.36885*"/>
-                        <ColumnDefinition Width="0.01*"/>
-                        <ColumnDefinition Width="0.08*"/>
-                        <ColumnDefinition Width="0.01*"/>
-                        <ColumnDefinition Width="0.08*"/>
-                        <ColumnDefinition Width="0.065*"/>
-                        <ColumnDefinition Width="0.08*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="Spc1" Content="Прикладное программирование"/>
-                    <Label x:Name="Dcp1" Content="Программирование в компьютерных систем..." Grid.Column="2"/>
-                    <Label x:Name="DCd1" Content="ОГСЭ.01" Grid.Column="4"/>
-                    <Label x:Name="SCd1" Content="15.02.07" Grid.Column="6"/>
-                    <Label x:Name="PDt1" Content="25.04.21" Grid.Column="8"/>
-                </Grid>
-
-                <Grid x:Name="Prog2" Background="#FFF4EDCA" Height="Auto">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.36885*"/>
-                        <ColumnDefinition Width="0.016*"/>
-                        <ColumnDefinition Width="0.36885*"/>
-                        <ColumnDefinition Width="0.01*"/>
-                        <ColumnDefinition Width="0.08*"/>
-                        <ColumnDefinition Width="0.01*"/>
-                        <ColumnDefinition Width="0.08*"/>
-                        <ColumnDefinition Width="0.065*"/>
-                        <ColumnDefinition Width="0.08*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label x:Name="Spc2" Content="Документирование и сертификация"/>
-                    <Label x:Name="Dcp2" Content="Компьютерные системы и комплексы" Grid.Column="2"/>
-                    <Label x:Name="DCd2" Content="ОГСЭ.01" Grid.Column="4"/>
-                    <Label x:Name="SCd2" Content="15.02.07" Grid.Column="6"/>
-                    <Label x:Name="PDt2" Content="25.04.21" Grid.Column="8"/>
-                </Grid>
-
-            </StackPanel>
-
+            
         </Grid>
     </Grid>
 </Window>
