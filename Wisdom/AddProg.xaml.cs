@@ -237,23 +237,6 @@ namespace Wisdom
             for (byte i = 0; i < SourceTypes.Count; i++)
                 sourceTypes.Add(SourceTypes[i].Value);
             SourceTypeElement.DropSourceGroups(EducationSources);
-
-            for (byte i = 0; i < program.Sources.Count; i++)
-            {
-                HashList<string> source = program.Sources[i];
-                System.Diagnostics.Trace.WriteLine(source.Name);
-                System.Diagnostics.Trace.WriteLine(sourceTypes[i]);
-                for (byte ii = 0; ii < source.Values.Count; ii++)
-                {
-                    System.Diagnostics.Trace.WriteLine(source.Values[ii]);
-                }
-
-            }
-
-            foreach (KeyValuePair<string, int> pair in SourceTypeKeys)
-            {
-                System.Diagnostics.Trace.WriteLine(pair.Value);
-            }
             SourceTypeElement.AddElements(program.Sources, sourceTypes, EducationSources);
 
             SetCompetetions(program);

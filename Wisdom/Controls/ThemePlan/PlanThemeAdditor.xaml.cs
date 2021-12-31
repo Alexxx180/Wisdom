@@ -98,9 +98,6 @@ namespace Wisdom.Controls.ThemePlan
         {
             IThemeIndexing theme = grandGrid.Children[no] as IThemeIndexing;
             theme.SetSectionNo(no + 1);
-
-            //System.Diagnostics.Trace.WriteLine(no + 1);
-            //System.Diagnostics.Trace.WriteLine(theme.ThemeHeader);
         }
 
         private void Hours(object sender, TextCompositionEventArgs e)

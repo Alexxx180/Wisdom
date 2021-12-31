@@ -46,7 +46,6 @@ namespace Wisdom
             {
                 string executingDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
                 string templatesDirectory = @"\Resources\Templates";
-                System.Diagnostics.Trace.WriteLine(Directory.GetFiles(executingDirectory).Length);
                 foreach (string file in Directory.GetFiles(executingDirectory + templatesDirectory))
                 {
                     TemplateControl template = new TemplateControl(file);
