@@ -217,12 +217,12 @@ namespace Wisdom
 
         private void SetProfession(DisciplineProgram program)
         {
-            ProfessionName = program.ProfessionName;
+            SpSelect.Text = program.ProfessionName;
         }
 
         private void SetDiscipline(DisciplineProgram program)
         {
-            DisciplineName = program.DisciplineName;
+            DpSelect.Text = program.DisciplineName;
 
             MetaElement.FillElements(MetaData, program.MetaData);
 
