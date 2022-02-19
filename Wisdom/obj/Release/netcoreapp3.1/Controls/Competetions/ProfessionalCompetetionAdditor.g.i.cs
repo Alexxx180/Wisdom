@@ -53,7 +53,8 @@ namespace Wisdom.Controls.Competetions {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/competetions/professionalcompetetionadditor.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/competetions/professionalcompetetionadditor.x" +
+                    "aml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\Competetions\ProfessionalCompetetionAdditor.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

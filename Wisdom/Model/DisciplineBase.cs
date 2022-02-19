@@ -6,12 +6,12 @@ namespace Wisdom.Model
     {
         public DisciplineBase()
         {
-            TotalHours = new Dictionary<string, ushort>();
-            MetaData = new Dictionary<string, string>();
-            Sources = new List<HashList<string>>();
-            GeneralCompetetions = new List<HoursList<String2>>();
-            ProfessionalCompetetions = new List<List<HoursList<String2>>>();
-            Plan = new List<HoursList<LevelsList<HashList<String2>>>>();
+            TotalHours = new List<Pair<string, ushort>>();
+            MetaData = new List<Pair<string, string>>();
+            Sources = new List<Pair<string, List<string>>>();
+            GeneralCompetetions = new List<HoursList<Pair<string, string>>>();
+            ProfessionalCompetetions = new List<List<HoursList<Pair<string, string>>>>();
+            Plan = new List<HoursList<LevelsList<HashList<Pair<string, string>>>>>();
         }
 
         public DisciplineBase(string name) : this()
@@ -20,21 +20,22 @@ namespace Wisdom.Model
         }
 
         public DisciplineBase(string name,
-            List<HoursList<LevelsList<HashList<String2>>>> plan,
-            List<HashList<string>> sources,
-            Dictionary<string, string> metaData)
+            List<HoursList<LevelsList<HashList<Pair<string, string>>>>> plan,
+            List<Pair<string, List<string>>> sources,
+            List<Pair<string, string>> metaData)
         {
             Name = name;
             Plan = plan;
             Sources = sources;
             MetaData = metaData;
         }
+
         public string Name { get; set; }
-        public Dictionary<string, ushort> TotalHours { get; set; }
-        public List<HoursList<LevelsList<HashList<String2>>>> Plan { get; set; }
-        public Dictionary<string, string> MetaData { get; set; }
-        public List<HashList<string>> Sources { get; set; }
-        public List<HoursList<String2>> GeneralCompetetions { get; set; }
-        public List<List<HoursList<String2>>> ProfessionalCompetetions { get; set; }
+        public List<Pair<string, ushort>> TotalHours { get; set; }
+        public List<HoursList<LevelsList<HashList<Pair<string, string>>>>> Plan { get; set; }
+        public List<Pair<string, string>> MetaData { get; set; }
+        public List<Pair<string, List<string>>> Sources { get; set; }
+        public List<HoursList<Pair<string, string>>> GeneralCompetetions { get; set; }
+        public List<List<HoursList<Pair<string, string>>>> ProfessionalCompetetions { get; set; }
     }
 }

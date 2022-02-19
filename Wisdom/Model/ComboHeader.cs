@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Controls;
+﻿using System.Collections.Generic;
 
 namespace Wisdom.Model
 {
-    public class ComboHeader
+    public class ComboHeader<TName, TValue>
     {
         public ComboHeader()
         {
-            keys = new List<uint>();
-            items = new List<ComboBoxItem>();
+            keys = new List<TName>();
+            items = new List<TValue>();
         }
 
-        public List<uint> keys;
-        public List<ComboBoxItem> items;
+        public List<TName> keys;
+        public List<TValue> items;
     }
 }

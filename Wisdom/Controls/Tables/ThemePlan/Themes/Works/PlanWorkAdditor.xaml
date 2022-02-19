@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Wisdom.Controls.Tables.ThemePlan.Themes.Works.PlanWorkAdditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="45" d:DesignWidth="900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="0.75*"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+
+        
+        <Button Click="AddWork">
+            <Button.Style>
+                <StaticResource ResourceKey="AddButton"/>
+            </Button.Style>
+        </Button>
+        
+        <ComboBox Grid.Column="1">
+            <ComboBox.Style>
+                <StaticResource ResourceKey="SubCaptionBox"/>
+            </ComboBox.Style>
+            <ComboBox.ItemContainerStyle>
+                <StaticResource ResourceKey="ItemsBox"/>
+            </ComboBox.ItemContainerStyle>
+            
+            <ComboBoxItem>Практические занятия</ComboBoxItem>
+            <ComboBoxItem>Контрольная работа</ComboBoxItem>
+            <ComboBoxItem>Самостоятельная работа</ComboBoxItem>
+        </ComboBox>
+        
+        <Viewbox Grid.Column="3">
+            <CheckBox Margin="1">
+                <CheckBox.Style>
+                    <StaticResource ResourceKey="RegularCheckBox"/>
+                </CheckBox.Style>
+                <TextBlock Text="Группа"/>
+            </CheckBox>
+        </Viewbox>
+    </Grid>
+</UserControl>

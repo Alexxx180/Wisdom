@@ -9,8 +9,10 @@ namespace Wisdom.Model
         public static List<string> MetaDataCollection = new List<string>();
 
         // Названия и ключи всех специальностей и сопутствующих им дисциплин
-        public static ComboHeader DisciplineHead = new ComboHeader();
-        public static ComboHeader SpecialityHead = new ComboHeader();
+        public static Pair<List<uint>, List<string>>
+            DisciplineHead = new Pair<List<uint>, List<string>>();
+        public static Pair<List<uint>, List<string>>
+            SpecialityHead = new Pair<List<uint>, List<string>>();
 
         // Выбранная специальность
         public static SpecialityBase SelectedSpeciality;
@@ -22,8 +24,8 @@ namespace Wisdom.Model
         // Компетенции
         // Общая компетенция - знания и умения
         // Профессиональная также включает практический опыт
-        public static List<HoursList<String2>> GeneralCompetetions;
-        public static List<HoursList<String2>> ProfessionalCompetetions;
+        public static List<HoursList<Pair<string, string>>> GeneralCompetetions;
+        public static List<HoursList<Pair<string, string>>> ProfessionalCompetetions;
 
         // Выбранная дисциплина и ее информация по умолчанию
         public static DisciplineBase SelectedDiscipline;
@@ -40,12 +42,12 @@ namespace Wisdom.Model
         // LevelsList — список с 3-мя заголовками, содержит название темы, часы, уровень освоения, список работ
         // HoursList — список с 2-мя заголовками, содержит название раздела, часы, список тем
         // HashList — список с заголовком, содержит название типа работ, список из имени под темы и отводимых часов
-        // String2 — класс «Двойная строка», хранящий имя задачи и отводимые ей часы
+        // Pair<string, string> — класс «Двойная строка», хранящий имя задачи и отводимые ей часы
 
         // Система вложенностей для тематического плана:
         //  Разделы -> Темы -> Работы -> Задачи
-        public static List<HoursList<LevelsList<HashList<String2>>>>
-            Plan = new List<HoursList<LevelsList<HashList<String2>>>>();
+        public static List<HoursList<LevelsList<HashList<Pair<string, string>>>>>
+            Plan = new List<HoursList<LevelsList<HashList<Pair<string, string>>>>>();
 
         // Приложение (доп. вопросы к экзаменам/д. зачетам)
         public static List<string> Applyment = new List<string>();
@@ -60,9 +62,9 @@ namespace Wisdom.Model
 
         // Типы значений
         // Используются для определения кол-ва полей
-        public static List<String2> MetaTypes;
-        public static List<String2> HourTypes;
-        public static List<String2> SourceTypes;
+        public static List<Pair<string, string>> MetaTypes;
+        public static List<Pair<string, string>> HourTypes;
+        public static List<Pair<string, string>> SourceTypes;
         public static Dictionary<string, int> SourceTypeKeys;
 
         public static void SetSourceTypeKeys()
@@ -74,7 +76,7 @@ namespace Wisdom.Model
             }
         }
 
-        public static ushort GetStudyHours(List<String2> hours)
+        public static ushort GetStudyHours(List<Pair<string, string>> hours)
         {
             ushort total = 0;
             for (byte i = 0; i < hours.Count; i++)

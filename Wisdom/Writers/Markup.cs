@@ -372,7 +372,7 @@ namespace Wisdom.Writers
                 rows.AddRange(CompetetionAdd(ProfessionalCompetetions[i].Name, ProfessionalCompetetions[i].Hours, ProfessionalCompetetions[i].Values));
             return rows;
         }
-        public static List<TableRow> CompetetionAdd(string id, string name, List<String2> skills)
+        public static List<TableRow> CompetetionAdd(string id, string name, List<Pair<string, string>> skills)
         {
             Run idRun = RunAdd(id);
             Run nameRun = RunAdd(name);
@@ -1473,7 +1473,7 @@ namespace Wisdom.Writers
             return tableRow;
         }
         public static List<TableRow> ThemeAdd(string title, string hours,
-            string competetions, string level, List<HashList<String2>> data)
+            string competetions, string level, List<HashList<Pair<string, string>>> data)
         {
             List<TableRow> themeContents = new List<TableRow>();
 
@@ -1535,7 +1535,7 @@ namespace Wisdom.Writers
             return themeContents;
         }
         
-        private static List<TableRow> ThemeContentAdd(List<String2> rows)
+        private static List<TableRow> ThemeContentAdd(List<Pair<string, string>> rows)
         {
             List<TableRow> themeContent = new List<TableRow>();
             for (byte ii = 0; ii < rows.Count; ii++)

@@ -93,7 +93,7 @@ namespace Wisdom.Controls.ThemePlan {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/themeplan/plantheme.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/themeplan/plantheme.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\ThemePlan\PlanTheme.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

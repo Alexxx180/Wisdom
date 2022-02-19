@@ -41,24 +41,24 @@ namespace Wisdom.Tests
                     Trace.WriteLine(records[i][ii]);
         }
 
-        public static void TestData(List<HoursList<LevelsList<HashList<String2>>>> plan)
+        public static void TestData(List<HoursList<LevelsList<HashList<Pair<string, string>>>>> plan)
         {
-            foreach (HoursList<LevelsList<HashList<String2>>> l1 in plan)
+            foreach (HoursList<LevelsList<HashList<Pair<string, string>>>> l1 in plan)
             {
                 Trace.WriteLine("Раздел ...");
                 Trace.WriteLine("Название: " + l1.Name);
                 Trace.WriteLine("Часы: " + l1.Hours);
-                foreach (LevelsList<HashList<String2>> l2 in l1.Values)
+                foreach (LevelsList<HashList<Pair<string, string>>> l2 in l1.Values)
                 {
                     Trace.WriteLine("Тема ...");
                     Trace.WriteLine("Название: " + l2.Name);
                     Trace.WriteLine("Часы: " + l2.Hours);
                     Trace.WriteLine("Уровень освоения: " + l2.Level);
-                    foreach (HashList<String2> l3 in l2.Values)
+                    foreach (HashList<Pair<string, string>> l3 in l2.Values)
                     {
                         Trace.WriteLine("Элемент темы ...");
                         Trace.WriteLine("Название: " + l3.Name);
-                        foreach (String2 l4 in l3.Values)
+                        foreach (Pair<string, string> l4 in l3.Values)
                         {
                             Trace.WriteLine("Элемент работы ...");
                             Trace.WriteLine("Название: " + l4.Name);
@@ -69,14 +69,14 @@ namespace Wisdom.Tests
             }
         }
 
-        public static void TestCompetetion(List<HoursList<String2>> competetion, string prefix)
+        public static void TestCompetetion(List<HoursList<Pair<string, string>>> competetion, string prefix)
         {
-            foreach (HoursList<String2> l1 in competetion)
+            foreach (HoursList<Pair<string, string>> l1 in competetion)
             {
                 Trace.WriteLine("Компетенция ...");
                 Trace.WriteLine("Номер: " + prefix + l1.Name);
                 Trace.WriteLine("Название: " + l1.Hours);
-                foreach (String2 l2 in l1.Values)
+                foreach (Pair<string, string> l2 in l1.Values)
                 {
                     Trace.WriteLine("Тема ...");
                     Trace.WriteLine("Название: " + l2.Name);
@@ -85,9 +85,9 @@ namespace Wisdom.Tests
             }
         }
 
-        public static void TestCompetetion2(List<List<HoursList<String2>>> competetion, string prefix)
+        public static void TestCompetetion2(List<List<HoursList<Pair<string, string>>>> competetion, string prefix)
         {
-            foreach (List<HoursList<String2>> l1 in competetion)
+            foreach (List<HoursList<Pair<string, string>>> l1 in competetion)
             {
                 TestCompetetion(l1, prefix);
             }

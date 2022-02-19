@@ -12,85 +12,106 @@
     <Compile Update="AddProg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Competetions\GeneralAutoIndexer.xaml.cs">
+    <Compile Update="Controls\Forms\Switcher.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Competetions\GeneralCompetetion.xaml.cs">
+    <Compile Update="Controls\Tables\AutoIndexer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Competetions\GeneralCompetetionAdditor.xaml.cs">
+    <Compile Update="Controls\Tables\AutoPanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Competetions\ProfessionalAutoIndexer.xaml.cs">
+    <Compile Update="Controls\Tables\Competetions\General\GeneralAutoIndexer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Competetions\ProfessionalCompetetion.xaml.cs">
+    <Compile Update="Controls\Tables\Competetions\General\GeneralCompetetion.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Competetions\ProfessionalCompetetionAdditor.xaml.cs">
+    <Compile Update="Controls\Tables\Competetions\General\GeneralCompetetionAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Competetions\ProfessionalDivider.xaml.cs">
+    <Compile Update="Controls\Tables\Competetions\Professional\ProfessionalCompetetion.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Competetions\ProfessionalDividerAdditor.xaml.cs">
+    <Compile Update="Controls\Tables\Competetions\Professional\ProfessionalCompetetionAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\EducationLevels\EducationLevel.xaml.cs">
+    <Compile Update="Controls\Tables\Competetions\Professional\ProfessionalGroups\ProfessionalDivider.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\EducationLevels\EducationLevelAdditor.xaml.cs">
+    <Compile Update="Controls\Tables\Competetions\Professional\ProfessionalGroups\ProfessionalDividerAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\HourElement.xaml.cs">
+    <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\CompetetionsPart.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\MetaElement.xaml.cs">
+    <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\HoursPart.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Sources\SourceElement.xaml.cs">
+    <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\MetaDataPart.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Sources\SourceElementAdditor.xaml.cs">
+    <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\PreviewPart.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Sources\SourceTypeElement.xaml.cs">
+    <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\ThemePlanPart.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Sources\SourceTypeElementAdditor.xaml.cs">
+    <Compile Update="Controls\Tables\EducationLevels\EducationLevel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\ThemePlan\PlanTask.xaml.cs">
+    <Compile Update="Controls\Tables\EducationLevels\EducationLevelAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\ThemePlan\PlanTaskAdditor.xaml.cs">
+    <Compile Update="Controls\Tables\Hours\HourElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\ThemePlan\PlanTheme.xaml.cs">
+    <Compile Update="Controls\Forms\MainForm\MainPart.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\ThemePlan\PlanThemeAdditor.xaml.cs">
+    <Compile Update="Controls\Tables\MetaData\MetaElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\ThemePlan\PlanThemeContent.xaml.cs">
+    <Compile Update="Controls\Tables\Sources\SourceElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\ThemePlan\PlanTopic.xaml.cs">
+    <Compile Update="Controls\Tables\Sources\SourceElementAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\ThemePlan\PlanTopicAdditor.xaml.cs">
+    <Compile Update="Controls\Tables\Sources\SourceTypes\SourceTypeElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\ThemePlan\PlanWork.xaml.cs">
+    <Compile Update="Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\ThemePlan\PlanWorkAdditor.xaml.cs">
+    <Compile Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTask.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\ThemePlan\PlanWorkTask.xaml.cs">
+    <Compile Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\UserTemplates\TemplateControl.xaml.cs">
+    <Compile Update="Controls\Tables\ThemePlan\Themes\PlanTheme.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Tables\ThemePlan\Themes\PlanThemeAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Tables\ThemePlan\PlanTopic.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Tables\ThemePlan\PlanTopicAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Tables\ThemePlan\Themes\Works\PlanWork.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Tables\ThemePlan\Themes\Works\PlanWorkAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Tables\ThemePlan\Themes\Works\PlanWorkTask.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Forms\MainForm\UserTemplates\TemplateControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -98,85 +119,106 @@
     <Page Update="AddProg.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Competetions\GeneralAutoIndexer.xaml">
+    <Page Update="Controls\Forms\Switcher.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Competetions\GeneralCompetetion.xaml">
+    <Page Update="Controls\Tables\AutoIndexer.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Competetions\GeneralCompetetionAdditor.xaml">
+    <Page Update="Controls\Tables\AutoPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Competetions\ProfessionalAutoIndexer.xaml">
+    <Page Update="Controls\Tables\Competetions\General\GeneralAutoIndexer.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Competetions\ProfessionalCompetetion.xaml">
+    <Page Update="Controls\Tables\Competetions\General\GeneralCompetetion.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Competetions\ProfessionalCompetetionAdditor.xaml">
+    <Page Update="Controls\Tables\Competetions\General\GeneralCompetetionAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Competetions\ProfessionalDivider.xaml">
+    <Page Update="Controls\Tables\Competetions\Professional\ProfessionalCompetetion.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Competetions\ProfessionalDividerAdditor.xaml">
+    <Page Update="Controls\Tables\Competetions\Professional\ProfessionalCompetetionAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\EducationLevels\EducationLevel.xaml">
+    <Page Update="Controls\Tables\Competetions\Professional\ProfessionalGroups\ProfessionalDivider.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\EducationLevels\EducationLevelAdditor.xaml">
+    <Page Update="Controls\Tables\Competetions\Professional\ProfessionalGroups\ProfessionalDividerAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\HourElement.xaml">
+    <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\CompetetionsPart.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\MetaElement.xaml">
+    <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\HoursPart.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Sources\SourceElement.xaml">
+    <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\MetaDataPart.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Sources\SourceElementAdditor.xaml">
+    <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\PreviewPart.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Sources\SourceTypeElement.xaml">
+    <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\ThemePlanPart.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Sources\SourceTypeElementAdditor.xaml">
+    <Page Update="Controls\Tables\EducationLevels\EducationLevel.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\ThemePlan\PlanTask.xaml">
+    <Page Update="Controls\Tables\EducationLevels\EducationLevelAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\ThemePlan\PlanTaskAdditor.xaml">
+    <Page Update="Controls\Tables\Hours\HourElement.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\ThemePlan\PlanTheme.xaml">
+    <Page Update="Controls\Forms\MainForm\MainPart.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\ThemePlan\PlanThemeAdditor.xaml">
+    <Page Update="Controls\Tables\MetaData\MetaElement.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\ThemePlan\PlanThemeContent.xaml">
+    <Page Update="Controls\Tables\Sources\SourceElement.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\ThemePlan\PlanTopic.xaml">
+    <Page Update="Controls\Tables\Sources\SourceElementAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\ThemePlan\PlanTopicAdditor.xaml">
+    <Page Update="Controls\Tables\Sources\SourceTypes\SourceTypeElement.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\ThemePlan\PlanWork.xaml">
+    <Page Update="Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\ThemePlan\PlanWorkAdditor.xaml">
+    <Page Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTask.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\ThemePlan\PlanWorkTask.xaml">
+    <Page Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\UserTemplates\TemplateControl.xaml">
+    <Page Update="Controls\Tables\ThemePlan\Themes\PlanTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\ThemePlan\Themes\PlanThemeAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\ThemePlan\PlanTopic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\ThemePlan\PlanTopicAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\ThemePlan\Themes\Works\PlanWork.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\ThemePlan\Themes\Works\PlanWorkAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\ThemePlan\Themes\Works\PlanWorkTask.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Forms\MainForm\UserTemplates\TemplateControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
@@ -198,6 +240,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Styles\TextBoxes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Styles\Total.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

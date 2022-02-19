@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="Wisdom.Controls.Tables.AutoIndexer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             mc:Ignorable="d" 
+             d:DesignHeight="35" d:DesignWidth="210">
+    <ComboBox Style="{StaticResource SubCaptionBox}">
+        <ComboBox.SelectedIndex>
+            <Binding Path="Selected" Mode="TwoWay">
+                <Binding.UpdateSourceTrigger>
+                    PropertyChanged
+                </Binding.UpdateSourceTrigger>
+            </Binding>
+        </ComboBox.SelectedIndex>
+
+        <ComboBoxItem>
+            <ComboBoxItem.ToolTip>
+                <TextBlock FontSize="20">
+                    <TextBlock.Text>
+                        Включить полную автоматическую нумерацию.
+                        Может влиять на производительность.
+                    </TextBlock.Text>
+                </TextBlock>
+            </ComboBoxItem.ToolTip>
+            <ComboBoxItem.Content>
+                <Viewbox>
+                    <TextBlock Text="Автоматически"/>
+                </Viewbox>
+            </ComboBoxItem.Content>
+        </ComboBoxItem>
+        <ComboBoxItem>
+            <ComboBoxItem.ToolTip>
+                <TextBlock FontSize="20">
+                    <TextBlock.Text>
+                        Отключить автоматическую нумерацию.
+                    </TextBlock.Text>
+                </TextBlock>
+            </ComboBoxItem.ToolTip>
+            <ComboBoxItem.Content>
+                <Viewbox>
+                    <TextBlock Text="Вручную"/>
+                </Viewbox>
+            </ComboBoxItem.Content>
+        </ComboBoxItem>
+        <ComboBoxItem>
+            <ComboBoxItem.ToolTip>
+                <TextBlock FontSize="20">
+                    <TextBlock.Text>
+                        Авто-нумерация только для новых записей.
+                    </TextBlock.Text>
+                </TextBlock>
+            </ComboBoxItem.ToolTip>
+            <ComboBoxItem.Content>
+                <Viewbox>
+                    <TextBlock Text="Только новые"/>
+                </Viewbox>
+            </ComboBoxItem.Content>
+        </ComboBoxItem>
+    </ComboBox>
+</UserControl>

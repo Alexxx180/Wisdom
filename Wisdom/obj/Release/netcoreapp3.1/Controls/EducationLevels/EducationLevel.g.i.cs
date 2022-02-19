@@ -85,7 +85,7 @@ namespace Wisdom.Controls.EducationLevels {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/educationlevels/educationlevel.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/educationlevels/educationlevel.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Controls\EducationLevels\EducationLevel.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

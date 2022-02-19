@@ -12,7 +12,6 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Windows.Markup;
-using Wisdom.Controls.ThemePlan;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
 

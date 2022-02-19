@@ -16,6 +16,14 @@ namespace Wisdom.Customing
         {
             return new BitmapImage(Ura(path));
         }
+
+        public static void SetActive(this FrameworkElement element, bool isEnabled)
+        {
+            element.Visibility = isEnabled ?
+                Visibility.Visible : Visibility.Hidden;
+            element.IsEnabled = isEnabled;
+        }
+
         public static void AnyHide(FrameworkElement element)
         {
             element.Visibility = Visibility.Hidden;
@@ -75,7 +83,7 @@ namespace Wisdom.Customing
                 SetProp(element, Grid.ColumnProperty, startNo);
                 SetProp(element, Grid.RowProperty, rowNo);
                 SetProp(element, Grid.ColumnSpanProperty, step);
-                startNo = startNo + step;
+                startNo += step;
             }
         }
         public static int Restack(StackPanel stack, Grid toMove, Grid toAdd)
@@ -104,7 +112,7 @@ namespace Wisdom.Customing
         }
         public static void SetPropX(DependencyProperty property, object[] value, Control[] cntrl)
         {
-            for (int i=0;i<cntrl.Length;i++) SetProp(cntrl[i], property, value[i]);
+            for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value[i]);
         }
         public static void SetPropX(DependencyProperty property, object[] value, UIElement[] cntrl)
         {

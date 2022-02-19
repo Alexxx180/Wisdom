@@ -8,14 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Novsu.png" />
     <None Remove="Refresh.png" />
     <None Remove="Resources\Images\Icons\AutoGenerator.png" />
-    <None Remove="Resources\Images\Icons\Novsu.png" />
     <None Remove="Resources\Images\Icons\Search.png" />
     <None Remove="Search.png" />
     <None Remove="TestResources\document.xml" />
     <None Remove="TestResources\Test.docx" />
+    <None Remove="Wisdom.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,12 +38,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Novsu.png" />
     <Resource Include="Refresh.png" />
     <Resource Include="Resources\Images\Icons\AutoGenerator.png" />
-    <Resource Include="Resources\Images\Icons\Novsu.png" />
     <Resource Include="Resources\Images\Icons\Search.png" />
     <Resource Include="Search.png" />
+    <Resource Include="Wisdom.png" />
   </ItemGroup>
 
   <ItemGroup>

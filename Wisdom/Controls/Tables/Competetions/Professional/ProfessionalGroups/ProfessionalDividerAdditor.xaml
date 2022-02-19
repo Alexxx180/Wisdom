@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups.ProfessionalDividerAdditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             d:DesignHeight="45" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="0.95*" />
+        </Grid.ColumnDefinitions>
+
+        <Button Click="AddDivision">
+            <Button.Style>
+                <StaticResource ResourceKey="AddButton"/>
+            </Button.Style>
+        </Button>
+
+        <Grid Grid.Column="1" Background="#FF03C6FF">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock>
+                <TextBlock.Text>
+                    <Binding Path="DividerPrefix"/>
+                </TextBlock.Text>
+                <TextBlock.Style>
+                    <StaticResource ResourceKey="ListCaptions"/>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBox Grid.Column="1">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="NoBox"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="DividerNo" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+                <TextBox.IsEnabled>
+                    <Binding Path="Options.IsManual" />
+                </TextBox.IsEnabled>
+            </TextBox>
+        </Grid>
+    </Grid>
+</UserControl>

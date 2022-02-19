@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="Wisdom.Controls.DocumentForms.AddDisciplineProgram.MetaDataPart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sources="clr-namespace:Wisdom.Controls.Sources"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="Form4" Grid.Row="1" Visibility="Hidden">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="0.125*"/>
+            <ColumnDefinition Width="0.27*"/>
+            <ColumnDefinition Width="0.38*"/>
+            <ColumnDefinition Width="0.075*"/>
+            <ColumnDefinition Width="0.05*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="18" Background="#FFFFFCC7" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.05*"></RowDefinition>
+                <RowDefinition Height="0.95*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Border Background="#FF03C6FF">
+                <Viewbox>
+                    <TextBlock x:Name="MetaDataTitle" Style="{StaticResource ResourceKey=ListCaptions}" Text="Прочая информация"></TextBlock>
+                </Viewbox>
+            </Border>
+
+            <!--Tag="{x:Reference RF}"-->
+            
+            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="1" Grid.Column="1" Grid.RowSpan="1">
+                <StackPanel Background="#FFFFFCC7">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.05*" />
+                            <ColumnDefinition Width="0.15*" />
+                            <ColumnDefinition Width="0.7*" />
+                            <ColumnDefinition Width="0.1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.ColumnSpan="4" x:Name="MetaData">
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="18" Visibility="Hidden">
+            <StackPanel Background="#FFFFFCC7" x:Name="EducationSources">
+                <sources:SourceTypeElementAdditor/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
