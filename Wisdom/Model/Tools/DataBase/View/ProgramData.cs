@@ -43,16 +43,16 @@ namespace Wisdom.Model.Tools.DataBase
                 sources, generalCompetetions, professionalCompetetions);
         }
 
-        public List<Pair<string, string>> MetaTypesData()
+        public List<string> MetaTypesData()
         {
             List<object[]> types = _dataBase.MetaTypes();
-            return GetMetaTypes(types);
+            return GetSingle(types);
         }
 
-        public List<Pair<string, string>> HourTypesData()
+        public List<string> HourTypesData()
         {
             List<object[]> types = _dataBase.WorkTypes();
-            return GetHourTypes(types);
+            return GetSingle(types);
         }
 
         public List<string> SourceTypesData()

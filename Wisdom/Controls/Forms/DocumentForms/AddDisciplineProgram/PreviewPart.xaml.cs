@@ -3,9 +3,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.ViewModel;
 using System.Windows;
-using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
 
-namespace Wisdom.Controls.DocumentForms.AddDisciplineProgram
+namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
 {
     /// <summary>
     /// Part responsible for result document previewing

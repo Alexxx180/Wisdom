@@ -45,6 +45,11 @@ namespace Wisdom.Controls
             InitializeComponent();
         }
 
+        public void SetType(string type)
+        {
+            MetaName = type;
+        }
+
         public void SetElement(Pair<string, string> values)
         {
             MetaName = values.Name;

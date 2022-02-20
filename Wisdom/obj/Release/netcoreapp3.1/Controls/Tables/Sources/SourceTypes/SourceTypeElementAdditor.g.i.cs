@@ -52,8 +52,8 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/tables/sources/sourcetypes/sourcetypeelementadditor.xa" +
-                    "ml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/tables/sources/sourcetypes/sourcetypeelementa" +
+                    "dditor.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

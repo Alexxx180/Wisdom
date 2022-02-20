@@ -12,56 +12,10 @@
     <Window.Resources>
         <bind:CompetetionsConverter x:Key="CompetetionsConverter" />
         <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
-        <Style TargetType="{x:Type MenuItem}" x:Key="MenuItemTextStyle" >
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type MenuItem}">
-                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" Uid="Border_38">
-                            <TextBlock x:Name="CP" TextDecorations="Baseline" Foreground="#FF00A2E8" TextWrapping="NoWrap">
-                                <ContentPresenter Content="{TemplateBinding Header}" Grid.Column="1" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Uid="ContentPresenter_33"/>
-                            </TextBlock>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsHighlighted"  Value="True">
-                                <Setter Property="Foreground" TargetName="CP" Value="#FFFFFFFF"/>
-                                <Setter Property="Background" TargetName="Bd" Value="#FF00A2E8"/>
-                                <Setter Property="BorderBrush" TargetName="Bd" Value="#FFEFE4B0"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Background" Value="#FFEFE4B0"></Setter>
-            <Setter Property="FontSize" Value="18"></Setter>
-            <Setter Property="FontFamily" Value="Arial"></Setter>
-        </Style>
-        <Style TargetType="{x:Type MenuItem}" x:Key="MenuItemStyle" >
-            <Setter Property="Background" Value="#FFEFE4B0"></Setter>
-            <Setter Property="FontSize" Value="18"></Setter>
-            <Setter Property="FontFamily" Value="Arial"></Setter>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type MenuItem}">
-                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" Uid="Border_38">
-                            <Label x:Name="CP" Foreground="#FF00A2E8">
-                                <ContentPresenter Content="{TemplateBinding Header}" Grid.Column="1" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Uid="ContentPresenter_33"/>
-                            </Label>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsHighlighted"  Value="True">
-                                <Setter Property="Foreground" TargetName="CP" Value="#FFFFFFFF"/>
-                                <Setter Property="Background" TargetName="Bd" Value="#FF00A2E8"/>
-                                <Setter Property="BorderBrush" TargetName="Bd" Value="#FFEFE4B0"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Window.Resources>
     
     <Window.DataContext>
-        <viewmodel:DisciplineProgramViewModel x:Name="DisciplineViewModel" />
+        <viewmodel:DisciplineProgramViewModel x:Name="ProgramViewModel" />
     </Window.DataContext>
 
     <Grid>
@@ -69,6 +23,7 @@
             <RowDefinition Height="0.05*"/>
             <RowDefinition Height="0.95*"/>
         </Grid.RowDefinitions>
+        
 
         <Grid Background="#FF00A2E8" Visibility="Visible">
             <Grid.ColumnDefinitions>
@@ -110,44 +65,66 @@
                         <ColumnDefinition Width="0.15*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!--<forms:Switcher Grid.Column="0" Text="1"
-                                    Group="{Binding ElementName=StepsGroup}"
-                                    Element="{Binding ElementName=Page1}">
+                    <forms:Switcher Grid.Column="0" Text="1">
                         <forms:Switcher.ViewStyle>
                             <StaticResource ResourceKey="AutoSteps"/>
                         </forms:Switcher.ViewStyle>
+                        <forms:Switcher.Element>
+                            <Binding ElementName="Page1"/>
+                        </forms:Switcher.Element>
+                        <forms:Switcher.Group>
+                            <Binding ElementName="StepsGroup"/>
+                        </forms:Switcher.Group>
                     </forms:Switcher>
 
-                    <forms:Switcher Grid.Column="2" Text="2"
-                                    Group="{Binding ElementName=StepsGroup}"
-                                    Element="{Binding ElementName=Page2}">
+                    <forms:Switcher Grid.Column="2" Text="2">
                         <forms:Switcher.ViewStyle>
                             <StaticResource ResourceKey="AutoSteps"/>
                         </forms:Switcher.ViewStyle>
+                        <forms:Switcher.Element>
+                            <Binding ElementName="Page2"/>
+                        </forms:Switcher.Element>
+                        <forms:Switcher.Group>
+                            <Binding ElementName="StepsGroup"/>
+                        </forms:Switcher.Group>
                     </forms:Switcher>
 
-                    <forms:Switcher Grid.Column="4" Text="3"
-                                    Group="{Binding ElementName=StepsGroup}"
-                                    Element="{Binding ElementName=Page3}">
+                    <forms:Switcher Grid.Column="4" Text="3">
                         <forms:Switcher.ViewStyle>
                             <StaticResource ResourceKey="AutoSteps"/>
                         </forms:Switcher.ViewStyle>
+                        <forms:Switcher.Element>
+                            <Binding ElementName="Page3"/>
+                        </forms:Switcher.Element>
+                        <forms:Switcher.Group>
+                            <Binding ElementName="StepsGroup"/>
+                        </forms:Switcher.Group>
                     </forms:Switcher>
 
-                    <forms:Switcher Grid.Column="6" Text="4"
-                                    Group="{Binding ElementName=StepsGroup}"
-                                    Element="{Binding ElementName=Page3}">
+                    <forms:Switcher Grid.Column="6" Text="4">
                         <forms:Switcher.ViewStyle>
                             <StaticResource ResourceKey="AutoSteps"/>
                         </forms:Switcher.ViewStyle>
-                    </forms:Switcher>-->
+                        <forms:Switcher.Element>
+                            <Binding ElementName="Page4"/>
+                        </forms:Switcher.Element>
+                        <forms:Switcher.Group>
+                            <Binding ElementName="StepsGroup"/>
+                        </forms:Switcher.Group>
+                    </forms:Switcher>
+
+                    <forms:Switcher Grid.Column="10" Text="|=:|">
+                        <forms:Switcher.ViewStyle>
+                            <StaticResource ResourceKey="AutoSteps"/>
+                        </forms:Switcher.ViewStyle>
+                        <forms:Switcher.Element>
+                            <Binding ElementName="Preview"/>
+                        </forms:Switcher.Element>
+                        <forms:Switcher.Group>
+                            <Binding ElementName="StepsGroup"/>
+                        </forms:Switcher.Group>
+                    </forms:Switcher>
                 </Grid>
-
-                <!--<Button Click="Stepping" Tag="{x:Reference Name=Preview}" x:Name="PreviewStep" Grid.Column="14" Style="{StaticResource Steps2}">
-                    <Viewbox>
-                        <TextBlock Text="|=:|" />
-                    </Viewbox>
-                </Button>-->
 
                 <Button Click="MakeUserTemplate" Grid.Column="6" Style="{StaticResource Steps}">
                     <Viewbox>
@@ -178,12 +155,14 @@
             </Grid>
         </Grid>
 
-        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" ViewModel="{Binding ElementName=DisciplineViewModel}" Visibility="Hidden" />
+        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
 
-        <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1" ViewModel="{Binding ElementName=DisciplineViewModel}" Visibility="Hidden" />
+        <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
 
-        <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" ViewModel="{Binding ElementName=DisciplineViewModel}" Visibility="Hidden" />
+        <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
 
-        <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" ViewModel="{Binding ElementName=DisciplineViewModel}" Visibility="Hidden" />
+        <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
+
+        <dpforms:PreviewPart x:Name="Preview" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
     </Grid>
 </Window>

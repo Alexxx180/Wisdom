@@ -189,30 +189,27 @@
                 </Border>
             </Grid>
 
-            <ScrollViewer>
-                <StackPanel Background="#FFFFFCC7">
-                    <Grid>
-                        <!--Tag="{x:Reference RF}"-->
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.05*" />
-                            <ColumnDefinition Width="0.15*" />
-                            <ColumnDefinition Width="0.7*" />
-                            <ColumnDefinition Width="0.1*" />
-                        </Grid.ColumnDefinitions>
+            <ScrollViewer Background="#FFFFFCC7">
+                <ScrollViewer.VerticalScrollBarVisibility>
+                    Auto
+                </ScrollViewer.VerticalScrollBarVisibility>
+                <ItemsControl>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemsSource>
+                        <Binding Path="Hours"/>
+                    </ItemsControl.ItemsSource>
+                </ItemsControl>
+            </ScrollViewer>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-
-                        <StackPanel Grid.ColumnSpan="4">
+            <!--<StackPanel Grid.ColumnSpan="4">
                             <ContentControl>
                                 <Binding Path="Hours"/>
                             </ContentControl>
-                        </StackPanel>
-                    </Grid>
-                </StackPanel>
-            </ScrollViewer>
+                        </StackPanel>-->
         </Grid>
     </Grid>
 </UserControl>

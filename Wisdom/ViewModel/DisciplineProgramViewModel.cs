@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using Wisdom.Model;
 using Wisdom.Model.Tools.DataBase;
-using Wisdom.Binds;
 using static Wisdom.Customing.Converters;
-using static Wisdom.Binds.EasyBindings;
 using System.Collections.ObjectModel;
 using Wisdom.Controls;
 using Wisdom.Controls.Tables.Competetions.General;
@@ -24,9 +18,53 @@ namespace Wisdom.ViewModel
 {
     internal class DisciplineProgramViewModel : INotifyPropertyChanged
     {
+        private DisciplineProgram _document;
+        internal DisciplineProgram Document
+        {
+            get => _document;
+            set
+            {
+                _document = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region Connection Members
+        private Sql _connector;
+        internal Sql Connector
+        {
+            get => _connector;
+            set
+            {
+                _connector = value;
+                Data = new ProgramData(value);
+                OnPropertyChanged();
+            }
+        }
+
+        private ProgramData _data;
+        internal ProgramData Data
+        {
+            get => _data;
+            set
+            {
+                _data = value;
+                SetLevels();
+                SetMetaTypes();
+                SetHourTypes();
+                SetSourceTypes();
+                SpecialityHead = _data.ListSpecialities();
+                SpecialitySelect.Refresh(SpecialityHead.Value);
+                Document = new DisciplineProgram();
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+
         #region Types Members
-        private List<Pair<string, string>> _metaTypes;
-        internal List<Pair<string, string>> MetaTypes
+        private List<string> _metaTypes;
+        internal List<string> MetaTypes
         {
             get => _metaTypes;
             set
@@ -36,8 +74,8 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private List<Pair<string, string>> _hourTypes;
-        internal List<Pair<string, string>> HourTypes
+        private List<string> _hourTypes;
+        internal List<string> HourTypes
         {
             get => _hourTypes;
             set
@@ -54,17 +92,6 @@ namespace Wisdom.ViewModel
             set
             {
                 _sourceTypes = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Dictionary<string, int> _sourceTypeKeys;
-        internal Dictionary<string, int> SourceTypeKeys
-        {
-            get => _sourceTypeKeys;
-            set
-            {
-                _sourceTypeKeys = value;
                 OnPropertyChanged();
             }
         }
@@ -284,8 +311,6 @@ namespace Wisdom.ViewModel
 
         public DisciplineProgramViewModel()
         {
-            _connector = new MySQL();
-            Data = new ProgramData(new MySQL());
             SpecialitySelect = new ObservableCollection<string>();
             DisciplinesSelect = new ObservableCollection<string>();
             Levels = new ObservableCollection<EducationLevel>();
@@ -293,27 +318,19 @@ namespace Wisdom.ViewModel
             Sources = new ObservableCollection<SourceTypeElement>();
             MetaData = new ObservableCollection<MetaElement>();
             Hours = new ObservableCollection<HourElement>();
+            Hours.Add(new HourElement());
+            OnPropertyChanged(nameof(Hours));
             ProfessionalCompetetions = new ObservableCollection<ProfessionalDivider>();
             GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
-            SetLevels();
-            SetMetaTypes();
-            SetHourTypes();
-            SetSourceTypes();
-            SpecialityHead = Data.ListSpecialities();
-            foreach (string speciality in SpecialityHead.Value)
-                SpecialitySelect.Add(speciality);
-            
+
+            Connector = new MySQL();
         }
 
+        #region DisciplineProgramFilling Logic
         internal void SetFromTemplate(DisciplineProgram program)
         {
             SetProfession(program);
             SetDiscipline(program);
-        }
-
-        private void SetRecords()
-        {
-
         }
 
         internal void CreateTemplate()
@@ -337,6 +354,33 @@ namespace Wisdom.ViewModel
             program.StudyLevels.Refresh(Levels);
             //WriteJson(FileName, program);
         }
+
+        internal void SetUpDocumentBlank()
+        {
+            Document.DisciplineName = DisciplineFullName;
+            Document.ProfessionName = SpecialityFullName;
+
+            Document.MaxHours = MaxHours;
+            Document.SelfHours = SelfHours;
+            Document.EduHours = EduHours;
+
+            Document.MetaData.Refresh(MetaData);
+            Document.Hours.Refresh(Hours);
+
+            Document.GeneralCompetetions.Refresh(GeneralCompetetions);
+            Document.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
+
+            Document.Sources.Refresh(Sources);
+            Document.Plan.Refresh(ThemePlan);
+            Document.StudyLevels.Refresh(Levels);
+        }
+
+        public void MakeDocument(string fileName)
+        {
+            SetUpDocumentBlank();
+            CallWriter(fileName, Document);
+        }
+        #endregion
 
         internal void ResetCompetetions(ComboBox box)
         {
@@ -395,33 +439,7 @@ namespace Wisdom.ViewModel
 
             for (byte i = 0; i < ThemePlan.Count; i++)
                 ThemePlan[i].SetElement(SelectedDiscipline.Plan[i]);
-        }
-
-        internal void SetUpDocumentBlank()
-        {
-            Document.DisciplineName = DisciplineFullName;
-            Document.ProfessionName = SpecialityFullName;
-
-            Document.MaxHours = MaxHours;
-            Document.SelfHours = SelfHours;
-            Document.EduHours = EduHours;
-
-            Document.MetaData.Refresh(MetaData);
-            Document.Hours.Refresh(Hours);
-
-            Document.GeneralCompetetions.Refresh(GeneralCompetetions);
-            Document.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
-
-            Document.Sources.Refresh(Sources);
-            Document.Plan.Refresh(ThemePlan);
-            Document.StudyLevels.Refresh(Levels);
-        }
-
-        public void MakeDocument(string fileName)
-        {
-            SetUpDocumentBlank();
-            CallWriter(fileName, Document);
-        }
+        }       
 
         private void SetProfession(DisciplineProgram program)
         {
@@ -475,15 +493,6 @@ namespace Wisdom.ViewModel
             }
         }
 
-        public void SetSourceTypeKeys()
-        {
-            SourceTypeKeys = new Dictionary<string, int>();
-            for (byte i = 0; i < SourceTypes.Count; i++)
-            {
-                SourceTypeKeys.Add(SourceTypes[i], i);
-            }
-        }
-
         private void SetLevels()
         {
             List<Pair<string, string>> levels = Data.LevelsData();
@@ -499,7 +508,6 @@ namespace Wisdom.ViewModel
         private void SetSourceTypes()
         {
             SourceTypes = Data.SourceTypesData();
-            SetSourceTypeKeys();
         }
 
         private void SetMetaTypes()
@@ -509,7 +517,7 @@ namespace Wisdom.ViewModel
             for (byte i = 0; i < MetaTypes.Count; i++)
             {
                 MetaElement meta = new MetaElement();
-                meta.SetElement(MetaTypes[i]);
+                meta.SetType(MetaTypes[i]);
                 MetaData.Add(meta);
             }
         }
@@ -521,7 +529,7 @@ namespace Wisdom.ViewModel
             for (byte i = 0; i < HourTypes.Count; i++)
             {
                 HourElement hour = new HourElement();
-                hour.SetType(HourTypes[i].Name);
+                hour.SetType(HourTypes[i]);
                 Hours.Add(hour);
             }
             //ResetTotalHourBinds();
@@ -587,10 +595,6 @@ namespace Wisdom.ViewModel
         //    _ = SetBind(Inputted, ContentProperty, multiCount);
         //}
 
-
-
-
-
         #warning Cool Features Here!!
         // TO DO
 
@@ -606,11 +610,6 @@ namespace Wisdom.ViewModel
         //
         // Use UsedValuesConverter to compare
         // work types with theme plan!
-
-        DisciplineProgram Document;
-        ProgramData Data;
-
-        private readonly Sql _connector;
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

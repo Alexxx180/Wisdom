@@ -52,7 +52,8 @@ namespace Wisdom.Controls.Tables.Competetions.General {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/tables/competetions/general/generalcompetetion.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/tables/competetions/general/generalcompetetio" +
+                    "n.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Controls\Tables\Competetions\General\GeneralCompetetion.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

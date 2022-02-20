@@ -52,7 +52,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/tables/themeplan/themes/plantheme.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/tables/themeplan/themes/plantheme.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Controls\Tables\ThemePlan\Themes\PlanTheme.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

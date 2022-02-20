@@ -52,8 +52,8 @@ namespace Wisdom.Controls.Tables.Competetions.Professional {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/tables/competetions/professional/professionalcompeteti" +
-                    "on.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/tables/competetions/professional/professional" +
+                    "competetion.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Controls\Tables\Competetions\Professional\ProfessionalCompetetion.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -233,6 +233,9 @@
     <Page Update="Resources\Styles\Labels.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Resources\Styles\MenuItems.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Resources\Styles\TextBoxes.xaml">
       <SubType>Designer</SubType>
     </Page>

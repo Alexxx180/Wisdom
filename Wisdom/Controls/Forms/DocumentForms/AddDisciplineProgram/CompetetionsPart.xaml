@@ -10,43 +10,20 @@
              xmlns:professional="clr-namespace:Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Grid.Row="1" Visibility="Hidden"  DataContext="{Binding Path=ViewModel}">
+             d:DesignHeight="450" d:DesignWidth="800"> 
+    <Grid Grid.Row="1" DataContext="{Binding Path=ViewModel}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*"/>
-            <ColumnDefinition Width="0.35*"/>
-            <ColumnDefinition Width="0.075*"/>
-            <ColumnDefinition Width="0.05*"/>
-            <ColumnDefinition Width="0.35*"/>
-            <ColumnDefinition Width="0.075*"/>
-            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="0.025*"/>
+            <ColumnDefinition Width="0.95*"/>
+            <ColumnDefinition Width="0.025*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.9*"/>
+            <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
+        
 
         <!--
         <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="18">

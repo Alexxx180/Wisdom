@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Wisdom.Controls.DocumentForms.AddDisciplineProgram.PreviewPart"
+﻿<UserControl x:Class="Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram.PreviewPart"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
