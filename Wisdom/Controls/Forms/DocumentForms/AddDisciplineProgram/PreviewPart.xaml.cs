@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.ViewModel;
+using System.Windows;
+using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
 
 namespace Wisdom.Controls.DocumentForms.AddDisciplineProgram
 {
@@ -10,13 +12,16 @@ namespace Wisdom.Controls.DocumentForms.AddDisciplineProgram
     /// </summary>
     public partial class PreviewPart : UserControl, INotifyPropertyChanged
     {
-        private DisciplineProgramViewModel _viewModel;
+        public static readonly DependencyProperty
+            ViewModelProperty = DependencyProperty.Register("ViewModel",
+                typeof(DisciplineProgramViewModel), typeof(PreviewPart));
+
         internal DisciplineProgramViewModel ViewModel
         {
-            get => _viewModel;
+            get => GetValue(ViewModelProperty) as DisciplineProgramViewModel;
             set
             {
-                _viewModel = value;
+                SetValue(ViewModelProperty, value);
                 OnPropertyChanged();
             }
         }
@@ -26,11 +31,22 @@ namespace Wisdom.Controls.DocumentForms.AddDisciplineProgram
             InitializeComponent();
         }
 
+        #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+
+        /// <summary>
+        /// Raises this object's PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">The property that has a new value.</param>
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
         }
+        #endregion
     }
 }

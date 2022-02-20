@@ -59,15 +59,12 @@
             </Setter>
         </Style>
     </Window.Resources>
+    
     <Window.DataContext>
         <viewmodel:DisciplineProgramViewModel x:Name="DisciplineViewModel" />
     </Window.DataContext>
 
-    <Grid x:Name="AddProgMain">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"/>
             <RowDefinition Height="0.95*"/>
@@ -79,11 +76,6 @@
                 <ColumnDefinition Width="0.9*"/>
                 <ColumnDefinition Width="0.05*"/>
             </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
 
             <Grid Grid.Row="1" Grid.Column="1" Visibility="Visible">
                 <Grid.ColumnDefinitions>
@@ -151,17 +143,6 @@
                     </forms:Switcher>-->
                 </Grid>
 
-                <!--<Button Click="Stepping" Tag="{x:Reference Name=Form3}" x:Name="Step3" Grid.Column="8" Style="{StaticResource Steps2}">
-                    <Viewbox>
-                        <TextBlock Text="3"/>
-                    </Viewbox>
-                </Button>
-                <Button Click="Stepping" Tag="{x:Reference Name=Form4}" x:Name="Step4" Grid.Column="10" Style="{StaticResource Steps2}">
-                    <Viewbox>
-                        <TextBlock Text="4"/>
-                    </Viewbox>
-                </Button>-->
-                
                 <!--<Button Click="Stepping" Tag="{x:Reference Name=Preview}" x:Name="PreviewStep" Grid.Column="14" Style="{StaticResource Steps2}">
                     <Viewbox>
                         <TextBlock Text="|=:|" />
@@ -197,12 +178,12 @@
             </Grid>
         </Grid>
 
-        <!--<dpforms:HoursPart x:Name="Page1" Grid.Row="1" ViewModel="{x:Reference DisciplineViewModel}" Visibility="Hidden" />
+        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" ViewModel="{Binding ElementName=DisciplineViewModel}" Visibility="Hidden" />
 
-        <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1" ViewModel="{x:Reference DisciplineViewModel}" Visibility="Hidden" />
+        <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1" ViewModel="{Binding ElementName=DisciplineViewModel}" Visibility="Hidden" />
 
-        <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" ViewModel="{x:Reference DisciplineViewModel}" Visibility="Hidden" />
+        <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" ViewModel="{Binding ElementName=DisciplineViewModel}" Visibility="Hidden" />
 
-        <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" ViewModel="{x:Reference DisciplineViewModel}" Visibility="Hidden" />-->
+        <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" ViewModel="{Binding ElementName=DisciplineViewModel}" Visibility="Hidden" />
     </Grid>
 </Window>

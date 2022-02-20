@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.ViewModel;
+using System.Windows;
 
 namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
 {
@@ -10,13 +11,16 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
     /// </summary>
     public partial class CompetetionsPart : UserControl, INotifyPropertyChanged
     {
-        private DisciplineProgramViewModel _viewModel;
+        public static readonly DependencyProperty
+            ViewModelProperty = DependencyProperty.Register("ViewModel",
+                typeof(DisciplineProgramViewModel), typeof(CompetetionsPart));
+
         internal DisciplineProgramViewModel ViewModel
         {
-            get => _viewModel;
+            get => GetValue(ViewModelProperty) as DisciplineProgramViewModel;
             set
             {
-                _viewModel = value;
+                SetValue(ViewModelProperty, value);
                 OnPropertyChanged();
             }
         }
