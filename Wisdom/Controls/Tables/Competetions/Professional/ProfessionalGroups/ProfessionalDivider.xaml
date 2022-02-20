@@ -59,13 +59,13 @@
             </Grid>
         </Grid>
 
-        <tables:RecordsPanel Grid.Row="1">
-            <tables:RecordsPanel.Records>
+        <!--<tables:AutoPanel Grid.Row="1">
+            <tables:AutoPanel.Records>
                 <Binding Path="Competetions"/>
-            </tables:RecordsPanel.Records>
-            <!--<tables:RecordsPanel.Additor>
-                    <general:
-                </tables:RecordsPanel.Additor>-->
-        </tables:RecordsPanel>
+            </tables:AutoPanel.Records>
+            <tables:AutoPanel.Additor>
+                <:
+            </tables:AutoPanel.Additor>
+        </tables:AutoPanel>-->
     </Grid>
 </UserControl>

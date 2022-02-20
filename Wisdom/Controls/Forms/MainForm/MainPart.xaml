@@ -6,10 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="600">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"/>
             <RowDefinition Height="0.75*"/>
@@ -76,8 +72,20 @@
                         <ColumnDefinition Width="0.05*" />
                     </Grid.ColumnDefinitions>
 
-                    <!--<Image Source="/Resources/Images/Icons/Search.png"  />
-                    <TextBox Grid.Column="1" x:Name="Discp" HorizontalAlignment="Stretch" Style="{StaticResource RegularBox}" Text="Прикладное программирование" TextWrapping="Wrap" VerticalAlignment="Stretch" FontSize="20" />-->
+                    <!--
+                    <Image Source="/Resources/Images/Icons/Search.png"/>
+                    
+                    <TextBox Grid.Column="1" FontSize="20">
+                        <TextBox.Style>
+                            <StaticResource ResourceKey="RegularBox"/>
+                        </TextBox.Style>
+                        <TextBox.Text>
+                            Прикладное программирование
+                        </TextBox.Text>
+                    </TextBox>
+                    </TextBox>
+                    -->
+                    
                     <Button x:Name="Refresh" Grid.Column="2" Click="RefreshTemplates">
                         <Viewbox>
                             <Image Source="/Refresh.png" Stretch="Fill" />

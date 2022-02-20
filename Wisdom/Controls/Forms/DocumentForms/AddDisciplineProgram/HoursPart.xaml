@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Wisdom.Controls.DocumentForms.AddDisciplineProgram.HoursPart"
+﻿<UserControl x:Class="Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram.HoursPart"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,6 +10,7 @@
     <UserControl.Resources>
         <bind:CompetetionsConverter x:Key="CompetetionsConverter" />
         <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
+        <bind:SumConverter x:Key="SumConverter"/>
     </UserControl.Resources>
     <Grid x:Name="Form1" Grid.Row="1" Visibility="Visible" DataContext="{Binding Path=ViewModel}">
         <Grid.ColumnDefinitions>
@@ -172,21 +173,18 @@
                 </Border>
 
                 <Border Grid.Column="1">
-                    <Border.Background>
+                    <!--<Border.Background>
                         <MultiBinding Converter="{StaticResource UsedValuesConverter}">
                             <Binding Path="Text" ElementName="Max"></Binding>
                             <Binding Path="Text" ElementName="Inputted"></Binding>
                         </MultiBinding>
-                    </Border.Background>
+                    </Border.Background>-->
                     <Viewbox HorizontalAlignment="Center">
-                        <TextBlock x:Name="Inputted" Tag="{x:Reference Name=Max}" Style="{StaticResource CaptionSections}">
-                            <TextBlock.Resources>
-                                <bind:SumConverter x:Key="SumConverter" />
-                            </TextBlock.Resources>
+                        <!--<TextBlock x:Name="Inputted" Tag="{x:Reference Name=Max}" Style="{StaticResource CaptionSections}">
                             <TextBlock.Text>
                                 <MultiBinding Converter="{StaticResource SumConverter}"/>
                             </TextBlock.Text>
-                        </TextBlock>
+                        </TextBlock>-->
                     </Viewbox>
                 </Border>
             </Grid>

@@ -18,11 +18,58 @@ using Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups;
 using Wisdom.Controls.Tables.Sources.SourceTypes;
 using Wisdom.Controls.Tables.ThemePlan;
 using Wisdom.Controls.Tables.EducationLevels;
+using static Wisdom.Writers.ResultRenderer;
 
 namespace Wisdom.ViewModel
 {
     internal class DisciplineProgramViewModel : INotifyPropertyChanged
     {
+        #region Types Members
+        private List<Pair<string, string>> _metaTypes;
+        internal List<Pair<string, string>> MetaTypes
+        {
+            get => _metaTypes;
+            set
+            {
+                _metaTypes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<Pair<string, string>> _hourTypes;
+        internal List<Pair<string, string>> HourTypes
+        {
+            get => _hourTypes;
+            set
+            {
+                _hourTypes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> _sourceTypes;
+        internal List<string> SourceTypes
+        {
+            get => _sourceTypes;
+            set
+            {
+                _sourceTypes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Dictionary<string, int> _sourceTypeKeys;
+        internal Dictionary<string, int> SourceTypeKeys
+        {
+            get => _sourceTypeKeys;
+            set
+            {
+                _sourceTypeKeys = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         #region SpecialitySelection Members
         private int _specialityNo;
         internal int SpecialityNo
@@ -121,52 +168,6 @@ namespace Wisdom.ViewModel
             set
             {
                 _disciplinesSelect = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
-
-        #region Types Members
-        private List<Pair<string, string>> _metaTypes;
-        internal List<Pair<string, string>> MetaTypes
-        {
-            get => _metaTypes;
-            set
-            {
-                _metaTypes = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private List<Pair<string, string>> _hourTypes;
-        internal List<Pair<string, string>> HourTypes
-        {
-            get => _hourTypes;
-            set
-            {
-                _hourTypes = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private List<Pair<string, string>> _sourceTypes;
-        internal List<Pair<string, string>> SourceTypes
-        {
-            get => _sourceTypes;
-            set
-            {
-                _sourceTypes = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Dictionary<string, int> _sourceTypeKeys;
-        internal Dictionary<string, int> SourceTypeKeys
-        {
-            get => _sourceTypeKeys;
-            set
-            {
-                _sourceTypeKeys = value;
                 OnPropertyChanged();
             }
         }
@@ -325,15 +326,11 @@ namespace Wisdom.ViewModel
             program.SelfHours = SelfHours;
             program.EduHours = EduHours;
 
-            //Dictionary<string, ushort> factHours = HourElement.GetFullData(TotalHoursCount);
-
             program.MetaData.Refresh(MetaData);
             program.Hours.Refresh(Hours);
 
             program.GeneralCompetetions.Refresh(GeneralCompetetions);
             program.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
-
-            
 
             program.Sources.Refresh(Sources);
             program.Plan.Refresh(ThemePlan);
@@ -392,7 +389,7 @@ namespace Wisdom.ViewModel
             SetLevels();
 
             for (byte i = 0; i < SourceTypes.Count; i++)
-                Sources[i].SetElement(SelectedDiscipline.Sources[i]);
+                Sources[i].SetElement(SourceTypes, SelectedDiscipline.Sources[i]);
 
             SetCompetetions();
 
@@ -418,6 +415,12 @@ namespace Wisdom.ViewModel
             Document.Sources.Refresh(Sources);
             Document.Plan.Refresh(ThemePlan);
             Document.StudyLevels.Refresh(Levels);
+        }
+
+        public void MakeDocument(string fileName)
+        {
+            SetUpDocumentBlank();
+            CallWriter(fileName, Document);
         }
 
         private void SetProfession(DisciplineProgram program)
@@ -455,7 +458,7 @@ namespace Wisdom.ViewModel
             for (byte i = 0; i < program.Sources.Count; i++)
             {
                 SourceTypeElement source = new SourceTypeElement();
-                source.SetElement(program.Sources[i]);
+                source.SetElement(SourceTypes, program.Sources[i]);
                 Sources.Add(source);
             }
 
@@ -477,7 +480,7 @@ namespace Wisdom.ViewModel
             SourceTypeKeys = new Dictionary<string, int>();
             for (byte i = 0; i < SourceTypes.Count; i++)
             {
-                SourceTypeKeys.Add(SourceTypes[i].Name, i);
+                SourceTypeKeys.Add(SourceTypes[i], i);
             }
         }
 
@@ -588,7 +591,7 @@ namespace Wisdom.ViewModel
 
 
 
-
+        #warning Cool Features Here!!
         // TO DO
 
         // Solve for additors:

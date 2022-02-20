@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:bind="clr-namespace:Wisdom.Binds"
         xmlns:forms="clr-namespace:Wisdom.Controls.Forms"
-        xmlns:dpforms="clr-namespace:Wisdom.Controls.DocumentForms.AddDisciplineProgram"
+        xmlns:dpforms="clr-namespace:Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram"
         xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
         mc:Ignorable="d"
         Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized" Icon="/Wisdom.png">
@@ -118,37 +118,37 @@
                         <ColumnDefinition Width="0.15*"/>
                     </Grid.ColumnDefinitions>
 
-                    <forms:Switcher Grid.Column="0" Text="1"
-                                    Group="{x:Reference StepsGroup}"
-                                    Element="{x:Reference Page1}">
+                    <!--<forms:Switcher Grid.Column="0" Text="1"
+                                    Group="{Binding ElementName=StepsGroup}"
+                                    Element="{Binding ElementName=Page1}">
                         <forms:Switcher.ViewStyle>
                             <StaticResource ResourceKey="AutoSteps"/>
                         </forms:Switcher.ViewStyle>
                     </forms:Switcher>
 
                     <forms:Switcher Grid.Column="2" Text="2"
-                                    Group="{x:Reference StepsGroup}"
-                                    Element="{x:Reference Page2}">
+                                    Group="{Binding ElementName=StepsGroup}"
+                                    Element="{Binding ElementName=Page2}">
                         <forms:Switcher.ViewStyle>
                             <StaticResource ResourceKey="AutoSteps"/>
                         </forms:Switcher.ViewStyle>
                     </forms:Switcher>
 
                     <forms:Switcher Grid.Column="4" Text="3"
-                                    Group="{x:Reference StepsGroup}"
-                                    Element="{x:Reference Page3}">
+                                    Group="{Binding ElementName=StepsGroup}"
+                                    Element="{Binding ElementName=Page3}">
                         <forms:Switcher.ViewStyle>
                             <StaticResource ResourceKey="AutoSteps"/>
                         </forms:Switcher.ViewStyle>
                     </forms:Switcher>
 
                     <forms:Switcher Grid.Column="6" Text="4"
-                                    Group="{x:Reference StepsGroup}"
-                                    Element="{x:Reference Page3}">
+                                    Group="{Binding ElementName=StepsGroup}"
+                                    Element="{Binding ElementName=Page3}">
                         <forms:Switcher.ViewStyle>
                             <StaticResource ResourceKey="AutoSteps"/>
                         </forms:Switcher.ViewStyle>
-                    </forms:Switcher>
+                    </forms:Switcher>-->
                 </Grid>
 
                 <!--<Button Click="Stepping" Tag="{x:Reference Name=Form3}" x:Name="Step3" Grid.Column="8" Style="{StaticResource Steps2}">
@@ -197,12 +197,12 @@
             </Grid>
         </Grid>
 
-        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" ViewModel="{x:Reference DisciplineViewModel}" Visibility="Hidden" />
+        <!--<dpforms:HoursPart x:Name="Page1" Grid.Row="1" ViewModel="{x:Reference DisciplineViewModel}" Visibility="Hidden" />
 
         <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1" ViewModel="{x:Reference DisciplineViewModel}" Visibility="Hidden" />
 
         <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" ViewModel="{x:Reference DisciplineViewModel}" Visibility="Hidden" />
 
-        <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" ViewModel="{x:Reference DisciplineViewModel}" Visibility="Hidden" />
+        <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" ViewModel="{x:Reference DisciplineViewModel}" Visibility="Hidden" />-->
     </Grid>
 </Window>

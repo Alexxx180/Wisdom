@@ -11,7 +11,7 @@ namespace Wisdom.Binds
         {
             int sum = 0;
             foreach (string value in values)
-                sum += Itry(value);
+                sum += value.ParseHours();
             return sum.ToString();
         }
 

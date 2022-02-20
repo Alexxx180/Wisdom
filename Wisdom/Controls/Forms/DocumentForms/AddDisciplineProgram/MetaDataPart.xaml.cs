@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.ViewModel;
 
-namespace Wisdom.Controls.DocumentForms.AddDisciplineProgram
+namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
 {
     /// <summary>
     /// Part responsible for theme plan editing

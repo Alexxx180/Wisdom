@@ -80,6 +80,12 @@ namespace Wisdom.Controls.Tables.EducationLevels
             Options.DropRecord(this);
         }
 
+        public void SetElement(Pair<string, string> level)
+        {
+            LevelName = level.Name;
+            LevelDescription = level.Value;
+        }
+
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
 

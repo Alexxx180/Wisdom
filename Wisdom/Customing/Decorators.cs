@@ -106,52 +106,69 @@ namespace Wisdom.Customing
         {
             cntrl.SetValue(property, value);
         }
+
         public static void SetPropX(DependencyProperty[] property, object[] value, UIElement cntrl)
         {
             for (int i = 0; i < property.Length; i++) SetProp(cntrl, property[i], value[i]);
         }
+
         public static void SetPropX(DependencyProperty property, object[] value, Control[] cntrl)
         {
             for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value[i]);
         }
+
         public static void SetPropX(DependencyProperty property, object[] value, UIElement[] cntrl)
         {
             for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value[i]);
         }
+
         public static void SetPropX(DependencyProperty property, object value, Control[] cntrl)
         {
             for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value);
         }
+
         public static void SetPropX(DependencyProperty property, object value, params FrameworkElement[] cntrl)
         {
             for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value);
         }
+
         public static void StylesX(Style style, params FrameworkElement[] elements)
         {
             foreach (FrameworkElement element in elements) Styles(style, element);
         }
+
         public static void ColorBack(Color color, Control element)
         {
             element.Background = new SolidColorBrush(color);
         }
+
         public static void Styles(Style style, FrameworkElement element)
         {
             element.Style = style;
         }
+
         public static bool NAN(FrameworkElement element)
         {
             return element == null;
         }
+
         public static bool NA(object o)
         {
             return o == null;
         }
-        public static object OmniTernar(object fallBackValue, bool[] conditions, object[] values)
+
+        public static T OmniTernar<T>(T fallBackValue, bool[] conditions, T[] values)
         {
+            T result = fallBackValue;
             for (int i = 0; i < conditions.Length; i++)
+            {
                 if (conditions[i])
-                    return values[i];
-            return fallBackValue;
+                {
+                    result = values[i];
+                    break;
+                }
+            }
+            return result;
         }
     }
 }

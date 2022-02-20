@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Common;
 using System.Windows;
-using System.Windows.Controls;
 using static Wisdom.Customing.Converters;
-using static Wisdom.Model.ProgramContent;
 
 namespace Wisdom.Model.Tools.DataBase
 {
@@ -92,34 +90,27 @@ namespace Wisdom.Model.Tools.DataBase
             return fields;
         }
 
-        public static Dictionary<string, string> SetMetaData(List<object[]> metaData)
+        public static List<Pair<string, string>> SetMetaData(List<object[]> metaData)
         {
-            Dictionary<string, string> data = new Dictionary<string, string>();
-            for (int i = 0; i < metaData.Count; i++)
-            {
-                object[] row = metaData[i];
-                string type = row[1].ToString();
-                string value = row[2].ToString();
-                data.Add(type, value);
-            }
-            return data;
+            return GetPair<string>(metaData);
         }
 
-        private static Dictionary<string, ushort> SetTotalHours(List<object[]> totalWorkHours)
+        private static List<Pair<string, ushort>> SetTotalHours(List<object[]> totalWorkHours)
         {
-            Dictionary<string, ushort> totalHours = new
-                Dictionary<string, ushort>();
-            for (int i = 0; i < totalWorkHours.Count; i++)
+            return GetPair<ushort>(totalWorkHours);
+        }
+
+        private static List<Pair<string, T>> GetPair<T>(List<object[]> rows)
+        {
+            List<Pair<string, T>> data = new List<Pair<string, T>>();
+            for (int i = 0; i < rows.Count; i++)
             {
-                object[] row = totalWorkHours[i];
-                string key = row[1].ToString();
-                ushort hours = UShorts(row[2]);
-                if (totalHours.ContainsKey(key))
-                    totalHours[key] = UShorts(totalHours[key] + hours);
-                else
-                    totalHours.Add(key, hours);
+                object[] row = rows[i];
+                string type = row[1].ToString();
+                T value = (T)row[2];
+                data.Add(new Pair<string, T>(type, value));
             }
-            return totalHours;
+            return data;
         }
 
         private static List<Pair<string, List<string>>> SetSources(List<object[]> sourcesList)

@@ -1,19 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using static Wisdom.Customing.Converters;
-using static Wisdom.Writers.Content;
-using static Wisdom.Model.ProgramContent;
-using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Controls;
 using System.Collections.ObjectModel;
 
 namespace Wisdom.Controls.Tables.Sources.SourceTypes
 {
     /// <summary>
-    /// Логика взаимодействия для SourceTypeElementAdditorAdditor.xaml
+    /// Special component to add new source type group
     /// </summary>
     public partial class SourceTypeElementAdditor : UserControl, INotifyPropertyChanged
     {
@@ -22,13 +17,14 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
             InitializeComponent();
         }
 
-        private ObservableCollection<string> _sources;
-        public ObservableCollection<string> Sources
+        #region SourceType Members
+        private ObservableCollection<string> _types;
+        public ObservableCollection<string> Types
         {
-            get => _sources;
+            get => _types;
             set
             {
-                _sources = value;
+                _types = value;
                 OnPropertyChanged();
             }
         }
@@ -36,44 +32,53 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
         private int _selectedSource;
         public int SelectedSource
         {
-            get { return _selectedSource; }
+            get => _selectedSource;
             set
             {
                 _selectedSource = value;
                 OnPropertyChanged();
             }
         }
-        public string Text => Sources[SelectedSource];
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        private string _text;
+        public string Text
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            get => _text;
+            set
+            {
+                _text = value;
+                OnPropertyChanged();
+            }
         }
-
-        public static void AddElement(List<string> types, StackPanel stack)
-        {
-            SourceTypeElementAdditor sourceElement = SetElement(types);
-            _ = stack.Children.Add(sourceElement);
-        }
+        #endregion
 
         private void AddSourceGroup(object sender, RoutedEventArgs e)
         {
-            StackPanel workPanel = Parent(this);
-            workPanel.Children.Remove(this);
-            SourceTypeElement.AddElement(SelectedSource, Sources, workPanel);
-            workPanel.Children.Add(this);
+            
         }
 
-        private static SourceTypeElementAdditor SetElement(List<string> types)
+        public void SetElement(List<string> types)
         {
-            SourceTypeElementAdditor sourceTypeElement = new SourceTypeElementAdditor();
-            ObservableCollection<string> items = new ObservableCollection<string>();
-            for (byte i = 0; i < types.Count; i++)
-                items.Add(types[i]);
-            sourceTypeElement.Sources = items;
-            return sourceTypeElement;
+            for (ushort i = 0; i < types.Count; i++)
+                Types.Add(types[i]);
         }
+
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Raises this object's PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">The property that has a new value.</param>
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
+        }
+        #endregion
     }
 }

@@ -11,6 +11,7 @@
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch">
 
             <Border BorderThickness="1" BorderBrush="Black" Width="795"  Margin="0,0,0,0">
+                <!--
                 <controls:CustomPageViewer x:Name="FlowReader" IsEnabled="True" Grid.Row="1" Grid.Column="1" Height="1122.519685" Width="793.700787"
                                            ScrollViewer.VerticalScrollBarVisibility="Hidden" FontSize="12pt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Language="RU" >
 
@@ -763,8 +764,6 @@
                                         </TableCell>
                                         <TableCell BorderBrush="Black" BorderThickness="0.5">
                                             <Paragraph FontFamily="Times New Roman" TextAlignment="Center">
-                                                <!--<Run FontWeight="Bold" Text="{Binding ElementName=SectionHours, Path=Text}">
-                                                        </Run>-->
                                             </Paragraph>
                                         </TableCell>
                                         <TableCell BorderBrush="Black" BorderThickness="0.5">
@@ -967,7 +966,6 @@
                                     <TableCell BorderBrush="Black" BorderThickness="0.5">
                                         <Paragraph FontFamily="Times New Roman" FontSize="12pt" >
                                             <Run Text="" />
-                                            <!--{Binding ElementName=TSkills, Path=Content}-->
                                         </Paragraph>
                                         <List x:Name="RS">
                                         </List>
@@ -1318,7 +1316,7 @@
                             </Table>
                         </Section>
                     </FlowDocument>
-                </controls:CustomPageViewer>
+                </controls:CustomPageViewer>-->
             </Border>
         </ScrollViewer>
     </Grid>

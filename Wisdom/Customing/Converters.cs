@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
@@ -101,6 +102,11 @@ namespace Wisdom.Customing
             return (Indexing)value;
         }
 
+        public static ushort ConvertHours(this object hours)
+        {
+            return ParseHours(hours.ToString());
+        }
+
         public static ushort ParseHours(this string hours)
         {
             return ushort.TryParse(hours, out ushort result) ? result : 0.ToUShort();
@@ -133,7 +139,10 @@ namespace Wisdom.Customing
                 list.Add(item.Raw());
         }
 
-        
+        public static Color Rgb(byte red, byte green, byte blue)
+        {
+            return Color.FromRgb(red, green, blue);
+        }
 
         public static ushort GetStudyHours(this Dictionary<string, ushort> hours)
         {

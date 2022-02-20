@@ -55,10 +55,10 @@ namespace Wisdom.Model.Tools.DataBase
             return GetHourTypes(types);
         }
 
-        public List<Pair<string, string>> SourceTypesData()
+        public List<string> SourceTypesData()
         {
             List<object[]> types = _dataBase.SourceTypes();
-            return GetSourceTypes(types);
+            return GetSingle(types);
         }
 
         public List<Pair<string, string>> LevelsData()
@@ -149,6 +149,17 @@ namespace Wisdom.Model.Tools.DataBase
                 string hours = row[2].ToString();
                 Pair<string, string> task = new Pair<string, string>(name, hours);
                 workSpace.Add(task);
+            }
+            return workSpace;
+        }
+
+        private static List<string> GetSingle(List<object[]> tasks)
+        {
+            List<string> workSpace = new List<string>();
+            for (int iv = 0; iv < tasks.Count; iv++)
+            {
+                object[] row = tasks[iv];                
+                workSpace.Add(row[1].ToString());
             }
             return workSpace;
         }

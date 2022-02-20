@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Customing;
 
@@ -11,25 +12,33 @@ namespace Wisdom.Controls.Tables
     /// </summary>
     public partial class AutoPanel : UserControl
     {
+        public static readonly DependencyProperty
+            RecordsProperty = DependencyProperty.Register("Records",
+                typeof(ObservableCollection<IAutoIndexing>), typeof(AutoPanel));
+
+        public static readonly DependencyProperty
+            AdditorProperty = DependencyProperty.Register("Additor",
+                typeof(IAutoIndexing), typeof(AutoPanel));
+
         #region AutoIndexing Members
-        private ObservableCollection<IAutoIndexing> _records;
+        //private ObservableCollection<IAutoIndexing> _records;
         internal ObservableCollection<IAutoIndexing> Records
         {
-            get => _records;
+            get => GetValue(RecordsProperty) as ObservableCollection<IAutoIndexing>;
             set
             {
-                _records = value;
+                SetValue(RecordsProperty, value);
                 OnPropertyChanged();
             }
         }
 
-        private IAutoIndexing _additor;
+        //private IAutoIndexing _additor;
         internal IAutoIndexing Additor
         {
-            get => _additor;
+            get => GetValue(AdditorProperty) as IAutoIndexing;
             set
             {
-                _additor = value;
+                SetValue(AdditorProperty, value);
                 OnPropertyChanged();
             }
         }

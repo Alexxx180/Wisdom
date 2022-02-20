@@ -3,10 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using Wisdom.Model;
-using static Wisdom.Customing.Converters;
-using static Wisdom.Writers.Content;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 {
@@ -23,6 +20,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
                });
         }
 
+        #region PlanWorkTask Members
         private string _workType;
         public string WorkType
         {
@@ -55,60 +53,43 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         public PlanWorkTask()
         {
             InitializeComponent();
         }
 
-        public static void AddElement(string type, StackPanel stack)
-        {
-            PlanWorkTask element = SetElement(type);
-            _ = stack.Children.Add(element);
-        }
-
-        public static void AddElement(string type, string name, string value, StackPanel stack)
-        {
-            PlanWorkTask element = SetElement(type, name, value);
-            _ = stack.Children.Add(element);
-        }
-
         private void DropTask(object sender, RoutedEventArgs e)
         {
-            Button dropButton = sender as Button;
-            Grid taskGrid = Parent(dropButton);
-            PlanWorkTask task = taskGrid.Parent as PlanWorkTask;
-            StackPanel themePanel = Parent(task);
-            themePanel.Children.Remove(task);
+            
         }
 
-        private static PlanWorkTask SetElement(string type)
+        public void SetElement(HashList<Pair<string, string>> workTask)
         {
-            PlanWorkTask task = new PlanWorkTask();
-            Grid taskGrid = task.Content as Grid;
-            TextBlock workType = Txt(taskGrid, 1);
-            workType.Text = type;
-            return task;
+            WorkType = workTask.Name;
+            if (workTask.Values.Count < 1)
+                return;
+            TaskName = workTask.Values[0].Name;
+            TaskHours = workTask.Values[0].Value;
         }
 
-        private static PlanWorkTask SetElement(string type, string name, string value)
-        {
-            PlanWorkTask task = new PlanWorkTask();
-            Grid taskGrid = task.Content as Grid;
-            TextBlock workType = Txt(taskGrid, 1);
-            TextBox taskName = Box(taskGrid, 2);
-            TextBox taskHours = Box(taskGrid, 3);
-            workType.Text = type;
-            taskName.Text = name;
-            taskHours.Text = value;
-            return task;
-        }
-
+        #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+
+        /// <summary>
+        /// Raises this object's PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">The property that has a new value.</param>
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
         }
+        #endregion
     }
 }

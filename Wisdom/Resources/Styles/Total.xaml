@@ -20,6 +20,11 @@
         <Setter Property="Control.FontSize" Value="26"/>
     </Style>
 
+    <Style x:Key="ThemePlan">
+        <Setter Property="Control.Background" Value="#FFFFFFC7"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+    </Style>
+
     <Style x:Key="AddAccent" BasedOn="{StaticResource InverseBox}">
         <Setter Property="Control.Background" Value="#FF00FF2A"/>
     </Style>

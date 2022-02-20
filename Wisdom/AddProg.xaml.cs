@@ -1,13 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Model;
 using static Wisdom.Customing.Decorators;
-using static Wisdom.Writers.ResultRenderer;
-using static Wisdom.Writers.Content;
-using static Wisdom.Customing.ResourceHelper;
 using Wisdom.ViewModel;
 
 namespace Wisdom
@@ -46,14 +42,10 @@ namespace Wisdom
             
         }      
 
-        
-
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.SetUpDocumentBlank();
-            CallWriter(FileName);
+            ViewModel.MakeDocument(FileName);
         }
-
 
         private void Stepping(object sender, RoutedEventArgs e)
         {

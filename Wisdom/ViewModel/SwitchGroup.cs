@@ -35,8 +35,9 @@ namespace Wisdom.ViewModel
             }
         }
 
-        internal void SwitchElement(
-            Switcher switcher, FrameworkElement element)
+        internal void
+            SwitchElement(Switcher switcher,
+            FrameworkElement element)
         {
             ActiveSwitcher = switcher;
             ActiveElement = element;

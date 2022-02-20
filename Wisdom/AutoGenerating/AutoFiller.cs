@@ -8,7 +8,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Wisdom.Model;
-using static Wisdom.Model.ProgramContent;
+//using static Wisdom.Model.ProgramContent;
 using static Wisdom.Writers.Markup;
 
 namespace Wisdom.AutoGenerating
@@ -29,12 +29,12 @@ namespace Wisdom.AutoGenerating
             Save(path, jsonUtf8Bytes);
         }
 
-        public static void WriteDocX(string filepath)
+        public static void WriteDocX(string filepath, DisciplineProgram program)
         {
-            FullProcessing(_template, filepath);
+            FullProcessing(_template, filepath, program);
         }
 
-        private static void FullProcessing(string templatePath, string generatePath)
+        private static void FullProcessing(string templatePath, string generatePath, DisciplineProgram program)
         {
             byte[] byteArray = File.ReadAllBytes(templatePath);
             using (MemoryStream stream = new MemoryStream())
@@ -52,8 +52,8 @@ namespace Wisdom.AutoGenerating
                     var paragraphs = body.Elements<Paragraph>();
                     var cells = body.Descendants<TableCell>();
 
-                    FastProcessing(paragraphs, cells);
-                    DetailProcessing(paragraphs);
+                    FastProcessing(paragraphs, cells, program);
+                    DetailProcessing(paragraphs, program);
 
                     using (StreamWriter sw = new StreamWriter(template.MainDocumentPart.GetStream(FileMode.Create)))
                     {
@@ -65,40 +65,45 @@ namespace Wisdom.AutoGenerating
             }
         }
 
-        private static void FastProcessing(IEnumerable<Paragraph> paragraphs, IEnumerable<TableCell> cells)
+        private static void FastProcessing(IEnumerable<Paragraph> paragraphs,
+            IEnumerable<TableCell> cells, DisciplineProgram program)
         {
+            #warning Config Feature
+            // Make a config file with choose where to change
+            // text expressions to necessary data
+
             string discipline = "#DISCIPLINE";
-            ReplaceInParagraphs(paragraphs, discipline, DisciplineName);
+            ReplaceInParagraphs(paragraphs, discipline, program.DisciplineName);
 
             string speciality = "#SPECIALITY";
-            ReplaceInParagraphs(paragraphs, speciality, ProfessionName);
-            ReplaceInCells(cells, speciality, ProfessionName);
+            ReplaceInParagraphs(paragraphs, speciality, program.ProfessionName);
+            ReplaceInCells(cells, speciality, program.ProfessionName);
 
             string max = "#MAX-HOURS";
-            ReplaceInParagraphs(paragraphs, max, MaxHours);
+            ReplaceInParagraphs(paragraphs, max, program.MaxHours);
 
             string auditory = "#AUD-HOURS";
-            ReplaceInParagraphs(paragraphs, auditory, EduHours);
+            ReplaceInParagraphs(paragraphs, auditory, program.EduHours);
 
             string meta = "#META-";
-            for (byte i = 0; i < MetaDataCollection.Count; i++)
-                ReplaceInParagraphs(paragraphs, meta + i, MetaDataCollection[i]);
+            for (byte i = 0; i < program.MetaData.Count; i++)
+                ReplaceInParagraphs(paragraphs, meta + i, program.MetaData[i].Value);
 
             string hours = "#HOURS-";
-            for (byte i = 0; i < HoursCollection.Count; i++)
+            for (byte i = 0; i < program.Hours.Count; i++)
             {
-                ReplaceInParagraphs(paragraphs, hours + i, HoursCollection[i]);
-                ReplaceInCells(cells, hours + i, HoursCollection[i]);
+                ReplaceInParagraphs(paragraphs, hours + i, program.Hours[i].Value.ToString());
+                ReplaceInCells(cells, hours + i, program.Hours[i].Value.ToString());
             }
         }
 
-        private static void DetailProcessing(IEnumerable<Paragraph> paragraphs)
+        private static void DetailProcessing(IEnumerable<Paragraph> paragraphs, DisciplineProgram program)
         {
             string competetions = "#COMPETETIONS";
-            ReplaceInParagraphs(paragraphs, competetions, CompetetionsTable());
+            ReplaceInParagraphs(paragraphs, competetions, CompetetionsTable(program));
 
             string themePlan = "#THEME-PLAN";
-            ReplaceInParagraphs(paragraphs, themePlan, ThemePlanTable());
+            ReplaceInParagraphs(paragraphs, themePlan, ThemePlanTable(program));
         }
 
         private static void SaveMessage(string exception)

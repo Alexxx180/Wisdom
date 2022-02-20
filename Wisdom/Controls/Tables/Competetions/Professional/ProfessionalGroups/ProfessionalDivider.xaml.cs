@@ -18,8 +18,8 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             return GetDivision();
         }
 
-        private AutoIndexer _options;
-        public AutoIndexer Options
+        private AutoPanel _options;
+        public AutoPanel Options
         {
             get => _options;
             set

@@ -8,17 +8,30 @@
              d:DesignHeight="45" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*" />
-            <ColumnDefinition Width="0.15*" />
-            <ColumnDefinition Width="0.7*" />
-            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="0.95*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Click="AddSourceGroup" Style="{StaticResource ResourceKey=AddButton}"></Button>
-        <ComboBox  Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource SubCaptionBox}" ItemsSource="{Binding Path=Sources}" SelectedIndex="{Binding Path=SelectedSource}">
+
+        <Button Click="AddSourceGroup">
+            <Button.Style>
+                <StaticResource ResourceKey="AddButton"/>
+            </Button.Style>
+        </Button>
+
+        <ComboBox Grid.Column="1">
+            <ComboBox.Style>
+                <StaticResource ResourceKey="SubCaptionBox"/>
+            </ComboBox.Style>
             <ComboBox.ItemContainerStyle>
-                <StaticResource ResourceKey="ItemsBox"></StaticResource>
+                <StaticResource ResourceKey="ItemsBox"/>
             </ComboBox.ItemContainerStyle>
+            <ComboBox.ItemsSource>
+                <Binding Path="Types"/>
+            </ComboBox.ItemsSource>
+            <ComboBox.SelectedIndex>
+                <Binding Path="SelectedSource"/>
+            </ComboBox.SelectedIndex>
         </ComboBox>
     </Grid>
 </UserControl>

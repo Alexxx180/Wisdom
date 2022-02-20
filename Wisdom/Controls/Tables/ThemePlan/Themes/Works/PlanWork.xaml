@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="0.9*" />
             </Grid.ColumnDefinitions>
 
-            <Button Click="DropWork">
+            <Button Click="DropRecord">
                 <Button.Style>
                     <StaticResource ResourceKey="DeleteButton"/>
                 </Button.Style>

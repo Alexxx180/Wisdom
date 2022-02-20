@@ -21,9 +21,6 @@
     <Compile Update="Controls\Tables\AutoPanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Tables\Competetions\General\GeneralAutoIndexer.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Controls\Tables\Competetions\General\GeneralCompetetion.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -126,9 +123,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\AutoPanel.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Tables\Competetions\General\GeneralAutoIndexer.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\Competetions\General\GeneralCompetetion.xaml">

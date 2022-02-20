@@ -112,16 +112,16 @@ namespace Wisdom.Controls.Tables.ThemePlan
             Themes.Clear();
             for (byte i = 0; i < topic.Values.Count; i++)
             {
+                LevelsList<HashList<Pair<string, string>>> themeData = topic.Values[i];
                 PlanTheme theme = new PlanTheme
                 {
-                    ThemeName = topic.Values[i].Name,
-                    ThemeHours = topic.Values[i].Hours,
-                    ThemeCompetetions = topic.Values[i].Competetions,
-                    ThemeLevel = topic.Values[i].Level,
-                    
+                    ThemeName = themeData.Name,
+                    ThemeHours = themeData.Hours,
+                    ThemeCompetetions = themeData.Competetions,
+                    ThemeLevel = themeData.Level,
                 };
-
-                Themes.Add(topic.Values[i]);
+                theme.SetElement(themeData);
+                Themes.Add(theme);
             }
         }
 

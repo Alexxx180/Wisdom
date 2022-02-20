@@ -2,7 +2,6 @@
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Collections.Generic;
 using Wisdom.Model;
-using static Wisdom.Model.ProgramContent;
 
 namespace Wisdom.Writers
 {
@@ -166,7 +165,7 @@ namespace Wisdom.Writers
 
 
 
-        public static Table CompetetionsTable()
+        public static Table CompetetionsTable(DisciplineProgram program)
         {
             string[] columns = { "Код компетенции", "Формулировка компетенции", "Знания, умения, практический опыт" };
 
@@ -358,20 +357,26 @@ namespace Wisdom.Writers
             table3.Append(tableProperties3);
             table3.Append(tableGrid3);
             table3.Append(tableRow23);
-            table3.Append(CompetetionsTableRows());
+            table3.Append(CompetetionsTableRows(program));
 
             return table3;
         }
 
-        public static List<TableRow> CompetetionsTableRows()
+        public static List<TableRow> CompetetionsTableRows(DisciplineProgram program)
         {
             List<TableRow> rows = new List<TableRow>();
-            for (byte i = 0; i < GeneralCompetetions.Count; i++)
-                rows.AddRange(CompetetionAdd(GeneralCompetetions[i].Name, GeneralCompetetions[i].Hours, GeneralCompetetions[i].Values));
-            for (byte i = 0; i < ProfessionalCompetetions.Count; i++)
-                rows.AddRange(CompetetionAdd(ProfessionalCompetetions[i].Name, ProfessionalCompetetions[i].Hours, ProfessionalCompetetions[i].Values));
+            for (byte i = 0; i < program.GeneralCompetetions.Count; i++)
+                rows.AddRange(CompetetionAdd(program.GeneralCompetetions[i].Name, program.GeneralCompetetions[i].Hours, program.GeneralCompetetions[i].Values));
+            for (byte i = 0; i < program.ProfessionalCompetetions.Count; i++)
+            {
+                List<HoursList<Pair<string, string>>> professionalGroup = program.ProfessionalCompetetions[i];
+                for (byte ii = 0; ii < professionalGroup.Count; ii++)
+                    rows.AddRange(CompetetionAdd(professionalGroup[i].Name, professionalGroup[i].Hours, professionalGroup[i].Values));
+            }
+                
             return rows;
         }
+
         public static List<TableRow> CompetetionAdd(string id, string name, List<Pair<string, string>> skills)
         {
             Run idRun = RunAdd(id);
@@ -404,7 +409,7 @@ namespace Wisdom.Writers
 
 
 
-        public static Table ThemePlanTable()
+        public static Table ThemePlanTable(DisciplineProgram program)
         {
             string[] columns = {
                 "Наименование разделов и тем",
@@ -1343,7 +1348,7 @@ namespace Wisdom.Writers
             runProperties234.Append(fontSizeComplexScript40);
             runProperties234.Append(languages65);
             Text text386 = new Text();
-            text386.Text = MaxHours;
+            text386.Text = program.MaxHours;
 
             run388.Append(runProperties234);
             run388.Append(text386);
@@ -1429,7 +1434,7 @@ namespace Wisdom.Writers
             table5.Append(tableGrid5);
             table5.Append(tableRow43);
             table5.Append(tableRow44);
-            table5.Append(PlanTableRows());
+            table5.Append(PlanTableRows(program));
             table5.Append(tableRow68);
             table5.Append(tableRow69);
             table5.Append(tableRow70);
@@ -1437,15 +1442,20 @@ namespace Wisdom.Writers
             return table5;
         }
 
-        public static List<TableRow> PlanTableRows()
+        public static List<TableRow> PlanTableRows(DisciplineProgram program)
         {
             List<TableRow> rows = new List<TableRow>();
-            for (byte i = 0; i < Plan.Count; i++)
+            for (byte i = 0; i < program.Plan.Count; i++)
             {
-                rows.Add(SectionAdd($"Раздел {(i + 1)}. {Plan[i].Name}", Plan[i].Hours));
-                for (byte ii = 0; ii < Plan[i].Values.Count; ii++)
-                    rows.AddRange(ThemeAdd($"Тема {(i + 1)}.{(ii + 1)}. {Plan[i].Values[ii].Name}",
-                        Plan[i].Values[ii].Hours, Plan[i].Values[ii].Competetions, Plan[i].Values[ii].Level, Plan[i].Values[ii].Values));
+                HoursList<LevelsList<HashList<Pair<string, string>>>> topic = program.Plan[i];
+                rows.Add(SectionAdd($"Раздел {i + 1}. {topic.Name}", topic.Hours));
+                for (byte ii = 0; ii < topic.Values.Count; ii++)
+                {
+                    LevelsList<HashList<Pair<string, string>>> theme = program.Plan[i].Values[ii];
+                    rows.AddRange(ThemeAdd($"Тема {i + 1}.{ii + 1}. {theme.Name}",
+                        theme.Hours, theme.Competetions, theme.Level, theme.Values));
+                }
+                    
             }
             return rows;
         }
@@ -1595,29 +1605,29 @@ namespace Wisdom.Writers
             return valueRow;
         }
 
-        public static List<Paragraph> Literature()
+        public static List<Paragraph> Literature(List<Pair<string, string>> sources)
         {
+            //DisciplineProgram program
+
             List<Paragraph> proccessedSources = new List<Paragraph>();
-            Dictionary<string, List<Paragraph>> sources = new
-                Dictionary<string, List<Paragraph>>
+            //Dictionary<string, List<Paragraph>> sources = new
+            //    Dictionary<string, List<Paragraph>>
+            //{
+            //    { "Основная литература", new List<Paragraph>() },
+            //    { "Дополнительная литература", new List<Paragraph>() },
+            //    { "Программное обеспечение", new List<Paragraph>() },
+            //    { "Базы данных, информационно-справочные и поисковые системы", new List<Paragraph>() },
+            //};
+            for(byte i = 0; i < sources.Count; i++)
             {
-                { "Основная литература", new List<Paragraph>() },
-                { "Дополнительная литература", new List<Paragraph>() },
-                { "Программное обеспечение", new List<Paragraph>() },
-                { "Базы данных, информационно-справочные и поисковые системы", new List<Paragraph>() },
-            };
-            for(byte i = 0; i < SourcesControl.Count; i++)
-            {
-                sources[SourcesControl[i].Name] = NumberList(
-                    sources[SourcesControl[i].Name].Count + 1, SourcesControl[i].Values, ". ");
-            }
-            foreach (KeyValuePair<string, List<Paragraph>> sourceType in sources)
-            {
-                if (sourceType.Value.Count <= 0)
-                    continue;
-                Run run = RunAdd(sourceType.Key, new Bold());
+                #warning ATTENTION!!! THIS MUST BE REPAIRED
+                Pair<string, string> source = sources[i];
+                //List<Paragraph> paragraphs = NumberList(
+                //    sources.Count + 1, source.Value, ". ");
+
+                Run run = RunAdd(source.Name, new Bold());
                 proccessedSources.Add(ParagraphAdd(JustificationValues.Both, run));
-                proccessedSources.AddRange(sourceType.Value);
+                //proccessedSources.AddRange(paragraphs);
             }
             return proccessedSources;
         }

@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using Wisdom.Customing;
 using Wisdom.ViewModel;
 
 namespace Wisdom.Controls.Forms
@@ -11,41 +12,54 @@ namespace Wisdom.Controls.Forms
     /// </summary>
     public partial class Switcher : UserControl, INotifyPropertyChanged
     {
-        private SwitchGroup _group;
+        public static readonly DependencyProperty
+            GroupProperty = DependencyProperty.Register("Group",
+                typeof(SwitchGroup), typeof(Switcher));
+
+        public static readonly DependencyProperty
+            ElementProperty = DependencyProperty.Register("Element",
+                typeof(FrameworkElement), typeof(Switcher));
+
+        public static readonly DependencyProperty
+            IsNotPressedProperty = DependencyProperty.Register("IsNotPressed",
+                typeof(bool), typeof(Switcher));
+
+        //private SwitchGroup _group;
         internal SwitchGroup Group
         {
-            get => _group;
+            get => GetValue(GroupProperty) as SwitchGroup; //_group
             set
             {
-                _group = value;
-                OnPropertyChanged();
+                SetValue(GroupProperty, value);
+                //OnPropertyChanged();
             }
         }
 
-        private FrameworkElement _element;
+        //private FrameworkElement _element;
         public FrameworkElement Element
         {
-            get => _element;
+            get => GetValue(ElementProperty) as FrameworkElement;
             set
             {
-                _element = value;
-                OnPropertyChanged();
+                SetValue(ElementProperty, value);
+                //OnPropertyChanged();
             }
         }
 
-        private bool _isNotPressed;
+        //private bool _isNotPressed;
         public bool IsNotPressed
         {
-            get => _isNotPressed;
+            get => GetValue(IsNotPressedProperty).ToBool();
             set
             {
-                _isNotPressed = value;
+                SetValue(IsNotPressedProperty, value);
                 if (!value)
                     Group.SwitchElement(this, Element);
                 OnPropertyChanged();
             }
         }
 
+        #region Switcher Members
         private string _text;
         public string Text
         {
@@ -69,6 +83,7 @@ namespace Wisdom.Controls.Forms
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         public Switcher()
         {

@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using static Wisdom.Customing.Converters;
-using static Wisdom.Writers.Content;
-using static Wisdom.Model.ProgramContent;
-using Wisdom.Model;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
+using Wisdom.Model;
+using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Controls.Tables.Sources.SourceTypes
 {
@@ -22,18 +19,14 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
             return new Pair<string, List<string>>(Text, GetSources());
         }
 
-        public SourceTypeElement()
+        #region SourceType Members
+        private ObservableCollection<string> _types;
+        public ObservableCollection<string> Types
         {
-            InitializeComponent();
-        }
-
-        private ObservableCollection<string> _sources;
-        public ObservableCollection<string> Sources
-        {
-            get => _sources;
+            get => _types;
             set
             {
-                _sources = value;
+                _types = value;
                 OnPropertyChanged();
             }
         }
@@ -48,23 +41,41 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
                 OnPropertyChanged();
             }
         }
-        public string Text => Sources[SelectedSource];
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        private string _text;
+        public string Text
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            get => _text;
+            set
+            {
+                _text = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<SourceElement> _sources;
+        public ObservableCollection<SourceElement> Sources
+        {
+            get => _sources;
+            set
+            {
+                _sources = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        public SourceTypeElement()
+        {
+            InitializeComponent();
         }
 
         public List<string> GetSources()
         {
-            StackPanel stack = GetSourceStack();
             List<string> values = new List<string>();
-            for (byte i = 0; i < stack.Children.Count - 1; i++)
+            for (byte i = 0; i < Sources.Count - 1; i++)
             {
-                SourceElement element = stack.Children[i] as SourceElement;
-                values.Add(element.Source);
+                values.Add(Sources[i].Raw());
             }
             return values;
         }
@@ -80,93 +91,44 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
             return values;
         }
 
-        public static void AddElement(int index, ObservableCollection<string> types, StackPanel stack)
-        {
-            SourceTypeElement sourceElement = SetElement(index, types);
-            _ = stack.Children.Add(sourceElement);
-            SourceElementAdditor.AddElement(sourceElement.GetSourceStack());
-        }
-
-        public static void AddElement(string name, List<string> types, StackPanel stack)
-        {
-            SourceTypeElement sourceElement = SetElement(name, types);
-            _ = stack.Children.Add(sourceElement);
-        }
-
-        public static void AddElement(string name, List<string> sources, List<string> types, StackPanel stack)
-        {
-            SourceTypeElement sourceElement = SetElement(name, sources, types);
-            _ = stack.Children.Add(sourceElement);
-        }
-
-        public static void AddElements(List<HashList<string>> sources, List<string> types, StackPanel stack)
-        {
-            for (byte i = 0; i < sources.Count; i++)
-                AddElement(sources[i].Name, sources[i].Values, types, stack);
-            SourceTypeElementAdditor.AddElement(types, stack);
-        }
-
-        public static void DropSourceGroups(StackPanel panel)
-        {
-            panel.Children.Clear();
-        }
-
         private void DropSourceGroup(object sender, RoutedEventArgs e)
         {
             StackPanel workPanel = Parent(this);
             workPanel.Children.Remove(this);
         }
 
-        private StackPanel GetSourceStack()
+        public void SetElement(List<string> types, Pair<string, List<string>> sources)
         {
-            Grid workGrid = Content as Grid;
-            return Panel(workGrid, 2);
+            for (ushort i = 0; i < types.Count; i++)
+                Types.Add(types[i]);
+
+            Text = sources.Name;
+            for (ushort i = 0; i < sources.Value.Count; i++)
+            {
+                SourceElement source = new SourceElement
+                {
+                    Source = sources.Value[i]
+                };
+                Sources.Add(source);
+            }
         }
 
-        public void SetElement(Pair<string, List<string>> types)
-        {
-            ObservableCollection<string> items = new ObservableCollection<string>();
-            for (byte i = 0; i < types.Value.Count; i++)
-                items.Add(types.Value[i]);
-            Sources = items;
-            if (SourceTypeKeys.TryGetValue(types.Name, out int index))
-                SelectedSource = index;
-            else
-                SourcesGroup.Text = types.Name;
-        }
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        private static SourceTypeElement SetElement(int index, ObservableCollection<string> types)
+        /// <summary>
+        /// Raises this object's PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">The property that has a new value.</param>
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            SourceTypeElement sourceTypeElement = new SourceTypeElement();
-            ObservableCollection<string> items = new ObservableCollection<string>();
-            for (byte i = 0; i < types.Count; i++)
-                items.Add(types[i]);
-            sourceTypeElement.Sources = items;
-            sourceTypeElement.SelectedSource = index;
-            return sourceTypeElement;
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
         }
-
-        private static SourceTypeElement SetElement(string name, List<string> types)
-        {
-            SourceTypeElement sourceTypeElement = new SourceTypeElement();
-            ObservableCollection<string> items = new ObservableCollection<string>();
-            for (byte i = 0; i < types.Count; i++)
-                items.Add(types[i]);
-            sourceTypeElement.Sources = items;
-            if (SourceTypeKeys.TryGetValue(name, out int index))
-                sourceTypeElement.SelectedSource = index;
-            else
-                sourceTypeElement.SourcesGroup.Text = name;
-            return sourceTypeElement;
-        }
-
-        private static SourceTypeElement SetElement(string name, List<string> sources, List<string> types)
-        {
-            SourceTypeElement sourceTypeElement = SetElement(name, types);
-            StackPanel stack = sourceTypeElement.GetSourceStack();
-            SourceElement.AddElements(sources, stack);
-            SourceElementAdditor.AddElement(stack);
-            return sourceTypeElement;
-        }
+        #endregion
     }
 }

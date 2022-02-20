@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Controls.Tables.ThemePlan.Themes.Works;
 using Wisdom.Model;
-using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes
 {
@@ -106,8 +105,8 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             }
         }
 
-        private ObservableCollection<UserControl> _works;
-        public ObservableCollection<UserControl> Works
+        private ObservableCollection<IRawData<HashList<Pair<string, string>>>> _works;
+        public ObservableCollection<IRawData<HashList<Pair<string, string>>>> Works
         {
             get => _works;
             set
@@ -120,11 +119,11 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
 
         private List<HashList<Pair<string, string>>> GetWorks()
         {
-            List<HashList<Pair<string, string>>> works = new List<HashList<Pair<string, string>>>();
-            for (byte i = 0; i < WorksPanel.Children.Count - 1; i++)
+            List<HashList<Pair<string, string>>> works = new
+                List<HashList<Pair<string, string>>>();
+            for (byte i = 0; i < Works.Count - 1; i++)
             {
-                IWork work = WorksPanel.Children[i] as IWork;
-                works.Add(work.Work);
+                works.Add(Works[i].Raw());
             }
             return works;
         }
@@ -141,48 +140,34 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             No = no;
         }
 
+        public void SetElement(LevelsList<HashList<Pair<string, string>>> theme)
+        {
+            ThemeName = theme.Name;
+            ThemeHours = theme.Hours;
+            ThemeCompetetions = theme.Competetions;
+            ThemeLevel = theme.Level;
+            for (ushort i = 0; i < theme.Values.Count; i++)
+            {
+                HashList<Pair<string, string>> workData = theme.Values[i];
+                IRawData<HashList<Pair<string, string>>> work;
+                //theme
+                if (workData.Values.Count > 1)
+                {
+                    work = new PlanWork();
+                }   
+                else
+                    work = new PlanWorkTask();
+                Works.Add(work);
+            }
+        }
+
         private void DropTheme(object sender, RoutedEventArgs e)
         {
-            Button dropButton = sender as Button;
-            Grid themeGrid = Parent(dropButton);
-            PlanTheme theme = themeGrid.Parent as PlanTheme;
-            StackPanel themePanel = Parent(theme);
-            themePanel.Children.Remove(theme);
-            AutoIndexing(themePanel);
+            Options.Themes.Remove(this);
         }
 
         //BindingExpression binding = GetBindExpress(combobox, ComboBox.ItemsSourceProperty);
         //binding.UpdateTarget();
-
-        private static PlanTheme SetElement(string name,
-            string hours, string masteredCompetetions,
-            string level)
-        {
-            PlanTheme theme = new PlanTheme();
-            Grid themeGrid = theme.Content as Grid;
-            TextBox themeName = Box(themeGrid, 2);
-            TextBox themeHours = Box(themeGrid, 3);
-            TextBox themeCompetetions = Box(themeGrid, 4);
-            ComboBox themeLevel = Cbx(themeGrid, 5);
-            themeName.Text = name;
-            themeHours.Text = hours;
-            themeCompetetions.Text = masteredCompetetions;
-            themeLevel.Text = level;
-            return theme;
-        }
-
-        private static PlanTheme SetElement(string name,
-            string hours, string masteredCompetetions,
-            string level, List<HashList<Pair<string, string>>> works)
-        {
-            PlanTheme theme = SetElement(name, hours, masteredCompetetions, level);
-            StackPanel themeStack = theme.GetWorkStack();
-            List<HashList<Pair<string, string>>>[] content = ReviewContent(works);
-            PlanThemeContent.AddElements(content[0], themeStack);
-            PlanWork.AddElements(content[1], themeStack);
-            PlanWorkAdditor.AddElement(themeStack);
-            return theme;
-        }
 
         //private static List<HashList<Pair<string, string>>>[]
         //    ReviewContent(List<HashList<Pair<string, string>>> works)
