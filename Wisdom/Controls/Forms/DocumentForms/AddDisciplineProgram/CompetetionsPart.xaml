@@ -8,10 +8,15 @@
              xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
              xmlns:general="clr-namespace:Wisdom.Controls.Tables.Competetions.General"
              xmlns:professional="clr-namespace:Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups"
+             xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="450" d:DesignWidth="800"> 
-    <Grid Grid.Row="1" DataContext="{Binding Path=ViewModel}">
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:IndexableCollectionConverter x:Key="IndexableCollectionConverter"/>
+    </UserControl.Resources>
+    
+    <Grid Grid.Row="1" x:Name="TreeContext" DataContext="{Binding Path=ViewModel}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.025*"/>
             <ColumnDefinition Width="0.95*"/>
@@ -23,15 +28,15 @@
             <RowDefinition Height="0.9*"/>
             <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
-        
 
-        <!--
-        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="18">
+
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.06*"/>
                 <RowDefinition Height="0.94*"/>
             </Grid.RowDefinitions>
 
+            
             <Grid>
                 <Grid.DataContext>
                     <viewmodel:SwitchGroup x:Name="CompetetionsGroup" />
@@ -50,26 +55,36 @@
                     </forms:Switcher.ViewStyle>
                 </forms:Switcher>
 
-                <forms:Switcher Grid.Column="1" Text="Проф. компетенции"
+                <!--<forms:Switcher Grid.Column="1" Text="Проф. компетенции"
                                     Group="{Binding ElementName=CompetetionsGroup}"
                                     Element="{Binding ElementName=Professional}">
                     <forms:Switcher.ViewStyle>
                         <StaticResource ResourceKey="Steps3"/>
                     </forms:Switcher.ViewStyle>
-                </forms:Switcher>
+                </forms:Switcher>-->
             </Grid>
 
-            <tables:AutoPanel x:Name="General" Records="{Binding Path=GeneralCompetetions}">
-                <tables:RecordsPanel.Additor>
-                    <general:GeneralCompetetionAdditor/>
-                </tables:RecordsPanel.Additor>
-            </tables:AutoPanel>
-            <tables:AutoPanel x:Name="Professional" Records="{Binding Path=ProfessionalCompetetions}" >
+            <tables:AutoPanel Grid.Row="1" x:Name="General">
+                <tables:AutoPanel.Records>
+                    <Binding Path="DataContext.GeneralCompetetions"
+                             ElementName="TreeContext"
+                             Converter="{StaticResource IndexableCollectionConverter}"
+                             UpdateSourceTrigger="Explicit"
+                             Mode="TwoWay" />
+                </tables:AutoPanel.Records>
                 <tables:AutoPanel.Additor>
-                    <professional:ProfessionalDividerAdditor/>
+                    <general:GeneralCompetetionAdditor Options="{Binding RelativeSource={RelativeSource AncestorLevel=1, AncestorType=tables:AutoPanel}}"/>
                 </tables:AutoPanel.Additor>
             </tables:AutoPanel>
+
+            <!--<tables:AutoPanel Grid.Row="1" x:Name="Professional" Visibility="Hidden">
+                <tables:AutoPanel.Records>{Binding ElementName=General}
+                    <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType=Grid}" Path="DataContext.ProfessionalCompetetions" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                </tables:AutoPanel.Records>
+                <tables:AutoPanel.Additor>
+                    <professional:ProfessionalDividerAdditor Options="{Binding RelativeSource={RelativeSource AncestorLevel=1, AncestorType=tables:AutoPanel}}"/>
+                </tables:AutoPanel.Additor>
+            </tables:AutoPanel>-->
         </Grid>
-    -->
     </Grid>
 </UserControl>

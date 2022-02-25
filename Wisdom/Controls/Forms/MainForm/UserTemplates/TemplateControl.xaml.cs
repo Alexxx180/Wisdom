@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using System.IO;
 using System.Text.Json;
 using Wisdom.Model;
-using static Wisdom.Customing.Converters;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -49,7 +48,7 @@ namespace Wisdom.Controls.Forms.MainForm.UserTemplates
 
         private void RemoveSelf()
         {
-            StackPanel templates = Parent(this);
+            StackPanel templates = Parent as StackPanel;
             templates.Children.Remove(this);
         }
 

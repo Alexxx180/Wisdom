@@ -2,23 +2,23 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using Wisdom.Customing;
 
 namespace Wisdom.Controls.Tables.Competetions.General
 {
     /// <summary>
     /// Special component to add new general competetion
     /// </summary>
-    public partial class GeneralCompetetionAdditor : UserControl, INotifyPropertyChanged, IAutoIndexing
+    public partial class GeneralCompetetionAdditor : UserControl, INotifyPropertyChanged, IOptionableIndexing
     {
-        private AutoPanel _options;
+        public static readonly DependencyProperty
+            OptionsProperty = DependencyProperty.Register(nameof(Options),
+                typeof(AutoPanel), typeof(GeneralCompetetionAdditor));
+
         public AutoPanel Options
         {
-            get => _options;
-            set
-            {
-                _options = value;
-                OnPropertyChanged();
-            }
+            get => GetValue(OptionsProperty) as AutoPanel;
+            set => SetValue(OptionsProperty, value);
         }
 
         private uint _no;
@@ -28,7 +28,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
             set
             {
                 _no = value;
-                GeneralNo = string.Format("{0:00}", value);
+                GeneralNo = value.ToString();
                 OnPropertyChanged();
             }
         }
@@ -43,14 +43,14 @@ namespace Wisdom.Controls.Tables.Competetions.General
             get => _generalNo;
             set
             {
-                _generalNo = value;
+                _generalNo = string.Format("{0:00}", value.ParseHours());
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GeneralHeader));
             }
         }
 
         private string _generalName;
-        internal string GeneralName
+        public string GeneralName
         {
             get => _generalName;
             set

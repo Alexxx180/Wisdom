@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Model;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Wisdom.Controls.Tables.ThemePlan.Themes;
+using Wisdom.Customing;
 
 namespace Wisdom.Controls.Tables.ThemePlan
 {
@@ -18,7 +18,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
         {
             return new HoursList<LevelsList<HashList<Pair<string, string>>>>(TopicName, TopicHours)
             {
-                Values = GetThemes()
+                Values = Themes.GetRaw()
             };
         }
 
@@ -59,8 +59,8 @@ namespace Wisdom.Controls.Tables.ThemePlan
             }
         }
 
-        private ObservableCollection<PlanTheme> _themes;
-        public ObservableCollection<PlanTheme> Themes
+        private ObservableCollection<IRawData<LevelsList<HashList<Pair<string, string>>>>> _themes;
+        public ObservableCollection<IRawData<LevelsList<HashList<Pair<string, string>>>>> Themes
         {
             get => _themes;
             set
@@ -75,18 +75,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
         {
             InitializeComponent();
             No = 1;
-            Themes = new ObservableCollection<PlanTheme>();
-        }
-
-        private List<LevelsList<HashList<Pair<string, string>>>> GetThemes()
-        {
-            List<LevelsList<HashList<Pair<string, string>>>> themes = new
-                List<LevelsList<HashList<Pair<string, string>>>>();
-            for (ushort i = 0; i < Themes.Count - 1; i++)
-            {
-                themes.Add(Themes[i].Raw());
-            }
-            return themes;
+            Themes = new ObservableCollection<IRawData<LevelsList<HashList<Pair<string, string>>>>>();
         }
 
         public void Index(uint no)

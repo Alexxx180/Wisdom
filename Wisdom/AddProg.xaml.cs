@@ -1,9 +1,7 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Model;
-using static Wisdom.Customing.Decorators;
 using Wisdom.ViewModel;
 
 namespace Wisdom
@@ -29,7 +27,7 @@ namespace Wisdom
         public AddProg()
         {
             InitializeComponent();
-            DataContext = this;
+            ViewModel = DataContext as DisciplineProgramViewModel;
         }
 
         public AddProg(DisciplineProgram program) : this()
@@ -39,43 +37,12 @@ namespace Wisdom
 
         private void MakeUserTemplate(object sender, RoutedEventArgs e)
         {
-            
+            ViewModel.TestCompetetions();
         }      
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.MakeDocument(FileName);
-        }
-
-        private void Stepping(object sender, RoutedEventArgs e)
-        {
-            Button step = sender as Button;
-            FrameworkElement form = step.Tag as FrameworkElement;
-            //StylesX(GetStyle("Steps2"), Step1, Step2, Step3, Step4);
-            //Styles(GetStyle("Steps"), step);
-            //AnyHideX(Form1, Form2, Form3, Form4);
-            AnyShow(form);
-        }
-
-        private void SwitchPlan(object sender, RoutedEventArgs e)
-        {
-            //SwitchSections(sender, new Button[] { ThemePlanSwitch,
-            //    LearnLevelsSwitch }, ThemePlan, LearnLevels);
-        }
-        private void SwitchCompetetions(object sender, RoutedEventArgs e)
-        {
-            //SwitchSections(sender, new Button[] { TotalComp,
-            //    ProfComp }, TotalHoursCountPanel, ProfCompetetions, TotalCompetetions);
-        }
-
-        private void SwitchSections(object sender,
-            Button[] switchs, params Grid[] toHide)
-        {
-            Button mainSwitch = sender as Button;
-            AnyHideX(toHide);
-            AnyShow(mainSwitch.Tag as Grid);
-            EnableX(true, switchs);
-            mainSwitch.IsEnabled = false;
         }
 
         #region INotifyPropertyChanged Members

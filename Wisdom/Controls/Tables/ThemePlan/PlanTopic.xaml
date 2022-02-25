@@ -3,16 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:themes="clr-namespace:Wisdom.Controls.Tables.ThemePlan.Themes"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="90" d:DesignWidth="800">
+             d:DesignHeight="105" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.05*" />
@@ -21,7 +22,7 @@
                 <ColumnDefinition Width="0.085*" />
                 <ColumnDefinition Width="0.24*" />
             </Grid.ColumnDefinitions>
-        
+
 
             <Button Click="DropTopic">
                 <Button.Style>
@@ -49,7 +50,7 @@
                         </Binding.UpdateSourceTrigger>
                     </Binding>
                 </TextBox.Text>
-            
+
             </TextBox>
             <TextBox Grid.Column="3" Style="{StaticResource HoursBox}">
                 <!--<TextBox.Background>
@@ -66,9 +67,20 @@
                 </TextBox.Text>
             </TextBox>
         </Grid>
-        
-        <StackPanel Background="#FFEEEBB6" Grid.Row="1">
 
+        <StackPanel Grid.Row="1" Background="#FFF5FFFF">
+            <themes:PlanThemeFields/>
+            <ItemsControl>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemsSource>
+                    <Binding Path="Themes"/>
+                </ItemsControl.ItemsSource>
+            </ItemsControl>
+            <themes:PlanThemeAdditor/>
         </StackPanel>
     </Grid>
 </UserControl>

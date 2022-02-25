@@ -1,19 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using static Wisdom.Customing.Converters;
-using static Wisdom.Writers.Content;
-using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Wisdom.Model;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
 {
     /// <summary>
     /// Task of work
     /// </summary>
-    public partial class PlanTask : UserControl, INotifyPropertyChanged, IAutoIndexing
+    public partial class PlanTask : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Pair<string, string>>
     {
         public Pair<string, string> Raw()
         {
@@ -32,6 +28,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
             }
         }
 
+        #region PlanTask Members
         public string TaskHeader => $"{No}.";
 
         private string _taskName;
@@ -55,6 +52,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         public PlanTask()
         {
@@ -66,53 +64,15 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
             No = no;
         }
 
-        public static void AddElements(List<Pair<string, string>> tasks, StackPanel stack)
-        {
-            for (byte i = 0; i < tasks.Count; i++)
-                AddElement(tasks[i].Name, tasks[i].Value, stack);
-            //AutoIndexing(stack, 1, '.');
-        }
-
-        public static void AddElement(string name, string value, StackPanel stack)
-        {
-            PlanTask element = SetElement(name, value);
-            _ = stack.Children.Add(element);
-        }
-
         private void DropTask(object sender, RoutedEventArgs e)
         {
-            Button dropButton = sender as Button;
-            Grid taskGrid = Parent(dropButton);
-            PlanTask task = taskGrid.Parent as PlanTask;
-            StackPanel workPanel = Parent(task);
-            workPanel.Children.Remove(task);
-            AutoIndexing(workPanel);
+            // Drop from work logic here...
         }
 
-        private static PlanTask SetElement(string name, string value)
+        public void SetElement(Pair<string, string> task)
         {
-            PlanTask task = new PlanTask();
-            Grid taskGrid = task.Content as Grid;
-            TextBox taskName = Box(taskGrid, 2);
-            TextBox taskHours = Box(taskGrid, 3);
-            taskName.Text = name;
-            taskHours.Text = value;
-            return task;
-        }
-
-        public static void AutoIndexing(StackPanel grandGrid)
-        {
-            for (int no = 0; no < grandGrid.Children.Count; no++)
-            {
-                Index(grandGrid, no);
-            }
-        }
-
-        public static void Index(StackPanel grandGrid, int no)
-        {
-            IAutoIndexing task = grandGrid.Children[no] as IAutoIndexing;
-            uint newIndex = (no + 1).ToUInt();
-            task.Index(newIndex);
+            TaskName = task.Name;
+            TaskHours = task.Value;
         }
 
         #region INotifyPropertyChanged Members

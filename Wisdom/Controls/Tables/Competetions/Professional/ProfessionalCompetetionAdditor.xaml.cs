@@ -8,7 +8,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
     /// <summary>
     /// Special component to add professional competetion
     /// </summary>
-    public partial class ProfessionalCompetetionAdditor : UserControl, INotifyPropertyChanged, IAutoIndexing
+    public partial class ProfessionalCompetetionAdditor : UserControl, INotifyPropertyChanged, IOptionableIndexing
     {
         public ProfessionalCompetetionAdditor()
         {

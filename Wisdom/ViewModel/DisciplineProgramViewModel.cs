@@ -13,13 +13,15 @@ using Wisdom.Controls.Tables.Sources.SourceTypes;
 using Wisdom.Controls.Tables.ThemePlan;
 using Wisdom.Controls.Tables.EducationLevels;
 using static Wisdom.Writers.ResultRenderer;
+using Wisdom.Controls.Tables.MetaData;
+using Wisdom.Binds.Converters;
 
 namespace Wisdom.ViewModel
 {
     internal class DisciplineProgramViewModel : INotifyPropertyChanged
     {
         private DisciplineProgram _document;
-        internal DisciplineProgram Document
+        public DisciplineProgram Document
         {
             get => _document;
             set
@@ -110,7 +112,7 @@ namespace Wisdom.ViewModel
         }
 
         private string _specialityFullName;
-        internal string SpecialityFullName
+        public string SpecialityFullName
         {
             get => _specialityFullName;
             set
@@ -156,7 +158,7 @@ namespace Wisdom.ViewModel
 
         #region DisciplineSelection Members
         private string _disciplineFullName;
-        internal string DisciplineFullName
+        public string DisciplineFullName
         {
             get => _disciplineFullName;
             set
@@ -201,10 +203,10 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region Hours Members
-        internal string MaxHours => EduHours + SelfHours;
+        public string MaxHours => EduHours + SelfHours;
 
         private string _selfHours;
-        internal string SelfHours
+        public string SelfHours
         {
             get => _selfHours;
             set
@@ -215,7 +217,7 @@ namespace Wisdom.ViewModel
         }
 
         private string _eduHours;
-        internal string EduHours
+        public string EduHours
         {
             get => _eduHours;
             set
@@ -321,12 +323,28 @@ namespace Wisdom.ViewModel
             Hours.Add(new HourElement());
             OnPropertyChanged(nameof(Hours));
             ProfessionalCompetetions = new ObservableCollection<ProfessionalDivider>();
-            GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
-
+            System.Diagnostics.Trace.WriteLine("Creating competetions");
+            GeneralCompetetions = new ObservableCollection<GeneralCompetetion>
+            {
+                new GeneralCompetetion()
+            };
+            System.Diagnostics.Trace.WriteLine("Created competetions");
             Connector = new MySQL();
         }
 
         #region DisciplineProgramFilling Logic
+        // Minimal MVVM test
+        public void TestCompetetions()
+        {
+            OnPropertyChanged(nameof(GeneralCompetetions));
+            System.Diagnostics.Trace.WriteLine(GeneralCompetetions.Count);
+            foreach (GeneralCompetetion competetions in GeneralCompetetions)
+            {
+                System.Diagnostics.Trace.WriteLine(competetions.Raw().Name);
+                System.Diagnostics.Trace.WriteLine(competetions.Raw().Hours);
+            }
+        }
+
         internal void SetFromTemplate(DisciplineProgram program)
         {
             SetProfession(program);

@@ -11,7 +11,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
     /// <summary>
     /// A group of professional competetions
     /// </summary>
-    public partial class ProfessionalDivider : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<List<HoursList<Pair<string, string>>>>
+    public partial class ProfessionalDivider : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<List<HoursList<Pair<string, string>>>>
     {
         public List<HoursList<Pair<string, string>>> Raw()
         {

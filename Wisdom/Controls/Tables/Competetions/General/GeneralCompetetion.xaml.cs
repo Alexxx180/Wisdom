@@ -12,7 +12,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
     /// <summary>
     /// General competetion related to speciality | discipline
     /// </summary>
-    public partial class GeneralCompetetion : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<HoursList<Pair<string, string>>>
+    public partial class GeneralCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<HoursList<Pair<string, string>>>
     {
         public HoursList<Pair<string, string>> Raw()
         {
@@ -58,42 +58,46 @@ namespace Wisdom.Controls.Tables.Competetions.General
             get => _generalNo;
             set
             {
-                _generalNo = value;
+                _generalNo = string.Format("{0:00}", value.ParseHours());
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GeneralHeader));
+                Options?.RegisterEdit();
             }
         }
 
         private string _generalName;
-        internal string GeneralName
+        public string GeneralName
         {
             get => _generalName;
             set
             {
                 _generalName = value;
                 OnPropertyChanged();
+                Options?.RegisterEdit();
             }
         }
 
         private string _generalSkills;
-        internal string GeneralSkills
+        public string GeneralSkills
         {
             get => _generalSkills;
             set
             {
                 _generalSkills = value;
                 OnPropertyChanged();
+                Options?.RegisterEdit();
             }
         }
 
         private string _generalKnowledge;
-        internal string GeneralKnowledge
+        public string GeneralKnowledge
         {
             get => _generalKnowledge;
             set
             {
                 _generalKnowledge = value;
                 OnPropertyChanged();
+                Options?.RegisterEdit();
             }
         }
         #endregion
@@ -116,10 +120,10 @@ namespace Wisdom.Controls.Tables.Competetions.General
 
         public void SetElement(HoursList<Pair<string, string>> competetion)
         {
-            int no = Regex.Match(competetion.Name, @"\d+").Value.ToInt();
-            List<Pair<string, string>> data = competetion.Values;
+            uint no = Regex.Match(competetion.Name, @"\d+").Value.ToUInt();
+            Index(no);
 
-            Index(no.ToUInt());
+            List<Pair<string, string>> data = competetion.Values;
             GeneralName = competetion.Hours;
             GeneralSkills = data[0].Value;
             GeneralKnowledge = data[1].Value;

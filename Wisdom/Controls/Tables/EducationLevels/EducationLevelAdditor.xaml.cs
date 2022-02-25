@@ -8,7 +8,7 @@ namespace Wisdom.Controls.Tables.EducationLevels
     /// <summary>
     /// Special component to add new education (competetion) level
     /// </summary>
-    public partial class EducationLevelAdditor : UserControl, INotifyPropertyChanged, IAutoIndexing
+    public partial class EducationLevelAdditor : UserControl, INotifyPropertyChanged, IOptionableIndexing
     {
         private AutoPanel _options;
         public AutoPanel Options

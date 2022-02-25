@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Controls.Tables.ThemePlan.Themes.Works;
+using Wisdom.Customing;
 using Wisdom.Model;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes
@@ -19,7 +20,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             return new LevelsList<HashList<Pair<string, string>>>
                 (ThemeName, ThemeHours, ThemeCompetetions, ThemeLevel)
             {
-                Values = GetWorks()
+                Values = Works.GetRaw()
             };
         }
 
@@ -34,18 +35,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             }
         }
 
-        private uint _topicNo;
-        public uint TopicNo
-        {
-            get => _topicNo;
-            set
-            {
-                _topicNo = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ThemeHeader));
-            }
-        }
-
         private uint _no;
         public uint No
         {
@@ -54,13 +43,10 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             {
                 _no = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ThemeHeader));
             }
         }
 
         #region Theme Members
-        public string ThemeHeader => $"Тема {TopicNo}.{No}.";
-
         private string _themeName;
         public string ThemeName
         {
@@ -117,22 +103,10 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         }
         #endregion
 
-        private List<HashList<Pair<string, string>>> GetWorks()
-        {
-            List<HashList<Pair<string, string>>> works = new
-                List<HashList<Pair<string, string>>>();
-            for (byte i = 0; i < Works.Count - 1; i++)
-            {
-                works.Add(Works[i].Raw());
-            }
-            return works;
-        }
-
         public PlanTheme()
         {
             InitializeComponent();
             Index(1);
-            TopicNo = 1;
         }
 
         public void Index(uint no)
@@ -156,7 +130,9 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
                     work = new PlanWork();
                 }   
                 else
+                {
                     work = new PlanWorkTask();
+                }
                 Works.Add(work);
             }
         }

@@ -25,6 +25,13 @@
         <Setter Property="Control.FontWeight" Value="Bold"/>
     </Style>
 
+    <Style x:Key="ListCaptions2">
+        <Setter Property="Control.Background" Value="#FFF5FFFF"/>
+        <Setter Property="Control.Foreground" Value="#FF474747"/>
+        <Setter Property="Control.FontSize" Value="26"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+    </Style>
+
     <Style x:Key="AddAccent" BasedOn="{StaticResource InverseBox}">
         <Setter Property="Control.Background" Value="#FF00FF2A"/>
     </Style>

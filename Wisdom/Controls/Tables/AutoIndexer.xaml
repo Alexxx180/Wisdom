@@ -30,6 +30,7 @@
                 </Viewbox>
             </ComboBoxItem.Content>
         </ComboBoxItem>
+        
         <ComboBoxItem>
             <ComboBoxItem.ToolTip>
                 <TextBlock FontSize="20">
@@ -44,6 +45,7 @@
                 </Viewbox>
             </ComboBoxItem.Content>
         </ComboBoxItem>
+        
         <ComboBoxItem>
             <ComboBoxItem.ToolTip>
                 <TextBlock FontSize="20">

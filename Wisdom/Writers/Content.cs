@@ -2,31 +2,24 @@
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
-using static Wisdom.Customing.Converters;
-using static Wisdom.Customing.BlockTemplates;
-using static Wisdom.Customing.Decorators;
-using static Wisdom.Binds.EasyBindings;
-using static Wisdom.Writers.Preview;
-using Wisdom.Binds;
 using System.IO;
 using System.Text;
 using System.Xml;
 using System.Windows.Markup;
-using System.Windows.Input;
-using System.Text.RegularExpressions;
+using static Wisdom.Customing.BlockTemplates;
+using static Wisdom.Customing.Decorators;
+using static Wisdom.Binds.EasyBindings;
 
 namespace Wisdom.Writers
 {
     public static class Content
     {
-        
-
         public static void ParagraphText(Button addNext,
             out Button delete, out Button add)
         {
-            Grid next = Parent(addNext);
-            StackPanel levels = Parent(next);
-            ComboBox type = Cbx(next, 1);
+            Grid next = addNext.Parent as Grid;
+            StackPanel levels = next.Parent as StackPanel;
+            ComboBox type = next.Children[1] as ComboBox;
             string title = type.Text;
             Paragraph p = TextB(title + ":");
             Section sources = SectionFromTag(next);
@@ -81,13 +74,13 @@ namespace Wisdom.Writers
         public static void RemoveRun(object value)
         {
             Run run = value as Run;
-            Paragraph prg = Parent(run);
+            Paragraph prg = run.Parent as Paragraph;
             _ = prg.Inlines.Remove(run);
         }
         public static void RemoveRunLB(object value)
         {
             Run run = value as Run;
-            Paragraph prg = Parent(run);
+            Paragraph prg = run.Parent as Paragraph;
             LineBreak lbreak = run.Tag as LineBreak;
             _ = prg.Inlines.Remove(run);
             _ = prg.Inlines.Remove(lbreak);
@@ -95,13 +88,13 @@ namespace Wisdom.Writers
         public static void RemoveListItem(object value)
         {
             ListItem item = value as ListItem;
-            List list = Parent(item);
+            List list = item.Parent as List;
             _ = list.ListItems.Remove(item);
         }
         public static void RemoveTableRow(object value)
         {
             TableRow row = value as TableRow;
-            TableRowGroup rgr = Parent(row);
+            TableRowGroup rgr = row.Parent as TableRowGroup;
             rgr.Rows.Remove(row);
         }
         public static StackPanel RemoveGrid(FrameworkElement element)
@@ -109,56 +102,6 @@ namespace Wisdom.Writers
             StackPanel grandGrid = element.Parent as StackPanel;
             grandGrid.Children.Remove(element);
             return grandGrid;
-        }
-        public static void AutoIndexingBorder(StackPanel grandGrid, int pos, char mark, string prefix)
-        {
-            for (int no = 0; no < grandGrid.Children.Count; no++)
-            {
-                Grid section = GridChild(grandGrid, no);
-                Border border = Border(section, pos);
-                Label nolab = Child(border);
-                nolab.Content = $"{prefix}{no + 1}{mark}";
-                StackPanel panel = Panel(section, pos + 1);
-                AutoIndexing(panel, 1, "", $"{prefix} {no + 1}.");
-            }
-        }
-        public static void AutoIndexing(StackPanel grandGrid, int pos, string mark, string prefix)
-        {
-            for (int no = 0; no < grandGrid.Children.Count; no++)
-            {
-                int calc = no + 1;
-                Grid section = GridChild(grandGrid, no);
-                Label themeNo = Lab(section, pos);
-                themeNo.Content = $"{prefix}{calc}{mark}";
-            }
-        }
-        public static void AutoIndexing2(StackPanel grandGrid, int pos, string mark, string prefix)
-        {
-            for (int no = 0; no < grandGrid.Children.Count; no++)
-            {
-                int calc = no + 1;
-                Grid section = GridChild(grandGrid, no);
-                Label nolab = Lab(section, pos);
-                nolab.Content = $"{prefix}{calc / 10}{calc % 10}{mark}";
-            }
-        }
-        public static void AutoIndexing(StackPanel grandGrid, int pos, char mark, string prefix)
-        {
-            for (int no = 0; no < grandGrid.Children.Count; no++)
-            {
-                Grid section = GridChild(grandGrid, no);
-                Label nolab = Lab(section, pos);
-                nolab.Content = $"{prefix}{no + 1}{mark}";
-            }
-        }
-        public static void AutoIndexing(StackPanel grandGrid, int pos, char mark)
-        {
-            for (int no = 0; no < grandGrid.Children.Count; no++)
-            {
-                Grid content = GridChild(grandGrid, no);
-                Label taskNo = Lab(content, pos);
-                taskNo.Content = $"{no + 1}{mark}";
-            }
         }
         
         public static Section BoXaml(RichTextBox box)
@@ -204,7 +147,7 @@ namespace Wisdom.Writers
         {
             UserControl task = grandGrid.Children[no] as UserControl;
             Grid topic = task.Content as Grid;
-            TextBlock taskNo = Txt(topic, position);
+            TextBlock taskNo = topic.Children[position] as TextBlock;
             taskNo.Text = $"{prefix}{no + 1}{mark}";
         }
     }

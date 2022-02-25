@@ -10,37 +10,28 @@ namespace Wisdom.Controls.Tables
     /// <summary>
     /// Easy way to observe auto-indexing records
     /// </summary>
-    public partial class AutoPanel : UserControl
+    public partial class AutoPanel : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty
-            RecordsProperty = DependencyProperty.Register("Records",
-                typeof(ObservableCollection<IAutoIndexing>), typeof(AutoPanel));
+            RecordsProperty = DependencyProperty.Register(nameof(Records),
+                typeof(ObservableCollection<IOptionableIndexing>), typeof(AutoPanel),
+                new PropertyMetadata(OnRecordsChangedCallBack));
 
         public static readonly DependencyProperty
-            AdditorProperty = DependencyProperty.Register("Additor",
-                typeof(IAutoIndexing), typeof(AutoPanel));
+            AdditorProperty = DependencyProperty.Register(nameof(Additor),
+                typeof(IOptionableIndexing), typeof(AutoPanel));
 
         #region AutoIndexing Members
-        //private ObservableCollection<IAutoIndexing> _records;
-        internal ObservableCollection<IAutoIndexing> Records
+        public ObservableCollection<IOptionableIndexing> Records
         {
-            get => GetValue(RecordsProperty) as ObservableCollection<IAutoIndexing>;
-            set
-            {
-                SetValue(RecordsProperty, value);
-                OnPropertyChanged();
-            }
+            get => GetValue(RecordsProperty) as ObservableCollection<IOptionableIndexing>;
+            set => SetValue(RecordsProperty, value);
         }
 
-        //private IAutoIndexing _additor;
-        internal IAutoIndexing Additor
+        internal IOptionableIndexing Additor
         {
-            get => GetValue(AdditorProperty) as IAutoIndexing;
-            set
-            {
-                SetValue(AdditorProperty, value);
-                OnPropertyChanged();
-            }
+            get => GetValue(AdditorProperty) as IOptionableIndexing;
+            set => SetValue(AdditorProperty, value);
         }
 
         private Indexing _mode;
@@ -55,18 +46,6 @@ namespace Wisdom.Controls.Tables
             }
         }
 
-        private int _selected = 0;
-        public int Selected
-        {
-            get => _selected;
-            set
-            {
-                _selected = value;
-                Mode = value.ToMode();
-                OnPropertyChanged();
-            }
-        }
-
         public bool IsManual => Mode == Indexing.MANUAL;
         #endregion
 
@@ -75,6 +54,7 @@ namespace Wisdom.Controls.Tables
             InitializeComponent();
         }
 
+        #region AutoIndexing Logic
         private void CheckAuto()
         {
             if (Mode == Indexing.AUTO)
@@ -90,21 +70,54 @@ namespace Wisdom.Controls.Tables
             }
             Additor.Index((i + 1).ToUInt());
         }
+        #endregion
 
-        internal void DropRecord(IAutoIndexing record)
+        internal void DropRecord(IOptionableIndexing record)
         {
-            Records.Remove(record);
+            _ = Records.Remove(record);
             OnPropertyChanged(nameof(Records));
             CheckAuto();
+            RegisterEdit();
         }
 
-        internal bool AddRecord(IAutoIndexing record)
+        internal bool AddRecord(IOptionableIndexing record)
         {
             Records.Add(record);
             OnPropertyChanged(nameof(Records));
             CheckAuto();
+            RegisterEdit();
             return Mode == Indexing.NEW_ONLY;
         }
+
+        public void RegisterEdit()
+        {
+            GetBindingExpression(RecordsProperty).UpdateSource();
+        }
+
+        public void OnChanged()
+        {
+            OnPropertyChanged(nameof(Records));
+        }
+
+        #region RecordsCallBack Members
+        private static void
+            OnRecordsChangedCallBack(DependencyObject sender,
+            DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is AutoPanel collection)
+            {
+                collection?.OnRecordsChanged();
+            }
+        }
+
+        protected virtual void OnRecordsChanged()
+        {
+            foreach (IOptionableIndexing optionable in Records)
+            {
+                optionable.Options ??= this;
+            }
+        }
+        #endregion
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

@@ -26,11 +26,11 @@ namespace Wisdom.Model.Tools.DataBase
                 return competetions;
             object[] row = general[0];
             uint bottom = row[1].ToUInt();
-            uint top = UInts(row[1]);
+            uint top = row[1].ToUInt();
             for (int i = 1; i < general.Count; i++)
             {
                 row = general[i];
-                uint next = UInts(row[1]);
+                uint next = row[1].ToUInt();
                 if (next - top >= 2)
                 {
                     competetions += GeneralFormat(bottom, top);
@@ -123,7 +123,7 @@ namespace Wisdom.Model.Tools.DataBase
                 object[] row = sourcesList[i];
                 string name = row[1].ToString();
                 object type = row[2];
-                int current = Ints(type);
+                int current = type.ToInt();
                 if (no < current)
                 {
                     sources.Add(new Pair<string, List<string>>
@@ -159,7 +159,7 @@ namespace Wisdom.Model.Tools.DataBase
             int memoryNo = 0;
             for (int i = 0; i < professionalCompetetions.Count; i++)
             {
-                int current = Ints(professionalCompetetions[i][1]);
+                int current = professionalCompetetions[i][1].ToInt();
                 if (memoryNo < current)
                 {
                     competetions.Add(new List<HoursList<Pair<string, string>>>());

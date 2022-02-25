@@ -5,6 +5,7 @@
         <Setter Property="Control.FontFamily" Value="Gill Sans MT"/>
         <Setter Property="Button.Content" Value="X"/>
     </Style>
+    
     <Style x:Key="DeleteButton2" BasedOn="{StaticResource DropAccent}">
         <Setter Property="Control.FontWeight" Value="Bold"/>
         <Setter Property="Control.FontFamily" Value="Gill Sans MT"/>
@@ -16,11 +17,13 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style x:Key="AddButton" BasedOn="{StaticResource AddAccent}">
         <Setter Property="Control.FontSize" Value="32"/>
         <Setter Property="Control.FontFamily" Value="Gill Sans Ultra Bold"/>
         <Setter Property="Button.Content" Value="+"/>
     </Style>
+    
     <Style x:Key="AddButton2" BasedOn="{StaticResource AddAccent}">
         <Setter Property="Control.FontFamily" Value="Gill Sans Ultra Bold"/>
         <Setter Property="Button.Content">
@@ -42,6 +45,7 @@
         <Setter Property="Control.Foreground" Value="#FF00A2E8"/>
         <Setter Property="Control.BorderBrush" Value="#FFEFE4B0"/>
     </Style>
+    
     <Style x:Key="Steps2" BasedOn="{StaticResource BoldCambria}">
         <Setter Property="Control.Background" Value="#FF00A2E8"/>
         <Setter Property="Control.Foreground" Value="#FFEFE4B0"/>

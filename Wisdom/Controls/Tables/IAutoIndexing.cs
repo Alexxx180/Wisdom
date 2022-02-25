@@ -1,6 +1,6 @@
 ﻿namespace Wisdom.Controls.Tables
 {
-    internal interface IAutoIndexing
+    public interface IAutoIndexing
     {
         public void Index(uint no);
     }

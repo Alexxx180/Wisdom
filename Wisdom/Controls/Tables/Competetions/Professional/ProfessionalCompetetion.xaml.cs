@@ -11,7 +11,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
     /// <summary>
     /// Professional competetion related to speciality | discipline
     /// </summary>
-    public partial class ProfessionalCompetetion : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<HoursList<Pair<string, string>>>
+    public partial class ProfessionalCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<HoursList<Pair<string, string>>>
     {
         public HoursList<Pair<string, string>> Raw()
         {

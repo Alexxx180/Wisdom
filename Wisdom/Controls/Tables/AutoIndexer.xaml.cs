@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using static Wisdom.Customing.Converters;
+using System.Windows;
 
 namespace Wisdom.Controls.Tables
 {
@@ -10,20 +11,23 @@ namespace Wisdom.Controls.Tables
     /// </summary>
     public partial class AutoIndexer : UserControl, INotifyPropertyChanged
     {
+        public static readonly DependencyProperty
+            ModeProperty = DependencyProperty.Register("Mode",
+                typeof(Indexing), typeof(AutoIndexer));
+
         #region AutoIndexer Members
-        private Indexing _mode;
         public Indexing Mode
         {
-            get => _mode;
+            get => GetValue(ModeProperty).ToMode();
             set
             {
-                _mode = value;
+                SetValue(ModeProperty, value);
                 OnPropertyChanged();
             }
         }
 
         private int _selected = 0;
-        internal int Selected
+        public int Selected
         {
             get => _selected;
             set
@@ -34,6 +38,12 @@ namespace Wisdom.Controls.Tables
             }
         }
         #endregion
+
+        public AutoIndexer()
+        {
+            InitializeComponent();
+            Selected = 1;
+        }
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

@@ -93,7 +93,7 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
 
         private void DropSourceGroup(object sender, RoutedEventArgs e)
         {
-            StackPanel workPanel = Parent(this);
+            StackPanel workPanel = Parent as StackPanel;
             workPanel.Children.Remove(this);
         }
 

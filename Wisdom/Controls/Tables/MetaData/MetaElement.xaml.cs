@@ -2,9 +2,8 @@
 using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Wisdom.Controls.Tables;
 
-namespace Wisdom.Controls
+namespace Wisdom.Controls.Tables.MetaData
 {
     /// <summary>
     /// Record component containing discipline meta data

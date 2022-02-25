@@ -8,22 +8,19 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
     /// <summary>
     /// Special component to add a group of professional competetions
     /// </summary>
-    public partial class ProfessionalDividerAdditor : UserControl, INotifyPropertyChanged, IAutoIndexing
+    public partial class ProfessionalDividerAdditor : UserControl, INotifyPropertyChanged, IOptionableIndexing
     {
-        public ProfessionalDividerAdditor()
-        {
-            InitializeComponent();
-            Index(1);
-        }
+        public static readonly DependencyProperty
+            OptionsProperty = DependencyProperty.Register(nameof(Options),
+                typeof(AutoPanel), typeof(ProfessionalDividerAdditor));
 
-        private AutoPanel _options;
         public AutoPanel Options
         {
-            get => _options;
+            get => GetValue(OptionsProperty) as AutoPanel;
             set
             {
-                _options = value;
-                OnPropertyChanged();
+                SetValue(OptionsProperty, value);
+                //OnPropertyChanged();
             }
         }
 
@@ -55,6 +52,12 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             }
         }
         #endregion
+
+        public ProfessionalDividerAdditor()
+        {
+            InitializeComponent();
+            Index(1);
+        }
 
         public void Index(uint no)
         {

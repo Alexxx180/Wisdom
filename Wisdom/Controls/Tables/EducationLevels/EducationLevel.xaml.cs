@@ -9,7 +9,7 @@ namespace Wisdom.Controls.Tables.EducationLevels
     /// <summary>
     /// Record component containing theme plan education (competetion) levels
     /// </summary>
-    public partial class EducationLevel : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Pair<string, string>>
+    public partial class EducationLevel : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Pair<string, string>>
     {
         public Pair<string, string> Raw()
         {

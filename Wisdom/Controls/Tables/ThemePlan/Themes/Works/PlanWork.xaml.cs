@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks;
 using System.Windows;
+using System.Collections.ObjectModel;
+using Wisdom.Customing;
+using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 {
@@ -15,10 +16,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
     {
         public HashList<Pair<string, string>> Raw()
         {
-            return new HashList<Pair<string, string>>(
-               WorkType, new List<Pair<string, string>> {
-                   new Pair<string, string>(TaskName, TaskHours)
-               });
+            return new HashList<Pair<string, string>>(WorkType, Tasks.GetRaw());
         }
 
         #region PlanWork Members
@@ -54,27 +52,28 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
                 OnPropertyChanged();
             }
         }
+
+        private ObservableCollection<IRawData<Pair<string, string>>> _tasks;
+        public ObservableCollection<IRawData<Pair<string, string>>> Tasks
+        {
+            get => _tasks;
+            set
+            {
+                _tasks = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         public PlanWork()
         {
             InitializeComponent();
-        }
-
-        private List<Pair<string, string>> Tasks()
-        {
-            List<Pair<string, string>> tasks = new List<Pair<string, string>>();
-            for (byte i = 0; i < TasksPanel.Children.Count - 1; i++)
-            {
-                PlanTask task = TasksPanel.Children[i] as PlanTask;
-                tasks.Add(task.Raw());
-            }
-            return tasks;
+            Tasks = new ObservableCollection<IRawData<Pair<string, string>>>();
         }
 
         private void DropRecord(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         #region INotifyPropertyChanged Members

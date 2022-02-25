@@ -81,6 +81,12 @@
     <Compile Update="Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Tables\ThemePlan\PlanTopicFields.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Tables\ThemePlan\Themes\PlanThemeFields.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTask.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -183,6 +189,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\ThemePlan\PlanTopicFields.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\ThemePlan\Themes\PlanThemeFields.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTask.xaml">

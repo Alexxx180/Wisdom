@@ -171,7 +171,7 @@ namespace Wisdom.Customing
         public static void MenuItemTemplating(MenuItem item, RichTextBox box)
         {
             DependencyProperty[] dps = new DependencyProperty[] { TextElement.FontWeightProperty, TextElement.FontStyleProperty, TextBlock.TextDecorationsProperty };
-            int p = Ints(item.Tag);
+            int p = item.Tag.ToInt();
             object[] obs = { item.FontWeight, item.FontStyle, TextDecorations.Underline };
             object[] cls = { FontWeights.Normal, FontStyles.Normal, null };
             box.Selection.ApplyPropertyValue(dps[p], box.Selection.GetPropertyValue(dps[p]).Equals(obs[p]) ? cls[p] : obs[p]);

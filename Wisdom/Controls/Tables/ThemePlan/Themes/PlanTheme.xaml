@@ -3,98 +3,112 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:works="clr-namespace:Wisdom.Controls.Tables.ThemePlan.Themes.Works"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="90" d:DesignWidth="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*" />
-            <ColumnDefinition Width="0.15*" />
-            <ColumnDefinition Width="0.475*" />
-            <ColumnDefinition Width="0.085*" />
-            <ColumnDefinition Width="0.19*" />
-            <ColumnDefinition Width="0.05*" />
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        
-        <Button Click="DropTheme">
-            <Button.Style>
-                <StaticResource ResourceKey="DeleteButton"/>
-            </Button.Style>
-        </Button>
-        
-        <TextBlock Grid.Column="1" >
-            <TextBlock.Style>
-                <StaticResource ResourceKey="CaptionSections"/>
-            </TextBlock.Style>
-            <TextBlock.Text>
-                <Binding Path="ThemeHeader"/>
-            </TextBlock.Text>
-        </TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.05*" />
+                <ColumnDefinition Width="0.15*" />
+                <ColumnDefinition Width="0.475*" />
+                <ColumnDefinition Width="0.085*" />
+                <ColumnDefinition Width="0.19*" />
+                <ColumnDefinition Width="0.05*" />
+            </Grid.ColumnDefinitions>
 
-        <TextBox Grid.Column="2">
-            <TextBox.Style>
-                <StaticResource ResourceKey="SubCaptionBox"/>
-            </TextBox.Style>
-            <TextBox.Text>
-                <Binding Path="ThemeName" Mode="TwoWay">
-                    <Binding.UpdateSourceTrigger>
-                        LostFocus
-                    </Binding.UpdateSourceTrigger>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        
-        <TextBox Grid.Column="3">
-            <TextBox.Style>
-                <StaticResource ResourceKey="HoursBox"/>
-            </TextBox.Style>
-            <TextBox.Text>
-                <Binding Path="ThemeHours" Mode="TwoWay">
-                    <Binding.UpdateSourceTrigger>
-                        LostFocus
-                    </Binding.UpdateSourceTrigger>
-                </Binding>
-            </TextBox.Text>
-            <!--<TextBox.Background>
+            <Button Click="DropTheme">
+                <Button.Style>
+                    <StaticResource ResourceKey="DeleteButton"/>
+                </Button.Style>
+            </Button>
+
+            <TextBlock Grid.Column="1" >
+                <TextBlock.Style>
+                    <StaticResource ResourceKey="CaptionSections"/>
+                </TextBlock.Style>
+                <TextBlock.Text>
+                    <Binding Path="No"/>
+                </TextBlock.Text>
+            </TextBlock>
+
+            <TextBox Grid.Column="2">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="SubCaptionBox"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="ThemeName" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBox Grid.Column="3">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="HoursBox"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="ThemeHours" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+                <!--<TextBox.Background>
                 <MultiBinding Converter="{StaticResource UsedValuesConverter}">
                     <Binding Path="Text" ElementName="ThemeHours"></Binding>
                 </MultiBinding>
             </TextBox.Background>-->
-        </TextBox>
-        <TextBox Grid.Column="4">
-            <TextBox.Style>
-                <StaticResource ResourceKey="RegularBox"/>
-            </TextBox.Style>
-            <TextBox.Text>
-                <Binding Path="ThemeCompetetions" Mode="TwoWay">
-                    <Binding.UpdateSourceTrigger>
-                        LostFocus
-                    </Binding.UpdateSourceTrigger>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+            </TextBox>
+            <TextBox Grid.Column="4">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="RegularBox"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="ThemeCompetetions" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
 
-        <ComboBox Grid.Column="5" IsEditable="True">
-            <ComboBox.Text>
-                <Binding Path="ThemeLevel" Mode="TwoWay">
-                    <Binding.UpdateSourceTrigger>
-                        LostFocus
-                    </Binding.UpdateSourceTrigger>
-                </Binding>
-            </ComboBox.Text>
-            <!--<ComboBox.ItemsSource>
+            <ComboBox Grid.Column="5" IsEditable="True">
+                <ComboBox.Text>
+                    <Binding Path="ThemeLevel" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </ComboBox.Text>
+                <!--
+                <ComboBox.ItemsSource>
                 <Binding Path="Children" ElementName="Levels" Converter="{StaticResource CompetetionsConverter}"></Binding>
-            </ComboBox.ItemsSource>-->
-        </ComboBox>
-        
-        <StackPanel Background="#FFEEEBB6"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6">
-            
+                </ComboBox.ItemsSource>
+                -->
+            </ComboBox>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Background="#FFEEEBB6">
+            <ItemsControl>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemsSource>
+                    <Binding Path="Works"/>
+                </ItemsControl.ItemsSource>
+            </ItemsControl>
+            <works:PlanWorkAdditor/>
         </StackPanel>
     </Grid>
 </UserControl>

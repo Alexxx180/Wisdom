@@ -6,6 +6,7 @@
              xmlns:plan="clr-namespace:Wisdom.Controls.Tables.ThemePlan"
              xmlns:levels="clr-namespace:Wisdom.Controls.Tables.EducationLevels"
              xmlns:bind="clr-namespace:Wisdom.Binds"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -14,7 +15,7 @@
         <bind:SumConverter x:Key="SumConverter" />-->
     </UserControl.Resources>
 
-    <Grid Grid.Row="1">
+    <Grid Grid.Row="1" DataContext="{Binding Path=ViewModel}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.025*"/>
             <ColumnDefinition Width="0.95*"/>
@@ -30,102 +31,72 @@
 
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.11*" />
-                <RowDefinition Height="0.89*" />
+                <RowDefinition Height="0.95*" />
+                <RowDefinition Height="0.05*" />
             </Grid.RowDefinitions>
 
+            
+            <ScrollViewer Grid.Column="1" Background="#FFF5FFFF">
+                <ScrollViewer.VerticalScrollBarVisibility>
+                    Auto
+                </ScrollViewer.VerticalScrollBarVisibility>
+                <StackPanel>
+                    <plan:PlanTopicFields/>
+                    <ItemsControl>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemsSource>
+                            <Binding Path="ThemePlan"/>
+                        </ItemsControl.ItemsSource>
+                    </ItemsControl>
+                    <plan:PlanTopicAdditor/>
+                </StackPanel>
+            </ScrollViewer>
 
-            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Grid Style="{StaticResource ThemePlan}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.37*" />
-                        <ColumnDefinition Width="0.13*" />
-                        <ColumnDefinition Width="0.37*" />
-                        <ColumnDefinition Width="0.13*" />
-                    </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1" Style="{StaticResource ThemePlan}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.37*" />
+                    <ColumnDefinition Width="0.13*" />
+                    <ColumnDefinition Width="0.37*" />
+                    <ColumnDefinition Width="0.13*" />
+                </Grid.ColumnDefinitions>
 
 
-                    <Border Grid.Row="1">
-                        <Viewbox HorizontalAlignment="Left">
-                            <TextBlock Text="Всего доступно:"/>
-                        </Viewbox>
-                    </Border>
+                <Border Grid.Row="1">
+                    <Viewbox HorizontalAlignment="Left">
+                        <TextBlock Text=" Всего доступно:"/>
+                    </Viewbox>
+                </Border>
 
-                    <Border Grid.Row="1" Grid.Column="1">
-                        <Viewbox HorizontalAlignment="Center">
-                            <TextBlock x:Name="AvailableInputted">
-                                <TextBlock.Text>
-                                    0
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </Viewbox>
-                    </Border>
+                <Border Grid.Row="1" Grid.Column="1">
+                    <Viewbox HorizontalAlignment="Center">
+                        <TextBlock x:Name="AvailableInputted">
+                            <TextBlock.Text>
+                                0
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Viewbox>
+                </Border>
 
-                    <Border Grid.Row="1" Grid.Column="2">
-                        <Viewbox HorizontalAlignment="Left">
-                            <TextBlock Text="Объём часов:" />
-                        </Viewbox>
-                    </Border>
+                <Border Grid.Row="1" Grid.Column="2">
+                    <Viewbox HorizontalAlignment="Left">
+                        <TextBlock Text=" Объём часов:" />
+                    </Viewbox>
+                </Border>
 
-                    <Border Grid.Row="1" Grid.Column="3">
-                        <Viewbox HorizontalAlignment="Center">
-                            <TextBlock x:Name="TotalHoursUsed" Tag="{x:Reference AvailableInputted}">
-                                <TextBlock.Text>
-                                    1
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </Viewbox>
-                    </Border>
-                </Grid>
-
-                <Grid Grid.Row="1" Background="#FF03C6FF" Style="{StaticResource ListCaptions}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.05*" />
-                        <ColumnDefinition Width="0.15*" />
-                        <ColumnDefinition Width="0.491*" />
-                        <ColumnDefinition Width="0.09*" />
-                        <ColumnDefinition Width="0.2*" />
-                        <ColumnDefinition Width="0.05*" />
-                        <ColumnDefinition Width="0.019*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Border Grid.Column="1">
-                        <Viewbox HorizontalAlignment="Left" >
-                            <TextBlock Text="Секция"/>
-                        </Viewbox>
-                    </Border>
-
-                    <Border Grid.Column="2" Grid.ColumnSpan="2">
-                        <Viewbox HorizontalAlignment="Left">
-                            <TextBlock Text="Наименование"/>
-                        </Viewbox>
-                    </Border>
-
-                    <Border Grid.Column="3">
-                        <Viewbox HorizontalAlignment="Left">
-                            <TextBlock Text="Часы"/>
-                        </Viewbox>
-                    </Border>
-
-                    <Border Grid.Column="4">
-                        <Viewbox HorizontalAlignment="Right">
-                            <TextBlock Text="Компетенции"/>
-                        </Viewbox>
-                    </Border>
-
-                    <Border Grid.Column="5">
-                        <Viewbox HorizontalAlignment="Right">
-                            <TextBlock Text="УО"/>
-                        </Viewbox>
-                    </Border>
-                </Grid>
+                <Border Grid.Row="1" Grid.Column="3">
+                    <Viewbox HorizontalAlignment="Center">
+                        <TextBlock x:Name="TotalHoursUsed" Tag="{x:Reference AvailableInputted}">
+                            <TextBlock.Text>
+                                1
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Viewbox>
+                </Border>
             </Grid>
-
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" Visibility="Hidden">

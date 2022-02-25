@@ -4,12 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:tables="clr-namespace:Wisdom.Controls.Tables"
+             xmlns:professional="clr-namespace:Wisdom.Controls.Tables.Competetions.Professional"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="90" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -23,7 +24,7 @@
 
             <Button Click="DropDivision">
                 <Button.Style>
-                    <StaticResource ResourceKey="DeleteButton"/>
+                    <StaticResource ResourceKey="DeleteButton2"/>
                 </Button.Style>
             </Button>
 
@@ -59,13 +60,10 @@
             </Grid>
         </Grid>
 
-        <!--<tables:AutoPanel Grid.Row="1">
-            <tables:AutoPanel.Records>
-                <Binding Path="Competetions"/>
-            </tables:AutoPanel.Records>
+        <tables:AutoPanel Grid.Row="1" Records="{Binding Path=Competetions}">
             <tables:AutoPanel.Additor>
-                <:
+                <professional:ProfessionalCompetetionAdditor/>
             </tables:AutoPanel.Additor>
-        </tables:AutoPanel>-->
+        </tables:AutoPanel>
     </Grid>
 </UserControl>
