@@ -7,11 +7,12 @@
              xmlns:professional="clr-namespace:Wisdom.Controls.Tables.Competetions.Professional"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="90" d:DesignWidth="800">
+             d:DesignHeight="105" d:DesignWidth="800" x:Name="This">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
 
 
@@ -60,10 +61,21 @@
             </Grid>
         </Grid>
 
-        <tables:AutoPanel Grid.Row="1" Records="{Binding Path=Competetions}">
-            <tables:AutoPanel.Additor>
-                <professional:ProfessionalCompetetionAdditor/>
-            </tables:AutoPanel.Additor>
-        </tables:AutoPanel>
+        <ItemsControl Grid.Row="1">
+            <ItemsControl.ItemsSource>
+                <Binding Path="Competetions" Mode="TwoWay">
+                    <Binding.UpdateSourceTrigger>
+                        PropertyChanged
+                    </Binding.UpdateSourceTrigger>
+                </Binding>
+            </ItemsControl.ItemsSource>
+        </ItemsControl>
+
+        <professional:ProfessionalCompetetionAdditor x:Name="Additor" Grid.Row="2">
+            <professional:ProfessionalCompetetionAdditor.Group>
+                <Binding ElementName="This" />
+                <!--RelativeSource="{RelativeSource AncestorLevel=1, AncestorType=tables:AutoPanel}"-->
+            </professional:ProfessionalCompetetionAdditor.Group>
+        </professional:ProfessionalCompetetionAdditor>
     </Grid>
 </UserControl>

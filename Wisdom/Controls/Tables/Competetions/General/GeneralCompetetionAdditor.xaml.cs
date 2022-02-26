@@ -21,11 +21,6 @@ namespace Wisdom.Controls.Tables.Competetions.General
             get => GetValue(OptionsProperty) as AutoPanel;
             set => SetValue(OptionsProperty, value);
         }
-
-        public void UpdateOptions()
-        {
-            OnPropertyChanged(nameof(Options));
-        }
         #endregion
 
         #region IAutoIndexing Members

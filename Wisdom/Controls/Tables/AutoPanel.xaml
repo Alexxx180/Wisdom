@@ -12,26 +12,31 @@
             <RowDefinition/>
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-        
 
-        <StackPanel>
-            <ItemsControl>
-                <ItemsControl.ItemsSource>
-                    <Binding Path="Records" Mode="TwoWay">
+        <ScrollViewer>
+            <ScrollViewer.VerticalScrollBarVisibility>
+                Auto
+            </ScrollViewer.VerticalScrollBarVisibility>
+            
+            <StackPanel>
+                <ItemsControl>
+                    <ItemsControl.ItemsSource>
+                        <Binding Path="Records" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                PropertyChanged
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </ItemsControl.ItemsSource>
+                </ItemsControl>
+                <ContentControl>
+                    <Binding Path="Additor" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
                             PropertyChanged
                         </Binding.UpdateSourceTrigger>
                     </Binding>
-                </ItemsControl.ItemsSource>
-            </ItemsControl>
-            <ContentControl>
-                <Binding Path="Additor" Mode="TwoWay">
-                    <Binding.UpdateSourceTrigger>
-                        PropertyChanged
-                    </Binding.UpdateSourceTrigger>
-                </Binding>
-            </ContentControl>
-        </StackPanel>
+                </ContentControl>
+            </StackPanel>
+        </ScrollViewer>
 
         <indexer:AutoIndexer Grid.Row="1">
             <indexer:AutoIndexer.Options>

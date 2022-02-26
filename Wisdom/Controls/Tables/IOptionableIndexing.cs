@@ -3,7 +3,5 @@
     public interface IOptionableIndexing : IAutoIndexing
     {
         public AutoPanel Options { get; set; }
-
-        public void UpdateOptions();
     }
 }

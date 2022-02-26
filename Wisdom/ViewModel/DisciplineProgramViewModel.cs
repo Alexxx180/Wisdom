@@ -15,6 +15,7 @@ using Wisdom.Controls.Tables.EducationLevels;
 using static Wisdom.Writers.ResultRenderer;
 using Wisdom.Controls.Tables.MetaData;
 using Wisdom.Binds.Converters;
+using Wisdom.Controls.Tables.Competetions.Professional;
 
 namespace Wisdom.ViewModel
 {
@@ -336,12 +337,32 @@ namespace Wisdom.ViewModel
         // Minimal MVVM test
         public void TestCompetetions()
         {
-            OnPropertyChanged(nameof(GeneralCompetetions));
+            TestGeneral();
+            TestProfessional();
+        }
+
+        public void TestGeneral()
+        {
+            //OnPropertyChanged(nameof(GeneralCompetetions));
             System.Diagnostics.Trace.WriteLine(GeneralCompetetions.Count);
             foreach (GeneralCompetetion competetions in GeneralCompetetions)
             {
                 System.Diagnostics.Trace.WriteLine(competetions.Raw().Name);
                 System.Diagnostics.Trace.WriteLine(competetions.Raw().Hours);
+            }
+        }
+
+        public void TestProfessional()
+        {
+            //OnPropertyChanged(nameof(GeneralCompetetions));
+            System.Diagnostics.Trace.WriteLine(ProfessionalCompetetions.Count);
+            foreach (ProfessionalDivider competetions in ProfessionalCompetetions)
+            {
+                foreach (ProfessionalCompetetion pro in competetions.Competetions)
+                {
+                    System.Diagnostics.Trace.WriteLine(pro.Raw().Name);
+                    System.Diagnostics.Trace.WriteLine(pro.Raw().Hours);
+                }
             }
         }
 

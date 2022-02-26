@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using Wisdom.Model;
+using Wisdom.Customing;
 
 namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
 {
@@ -29,11 +30,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
                 OnPropertyChanged();
             }
         }
-
-        public void UpdateOptions()
-        {
-            OnPropertyChanged(nameof(Options));
-        }
         #endregion
 
         #region IAutoIndexing Members
@@ -52,6 +48,8 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         public void Index(uint no)
         {
             No = no;
+            if (Options != null)
+                CheckAuto();
         }
         #endregion
 
@@ -72,7 +70,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         }
 
         private ObservableCollection<ProfessionalCompetetion> _competetions;
-        internal ObservableCollection<ProfessionalCompetetion> Competetions
+        public ObservableCollection<ProfessionalCompetetion> Competetions
         {
             get => _competetions;
             set
@@ -81,12 +79,46 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
                 OnPropertyChanged();
             }
         }
+
+        private void CheckAuto()
+        {
+            if (Options.Mode == Indexing.AUTO)
+                IndexGroup();
+        }
+
+        private void IndexGroup()
+        {
+            ushort i;
+            for (i = 0; i < Competetions.Count; i++)
+            {
+                Competetions[i].Index((i + 1).ToUInt());
+            }
+            Additor.Index((i + 1).ToUInt());
+        }
         #endregion
 
         public ProfessionalDivider()
         {
             InitializeComponent();
             Index(1);
+        }
+
+        public void DropCompetetion(ProfessionalCompetetion competetion)
+        {
+            _ = Competetions.Remove(competetion);
+            OnPropertyChanged(nameof(Competetions));
+            CheckAuto();
+            //RegisterEdit();
+        }
+
+        public bool AddRecord(ProfessionalCompetetion record)
+        {
+            Competetions.Add(record);
+            System.Diagnostics.Trace.WriteLine(Competetions.Count);
+            OnPropertyChanged(nameof(Competetions));
+            CheckAuto();
+            //RegisterEdit();
+            return Options.Mode == Indexing.NEW_ONLY;
         }
 
         public static List<HoursList<Pair<string, string>>>

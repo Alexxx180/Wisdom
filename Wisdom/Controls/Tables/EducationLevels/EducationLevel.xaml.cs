@@ -27,11 +27,6 @@ namespace Wisdom.Controls.Tables.EducationLevels
                 OnPropertyChanged();
             }
         }
-
-        public void UpdateOptions()
-        {
-            OnPropertyChanged(nameof(Options));
-        }
         #endregion
 
         #region IAutoIndexing Members

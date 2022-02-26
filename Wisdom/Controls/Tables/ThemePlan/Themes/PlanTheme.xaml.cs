@@ -124,7 +124,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             {
                 HashList<Pair<string, string>> workData = theme.Values[i];
                 IRawData<HashList<Pair<string, string>>> work;
-                //theme
                 if (workData.Values.Count > 1)
                 {
                     work = new PlanWork();

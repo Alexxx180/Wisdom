@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
 {
@@ -19,11 +20,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         {
             get => GetValue(OptionsProperty) as AutoPanel;
             set => SetValue(OptionsProperty, value);
-        }
-
-        public void UpdateOptions()
-        {
-            OnPropertyChanged(nameof(Options));
         }
         #endregion
 
@@ -50,7 +46,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         public string DividerPrefix => "ПК";
         public string DividerHeader => DividerPrefix + " " + DividerNo;
 
-        private string _dividerNo = "";
+        private string _dividerNo;
         public string DividerNo
         {
             get => _dividerNo;
@@ -73,7 +69,9 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         {
             ProfessionalDivider divider = new ProfessionalDivider
             {
-                DividerNo = DividerNo
+                DividerNo = DividerNo,
+                Competetions = new ObservableCollection<ProfessionalCompetetion>(),
+                Options = Options
             };
 
             if (Options.AddRecord(divider))

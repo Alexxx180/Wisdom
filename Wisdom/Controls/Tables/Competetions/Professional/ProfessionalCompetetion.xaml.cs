@@ -11,7 +11,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
     /// <summary>
     /// Professional competetion related to speciality | discipline
     /// </summary>
-    public partial class ProfessionalCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<HoursList<Pair<string, string>>>
+    public partial class ProfessionalCompetetion : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<HoursList<Pair<string, string>>>
     {
         public HoursList<Pair<string, string>> Raw()
         {
@@ -24,24 +24,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
                 }
             };
         }
-
-        #region IOptionableIndexing Members
-        private AutoPanel _options;
-        public AutoPanel Options
-        {
-            get => _options;
-            set
-            {
-                _options = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public void UpdateOptions()
-        {
-            OnPropertyChanged(nameof(Options));
-        }
-        #endregion
 
         #region IAutoIndexing Members
         private uint _no;
@@ -75,7 +57,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         }
 
         public string Prefix => "ПК"; //{_no1}
-        public string ProfessionalHeader => $"{Prefix} 1.{ProfessionalNo}.";
+        public string ProfessionalHeader => $"{Prefix} {Group.DividerNo}.{ProfessionalNo}.";
 
         private string _professionalNo = "";
         public string ProfessionalNo
@@ -90,7 +72,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         }
 
         private string _professionalName;
-        internal string ProfessionalName
+        public string ProfessionalName
         {
             get => _professionalName;
             set
@@ -101,7 +83,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         }
 
         private string _professionalExperience;
-        internal string ProfessionalExperience
+        public string ProfessionalExperience
         {
             get => _professionalExperience;
             set
@@ -112,7 +94,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         }
 
         private string _professionalSkills;
-        internal string ProfessionalSkills
+        public string ProfessionalSkills
         {
             get => _professionalSkills;
             set
@@ -123,7 +105,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         }
 
         private string _professionalKnowledge;
-        internal string ProfessionalKnowledge
+        public string ProfessionalKnowledge
         {
             get => _professionalKnowledge;
             set
@@ -140,14 +122,9 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             Index(1);
         }
 
-        public static void DropProfessional(StackPanel stack)
-        {
-            stack.Children.Clear();
-        }
-
         private void DropCompetetion(object sender, RoutedEventArgs e)
         {
-            Options.DropRecord(this);
+            Group.DropCompetetion(this);
         }
 
         public void SetElement(HoursList<Pair<string, string>> competetion)

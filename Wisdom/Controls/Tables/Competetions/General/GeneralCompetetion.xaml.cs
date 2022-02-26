@@ -36,11 +36,6 @@ namespace Wisdom.Controls.Tables.Competetions.General
                 OnPropertyChanged();
             }
         }
-
-        public void UpdateOptions()
-        {
-            OnPropertyChanged(nameof(Options));
-        }
         #endregion
 
         #region IAutoIndexing Members

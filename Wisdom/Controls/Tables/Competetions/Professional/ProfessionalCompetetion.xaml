@@ -36,7 +36,7 @@
                     </Binding>
                 </TextBox.Text>
                 <TextBox.IsEnabled>
-                    <Binding Path="Options.IsManual"/>
+                    <Binding Path="Group.Options.IsManual"/>
                 </TextBox.IsEnabled>
             </TextBox>
 

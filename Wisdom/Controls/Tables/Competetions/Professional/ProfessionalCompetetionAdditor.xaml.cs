@@ -2,31 +2,18 @@
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups;
 
 namespace Wisdom.Controls.Tables.Competetions.Professional
 {
     /// <summary>
     /// Special component to add professional competetion
     /// </summary>
-    public partial class ProfessionalCompetetionAdditor : UserControl, INotifyPropertyChanged, IOptionableIndexing
+    public partial class ProfessionalCompetetionAdditor : UserControl, INotifyPropertyChanged, IAutoIndexing
     {
-        #region IOptionableIndexing Members
-        private AutoPanel _options;
-        public AutoPanel Options
-        {
-            get => _options;
-            set
-            {
-                _options = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public void UpdateOptions()
-        {
-            OnPropertyChanged(nameof(Options));
-        }
-        #endregion
+        public static readonly DependencyProperty
+            GroupProperty = DependencyProperty.Register(nameof(Group),
+                typeof(ProfessionalDivider), typeof(ProfessionalCompetetionAdditor));
 
         #region IAutoIndexing Members
         private uint _no;
@@ -48,10 +35,16 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         #endregion
 
         #region ProfessionalCompetetionAdditor Members
+        public ProfessionalDivider Group
+        {
+            get => GetValue(GroupProperty) as ProfessionalDivider;
+            set => SetValue(GroupProperty, value);
+        }
+
         public string ProfessionalPrefix => "ПК";
         public string ProfessionalHeader => $"{ProfessionalPrefix} 1.{ProfessionalNo}.";
 
-        private string _professionalNo = "";
+        private string _professionalNo;
         public string ProfessionalNo
         {
             get => _professionalNo;
@@ -64,7 +57,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         }
 
         private string _professionalName;
-        internal string ProfessionalName
+        public string ProfessionalName
         {
             get => _professionalName;
             set
@@ -85,10 +78,12 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         {
             ProfessionalCompetetion competetion = new ProfessionalCompetetion
             {
-                ProfessionalName = ProfessionalName
+                ProfessionalNo = ProfessionalNo,
+                ProfessionalName = ProfessionalName,
+                Group = Group
             };
 
-            if (Options.AddRecord(competetion))
+            if (Group.AddRecord(competetion))
             {
                 Index(No + 1);
             }
