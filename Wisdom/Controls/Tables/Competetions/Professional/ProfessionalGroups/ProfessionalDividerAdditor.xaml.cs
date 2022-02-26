@@ -14,16 +14,20 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             OptionsProperty = DependencyProperty.Register(nameof(Options),
                 typeof(AutoPanel), typeof(ProfessionalDividerAdditor));
 
+        #region IOptionableIndexing Members
         public AutoPanel Options
         {
             get => GetValue(OptionsProperty) as AutoPanel;
-            set
-            {
-                SetValue(OptionsProperty, value);
-                //OnPropertyChanged();
-            }
+            set => SetValue(OptionsProperty, value);
         }
 
+        public void UpdateOptions()
+        {
+            OnPropertyChanged(nameof(Options));
+        }
+        #endregion
+
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -35,6 +39,12 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
                 OnPropertyChanged();
             }
         }
+
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
 
         #region ProfessionalDividerAdditor Members
         public string DividerPrefix => "ПК";
@@ -59,15 +69,13 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             Index(1);
         }
 
-        public void Index(uint no)
-        {
-            No = no;
-        }
-
         private void AddDivision(object sender, RoutedEventArgs e)
         {
-            ProfessionalDivider divider = new ProfessionalDivider();
-            divider.DividerNo = DividerNo;
+            ProfessionalDivider divider = new ProfessionalDivider
+            {
+                DividerNo = DividerNo
+            };
+
             if (Options.AddRecord(divider))
             {
                 Index(No + 1);

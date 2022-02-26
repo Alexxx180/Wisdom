@@ -10,6 +10,7 @@ namespace Wisdom.Controls.Tables.EducationLevels
     /// </summary>
     public partial class EducationLevelAdditor : UserControl, INotifyPropertyChanged, IOptionableIndexing
     {
+        #region IOptionableIndexing
         private AutoPanel _options;
         public AutoPanel Options
         {
@@ -21,6 +22,13 @@ namespace Wisdom.Controls.Tables.EducationLevels
             }
         }
 
+        public void UpdateOptions()
+        {
+            OnPropertyChanged(nameof(Options));
+        }
+        #endregion
+
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -32,6 +40,12 @@ namespace Wisdom.Controls.Tables.EducationLevels
                 OnPropertyChanged(nameof(LevelHeader));
             }
         }
+
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
 
         #region LevelAdditor Members
         public string LevelHeader => $"{No}.";
@@ -64,11 +78,6 @@ namespace Wisdom.Controls.Tables.EducationLevels
             InitializeComponent();
         }
 
-        public void Index(uint no)
-        {
-            No = no;
-        }
-
         private void AddLevel(object sender, RoutedEventArgs e)
         {
             EducationLevel level = new EducationLevel
@@ -76,7 +85,11 @@ namespace Wisdom.Controls.Tables.EducationLevels
                 LevelName = LevelName,
                 LevelDescription = LevelDescription
             };
-            Options.AddRecord(level);
+
+            if (Options.AddRecord(level))
+            {
+                Index(No + 1);
+            }
         }
 
         #region INotifyPropertyChanged Members

@@ -25,6 +25,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
             };
         }
 
+        #region IOptionableIndexing Members
         private AutoPanel _options;
         public AutoPanel Options
         {
@@ -36,6 +37,13 @@ namespace Wisdom.Controls.Tables.Competetions.General
             }
         }
 
+        public void UpdateOptions()
+        {
+            OnPropertyChanged(nameof(Options));
+        }
+        #endregion
+
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -48,6 +56,12 @@ namespace Wisdom.Controls.Tables.Competetions.General
             }
         }
 
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
+
         #region GeneralCompetetion Members
         public string Prefix => "ОК";
         public string GeneralHeader => Prefix + " " + GeneralNo;
@@ -58,7 +72,12 @@ namespace Wisdom.Controls.Tables.Competetions.General
             get => _generalNo;
             set
             {
-                _generalNo = string.Format("{0:00}", value.ParseHours());
+                if (value == "")
+                    return;
+                uint no = value.ParseHours();
+                _generalNo = string.Format("{0:00}", no);
+                if (Options != null && Options.IsManual)
+                    No = no;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GeneralHeader));
                 Options?.RegisterEdit();
@@ -106,11 +125,6 @@ namespace Wisdom.Controls.Tables.Competetions.General
         {
             InitializeComponent();
             Index(1);
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
         }
 
         private void DropCompetetion(object sender, RoutedEventArgs e)

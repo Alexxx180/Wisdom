@@ -41,7 +41,7 @@ namespace Wisdom.Controls
             }
         }
 
-        public static string MemoryNoGotFocus(object sender, RoutedEventArgs e)
+        public static string MemoryNoGotFocus(object sender)
         {
             TextBox box = sender as TextBox;
             string memoryNo = box.Text;
@@ -49,11 +49,12 @@ namespace Wisdom.Controls
             return memoryNo;
         }
 
-        public static void MemoryNoLostFocus(object sender, string memoryNo)
+        public static void MemoryNoLostFocus(object sender, string memoryNo, Regex regex)
         {
             TextBox box = sender as TextBox;
             if (box.Text.Length <= 0)
             {
+                memoryNo = regex.Match(memoryNo).Value;
                 box.SetCurrentValue(TextBox.TextProperty, memoryNo);
             }
         }

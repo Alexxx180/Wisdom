@@ -25,6 +25,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             };
         }
 
+        #region IOptionableIndexing Members
         private AutoPanel _options;
         public AutoPanel Options
         {
@@ -36,6 +37,13 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             }
         }
 
+        public void UpdateOptions()
+        {
+            OnPropertyChanged(nameof(Options));
+        }
+        #endregion
+
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -47,6 +55,12 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
                 OnPropertyChanged();
             }
         }
+
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
 
         #region ProfessionalCompetetion Members
         private ProfessionalDivider _group;
@@ -124,11 +138,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         {
             InitializeComponent();
             Index(1);
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
         }
 
         public static void DropProfessional(StackPanel stack)

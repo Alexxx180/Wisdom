@@ -21,7 +21,7 @@ namespace Wisdom.Controls.Tables
             AdditorProperty = DependencyProperty.Register(nameof(Additor),
                 typeof(IOptionableIndexing), typeof(AutoPanel));
 
-        #region AutoIndexing Members
+        #region AutoPanel Members
         public ObservableCollection<IOptionableIndexing> Records
         {
             get => GetValue(RecordsProperty) as ObservableCollection<IOptionableIndexing>;
@@ -43,6 +43,7 @@ namespace Wisdom.Controls.Tables
                 _mode = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(IsManual));
+                CheckAuto();
             }
         }
 
@@ -52,6 +53,7 @@ namespace Wisdom.Controls.Tables
         public AutoPanel()
         {
             InitializeComponent();
+            Mode = Indexing.MANUAL;
         }
 
         #region AutoIndexing Logic
@@ -72,18 +74,26 @@ namespace Wisdom.Controls.Tables
         }
         #endregion
 
+        /// <summary>
+        /// Removes the first occurence of a specific object
+        /// from the ObservableCollection<IOptionableIndexing>
+        /// </summary>
+        /// <param name="record">An item with indexing options.</param>
         internal void DropRecord(IOptionableIndexing record)
         {
             _ = Records.Remove(record);
-            OnPropertyChanged(nameof(Records));
             CheckAuto();
             RegisterEdit();
         }
 
+        /// <summary>
+        /// Adds an object to the end of ObservableCollection<IOptionableIndexing>
+        /// </summary>
+        /// <param name="record">An item with indexing options.</param>
+        /// <returns>true if indexing mode is NEW_ONLY; otherwise, false.</returns>
         internal bool AddRecord(IOptionableIndexing record)
         {
             Records.Add(record);
-            OnPropertyChanged(nameof(Records));
             CheckAuto();
             RegisterEdit();
             return Mode == Indexing.NEW_ONLY;
@@ -91,12 +101,8 @@ namespace Wisdom.Controls.Tables
 
         public void RegisterEdit()
         {
-            GetBindingExpression(RecordsProperty).UpdateSource();
-        }
-
-        public void OnChanged()
-        {
             OnPropertyChanged(nameof(Records));
+            GetBindingExpression(RecordsProperty).UpdateSource();
         }
 
         #region RecordsCallBack Members

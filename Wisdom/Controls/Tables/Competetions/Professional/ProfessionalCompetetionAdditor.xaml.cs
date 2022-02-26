@@ -10,12 +10,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
     /// </summary>
     public partial class ProfessionalCompetetionAdditor : UserControl, INotifyPropertyChanged, IOptionableIndexing
     {
-        public ProfessionalCompetetionAdditor()
-        {
-            InitializeComponent();
-            Index(1);
-        }
-
+        #region IOptionableIndexing Members
         private AutoPanel _options;
         public AutoPanel Options
         {
@@ -27,6 +22,13 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             }
         }
 
+        public void UpdateOptions()
+        {
+            OnPropertyChanged(nameof(Options));
+        }
+        #endregion
+
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -38,6 +40,12 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
                 OnPropertyChanged();
             }
         }
+
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
 
         #region ProfessionalCompetetionAdditor Members
         public string ProfessionalPrefix => "ПК";
@@ -67,9 +75,10 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         }
         #endregion
 
-        public void Index(uint no)
+        public ProfessionalCompetetionAdditor()
         {
-            No = no;
+            InitializeComponent();
+            Index(1);
         }
 
         private void AddCompetetion(object sender, RoutedEventArgs e)
@@ -78,7 +87,11 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             {
                 ProfessionalName = ProfessionalName
             };
-            Options.AddRecord(competetion);
+
+            if (Options.AddRecord(competetion))
+            {
+                Index(No + 1);
+            }
         }
 
         #region INotifyPropertyChanged Members

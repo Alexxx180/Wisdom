@@ -18,6 +18,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             return GetDivision();
         }
 
+        #region IOptionableIndexing Members
         private AutoPanel _options;
         public AutoPanel Options
         {
@@ -29,6 +30,13 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             }
         }
 
+        public void UpdateOptions()
+        {
+            OnPropertyChanged(nameof(Options));
+        }
+        #endregion
+
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -40,6 +48,12 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
                 OnPropertyChanged();
             }
         }
+
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
 
         #region ProfessionalDivider Members
         public string Prefix => "ПК";
@@ -73,11 +87,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         {
             InitializeComponent();
             Index(1);
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
         }
 
         public static List<HoursList<Pair<string, string>>>

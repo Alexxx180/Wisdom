@@ -6,7 +6,7 @@
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d" 
              d:DesignHeight="35" d:DesignWidth="210">
-    <ComboBox Style="{StaticResource SubCaptionBox}">
+    <ComboBox Style="{StaticResource SubCaptionBox}" FontSize="20">
         <ComboBox.SelectedIndex>
             <Binding Path="Selected" Mode="TwoWay">
                 <Binding.UpdateSourceTrigger>

@@ -32,15 +32,16 @@ namespace Wisdom.Controls
         }
 
         private string _memoryNo;
+        private static readonly Regex _no = new Regex(@"\d+");
 
         private void ForgetNo(object sender, RoutedEventArgs e)
         {
-            _memoryNo = MemoryNoGotFocus(sender, e);
+            _memoryNo = MemoryNoGotFocus(sender);
         }
 
         private void MemoryNo(object sender, RoutedEventArgs e)
         {
-            MemoryNoLostFocus(sender, _memoryNo);
+            MemoryNoLostFocus(sender, _memoryNo, _no);
         }
     }
 }

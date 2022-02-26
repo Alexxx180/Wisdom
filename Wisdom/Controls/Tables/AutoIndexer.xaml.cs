@@ -12,29 +12,26 @@ namespace Wisdom.Controls.Tables
     public partial class AutoIndexer : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty
-            ModeProperty = DependencyProperty.Register("Mode",
-                typeof(Indexing), typeof(AutoIndexer));
+            OptionsProperty = DependencyProperty.Register(nameof(Options),
+                typeof(AutoPanel), typeof(AutoIndexer));
 
         #region AutoIndexer Members
-        public Indexing Mode
+        public AutoPanel Options
         {
-            get => GetValue(ModeProperty).ToMode();
-            set
-            {
-                SetValue(ModeProperty, value);
-                OnPropertyChanged();
-            }
+            get => GetValue(OptionsProperty) as AutoPanel;
+            set => SetValue(OptionsProperty, value);
         }
 
-        private int _selected = 0;
+        private int _selected;
         public int Selected
         {
             get => _selected;
             set
             {
                 _selected = value;
-                Mode = value.ToMode();
                 OnPropertyChanged();
+                if (Options != null)
+                    Options.Mode = value.ToMode();
             }
         }
         #endregion

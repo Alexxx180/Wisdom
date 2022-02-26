@@ -15,12 +15,20 @@ namespace Wisdom.Controls.Tables.Competetions.General
             OptionsProperty = DependencyProperty.Register(nameof(Options),
                 typeof(AutoPanel), typeof(GeneralCompetetionAdditor));
 
+        #region IOptionableIndexing Members
         public AutoPanel Options
         {
             get => GetValue(OptionsProperty) as AutoPanel;
             set => SetValue(OptionsProperty, value);
         }
 
+        public void UpdateOptions()
+        {
+            OnPropertyChanged(nameof(Options));
+        }
+        #endregion
+
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -28,10 +36,17 @@ namespace Wisdom.Controls.Tables.Competetions.General
             set
             {
                 _no = value;
-                GeneralNo = value.ToString();
+                if (Options == null || !Options.IsManual)
+                    GeneralNo = value.ToString();
                 OnPropertyChanged();
             }
         }
+
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
 
         #region GeneralCompetetionAdditor Members
         public string Prefix => "ОК";
@@ -43,7 +58,12 @@ namespace Wisdom.Controls.Tables.Competetions.General
             get => _generalNo;
             set
             {
-                _generalNo = string.Format("{0:00}", value.ParseHours());
+                if (value == "")
+                    return;
+                uint no = value.ParseHours();
+                _generalNo = string.Format("{0:00}", no);
+                if (Options != null && Options.IsManual)
+                    No = no;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GeneralHeader));
             }
@@ -67,17 +87,14 @@ namespace Wisdom.Controls.Tables.Competetions.General
             Index(1);
         }
 
-        public void Index(uint no)
-        {
-            No = no;
-        }
-
         private void AddCompetetion(object sender, RoutedEventArgs e)
         {
             GeneralCompetetion competetion = new GeneralCompetetion
             {
+                GeneralNo = GeneralNo,
                 GeneralName = GeneralName
             };
+
             if (Options.AddRecord(competetion))
             {
                 Index(No + 1);
