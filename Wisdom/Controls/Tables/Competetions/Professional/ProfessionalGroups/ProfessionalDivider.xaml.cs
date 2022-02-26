@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using Wisdom.Model;
 using Wisdom.Customing;
+using System.Text.RegularExpressions;
 
 namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
 {
@@ -55,9 +56,8 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
 
         #region ProfessionalDivider Members
         public string Prefix => "ПК";
-        public string DividerHeader => Prefix + " " + DividerNo;
 
-        private string _dividerNo = "";
+        private string _dividerNo;
         public string DividerNo
         {
             get => _dividerNo;
@@ -65,7 +65,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             {
                 _dividerNo = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(DividerHeader));
             }
         }
 
@@ -100,6 +99,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         public ProfessionalDivider()
         {
             InitializeComponent();
+            Competetions = new ObservableCollection<ProfessionalCompetetion>();
             Index(1);
         }
 
@@ -108,7 +108,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             _ = Competetions.Remove(competetion);
             OnPropertyChanged(nameof(Competetions));
             CheckAuto();
-            //RegisterEdit();
         }
 
         public bool AddRecord(ProfessionalCompetetion record)
@@ -117,7 +116,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             System.Diagnostics.Trace.WriteLine(Competetions.Count);
             OnPropertyChanged(nameof(Competetions));
             CheckAuto();
-            //RegisterEdit();
             return Options.Mode == Indexing.NEW_ONLY;
         }
 
@@ -151,9 +149,15 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
 
         public void SetElement(List<HoursList<Pair<string, string>>> competetions)
         {
+            if (competetions.Count < 0)
+                return;
+            DividerNo = Regex.Match(competetions[0].Name, ".\\d+").Value;
             for (ushort i = 0; i < competetions.Count; i++)
             {
-                ProfessionalCompetetion competetion = new ProfessionalCompetetion();
+                ProfessionalCompetetion competetion = new ProfessionalCompetetion
+                {
+                    Group = this
+                };
                 competetion.SetElement(competetions[i]);
                 Competetions.Add(competetion);
             }

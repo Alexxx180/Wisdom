@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Wisdom.Model;
 using Wisdom.Model.Tools.DataBase;
-using static Wisdom.Customing.Converters;
-using System.Collections.ObjectModel;
 using Wisdom.Controls;
 using Wisdom.Controls.Tables.Competetions.General;
 using Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups;
 using Wisdom.Controls.Tables.Sources.SourceTypes;
 using Wisdom.Controls.Tables.ThemePlan;
 using Wisdom.Controls.Tables.EducationLevels;
-using static Wisdom.Writers.ResultRenderer;
 using Wisdom.Controls.Tables.MetaData;
-using Wisdom.Binds.Converters;
 using Wisdom.Controls.Tables.Competetions.Professional;
+using static Wisdom.Writers.ResultRenderer;
+using static Wisdom.Customing.Converters;
 
 namespace Wisdom.ViewModel
 {
@@ -102,12 +101,15 @@ namespace Wisdom.ViewModel
 
         #region SpecialitySelection Members
         private int _specialityNo;
-        internal int SpecialityNo
+        public int SpecialityNo
         {
             get => _specialityNo;
             set
             {
                 _specialityNo = value;
+                System.Diagnostics.Trace.WriteLine(value);
+                if (value >= 0 && value < SpecialityHead.Name.Count)
+                    ResetCompetetions();
                 OnPropertyChanged();
             }
         }
@@ -158,6 +160,17 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region DisciplineSelection Members
+        private int _disciplineNo;
+        public int DisciplineNo
+        {
+            get => _disciplineNo;
+            set
+            {
+                _disciplineNo = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _disciplineFullName;
         public string DisciplineFullName
         {
@@ -324,48 +337,14 @@ namespace Wisdom.ViewModel
             Hours.Add(new HourElement());
             OnPropertyChanged(nameof(Hours));
             ProfessionalCompetetions = new ObservableCollection<ProfessionalDivider>();
-            System.Diagnostics.Trace.WriteLine("Creating competetions");
             GeneralCompetetions = new ObservableCollection<GeneralCompetetion>
             {
                 new GeneralCompetetion()
             };
-            System.Diagnostics.Trace.WriteLine("Created competetions");
             Connector = new MySQL();
         }
 
         #region DisciplineProgramFilling Logic
-        // Minimal MVVM test
-        public void TestCompetetions()
-        {
-            TestGeneral();
-            TestProfessional();
-        }
-
-        public void TestGeneral()
-        {
-            //OnPropertyChanged(nameof(GeneralCompetetions));
-            System.Diagnostics.Trace.WriteLine(GeneralCompetetions.Count);
-            foreach (GeneralCompetetion competetions in GeneralCompetetions)
-            {
-                System.Diagnostics.Trace.WriteLine(competetions.Raw().Name);
-                System.Diagnostics.Trace.WriteLine(competetions.Raw().Hours);
-            }
-        }
-
-        public void TestProfessional()
-        {
-            //OnPropertyChanged(nameof(GeneralCompetetions));
-            System.Diagnostics.Trace.WriteLine(ProfessionalCompetetions.Count);
-            foreach (ProfessionalDivider competetions in ProfessionalCompetetions)
-            {
-                foreach (ProfessionalCompetetion pro in competetions.Competetions)
-                {
-                    System.Diagnostics.Trace.WriteLine(pro.Raw().Name);
-                    System.Diagnostics.Trace.WriteLine(pro.Raw().Hours);
-                }
-            }
-        }
-
         internal void SetFromTemplate(DisciplineProgram program)
         {
             SetProfession(program);
@@ -421,23 +400,89 @@ namespace Wisdom.ViewModel
         }
         #endregion
 
-        internal void ResetCompetetions(ComboBox box)
+        #region MVVM Tests
+        public void TestCompetetions()
         {
-            int selected = box.SelectedIndex;
-            if (selected < 0)
-                return;
-
-            string name = box.SelectedItem.ToString();
-            SelectedSpeciality = Data.SpecialityData(SpecialityHead.Name[selected], name);
-            DisciplineHead = Data.ListDisciplines(SpecialityHead.Name[SpecialityNo]);
-
-            foreach (string discipline in DisciplineHead.Value)
-                DisciplinesSelect.Add(discipline);
-
-            Document.ProfessionName = SelectedSpeciality.Name;
-            SetCompetetions();
+            TestSpecialitySet();
         }
 
+        public void TestGeneral()
+        {
+            //OnPropertyChanged(nameof(GeneralCompetetions));
+            System.Diagnostics.Trace.WriteLine(GeneralCompetetions.Count);
+            foreach (GeneralCompetetion competetions in GeneralCompetetions)
+            {
+                System.Diagnostics.Trace.WriteLine(competetions.Raw().Name);
+                System.Diagnostics.Trace.WriteLine(competetions.Raw().Hours);
+            }
+        }
+
+        public void TestProfessional()
+        {
+            //OnPropertyChanged(nameof(GeneralCompetetions));
+            System.Diagnostics.Trace.WriteLine(ProfessionalCompetetions.Count);
+            foreach (ProfessionalDivider competetions in ProfessionalCompetetions)
+            {
+                foreach (ProfessionalCompetetion pro in competetions.Competetions)
+                {
+                    System.Diagnostics.Trace.WriteLine(pro.Raw().Name);
+                    System.Diagnostics.Trace.WriteLine(pro.Raw().Hours);
+                }
+            }
+        }
+
+        public void TestSpecialitySet()
+        {
+            System.Diagnostics.Trace.WriteLine(SpecialityFullName);
+        }
+        #endregion
+
+        #region SpecialityAutoSet Logic
+        private void SetProfession(DisciplineProgram program)
+        {
+            SpecialityFullName = program.ProfessionName;
+        }
+
+        internal void ResetCompetetions()
+        {
+            SelectedSpeciality = Data.SpecialityData(SpecialityHead.Name[SpecialityNo], SpecialityFullName);
+            DisciplineHead = Data.ListDisciplines(SpecialityHead.Name[SpecialityNo]);
+
+            DisciplinesSelect.Refresh(DisciplineHead.Value);
+            SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
+            SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
+
+            OnPropertyChanged(nameof(GeneralCompetetions));
+            OnPropertyChanged(nameof(ProfessionalCompetetions));
+
+            TestGeneral();
+            TestProfessional();
+        }
+
+        private void SetGeneralCompetetions(List<HoursList<Pair<string, string>>> competetions)
+        {
+            GeneralCompetetions.Clear();
+            for (byte i = 0; i < competetions.Count; i++)
+            {
+                GeneralCompetetion competetion = new GeneralCompetetion();
+                competetion.SetElement(competetions[i]);
+                GeneralCompetetions.Add(competetion);
+            }
+        }
+
+        private void SetProfessionalCompetetions(List<List<HoursList<Pair<string, string>>>> competetions)
+        {
+            ProfessionalCompetetions.Clear();
+            for (byte i = 0; i < competetions.Count; i++)
+            {
+                ProfessionalDivider division = new ProfessionalDivider();
+                division.SetElement(competetions[i]);
+                ProfessionalCompetetions.Add(division);
+            }
+        }
+        #endregion
+
+        #region DisciplineAutoSet Logic
         internal void ResetDiscipline(ComboBox box)
         {
             int selected = box.SelectedIndex;
@@ -474,16 +519,12 @@ namespace Wisdom.ViewModel
             for (byte i = 0; i < SourceTypes.Count; i++)
                 Sources[i].SetElement(SourceTypes, SelectedDiscipline.Sources[i]);
 
-            SetCompetetions();
+            SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
+            SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
 
             for (byte i = 0; i < ThemePlan.Count; i++)
                 ThemePlan[i].SetElement(SelectedDiscipline.Plan[i]);
         }       
-
-        private void SetProfession(DisciplineProgram program)
-        {
-            SpecialityFullName = program.ProfessionName;
-        }
 
         private void SetDiscipline(DisciplineProgram program)
         {
@@ -519,7 +560,8 @@ namespace Wisdom.ViewModel
                 Sources.Add(source);
             }
 
-            SetCompetetions(program);
+            SetGeneralCompetetions(program.GeneralCompetetions);
+            SetProfessionalCompetetions(program.ProfessionalCompetetions);
 
             SetLevels();
 
@@ -573,53 +615,9 @@ namespace Wisdom.ViewModel
             }
             //ResetTotalHourBinds();
         }
+        #endregion
 
-        private void SetGeneralCompetetions(byte auto)
-        {
-            SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions, auto);
-        }
-
-        private void SetGeneralCompetetions(List<HoursList<Pair<string, string>>> competetions, byte auto)
-        {
-            GeneralCompetetions.Clear();
-            for (byte i = 0; i < HourTypes.Count; i++)
-            {
-                GeneralCompetetion competetion = new GeneralCompetetion();
-                competetion.SetElement(competetions[i]);
-                GeneralCompetetions.Add(competetion);
-            }
-        }
-
-        private void SetProfessionalCompetetions(byte auto)
-        {
-            SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions, auto);
-        }
-
-        private void SetProfessionalCompetetions(List<List<HoursList<Pair<string, string>>>> competetions, byte auto)
-        {
-            ProfessionalCompetetions.Clear();
-            for (byte i = 0; i < HourTypes.Count; i++)
-            {
-                ProfessionalDivider division = new ProfessionalDivider();
-                division.SetElement(competetions[i]);
-                ProfessionalCompetetions.Add(division);
-            }
-        }
-
-        private void SetCompetetions(DisciplineProgram program)
-        {
-            byte manual = Indexing.MANUAL.ToByte();
-            SetGeneralCompetetions(program.GeneralCompetetions, manual);
-            SetProfessionalCompetetions(program.ProfessionalCompetetions, manual);
-        }
-
-        private void SetCompetetions()
-        {
-            byte manual = Indexing.MANUAL.ToByte();
-            SetGeneralCompetetions(manual);
-            SetProfessionalCompetetions(manual);
-        }
-
+#warning HOURS HIGHLIGHTING NEED TO BE REPAIRED
         //private void ResetTotalHourBinds()
         //{
         //    MultiBinding multiCount = TruncateMulti(Inputted, ContentProperty, new SumConverter());
@@ -634,7 +632,7 @@ namespace Wisdom.ViewModel
         //    _ = SetBind(Inputted, ContentProperty, multiCount);
         //}
 
-        #warning Cool Features Here!!
+#warning Cool Features Here!!
         // TO DO
 
         // Solve for additors:

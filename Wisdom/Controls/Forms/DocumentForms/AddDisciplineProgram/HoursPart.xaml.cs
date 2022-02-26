@@ -18,28 +18,12 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
         internal DisciplineProgramViewModel ViewModel
         {
             get => GetValue(ViewModelProperty) as DisciplineProgramViewModel;
-            set
-            {
-                SetValue(ViewModelProperty, value);
-                OnPropertyChanged();
-            }
+            set => SetValue(ViewModelProperty, value);
         }
 
         public HoursPart()
         {
             InitializeComponent();
-        }
-
-        private void ResetAllCompetetionFields(object sender, SelectionChangedEventArgs e)
-        {
-            ComboBox box = sender as ComboBox;
-            ViewModel.ResetCompetetions(box);
-        }
-
-        private void ResetAllDisciplineFields(object sender, SelectionChangedEventArgs e)
-        {
-            ComboBox box = sender as ComboBox;
-            ViewModel.ResetDiscipline(box);
         }
 
         #region INotifyPropertyChanged Members

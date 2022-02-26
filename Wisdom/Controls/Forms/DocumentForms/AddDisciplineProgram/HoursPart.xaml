@@ -12,7 +12,7 @@
         <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
         <bind:SumConverter x:Key="SumConverter"/>
     </UserControl.Resources>
-    
+
     <Grid Grid.Row="1" DataContext="{Binding Path=ViewModel}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>
@@ -27,6 +27,7 @@
             <RowDefinition Height="0.75*"/>
             <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
+        
 
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -35,28 +36,37 @@
                 <ColumnDefinition Width="0.475*" />
             </Grid.ColumnDefinitions>
 
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+                
 
                 <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                    <Label Content="Код и название специальности" Padding="0"/>
+                    <TextBlock Text="Код и название специальности" Padding="0"/>
                 </Viewbox>
 
-                <ComboBox Grid.Row="1" Style="{StaticResource SubCaptionBox}"
-                          SelectionChanged="ResetAllCompetetionFields" IsEditable="True">
+                <ComboBox Grid.Row="1" Style="{StaticResource SubCaptionBox}" IsEditable="True">
+                    <!--SelectionChanged="ResetAllCompetetionFields"-->
                     <ComboBox.ItemContainerStyle>
                         <StaticResource ResourceKey="ItemsBox"/>
                     </ComboBox.ItemContainerStyle>
                     <ComboBox.ItemsSource>
                         <Binding Path="SpecialitySelect"/>
                     </ComboBox.ItemsSource>
+                    <ComboBox.SelectedIndex>
+                        <Binding Path="SpecialityNo" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                PropertyChanged
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </ComboBox.SelectedIndex>
                     <ComboBox.Text>
                         <Binding Path="SpecialityFullName" Mode="TwoWay">
                             <Binding.UpdateSourceTrigger>
-                                PropertyChanged
+                                LostFocus
                             </Binding.UpdateSourceTrigger>
                         </Binding>
                     </ComboBox.Text>
@@ -68,19 +78,27 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+                
 
                 <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                    <Label Content="Код и название дисциплины" Padding="0" />
+                    <TextBlock Text="Код и название дисциплины" Padding="0" />
                 </Viewbox>
 
-                <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource SubCaptionBox}"
-                          SelectionChanged="ResetAllDisciplineFields" IsEditable="True">
+                <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource SubCaptionBox}" IsEditable="True">
+                    <!--SelectionChanged="ResetAllDisciplineFields"-->
                     <ComboBox.ItemContainerStyle>
                         <StaticResource ResourceKey="ItemsBox"/>
                     </ComboBox.ItemContainerStyle>
                     <ComboBox.ItemsSource>
                         <Binding Path="DisciplinesSelect"/>
                     </ComboBox.ItemsSource>
+                    <ComboBox.SelectedIndex>
+                        <Binding Path="DisciplineNo" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                PropertyChanged
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </ComboBox.SelectedIndex>
                     <ComboBox.Text>
                         <Binding Path="DisciplineFullName" Mode="TwoWay">
                             <Binding.UpdateSourceTrigger>
@@ -99,12 +117,14 @@
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.7*"/>
             </Grid.RowDefinitions>
+            
 
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.8*"/>
                     <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
+                
 
                 <Viewbox HorizontalAlignment="Left">
                     <TextBlock Padding="1" Text="Аудиторная нагрузка, часы"/>
@@ -120,6 +140,7 @@
                     <ColumnDefinition Width="0.8*"/>
                     <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
+                
 
                 <Viewbox  HorizontalAlignment="Left">
                     <TextBlock Padding="1" Text="Самостоятельная работа, часы"/>
@@ -135,6 +156,7 @@
                     <ColumnDefinition Width="0.8*"/>
                     <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
+                
 
                 <Viewbox HorizontalAlignment="Left">
                     <TextBlock Padding="1" Text="Максимальная учебная нагрузка: "/>
@@ -150,6 +172,7 @@
                     <RowDefinition Height="0.9*"/>
                     <RowDefinition Height="0.1*"/>
                 </Grid.RowDefinitions>
+
 
                 <ScrollViewer Background="#FFFFFCC7">
                     <ScrollViewer.VerticalScrollBarVisibility>
@@ -167,12 +190,12 @@
                     </ItemsControl>
                 </ScrollViewer>
 
-
                 <Grid Grid.Row="1" Background="#FFFFFCC7">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.9*"/>
                         <ColumnDefinition Width="0.1*"/>
                     </Grid.ColumnDefinitions>
+                    
 
                     <Border>
                         <Viewbox HorizontalAlignment="Left">
@@ -198,7 +221,5 @@
                 </Grid>
             </Grid>
         </Grid>
-
-        
     </Grid>
 </UserControl>

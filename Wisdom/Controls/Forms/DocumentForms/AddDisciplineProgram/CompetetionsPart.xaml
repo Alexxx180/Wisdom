@@ -78,8 +78,8 @@
                     <general:GeneralCompetetionAdditor Options="{Binding RelativeSource={RelativeSource AncestorLevel=1, AncestorType=tables:AutoPanel}}"/>
                 </tables:AutoPanel.Additor>
             </tables:AutoPanel>
-            
-            <tables:AutoPanel Grid.Row="1" x:Name="Professional">
+
+            <tables:AutoPanel Grid.Row="1" x:Name="Professional" Visibility="Hidden">
                 <tables:AutoPanel.Records>
                     <Binding Path="DataContext.ProfessionalCompetetions"
                              ElementName="TreeContext"

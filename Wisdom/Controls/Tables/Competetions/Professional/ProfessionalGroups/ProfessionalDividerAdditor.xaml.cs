@@ -70,7 +70,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             ProfessionalDivider divider = new ProfessionalDivider
             {
                 DividerNo = DividerNo,
-                Competetions = new ObservableCollection<ProfessionalCompetetion>(),
                 Options = Options
             };
 
