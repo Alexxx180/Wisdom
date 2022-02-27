@@ -21,6 +21,17 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
         }
 
         #region PlanWorkTask Members
+        private PlanTheme _theme;
+        public PlanTheme Theme
+        {
+            get => _theme;
+            set
+            {
+                _theme = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _workType;
         public string WorkType
         {
@@ -62,14 +73,16 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 
         private void DropTask(object sender, RoutedEventArgs e)
         {
-            
+            Theme.DropWork(this);
         }
 
         public void SetElement(HashList<Pair<string, string>> workTask)
         {
             WorkType = workTask.Name;
-            if (workTask.Values.Count < 1)
+            if (workTask.Values is null ||
+                workTask.Values.Count < 1)
                 return;
+
             TaskName = workTask.Values[0].Name;
             TaskHours = workTask.Values[0].Value;
         }

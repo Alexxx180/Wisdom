@@ -24,10 +24,10 @@
 
         <TextBlock Grid.Column="1">
             <TextBlock.Style>
-                <StaticResource ResourceKey="CaptionSections"/>
+                <StaticResource ResourceKey="No2"/>
             </TextBlock.Style>
             <TextBlock.Text>
-                <Binding Path="ThemeHeader"/>
+                <Binding Path="No"/>
             </TextBlock.Text>
         </TextBlock>
         
@@ -73,18 +73,15 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        
-        <ComboBox Grid.Column="5" IsEditable="True">
-            <ComboBox.Text>
+
+        <TextBox Grid.Column="5" Style="{StaticResource NoBox}">
+            <TextBox.Text>
                 <Binding Path="ThemeLevel" Mode="TwoWay">
                     <Binding.UpdateSourceTrigger>
                         LostFocus
                     </Binding.UpdateSourceTrigger>
                 </Binding>
-            </ComboBox.Text>
-            <!--<ComboBox.ItemsSource>
-                <Binding Path="Children" ElementName="Levels" Converter="{StaticResource CompetetionsConverter}"></Binding> SelectionChanged="Levels_SelectionChanged"
-            </ComboBox.ItemsSource>-->
-        </ComboBox>
+            </TextBox.Text>
+        </TextBox>
     </Grid>
 </UserControl>

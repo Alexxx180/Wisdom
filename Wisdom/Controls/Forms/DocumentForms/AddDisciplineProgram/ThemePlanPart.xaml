@@ -81,17 +81,26 @@
                     
                     <StackPanel>
                         <plan:PlanTopicFields/>
+                        
                         <ItemsControl>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemsSource>
-                                <Binding Path="ThemePlan"/>
+                                <Binding Path="ThemePlan" Mode="TwoWay">
+                                    <Binding.UpdateSourceTrigger>
+                                        PropertyChanged
+                                    </Binding.UpdateSourceTrigger>
+                                </Binding>
                             </ItemsControl.ItemsSource>
                         </ItemsControl>
-                        <plan:PlanTopicAdditor/>
+
+                        <plan:PlanTopicAdditor>
+                            <plan:PlanTopicAdditor.ThemePlan>
+                                <Binding ElementName="TreeContext" Path="DataContext.ThemePlan">
+                                    <Binding.UpdateSourceTrigger>
+                                        PropertyChanged
+                                    </Binding.UpdateSourceTrigger>
+                                </Binding>
+                            </plan:PlanTopicAdditor.ThemePlan>
+                        </plan:PlanTopicAdditor>
                     </StackPanel>
                 </ScrollViewer>
 

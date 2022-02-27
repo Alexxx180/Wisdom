@@ -12,7 +12,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
     /// <summary>
     /// Topic of theme plan
     /// </summary>
-    public partial class PlanTopic : UserControl, IAutoIndexing, INotifyPropertyChanged, IRawData<HoursList<LevelsList<HashList<Pair<string, string>>>>>
+    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<HoursList<LevelsList<HashList<Pair<string, string>>>>>
     {
         public HoursList<LevelsList<HashList<Pair<string, string>>>> Raw()
         {
@@ -22,6 +22,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
             };
         }
 
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -30,12 +31,48 @@ namespace Wisdom.Controls.Tables.ThemePlan
             {
                 _no = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(TopicHeader));
             }
         }
 
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
+
+        #region AutoIndexing Logic
+        public void ParentAutoIndexing()
+        {
+            ushort i;
+            for (i = 0; i < ThemePlan.Count; i++)
+            {
+                ThemePlan[i].Index((i + 1).ToUInt());
+            }
+            //Additor.Index((i + 1).ToUInt());
+        }
+
+        public void AutoIndexing()
+        {
+            ushort i;
+            for (i = 0; i < ThemePlan.Count; i++)
+            {
+                Themes[i].Index((i + 1).ToUInt());
+            }
+            ThemeAdditor.Index((i + 1).ToUInt());
+        }
+        #endregion
+
         #region PlanTopic Members
-        public string TopicHeader => $"Раздел {No}.";
+        private ObservableCollection<PlanTopic> _themePlan;
+        public ObservableCollection<PlanTopic> ThemePlan
+        {
+            get => _themePlan;
+            set
+            {
+                _themePlan = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string _topicName;
         public string TopicName
@@ -59,8 +96,8 @@ namespace Wisdom.Controls.Tables.ThemePlan
             }
         }
 
-        private ObservableCollection<IRawData<LevelsList<HashList<Pair<string, string>>>>> _themes;
-        public ObservableCollection<IRawData<LevelsList<HashList<Pair<string, string>>>>> Themes
+        private ObservableCollection<PlanTheme> _themes;
+        public ObservableCollection<PlanTheme> Themes
         {
             get => _themes;
             set
@@ -74,42 +111,44 @@ namespace Wisdom.Controls.Tables.ThemePlan
         public PlanTopic()
         {
             InitializeComponent();
-            No = 1;
-            Themes = new ObservableCollection<IRawData<LevelsList<HashList<Pair<string, string>>>>>();
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
+            Index(1);
+            Themes = new ObservableCollection<PlanTheme>();
         }
 
         private void DropTopic(object sender, RoutedEventArgs e)
         {
-            // ViewModel.DropTopic();
+            _ = ThemePlan.Remove(this);
+            ParentAutoIndexing();
+            OnPropertyChanged(nameof(ThemePlan));
         }
 
-        private void Levels_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        #region ThemesGroup Members
+        public void DropTheme(PlanTheme source)
         {
-            //ComboBox combobox = sender as ComboBox;
-            //BindingExpression binding = GetBindExpress(combobox, ComboBox.ItemsSourceProperty);
-            //binding.UpdateTarget();
+            _ = Themes.Remove(source);
+            AutoIndexing();
+            OnPropertyChanged(nameof(Themes));
         }
+
+        public void AddRecord(PlanTheme record)
+        {
+            Themes.Add(record);
+            OnPropertyChanged(nameof(Themes));
+        }
+        #endregion
 
         public void SetElement(HoursList<LevelsList<HashList<Pair<string, string>>>> topic)
         {
             TopicName = topic.Name;
-            Themes.Clear();
+            
             for (byte i = 0; i < topic.Values.Count; i++)
             {
-                LevelsList<HashList<Pair<string, string>>> themeData = topic.Values[i];
                 PlanTheme theme = new PlanTheme
                 {
-                    ThemeName = themeData.Name,
-                    ThemeHours = themeData.Hours,
-                    ThemeCompetetions = themeData.Competetions,
-                    ThemeLevel = themeData.Level,
+                    No = (i + 1).ToUInt(),
+                    Topic = this
                 };
-                theme.SetElement(themeData);
+                theme.SetElement(topic.Values[i]);
                 Themes.Add(theme);
             }
         }

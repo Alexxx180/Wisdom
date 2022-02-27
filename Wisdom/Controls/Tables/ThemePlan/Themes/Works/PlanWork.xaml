@@ -6,7 +6,7 @@
              xmlns:tasks="clr-namespace:Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="105" d:DesignWidth="800">
+             d:DesignHeight="105" d:DesignWidth="800" x:Name="This">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -64,7 +64,12 @@
                     <Binding Path="Tasks"/>
                 </ItemsControl.ItemsSource>
             </ItemsControl>
-            <tasks:PlanTaskAdditor/>
+
+            <tasks:PlanTaskAdditor x:Name="TaskAdditor">
+                <tasks:PlanTaskAdditor.Work>
+                    <Binding ElementName="This"/>
+                </tasks:PlanTaskAdditor.Work>
+            </tasks:PlanTaskAdditor>
         </StackPanel>
     </Grid>
 </UserControl>

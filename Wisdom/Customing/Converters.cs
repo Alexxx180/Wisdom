@@ -91,6 +91,14 @@ namespace Wisdom.Customing
             return elements;
         }
 
+        public static List<T> GetRaw<T>(this IEnumerable<IRawData<T>> list)
+        {
+            List<T> elements = new List<T>();
+            foreach (IRawData<T> item in list)
+                elements.Add(item.Raw());
+            return elements;
+        }
+
         public static List<T> Zip<T>(this List<List<T>> original)
         {
             List<T> archive = new List<T>();

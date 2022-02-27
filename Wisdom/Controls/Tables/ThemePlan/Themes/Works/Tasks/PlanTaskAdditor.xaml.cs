@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
 {
@@ -11,17 +10,11 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
     /// </summary>
     public partial class PlanTaskAdditor : UserControl, INotifyPropertyChanged, IAutoIndexing
     {
-        private PlanWork _work;
-        public PlanWork Work
-        {
-            get => _work;
-            set
-            {
-                _work = value;
-                OnPropertyChanged();
-            }
-        }
+        public static readonly DependencyProperty
+            WorkProperty = DependencyProperty.Register(nameof(Work),
+                typeof(PlanWork), typeof(PlanTaskAdditor));
 
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -34,7 +27,19 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
             }
         }
 
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
+
         #region PlanTaskAdditor Members
+        public PlanWork Work
+        {
+            get => GetValue(WorkProperty) as PlanWork;
+            set => SetValue(WorkProperty, value);
+        }
+
         public string TaskHeader => $"{No}.";
 
         public string _taskName;
@@ -48,7 +53,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
             }
         }
 
-        public string _taskHours = "";
+        public string _taskHours;
         public string TaskHours
         {
             get => _taskHours;
@@ -63,21 +68,20 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
         public PlanTaskAdditor()
         {
             InitializeComponent();
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
+            Index(1);
         }
 
         private void AddTask(object sender, RoutedEventArgs e)
         {
             PlanTask task = new PlanTask
             {
+                No = No,
                 TaskName = TaskName,
-                TaskHours = TaskHours
+                TaskHours = TaskHours,
+                Work = Work
             };
-            // Work.AddRecord(task);
+
+            Work.AddRecord(task);
             Index(No + 1);
         }
 

@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="45" d:DesignWidth="900">
-    <Grid>
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             d:DesignHeight="35" d:DesignWidth="900">
+    <Grid Height="35">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition Width="0.75*"/>
@@ -26,7 +27,15 @@
             <ComboBox.ItemContainerStyle>
                 <StaticResource ResourceKey="ItemsBox"/>
             </ComboBox.ItemContainerStyle>
-            
+            <ComboBox.Text>
+                <Binding Path="WorkType" Mode="TwoWay">
+                    <Binding.UpdateSourceTrigger>
+                        LostFocus
+                    </Binding.UpdateSourceTrigger>
+                </Binding>
+            </ComboBox.Text>
+
+            <ComboBoxItem>Содержание учебного материала</ComboBoxItem>
             <ComboBoxItem>Практические занятия</ComboBoxItem>
             <ComboBoxItem>Контрольная работа</ComboBoxItem>
             <ComboBoxItem>Самостоятельная работа</ComboBoxItem>
@@ -37,7 +46,16 @@
                 <CheckBox.Style>
                     <StaticResource ResourceKey="RegularCheckBox"/>
                 </CheckBox.Style>
-                <TextBlock Text="Группа"/>
+                <CheckBox.IsChecked>
+                    <Binding Path="IsGroup" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            PropertyChanged
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </CheckBox.IsChecked>
+                <CheckBox.Content>
+                    <TextBlock Text="Группа"/>
+                </CheckBox.Content>
             </CheckBox>
         </Viewbox>
     </Grid>

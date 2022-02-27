@@ -6,6 +6,7 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using Wisdom.Customing;
 using static Wisdom.Customing.Converters;
+using Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 {
@@ -19,7 +20,30 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             return new HashList<Pair<string, string>>(WorkType, Tasks.GetRaw());
         }
 
+        #region AutoIndexing Logic
+        public void AutoIndexing()
+        {
+            ushort i;
+            for (i = 0; i < Tasks.Count; i++)
+            {
+                Tasks[i].Index((i + 1).ToUInt());
+            }
+            TaskAdditor.Index((i + 1).ToUInt());
+        }
+        #endregion
+
         #region PlanWork Members
+        private PlanTheme _theme;
+        public PlanTheme Theme
+        {
+            get => _theme;
+            set
+            {
+                _theme = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _workType;
         public string WorkType
         {
@@ -31,30 +55,8 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             }
         }
 
-        private string _taskName;
-        public string TaskName
-        {
-            get => _taskName;
-            set
-            {
-                _taskName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _taskHours;
-        public string TaskHours
-        {
-            get => _taskHours;
-            set
-            {
-                _taskHours = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ObservableCollection<IRawData<Pair<string, string>>> _tasks;
-        public ObservableCollection<IRawData<Pair<string, string>>> Tasks
+        private ObservableCollection<PlanTask> _tasks;
+        public ObservableCollection<PlanTask> Tasks
         {
             get => _tasks;
             set
@@ -68,12 +70,42 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
         public PlanWork()
         {
             InitializeComponent();
-            Tasks = new ObservableCollection<IRawData<Pair<string, string>>>();
+            Tasks = new ObservableCollection<PlanTask>();
         }
 
         private void DropRecord(object sender, RoutedEventArgs e)
         {
-            
+            Theme.DropWork(this);
+        }
+
+        #region TasksGroup Members
+        public void DropTask(PlanTask task)
+        {
+            _ = Tasks.Remove(task);
+            OnPropertyChanged(nameof(Tasks));
+        }
+
+        public void AddRecord(PlanTask task)
+        {
+            Tasks.Add(task);
+            OnPropertyChanged(nameof(Tasks));
+        }
+        #endregion
+
+        public void SetElement(HashList<Pair<string, string>> work)
+        {
+            WorkType = work.Name;
+
+            for (ushort i = 0; i < work.Values.Count; i++)
+            {
+                PlanTask task = new PlanTask
+                {
+                    No = (i + 1).ToUInt(),
+                    Work = this
+                };
+                task.SetElement(work.Values[i]);
+                Tasks.Add(task);
+            }
         }
 
         #region INotifyPropertyChanged Members

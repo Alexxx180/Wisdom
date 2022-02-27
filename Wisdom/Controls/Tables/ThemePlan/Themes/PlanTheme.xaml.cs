@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -24,17 +23,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             };
         }
 
-        private PlanTopic _options;
-        public PlanTopic Options
-        {
-            get => _options;
-            set
-            {
-                _options = value;
-                OnPropertyChanged();
-            }
-        }
-
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -46,7 +35,24 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             }
         }
 
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
+
         #region Theme Members
+        private PlanTopic _topic;
+        public PlanTopic Topic
+        {
+            get => _topic;
+            set
+            {
+                _topic = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _themeName;
         public string ThemeName
         {
@@ -107,11 +113,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         {
             InitializeComponent();
             Index(1);
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
+            Works = new ObservableCollection<IRawData<HashList<Pair<string, string>>>>();
         }
 
         public void SetElement(LevelsList<HashList<Pair<string, string>>> theme)
@@ -120,17 +122,28 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             ThemeHours = theme.Hours;
             ThemeCompetetions = theme.Competetions;
             ThemeLevel = theme.Level;
+
             for (ushort i = 0; i < theme.Values.Count; i++)
             {
                 HashList<Pair<string, string>> workData = theme.Values[i];
                 IRawData<HashList<Pair<string, string>>> work;
                 if (workData.Values.Count > 1)
                 {
-                    work = new PlanWork();
-                }   
+                    PlanWork group = new PlanWork
+                    {
+                        Theme = this
+                    };
+                    group.SetElement(workData);
+                    work = group;
+                }
                 else
                 {
-                    work = new PlanWorkTask();
+                    PlanWorkTask single = new PlanWorkTask
+                    {
+                        Theme = this
+                    };
+                    single.SetElement(workData);
+                    work = single;
                 }
                 Works.Add(work);
             }
@@ -138,8 +151,22 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
 
         private void DropTheme(object sender, RoutedEventArgs e)
         {
-            Options.Themes.Remove(this);
+            Topic.DropTheme(this);
         }
+
+        #region WorksGroup Members
+        public void DropWork(IRawData<HashList<Pair<string, string>>> work)
+        {
+            _ = Works.Remove(work);
+            OnPropertyChanged(nameof(Works));
+        }
+
+        public void AddRecord(IRawData<HashList<Pair<string, string>>> work)
+        {
+            Works.Add(work);
+            OnPropertyChanged(nameof(Works));
+        }
+        #endregion
 
         //BindingExpression binding = GetBindExpress(combobox, ComboBox.ItemsSourceProperty);
         //binding.UpdateTarget();

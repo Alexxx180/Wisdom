@@ -16,6 +16,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
             return new Pair<string, string>(TaskName, TaskHours);
         }
 
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -28,7 +29,24 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
             }
         }
 
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
+
         #region PlanTask Members
+        private PlanWork _work;
+        public PlanWork Work
+        {
+            get => _work;
+            set
+            {
+                _work = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string TaskHeader => $"{No}.";
 
         private string _taskName;
@@ -57,16 +75,12 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
         public PlanTask()
         {
             InitializeComponent();
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
+            Index(1);
         }
 
         private void DropTask(object sender, RoutedEventArgs e)
         {
-            // Drop from work logic here...
+            Work.DropTask(this);
         }
 
         public void SetElement(Pair<string, string> task)

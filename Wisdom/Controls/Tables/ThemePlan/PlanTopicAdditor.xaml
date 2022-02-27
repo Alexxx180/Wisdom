@@ -22,12 +22,12 @@
         </Button>
 
         <Viewbox Grid.Column="1">
-            <TextBlock Padding="2,0,0,0">
+            <TextBlock>
                 <TextBlock.Style>
                     <StaticResource ResourceKey="CaptionSections"/>
                 </TextBlock.Style>
                 <TextBlock.Text>
-                    <Binding Path="TopicHeader"/>
+                    <Binding Path="No"/>
                 </TextBlock.Text>
             </TextBlock>
         </Viewbox>

@@ -76,11 +76,6 @@
                     </ScrollViewer.VerticalScrollBarVisibility>
                     <StackPanel>
                         <ItemsControl>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemsSource>
                                 <Binding Path="MetaData"/>
                             </ItemsControl.ItemsSource>
@@ -107,11 +102,6 @@
                     </ScrollViewer.VerticalScrollBarVisibility>
                     <StackPanel>
                         <ItemsControl>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemsSource>
                                 <Binding Path="Sources"/>
                             </ItemsControl.ItemsSource>

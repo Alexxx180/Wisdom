@@ -2,26 +2,26 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using Wisdom.Model;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 {
     /// <summary>
     /// Special component to add new work to theme
     /// </summary>
-    public partial class PlanWorkAdditor : UserControl
+    public partial class PlanWorkAdditor : UserControl, INotifyPropertyChanged
     {
-        private PlanTheme _theme;
-        public PlanTheme Theme
-        {
-            get => _theme;
-            set
-            {
-                _theme = value;
-                OnPropertyChanged();
-            }
-        }
+        public static readonly DependencyProperty
+            ThemeProperty = DependencyProperty.Register(nameof(Theme),
+                typeof(PlanTheme), typeof(PlanWorkAdditor));
 
         #region WorkAdditor Members
+        public PlanTheme Theme
+        {
+            get => GetValue(ThemeProperty) as PlanTheme;
+            set => SetValue(ThemeProperty, value);
+        }
+
         public string _workType;
         public string WorkType
         {
@@ -29,6 +29,17 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             set
             {
                 _workType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool _isGroup;
+        public bool IsGroup
+        {
+            get => _isGroup;
+            set
+            {
+                _isGroup = value;
                 OnPropertyChanged();
             }
         }
@@ -41,11 +52,28 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 
         private void AddWork(object sender, RoutedEventArgs e)
         {
-            PlanWork work = new PlanWork
+            IRawData<HashList<Pair<string, string>>> work;
+
+            if (IsGroup)
             {
-                WorkType = WorkType
-            };
-            // Theme.AddRecord();
+                PlanWork group = new PlanWork
+                {
+                    WorkType = WorkType,
+                    Theme = Theme
+                };
+                work = group;
+            }
+            else
+            {
+                PlanWorkTask single = new PlanWorkTask
+                {
+                    WorkType = WorkType,
+                    Theme = Theme
+                };
+                work = single;
+            }
+
+            Theme.AddRecord(work);
         }
 
         #region INotifyPropertyChanged Members

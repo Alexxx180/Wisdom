@@ -1,8 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using Wisdom.ViewModel;
 
 namespace Wisdom.Controls.Tables.ThemePlan
 {
@@ -11,17 +11,11 @@ namespace Wisdom.Controls.Tables.ThemePlan
     /// </summary>
     public partial class PlanTopicAdditor : UserControl, IAutoIndexing, INotifyPropertyChanged
     {
-        private DisciplineProgramViewModel _viewModel;
-        internal DisciplineProgramViewModel ViewModel
-        {
-            get => _viewModel;
-            set
-            {
-                _viewModel = value;
-                OnPropertyChanged();
-            }
-        }
+        public static readonly DependencyProperty
+            ThemePlanProperty = DependencyProperty.Register(nameof(ThemePlan),
+                typeof(ObservableCollection<PlanTopic>), typeof(PlanTopicAdditor));
 
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -30,12 +24,21 @@ namespace Wisdom.Controls.Tables.ThemePlan
             {
                 _no = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(TopicHeader));
             }
         }
 
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
+
         #region TopicAdditor Members
-        public string TopicHeader => $"Раздел {No}.";
+        public ObservableCollection<PlanTopic> ThemePlan
+        {
+            get => GetValue(ThemePlanProperty) as ObservableCollection<PlanTopic>;
+            set => SetValue(ThemePlanProperty, value);
+        }
 
         private string _topicName;
         public string TopicName
@@ -60,11 +63,6 @@ namespace Wisdom.Controls.Tables.ThemePlan
         }
         #endregion
 
-        public void Index(uint no)
-        {
-            No = no;
-        }
-
         public PlanTopicAdditor()
         {
             InitializeComponent();
@@ -77,9 +75,11 @@ namespace Wisdom.Controls.Tables.ThemePlan
             {
                 No = No,
                 TopicName = TopicName,
-                TopicHours = TopicHours
+                TopicHours = TopicHours,
+                ThemePlan = ThemePlan
             };
-            // ViewModel.AddTopic();
+
+            ThemePlan.Add(topic);
             Index(No + 1);
         }
 

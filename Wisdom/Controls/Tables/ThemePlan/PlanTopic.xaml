@@ -6,7 +6,7 @@
              xmlns:themes="clr-namespace:Wisdom.Controls.Tables.ThemePlan.Themes"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="105" d:DesignWidth="800">
+             d:DesignHeight="105" d:DesignWidth="800" x:Name="This">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -32,10 +32,10 @@
 
             <TextBlock Grid.Column="1">
                 <TextBlock.Style>
-                    <StaticResource ResourceKey="CaptionSections"/>
+                    <StaticResource ResourceKey="No2"/>
                 </TextBlock.Style>
                 <TextBlock.Text>
-                    <Binding Path="TopicHeader"/>
+                    <Binding Path="No"/>
                 </TextBlock.Text>
             </TextBlock>
 
@@ -50,8 +50,8 @@
                         </Binding.UpdateSourceTrigger>
                     </Binding>
                 </TextBox.Text>
-
             </TextBox>
+            
             <TextBox Grid.Column="3" Style="{StaticResource HoursBox}">
                 <!--<TextBox.Background>
                     <MultiBinding Converter="{StaticResource UsedValuesConverter}">
@@ -70,17 +70,22 @@
 
         <StackPanel Grid.Row="1" Background="#FFF5FFFF">
             <themes:PlanThemeFields/>
+
             <ItemsControl>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemsSource>
-                    <Binding Path="Themes"/>
+                    <Binding Path="Themes" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            PropertyChanged
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
                 </ItemsControl.ItemsSource>
             </ItemsControl>
-            <themes:PlanThemeAdditor/>
+
+            <themes:PlanThemeAdditor x:Name="ThemeAdditor">
+                <themes:PlanThemeAdditor.Topic>
+                    <Binding ElementName="This"/>
+                </themes:PlanThemeAdditor.Topic>
+            </themes:PlanThemeAdditor>
         </StackPanel>
     </Grid>
 </UserControl>

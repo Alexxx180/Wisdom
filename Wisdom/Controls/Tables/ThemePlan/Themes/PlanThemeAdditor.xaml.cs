@@ -10,17 +10,11 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
     /// </summary>
     public partial class PlanThemeAdditor : UserControl, INotifyPropertyChanged, IAutoIndexing
     {
-        private PlanTopic _topic;
-        public PlanTopic Topic
-        {
-            get => _topic;
-            set
-            {
-                _topic = value;
-                OnPropertyChanged();
-            }
-        }
+        public static readonly DependencyProperty
+            TopicProperty = DependencyProperty.Register(nameof(Topic),
+                typeof(PlanTopic), typeof(PlanThemeAdditor));
 
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -29,16 +23,24 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             {
                 _no = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ThemeHeader));
             }
         }
 
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
+
         #region PlanThemeAdditor Members
-        public string Prefix => "Тема";
-        public string ThemeHeader => $"{Prefix} {Topic.No}.{No}.";
+        public PlanTopic Topic
+        {
+            get => GetValue(TopicProperty) as PlanTopic;
+            set => SetValue(TopicProperty, value);
+        }
 
         private string _themeName;
-        internal string ThemeName
+        public string ThemeName
         {
             get => _themeName;
             set
@@ -49,7 +51,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         }
 
         private string _themeHours;
-        internal string ThemeHours
+        public string ThemeHours
         {
             get => _themeHours;
             set
@@ -60,7 +62,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         }
 
         private string _themeCompetetions;
-        internal string ThemeCompetetions
+        public string ThemeCompetetions
         {
             get => _themeCompetetions;
             set
@@ -71,7 +73,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         }
 
         private string _themeLevel;
-        internal string ThemeLevel
+        public string ThemeLevel
         {
             get => _themeLevel;
             set
@@ -88,11 +90,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             Index(1);
         }
 
-        public void Index(uint no)
-        {
-            No = no;
-        }
-
         private void AddTheme(object sender, RoutedEventArgs e)
         {
             PlanTheme theme = new PlanTheme
@@ -101,9 +98,11 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
                 ThemeName = ThemeName,
                 ThemeHours = ThemeHours,
                 ThemeCompetetions = ThemeCompetetions,
-                ThemeLevel = ThemeLevel
+                ThemeLevel = ThemeLevel,
+                Topic = Topic
             };
-            //Topic.AddRecord(theme);
+
+            Topic.AddRecord(theme);
             Index(No + 1);
         }
 

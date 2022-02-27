@@ -339,10 +339,7 @@ namespace Wisdom.ViewModel
             Hours.Add(new HourElement());
             OnPropertyChanged(nameof(Hours));
             ProfessionalCompetetions = new ObservableCollection<ProfessionalDivider>();
-            GeneralCompetetions = new ObservableCollection<GeneralCompetetion>
-            {
-                new GeneralCompetetion()
-            };
+            GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
             Connector = new MySQL();
         }
 
@@ -449,6 +446,7 @@ namespace Wisdom.ViewModel
             TestHours();
             TestMetaData();
             TestSources();
+            TestThemePlan();
         }
 
         public void TestHours()
@@ -480,6 +478,31 @@ namespace Wisdom.ViewModel
                 foreach (string source in sourceType.Raw().Value)
                 {
                     System.Diagnostics.Trace.WriteLine(source);
+                }
+            }
+        }
+
+        public void TestThemePlan()
+        {
+            System.Diagnostics.Trace.WriteLine(ThemePlan.Count);
+            foreach (PlanTopic topic in ThemePlan)
+            {
+                System.Diagnostics.Trace.WriteLine(topic.Raw().Name);
+                foreach (LevelsList<HashList<Pair<string, string>>> theme in topic.Raw().Values)
+                {
+                    System.Diagnostics.Trace.WriteLine(theme.Name);
+                    System.Diagnostics.Trace.WriteLine(theme.Hours);
+                    System.Diagnostics.Trace.WriteLine(theme.Competetions);
+                    System.Diagnostics.Trace.WriteLine(theme.Level);
+                    foreach (HashList<Pair<string, string>> work in theme.Values)
+                    {
+                        System.Diagnostics.Trace.WriteLine(work.Name);
+                        foreach (Pair<string, string> task in work.Values)
+                        {
+                            System.Diagnostics.Trace.WriteLine(task.Name);
+                            System.Diagnostics.Trace.WriteLine(task.Value);
+                        }
+                    }
                 }
             }
         }
@@ -560,7 +583,7 @@ namespace Wisdom.ViewModel
             SelfHours = self.ToString();
 
             Sources.Clear();
-            for (byte i = 0; i < SelectedDiscipline.Sources.Count; i++)
+            for (ushort i = 0; i < SelectedDiscipline.Sources.Count; i++)
             {
                 SourceTypeElement source = new SourceTypeElement
                 {
@@ -572,8 +595,17 @@ namespace Wisdom.ViewModel
 
             SetLevels();
 
-            //for (byte i = 0; i < ThemePlan.Count; i++)
-            //    ThemePlan[i].SetElement(SelectedDiscipline.Plan[i]);
+            ThemePlan.Clear();
+            for (ushort i = 0; i < SelectedDiscipline.Plan.Count; i++)
+            {
+                PlanTopic topic = new PlanTopic
+                {
+                    No = (i + 1).ToUInt(),
+                    ThemePlan = ThemePlan
+                };
+                topic.SetElement(SelectedDiscipline.Plan[i]);
+                ThemePlan.Add(topic);
+            }
         }       
 
         private void SetDiscipline(DisciplineProgram program)

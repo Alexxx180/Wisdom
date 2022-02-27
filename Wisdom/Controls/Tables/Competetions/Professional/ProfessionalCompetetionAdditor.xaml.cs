@@ -41,9 +41,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             set => SetValue(GroupProperty, value);
         }
 
-        public string ProfessionalPrefix => "ПК";
-        public string ProfessionalHeader => $"{ProfessionalPrefix} 1.{ProfessionalNo}.";
-
         private string _professionalNo;
         public string ProfessionalNo
         {
@@ -52,7 +49,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             {
                 _professionalNo = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(ProfessionalHeader));
             }
         }
 
