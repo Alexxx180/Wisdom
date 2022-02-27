@@ -532,8 +532,8 @@ namespace Wisdom.ViewModel
         {
             SelectedDiscipline = Data.DisciplineData(DisciplineHead.Name[DisciplineNo], DisciplineFullName);
 
-            //SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
-            //SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
+            SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
+            SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
 
             int study = 0;
             int self = 0;
@@ -570,7 +570,7 @@ namespace Wisdom.ViewModel
                 Sources.Add(source);
             }
 
-            //SetLevels();
+            SetLevels();
 
             //for (byte i = 0; i < ThemePlan.Count; i++)
             //    ThemePlan[i].SetElement(SelectedDiscipline.Plan[i]);
@@ -627,24 +627,27 @@ namespace Wisdom.ViewModel
             }
         }
 
+        private void SetSourceTypes()
+        {
+            SourceTypes = new ObservableCollection<string>(Data.SourceTypesData());
+            foreach (string type in SourceTypes)
+            {
+                System.Diagnostics.Trace.WriteLine("Unbeliavable: " + type);
+            }
+        }
+
         private void SetLevels()
         {
             List<Pair<string, string>> levels = Data.LevelsData();
             Levels.Clear();
             for (byte i = 0; i < levels.Count; i++)
             {
-                EducationLevel level = new EducationLevel();
+                EducationLevel level = new EducationLevel
+                {
+                    LevelNo = (i + 1).ToString()
+                };
                 level.SetElement(levels[i]);
                 Levels.Add(level);
-            }
-        }
-
-        private void SetSourceTypes()
-        {
-            SourceTypes = new ObservableCollection<string>(Data.SourceTypesData());
-            foreach(string type in SourceTypes)
-            {
-                System.Diagnostics.Trace.WriteLine("Unbeliavable: " + type);
             }
         }
 

@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Wisdom.Customing;
 
 namespace Wisdom.Controls.Tables.EducationLevels
 {
@@ -37,8 +38,10 @@ namespace Wisdom.Controls.Tables.EducationLevels
             set
             {
                 _no = value;
+                if (Options != null &&
+                    !Options.IsManual)
+                    LevelNo = No.ToString();
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(LevelHeader));
             }
         }
 
@@ -49,7 +52,22 @@ namespace Wisdom.Controls.Tables.EducationLevels
         #endregion
 
         #region EducationLevel Members
-        public string LevelHeader => $"{No}.";
+        private string _levelNo;
+        public string LevelNo
+        {
+            get => _levelNo;
+            set
+            {
+                if (value == "")
+                    return;
+                uint no = value.ParseHours();
+                _levelNo = $"{no}.";
+                if (Options != null &&
+                    Options.IsManual)
+                    No = no;
+                OnPropertyChanged();
+            }
+        }
 
         public string _name;
         public string LevelName

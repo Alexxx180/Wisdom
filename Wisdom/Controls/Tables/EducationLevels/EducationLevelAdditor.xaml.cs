@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Wisdom.Customing;
 
 namespace Wisdom.Controls.Tables.EducationLevels
 {
@@ -10,16 +11,15 @@ namespace Wisdom.Controls.Tables.EducationLevels
     /// </summary>
     public partial class EducationLevelAdditor : UserControl, INotifyPropertyChanged, IOptionableIndexing
     {
+        public static readonly DependencyProperty
+            OptionsProperty = DependencyProperty.Register(nameof(Options),
+                typeof(AutoPanel), typeof(EducationLevelAdditor));
+
         #region IOptionableIndexing
-        private AutoPanel _options;
         public AutoPanel Options
         {
-            get => _options;
-            set
-            {
-                _options = value;
-                OnPropertyChanged();
-            }
+            get => GetValue(OptionsProperty) as AutoPanel;
+            set => SetValue(OptionsProperty, value);
         }
         #endregion
 
@@ -31,8 +31,10 @@ namespace Wisdom.Controls.Tables.EducationLevels
             set
             {
                 _no = value;
+                if (Options != null &&
+                    !Options.IsManual)
+                    LevelNo = No.ToString();
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(LevelHeader));
             }
         }
 
@@ -43,7 +45,22 @@ namespace Wisdom.Controls.Tables.EducationLevels
         #endregion
 
         #region LevelAdditor Members
-        public string LevelHeader => $"{No}.";
+        private string _levelNo;
+        public string LevelNo
+        {
+            get => _levelNo;
+            set
+            {
+                if (value == "")
+                    return;
+                uint no = value.ParseHours();
+                _levelNo = $"{no}.";
+                if (Options != null &&
+                    Options.IsManual)
+                    No = no;
+                OnPropertyChanged();
+            }
+        }
 
         public string _name = "";
         public string LevelName
@@ -71,15 +88,18 @@ namespace Wisdom.Controls.Tables.EducationLevels
         public EducationLevelAdditor()
         {
             InitializeComponent();
+            Index(1);
         }
 
         private void AddLevel(object sender, RoutedEventArgs e)
         {
             EducationLevel level = new EducationLevel
             {
+                Options = Options,
                 LevelName = LevelName,
                 LevelDescription = LevelDescription
             };
+            level.Index(No);
 
             if (Options.AddRecord(level))
             {

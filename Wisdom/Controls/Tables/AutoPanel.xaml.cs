@@ -43,7 +43,8 @@ namespace Wisdom.Controls.Tables
                 _mode = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(IsManual));
-                CheckAuto();
+                if (Records != null)
+                    CheckAuto();
             }
         }
 
