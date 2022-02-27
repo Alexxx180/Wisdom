@@ -84,11 +84,21 @@ namespace Wisdom.Customing
         public static List<T> GetRaw<T>(this Collection<IRawData<T>> list)
         {
             List<T> elements = new List<T>();
-            for (byte i = 0; i < list.Count; i++)
+            for (ushort i = 0; i < list.Count; i++)
             {
                 elements.Add(list[i].Raw());
             }
             return elements;
+        }
+
+        public static List<T> Zip<T>(this List<List<T>> original)
+        {
+            List<T> archive = new List<T>();
+            for (ushort i = 0; i < original.Count; i++)
+            {
+                archive.AddRange(original[i]);
+            }
+            return archive;
         }
 
         public static Color Rgb(byte red, byte green, byte blue)

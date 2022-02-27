@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sources="clr-namespace:Wisdom.Controls.Tables.Sources"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="90" d:DesignWidth="800">
+             d:DesignHeight="105" d:DesignWidth="800" x:Name="This">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         
@@ -26,7 +27,7 @@
                 </Button.Style>
             </Button>
 
-            <ComboBox Grid.Column="1">
+            <ComboBox Grid.Column="1" IsEditable="True" FontSize="20">
                 <ComboBox.Style>
                     <StaticResource ResourceKey="SubCaptionBox"/>
                 </ComboBox.Style>
@@ -45,10 +46,22 @@
             </ComboBox>
         </Grid>
 
-        <ItemsControl Grid.Row="1">
-            <ItemsControl.ItemsSource>
-                <Binding Path="Sources"/>
-            </ItemsControl.ItemsSource>
-        </ItemsControl>
+        <StackPanel Grid.Row="1">
+            <ItemsControl>
+                <ItemsControl.ItemsSource>
+                    <Binding Path="Sources" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            PropertyChanged
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </ItemsControl.ItemsSource>
+            </ItemsControl>
+
+            <sources:SourceElementAdditor x:Name="Additor" Grid.Row="1" >
+                <sources:SourceElementAdditor.SourceType>
+                    <Binding ElementName="This" />
+                </sources:SourceElementAdditor.SourceType>
+            </sources:SourceElementAdditor>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -5,7 +5,6 @@ using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups;
-using System.Text.RegularExpressions;
 
 namespace Wisdom.Controls.Tables.Competetions.Professional
 {
@@ -59,7 +58,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         
         public string ProfessionalHeader => $"{Group.Prefix} {Group.DividerNo}.{ProfessionalNo}.";
 
-        private string _professionalNo = "";
+        private string _professionalNo;
         public string ProfessionalNo
         {
             get => _professionalNo;
@@ -129,7 +128,8 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
 
         public void SetElement(HoursList<Pair<string, string>> competetion)
         {
-            ProfessionalNo = competetion.Name[(competetion.Name.LastIndexOf('.') + 1)..];
+            string no = competetion.Name;
+            ProfessionalNo = no[(no.LastIndexOf('.') + 1)..];
             ProfessionalName = competetion.Hours;
             List<Pair<string, string>> value = competetion.Values;
             ProfessionalExperience = value[0].Value;

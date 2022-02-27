@@ -119,18 +119,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             return Options.Mode == Indexing.NEW_ONLY;
         }
 
-        public static List<HoursList<Pair<string, string>>>
-            Zip(List<List<HoursList<Pair<string, string>>>> competetions)
-        {
-            List<HoursList<Pair<string, string>>> list = new
-                List<HoursList<Pair<string, string>>>();
-            for (byte i = 0; i < competetions.Count; i++)
-            {
-                list.AddRange(competetions[i]);
-            }
-            return list;
-        }
-
         public List<HoursList<Pair<string, string>>> GetDivision()
         {
             List<HoursList<Pair<string, string>>> competetions = new

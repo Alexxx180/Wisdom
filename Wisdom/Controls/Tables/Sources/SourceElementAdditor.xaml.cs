@@ -11,17 +11,11 @@ namespace Wisdom.Controls.Tables.Sources
     /// </summary>
     public partial class SourceElementAdditor : UserControl, INotifyPropertyChanged, IAutoIndexing
     {
-        private SourceTypeElement _sourceType;
-        public SourceTypeElement SourceType
-        {
-            get => _sourceType;
-            set
-            {
-                _sourceType = value;
-                OnPropertyChanged();
-            }
-        }
+        public static readonly DependencyProperty
+            TypeProperty = DependencyProperty.Register(nameof(SourceType),
+                typeof(SourceTypeElement), typeof(SourceElementAdditor));
 
+        #region IAutoIndexing
         private uint _no;
         public uint No
         {
@@ -34,7 +28,19 @@ namespace Wisdom.Controls.Tables.Sources
             }
         }
 
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
+
         #region SourceAdditor Members
+        public SourceTypeElement SourceType
+        {
+            get => GetValue(TypeProperty) as SourceTypeElement;
+            set => SetValue(TypeProperty, value);
+        }
+
         public string SourceHeader => $"{No}.";
 
         public string _value;
@@ -52,20 +58,18 @@ namespace Wisdom.Controls.Tables.Sources
         public SourceElementAdditor()
         {
             InitializeComponent();
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
+            Index(1);
         }
 
         private void AddSource(object sender, RoutedEventArgs e)
         {
             SourceElement source = new SourceElement
             {
-                Source = Source
+                No = No,
+                Source = Source,
+                SourceType = SourceType
             };
-            // SourceType.AddRecord();
+            SourceType.AddRecord(source);
             Index(No + 1);
         }
 

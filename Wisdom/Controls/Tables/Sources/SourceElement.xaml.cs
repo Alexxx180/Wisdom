@@ -16,17 +16,7 @@ namespace Wisdom.Controls.Tables.Sources
             return Source;
         }
 
-        private SourceTypeElement _sourceType;
-        public SourceTypeElement SourceType
-        {
-            get => _sourceType;
-            set
-            {
-                _sourceType = value;
-                OnPropertyChanged();
-            }
-        }
-
+        #region IAutoIndexing Members
         private uint _no;
         public uint No
         {
@@ -39,10 +29,27 @@ namespace Wisdom.Controls.Tables.Sources
             }
         }
 
+        public void Index(uint no)
+        {
+            No = no;
+        }
+        #endregion
+
         #region Source Members
+        private SourceTypeElement _sourceType;
+        public SourceTypeElement SourceType
+        {
+            get => _sourceType;
+            set
+            {
+                _sourceType = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string Header => $"{No}.";
 
-        public string _value = "";
+        public string _value;
         public string Source
         {
             get => _value;
@@ -57,16 +64,12 @@ namespace Wisdom.Controls.Tables.Sources
         public SourceElement()
         {
             InitializeComponent();
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
+            Index(1);
         }
 
         private void DropSource(object sender, RoutedEventArgs e)
         {
-            // SourceType.DropRecord();
+            SourceType.DropSource(this);
         }
 
         #region INotifyPropertyChanged Members

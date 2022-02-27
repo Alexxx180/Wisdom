@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Controls;
 using static System.Convert;
 using static Wisdom.Model.Tools.DataBase.Converters;
 
@@ -122,43 +121,48 @@ namespace Wisdom.Model.Tools.DataBase
 
         private static List<HashList<Pair<string, string>>> SetPlanWorks(List<object[]> works)
         {
-
-            List<HashList<Pair<string, string>>> themeSpace = new List<HashList<Pair<string, string>>>();
+            List<HashList<Pair<string, string>>> themeSpace = new
+                List<HashList<Pair<string, string>>>();
             for (int iii = 0; iii < works.Count; iii++)
             {
                 object[] row = works[iii];
                 HashList<Pair<string, string>> work = new
-                HashList<Pair<string, string>>(row[1].ToString());
+                    HashList<Pair<string, string>>(row[1].ToString());
 
                 uint workId = ToUInt32(row[0]);
                 List<object[]> tasks = _dataBase.Tasks(workId);
-                List<Pair<string, string>> workTasks = SetPlanTasks(tasks);
+                List<Pair<string, string>>
+                    workTasks = SetPlanTasks(tasks);
                 work.Values.AddRange(workTasks);
                 themeSpace.Add(work);
             }
             return themeSpace;
         }
 
-        private static List<Pair<string, string>> SetPlanTasks(List<object[]> tasks)
+        private static List<Pair<string, string>>
+            SetPlanTasks(List<object[]> tasks)
         {
-            List<Pair<string, string>> workSpace = new List<Pair<string, string>>();
+            List<Pair<string, string>> workSpace = new
+                List<Pair<string, string>>();
             for (int iv = 0; iv < tasks.Count; iv++)
             {
                 object[] row = tasks[iv];
                 string name = row[1].ToString();
                 string hours = row[2].ToString();
-                Pair<string, string> task = new Pair<string, string>(name, hours);
+                Pair<string, string> task = new
+                    Pair<string, string>(name, hours);
                 workSpace.Add(task);
             }
             return workSpace;
         }
 
-        private static List<string> GetSingle(List<object[]> tasks)
+        private static List<string>
+            GetSingle(List<object[]> tasks)
         {
             List<string> workSpace = new List<string>();
             for (int iv = 0; iv < tasks.Count; iv++)
             {
-                object[] row = tasks[iv];                
+                object[] row = tasks[iv];
                 workSpace.Add(row[1].ToString());
             }
             return workSpace;

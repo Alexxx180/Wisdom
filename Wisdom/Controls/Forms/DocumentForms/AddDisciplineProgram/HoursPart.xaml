@@ -45,11 +45,10 @@
                 
 
                 <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                    <TextBlock Text="Код и название специальности" Padding="0"/>
+                    <TextBlock Text="Специальность" Padding="0"/>
                 </Viewbox>
 
                 <ComboBox Grid.Row="1" Style="{StaticResource SubCaptionBox}" IsEditable="True">
-                    <!--SelectionChanged="ResetAllCompetetionFields"-->
                     <ComboBox.ItemContainerStyle>
                         <StaticResource ResourceKey="ItemsBox"/>
                     </ComboBox.ItemContainerStyle>
@@ -81,11 +80,10 @@
                 
 
                 <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                    <TextBlock Text="Код и название дисциплины" Padding="0" />
+                    <TextBlock Text="Дисциплина" Padding="0" />
                 </Viewbox>
 
                 <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource SubCaptionBox}" IsEditable="True">
-                    <!--SelectionChanged="ResetAllDisciplineFields"-->
                     <ComboBox.ItemContainerStyle>
                         <StaticResource ResourceKey="ItemsBox"/>
                     </ComboBox.ItemContainerStyle>
@@ -112,10 +110,10 @@
 
         <Grid Grid.Row="3" Grid.Column="1" Background="#FFFCC7">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="0.075*"/>
+                <RowDefinition Height="0.075*"/>
+                <RowDefinition Height="0.075*"/>
+                <RowDefinition Height="0.775*"/>
             </Grid.RowDefinitions>
             
 
@@ -130,9 +128,7 @@
                     <TextBlock Padding="1" Text="Аудиторная нагрузка, часы"/>
                 </Viewbox>
 
-                <Grid Grid.Column="1" HorizontalAlignment="Stretch">
-                    <TextBox Text="{Binding Path=EduHours}" Style="{StaticResource HoursBox}"/>
-                </Grid>
+                <TextBox Grid.Column="1" Text="{Binding Path=EduHours}" Style="{StaticResource HoursBox}"/>
             </Grid>
 
             <Grid Grid.Column="1" Grid.Row="1" Background="#FFFCC7">
@@ -146,9 +142,7 @@
                     <TextBlock Padding="1" Text="Самостоятельная работа, часы"/>
                 </Viewbox>
 
-                <Grid Grid.Column="1" HorizontalAlignment="Stretch">
-                    <TextBox Text="{Binding Path=SelfHours}" Style="{StaticResource HoursBox}"/>
-                </Grid>
+                <TextBox Grid.Column="1" Text="{Binding Path=SelfHours}" Style="{StaticResource HoursBox}"/>
             </Grid>
 
             <Grid Grid.Column="1" Grid.Row="2" Background="#FFFCC7">

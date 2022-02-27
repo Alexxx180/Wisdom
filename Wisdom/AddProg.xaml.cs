@@ -37,7 +37,8 @@ namespace Wisdom
 
         private void MakeUserTemplate(object sender, RoutedEventArgs e)
         {
-            ViewModel.TestCompetetions();
+            //ViewModel.TestCompetetions();
+            ViewModel.TestDiscipline();
         }      
 
         private void Create_Click(object sender, RoutedEventArgs e)

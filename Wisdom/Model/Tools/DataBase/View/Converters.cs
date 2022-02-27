@@ -24,9 +24,11 @@ namespace Wisdom.Model.Tools.DataBase
             string competetions = "";
             if (general.Count < 1)
                 return competetions;
+
             object[] row = general[0];
-            uint bottom = row[1].ToUInt();
-            uint top = row[1].ToUInt();
+            uint bottom, top;
+            bottom = top = row[1].ToUInt();
+
             for (int i = 1; i < general.Count; i++)
             {
                 row = general[i];
@@ -43,6 +45,7 @@ namespace Wisdom.Model.Tools.DataBase
                 }
             }
             competetions += GeneralFormat(bottom, top);
+
             return competetions.Trim();
         }
 
@@ -51,93 +54,127 @@ namespace Wisdom.Model.Tools.DataBase
             string competetions = "";
             if (professional.Count < 1)
                 return competetions;
+
             object[] row = professional[0];
             uint no, bottom, top;
             top = bottom = no = row[2].ToUInt();
+
             for (int i = 1; i < professional.Count; i++)
             {
                 row = professional[i];
                 uint nextNo = row[1].ToUInt();
                 uint next = row[2].ToUInt();
+
                 if (next - top >= 2 || nextNo != no)
                 {
                     competetions += ProfessionalFormat(no, bottom, top);
                     no = nextNo;
                     bottom = next;
-                    top = next;
                 }
-                else
-                {
-                    top = next;
-                }
+                top = next;
             }
             competetions += ProfessionalFormat(no, bottom, top);
+
             return competetions.Trim();
         }
 
 
-        private static List<Pair<string, string>> SetTypeFields(List<object[]> types)
+        private static List<Pair<string, string>>
+            SetTypeFields(List<object[]> types)
         {
-            List<Pair<string, string>> fields = new List<Pair<string, string>>();
+            List<Pair<string, string>> fields = new
+                List<Pair<string, string>>();
+
             for (byte i = 0; i < types.Count; i++)
             {
                 object[] row = types[i];
                 string id = row[0].ToString();
                 string name = row[1].ToString();
-                Pair<string, string> type = new Pair<string, string>(id, name);
+
+                Pair<string, string> type = new
+                    Pair<string, string>(id, name);
                 fields.Add(type);
-            }       
+            }
             return fields;
         }
 
-        public static List<Pair<string, string>> SetMetaData(List<object[]> metaData)
+        public static List<Pair<string, string>>
+            SetMetaData(List<object[]> metaData)
         {
-            return GetPair<string>(metaData);
-        }
+            List<Pair<string, string>> data = new
+                List<Pair<string, string>>();
 
-        private static List<Pair<string, ushort>> SetTotalHours(List<object[]> totalWorkHours)
-        {
-            return GetPair<ushort>(totalWorkHours);
-        }
-
-        private static List<Pair<string, T>> GetPair<T>(List<object[]> rows)
-        {
-            List<Pair<string, T>> data = new List<Pair<string, T>>();
-            for (int i = 0; i < rows.Count; i++)
+            for (int i = 0; i < metaData.Count; i++)
             {
-                object[] row = rows[i];
+                object[] row = metaData[i];
                 string type = row[1].ToString();
-                T value = (T)row[2];
-                data.Add(new Pair<string, T>(type, value));
+                string value = row[2].ToString();
+
+                data.Add(new Pair<string, string>(type, value));
             }
             return data;
         }
 
-        private static List<Pair<string, List<string>>> SetSources(List<object[]> sourcesList)
+        private static List<Pair<string, ushort>>
+            SetTotalHours(List<object[]> totalWorkHours)
+        {
+            List<Pair<string, ushort>> data = new
+                List<Pair<string, ushort>>();
+
+            for (int i = 0; i < totalWorkHours.Count; i++)
+            {
+                object[] row = totalWorkHours[i];
+                string type = row[1].ToString();
+                ushort value = row[2].ToUShort();
+
+                data.Add(new Pair<string, ushort>(type, value));
+            }
+            return data;
+        }
+
+        private static List<Pair<string, List<string>>>
+            SetSources(List<object[]> sourcesList)
         {
             List<Pair<string, List<string>>> sources = new
                 List<Pair<string, List<string>>>();
-            int no = 0;
+
+            List<string> types = new List<string>();
+            Dictionary<string, List<string>> sort = new
+                Dictionary<string, List<string>>();
+
             for (int i = 0; i < sourcesList.Count; i++)
             {
                 object[] row = sourcesList[i];
                 string name = row[1].ToString();
                 object type = row[2];
-                int current = type.ToInt();
-                if (no < current)
+                string typeName = type.ToString();
+
+                if (!sort.ContainsKey(typeName))
                 {
-                    sources.Add(new Pair<string, List<string>>
-                        (type.ToString(), new List<string>()));
-                    no = current;
+                    types.Add(typeName);
+                    sort.Add(typeName, new List<string>());
                 }
-                sources[no - 1].Value.Add(name);
+                sort[typeName].Add(name);
             }
+
+            for (ushort i = 0; i < types.Count; i++)
+            {
+                string typeName = types[i];
+                List<string> sourceNames = sort[typeName];
+                Pair<string, List<string>> source = new
+                    Pair<string, List<string>>(typeName, sourceNames);
+
+                sources.Add(source);
+            }
+
             return sources;
         }
 
-        private static List<HoursList<Pair<string, string>>> SetGeneral(List<object[]> generalCompetetions)
+        private static List<HoursList<Pair<string, string>>>
+            SetGeneral(List<object[]> generalCompetetions)
         {
-            List<HoursList<Pair<string, string>>> competetions = new List<HoursList<Pair<string, string>>>();
+            List<HoursList<Pair<string, string>>>
+                competetions = new List<HoursList<Pair<string, string>>>();
             for (int i = 0; i < generalCompetetions.Count; i++)
             {
                 object[] row = generalCompetetions[i];
@@ -153,9 +190,12 @@ namespace Wisdom.Model.Tools.DataBase
             return competetions;
         }
 
-        private static List<List<HoursList<Pair<string, string>>>> SetProfessional(List<object[]> professionalCompetetions)
+        private static List<List<HoursList<Pair<string, string>>>>
+            SetProfessional(List<object[]> professionalCompetetions)
         {
-            List<List<HoursList<Pair<string, string>>>> competetions = new List<List<HoursList<Pair<string, string>>>>();
+            List<List<HoursList<Pair<string, string>>>>
+                competetions = new List<List<HoursList<Pair<string, string>>>>();
+
             int memoryNo = 0;
             for (int i = 0; i < professionalCompetetions.Count; i++)
             {
@@ -197,7 +237,8 @@ namespace Wisdom.Model.Tools.DataBase
         public static Pair<List<uint>, List<string>>
             GetSpecialitySelect(List<object[]> specialities)
         {
-            Pair<List<uint>, List<string>> specialitiesHead = new
+            Pair<List<uint>, List<string>>
+                specialitiesHead = new
                 Pair<List<uint>, List<string>>(
                     new List<uint>(), new List<string>()
                 );
@@ -207,6 +248,7 @@ namespace Wisdom.Model.Tools.DataBase
                 {
                     object[] row = specialities[i];
                     uint id = row[0].ToUInt();
+
                     specialitiesHead.Name.Add(id);
                     specialitiesHead.Value.Add(row[1] + " " + row[2]);
                 }
@@ -239,7 +281,8 @@ namespace Wisdom.Model.Tools.DataBase
         public static Pair<List<uint>, List<string>>
             GetDisciplineSelect(List<object[]> disciplines)
         {
-            Pair<List<uint>, List<string>> disciplinesHead = new
+            Pair<List<uint>, List<string>>
+                disciplinesHead = new
                 Pair<List<uint>, List<string>>(
                     new List<uint>(), new List<string>()
                 );
@@ -249,6 +292,7 @@ namespace Wisdom.Model.Tools.DataBase
                 {
                     object[] row = disciplines[i];
                     uint id = row[0].ToUInt();
+
                     disciplinesHead.Name.Add(id);
                     disciplinesHead.Value.Add(row[1] + " " + row[2]);
                 }

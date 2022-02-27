@@ -74,7 +74,6 @@
         <professional:ProfessionalCompetetionAdditor x:Name="Additor" Grid.Row="2">
             <professional:ProfessionalCompetetionAdditor.Group>
                 <Binding ElementName="This" />
-                <!--RelativeSource="{RelativeSource AncestorLevel=1, AncestorType=tables:AutoPanel}"-->
             </professional:ProfessionalCompetetionAdditor.Group>
         </professional:ProfessionalCompetetionAdditor>
     </Grid>

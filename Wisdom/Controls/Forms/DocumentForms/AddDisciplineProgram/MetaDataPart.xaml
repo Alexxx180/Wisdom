@@ -4,10 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sources="clr-namespace:Wisdom.Controls.Tables.Sources.SourceTypes"
+             xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
+             xmlns:forms="clr-namespace:Wisdom.Controls.Forms"
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Grid.Row="1" DataContext="{Binding Path=ViewModel}">
+    <Grid Grid.Row="1" x:Name="TreeContext" DataContext="{Binding Path=ViewModel}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.025*"/>
             <ColumnDefinition Width="0.95*"/>
@@ -19,69 +21,113 @@
             <RowDefinition Height="0.9*"/>
             <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
-
         
-        <Grid Grid.Row="1" Grid.Column="1" Background="#FFFFFCC7">
+
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.05*"/>
-                <RowDefinition Height="0.95*"/>
+                <RowDefinition Height="0.06*"/>
+                <RowDefinition Height="0.94*"/>
             </Grid.RowDefinitions>
 
-            <Border Background="#FF03C6FF">
-                <Viewbox Style="{StaticResource ResourceKey=ListCaptions}">
-                    <TextBlock Text="Прочая информация"/>
-                </Viewbox>
-            </Border>
 
-            <ScrollViewer Grid.Row="1" Grid.Column="1">
-                <ScrollViewer.VerticalScrollBarVisibility>
-                    Auto
-                </ScrollViewer.VerticalScrollBarVisibility>
-                <StackPanel>
-                    <ItemsControl>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Vertical"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemsSource>
-                            <Binding Path="MetaData"/>
-                        </ItemsControl.ItemsSource>
-                    </ItemsControl>
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
+            <Grid>
+                <Grid.DataContext>
+                    <viewmodel:SwitchGroup x:Name="MetaGroup" />
+                </Grid.DataContext>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-        <Grid x:Name="EducationSources" Grid.Row="1" Grid.Column="1" Background="#FFFFFCC7" Visibility="Hidden">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.05*"/>
-                <RowDefinition Height="0.95*"/>
-            </Grid.RowDefinitions>
+                
+                <forms:Switcher Text="Метаданные"
+                                    Group="{Binding ElementName=MetaGroup}"
+                                    Element="{Binding ElementName=MetaData}">
+                    <forms:Switcher.ViewStyle>
+                        <StaticResource ResourceKey="Steps3"/>
+                    </forms:Switcher.ViewStyle>
+                </forms:Switcher>
 
-            <Border Background="#FF03C6FF">
-                <Viewbox Style="{StaticResource ResourceKey=ListCaptions}">
-                    <TextBlock Text="Источники"/>
-                </Viewbox>
-            </Border>
+                <forms:Switcher Grid.Column="1" Text="Источники"
+                                    Group="{Binding ElementName=MetaGroup}"
+                                    Element="{Binding ElementName=EducationSources}">
+                    <forms:Switcher.ViewStyle>
+                        <StaticResource ResourceKey="Steps3"/>
+                    </forms:Switcher.ViewStyle>
+                </forms:Switcher>
+            </Grid>
 
-            <ScrollViewer Grid.Row="1" Grid.Column="1">
-                <ScrollViewer.VerticalScrollBarVisibility>
-                    Auto
-                </ScrollViewer.VerticalScrollBarVisibility>
-                <StackPanel>
-                    <ItemsControl>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Vertical"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemsSource>
-                            <Binding Path="Sources"/>
-                        </ItemsControl.ItemsSource>
-                    </ItemsControl>
-                    <sources:SourceTypeElementAdditor/>
-                </StackPanel>
-            </ScrollViewer>
+            <Grid x:Name="MetaData" Grid.Row="1" Background="#FFFFFCC7" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.05*"/>
+                    <RowDefinition Height="0.95*"/>
+                </Grid.RowDefinitions>
+
+                <Border Background="#FF03C6FF">
+                    <Viewbox Style="{StaticResource ResourceKey=ListCaptions}">
+                        <TextBlock Text="Прочая информация"/>
+                    </Viewbox>
+                </Border>
+             
+                <ScrollViewer Grid.Row="1" Grid.Column="1">
+                    <ScrollViewer.VerticalScrollBarVisibility>
+                        Auto
+                    </ScrollViewer.VerticalScrollBarVisibility>
+                    <StackPanel>
+                        <ItemsControl>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemsSource>
+                                <Binding Path="MetaData"/>
+                            </ItemsControl.ItemsSource>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+            <Grid x:Name="EducationSources" Grid.Row="1" Grid.Column="1" Background="#FFFFFCC7" Visibility="Hidden">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.05*"/>
+                    <RowDefinition Height="0.95*"/>
+                </Grid.RowDefinitions>
+
+                <Border Background="#FF03C6FF">
+                    <Viewbox Style="{StaticResource ResourceKey=ListCaptions}">
+                        <TextBlock Text="Источники и литература"/>
+                    </Viewbox>
+                </Border>
+
+                <ScrollViewer Grid.Row="1" Grid.Column="1">
+                    <ScrollViewer.VerticalScrollBarVisibility>
+                        Auto
+                    </ScrollViewer.VerticalScrollBarVisibility>
+                    <StackPanel>
+                        <ItemsControl>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemsSource>
+                                <Binding Path="Sources"/>
+                            </ItemsControl.ItemsSource>
+                        </ItemsControl>
+
+                        <sources:SourceTypeElementAdditor>
+                            <sources:SourceTypeElementAdditor.Types>
+                                <Binding ElementName="TreeContext" Path="DataContext.SourceTypes" />
+                            </sources:SourceTypeElementAdditor.Types>
+                            <sources:SourceTypeElementAdditor.Group>
+                                <Binding ElementName="TreeContext" Path="DataContext.Sources" />
+                            </sources:SourceTypeElementAdditor.Group>
+                        </sources:SourceTypeElementAdditor>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

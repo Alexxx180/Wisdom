@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using Wisdom.Customing;
 using Wisdom.Model;
-using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Controls.Tables.Sources.SourceTypes
 {
@@ -20,6 +20,17 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
         }
 
         #region SourceType Members
+        private ObservableCollection<SourceTypeElement> _groups;
+        public ObservableCollection<SourceTypeElement> Groups
+        {
+            get => _groups;
+            set
+            {
+                _groups = value;
+                OnPropertyChanged();
+            }
+        }
+
         private ObservableCollection<string> _types;
         public ObservableCollection<string> Types
         {
@@ -65,9 +76,23 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
         }
         #endregion
 
+        #region AutoIndexing Logic
+        public void AutoIndexing()
+        {
+            ushort i;
+            for (i = 0; i < Sources.Count; i++)
+            {
+                Sources[i].Index((i + 1).ToUInt());
+            }
+            Additor.Index((i + 1).ToUInt());
+        }
+        #endregion
+
         public SourceTypeElement()
         {
             InitializeComponent();
+            Types = new ObservableCollection<string>();
+            Sources = new ObservableCollection<SourceElement>();
         }
 
         public List<string> GetSources()
@@ -80,37 +105,50 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
             return values;
         }
 
-        public static List<Pair<string, List<string>>> GetValues(StackPanel stack)
-        {
-            List<Pair<string, List<string>>> values = new List<Pair<string, List<string>>>();
-            for (byte i = 0; i < stack.Children.Count - 1; i++)
-            {
-                SourceTypeElement element = stack.Children[i] as SourceTypeElement;
-                values.Add(element.Raw());
-            }
-            return values;
-        }
-
         private void DropSourceGroup(object sender, RoutedEventArgs e)
         {
-            StackPanel workPanel = Parent as StackPanel;
-            workPanel.Children.Remove(this);
+            _ = Groups.Remove(this);
+            OnPropertyChanged(nameof(Groups));
         }
 
-        public void SetElement(List<string> types, Pair<string, List<string>> sources)
+        #region SourceGroup Members
+        public void DropSource(SourceElement source)
+        {
+            _ = Sources.Remove(source);
+            AutoIndexing();
+            OnPropertyChanged(nameof(Sources));
+        }
+
+        public void AddRecord(SourceElement record)
+        {
+            Sources.Add(record);
+            OnPropertyChanged(nameof(Sources));
+        }
+        #endregion
+
+        public void SetTypes(IList<string> types)
         {
             for (ushort i = 0; i < types.Count; i++)
                 Types.Add(types[i]);
+        }
 
+        public void SetElement(IList<string> types, Pair<string, List<string>> sources)
+        {
+            SetTypes(types);
             Text = sources.Name;
-            for (ushort i = 0; i < sources.Value.Count; i++)
+
+            ushort i;
+            for (i = 0; i < sources.Value.Count; i++)
             {
                 SourceElement source = new SourceElement
                 {
-                    Source = sources.Value[i]
+                    Source = sources.Value[i],
+                    SourceType = this
                 };
+                source.Index((i + 1).ToUInt());
                 Sources.Add(source);
             }
+            Additor.Index((i + 1).ToUInt());
         }
 
         #region INotifyPropertyChanged Members

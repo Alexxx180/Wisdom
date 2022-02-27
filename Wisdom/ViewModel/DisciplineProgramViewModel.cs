@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Controls;
 using Wisdom.Model;
 using Wisdom.Model.Tools.DataBase;
 using Wisdom.Controls;
@@ -12,9 +11,9 @@ using Wisdom.Controls.Tables.Sources.SourceTypes;
 using Wisdom.Controls.Tables.ThemePlan;
 using Wisdom.Controls.Tables.EducationLevels;
 using Wisdom.Controls.Tables.MetaData;
-using Wisdom.Controls.Tables.Competetions.Professional;
 using static Wisdom.Writers.ResultRenderer;
 using static Wisdom.Customing.Converters;
+using System;
 
 namespace Wisdom.ViewModel
 {
@@ -87,8 +86,8 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private List<string> _sourceTypes;
-        internal List<string> SourceTypes
+        private ObservableCollection<string> _sourceTypes;
+        public ObservableCollection<string> SourceTypes
         {
             get => _sourceTypes;
             set
@@ -107,10 +106,10 @@ namespace Wisdom.ViewModel
             set
             {
                 _specialityNo = value;
-                System.Diagnostics.Trace.WriteLine(value);
+                DisciplineNo = -1;
+                OnPropertyChanged();
                 if (value >= 0 && value < SpecialityHead.Name.Count)
                     ResetCompetetions();
-                OnPropertyChanged();
             }
         }
 
@@ -126,7 +125,7 @@ namespace Wisdom.ViewModel
         }
 
         private SpecialityBase _selectedSpeciality;
-        internal SpecialityBase SelectedSpeciality
+        public SpecialityBase SelectedSpeciality
         {
             get => _selectedSpeciality;
             set
@@ -137,7 +136,7 @@ namespace Wisdom.ViewModel
         }
 
         private Pair<List<uint>, List<string>> _specialityHead;
-        internal Pair<List<uint>, List<string>> SpecialityHead
+        public Pair<List<uint>, List<string>> SpecialityHead
         {
             get => _specialityHead;
             set
@@ -168,6 +167,9 @@ namespace Wisdom.ViewModel
             {
                 _disciplineNo = value;
                 OnPropertyChanged();
+                if (SpecialityNo >= 0 && value >= 0 &&
+                    value < DisciplineHead.Name.Count)
+                    ResetDiscipline();
             }
         }
 
@@ -183,7 +185,7 @@ namespace Wisdom.ViewModel
         }
 
         private DisciplineBase _selectedDiscipline;
-        internal DisciplineBase SelectedDiscipline
+        public DisciplineBase SelectedDiscipline
         {
             get => _selectedDiscipline;
             set
@@ -194,7 +196,7 @@ namespace Wisdom.ViewModel
         }
 
         private Pair<List<uint>, List<string>> _disciplineHead;
-        internal Pair<List<uint>, List<string>> DisciplineHead
+        public Pair<List<uint>, List<string>> DisciplineHead
         {
             get => _disciplineHead;
             set
@@ -403,37 +405,83 @@ namespace Wisdom.ViewModel
         #region MVVM Tests
         public void TestCompetetions()
         {
-            TestSpecialitySet();
+            System.Diagnostics.Trace.WriteLine(SpecialityFullName);
+            TestGeneral();
+            TestProfessional();
         }
 
         public void TestGeneral()
         {
-            //OnPropertyChanged(nameof(GeneralCompetetions));
             System.Diagnostics.Trace.WriteLine(GeneralCompetetions.Count);
             foreach (GeneralCompetetion competetions in GeneralCompetetions)
             {
                 System.Diagnostics.Trace.WriteLine(competetions.Raw().Name);
                 System.Diagnostics.Trace.WriteLine(competetions.Raw().Hours);
+                foreach (Pair<string, string> pair in competetions.Raw().Values)
+                {
+                    System.Diagnostics.Trace.WriteLine(pair.Name);
+                    System.Diagnostics.Trace.WriteLine(pair.Value);
+                }
             }
         }
 
         public void TestProfessional()
         {
-            //OnPropertyChanged(nameof(GeneralCompetetions));
             System.Diagnostics.Trace.WriteLine(ProfessionalCompetetions.Count);
             foreach (ProfessionalDivider competetions in ProfessionalCompetetions)
             {
-                foreach (ProfessionalCompetetion pro in competetions.Competetions)
+                foreach (HoursList<Pair<string, string>> pro in competetions.Raw())
                 {
-                    System.Diagnostics.Trace.WriteLine(pro.Raw().Name);
-                    System.Diagnostics.Trace.WriteLine(pro.Raw().Hours);
+                    System.Diagnostics.Trace.WriteLine(pro.Name);
+                    System.Diagnostics.Trace.WriteLine(pro.Hours);
+                    foreach (Pair<string, string> pair in pro.Values)
+                    {
+                        System.Diagnostics.Trace.WriteLine(pair.Name);
+                        System.Diagnostics.Trace.WriteLine(pair.Value);
+                    }
                 }
             }
         }
 
-        public void TestSpecialitySet()
+        public void TestDiscipline()
         {
-            System.Diagnostics.Trace.WriteLine(SpecialityFullName);
+            System.Diagnostics.Trace.WriteLine(DisciplineFullName);
+            TestHours();
+            TestMetaData();
+            TestSources();
+        }
+
+        public void TestHours()
+        {
+            System.Diagnostics.Trace.WriteLine(Hours.Count);
+            foreach (HourElement hour in Hours)
+            {
+                System.Diagnostics.Trace.WriteLine(hour.Raw().Name);
+                System.Diagnostics.Trace.WriteLine(hour.Raw().Value);
+            }
+        }
+
+        public void TestMetaData()
+        {
+            System.Diagnostics.Trace.WriteLine(MetaData.Count);
+            foreach (MetaElement meta in MetaData)
+            {
+                System.Diagnostics.Trace.WriteLine(meta.Raw().Name);
+                System.Diagnostics.Trace.WriteLine(meta.Raw().Value);
+            }
+        }
+
+        public void TestSources()
+        {
+            System.Diagnostics.Trace.WriteLine(Sources.Count);
+            foreach (SourceTypeElement sourceType in Sources)
+            {
+                System.Diagnostics.Trace.WriteLine(sourceType.Raw().Name);
+                foreach (string source in sourceType.Raw().Value)
+                {
+                    System.Diagnostics.Trace.WriteLine(source);
+                }
+            }
         }
         #endregion
 
@@ -447,16 +495,13 @@ namespace Wisdom.ViewModel
         {
             SelectedSpeciality = Data.SpecialityData(SpecialityHead.Name[SpecialityNo], SpecialityFullName);
             DisciplineHead = Data.ListDisciplines(SpecialityHead.Name[SpecialityNo]);
-
             DisciplinesSelect.Refresh(DisciplineHead.Value);
+
             SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
             SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
 
             OnPropertyChanged(nameof(GeneralCompetetions));
             OnPropertyChanged(nameof(ProfessionalCompetetions));
-
-            TestGeneral();
-            TestProfessional();
         }
 
         private void SetGeneralCompetetions(List<HoursList<Pair<string, string>>> competetions)
@@ -483,22 +528,22 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region DisciplineAutoSet Logic
-        internal void ResetDiscipline(ComboBox box)
+        internal void ResetDiscipline()
         {
-            int selected = box.SelectedIndex;
-            if (SpecialityNo < 0 || selected < 0)
-                return;
-            string name = box.SelectedValue.ToString();
+            SelectedDiscipline = Data.DisciplineData(DisciplineHead.Name[DisciplineNo], DisciplineFullName);
 
-            SelectedDiscipline = Data.DisciplineData(DisciplineHead.Name[selected], name);
+            //SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
+            //SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
 
             int study = 0;
             int self = 0;
-            
-            for (byte i = 0; i < MetaData.Count; i++)
+
+            int count = Math.Min(MetaData.Count, SelectedDiscipline.MetaData.Count);
+            for (ushort i = 0; i < count; i++)
                 MetaData[i].SetElement(SelectedDiscipline.MetaData[i]);
 
-            for (byte i = 0; i < Hours.Count; i++)
+            count = Math.Min(Hours.Count, SelectedDiscipline.TotalHours.Count);
+            for (ushort i = 0; i < count; i++)
             {
                 Hours[i].SetElement(SelectedDiscipline.TotalHours[i]);
                 if (SelectedDiscipline.TotalHours[i].Name == "Самостоятельная работа")
@@ -514,16 +559,21 @@ namespace Wisdom.ViewModel
             EduHours = study.ToString();
             SelfHours = self.ToString();
 
-            SetLevels();
+            Sources.Clear();
+            for (byte i = 0; i < SelectedDiscipline.Sources.Count; i++)
+            {
+                SourceTypeElement source = new SourceTypeElement
+                {
+                    Groups = Sources
+                };
+                source.SetElement(SourceTypes, SelectedDiscipline.Sources[i]);
+                Sources.Add(source);
+            }
 
-            for (byte i = 0; i < SourceTypes.Count; i++)
-                Sources[i].SetElement(SourceTypes, SelectedDiscipline.Sources[i]);
+            //SetLevels();
 
-            SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
-            SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
-
-            for (byte i = 0; i < ThemePlan.Count; i++)
-                ThemePlan[i].SetElement(SelectedDiscipline.Plan[i]);
+            //for (byte i = 0; i < ThemePlan.Count; i++)
+            //    ThemePlan[i].SetElement(SelectedDiscipline.Plan[i]);
         }       
 
         private void SetDiscipline(DisciplineProgram program)
@@ -555,7 +605,10 @@ namespace Wisdom.ViewModel
             Sources.Clear();
             for (byte i = 0; i < program.Sources.Count; i++)
             {
-                SourceTypeElement source = new SourceTypeElement();
+                SourceTypeElement source = new SourceTypeElement
+                {
+                    Groups = Sources
+                };
                 source.SetElement(SourceTypes, program.Sources[i]);
                 Sources.Add(source);
             }
@@ -588,7 +641,11 @@ namespace Wisdom.ViewModel
 
         private void SetSourceTypes()
         {
-            SourceTypes = Data.SourceTypesData();
+            SourceTypes = new ObservableCollection<string>(Data.SourceTypesData());
+            foreach(string type in SourceTypes)
+            {
+                System.Diagnostics.Trace.WriteLine("Unbeliavable: " + type);
+            }
         }
 
         private void SetMetaTypes()
