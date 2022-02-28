@@ -69,6 +69,9 @@
     <Compile Update="Controls\Tables\MetaData\MetaElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Tables\RecordsPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Tables\Sources\SourceElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -177,6 +180,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\MetaData\MetaElement.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\RecordsPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\Sources\SourceElement.xaml">

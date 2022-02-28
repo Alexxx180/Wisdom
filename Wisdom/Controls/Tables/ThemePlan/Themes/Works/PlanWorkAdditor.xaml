@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="35" d:DesignWidth="900">
+             d:DesignHeight="41" Height="41" d:DesignWidth="900" BorderBrush="#FFEEEBB6" BorderThickness="3">
     <Grid Height="35">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>
@@ -40,7 +40,7 @@
             <ComboBoxItem>Контрольная работа</ComboBoxItem>
             <ComboBoxItem>Самостоятельная работа</ComboBoxItem>
         </ComboBox>
-        
+
         <Viewbox Grid.Column="3">
             <CheckBox Margin="1">
                 <CheckBox.Style>

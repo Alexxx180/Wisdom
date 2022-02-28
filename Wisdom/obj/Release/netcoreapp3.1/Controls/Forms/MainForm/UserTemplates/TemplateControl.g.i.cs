@@ -52,7 +52,8 @@ namespace Wisdom.Controls.Forms.MainForm.UserTemplates {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/forms/mainform/usertemplates/templatecontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/forms/mainform/usertemplates/templatecontrol." +
+                    "xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Controls\Forms\MainForm\UserTemplates\TemplateControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

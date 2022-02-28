@@ -6,15 +6,15 @@
              xmlns:works="clr-namespace:Wisdom.Controls.Tables.ThemePlan.Themes.Works"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="105" d:DesignWidth="800" x:Name="This" BorderBrush="Aquamarine" BorderThickness="2">
+             d:DesignHeight="105" d:DesignWidth="800" x:Name="This" BorderBrush="#FF7FFFD4" BorderThickness="3">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition/>
-            <RowDefinition Height="35"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Background="#777FFFD4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.05*" />
                 <ColumnDefinition Width="0.15*" />
@@ -95,6 +95,12 @@
 
 
         <ItemsControl Grid.Row="1">
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="FrameworkElement.Margin" Value="0,0,0,15"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+
             <ItemsControl.ItemsSource>
                 <Binding Path="Works"/>
             </ItemsControl.ItemsSource>

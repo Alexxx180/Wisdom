@@ -12,7 +12,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
     /// <summary>
     /// Topic of theme plan
     /// </summary>
-    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<HoursList<LevelsList<HashList<Pair<string, string>>>>>
+    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IRecordsIndexing, IRawData<HoursList<LevelsList<HashList<Pair<string, string>>>>>
     {
         public HoursList<LevelsList<HashList<Pair<string, string>>>> Raw()
         {
@@ -41,20 +41,10 @@ namespace Wisdom.Controls.Tables.ThemePlan
         #endregion
 
         #region AutoIndexing Logic
-        public void ParentAutoIndexing()
-        {
-            ushort i;
-            for (i = 0; i < ThemePlan.Count; i++)
-            {
-                ThemePlan[i].Index((i + 1).ToUInt());
-            }
-            //Additor.Index((i + 1).ToUInt());
-        }
-
         public void AutoIndexing()
         {
             ushort i;
-            for (i = 0; i < ThemePlan.Count; i++)
+            for (i = 0; i < Themes.Count; i++)
             {
                 Themes[i].Index((i + 1).ToUInt());
             }
@@ -63,13 +53,13 @@ namespace Wisdom.Controls.Tables.ThemePlan
         #endregion
 
         #region PlanTopic Members
-        private ObservableCollection<PlanTopic> _themePlan;
-        public ObservableCollection<PlanTopic> ThemePlan
+        public RecordsPanel _options;
+        public RecordsPanel Options
         {
-            get => _themePlan;
+            get => _options;
             set
             {
-                _themePlan = value;
+                _options = value;
                 OnPropertyChanged();
             }
         }
@@ -117,9 +107,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
 
         private void DropTopic(object sender, RoutedEventArgs e)
         {
-            _ = ThemePlan.Remove(this);
-            ParentAutoIndexing();
-            OnPropertyChanged(nameof(ThemePlan));
+            Options.DropRecord(this);
         }
 
         #region ThemesGroup Members
@@ -140,8 +128,9 @@ namespace Wisdom.Controls.Tables.ThemePlan
         public void SetElement(HoursList<LevelsList<HashList<Pair<string, string>>>> topic)
         {
             TopicName = topic.Name;
-            
-            for (byte i = 0; i < topic.Values.Count; i++)
+
+            ushort i;
+            for (i = 0; i < topic.Values.Count; i++)
             {
                 PlanTheme theme = new PlanTheme
                 {
@@ -151,6 +140,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
                 theme.SetElement(topic.Values[i]);
                 Themes.Add(theme);
             }
+            ThemeAdditor.Index((i + 1).ToUInt());
         }
 
         #region INotifyPropertyChanged Members

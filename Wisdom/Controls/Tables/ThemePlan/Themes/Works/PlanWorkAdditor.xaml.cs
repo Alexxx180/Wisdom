@@ -15,6 +15,8 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             ThemeProperty = DependencyProperty.Register(nameof(Theme),
                 typeof(PlanTheme), typeof(PlanWorkAdditor));
 
+#warning WRONG: DATABASE IS NOT RELATED TO WORKS
+
         #region WorkAdditor Members
         public PlanTheme Theme
         {

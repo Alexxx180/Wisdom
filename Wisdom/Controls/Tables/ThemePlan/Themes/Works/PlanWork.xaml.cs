@@ -96,7 +96,8 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
         {
             WorkType = work.Name;
 
-            for (ushort i = 0; i < work.Values.Count; i++)
+            ushort i;
+            for (i = 0; i < work.Values.Count; i++)
             {
                 PlanTask task = new PlanTask
                 {
@@ -106,6 +107,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
                 task.SetElement(work.Values[i]);
                 Tasks.Add(task);
             }
+            TaskAdditor.Index((i + 1).ToUInt());
         }
 
         #region INotifyPropertyChanged Members

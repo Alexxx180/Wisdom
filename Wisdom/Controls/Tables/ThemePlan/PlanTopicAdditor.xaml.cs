@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,11 +8,11 @@ namespace Wisdom.Controls.Tables.ThemePlan
     /// <summary>
     /// Special component to add new topic to theme plan
     /// </summary>
-    public partial class PlanTopicAdditor : UserControl, IAutoIndexing, INotifyPropertyChanged
+    public partial class PlanTopicAdditor : UserControl, IRecordsIndexing, INotifyPropertyChanged
     {
         public static readonly DependencyProperty
-            ThemePlanProperty = DependencyProperty.Register(nameof(ThemePlan),
-                typeof(ObservableCollection<PlanTopic>), typeof(PlanTopicAdditor));
+            OptionsProperty = DependencyProperty.Register(nameof(Options),
+                typeof(RecordsPanel), typeof(PlanTopicAdditor));
 
         #region IAutoIndexing Members
         private uint _no;
@@ -34,10 +33,10 @@ namespace Wisdom.Controls.Tables.ThemePlan
         #endregion
 
         #region TopicAdditor Members
-        public ObservableCollection<PlanTopic> ThemePlan
+        public RecordsPanel Options
         {
-            get => GetValue(ThemePlanProperty) as ObservableCollection<PlanTopic>;
-            set => SetValue(ThemePlanProperty, value);
+            get => GetValue(OptionsProperty) as RecordsPanel;
+            set => SetValue(OptionsProperty, value);
         }
 
         private string _topicName;
@@ -76,10 +75,10 @@ namespace Wisdom.Controls.Tables.ThemePlan
                 No = No,
                 TopicName = TopicName,
                 TopicHours = TopicHours,
-                ThemePlan = ThemePlan
+                Options = Options
             };
 
-            ThemePlan.Add(topic);
+            Options.AddRecord(topic);
             Index(No + 1);
         }
 

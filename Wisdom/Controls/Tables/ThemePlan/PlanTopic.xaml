@@ -6,7 +6,7 @@
              xmlns:themes="clr-namespace:Wisdom.Controls.Tables.ThemePlan.Themes"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="105" d:DesignWidth="800" x:Name="This">
+             d:DesignHeight="115" d:DesignWidth="800" x:Name="This" BorderBrush="#FF03C6FF" BorderThickness="3">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -14,15 +14,13 @@
         </Grid.RowDefinitions>
 
 
-        <Grid>
+        <Grid Background="#7703C6FF">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.05*" />
                 <ColumnDefinition Width="0.15*" />
-                <ColumnDefinition Width="0.475*" />
-                <ColumnDefinition Width="0.085*" />
-                <ColumnDefinition Width="0.24*" />
+                <ColumnDefinition Width="0.65*" />
+                <ColumnDefinition Width="0.15*" />
             </Grid.ColumnDefinitions>
-
 
             <Button Click="DropTopic">
                 <Button.Style>
@@ -72,6 +70,12 @@
             <themes:PlanThemeFields/>
 
             <ItemsControl>
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="FrameworkElement.Margin" Value="0,0,0,15"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                
                 <ItemsControl.ItemsSource>
                     <Binding Path="Themes" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>

@@ -17,6 +17,7 @@
         <!--<bind:CompetetionsConverter x:Key="CompetetionsConverter" />
         <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
         <bind:SumConverter x:Key="SumConverter" />-->
+        <converters:ThemePlanConverter x:Key="ThemePlanConverter"/>
         <converters:LevelsConverter x:Key="LevelsConverter"/>
     </UserControl.Resources>
 
@@ -81,26 +82,19 @@
                     
                     <StackPanel>
                         <plan:PlanTopicFields/>
-                        
-                        <ItemsControl>
-                            <ItemsControl.ItemsSource>
-                                <Binding Path="ThemePlan" Mode="TwoWay">
-                                    <Binding.UpdateSourceTrigger>
-                                        PropertyChanged
-                                    </Binding.UpdateSourceTrigger>
-                                </Binding>
-                            </ItemsControl.ItemsSource>
-                        </ItemsControl>
 
-                        <plan:PlanTopicAdditor>
-                            <plan:PlanTopicAdditor.ThemePlan>
-                                <Binding ElementName="TreeContext" Path="DataContext.ThemePlan">
-                                    <Binding.UpdateSourceTrigger>
-                                        PropertyChanged
-                                    </Binding.UpdateSourceTrigger>
-                                </Binding>
-                            </plan:PlanTopicAdditor.ThemePlan>
-                        </plan:PlanTopicAdditor>
+                        <tables:RecordsPanel Grid.Row="1">
+                            <tables:RecordsPanel.Records>
+                                <Binding Path="DataContext.ThemePlan"
+                                 ElementName="TreeContext"
+                                 Converter="{StaticResource ThemePlanConverter}"
+                                 UpdateSourceTrigger="Explicit"
+                                 Mode="TwoWay" />
+                            </tables:RecordsPanel.Records>
+                            <tables:RecordsPanel.Additor>
+                                <plan:PlanTopicAdditor Options="{Binding RelativeSource={RelativeSource AncestorLevel=1, AncestorType=tables:RecordsPanel}}"/>
+                            </tables:RecordsPanel.Additor>
+                        </tables:RecordsPanel>
                     </StackPanel>
                 </ScrollViewer>
 
@@ -177,7 +171,7 @@
                     </Viewbox>
                 </Grid>
 
-                <tables:AutoPanel Grid.Row="1" x:Name="General">
+                <tables:AutoPanel Grid.Row="1">
                     <tables:AutoPanel.Records>
                         <Binding Path="DataContext.Levels"
                                  ElementName="TreeContext"

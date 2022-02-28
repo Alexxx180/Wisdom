@@ -1,69 +1,41 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Wisdom.Customing;
 
 namespace Wisdom.Controls.Tables
 {
     /// <summary>
-    /// Easy way to observe records and set auto-indexing options
+    /// Easy way to observe auto-indexing records
     /// </summary>
-    public partial class AutoPanel : UserControl, INotifyPropertyChanged
+    public partial class RecordsPanel : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty
             RecordsProperty = DependencyProperty.Register(nameof(Records),
-                typeof(ObservableCollection<IOptionableIndexing>), typeof(AutoPanel),
+                typeof(ObservableCollection<IRecordsIndexing>), typeof(RecordsPanel),
                 new PropertyMetadata(OnRecordsChangedCallBack));
 
         public static readonly DependencyProperty
             AdditorProperty = DependencyProperty.Register(nameof(Additor),
-                typeof(IOptionableIndexing), typeof(AutoPanel));
+                typeof(IRecordsIndexing), typeof(RecordsPanel));
 
-        #region AutoPanel Members
-        public ObservableCollection<IOptionableIndexing> Records
+        #region RecordsPanel Members
+        public ObservableCollection<IRecordsIndexing> Records
         {
-            get => GetValue(RecordsProperty) as ObservableCollection<IOptionableIndexing>;
+            get => GetValue(RecordsProperty) as ObservableCollection<IRecordsIndexing>;
             set => SetValue(RecordsProperty, value);
         }
 
-        internal IOptionableIndexing Additor
+        internal IRecordsIndexing Additor
         {
-            get => GetValue(AdditorProperty) as IOptionableIndexing;
+            get => GetValue(AdditorProperty) as IRecordsIndexing;
             set => SetValue(AdditorProperty, value);
         }
-
-        private Indexing _mode;
-        public Indexing Mode
-        {
-            get => _mode;
-            set
-            {
-                _mode = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(IsManual));
-                if (Records != null)
-                    CheckAuto();
-            }
-        }
-
-        public bool IsManual => Mode == Indexing.MANUAL;
         #endregion
 
-        public AutoPanel()
-        {
-            InitializeComponent();
-            Mode = Indexing.MANUAL;
-        }
-
         #region AutoIndexing Logic
-        private void CheckAuto()
-        {
-            if (Mode == Indexing.AUTO)
-                AutoIndexing();
-        }
-
         public void AutoIndexing()
         {
             ushort i;
@@ -75,15 +47,20 @@ namespace Wisdom.Controls.Tables
         }
         #endregion
 
+        public RecordsPanel()
+        {
+            InitializeComponent();
+        }
+
         /// <summary>
         /// Removes the first occurence of a specific object
         /// from the ObservableCollection<IOptionableIndexing>
         /// </summary>
         /// <param name="record">An item with indexing options.</param>
-        internal void DropRecord(IOptionableIndexing record)
+        internal void DropRecord(IRecordsIndexing record)
         {
             _ = Records.Remove(record);
-            CheckAuto();
+            AutoIndexing();
             RegisterEdit();
         }
 
@@ -91,13 +68,10 @@ namespace Wisdom.Controls.Tables
         /// Adds an object to the end of ObservableCollection<IOptionableIndexing>
         /// </summary>
         /// <param name="record">An item with indexing options.</param>
-        /// <returns>true if indexing mode is NEW_ONLY; otherwise, false.</returns>
-        internal bool AddRecord(IOptionableIndexing record)
+        internal void AddRecord(IRecordsIndexing record)
         {
             Records.Add(record);
-            CheckAuto();
             RegisterEdit();
-            return Mode == Indexing.NEW_ONLY;
         }
 
         public void RegisterEdit()
@@ -111,7 +85,7 @@ namespace Wisdom.Controls.Tables
             OnRecordsChangedCallBack(DependencyObject sender,
             DependencyPropertyChangedEventArgs e)
         {
-            if (sender is AutoPanel collection)
+            if (sender is RecordsPanel collection)
             {
                 collection?.OnRecordsChanged();
             }
@@ -119,7 +93,8 @@ namespace Wisdom.Controls.Tables
 
         protected virtual void OnRecordsChanged()
         {
-            foreach (IOptionableIndexing optionable in Records)
+            Additor.Index((Records.Count + 1).ToUInt());
+            foreach (IRecordsIndexing optionable in Records)
             {
                 optionable.Options ??= this;
             }

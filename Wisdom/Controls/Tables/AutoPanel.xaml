@@ -28,6 +28,7 @@
                         </Binding>
                     </ItemsControl.ItemsSource>
                 </ItemsControl>
+                
                 <ContentControl>
                     <Binding Path="Additor" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>

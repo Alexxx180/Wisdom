@@ -594,19 +594,23 @@ namespace Wisdom.ViewModel
             }
 
             SetLevels();
+            SetThemePlan();
+        }       
 
+        private void SetThemePlan()
+        {
             ThemePlan.Clear();
             for (ushort i = 0; i < SelectedDiscipline.Plan.Count; i++)
             {
                 PlanTopic topic = new PlanTopic
                 {
-                    No = (i + 1).ToUInt(),
-                    ThemePlan = ThemePlan
+                    No = (i + 1).ToUInt()
                 };
                 topic.SetElement(SelectedDiscipline.Plan[i]);
                 ThemePlan.Add(topic);
             }
-        }       
+            OnPropertyChanged(nameof(ThemePlan));
+        }
 
         private void SetDiscipline(DisciplineProgram program)
         {
@@ -657,6 +661,8 @@ namespace Wisdom.ViewModel
                 topic.SetElement(program.Plan[i]);
                 ThemePlan.Add(topic);
             }
+
+            //OnPropertyChanged(nameof(ThemePlan));
         }
 
         private void SetSourceTypes()

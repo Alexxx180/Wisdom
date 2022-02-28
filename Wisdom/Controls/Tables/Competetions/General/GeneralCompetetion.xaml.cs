@@ -75,7 +75,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
                     No = no;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GeneralHeader));
-                Options?.RegisterEdit();
+                //Options?.RegisterEdit();
             }
         }
 
@@ -87,7 +87,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
             {
                 _generalName = value;
                 OnPropertyChanged();
-                Options?.RegisterEdit();
+                //Options?.RegisterEdit();
             }
         }
 
@@ -99,7 +99,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
             {
                 _generalSkills = value;
                 OnPropertyChanged();
-                Options?.RegisterEdit();
+                //Options?.RegisterEdit();
             }
         }
 
@@ -111,7 +111,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
             {
                 _generalKnowledge = value;
                 OnPropertyChanged();
-                Options?.RegisterEdit();
+                //Options?.RegisterEdit();
             }
         }
         #endregion

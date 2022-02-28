@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="35" d:DesignWidth="800">
-    <Grid Height="35">
+    <Grid Height="35" Background="#3303C6FF">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*" />
             <ColumnDefinition Width="0.15*" />
@@ -17,7 +17,7 @@
 
         <Button Click="AddTopic">
             <Button.Style>
-                <StaticResource ResourceKey="AddButton2"/>
+                <StaticResource ResourceKey="AddButton"/>
             </Button.Style>
         </Button>
 
