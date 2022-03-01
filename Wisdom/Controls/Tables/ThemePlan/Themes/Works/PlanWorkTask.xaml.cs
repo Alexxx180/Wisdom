@@ -62,6 +62,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             {
                 _taskHours = value;
                 OnPropertyChanged();
+                Theme?.RefreshHours();
             }
         }
         #endregion
@@ -83,8 +84,10 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
                 workTask.Values.Count < 1)
                 return;
 
-            TaskName = workTask.Values[0].Name;
-            TaskHours = workTask.Values[0].Value;
+            Pair<string, string>
+                task = workTask.Values[0];
+            TaskName = task.Name;
+            TaskHours = task.Value;
         }
 
         #region INotifyPropertyChanged Members

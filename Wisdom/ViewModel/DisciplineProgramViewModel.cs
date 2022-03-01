@@ -263,6 +263,11 @@ namespace Wisdom.ViewModel
                 OnPropertyChanged(nameof(MaxHours));
             }
         }
+
+        public void RefreshHours()
+        {
+            OnPropertyChanged(nameof(Hours));
+        }
         #endregion
 
         #region Competetions Members
@@ -559,10 +564,7 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region DisciplineAutoSet Logic
-        public void RefreshHours()
-        {
-            OnPropertyChanged(nameof(Hours));
-        }
+        
 
         internal void ResetDiscipline()
         {

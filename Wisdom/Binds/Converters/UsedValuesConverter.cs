@@ -19,7 +19,7 @@ namespace Wisdom.Binds.Converters
                 }
             }
 
-            int max = values[0].ConvertHours(), sum = 0;
+            uint max = values[0].ConvertHours(), sum = 0;
             for (int i = 1; i < values.Length; i++)
             {
                 sum += values[i].ConvertHours();

@@ -72,6 +72,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             {
                 _themeHours = value;
                 OnPropertyChanged();
+                Topic?.RefreshHours();
             }
         }
 
@@ -106,6 +107,12 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
                 _works = value;
                 OnPropertyChanged();
             }
+        }
+
+        public void RefreshHours()
+        {
+            OnPropertyChanged(nameof(Works));
+            Topic.RefreshHours();
         }
         #endregion
 
@@ -147,6 +154,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
                 }
                 Works.Add(work);
             }
+            RefreshHours();
         }
 
         private void DropTheme(object sender, RoutedEventArgs e)

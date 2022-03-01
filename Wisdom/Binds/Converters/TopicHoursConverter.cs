@@ -2,22 +2,25 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
-using Wisdom.Controls;
-using Wisdom.Model;
+using Wisdom.Controls.Tables.ThemePlan.Themes;
+using Wisdom.Customing;
 
 namespace Wisdom.Binds.Converters
 {
-    public class HoursConverter : IValueConverter
+    public class TopicHoursConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ObservableCollection<HourElement> hours = value as ObservableCollection<HourElement>;
+            if (value == null)
+                return 0;
+
+            ObservableCollection<PlanTheme> themes = value as ObservableCollection<PlanTheme>;
 
             uint sum = 0;
-            for (ushort i = 0; i < hours.Count; i++)
+            for (ushort i = 0; i < themes.Count; i++)
             {
-                Pair<string, ushort> hour = hours[i].Raw();
-                sum += hour.Value;
+                string hours = themes[i].Raw().Hours;
+                sum += hours.ParseHours();
             }
             return sum.ToString();
         }

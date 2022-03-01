@@ -65,6 +65,12 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
                 OnPropertyChanged();
             }
         }
+
+        public void RefreshHours()
+        {
+            OnPropertyChanged(nameof(Tasks));
+            Theme.RefreshHours();
+        }
         #endregion
 
         public PlanWork()

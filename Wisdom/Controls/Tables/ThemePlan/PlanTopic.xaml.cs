@@ -96,6 +96,11 @@ namespace Wisdom.Controls.Tables.ThemePlan
                 OnPropertyChanged();
             }
         }
+
+        public void RefreshHours()
+        {
+            OnPropertyChanged(nameof(Themes));
+        }
         #endregion
 
         public PlanTopic()
@@ -128,6 +133,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
         public void SetElement(HoursList<LevelsList<HashList<Pair<string, string>>>> topic)
         {
             TopicName = topic.Name;
+            TopicHours = topic.Hours;
 
             ushort i;
             for (i = 0; i < topic.Values.Count; i++)
@@ -141,6 +147,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
                 Themes.Add(theme);
             }
             ThemeAdditor.Index((i + 1).ToUInt());
+            RefreshHours();
         }
 
         #region INotifyPropertyChanged Members
