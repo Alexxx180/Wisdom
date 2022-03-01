@@ -25,7 +25,7 @@
 
             <Button Click="DropDivision">
                 <Button.Style>
-                    <StaticResource ResourceKey="DeleteButton2"/>
+                    <StaticResource ResourceKey="DeleteButton"/>
                 </Button.Style>
             </Button>
 

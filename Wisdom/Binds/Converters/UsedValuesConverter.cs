@@ -5,7 +5,7 @@ using System.Windows.Data;
 using static Wisdom.Customing.Converters;
 using static Wisdom.Customing.Decorators;
 
-namespace Wisdom.Binds
+namespace Wisdom.Binds.Converters
 {
     public class UsedValuesConverter : IMultiValueConverter
     {

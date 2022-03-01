@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:bind="clr-namespace:Wisdom.Binds"
+        xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
         xmlns:forms="clr-namespace:Wisdom.Controls.Forms"
         xmlns:dpforms="clr-namespace:Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram"
         xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
@@ -11,7 +12,7 @@
         Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized" Icon="/Wisdom.png">
     <Window.Resources>
         <bind:CompetetionsConverter x:Key="CompetetionsConverter" />
-        <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
+        <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
     </Window.Resources>
     
     <Window.DataContext>

@@ -4,13 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:bind="clr-namespace:Wisdom.Binds"
+             xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <bind:CompetetionsConverter x:Key="CompetetionsConverter" />
-        <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
-        <bind:SumConverter x:Key="SumConverter"/>
+        <!--<bind:CompetetionsConverter x:Key="CompetetionsConverter" />-->
+        <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
+        <converters:HoursConverter x:Key="HoursConverter"/>
+        <!--<bind:SumConverter x:Key="SumConverter"/>-->
     </UserControl.Resources>
 
     <Grid Grid.Row="1" DataContext="{Binding Path=ViewModel}">
@@ -110,56 +112,94 @@
 
         <Grid Grid.Row="3" Grid.Column="1" Background="#FFFCC7">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.075*"/>
-                <RowDefinition Height="0.075*"/>
-                <RowDefinition Height="0.075*"/>
+                <RowDefinition Height="0.225*"/>
                 <RowDefinition Height="0.775*"/>
             </Grid.RowDefinitions>
+
             
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.8*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                </Grid.ColumnDefinitions>
-                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
 
-                <Viewbox HorizontalAlignment="Left">
-                    <TextBlock Padding="1" Text="Аудиторная нагрузка, часы"/>
-                </Viewbox>
 
-                <TextBox Grid.Column="1" Text="{Binding Path=EduHours}" Style="{StaticResource HoursBox}"/>
+                    <Viewbox HorizontalAlignment="Left">
+                        <TextBlock Text=" Аудиторная нагрузка, часы"/>
+                    </Viewbox>
+
+                    <TextBox Grid.Column="1">
+                        <TextBox.Style>
+                            <StaticResource ResourceKey="HoursBox"/>
+                        </TextBox.Style>
+                        <TextBox.Text>
+                            <Binding Path="EduHours" Mode="TwoWay">
+                                <Binding.UpdateSourceTrigger>
+                                    LostFocus
+                                </Binding.UpdateSourceTrigger>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Viewbox  HorizontalAlignment="Left">
+                        <TextBlock Text=" Самостоятельная работа, часы"/>
+                    </Viewbox>
+
+                    <TextBox Grid.Column="1">
+                        <TextBox.Style>
+                            <StaticResource ResourceKey="HoursBox"/>
+                        </TextBox.Style>
+                        <TextBox.Text>
+                            <Binding Path="SelfHours" Mode="TwoWay">
+                                <Binding.UpdateSourceTrigger>
+                                    LostFocus
+                                </Binding.UpdateSourceTrigger>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Viewbox HorizontalAlignment="Left">
+                        <TextBlock Text=" Максимальная нагрузка, часы: "/>
+                    </Viewbox>
+
+                    <Border Grid.Column="1">
+                        <Border.Background>
+                            <MultiBinding Converter="{StaticResource UsedValuesConverter}">
+                                <Binding Path="MaxHours"/>
+                                <Binding ElementName="Total" Path="Text"/>
+                            </MultiBinding>
+                        </Border.Background>
+
+                        <Viewbox HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding MaxHours}"/>
+                        </Viewbox>
+                    </Border>
+                </Grid>
             </Grid>
 
-            <Grid Grid.Column="1" Grid.Row="1" Background="#FFFCC7">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.8*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                </Grid.ColumnDefinitions>
-                
-
-                <Viewbox  HorizontalAlignment="Left">
-                    <TextBlock Padding="1" Text="Самостоятельная работа, часы"/>
-                </Viewbox>
-
-                <TextBox Grid.Column="1" Text="{Binding Path=SelfHours}" Style="{StaticResource HoursBox}"/>
-            </Grid>
-
-            <Grid Grid.Column="1" Grid.Row="2" Background="#FFFCC7">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.8*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                </Grid.ColumnDefinitions>
-                
-
-                <Viewbox HorizontalAlignment="Left">
-                    <TextBlock Padding="1" Text="Максимальная учебная нагрузка: "/>
-                </Viewbox>
-
-                <Viewbox HorizontalAlignment="Right" Grid.Column="1">
-                    <TextBlock x:Name="Max" Text="{Binding MaxHours}"/>
-                </Viewbox>
-            </Grid>
 
             <Grid x:Name="TotalHoursCountPanel" Grid.Row="7" Grid.Column="1" Grid.RowSpan="12">
                 <Grid.RowDefinitions>
@@ -173,13 +213,12 @@
                         Auto
                     </ScrollViewer.VerticalScrollBarVisibility>
                     <ItemsControl>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Vertical"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemsSource>
-                            <Binding Path="Hours"/>
+                            <Binding Path="Hours" Mode="TwoWay">
+                                <Binding.UpdateSourceTrigger>
+                                    PropertyChanged
+                                </Binding.UpdateSourceTrigger>
+                            </Binding>
                         </ItemsControl.ItemsSource>
                     </ItemsControl>
                 </ScrollViewer>
@@ -193,23 +232,19 @@
 
                     <Border>
                         <Viewbox HorizontalAlignment="Left">
-                            <TextBlock Text="Объём часов:" FontWeight="Bold"/>
+                            <TextBlock Text=" Объём часов:" FontWeight="Bold"/>
                         </Viewbox>
                     </Border>
 
                     <Border Grid.Column="1">
-                        <!--<Border.Background>
-                        <MultiBinding Converter="{StaticResource UsedValuesConverter}">
-                            <Binding Path="Text" ElementName="Max"></Binding>
-                            <Binding Path="Text" ElementName="Inputted"></Binding>
-                        </MultiBinding>
-                    </Border.Background>-->
+                        
                         <Viewbox HorizontalAlignment="Center">
-                            <!--<TextBlock x:Name="Inputted" Tag="{x:Reference Name=Max}" Style="{StaticResource CaptionSections}">
-                            <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource SumConverter}"/>
-                            </TextBlock.Text>
-                        </TextBlock>-->
+                            <TextBlock x:Name="Total" Style="{StaticResource CaptionSections}">
+                                <TextBlock.Text>
+                                    <Binding Path="Hours" Converter="{StaticResource HoursConverter}" />
+                                    <!--<MultiBinding Converter="{StaticResource SumConverter}"/>-->
+                                </TextBlock.Text>
+                            </TextBlock>
                         </Viewbox>
                     </Border>
                 </Grid>

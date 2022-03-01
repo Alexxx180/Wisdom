@@ -3,7 +3,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Wisdom.Controls.Tables;
 using Wisdom.Model;
-using static Wisdom.Customing.Converters;
+using Wisdom.ViewModel;
+using Wisdom.Customing;
 
 namespace Wisdom.Controls
 {
@@ -19,7 +20,18 @@ namespace Wisdom.Controls
         }
 
         #region Hour Members
-        public string _type = "";
+        private DisciplineProgramViewModel _viewModel;
+        internal DisciplineProgramViewModel ViewModel
+        {
+            get => _viewModel;
+            set
+            {
+                _viewModel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _type;
         public string WorkType
         {
             get => _type;
@@ -30,7 +42,7 @@ namespace Wisdom.Controls
             }
         }
 
-        public string _value = "";
+        private string _value;
         public string HourValue
         {
             get => _value;
@@ -38,6 +50,7 @@ namespace Wisdom.Controls
             {
                 _value = value;
                 OnPropertyChanged();
+                ViewModel.RefreshHours();
             }
         }
         #endregion

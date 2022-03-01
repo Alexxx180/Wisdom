@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using Wisdom.Binds.Converters;
 using static Wisdom.Customing.ResourceHelper;
 using static Wisdom.Writers.Content;
 

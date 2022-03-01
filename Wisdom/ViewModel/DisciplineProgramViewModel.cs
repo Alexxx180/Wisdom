@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -13,7 +14,6 @@ using Wisdom.Controls.Tables.EducationLevels;
 using Wisdom.Controls.Tables.MetaData;
 using static Wisdom.Writers.ResultRenderer;
 using static Wisdom.Customing.Converters;
-using System;
 
 namespace Wisdom.ViewModel
 {
@@ -219,7 +219,14 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region Hours Members
-        public string MaxHours => EduHours + SelfHours;
+        public string MaxHours {
+            get
+            {
+                int max = EduHours.ParseHours()
+                    + SelfHours.ParseHours();
+                return max.ToString();
+            }
+        }
 
         private string _selfHours;
         public string SelfHours
@@ -229,6 +236,7 @@ namespace Wisdom.ViewModel
             {
                 _selfHours = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(MaxHours));
             }
         }
 
@@ -240,6 +248,7 @@ namespace Wisdom.ViewModel
             {
                 _eduHours = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(MaxHours));
             }
         }
 
@@ -251,6 +260,7 @@ namespace Wisdom.ViewModel
             {
                 _hours = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(MaxHours));
             }
         }
         #endregion
@@ -336,8 +346,6 @@ namespace Wisdom.ViewModel
             Sources = new ObservableCollection<SourceTypeElement>();
             MetaData = new ObservableCollection<MetaElement>();
             Hours = new ObservableCollection<HourElement>();
-            Hours.Add(new HourElement());
-            OnPropertyChanged(nameof(Hours));
             ProfessionalCompetetions = new ObservableCollection<ProfessionalDivider>();
             GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
             Connector = new MySQL();
@@ -551,6 +559,11 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region DisciplineAutoSet Logic
+        public void RefreshHours()
+        {
+            OnPropertyChanged(nameof(Hours));
+        }
+
         internal void ResetDiscipline()
         {
             SelectedDiscipline = Data.DisciplineData(DisciplineHead.Name[DisciplineNo], DisciplineFullName);
@@ -578,6 +591,8 @@ namespace Wisdom.ViewModel
                     study += SelectedDiscipline.TotalHours[i].Value;
                 }
             }
+
+            //
 
             EduHours = study.ToString();
             SelfHours = self.ToString();
@@ -707,7 +722,10 @@ namespace Wisdom.ViewModel
             Hours.Clear();
             for (byte i = 0; i < HourTypes.Count; i++)
             {
-                HourElement hour = new HourElement();
+                HourElement hour = new HourElement
+                {
+                    ViewModel = this
+                };
                 hour.SetType(HourTypes[i]);
                 Hours.Add(hour);
             }
