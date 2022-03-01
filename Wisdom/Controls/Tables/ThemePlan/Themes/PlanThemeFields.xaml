@@ -10,9 +10,9 @@
             <ColumnDefinition Width="0.05*" />
             <ColumnDefinition Width="0.15*" />
             <ColumnDefinition Width="0.475*" />
-            <ColumnDefinition Width="0.085*" />
             <ColumnDefinition Width="0.19*" />
             <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="0.085*" />
         </Grid.ColumnDefinitions>
 
         
@@ -37,16 +37,6 @@
         </Border>
 
         <Border Grid.Column="3">
-            <Viewbox HorizontalAlignment="Right">
-                <TextBlock Text="Часы " Foreground="Black">
-                    <TextBlock.ToolTip>
-                        Часы, отводимые теме
-                    </TextBlock.ToolTip>
-                </TextBlock>
-            </Viewbox>
-        </Border>
-
-        <Border Grid.Column="4">
             <Viewbox HorizontalAlignment="Center">
                 <TextBlock Text="ОК-ПК" Foreground="Black">
                     <TextBlock.ToolTip>
@@ -57,11 +47,21 @@
             </Viewbox>
         </Border>
 
-        <Border Grid.Column="5">
+        <Border Grid.Column="4">
             <Viewbox HorizontalAlignment="Left">
                 <TextBlock Text="УК" Foreground="Black">
                     <TextBlock.ToolTip>
                         Уровень компетенции
+                    </TextBlock.ToolTip>
+                </TextBlock>
+            </Viewbox>
+        </Border>
+
+        <Border Grid.Column="5">
+            <Viewbox HorizontalAlignment="Right">
+                <TextBlock Text="Часы" Foreground="Black">
+                    <TextBlock.ToolTip>
+                        Часы, отводимые теме
                     </TextBlock.ToolTip>
                 </TextBlock>
             </Viewbox>
