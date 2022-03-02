@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Model
 {
@@ -7,11 +8,11 @@ namespace Wisdom.Model
         public DisciplineBase()
         {
             TotalHours = new List<Pair<string, ushort>>();
-            MetaData = new List<Pair<string, string>>();
+            MetaData = new List<Task>();
             Sources = new List<Pair<string, List<string>>>();
-            GeneralCompetetions = new List<HoursList<Pair<string, string>>>();
-            ProfessionalCompetetions = new List<List<HoursList<Pair<string, string>>>>();
-            Plan = new List<HoursList<LevelsList<HashList<Pair<string, string>>>>>();
+            GeneralCompetetions = new List<Competetion>();
+            ProfessionalCompetetions = new List<List<Competetion>>();
+            Plan = new List<Topic>();
         }
 
         public DisciplineBase(string name) : this()
@@ -20,9 +21,9 @@ namespace Wisdom.Model
         }
 
         public DisciplineBase(string name,
-            List<HoursList<LevelsList<HashList<Pair<string, string>>>>> plan,
+            List<Topic> plan,
             List<Pair<string, List<string>>> sources,
-            List<Pair<string, string>> metaData)
+            List<Task> metaData)
         {
             Name = name;
             Plan = plan;
@@ -32,10 +33,10 @@ namespace Wisdom.Model
 
         public string Name { get; set; }
         public List<Pair<string, ushort>> TotalHours { get; set; }
-        public List<HoursList<LevelsList<HashList<Pair<string, string>>>>> Plan { get; set; }
-        public List<Pair<string, string>> MetaData { get; set; }
+        public List<Topic> Plan { get; set; }
+        public List<Task> MetaData { get; set; }
         public List<Pair<string, List<string>>> Sources { get; set; }
-        public List<HoursList<Pair<string, string>>> GeneralCompetetions { get; set; }
-        public List<List<HoursList<Pair<string, string>>>> ProfessionalCompetetions { get; set; }
+        public List<Competetion> GeneralCompetetions { get; set; }
+        public List<List<Competetion>> ProfessionalCompetetions { get; set; }
     }
 }

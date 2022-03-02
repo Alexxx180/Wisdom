@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Common;
 using System.Windows;
+using Wisdom.Model.ThemePlan;
 using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Model.Tools.DataBase
@@ -79,11 +80,11 @@ namespace Wisdom.Model.Tools.DataBase
         }
 
 
-        private static List<Pair<string, string>>
+        private static List<Task>
             SetTypeFields(List<object[]> types)
         {
-            List<Pair<string, string>> fields = new
-                List<Pair<string, string>>();
+            List<Task> fields = new
+                List<Task>();
 
             for (byte i = 0; i < types.Count; i++)
             {
@@ -91,18 +92,18 @@ namespace Wisdom.Model.Tools.DataBase
                 string id = row[0].ToString();
                 string name = row[1].ToString();
 
-                Pair<string, string> type = new
-                    Pair<string, string>(id, name);
+                Task type = new
+                    Task(id, name);
                 fields.Add(type);
             }
             return fields;
         }
 
-        public static List<Pair<string, string>>
+        public static List<Task>
             SetMetaData(List<object[]> metaData)
         {
-            List<Pair<string, string>> data = new
-                List<Pair<string, string>>();
+            List<Task> data = new
+                List<Task>();
 
             for (int i = 0; i < metaData.Count; i++)
             {
@@ -110,7 +111,7 @@ namespace Wisdom.Model.Tools.DataBase
                 string type = row[1].ToString();
                 string value = row[2].ToString();
 
-                data.Add(new Pair<string, string>(type, value));
+                data.Add(new Task(type, value));
             }
             return data;
         }
@@ -170,31 +171,38 @@ namespace Wisdom.Model.Tools.DataBase
             return sources;
         }
 
-        private static List<HoursList<Pair<string, string>>>
-            SetGeneral(List<object[]> generalCompetetions)
+        private static List<Competetion> SetGeneral(List<object[]> generalCompetetions)
         {
-            List<HoursList<Pair<string, string>>>
-                competetions = new List<HoursList<Pair<string, string>>>();
+            List<Competetion> competetions = new List<Competetion>();
             for (int i = 0; i < generalCompetetions.Count; i++)
             {
                 object[] row = generalCompetetions[i];
+
                 string no = row[1].ToString();
                 string name = row[2].ToString();
-                competetions.Add(new HoursList<Pair<string, string>>(no, name));
-
                 string skills = row[4].ToString();
                 string knowledge = row[3].ToString();
-                competetions[i].Values.Add(new Pair<string, string>("Умения", skills));
-                competetions[i].Values.Add(new Pair<string, string>("Знания", knowledge));
+
+                Competetion competetion = new Competetion
+                {
+                    PrefixNo = no,
+                    Name = name,
+                    Abilities = new List<Task>
+                    {
+                        new Task("Умения", skills),
+                        new Task("Знания", knowledge)
+                    }
+                };
+
+                competetions.Add(competetion);
             }
             return competetions;
         }
 
-        private static List<List<HoursList<Pair<string, string>>>>
+        private static List<List<Competetion>>
             SetProfessional(List<object[]> professionalCompetetions)
         {
-            List<List<HoursList<Pair<string, string>>>>
-                competetions = new List<List<HoursList<Pair<string, string>>>>();
+            List<List<Competetion>> competetions = new List<List<Competetion>>();
 
             int memoryNo = 0;
             for (int i = 0; i < professionalCompetetions.Count; i++)
@@ -202,7 +210,7 @@ namespace Wisdom.Model.Tools.DataBase
                 int current = professionalCompetetions[i][1].ToInt();
                 if (memoryNo < current)
                 {
-                    competetions.Add(new List<HoursList<Pair<string, string>>>());
+                    competetions.Add(new List<Competetion>());
                     memoryNo = current;
                 }
                 int recount = memoryNo - 1;
@@ -211,17 +219,23 @@ namespace Wisdom.Model.Tools.DataBase
                 string no1 = row[1].ToString();
                 string no2 = row[2].ToString();
                 string name = row[3].ToString();
-                competetions[recount].Add(new HoursList<Pair<string, string>>($"ПК {no1}.{no2}", name));
-
-                string experience = row[6].ToString();
-                string skills = row[5].ToString();
                 string knowledge = row[4].ToString();
+                string skills = row[5].ToString();
+                string experience = row[6].ToString();
 
-                int recount2 = competetions[recount].Count - 1;
-                HoursList<Pair<string, string>> skillsList = competetions[recount][recount2];
-                skillsList.Values.Add(new Pair<string, string>("Практический опыт", experience));
-                skillsList.Values.Add(new Pair<string, string>("Умения", skills));
-                skillsList.Values.Add(new Pair<string, string>("Знания", knowledge));
+                Competetion competetion = new Competetion
+                {
+                    PrefixNo = $"ПК {no1}.{no2}",
+                    Name = name,
+                    Abilities = new List<Task>
+                    {
+                        new Task("Практический опыт", experience),
+                        new Task("Умения", skills),
+                        new Task("Знания", knowledge)
+                    }
+                };
+
+                competetions[recount].Add(competetion);
             }
             return competetions;
         }
@@ -307,7 +321,7 @@ namespace Wisdom.Model.Tools.DataBase
 
         public static DisciplineBase GetDiscipline(string name,
             List<object[]> totalHours, List<object[]> metaData,
-            List<HoursList<LevelsList<HashList<Pair<string, string>>>>> themePlan,
+            List<Topic> themePlan,
             List<object[]> sources, List<object[]> generalCompetetions, 
             List<object[]> professionalCompetetions)
         {
@@ -334,12 +348,12 @@ namespace Wisdom.Model.Tools.DataBase
             return discipline;
         }
 
-        public static List<Pair<string, string>> GetHourTypes(List<object[]> types)
+        public static List<Task> GetHourTypes(List<object[]> types)
         {
-            List<Pair<string, string>> hourTypes = new List<Pair<string, string>>();
+            List<Task> hourTypes = new List<Task>();
             try
             {
-                List<Pair<string, string>> result = SetTypeFields(types);
+                List<Task> result = SetTypeFields(types);
                 hourTypes.AddRange(result);
             }
             catch (DbException exception)
@@ -350,12 +364,12 @@ namespace Wisdom.Model.Tools.DataBase
             return hourTypes;
         }
 
-        public static List<Pair<string, string>> GetMetaTypes(List<object[]> types)
+        public static List<Task> GetMetaTypes(List<object[]> types)
         {
-            List<Pair<string, string>> metaTypes = new List<Pair<string, string>>();
+            List<Task> metaTypes = new List<Task>();
             try
             {
-                List<Pair<string, string>> result = SetTypeFields(types);
+                List<Task> result = SetTypeFields(types);
                 metaTypes.AddRange(result);
             }
             catch (DbException exception)
@@ -366,12 +380,12 @@ namespace Wisdom.Model.Tools.DataBase
             return metaTypes;
         }
 
-        public static List<Pair<string, string>> GetSourceTypes(List<object[]> types)
+        public static List<Task> GetSourceTypes(List<object[]> types)
         {
-            List<Pair<string, string>> sourceTypes = new List<Pair<string, string>>();
+            List<Task> sourceTypes = new List<Task>();
             try
             {
-                List<Pair<string, string>> result = SetTypeFields(types);
+                List<Task> result = SetTypeFields(types);
                 sourceTypes.AddRange(result);
             }
             catch (DbException exception)

@@ -1,20 +1,20 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Customing;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Controls.Tables.EducationLevels
 {
     /// <summary>
     /// Record component containing theme plan education (competetion) levels
     /// </summary>
-    public partial class EducationLevel : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Pair<string, string>>
+    public partial class EducationLevel : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Task>
     {
-        public Pair<string, string> Raw()
+        public Task Raw()
         {
-            return new Pair<string, string>(LevelName, LevelDescription);
+            return new Task(LevelName, LevelDescription);
         }
 
         #region IOptionableIndexing Members
@@ -102,10 +102,10 @@ namespace Wisdom.Controls.Tables.EducationLevels
             Options.DropRecord(this);
         }
 
-        public void SetElement(Pair<string, string> level)
+        public void SetElement(Task level)
         {
             LevelName = level.Name;
-            LevelDescription = level.Value;
+            LevelDescription = level.Hours;
         }
 
         #region INotifyPropertyChanged Members

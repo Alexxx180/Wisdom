@@ -1,24 +1,24 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Model;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Wisdom.Controls.Tables.ThemePlan.Themes;
 using Wisdom.Customing;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Controls.Tables.ThemePlan
 {
     /// <summary>
     /// Topic of theme plan
     /// </summary>
-    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IRecordsIndexing, IRawData<HoursList<LevelsList<HashList<Pair<string, string>>>>>
+    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IRecordsIndexing, IRawData<Topic>
     {
-        public HoursList<LevelsList<HashList<Pair<string, string>>>> Raw()
+        public Topic Raw()
         {
-            return new HoursList<LevelsList<HashList<Pair<string, string>>>>(TopicName, TopicHours)
+            return new Topic
             {
-                Values = Themes.GetRaw()
+                Themes = Themes.GetRaw()
             };
         }
 
@@ -130,20 +130,20 @@ namespace Wisdom.Controls.Tables.ThemePlan
         }
         #endregion
 
-        public void SetElement(HoursList<LevelsList<HashList<Pair<string, string>>>> topic)
+        public void SetElement(Topic topic)
         {
             TopicName = topic.Name;
             TopicHours = topic.Hours;
 
             ushort i;
-            for (i = 0; i < topic.Values.Count; i++)
+            for (i = 0; i < topic.Themes.Count; i++)
             {
                 PlanTheme theme = new PlanTheme
                 {
                     No = (i + 1).ToUInt(),
                     Topic = this
                 };
-                theme.SetElement(topic.Values[i]);
+                theme.SetElement(topic.Themes[i]);
                 Themes.Add(theme);
             }
             ThemeAdditor.Index((i + 1).ToUInt());

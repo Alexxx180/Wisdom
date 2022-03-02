@@ -7,15 +7,16 @@ using System.Collections.ObjectModel;
 using Wisdom.Model;
 using Wisdom.Customing;
 using System.Text.RegularExpressions;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
 {
     /// <summary>
     /// A group of professional competetions
     /// </summary>
-    public partial class ProfessionalDivider : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<List<HoursList<Pair<string, string>>>>
+    public partial class ProfessionalDivider : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<List<Competetion>>
     {
-        public List<HoursList<Pair<string, string>>> Raw()
+        public List<Competetion> Raw()
         {
             return GetDivision();
         }
@@ -113,16 +114,16 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         public bool AddRecord(ProfessionalCompetetion record)
         {
             Competetions.Add(record);
-            System.Diagnostics.Trace.WriteLine(Competetions.Count);
             OnPropertyChanged(nameof(Competetions));
             CheckAuto();
             return Options.Mode == Indexing.NEW_ONLY;
         }
 
-        public List<HoursList<Pair<string, string>>> GetDivision()
+        public List<Competetion> GetDivision()
         {
-            List<HoursList<Pair<string, string>>> competetions = new
-                List<HoursList<Pair<string, string>>>();
+            List<Competetion>
+                competetions = new
+                List<Competetion>();
             for (byte i = 0; i < Competetions.Count - 1; i++)
             {
                 competetions.Add(Competetions[i].Raw());
@@ -135,10 +136,11 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             Options.DropRecord(this);
         }
 
-        public void SetElement(List<HoursList<Pair<string, string>>> competetions)
+        public void SetElement(List<Competetion> competetions)
         {
             if (competetions.Count < 0)
                 return;
+
             DividerNo = Regex.Match(competetions[0].Name, ".\\d+").Value;
             for (ushort i = 0; i < competetions.Count; i++)
             {

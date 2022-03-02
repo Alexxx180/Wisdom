@@ -1,26 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups;
+using Wisdom.Model.ThemePlan;
+using Wisdom.Model;
 
 namespace Wisdom.Controls.Tables.Competetions.Professional
 {
     /// <summary>
     /// Professional competetion related to speciality | discipline
     /// </summary>
-    public partial class ProfessionalCompetetion : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<HoursList<Pair<string, string>>>
+    public partial class ProfessionalCompetetion : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Competetion>
     {
-        public HoursList<Pair<string, string>> Raw()
+        public Competetion Raw()
         {
-            return new HoursList<Pair<string, string>>(ProfessionalHeader, ProfessionalName)
+            return new Competetion
             {
-                Values = {
-                    new Pair<string, string>("Практический опыт", ProfessionalExperience),
-                    new Pair<string, string>("Умения", ProfessionalSkills),
-                    new Pair<string, string>("Знания", ProfessionalKnowledge)
+                PrefixNo = ProfessionalHeader,
+                Name = ProfessionalName,
+                Abilities = {
+                    new Task("Практический опыт", ProfessionalExperience),
+                    new Task("Умения", ProfessionalSkills),
+                    new Task("Знания", ProfessionalKnowledge)
                 }
             };
         }
@@ -126,15 +129,17 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             Group.DropCompetetion(this);
         }
 
-        public void SetElement(HoursList<Pair<string, string>> competetion)
+        public void SetElement(Competetion competetion)
         {
             string no = competetion.Name;
+
             ProfessionalNo = no[(no.LastIndexOf('.') + 1)..];
-            ProfessionalName = competetion.Hours;
-            List<Pair<string, string>> value = competetion.Values;
-            ProfessionalExperience = value[0].Value;
-            ProfessionalSkills = value[1].Value;
-            ProfessionalKnowledge = value[2].Value;
+            ProfessionalName = competetion.Name;
+
+            List<Task> value = competetion.Abilities;
+            ProfessionalExperience = value[0].Hours;
+            ProfessionalSkills = value[1].Hours;
+            ProfessionalKnowledge = value[2].Hours;
         }
 
         #region INotifyPropertyChanged Members

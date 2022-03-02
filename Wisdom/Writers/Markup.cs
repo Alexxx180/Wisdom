@@ -2,6 +2,7 @@
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Collections.Generic;
 using Wisdom.Model;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Writers
 {
@@ -366,18 +367,18 @@ namespace Wisdom.Writers
         {
             List<TableRow> rows = new List<TableRow>();
             for (byte i = 0; i < program.GeneralCompetetions.Count; i++)
-                rows.AddRange(CompetetionAdd(program.GeneralCompetetions[i].Name, program.GeneralCompetetions[i].Hours, program.GeneralCompetetions[i].Values));
+                rows.AddRange(CompetetionAdd(program.GeneralCompetetions[i].PrefixNo, program.GeneralCompetetions[i].Name, program.GeneralCompetetions[i].Abilities));
             for (byte i = 0; i < program.ProfessionalCompetetions.Count; i++)
             {
-                List<HoursList<Pair<string, string>>> professionalGroup = program.ProfessionalCompetetions[i];
+                List<Competetion> professionalGroup = program.ProfessionalCompetetions[i];
                 for (byte ii = 0; ii < professionalGroup.Count; ii++)
-                    rows.AddRange(CompetetionAdd(professionalGroup[i].Name, professionalGroup[i].Hours, professionalGroup[i].Values));
+                    rows.AddRange(CompetetionAdd(professionalGroup[i].PrefixNo, professionalGroup[i].Name, professionalGroup[i].Abilities));
             }
                 
             return rows;
         }
 
-        public static List<TableRow> CompetetionAdd(string id, string name, List<Pair<string, string>> skills)
+        public static List<TableRow> CompetetionAdd(string id, string name, List<Task> skills)
         {
             Run idRun = RunAdd(id);
             Run nameRun = RunAdd(name);
@@ -389,7 +390,7 @@ namespace Wisdom.Writers
             for (byte i = 0; i < skills.Count; i++)
             {
                 Run skillsName = RunAdd(skills[i].Name + " ", new Bold());
-                Run skillsDescription = RunAdd(skills[i].Value);
+                Run skillsDescription = RunAdd(skills[i].Hours);
                 Paragraph skillsParagraphPart = ParagraphAdd(JustificationValues.Left, skillsName, skillsDescription);
                 skillsParagraph.Add(skillsParagraphPart);
             }
@@ -1447,13 +1448,13 @@ namespace Wisdom.Writers
             List<TableRow> rows = new List<TableRow>();
             for (byte i = 0; i < program.Plan.Count; i++)
             {
-                HoursList<LevelsList<HashList<Pair<string, string>>>> topic = program.Plan[i];
+                Topic topic = program.Plan[i];
                 rows.Add(SectionAdd($"Раздел {i + 1}. {topic.Name}", topic.Hours));
-                for (byte ii = 0; ii < topic.Values.Count; ii++)
+                for (byte ii = 0; ii < topic.Themes.Count; ii++)
                 {
-                    LevelsList<HashList<Pair<string, string>>> theme = program.Plan[i].Values[ii];
+                    Theme theme = program.Plan[i].Themes[ii];
                     rows.AddRange(ThemeAdd($"Тема {i + 1}.{ii + 1}. {theme.Name}",
-                        theme.Hours, theme.Competetions, theme.Level, theme.Values));
+                        theme.Hours, theme.Competetions, theme.Level, theme.Works));
                 }
                     
             }
@@ -1483,12 +1484,12 @@ namespace Wisdom.Writers
             return tableRow;
         }
         public static List<TableRow> ThemeAdd(string title, string hours,
-            string competetions, string level, List<HashList<Pair<string, string>>> data)
+            string competetions, string level, List<Work> data)
         {
             List<TableRow> themeContents = new List<TableRow>();
 
             Run themeRun1 = RunAdd(title, new Bold());
-            Run descriptionRun1 = RunAdd(data[0].Name);
+            Run descriptionRun1 = RunAdd(data[0].Type);
             Run hoursRun1 = RunAdd(hours);
             Run competetionRun1 = RunAdd(competetions);
             Run levelRun1 = RunAdd(level);
@@ -1511,17 +1512,18 @@ namespace Wisdom.Writers
             TableRow headerRow = TableRowAdd(cells1);
 
             themeContents.Add(headerRow);
-            themeContents.AddRange(ThemeContentAdd(data[0].Values));
+            themeContents.AddRange(ThemeContentAdd(data[0].Tasks));
 
             for (byte i = 1; i < data.Count; i++)
             {
-                if (data[i].Values.Count <= 1)
+                Work work = data[i];
+                if (work.Tasks.Count <= 1)
                 {
-                    themeContents.Add(ThemeContent1(data[i].Name + " "
-                        + data[i].Values[0].Name, data[i].Values[0].Value));
+                    themeContents.Add(ThemeContent1(work.Type + " "
+                        + work.Tasks[0].Name, work.Tasks[0].Hours));
                     continue;
                 }
-                Run descriptionRun = RunAdd(data[i].Name);
+                Run descriptionRun = RunAdd(work.Type);
 
                 Paragraph sectionP = ParagraphAdd(JustificationValues.Center);
                 Paragraph desriptionP = ParagraphAdd(JustificationValues.Both, descriptionRun);
@@ -1539,17 +1541,17 @@ namespace Wisdom.Writers
                 TableRow subHeaderRow = TableRowAdd(subCells);
 
                 themeContents.Add(subHeaderRow);
-                themeContents.AddRange(ThemeContentAdd(data[i].Values));
+                themeContents.AddRange(ThemeContentAdd(work.Tasks));
             }
 
             return themeContents;
         }
         
-        private static List<TableRow> ThemeContentAdd(List<Pair<string, string>> rows)
+        private static List<TableRow> ThemeContentAdd(List<Task> rows)
         {
             List<TableRow> themeContent = new List<TableRow>();
             for (byte ii = 0; ii < rows.Count; ii++)
-                themeContent.Add(ThemeContent2(ii + 1, rows[ii].Name, rows[ii].Value));
+                themeContent.Add(ThemeContent2(ii + 1, rows[ii].Name, rows[ii].Hours));
             return themeContent;
         }
 
@@ -1605,7 +1607,7 @@ namespace Wisdom.Writers
             return valueRow;
         }
 
-        public static List<Paragraph> Literature(List<Pair<string, string>> sources)
+        public static List<Paragraph> Literature(List<Task> sources)
         {
             //DisciplineProgram program
 
@@ -1621,7 +1623,7 @@ namespace Wisdom.Writers
             for(byte i = 0; i < sources.Count; i++)
             {
                 #warning ATTENTION!!! THIS MUST BE REPAIRED
-                Pair<string, string> source = sources[i];
+                Task source = sources[i];
                 //List<Paragraph> paragraphs = NumberList(
                 //    sources.Count + 1, source.Value, ". ");
 

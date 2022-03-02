@@ -5,21 +5,24 @@ using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Controls.Tables.ThemePlan.Themes.Works;
 using Wisdom.Customing;
-using Wisdom.Model;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes
 {
     /// <summary>
     /// Theme of topic
     /// </summary>
-    public partial class PlanTheme : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<LevelsList<HashList<Pair<string, string>>>>
+    public partial class PlanTheme : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Theme>
     {
-        public LevelsList<HashList<Pair<string, string>>> Raw()
+        public Theme Raw()
         {
-            return new LevelsList<HashList<Pair<string, string>>>
-                (ThemeName, ThemeHours, ThemeCompetetions, ThemeLevel)
+            return new Theme
             {
-                Values = Works.GetRaw()
+                Name = ThemeName,
+                Hours = ThemeHours,
+                Competetions = ThemeCompetetions,
+                Level = ThemeLevel,
+                Works = Works.GetRaw()
             };
         }
 
@@ -98,8 +101,8 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             }
         }
 
-        private ObservableCollection<IRawData<HashList<Pair<string, string>>>> _works;
-        public ObservableCollection<IRawData<HashList<Pair<string, string>>>> Works
+        private ObservableCollection<IRawData<Work>> _works;
+        public ObservableCollection<IRawData<Work>> Works
         {
             get => _works;
             set
@@ -120,21 +123,21 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         {
             InitializeComponent();
             Index(1);
-            Works = new ObservableCollection<IRawData<HashList<Pair<string, string>>>>();
+            Works = new ObservableCollection<IRawData<Work>>();
         }
 
-        public void SetElement(LevelsList<HashList<Pair<string, string>>> theme)
+        public void SetElement(Theme theme)
         {
             ThemeName = theme.Name;
             ThemeHours = theme.Hours;
             ThemeCompetetions = theme.Competetions;
             ThemeLevel = theme.Level;
 
-            for (ushort i = 0; i < theme.Values.Count; i++)
+            for (ushort i = 0; i < theme.Works.Count; i++)
             {
-                HashList<Pair<string, string>> workData = theme.Values[i];
-                IRawData<HashList<Pair<string, string>>> work;
-                if (workData.Values.Count > 1)
+                Work workData = theme.Works[i];
+                IRawData<Work> work;
+                if (workData.Tasks.Count > 1)
                 {
                     PlanWork group = new PlanWork
                     {
@@ -163,13 +166,13 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         }
 
         #region WorksGroup Members
-        public void DropWork(IRawData<HashList<Pair<string, string>>> work)
+        public void DropWork(IRawData<Work> work)
         {
             _ = Works.Remove(work);
             OnPropertyChanged(nameof(Works));
         }
 
-        public void AddRecord(IRawData<HashList<Pair<string, string>>> work)
+        public void AddRecord(IRawData<Work> work)
         {
             Works.Add(work);
             OnPropertyChanged(nameof(Works));
@@ -179,11 +182,11 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         //BindingExpression binding = GetBindExpress(combobox, ComboBox.ItemsSourceProperty);
         //binding.UpdateTarget();
 
-        //private static List<HashList<Pair<string, string>>>[]
-        //    ReviewContent(List<HashList<Pair<string, string>>> works)
+        //private static List<Work>[]
+        //    ReviewContent(List<Work> works)
         //{
-        //    List<HashList<Pair<string, string>>>[] content = new List<HashList<Pair<string, string>>>[2] { 
-        //        new List<HashList<Pair<string, string>>>(), new List<HashList<Pair<string, string>>>()
+        //    List<Work>[] content = new List<Work>[2] { 
+        //        new List<Work>(), new List<Work>()
         //    };
         //    for (int no = 0; no < works.Count; no++)
         //    {

@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Model;
+using Wisdom.Model.ThemePlan;
 using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Controls.Tables.Competetions.General
@@ -12,15 +13,17 @@ namespace Wisdom.Controls.Tables.Competetions.General
     /// <summary>
     /// General competetion related to speciality | discipline
     /// </summary>
-    public partial class GeneralCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<HoursList<Pair<string, string>>>
+    public partial class GeneralCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Competetion>
     {
-        public HoursList<Pair<string, string>> Raw()
+        public Competetion Raw()
         {
-            return new HoursList<Pair<string, string>>(GeneralHeader, GeneralName)
+            return new Competetion
             {
-                Values = {
-                    new Pair<string, string>("Умения", GeneralSkills),
-                    new Pair<string, string>("Знания", GeneralKnowledge),
+                PrefixNo = GeneralHeader,
+                Name = GeneralName,
+                Abilities = {
+                    new Task("Умения", GeneralSkills),
+                    new Task("Знания", GeneralKnowledge)
                 }
             };
         }
@@ -46,7 +49,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
             set
             {
                 _no = value;
-                GeneralNo = string.Format("{0:00}", value);
+                GeneralNo = value.ToGeneralNo();
                 OnPropertyChanged();
             }
         }
@@ -59,9 +62,9 @@ namespace Wisdom.Controls.Tables.Competetions.General
 
         #region GeneralCompetetion Members
         public string Prefix => "ОК";
-        public string GeneralHeader => Prefix + " " + GeneralNo;
+        public string GeneralHeader => $"{Prefix} {GeneralNo}";
 
-        private string _generalNo = "";
+        private string _generalNo;
         public string GeneralNo
         {
             get => _generalNo;
@@ -70,12 +73,12 @@ namespace Wisdom.Controls.Tables.Competetions.General
                 if (value == "")
                     return;
                 uint no = value.ParseHours();
-                _generalNo = string.Format("{0:00}", no);
-                if (Options != null && Options.IsManual)
-                    No = no;
+                _generalNo = no.ToGeneralNo();
+                if (Options != null &&
+                    Options.IsManual)
+                    Index(no);
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GeneralHeader));
-                //Options?.RegisterEdit();
             }
         }
 
@@ -87,7 +90,6 @@ namespace Wisdom.Controls.Tables.Competetions.General
             {
                 _generalName = value;
                 OnPropertyChanged();
-                //Options?.RegisterEdit();
             }
         }
 
@@ -99,7 +101,6 @@ namespace Wisdom.Controls.Tables.Competetions.General
             {
                 _generalSkills = value;
                 OnPropertyChanged();
-                //Options?.RegisterEdit();
             }
         }
 
@@ -111,7 +112,6 @@ namespace Wisdom.Controls.Tables.Competetions.General
             {
                 _generalKnowledge = value;
                 OnPropertyChanged();
-                //Options?.RegisterEdit();
             }
         }
         #endregion
@@ -127,15 +127,16 @@ namespace Wisdom.Controls.Tables.Competetions.General
             Options.DropRecord(this);
         }
 
-        public void SetElement(HoursList<Pair<string, string>> competetion)
+        public void SetElement(Competetion competetion)
         {
             uint no = Regex.Match(competetion.Name, @"\d+").Value.ToUInt();
             Index(no);
 
-            List<Pair<string, string>> data = competetion.Values;
-            GeneralName = competetion.Hours;
-            GeneralSkills = data[0].Value;
-            GeneralKnowledge = data[1].Value;
+            GeneralName = competetion.Name;
+
+            List<Task> data = competetion.Abilities;
+            GeneralSkills = data[0].Hours;
+            GeneralKnowledge = data[1].Hours;
         }
 
         #region INotifyPropertyChanged Members

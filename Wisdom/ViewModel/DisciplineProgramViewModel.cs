@@ -14,6 +14,7 @@ using Wisdom.Controls.Tables.EducationLevels;
 using Wisdom.Controls.Tables.MetaData;
 using static Wisdom.Writers.ResultRenderer;
 using static Wisdom.Customing.Converters;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.ViewModel
 {
@@ -425,12 +426,12 @@ namespace Wisdom.ViewModel
             System.Diagnostics.Trace.WriteLine(GeneralCompetetions.Count);
             foreach (GeneralCompetetion competetions in GeneralCompetetions)
             {
+                System.Diagnostics.Trace.WriteLine(competetions.Raw().PrefixNo);
                 System.Diagnostics.Trace.WriteLine(competetions.Raw().Name);
-                System.Diagnostics.Trace.WriteLine(competetions.Raw().Hours);
-                foreach (Pair<string, string> pair in competetions.Raw().Values)
+                foreach (Task pair in competetions.Raw().Abilities)
                 {
                     System.Diagnostics.Trace.WriteLine(pair.Name);
-                    System.Diagnostics.Trace.WriteLine(pair.Value);
+                    System.Diagnostics.Trace.WriteLine(pair.Hours);
                 }
             }
         }
@@ -440,14 +441,14 @@ namespace Wisdom.ViewModel
             System.Diagnostics.Trace.WriteLine(ProfessionalCompetetions.Count);
             foreach (ProfessionalDivider competetions in ProfessionalCompetetions)
             {
-                foreach (HoursList<Pair<string, string>> pro in competetions.Raw())
+                foreach (Competetion pro in competetions.Raw())
                 {
+                    System.Diagnostics.Trace.WriteLine(pro.PrefixNo);
                     System.Diagnostics.Trace.WriteLine(pro.Name);
-                    System.Diagnostics.Trace.WriteLine(pro.Hours);
-                    foreach (Pair<string, string> pair in pro.Values)
+                    foreach (Task pair in pro.Abilities)
                     {
                         System.Diagnostics.Trace.WriteLine(pair.Name);
-                        System.Diagnostics.Trace.WriteLine(pair.Value);
+                        System.Diagnostics.Trace.WriteLine(pair.Hours);
                     }
                 }
             }
@@ -478,7 +479,7 @@ namespace Wisdom.ViewModel
             foreach (MetaElement meta in MetaData)
             {
                 System.Diagnostics.Trace.WriteLine(meta.Raw().Name);
-                System.Diagnostics.Trace.WriteLine(meta.Raw().Value);
+                System.Diagnostics.Trace.WriteLine(meta.Raw().Hours);
             }
         }
 
@@ -501,19 +502,19 @@ namespace Wisdom.ViewModel
             foreach (PlanTopic topic in ThemePlan)
             {
                 System.Diagnostics.Trace.WriteLine(topic.Raw().Name);
-                foreach (LevelsList<HashList<Pair<string, string>>> theme in topic.Raw().Values)
+                foreach (Theme theme in topic.Raw().Themes)
                 {
                     System.Diagnostics.Trace.WriteLine(theme.Name);
                     System.Diagnostics.Trace.WriteLine(theme.Hours);
                     System.Diagnostics.Trace.WriteLine(theme.Competetions);
                     System.Diagnostics.Trace.WriteLine(theme.Level);
-                    foreach (HashList<Pair<string, string>> work in theme.Values)
+                    foreach (Work work in theme.Works)
                     {
-                        System.Diagnostics.Trace.WriteLine(work.Name);
-                        foreach (Pair<string, string> task in work.Values)
+                        System.Diagnostics.Trace.WriteLine(work.Type);
+                        foreach (Task task in work.Tasks)
                         {
                             System.Diagnostics.Trace.WriteLine(task.Name);
-                            System.Diagnostics.Trace.WriteLine(task.Value);
+                            System.Diagnostics.Trace.WriteLine(task.Hours);
                         }
                     }
                 }
@@ -540,7 +541,7 @@ namespace Wisdom.ViewModel
             OnPropertyChanged(nameof(ProfessionalCompetetions));
         }
 
-        private void SetGeneralCompetetions(List<HoursList<Pair<string, string>>> competetions)
+        private void SetGeneralCompetetions(List<Competetion> competetions)
         {
             GeneralCompetetions.Clear();
             for (byte i = 0; i < competetions.Count; i++)
@@ -551,7 +552,7 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private void SetProfessionalCompetetions(List<List<HoursList<Pair<string, string>>>> competetions)
+        private void SetProfessionalCompetetions(List<List<Competetion>> competetions)
         {
             ProfessionalCompetetions.Clear();
             for (byte i = 0; i < competetions.Count; i++)
@@ -693,7 +694,7 @@ namespace Wisdom.ViewModel
 
         private void SetLevels()
         {
-            List<Pair<string, string>> levels = Data.LevelsData();
+            List<Task> levels = Data.LevelsData();
             Levels.Clear();
             for (byte i = 0; i < levels.Count; i++)
             {

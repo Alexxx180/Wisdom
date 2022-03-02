@@ -1,23 +1,23 @@
 ﻿using System.Windows.Controls;
-using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Collections.ObjectModel;
-using Wisdom.Customing;
-using static Wisdom.Customing.Converters;
 using Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks;
+using Wisdom.Customing;
+using Wisdom.Model.ThemePlan;
+using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 {
     /// <summary>
     /// Work with tasks group of theme
     /// </summary>
-    public partial class PlanWork : UserControl, INotifyPropertyChanged, IRawData<HashList<Pair<string, string>>>
+    public partial class PlanWork : UserControl, INotifyPropertyChanged, IRawData<Work>
     {
-        public HashList<Pair<string, string>> Raw()
+        public Work Raw()
         {
-            return new HashList<Pair<string, string>>(WorkType, Tasks.GetRaw());
+            return new Work(WorkType, Tasks.GetRaw());
         }
 
         #region AutoIndexing Logic
@@ -98,19 +98,19 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
         }
         #endregion
 
-        public void SetElement(HashList<Pair<string, string>> work)
+        public void SetElement(Work work)
         {
-            WorkType = work.Name;
+            WorkType = work.Type;
 
             ushort i;
-            for (i = 0; i < work.Values.Count; i++)
+            for (i = 0; i < work.Tasks.Count; i++)
             {
                 PlanTask task = new PlanTask
                 {
                     No = (i + 1).ToUInt(),
                     Work = this
                 };
-                task.SetElement(work.Values[i]);
+                task.SetElement(work.Tasks[i]);
                 Tasks.Add(task);
             }
             TaskAdditor.Index((i + 1).ToUInt());

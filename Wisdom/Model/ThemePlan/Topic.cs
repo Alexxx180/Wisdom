@@ -2,7 +2,7 @@
 
 namespace Wisdom.Model.ThemePlan
 {
-    public class PlanTopic
+    public class Topic
     {
         public string Name { get; set; }
         public string Hours { get; set; }

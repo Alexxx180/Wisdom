@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Model;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 {
@@ -54,7 +54,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 
         private void AddWork(object sender, RoutedEventArgs e)
         {
-            IRawData<HashList<Pair<string, string>>> work;
+            IRawData<Work> work;
 
             if (IsGroup)
             {

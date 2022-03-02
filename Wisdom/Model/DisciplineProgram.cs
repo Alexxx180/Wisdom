@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Model
 {
@@ -9,10 +10,10 @@ namespace Wisdom.Model
             ProfessionName = "";
             DisciplineName = "";
             SetHours();
-            StudyLevels = new List<Pair<string, string>>();
-            MetaData = new List<Pair<string, string>>();
+            StudyLevels = new List<Task>();
+            MetaData = new List<Task>();
             Sources = new List<Pair<string, List<string>>>();
-            Plan = new List<HoursList<LevelsList<HashList<Pair<string, string>>>>>();
+            Plan = new List<Topic>();
         }
 
         private void SetHours()
@@ -27,8 +28,8 @@ namespace Wisdom.Model
         public string ProfessionName { get; set; }
 
         // Competetions: Knowledge, Skills, Experience (only professional)
-        public List<HoursList<Pair<string, string>>> GeneralCompetetions { get; set; }
-        public List<List<HoursList<Pair<string, string>>>> ProfessionalCompetetions { get; set; }
+        public List<Competetion> GeneralCompetetions { get; set; }
+        public List<List<Competetion>> ProfessionalCompetetions { get; set; }
 
         // Discipline
         public string DisciplineName { get; set; }
@@ -40,11 +41,11 @@ namespace Wisdom.Model
         public List<Pair<string, ushort>> Hours { get; set; }
 
         // Educational program other useful information
-        public List<Pair<string, string>> MetaData { get; set; }
+        public List<Task> MetaData { get; set; }
         public List<Pair<string, List<string>>> Sources { get; set; }
 
         // Theme plan: Topics -> Themes -> Works -> Tasks
-        public List<HoursList<LevelsList<HashList<Pair<string, string>>>>> Plan { get; set; }
-        public List<Pair<string, string>> StudyLevels { get; set; }
+        public List<Topic> Plan { get; set; }
+        public List<Task> StudyLevels { get; set; }
     }
 }

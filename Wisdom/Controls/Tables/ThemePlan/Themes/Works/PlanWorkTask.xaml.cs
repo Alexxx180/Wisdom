@@ -1,23 +1,19 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Model;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 {
     /// <summary>
     /// Work with single task of theme plan
     /// </summary>
-    public partial class PlanWorkTask : UserControl, INotifyPropertyChanged, IRawData<HashList<Pair<string, string>>>
+    public partial class PlanWorkTask : UserControl, INotifyPropertyChanged, IRawData<Work>
     {
-        public HashList<Pair<string, string>> Raw()
+        public Work Raw()
         {
-            return new HashList<Pair<string, string>>(
-               WorkType, new List<Pair<string, string>> {
-                   new Pair<string, string>(TaskName, TaskHours)
-               });
+            return new Work(WorkType, new Task(TaskName, TaskHours));
         }
 
         #region PlanWorkTask Members
@@ -77,17 +73,16 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             Theme.DropWork(this);
         }
 
-        public void SetElement(HashList<Pair<string, string>> workTask)
+        public void SetElement(Work workTask)
         {
-            WorkType = workTask.Name;
-            if (workTask.Values is null ||
-                workTask.Values.Count < 1)
+            WorkType = workTask.Type;
+            if (workTask.Tasks is null ||
+                workTask.Tasks.Count < 1)
                 return;
 
-            Pair<string, string>
-                task = workTask.Values[0];
+            Task task = workTask.Tasks[0];
             TaskName = task.Name;
-            TaskHours = task.Value;
+            TaskHours = task.Hours;
         }
 
         #region INotifyPropertyChanged Members

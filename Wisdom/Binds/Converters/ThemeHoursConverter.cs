@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Windows.Data;
 using Wisdom.Controls.Tables;
 using Wisdom.Customing;
-using Wisdom.Model;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Binds.Converters
 {
@@ -15,17 +15,17 @@ namespace Wisdom.Binds.Converters
         {
             if (value == null)
                 return 0;
-            ObservableCollection<IRawData<HashList<Pair<string, string>>>>
-                works = value as ObservableCollection<IRawData<HashList<Pair<string, string>>>>;
+
+            ObservableCollection<IRawData<Work>> works = value as ObservableCollection<IRawData<Work>>;
 
             uint sum = 0;
             for (ushort i = 0; i < works.Count; i++)
             {
-                List<Pair<string, string>> work = works[i].Raw().Values;
+                List<Task> work = works[i].Raw().Tasks;
                 for (ushort ii = 0; ii < work.Count; ii++)
                 {
-                    Pair<string, string> task = work[ii];
-                    sum += task.Value.ParseHours();
+                    Task task = work[ii];
+                    sum += task.Hours.ParseHours();
                 }
             }
             return sum.ToString();

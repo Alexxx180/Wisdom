@@ -113,18 +113,6 @@
                             <Binding ElementName="StepsGroup"/>
                         </forms:Switcher.Group>
                     </forms:Switcher>
-
-                    <forms:Switcher Grid.Column="10" Text="|=:|">
-                        <forms:Switcher.ViewStyle>
-                            <StaticResource ResourceKey="AutoSteps"/>
-                        </forms:Switcher.ViewStyle>
-                        <forms:Switcher.Element>
-                            <Binding ElementName="Preview"/>
-                        </forms:Switcher.Element>
-                        <forms:Switcher.Group>
-                            <Binding ElementName="StepsGroup"/>
-                        </forms:Switcher.Group>
-                    </forms:Switcher>
                 </Grid>
 
                 <Button Click="MakeUserTemplate" Grid.Column="6" Style="{StaticResource Steps}">

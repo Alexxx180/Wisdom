@@ -87,7 +87,7 @@ namespace Wisdom.AutoGenerating
 
             string meta = "#META-";
             for (byte i = 0; i < program.MetaData.Count; i++)
-                ReplaceInParagraphs(paragraphs, meta + i, program.MetaData[i].Value);
+                ReplaceInParagraphs(paragraphs, meta + i, program.MetaData[i].Hours);
 
             string hours = "#HOURS-";
             for (byte i = 0; i < program.Hours.Count; i++)

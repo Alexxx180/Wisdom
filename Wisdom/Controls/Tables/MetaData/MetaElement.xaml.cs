@@ -1,18 +1,18 @@
 ﻿using System.Windows.Controls;
-using Wisdom.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Controls.Tables.MetaData
 {
     /// <summary>
     /// Record component containing discipline meta data
     /// </summary>
-    public partial class MetaElement : UserControl, INotifyPropertyChanged, IRawData<Pair<string, string>>
+    public partial class MetaElement : UserControl, INotifyPropertyChanged, IRawData<Task>
     {
-        public Pair<string, string> Raw()
+        public Task Raw()
         {
-            return new Pair<string, string>(MetaName, MetaValue);
+            return new Task(MetaName, MetaValue);
         }
 
         #region MetaData Members
@@ -49,10 +49,10 @@ namespace Wisdom.Controls.Tables.MetaData
             MetaName = type;
         }
 
-        public void SetElement(Pair<string, string> values)
+        public void SetElement(Task values)
         {
             MetaName = values.Name;
-            MetaValue = values.Value;
+            MetaValue = values.Hours;
         }
 
         #region INotifyPropertyChanged Members

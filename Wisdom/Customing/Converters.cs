@@ -109,10 +109,22 @@ namespace Wisdom.Customing
             return archive;
         }
 
+        /// <summary>
+        /// Format number to fit general prefix number.
+        /// </summary>
+        /// <param name="value">String value.</param>
+        /// <returns>General competetion prefix no.</returns>
+        public static string ToGeneralNo(this uint value)
+        {
+            return string.Format("{0:00}", value);
+        }
+
         public static Color Rgb(byte red, byte green, byte blue)
         {
             return Color.FromRgb(red, green, blue);
         }
+
+        
 
         public static ushort GetStudyHours(this Dictionary<string, ushort> hours)
         {

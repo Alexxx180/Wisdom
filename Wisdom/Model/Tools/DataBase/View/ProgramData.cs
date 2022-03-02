@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using static System.Convert;
 using static Wisdom.Model.Tools.DataBase.Converters;
+using Wisdom.Model.ThemePlan;
+using Wisdom.Customing;
 
 namespace Wisdom.Model.Tools.DataBase
 {
@@ -38,7 +40,7 @@ namespace Wisdom.Model.Tools.DataBase
             List<object[]> themePlan = _dataBase.ThemePlan(id);
             List<object[]> generalCompetetions = _dataBase.DisciplineGeneralMastering(id);
             List<object[]> professionalCompetetions = _dataBase.DisciplineProfessionalMastering(id);
-            return GetDiscipline(name, totalHours, metaData, SetThemePlan(themePlan),
+            return GetDiscipline(name, totalHours, metaData, GetThemePlan(themePlan),
                 sources, generalCompetetions, professionalCompetetions);
         }
 
@@ -60,10 +62,10 @@ namespace Wisdom.Model.Tools.DataBase
             return GetSingle(types);
         }
 
-        public List<Pair<string, string>> LevelsData()
+        public List<Task> LevelsData()
         {
             List<object[]> levels = _dataBase.Levels();
-            return SetPlanTasks(levels);
+            return GetTasks(levels);
         }
 
         private static string GetCompetetions(uint id)
@@ -75,89 +77,90 @@ namespace Wisdom.Model.Tools.DataBase
             return competetions;
         }
 
-        private static List<HoursList<LevelsList<HashList<Pair<string, string>>>>> SetThemePlan(List<object[]> themePlan)
+        private static List<Topic> GetThemePlan(List<object[]> themePlan)
         {
-            List<HoursList<LevelsList<HashList<Pair<string, string>>>>> plan =
-                new List<HoursList<LevelsList<HashList<Pair<string, string>>>>>();
+            List<Topic> plan = new List<Topic>();
             for (int i = 0; i < themePlan.Count; i++)
             {
                 object[] row = themePlan[i];
-                HoursList<LevelsList<HashList<Pair<string, string>>>> section =
-                    new HoursList<LevelsList<HashList<Pair<string, string>>>>(
-                    row[2].ToString(), row[3].ToString());
 
-                uint topicId = ToUInt32(row[0]);
-                List<object[]> themes = _dataBase.Themes(topicId);
-                List<LevelsList<HashList<Pair<string, string>>>> topicThemes = SetPlanThemes(themes);
-                section.Values.AddRange(topicThemes);
-                plan.Add(section);
+                uint topicId = row[0].ToUInt();
+                List<object[]> themesData = _dataBase.Themes(topicId);
+                List<Theme> themes = GetThemes(themesData);
+
+                Topic topic = new Topic
+                {
+                    Name = row[2].ToString(),
+                    Hours = row[3].ToString(),
+                    Themes = themes
+                };
+
+                plan.Add(topic);
             }
             return plan;
         }
 
-        private static List<LevelsList<HashList<Pair<string, string>>>> SetPlanThemes(List<object[]> themes)
+        private static List<Theme> GetThemes(List<object[]> themes)
         {
-            List<LevelsList<HashList<Pair<string, string>>>> topicSpace =
-                new List<LevelsList<HashList<Pair<string, string>>>>();
+            List<Theme> group = new List<Theme>();
             for (int ii = 0; ii < themes.Count; ii++)
             {
                 object[] row = themes[ii];
-                uint themeId = ToUInt32(row[0]);
+
+                uint themeId = row[0].ToUInt();
+                List<object[]> worksData = _dataBase.Works(themeId);
+                List<Work> works = GetWorks(worksData);
+
                 string competetions = GetCompetetions(themeId);
+                Theme theme = new Theme
+                {
+                    Name = row[2].ToString(),
+                    Hours = row[3].ToString(),
+                    Level = row[4].ToString(),
+                    Competetions = competetions,
+                    Works = works
+                };
 
-                LevelsList<HashList<Pair<string, string>>> theme = new
-                LevelsList<HashList<Pair<string, string>>>(
-                row[2].ToString(),
-                row[3].ToString(), competetions,
-                row[4].ToString());
-
-                List<object[]> works = _dataBase.Works(themeId);
-                List<HashList<Pair<string, string>>> themeWorks = SetPlanWorks(works);
-                theme.Values.AddRange(themeWorks);
-                topicSpace.Add(theme);
+                group.Add(theme);
             }
-            return topicSpace;
+            return group;
         }
 
-        private static List<HashList<Pair<string, string>>> SetPlanWorks(List<object[]> works)
+        private static List<Work> GetWorks(List<object[]> works)
         {
-            List<HashList<Pair<string, string>>> themeSpace = new
-                List<HashList<Pair<string, string>>>();
+            List<Work> group = new List<Work>();
             for (int iii = 0; iii < works.Count; iii++)
             {
                 object[] row = works[iii];
-                HashList<Pair<string, string>> work = new
-                    HashList<Pair<string, string>>(row[1].ToString());
 
-                uint workId = ToUInt32(row[0]);
-                List<object[]> tasks = _dataBase.Tasks(workId);
-                List<Pair<string, string>>
-                    workTasks = SetPlanTasks(tasks);
-                work.Values.AddRange(workTasks);
-                themeSpace.Add(work);
+                uint workId = row[0].ToUInt();
+                List<object[]> tasksData = _dataBase.Tasks(workId);
+                List<Task> tasks = GetTasks(tasksData);
+
+                Work work = new Work(row[1].ToString(), tasks);
+
+                group.Add(work);
             }
-            return themeSpace;
+            return group;
         }
 
-        private static List<Pair<string, string>>
-            SetPlanTasks(List<object[]> tasks)
+        private static List<Task> GetTasks(List<object[]> tasks)
         {
-            List<Pair<string, string>> workSpace = new
-                List<Pair<string, string>>();
+            List<Task> group = new List<Task>();
             for (int iv = 0; iv < tasks.Count; iv++)
             {
                 object[] row = tasks[iv];
+
                 string name = row[1].ToString();
                 string hours = row[2].ToString();
-                Pair<string, string> task = new
-                    Pair<string, string>(name, hours);
-                workSpace.Add(task);
+                Task task = new Task(name, hours);
+
+                group.Add(task);
             }
-            return workSpace;
+            return group;
         }
 
-        private static List<string>
-            GetSingle(List<object[]> tasks)
+        private static List<string> GetSingle(List<object[]> tasks)
         {
             List<string> workSpace = new List<string>();
             for (int iv = 0; iv < tasks.Count; iv++)
