@@ -1,4 +1,7 @@
-﻿namespace Wisdom.Model
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Experiments")]
+namespace Wisdom.Model
 {
     /// <summary>
     /// An universal class to create any necessary objects while debugging

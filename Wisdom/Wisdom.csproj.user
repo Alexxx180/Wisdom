@@ -48,9 +48,6 @@
     <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\MetaDataPart.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\PreviewPart.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\ThemePlanPart.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -159,9 +156,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\MetaDataPart.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\PreviewPart.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\ThemePlanPart.xaml">

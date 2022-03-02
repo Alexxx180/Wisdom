@@ -163,7 +163,5 @@
         <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
 
         <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
-
-        <dpforms:PreviewPart x:Name="Preview" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
     </Grid>
 </Window>
