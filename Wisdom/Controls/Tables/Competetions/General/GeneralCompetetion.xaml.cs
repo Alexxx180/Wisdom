@@ -129,7 +129,8 @@ namespace Wisdom.Controls.Tables.Competetions.General
 
         public void SetElement(Competetion competetion)
         {
-            uint no = Regex.Match(competetion.Name, @"\d+").Value.ToUInt();
+            string prefixNo = Regex.Match(competetion.PrefixNo, @"\d+").Value;
+            uint no = prefixNo.ToUInt();
             Index(no);
 
             GeneralName = competetion.Name;

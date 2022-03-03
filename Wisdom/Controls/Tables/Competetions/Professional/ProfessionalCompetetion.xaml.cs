@@ -131,7 +131,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
 
         public void SetElement(Competetion competetion)
         {
-            string no = competetion.Name;
+            string no = competetion.PrefixNo;
 
             ProfessionalNo = no[(no.LastIndexOf('.') + 1)..];
             ProfessionalName = competetion.Name;

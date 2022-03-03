@@ -107,9 +107,10 @@ namespace Wisdom.ViewModel
             set
             {
                 _specialityNo = value;
-                DisciplineNo = -1;
                 OnPropertyChanged();
-                if (value >= 0 && value < SpecialityHead.Name.Count)
+                DisciplineNo = -1;
+                if (value >= 0 &&
+                    value < SpecialityHead.Name.Count)
                     ResetCompetetions();
             }
         }
@@ -168,7 +169,7 @@ namespace Wisdom.ViewModel
             {
                 _disciplineNo = value;
                 OnPropertyChanged();
-                if (SpecialityNo >= 0 && value >= 0 &&
+                if (value >= 0 && SpecialityNo >= 0 &&
                     value < DisciplineHead.Name.Count)
                     ResetDiscipline();
             }

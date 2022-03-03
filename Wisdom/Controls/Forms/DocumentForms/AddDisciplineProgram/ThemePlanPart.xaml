@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:plan="clr-namespace:Wisdom.Controls.Tables.ThemePlan"
              xmlns:levels="clr-namespace:Wisdom.Controls.Tables.EducationLevels"
-             xmlns:bind="clr-namespace:Wisdom.Binds"
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
+             xmlns:extractors="clr-namespace:Wisdom.Binds.Converters.Extractors"
              xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
              xmlns:tables="clr-namespace:Wisdom.Controls.Tables"
              xmlns:forms="clr-namespace:Wisdom.Controls.Forms"
@@ -14,9 +14,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <!--<bind:CompetetionsConverter x:Key="CompetetionsConverter" />
-        <bind:UsedValuesConverter x:Key="UsedValuesConverter" />
-        <bind:SumConverter x:Key="SumConverter" />-->
+        <extractors:ThemePlanHours x:Key="ThemePlanHours" />
         <converters:ThemePlanConverter x:Key="ThemePlanConverter"/>
         <converters:LevelsConverter x:Key="LevelsConverter"/>
     </UserControl.Resources>
@@ -100,40 +98,23 @@
 
                 <Grid Grid.Row="1" Style="{StaticResource ThemePlan}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.37*" />
-                        <ColumnDefinition Width="0.13*" />
-                        <ColumnDefinition Width="0.37*" />
-                        <ColumnDefinition Width="0.13*" />
+                        <ColumnDefinition Width="0.8*" />
+                        <ColumnDefinition Width="0.2*" />
                     </Grid.ColumnDefinitions>
 
+                    <Viewbox HorizontalAlignment="Left">
+                        <TextBlock Text=" Объём часов:" />
+                    </Viewbox>
 
-                    <Border Grid.Row="1">
-                        <Viewbox HorizontalAlignment="Left">
-                            <TextBlock Text=" Всего доступно:"/>
-                        </Viewbox>
-                    </Border>
-
-                    <Border Grid.Row="1" Grid.Column="1">
-                        <Viewbox HorizontalAlignment="Center">
-                            <TextBlock x:Name="AvailableInputted">
+                    <Border Grid.Column="1">
+                        <Viewbox HorizontalAlignment="Right">
+                            <TextBlock>
                                 <TextBlock.Text>
-                                    0
-                                </TextBlock.Text>
-                            </TextBlock>
-                        </Viewbox>
-                    </Border>
-
-                    <Border Grid.Row="1" Grid.Column="2">
-                        <Viewbox HorizontalAlignment="Left">
-                            <TextBlock Text=" Объём часов:" />
-                        </Viewbox>
-                    </Border>
-
-                    <Border Grid.Row="1" Grid.Column="3">
-                        <Viewbox HorizontalAlignment="Center">
-                            <TextBlock x:Name="TotalHoursUsed" Tag="{x:Reference AvailableInputted}">
-                                <TextBlock.Text>
-                                    1
+                                    <Binding Path="ThemePlan">
+                                        <Binding.Converter>
+                                            <StaticResource ResourceKey="ThemePlanHours"/>
+                                        </Binding.Converter>
+                                    </Binding>
                                 </TextBlock.Text>
                             </TextBlock>
                         </Viewbox>
@@ -173,11 +154,23 @@
 
                 <tables:AutoPanel Grid.Row="1">
                     <tables:AutoPanel.Records>
-                        <Binding Path="DataContext.Levels"
-                                 ElementName="TreeContext"
-                                 Converter="{StaticResource LevelsConverter}"
-                                 UpdateSourceTrigger="Explicit"
-                                 Mode="TwoWay" />
+                        <Binding>
+                            <Binding.ElementName>
+                                TreeContext
+                            </Binding.ElementName>
+                            <Binding.Path>
+                                DataContext.Levels
+                            </Binding.Path>
+                            <Binding.Converter>
+                                <StaticResource ResourceKey="LevelsConverter"/>
+                            </Binding.Converter>
+                            <Binding.Mode>
+                                TwoWay
+                            </Binding.Mode>
+                            <Binding.UpdateSourceTrigger>
+                                Explicit
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
                     </tables:AutoPanel.Records>
                     <tables:AutoPanel.Additor>
                         <levels:EducationLevelAdditor Options="{Binding RelativeSource={RelativeSource AncestorLevel=1, AncestorType=tables:AutoPanel}}"/>
