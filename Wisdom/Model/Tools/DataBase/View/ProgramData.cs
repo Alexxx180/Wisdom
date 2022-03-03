@@ -50,7 +50,7 @@ namespace Wisdom.Model.Tools.DataBase
             return GetSingle(types);
         }
 
-        public List<string> HourTypesData()
+        public List<string> WorkTypesData()
         {
             List<object[]> types = _dataBase.WorkTypes();
             return GetSingle(types);

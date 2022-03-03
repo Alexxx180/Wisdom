@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,9 +16,22 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             ThemeProperty = DependencyProperty.Register(nameof(Theme),
                 typeof(PlanTheme), typeof(PlanWorkAdditor));
 
+        public static readonly DependencyProperty
+            TypesProperty = DependencyProperty.Register(nameof(Types),
+                typeof(ObservableCollection<string>),
+                typeof(PlanWorkAdditor));
+
 #warning WRONG: DATABASE IS NOT RELATED TO WORKS
 
         #region WorkAdditor Members
+        public static ObservableCollection<string> AvailableTypes { get; set; }
+
+        public ObservableCollection<string> Types
+        {
+            get => GetValue(TypesProperty) as ObservableCollection<string>;
+            set => SetValue(TypesProperty, value);
+        }
+
         public PlanTheme Theme
         {
             get => GetValue(ThemeProperty) as PlanTheme;

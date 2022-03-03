@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:bind="clr-namespace:Wisdom.Binds"
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
@@ -13,7 +12,11 @@
         <converters:HoursConverter x:Key="HoursConverter"/>
     </UserControl.Resources>
 
-    <Grid Grid.Row="1" DataContext="{Binding Path=ViewModel}">
+    <Grid Grid.Row="1">
+        <Grid.DataContext>
+            <Binding Path="ViewModel"/>
+        </Grid.DataContext>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition Width="0.9*"/>
@@ -48,7 +51,10 @@
                     <TextBlock Text="Специальность" Padding="0"/>
                 </Viewbox>
 
-                <ComboBox Grid.Row="1" Style="{StaticResource SubCaptionBox}" IsEditable="True">
+                <ComboBox Grid.Row="1" IsEditable="True">
+                    <ComboBox.Style>
+                        <StaticResource ResourceKey="SubCaptionBox"/>
+                    </ComboBox.Style>
                     <ComboBox.ItemContainerStyle>
                         <StaticResource ResourceKey="ItemsBox"/>
                     </ComboBox.ItemContainerStyle>
@@ -80,10 +86,13 @@
                 
 
                 <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                    <TextBlock Text="Дисциплина" Padding="0" />
+                    <TextBlock Text="Дисциплина" />
                 </Viewbox>
 
-                <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource SubCaptionBox}" IsEditable="True">
+                <ComboBox Grid.Row="1" Grid.Column="1" IsEditable="True">
+                    <ComboBox.Style>
+                        <StaticResource ResourceKey="SubCaptionBox"/>
+                    </ComboBox.Style>
                     <ComboBox.ItemContainerStyle>
                         <StaticResource ResourceKey="ItemsBox"/>
                     </ComboBox.ItemContainerStyle>
@@ -237,10 +246,16 @@
                     <Border Grid.Column="1">
                         
                         <Viewbox HorizontalAlignment="Center">
-                            <TextBlock x:Name="Total" Style="{StaticResource CaptionSections}">
+                            <TextBlock x:Name="Total">
+                                <TextBlock.Style>
+                                    <StaticResource ResourceKey="CaptionSections"/>
+                                </TextBlock.Style>
                                 <TextBlock.Text>
-                                    <Binding Path="Hours" Converter="{StaticResource HoursConverter}" />
-                                    <!--<MultiBinding Converter="{StaticResource SumConverter}"/>-->
+                                    <Binding Path="Hours">
+                                        <Binding.Converter>
+                                            <StaticResource ResourceKey="HoursConverter"/>
+                                        </Binding.Converter>
+                                    </Binding>
                                 </TextBlock.Text>
                             </TextBlock>
                         </Viewbox>

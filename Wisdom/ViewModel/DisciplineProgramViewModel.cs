@@ -53,6 +53,9 @@ namespace Wisdom.ViewModel
                 _data = value;
                 SetLevels();
                 SetMetaTypes();
+
+                DocumentTypes.WorkTypes.Refresh(Data.WorkTypesData());
+
                 SetHourTypes();
                 SetSourceTypes();
                 SpecialityHead = _data.ListSpecialities();
@@ -566,8 +569,6 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region DisciplineAutoSet Logic
-        
-
         internal void ResetDiscipline()
         {
             SelectedDiscipline = Data.DisciplineData(DisciplineHead.Name[DisciplineNo], DisciplineFullName);
@@ -595,8 +596,6 @@ namespace Wisdom.ViewModel
                     study += SelectedDiscipline.TotalHours[i].Value;
                 }
             }
-
-            //
 
             EduHours = study.ToString();
             SelfHours = self.ToString();
@@ -680,8 +679,6 @@ namespace Wisdom.ViewModel
                 topic.SetElement(program.Plan[i]);
                 ThemePlan.Add(topic);
             }
-
-            //OnPropertyChanged(nameof(ThemePlan));
         }
 
         private void SetSourceTypes()
@@ -722,35 +719,18 @@ namespace Wisdom.ViewModel
 
         private void SetHourTypes()
         {
-            HourTypes = Data.HourTypesData();
             Hours.Clear();
-            for (byte i = 0; i < HourTypes.Count; i++)
+            for (byte i = 0; i < DocumentTypes.WorkTypes.Count; i++)
             {
                 HourElement hour = new HourElement
                 {
                     ViewModel = this
                 };
-                hour.SetType(HourTypes[i]);
+                hour.SetType(DocumentTypes.WorkTypes[i]);
                 Hours.Add(hour);
             }
-            //ResetTotalHourBinds();
         }
         #endregion
-
-#warning HOURS HIGHLIGHTING NEED TO BE REPAIRED
-        //private void ResetTotalHourBinds()
-        //{
-        //    MultiBinding multiCount = TruncateMulti(Inputted, ContentProperty, new SumConverter());
-        //    for (byte i = 0; i < TotalHoursCount.Children.Count; i++)
-        //    {
-        //        HourElement hour = TotalHoursCount.Children[i] as HourElement;
-        //        Grid hourGrid = hour.Content as Grid;
-        //        TextBox hourValue = Box(hourGrid, 1);
-        //        Binding bindHours = FastBind(hourValue, "Text");k
-        //        multiCount.Bindings.Add(bindHours);
-        //    }
-        //    _ = SetBind(Inputted, ContentProperty, multiCount);
-        //}
 
 #warning Cool Features Here!!
         // TO DO

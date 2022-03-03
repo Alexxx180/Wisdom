@@ -82,6 +82,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
             set
             {
                 _topicHours = value;
+                Options?.RegisterEdit();
                 OnPropertyChanged();
             }
         }

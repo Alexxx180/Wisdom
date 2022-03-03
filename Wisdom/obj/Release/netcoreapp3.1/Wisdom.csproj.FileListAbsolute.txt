@@ -192,3 +192,7 @@ D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdo
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.CopyComplete
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.genruntimeconfig.cache
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\EducationLevels\EducationLevelFields.g.cs
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\EducationLevels\EducationLevelFields.baml
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskFields.baml
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskFields.g.cs

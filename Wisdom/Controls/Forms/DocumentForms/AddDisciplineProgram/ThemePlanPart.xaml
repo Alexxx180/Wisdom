@@ -19,7 +19,11 @@
         <converters:LevelsConverter x:Key="LevelsConverter"/>
     </UserControl.Resources>
 
-    <Grid Grid.Row="1" x:Name="TreeContext" DataContext="{Binding Path=ViewModel}">
+    <Grid Grid.Row="1" x:Name="TreeContext">
+        <Grid.DataContext>
+            <Binding Path="ViewModel"/>
+        </Grid.DataContext>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.025*"/>
             <ColumnDefinition Width="0.95*"/>
@@ -49,20 +53,34 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <forms:Switcher Text="Тематический план"
-                                    Group="{Binding ElementName=ThemePlanGroup}"
-                                    Element="{Binding ElementName=Plan}">
+                <forms:Switcher>
                     <forms:Switcher.ViewStyle>
                         <StaticResource ResourceKey="Steps3"/>
                     </forms:Switcher.ViewStyle>
+                    <forms:Switcher.Text>
+                        Тематический план
+                    </forms:Switcher.Text>
+                    <forms:Switcher.Group>
+                        <Binding ElementName="ThemePlanGroup"/>
+                    </forms:Switcher.Group>
+                    <forms:Switcher.Element>
+                        <Binding ElementName="Plan"/>
+                    </forms:Switcher.Element>
                 </forms:Switcher>
 
-                <forms:Switcher Grid.Column="1" Text="Уровни компетенций"
-                                    Group="{Binding ElementName=ThemePlanGroup}"
-                                    Element="{Binding ElementName=Levels}">
+                <forms:Switcher Grid.Column="1">
                     <forms:Switcher.ViewStyle>
                         <StaticResource ResourceKey="Steps3"/>
                     </forms:Switcher.ViewStyle>
+                    <forms:Switcher.Text>
+                        Уровни компетенций
+                    </forms:Switcher.Text>
+                    <forms:Switcher.Group>
+                        <Binding ElementName="ThemePlanGroup"/>
+                    </forms:Switcher.Group>
+                    <forms:Switcher.Element>
+                        <Binding ElementName="Levels"/>
+                    </forms:Switcher.Element>
                 </forms:Switcher>
             </Grid>
 
@@ -83,20 +101,44 @@
 
                         <tables:RecordsPanel Grid.Row="1">
                             <tables:RecordsPanel.Records>
-                                <Binding Path="DataContext.ThemePlan"
-                                 ElementName="TreeContext"
-                                 Converter="{StaticResource ThemePlanConverter}"
-                                 UpdateSourceTrigger="Explicit"
-                                 Mode="TwoWay" />
+                                <Binding>
+                                    <Binding.ElementName>
+                                        TreeContext
+                                    </Binding.ElementName>
+                                    <Binding.Path>
+                                        DataContext.ThemePlan
+                                    </Binding.Path>
+                                    <Binding.Converter>
+                                        <StaticResource ResourceKey="ThemePlanConverter"/>
+                                    </Binding.Converter>
+                                    <Binding.Mode>
+                                        TwoWay
+                                    </Binding.Mode>
+                                    <Binding.UpdateSourceTrigger>
+                                        Explicit
+                                    </Binding.UpdateSourceTrigger>
+                                </Binding>
                             </tables:RecordsPanel.Records>
                             <tables:RecordsPanel.Additor>
-                                <plan:PlanTopicAdditor Options="{Binding RelativeSource={RelativeSource AncestorLevel=1, AncestorType=tables:RecordsPanel}}"/>
+                                <plan:PlanTopicAdditor>
+                                    <plan:PlanTopicAdditor.Options>
+                                        <Binding>
+                                            <Binding.RelativeSource>
+                                                <RelativeSource AncestorLevel="1" AncestorType="tables:RecordsPanel"/>
+                                            </Binding.RelativeSource>
+                                        </Binding>
+                                    </plan:PlanTopicAdditor.Options>
+                                </plan:PlanTopicAdditor>
                             </tables:RecordsPanel.Additor>
                         </tables:RecordsPanel>
                     </StackPanel>
                 </ScrollViewer>
 
-                <Grid Grid.Row="1" Style="{StaticResource ThemePlan}">
+                <Grid Grid.Row="1">
+                    <Grid.Style>
+                        <StaticResource ResourceKey="ThemePlan"/>
+                    </Grid.Style>
+                    
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.8*" />
                         <ColumnDefinition Width="0.2*" />
@@ -128,29 +170,7 @@
                     <RowDefinition Height="0.94*" />
                 </Grid.RowDefinitions>
 
-
-                <Grid Background="#FF03C6FF" Style="{StaticResource ListCaptions}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.05*" />
-                        <ColumnDefinition Width="0.158*" />
-                        <ColumnDefinition Width="0.304*" />
-                        <ColumnDefinition Width="0.509*" />
-                        <ColumnDefinition Width="0.019*" />
-                    </Grid.ColumnDefinitions>
-
-
-                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
-                        <TextBlock Text="№"/>
-                    </Viewbox>
-
-                    <Viewbox Grid.Column="2" HorizontalAlignment="Left">
-                        <TextBlock Text="Название"/>
-                    </Viewbox>
-
-                    <Viewbox Grid.Column="3" HorizontalAlignment="Left">
-                        <TextBlock Text="Описание"/>
-                    </Viewbox>
-                </Grid>
+                <levels:EducationLevelFields/>
 
                 <tables:AutoPanel Grid.Row="1">
                     <tables:AutoPanel.Records>

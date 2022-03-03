@@ -57,6 +57,9 @@
     <Compile Update="Controls\Tables\EducationLevels\EducationLevelAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Tables\EducationLevels\EducationLevelFields.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Tables\Hours\HourElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -117,6 +120,9 @@
     <Compile Update="Controls\Forms\MainForm\UserTemplates\TemplateControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskFields.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddProg.xaml">
@@ -165,6 +171,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\EducationLevels\EducationLevelAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\EducationLevels\EducationLevelFields.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\Hours\HourElement.xaml">
@@ -225,6 +234,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Forms\MainForm\UserTemplates\TemplateControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskFields.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

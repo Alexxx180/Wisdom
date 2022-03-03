@@ -55,12 +55,22 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            
-            <TextBox Grid.Column="3" Style="{StaticResource HoursBox}">
+
+            <TextBox Grid.Column="3">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="HoursBox"/>
+                </TextBox.Style>
                 <TextBox.Background>
-                    <MultiBinding Converter="{StaticResource UsedValuesConverter}">
+                    <MultiBinding>
+                        <MultiBinding.Converter>
+                            <StaticResource ResourceKey="UsedValuesConverter"/>
+                        </MultiBinding.Converter>
                         <Binding Path="TopicHours"/>
-                        <Binding Path="Themes" Converter="{StaticResource TopicHoursConverter}" />
+                        <Binding Path="Themes">
+                            <Binding.Converter>
+                                <StaticResource ResourceKey="TopicHoursConverter"/>
+                            </Binding.Converter>
+                        </Binding>
                     </MultiBinding>
                 </TextBox.Background>
                 <TextBox.Text>
