@@ -2,20 +2,27 @@
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Wisdom.Model;
 using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
 {
     /// <summary>
-    /// Task of work
+    /// Task of theme's work
     /// </summary>
     public partial class PlanTask : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Task>
     {
+        #region IRawData Members
         public Task Raw()
         {
             return new Task(TaskName, TaskHours);
         }
+
+        public void SetElement(Task task)
+        {
+            TaskName = task.Name;
+            TaskHours = task.Hours;
+        }
+        #endregion
 
         #region IAutoIndexing Members
         private uint _no;
@@ -83,12 +90,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
         private void DropTask(object sender, RoutedEventArgs e)
         {
             Work.DropTask(this);
-        }
-
-        public void SetElement(Task task)
-        {
-            TaskName = task.Name;
-            TaskHours = task.Hours;
         }
 
         #region INotifyPropertyChanged Members

@@ -11,10 +11,17 @@ namespace Wisdom.Controls.Tables.Sources
     /// </summary>
     public partial class SourceElement : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<string>
     {
+        #region IRawData Members
         public string Raw()
         {
             return Source;
         }
+
+        public void SetElement(string name)
+        {
+            Source = name;
+        }
+        #endregion
 
         #region IAutoIndexing Members
         private uint _no;

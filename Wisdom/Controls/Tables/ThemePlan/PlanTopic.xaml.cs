@@ -14,6 +14,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
     /// </summary>
     public partial class PlanTopic : UserControl, INotifyPropertyChanged, IRecordsIndexing, IRawData<Topic>
     {
+        #region IRawData Members
         public Topic Raw()
         {
             return new Topic
@@ -21,6 +22,27 @@ namespace Wisdom.Controls.Tables.ThemePlan
                 Themes = Themes.GetRaw()
             };
         }
+
+        public void SetElement(Topic topic)
+        {
+            TopicName = topic.Name;
+            TopicHours = topic.Hours;
+
+            ushort i;
+            for (i = 0; i < topic.Themes.Count; i++)
+            {
+                PlanTheme theme = new PlanTheme
+                {
+                    No = (i + 1).ToUInt(),
+                    Topic = this
+                };
+                theme.SetElement(topic.Themes[i]);
+                Themes.Add(theme);
+            }
+            ThemeAdditor.Index((i + 1).ToUInt());
+            RefreshHours();
+        }
+        #endregion
 
         #region IAutoIndexing Members
         private uint _no;
@@ -130,26 +152,6 @@ namespace Wisdom.Controls.Tables.ThemePlan
             OnPropertyChanged(nameof(Themes));
         }
         #endregion
-
-        public void SetElement(Topic topic)
-        {
-            TopicName = topic.Name;
-            TopicHours = topic.Hours;
-
-            ushort i;
-            for (i = 0; i < topic.Themes.Count; i++)
-            {
-                PlanTheme theme = new PlanTheme
-                {
-                    No = (i + 1).ToUInt(),
-                    Topic = this
-                };
-                theme.SetElement(topic.Themes[i]);
-                Themes.Add(theme);
-            }
-            ThemeAdditor.Index((i + 1).ToUInt());
-            RefreshHours();
-        }
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

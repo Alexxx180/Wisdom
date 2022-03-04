@@ -9,15 +9,23 @@ using Wisdom.Customing;
 namespace Wisdom.Controls
 {
     /// <summary>
-    /// Record component containing theme plan hours total count (user preset)
+    /// Record component containing total hours count (user preset)
     /// </summary>
     public partial class HourElement : UserControl, INotifyPropertyChanged, IRawData<Pair<string, ushort>>
     {
+        #region IRawData Members
         public Pair<string, ushort> Raw()
         {
             ushort hours = HourValue.ParseHours();
             return new Pair<string, ushort>(WorkType, hours);
         }
+
+        public void SetElement(Pair<string, ushort> values)
+        {
+            WorkType = values.Name;
+            HourValue = values.Value.ToString();
+        }
+        #endregion
 
         #region Hour Members
         private DisciplineProgramViewModel _viewModel;
@@ -63,12 +71,6 @@ namespace Wisdom.Controls
         public void SetType(string value)
         {
             WorkType = value;
-        }
-
-        public void SetElement(Pair<string, ushort> values)
-        {
-            WorkType = values.Name;
-            HourValue = values.Value.ToString();
         }
 
         #region INotifyPropertyChanged Members

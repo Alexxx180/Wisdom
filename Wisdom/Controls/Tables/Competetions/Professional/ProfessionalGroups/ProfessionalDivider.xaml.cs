@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 using Wisdom.Model;
 using Wisdom.Customing;
 using System.Text.RegularExpressions;
-using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
 {
@@ -16,10 +15,29 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
     /// </summary>
     public partial class ProfessionalDivider : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<List<Competetion>>
     {
+        #region IRawData Members
         public List<Competetion> Raw()
         {
-            return GetDivision();
+            return Competetions.GetRaw();
         }
+
+        public void SetElement(List<Competetion> competetions)
+        {
+            if (competetions.Count < 0)
+                return;
+
+            DividerNo = Regex.Match(competetions[0].PrefixNo, ".\\d+").Value;
+            for (ushort i = 0; i < competetions.Count; i++)
+            {
+                ProfessionalCompetetion competetion = new ProfessionalCompetetion
+                {
+                    Group = this
+                };
+                competetion.SetElement(competetions[i]);
+                Competetions.Add(competetion);
+            }
+        }
+        #endregion
 
         #region IOptionableIndexing Members
         private AutoPanel _options;
@@ -104,6 +122,12 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             Index(1);
         }
 
+        private void DropDivision(object sender, RoutedEventArgs e)
+        {
+            Options.DropRecord(this);
+        }
+
+        #region CompetetionsGroup Members
         public void DropCompetetion(ProfessionalCompetetion competetion)
         {
             _ = Competetions.Remove(competetion);
@@ -118,40 +142,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             CheckAuto();
             return Options.Mode == Indexing.NEW_ONLY;
         }
-
-        public List<Competetion> GetDivision()
-        {
-            List<Competetion>
-                competetions = new
-                List<Competetion>();
-            for (byte i = 0; i < Competetions.Count - 1; i++)
-            {
-                competetions.Add(Competetions[i].Raw());
-            }
-            return competetions;
-        }
-
-        private void DropDivision(object sender, RoutedEventArgs e)
-        {
-            Options.DropRecord(this);
-        }
-
-        public void SetElement(List<Competetion> competetions)
-        {
-            if (competetions.Count < 0)
-                return;
-
-            DividerNo = Regex.Match(competetions[0].Name, ".\\d+").Value;
-            for (ushort i = 0; i < competetions.Count; i++)
-            {
-                ProfessionalCompetetion competetion = new ProfessionalCompetetion
-                {
-                    Group = this
-                };
-                competetion.SetElement(competetions[i]);
-                Competetions.Add(competetion);
-            }
-        }
+        #endregion
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

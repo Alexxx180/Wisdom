@@ -15,6 +15,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
     /// </summary>
     public partial class GeneralCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Competetion>
     {
+        #region IRawData Members
         public Competetion Raw()
         {
             return new Competetion
@@ -27,6 +28,20 @@ namespace Wisdom.Controls.Tables.Competetions.General
                 }
             };
         }
+
+        public void SetElement(Competetion competetion)
+        {
+            string prefixNo = Regex.Match(competetion.PrefixNo, @"\d+").Value;
+            uint no = prefixNo.ToUInt();
+            Index(no);
+
+            GeneralName = competetion.Name;
+
+            List<Task> data = competetion.Abilities;
+            GeneralSkills = data[0].Hours;
+            GeneralKnowledge = data[1].Hours;
+        }
+        #endregion
 
         #region IOptionableIndexing Members
         private AutoPanel _options;
@@ -125,19 +140,6 @@ namespace Wisdom.Controls.Tables.Competetions.General
         private void DropCompetetion(object sender, RoutedEventArgs e)
         {
             Options.DropRecord(this);
-        }
-
-        public void SetElement(Competetion competetion)
-        {
-            string prefixNo = Regex.Match(competetion.PrefixNo, @"\d+").Value;
-            uint no = prefixNo.ToUInt();
-            Index(no);
-
-            GeneralName = competetion.Name;
-
-            List<Task> data = competetion.Abilities;
-            GeneralSkills = data[0].Hours;
-            GeneralKnowledge = data[1].Hours;
         }
 
         #region INotifyPropertyChanged Members

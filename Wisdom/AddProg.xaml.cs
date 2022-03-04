@@ -11,6 +11,7 @@ namespace Wisdom
     /// </summary>
     public partial class AddProg : Window, INotifyPropertyChanged
     {
+        #region DisciplineProgramWindow Members
         private DisciplineProgramViewModel _viewModel;
         public DisciplineProgramViewModel ViewModel
         {
@@ -32,6 +33,7 @@ namespace Wisdom
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         public AddProg()
         {
@@ -46,9 +48,8 @@ namespace Wisdom
 
         private void MakeUserTemplate(object sender, RoutedEventArgs e)
         {
-            //ViewModel.TestCompetetions();
             ViewModel.CreateTemplate(FileName);
-        }      
+        }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {

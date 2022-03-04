@@ -11,10 +11,24 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
     /// </summary>
     public partial class PlanWorkTask : UserControl, INotifyPropertyChanged, IRawData<Work>
     {
+        #region IRawData Members
         public Work Raw()
         {
             return new Work(WorkType, new Task(TaskName, TaskHours));
         }
+
+        public void SetElement(Work workTask)
+        {
+            WorkType = workTask.Type;
+            if (workTask.Tasks is null ||
+                workTask.Tasks.Count < 1)
+                return;
+
+            Task task = workTask.Tasks[0];
+            TaskName = task.Name;
+            TaskHours = task.Hours;
+        }
+        #endregion
 
         #region PlanWorkTask Members
         private PlanTheme _theme;
@@ -71,18 +85,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
         private void DropTask(object sender, RoutedEventArgs e)
         {
             Theme.DropWork(this);
-        }
-
-        public void SetElement(Work workTask)
-        {
-            WorkType = workTask.Type;
-            if (workTask.Tasks is null ||
-                workTask.Tasks.Count < 1)
-                return;
-
-            Task task = workTask.Tasks[0];
-            TaskName = task.Name;
-            TaskHours = task.Hours;
         }
 
         #region INotifyPropertyChanged Members

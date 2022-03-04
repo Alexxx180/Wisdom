@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using Wisdom.Model;
 using Wisdom.Model.ThemePlan;
 
@@ -70,14 +67,14 @@ namespace Wisdom.Tests
             }
         }
 
-        public static void TestCompetetion(List<HoursList<Task>> competetion, string prefix)
+        public static void TestCompetetion(List<Competetion> competetion, string prefix)
         {
-            foreach (HoursList<Task> l1 in competetion)
+            foreach (Competetion l1 in competetion)
             {
                 Trace.WriteLine("Компетенция ...");
-                Trace.WriteLine("Номер: " + prefix + l1.Name);
-                Trace.WriteLine("Название: " + l1.Hours);
-                foreach (Task l2 in l1.Values)
+                Trace.WriteLine("Номер: " + prefix + l1.PrefixNo);
+                Trace.WriteLine("Название: " + l1.Name);
+                foreach (Task l2 in l1.Abilities)
                 {
                     Trace.WriteLine("Тема ...");
                     Trace.WriteLine("Название: " + l2.Name);
@@ -86,9 +83,9 @@ namespace Wisdom.Tests
             }
         }
 
-        public static void TestCompetetion2(List<List<HoursList<Task>>> competetion, string prefix)
+        public static void TestCompetetion2(List<List<Competetion>> competetion, string prefix)
         {
-            foreach (List<HoursList<Task>> l1 in competetion)
+            foreach (List<Competetion> l1 in competetion)
             {
                 TestCompetetion(l1, prefix);
             }

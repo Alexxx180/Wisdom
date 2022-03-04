@@ -13,7 +13,6 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized" Icon="/Wisdom.png">
     <Window.Resources>
-        <bind:CompetetionsConverter x:Key="CompetetionsConverter" />
         <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
     </Window.Resources>
     

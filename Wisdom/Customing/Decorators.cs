@@ -1,160 +1,65 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using System.Collections.Generic;
+using Wisdom.Controls.Tables;
 
 namespace Wisdom.Customing
 {
     public static class Decorators
     {
-        private static Uri Ura(in string path)
+        public static Color Rgb(byte red, byte green, byte blue)
         {
-            return new Uri(path, UriKind.RelativeOrAbsolute);
-        }
-        public static BitmapImage Bmper(in string path)
-        {
-            return new BitmapImage(Ura(path));
+            return Color.FromRgb(red, green, blue);
         }
 
         public static void SetActive(this FrameworkElement element, bool isEnabled)
         {
             element.Visibility = isEnabled ?
-                Visibility.Visible : Visibility.Hidden;
+                Visibility.Visible :
+                Visibility.Hidden;
             element.IsEnabled = isEnabled;
         }
-
-        public static void AnyHide(FrameworkElement element)
+        //IRawData<T>
+        public static void SetDataElements<TComponent, TData>(
+            this IList<TComponent> list, IEnumerable<TData> value)
         {
-            element.Visibility = Visibility.Hidden;
-            element.IsEnabled = false;
-        }
-        public static void AnyShow(FrameworkElement element)
-        {
-            element.Visibility = Visibility.Visible;
-            element.IsEnabled = true;
-        }
-        public static void GridHide(Grid grid)
-        {
-            grid.Visibility = Visibility.Hidden;
-            grid.IsEnabled = false;
-        }
-        public static void GridShow(Grid grid)
-        {
-            grid.Visibility = Visibility.Visible;
-            grid.IsEnabled = true;
-        }
-        public static void GridHideX(params Grid[] grids)
-        {
-            foreach (Grid grid in grids) GridHide(grid);
-        }
-        public static void AnyHideX(params FrameworkElement[] elements)
-        {
-            foreach (FrameworkElement element in elements) AnyHide(element);
-        }
-        public static void EnableX(bool value, params FrameworkElement[] elements)
-        {
-            for (byte i = 0; i < elements.Length; i++)
-                elements[i].IsEnabled = value;
-        }
-        public static void GridAdd(Grid grid, UIElement element)
-        {
-            grid.Children.Add(element);
-        }
-        public static void GridAddX(Grid grid, params UIElement[] elements)
-        {
-            foreach (UIElement element in elements)
-                GridAdd(grid, element);
-        }
-        public static void GridAddX2(Grid grid, int columnStartNo, params FrameworkElement[] elements)
-        {
-            foreach(FrameworkElement element in elements)
+            list.Clear();
+            foreach (TData dataItem in value)
             {
-                GridAdd(grid, element);
-                SetProp(element, Grid.ColumnProperty, columnStartNo);
-                columnStartNo++;
+                IRawData<TData> dataElement = default;
+                dataElement.SetElement(dataItem);
+                list.Add((TComponent)dataElement);
             }
         }
-        public static void GridAddX3(Grid grid, int rowNo, int startNo, int step, params FrameworkElement[] elements)
+
+        public static void Refresh<T>(this IList<T> list, IEnumerable<T> value)
         {
-            foreach (FrameworkElement element in elements)
-            {
-                grid.Children.Add(element);
-                SetProp(element, Grid.ColumnProperty, startNo);
-                SetProp(element, Grid.RowProperty, rowNo);
-                SetProp(element, Grid.ColumnSpanProperty, step);
-                startNo += step;
-            }
-        }
-        public static int Restack(StackPanel stack, Grid toMove, Grid toAdd)
-        {
-            stack.Children.Remove(toMove);
-            stack.Children.Add(toAdd);
-            stack.Children.Add(toMove);
-            return stack.Children.Count;
+            list.Clear();
+            foreach (T item in value)
+                list.Add(item);
         }
 
-        public static int Restack(StackPanel stack, UserControl toMove, UserControl toAdd)
+        public static void Refresh<T>(this IList<T> list, IEnumerable<IRawData<T>> value)
         {
-            stack.Children.Remove(toMove);
-            stack.Children.Add(toAdd);
-            stack.Children.Add(toMove);
-            return stack.Children.Count;
+            list.Clear();
+            foreach (IRawData<T> item in value)
+                list.Add(item.Raw());
         }
 
-        public static void SetProp(UIElement cntrl, DependencyProperty property, object value)
+        public static List<T> GetRaw<T>(this IEnumerable<IRawData<T>> list)
         {
-            cntrl.SetValue(property, value);
+            List<T> elements = new List<T>();
+            foreach (IRawData<T> item in list)
+                elements.Add(item.Raw());
+            return elements;
         }
 
-        public static void SetPropX(DependencyProperty[] property, object[] value, UIElement cntrl)
+        public static List<T> Zip<T>(this List<List<T>> original)
         {
-            for (int i = 0; i < property.Length; i++) SetProp(cntrl, property[i], value[i]);
-        }
-
-        public static void SetPropX(DependencyProperty property, object[] value, Control[] cntrl)
-        {
-            for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value[i]);
-        }
-
-        public static void SetPropX(DependencyProperty property, object[] value, UIElement[] cntrl)
-        {
-            for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value[i]);
-        }
-
-        public static void SetPropX(DependencyProperty property, object value, Control[] cntrl)
-        {
-            for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value);
-        }
-
-        public static void SetPropX(DependencyProperty property, object value, params FrameworkElement[] cntrl)
-        {
-            for (int i = 0; i < cntrl.Length; i++) SetProp(cntrl[i], property, value);
-        }
-
-        public static void StylesX(Style style, params FrameworkElement[] elements)
-        {
-            foreach (FrameworkElement element in elements) Styles(style, element);
-        }
-
-        public static void ColorBack(Color color, Control element)
-        {
-            element.Background = new SolidColorBrush(color);
-        }
-
-        public static void Styles(Style style, FrameworkElement element)
-        {
-            element.Style = style;
-        }
-
-        public static bool NAN(FrameworkElement element)
-        {
-            return element == null;
-        }
-
-        public static bool NA(object o)
-        {
-            return o == null;
+            List<T> archive = new List<T>();
+            for (ushort i = 0; i < original.Count; i++)
+                archive.AddRange(original[i]);
+            return archive;
         }
 
         public static T OmniTernar<T>(T fallBackValue, bool[] conditions, T[] values)

@@ -15,10 +15,30 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
     /// </summary>
     public partial class PlanWork : UserControl, INotifyPropertyChanged, IRawData<Work>
     {
+        #region IRawData Members
         public Work Raw()
         {
             return new Work(WorkType, Tasks.GetRaw());
         }
+
+        public void SetElement(Work work)
+        {
+            WorkType = work.Type;
+
+            ushort i;
+            for (i = 0; i < work.Tasks.Count; i++)
+            {
+                PlanTask task = new PlanTask
+                {
+                    No = (i + 1).ToUInt(),
+                    Work = this
+                };
+                task.SetElement(work.Tasks[i]);
+                Tasks.Add(task);
+            }
+            TaskAdditor.Index((i + 1).ToUInt());
+        }
+        #endregion
 
         #region AutoIndexing Logic
         public void AutoIndexing()
@@ -97,24 +117,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             OnPropertyChanged(nameof(Tasks));
         }
         #endregion
-
-        public void SetElement(Work work)
-        {
-            WorkType = work.Type;
-
-            ushort i;
-            for (i = 0; i < work.Tasks.Count; i++)
-            {
-                PlanTask task = new PlanTask
-                {
-                    No = (i + 1).ToUInt(),
-                    Work = this
-                };
-                task.SetElement(work.Tasks[i]);
-                Tasks.Add(task);
-            }
-            TaskAdditor.Index((i + 1).ToUInt());
-        }
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

@@ -3,7 +3,7 @@
 namespace Wisdom.Controls.Tables.ThemePlan.Themes
 {
     /// <summary>
-    /// Topic theme field names visual component
+    /// Topic theme fields header
     /// </summary>
     public partial class PlanThemeFields : UserControl
     {

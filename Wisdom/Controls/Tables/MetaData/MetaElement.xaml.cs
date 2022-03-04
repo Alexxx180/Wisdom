@@ -10,10 +10,18 @@ namespace Wisdom.Controls.Tables.MetaData
     /// </summary>
     public partial class MetaElement : UserControl, INotifyPropertyChanged, IRawData<Task>
     {
+        #region IRawData Members
         public Task Raw()
         {
             return new Task(MetaName, MetaValue);
         }
+
+        public void SetElement(Task values)
+        {
+            MetaName = values.Name;
+            MetaValue = values.Hours;
+        }
+        #endregion
 
         #region MetaData Members
         public string _name;
@@ -47,12 +55,6 @@ namespace Wisdom.Controls.Tables.MetaData
         public void SetType(string type)
         {
             MetaName = type;
-        }
-
-        public void SetElement(Task values)
-        {
-            MetaName = values.Name;
-            MetaValue = values.Hours;
         }
 
         #region INotifyPropertyChanged Members

@@ -21,8 +21,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
                 typeof(ObservableCollection<string>),
                 typeof(PlanWorkAdditor));
 
-#warning WRONG: DATABASE IS NOT RELATED TO WORKS
-
         #region WorkAdditor Members
         public static ObservableCollection<string> AvailableTypes { get; set; }
 

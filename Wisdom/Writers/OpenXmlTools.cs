@@ -13,8 +13,8 @@ namespace Wisdom.Writers
         /// </summary>
         public static string RemoveInvalidXMLChars(string text)
         {
-            if (string.IsNullOrEmpty(text)) return "";
-            return _invalidXMLChars.Replace(text, "");
+            return string.IsNullOrEmpty(text) ? "" :
+                _invalidXMLChars.Replace(text, "");
         }
     }
 }

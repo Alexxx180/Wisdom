@@ -10,10 +10,11 @@ using Wisdom.Model.ThemePlan;
 namespace Wisdom.Controls.Tables.ThemePlan.Themes
 {
     /// <summary>
-    /// Theme of topic
+    /// Theme of theme plan's topic
     /// </summary>
     public partial class PlanTheme : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Theme>
     {
+        #region IRawData Members
         public Theme Raw()
         {
             return new Theme
@@ -25,6 +26,41 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
                 Works = Works.GetRaw()
             };
         }
+
+        public void SetElement(Theme theme)
+        {
+            ThemeName = theme.Name;
+            ThemeHours = theme.Hours;
+            ThemeCompetetions = theme.Competetions;
+            ThemeLevel = theme.Level;
+
+            for (ushort i = 0; i < theme.Works.Count; i++)
+            {
+                Work workData = theme.Works[i];
+                IRawData<Work> work;
+                if (workData.Tasks.Count > 1)
+                {
+                    PlanWork group = new PlanWork
+                    {
+                        Theme = this
+                    };
+                    group.SetElement(workData);
+                    work = group;
+                }
+                else
+                {
+                    PlanWorkTask single = new PlanWorkTask
+                    {
+                        Theme = this
+                    };
+                    single.SetElement(workData);
+                    work = single;
+                }
+                Works.Add(work);
+            }
+            RefreshHours();
+        }
+        #endregion
 
         #region IAutoIndexing Members
         private uint _no;
@@ -126,40 +162,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             Works = new ObservableCollection<IRawData<Work>>();
         }
 
-        public void SetElement(Theme theme)
-        {
-            ThemeName = theme.Name;
-            ThemeHours = theme.Hours;
-            ThemeCompetetions = theme.Competetions;
-            ThemeLevel = theme.Level;
-
-            for (ushort i = 0; i < theme.Works.Count; i++)
-            {
-                Work workData = theme.Works[i];
-                IRawData<Work> work;
-                if (workData.Tasks.Count > 1)
-                {
-                    PlanWork group = new PlanWork
-                    {
-                        Theme = this
-                    };
-                    group.SetElement(workData);
-                    work = group;
-                }
-                else
-                {
-                    PlanWorkTask single = new PlanWorkTask
-                    {
-                        Theme = this
-                    };
-                    single.SetElement(workData);
-                    work = single;
-                }
-                Works.Add(work);
-            }
-            RefreshHours();
-        }
-
         private void DropTheme(object sender, RoutedEventArgs e)
         {
             Topic.DropTheme(this);
@@ -178,23 +180,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             OnPropertyChanged(nameof(Works));
         }
         #endregion
-
-        //BindingExpression binding = GetBindExpress(combobox, ComboBox.ItemsSourceProperty);
-        //binding.UpdateTarget();
-
-        //private static List<Work>[]
-        //    ReviewContent(List<Work> works)
-        //{
-        //    List<Work>[] content = new List<Work>[2] { 
-        //        new List<Work>(), new List<Work>()
-        //    };
-        //    for (int no = 0; no < works.Count; no++)
-        //    {
-        //        int index = works[no].Name == "Содержание" ? 0 : 1;
-        //        content[index].Add(works[no]);
-        //    }
-        //    return content;
-        //}
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

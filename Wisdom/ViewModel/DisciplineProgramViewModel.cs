@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Model;
+using Wisdom.Model.ThemePlan;
 using Wisdom.Model.Tools.DataBase;
 using Wisdom.Controls;
 using Wisdom.Controls.Tables.Competetions.General;
@@ -12,9 +12,8 @@ using Wisdom.Controls.Tables.Sources.SourceTypes;
 using Wisdom.Controls.Tables.ThemePlan;
 using Wisdom.Controls.Tables.EducationLevels;
 using Wisdom.Controls.Tables.MetaData;
+using Wisdom.Customing;
 using static Wisdom.Writers.ResultRenderer;
-using static Wisdom.Customing.Converters;
-using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.ViewModel
 {
@@ -507,6 +506,8 @@ namespace Wisdom.ViewModel
             DisciplinesSelect.Refresh(DisciplineHead.Value);
 
             SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
+
+            //GeneralCompetetions.SetDataElements(SelectedSpeciality.GeneralCompetetions);
             SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
 
             OnPropertyChanged(nameof(GeneralCompetetions));

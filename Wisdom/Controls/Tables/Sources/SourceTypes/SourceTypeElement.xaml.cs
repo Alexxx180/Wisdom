@@ -14,10 +14,28 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
     /// </summary>
     public partial class SourceTypeElement : UserControl, INotifyPropertyChanged, IRawData<Pair<string, List<string>>>
     {
+        #region IRawData Members
         public Pair<string, List<string>> Raw()
         {
             return new Pair<string, List<string>>(Text, GetSources());
         }
+
+        public void SetElement(Pair<string, List<string>> sources)
+        {
+            ushort i;
+            for (i = 0; i < sources.Value.Count; i++)
+            {
+                SourceElement source = new SourceElement
+                {
+                    Source = sources.Value[i],
+                    SourceType = this
+                };
+                source.Index((i + 1).ToUInt());
+                Sources.Add(source);
+            }
+            Additor.Index((i + 1).ToUInt());
+        }
+        #endregion
 
         #region SourceType Members
         private ObservableCollection<SourceTypeElement> _groups;
@@ -132,23 +150,14 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
                 Types.Add(types[i]);
         }
 
+#warning SHOULD DO SOURCE TYPES STATIC
+
         public void SetElement(IList<string> types, Pair<string, List<string>> sources)
         {
             SetTypes(types);
             Text = sources.Name;
 
-            ushort i;
-            for (i = 0; i < sources.Value.Count; i++)
-            {
-                SourceElement source = new SourceElement
-                {
-                    Source = sources.Value[i],
-                    SourceType = this
-                };
-                source.Index((i + 1).ToUInt());
-                Sources.Add(source);
-            }
-            Additor.Index((i + 1).ToUInt());
+            SetElement(sources);
         }
 
         #region INotifyPropertyChanged Members

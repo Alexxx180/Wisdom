@@ -1,8 +1,8 @@
-﻿using System.Windows.Controls;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using static Wisdom.Customing.Converters;
 using System.Windows;
+using System.Windows.Controls;
+using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Controls.Tables
 {

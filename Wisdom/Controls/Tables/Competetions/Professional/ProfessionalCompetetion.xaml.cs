@@ -14,6 +14,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
     /// </summary>
     public partial class ProfessionalCompetetion : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Competetion>
     {
+        #region IRawData Members
         public Competetion Raw()
         {
             return new Competetion
@@ -27,6 +28,20 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
                 }
             };
         }
+
+        public void SetElement(Competetion competetion)
+        {
+            string no = competetion.PrefixNo;
+
+            ProfessionalNo = no[(no.LastIndexOf('.') + 1)..];
+            ProfessionalName = competetion.Name;
+
+            List<Task> value = competetion.Abilities;
+            ProfessionalExperience = value[0].Hours;
+            ProfessionalSkills = value[1].Hours;
+            ProfessionalKnowledge = value[2].Hours;
+        }
+        #endregion
 
         #region IAutoIndexing Members
         private uint _no;
@@ -127,19 +142,6 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         private void DropCompetetion(object sender, RoutedEventArgs e)
         {
             Group.DropCompetetion(this);
-        }
-
-        public void SetElement(Competetion competetion)
-        {
-            string no = competetion.PrefixNo;
-
-            ProfessionalNo = no[(no.LastIndexOf('.') + 1)..];
-            ProfessionalName = competetion.Name;
-
-            List<Task> value = competetion.Abilities;
-            ProfessionalExperience = value[0].Hours;
-            ProfessionalSkills = value[1].Hours;
-            ProfessionalKnowledge = value[2].Hours;
         }
 
         #region INotifyPropertyChanged Members

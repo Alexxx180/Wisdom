@@ -12,10 +12,18 @@ namespace Wisdom.Controls.Tables.EducationLevels
     /// </summary>
     public partial class EducationLevel : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Task>
     {
+        #region IRawData Members
         public Task Raw()
         {
             return new Task(LevelName, LevelDescription);
         }
+
+        public void SetElement(Task level)
+        {
+            LevelName = level.Name;
+            LevelDescription = level.Hours;
+        }
+        #endregion
 
         #region IOptionableIndexing Members
         private AutoPanel _options;
@@ -100,12 +108,6 @@ namespace Wisdom.Controls.Tables.EducationLevels
         private void DropLevel(object sender, RoutedEventArgs e)
         {
             Options.DropRecord(this);
-        }
-
-        public void SetElement(Task level)
-        {
-            LevelName = level.Name;
-            LevelDescription = level.Hours;
         }
 
         #region INotifyPropertyChanged Members
