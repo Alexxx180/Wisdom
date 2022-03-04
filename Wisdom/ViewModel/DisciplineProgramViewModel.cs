@@ -51,13 +51,11 @@ namespace Wisdom.ViewModel
             set
             {
                 _data = value;
-                SetLevels();
-                SetMetaTypes();
-
                 DocumentTypes.WorkTypes.Refresh(Data.WorkTypesData());
-
                 SetHourTypes();
-                SetSourceTypes();
+                SetMetaTypes();
+                SetLevels();
+                SourceTypes.Refresh(Data.SourceTypesData());
                 SpecialityHead = _data.ListSpecialities();
                 SpecialitySelect.Refresh(SpecialityHead.Value);
                 Document = new DisciplineProgram();
@@ -75,17 +73,6 @@ namespace Wisdom.ViewModel
             set
             {
                 _metaTypes = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private List<string> _hourTypes;
-        internal List<string> HourTypes
-        {
-            get => _hourTypes;
-            set
-            {
-                _hourTypes = value;
                 OnPropertyChanged();
             }
         }
@@ -358,6 +345,7 @@ namespace Wisdom.ViewModel
             Hours = new ObservableCollection<HourElement>();
             ProfessionalCompetetions = new ObservableCollection<ProfessionalDivider>();
             GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
+            SourceTypes = new ObservableCollection<string>();
             Connector = new MySQL();
         }
 
@@ -576,24 +564,29 @@ namespace Wisdom.ViewModel
             SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
             SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
 
+            List<Pair<string, ushort>> hours = SelectedDiscipline.TotalHours;
+            List<Task> metaData = SelectedDiscipline.MetaData;
+            List<Pair<string, List<string>>> sources = SelectedDiscipline.Sources;
+
             int study = 0;
             int self = 0;
 
-            int count = Math.Min(MetaData.Count, SelectedDiscipline.MetaData.Count);
+            int count = Math.Min(MetaData.Count, metaData.Count);
             for (ushort i = 0; i < count; i++)
-                MetaData[i].SetElement(SelectedDiscipline.MetaData[i]);
+                MetaData[i].SetElement(metaData[i]);
 
-            count = Math.Min(Hours.Count, SelectedDiscipline.TotalHours.Count);
+            count = Math.Min(Hours.Count, hours.Count);
             for (ushort i = 0; i < count; i++)
             {
-                Hours[i].SetElement(SelectedDiscipline.TotalHours[i]);
-                if (SelectedDiscipline.TotalHours[i].Name == "Самостоятельная работа")
+                Pair<string, ushort> hour = hours[i];
+                Hours[i].SetElement(hour);
+                if (hour.Name == "Самостоятельная работа")
                 {
-                    self += SelectedDiscipline.TotalHours[i].Value;
+                    self += hour.Value;
                 }
                 else
                 {
-                    study += SelectedDiscipline.TotalHours[i].Value;
+                    study += hour.Value;
                 }
             }
 
@@ -601,13 +594,13 @@ namespace Wisdom.ViewModel
             SelfHours = self.ToString();
 
             Sources.Clear();
-            for (ushort i = 0; i < SelectedDiscipline.Sources.Count; i++)
+            for (ushort i = 0; i < sources.Count; i++)
             {
                 SourceTypeElement source = new SourceTypeElement
                 {
                     Groups = Sources
                 };
-                source.SetElement(SourceTypes, SelectedDiscipline.Sources[i]);
+                source.SetElement(SourceTypes, sources[i]);
                 Sources.Add(source);
             }
 
@@ -680,16 +673,9 @@ namespace Wisdom.ViewModel
                 ThemePlan.Add(topic);
             }
         }
+        #endregion
 
-        private void SetSourceTypes()
-        {
-            SourceTypes = new ObservableCollection<string>(Data.SourceTypesData());
-            foreach (string type in SourceTypes)
-            {
-                System.Diagnostics.Trace.WriteLine("Unbeliavable: " + type);
-            }
-        }
-
+        #region SetPrimitives Members
         private void SetLevels()
         {
             List<Task> levels = Data.LevelsData();

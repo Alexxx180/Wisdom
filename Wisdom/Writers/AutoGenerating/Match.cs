@@ -1,4 +1,4 @@
-﻿namespace Wisdom.AutoGenerating
+﻿namespace Wisdom.Writers.AutoGenerating
 {
     class Match
     {
