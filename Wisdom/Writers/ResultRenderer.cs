@@ -1,55 +1,74 @@
 ﻿using Microsoft.Win32;
-using System;
 using System.IO;
 using System.Windows;
-using Wisdom.AutoGenerating;
 using Wisdom.Model;
+using static Wisdom.Writers.AutoGenerating.Documents.DisciplineProgram;
 
 namespace Wisdom.Writers
 {
     public static class ResultRenderer
     {
+        private static readonly string _documentFilter = 
+            "Документ Microsoft Word (*.docx)|*.docx|" +
+            "Документ Word 97-2003 (*.doc)|*.doc|" +
+            "Текст в формате RTF (*.rtf)|*.rtf";
+
+        private static readonly string _templateFilter =
+            "Шаблон пользовательских данных (*.json)|*.json";
+
         private static void TruncateFile(string fileName)
         {
             if (File.Exists(fileName))
                 File.Delete(fileName);
         }
 
-        public static void WriteDoc(string fileName, DisciplineProgram program)
+        public static void WriteDocument(
+            DisciplineProgram program,
+            string fileName = "")
         {
-            TruncateFile(fileName);
+            string filter = _documentFilter;
+
+            SaveFileDialog dialog = CallWriter(filter, fileName);
+            if (!dialog.ShowDialog().Value)
+                return;
+            TruncateFile(dialog.FileName);
+
             try
             {
-                AutoFiller.WriteDocX(fileName, program);
+                WriteDocX(dialog.FileName, program);
             }
             catch (IOException exception)
             {
-                string message = "Файл открыт в другой программе или используется другим процессом. Дальнейшая запись в файл невозможна.\nПолное сообщение:\n";
+                string message = "Файл открыт в другой " +
+                    "программе или используется другим " +
+                    "процессом. Дальнейшая запись в файл" +
+                    " невозможна.\nПолное сообщение:\n";
                 _ = MessageBox.Show(message + exception.Message);
             }
         }
 
-        public static void WriteJson(string fileName, DisciplineProgram program)
+        public static void WriteTemplate(
+            DisciplineProgram program,
+            string fileName = "")
         {
-            TruncateFile(fileName);
-            string testFile = @"Resources\Templates\" + fileName + ".json";
-            string executingDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            string fullName = $"{executingDirectory}\\{testFile}";
-            AutoFiller.WriteUserInput(fullName, program);
+            string filter = _templateFilter;
+
+            SaveFileDialog dialog = CallWriter(filter, fileName);
+            if (dialog.ShowDialog().Value)
+            {
+                TruncateFile(dialog.FileName);
+                ProcessJson(dialog.FileName, program);
+            }
         }
 
-        public static void CallWriter(string fileName, DisciplineProgram program)
+        public static SaveFileDialog
+            CallWriter(string filter, string fileName)
         {
-            SaveFileDialog dialog = new SaveFileDialog
+            return new SaveFileDialog
             {
-                FileName = $"{fileName}.docx",
-                Filter =
-                "Документ Microsoft Word (*.docx)|*.docx|" +
-                "Документ Word 97-2003 (*.doc)|*.doc|" +
-                "Текст в формате RTF (*.rtf)|*.rtf"
+                FileName = fileName,
+                Filter = filter
             };
-            if (dialog.ShowDialog().Value)
-                WriteDoc(dialog.FileName, program);
         }
     }
 }

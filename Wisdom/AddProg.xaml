@@ -9,17 +9,19 @@
         xmlns:dpforms="clr-namespace:Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram"
         xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
         mc:Ignorable="d"
+        x:Name="DisciplineProgramWindow"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized" Icon="/Wisdom.png">
     <Window.Resources>
         <bind:CompetetionsConverter x:Key="CompetetionsConverter" />
         <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
     </Window.Resources>
     
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <viewmodel:DisciplineProgramViewModel x:Name="ProgramViewModel" />
-    </Window.DataContext>
+    </Window.DataContext>-->
 
-    <Grid>
+    <Grid DataContext="{Binding Path=ViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"/>
             <RowDefinition Height="0.95*"/>
@@ -46,7 +48,14 @@
                     <ColumnDefinition Width="0.15*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBox x:Name="Program" Text="Программа" Style="{StaticResource CaptionBox}" MaxLength="200" />
+                <TextBox MaxLength="200" >
+                    <TextBox.Style>
+                        <StaticResource ResourceKey="CaptionBox"/>
+                    </TextBox.Style>
+                    <TextBox.Text>
+                        <Binding ElementName="DisciplineProgramWindow" Path="FileName"/>
+                    </TextBox.Text>
+                </TextBox>
 
                 <Grid Grid.Column="2">
                     <Grid.DataContext>
@@ -127,29 +136,30 @@
                     </Viewbox>
                 </Button>
             </Grid>
-
-            <Grid Grid.Row="1" Grid.Column="1" Visibility="Hidden">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.675*"/>
-                    <ColumnDefinition Width="0.05*"/>
-                    <ColumnDefinition Width="0.225*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Label Content="Программа" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Padding="0,0,0,0" FontFamily="Cambria" FontSize="30" Panel.ZIndex="2" FontWeight="Bold"/>
-                <Button x:Name="Accept" Content="Подтвердить" Grid.Column="2" HorizontalAlignment="Stretch" Margin="0,0,0,0"  VerticalAlignment="Stretch" FontSize="23" IsDefault="True" FontFamily="Cambria" FontWeight="Bold" Background="#FFEFE4B0" BorderBrush="#FFEFE4B0" Foreground="#FF00A2E8" BorderThickness="3,3,3,3"/>
-            </Grid>
         </Grid>
 
-        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
+        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" Visibility="Hidden">
+            <dpforms:HoursPart.ViewModel>
+                <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
+            </dpforms:HoursPart.ViewModel>
+        </dpforms:HoursPart>
 
-        <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
+        <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1" Visibility="Hidden">
+            <dpforms:CompetetionsPart.ViewModel>
+                <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
+            </dpforms:CompetetionsPart.ViewModel>
+        </dpforms:CompetetionsPart>
 
-        <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
+        <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" Visibility="Hidden">
+            <dpforms:ThemePlanPart.ViewModel>
+                <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
+            </dpforms:ThemePlanPart.ViewModel>
+        </dpforms:ThemePlanPart>
 
-        <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" ViewModel="{Binding ElementName=ProgramViewModel}" Visibility="Hidden" />
+        <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" Visibility="Hidden">
+            <dpforms:MetaDataPart.ViewModel>
+                <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
+            </dpforms:MetaDataPart.ViewModel>
+        </dpforms:MetaDataPart>
     </Grid>
 </Window>

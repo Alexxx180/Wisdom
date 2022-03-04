@@ -1,6 +1,6 @@
 ﻿namespace Wisdom.Writers.AutoGenerating
 {
-    class Match
+    internal class Match
     {
         /// <summary>
         /// Last matching element index containing part of the search text

@@ -4,6 +4,11 @@ namespace Wisdom.Model.ThemePlan
 {
     public class Work
     {
+        public Work()
+        {
+
+        }
+
         public Work(string type, List<Task> tasks)
         {
             Type = type;

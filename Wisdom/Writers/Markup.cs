@@ -65,8 +65,10 @@ namespace Wisdom.Writers
         public static Paragraph ParagraphPreAdd2(JustificationValues justify, params Run[] runs)
         {
             Paragraph paragraph = new Paragraph() {
-                RsidParagraphMarkRevision = "00D933D9", RsidParagraphAddition = "00D933D9",
-                RsidParagraphProperties = "00D933D9", RsidRunAdditionDefault = "00D933D9"
+                RsidParagraphMarkRevision = "00D933D9",
+                RsidParagraphAddition = "00D933D9",
+                RsidParagraphProperties = "00D933D9",
+                RsidRunAdditionDefault = "00D933D9"
             };
             return BaseParagraph(paragraph, justify, runs);
         }

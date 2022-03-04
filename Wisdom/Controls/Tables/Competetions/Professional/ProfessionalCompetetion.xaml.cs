@@ -20,7 +20,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             {
                 PrefixNo = ProfessionalHeader,
                 Name = ProfessionalName,
-                Abilities = {
+                Abilities = new List<Task> {
                     new Task("Практический опыт", ProfessionalExperience),
                     new Task("Умения", ProfessionalSkills),
                     new Task("Знания", ProfessionalKnowledge)

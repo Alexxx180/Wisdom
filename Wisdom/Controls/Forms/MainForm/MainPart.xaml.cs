@@ -45,9 +45,9 @@ namespace Wisdom.Controls.Forms.MainForm
             Templates.Children.Clear();
             try
             {
-                string executingDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-                string templatesDirectory = @"\Resources\Templates";
-                foreach (string file in Directory.GetFiles(executingDirectory + templatesDirectory))
+                //string executingDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName; | executingDirectory + 
+                string templatesDirectory = @"D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON";
+                foreach (string file in Directory.GetFiles(templatesDirectory))
                 {
                     TemplateControl template = new TemplateControl(file);
                     _ = Templates.Children.Add(template);

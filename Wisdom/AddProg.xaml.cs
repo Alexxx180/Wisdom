@@ -7,12 +7,12 @@ using Wisdom.ViewModel;
 namespace Wisdom
 {
     /// <summary>
-    /// Add new programm instance window
+    /// Add new discipline program window
     /// </summary>
     public partial class AddProg : Window, INotifyPropertyChanged
     {
         private DisciplineProgramViewModel _viewModel;
-        internal DisciplineProgramViewModel ViewModel
+        public DisciplineProgramViewModel ViewModel
         {
             get => _viewModel;
             set
@@ -22,23 +22,32 @@ namespace Wisdom
             }
         }
 
-        private string FileName => Program.Text;
+        private string _fileName;
+        public string FileName
+        {
+            get => _fileName;
+            set
+            {
+                _fileName = value;
+                OnPropertyChanged();
+            }
+        }
 
         public AddProg()
         {
             InitializeComponent();
-            ViewModel = DataContext as DisciplineProgramViewModel;
+            ViewModel = new DisciplineProgramViewModel();
         }
 
         public AddProg(DisciplineProgram program) : this()
         {
-            
+            ViewModel.SetFromTemplate(program);
         }
 
         private void MakeUserTemplate(object sender, RoutedEventArgs e)
         {
             //ViewModel.TestCompetetions();
-            ViewModel.TestDiscipline();
+            ViewModel.CreateTemplate(FileName);
         }      
 
         private void Create_Click(object sender, RoutedEventArgs e)

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Collections.Generic;
 using System.Text.Json;
-using System.Windows;
-using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using static Wisdom.Writers.AutoGenerating.AutoFiller;
@@ -12,12 +9,12 @@ using static Wisdom.Writers.Markup;
 
 namespace Wisdom.Writers.AutoGenerating.Documents
 {
-    class DisciplineProgram
+    public static class DisciplineProgram
     {
         private const string fileName = @"\TestResources\Templates\BaseTemplate.docx";
         private static string _template => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + fileName;
 
-        private static void ProcessJson(string path, Model.DisciplineProgram program)
+        public static void ProcessJson(string path, Model.DisciplineProgram program)
         {
             byte[] jsonUtf8Bytes = JsonSerializer.SerializeToUtf8Bytes(program);
             Save(path, jsonUtf8Bytes);
@@ -57,6 +54,7 @@ namespace Wisdom.Writers.AutoGenerating.Documents
                         sw.Write(docText);
                     }
                 }
+
                 // Save the file with the new name
                 Save(generatePath, stream);
             }
@@ -73,7 +71,7 @@ namespace Wisdom.Writers.AutoGenerating.Documents
             // text expressions to necessary data
 
             string discipline = "#DISCIPLINE";
-            ReplaceInParagraphs(paragraphs, discipline, program.DisciplineName);
+            ReplaceInParagraphs(paragraphs, discipline, program.Name);
 
             string speciality = "#SPECIALITY";
             ReplaceInParagraphs(paragraphs, speciality, program.ProfessionName);

@@ -2,12 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using System.Text.Json;
 using System.Windows;
 using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
-using Wisdom.Model;
 
 namespace Wisdom.Writers.AutoGenerating
 {

@@ -21,7 +21,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
             {
                 PrefixNo = GeneralHeader,
                 Name = GeneralName,
-                Abilities = {
+                Abilities = new List<Task> {
                     new Task("Умения", GeneralSkills),
                     new Task("Знания", GeneralKnowledge)
                 }

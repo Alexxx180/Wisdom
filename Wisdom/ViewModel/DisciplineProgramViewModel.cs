@@ -18,7 +18,7 @@ using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.ViewModel
 {
-    internal class DisciplineProgramViewModel : INotifyPropertyChanged
+    public class DisciplineProgramViewModel : INotifyPropertyChanged
     {
         private DisciplineProgram _document;
         public DisciplineProgram Document
@@ -352,56 +352,41 @@ namespace Wisdom.ViewModel
         #region DisciplineProgramFilling Logic
         internal void SetFromTemplate(DisciplineProgram program)
         {
-            SetProfession(program);
+            SpecialityFullName = program.ProfessionName;
+            DisciplineFullName = program.Name;
+
             SetDiscipline(program);
         }
 
-        internal void CreateTemplate()
+        internal void SetUpDocumentBlank(in DisciplineProgram document)
         {
-            DisciplineProgram program = new DisciplineProgram();
-            program.DisciplineName = DisciplineFullName;
-            program.ProfessionName = SpecialityFullName;
+            document.Name = DisciplineFullName;
+            document.ProfessionName = SpecialityFullName;
 
-            program.MaxHours = MaxHours;
-            program.SelfHours = SelfHours;
-            program.EduHours = EduHours;
+            document.MaxHours = MaxHours;
+            document.SelfHours = SelfHours;
+            document.EduHours = EduHours;
 
-            program.MetaData.Refresh(MetaData);
-            program.Hours.Refresh(Hours);
-
-            program.GeneralCompetetions.Refresh(GeneralCompetetions);
-            program.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
-
-            program.Sources.Refresh(Sources);
-            program.Plan.Refresh(ThemePlan);
-            program.StudyLevels.Refresh(Levels);
-            //WriteJson(FileName, program);
+            document.MetaData.Refresh(MetaData);
+            document.Hours.Refresh(Hours);
+            document.GeneralCompetetions.Refresh(GeneralCompetetions);
+            document.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
+            document.Sources.Refresh(Sources);
+            document.Plan.Refresh(ThemePlan);
+            document.StudyLevels.Refresh(Levels);
         }
 
-        internal void SetUpDocumentBlank()
+        internal void CreateTemplate(string fileName)
         {
-            Document.DisciplineName = DisciplineFullName;
-            Document.ProfessionName = SpecialityFullName;
-
-            Document.MaxHours = MaxHours;
-            Document.SelfHours = SelfHours;
-            Document.EduHours = EduHours;
-
-            Document.MetaData.Refresh(MetaData);
-            Document.Hours.Refresh(Hours);
-
-            Document.GeneralCompetetions.Refresh(GeneralCompetetions);
-            Document.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
-
-            Document.Sources.Refresh(Sources);
-            Document.Plan.Refresh(ThemePlan);
-            Document.StudyLevels.Refresh(Levels);
+            DisciplineProgram program = new DisciplineProgram();
+            SetUpDocumentBlank(program);
+            WriteTemplate(program, fileName);
         }
 
         public void MakeDocument(string fileName)
         {
-            SetUpDocumentBlank();
-            CallWriter(fileName, Document);
+            SetUpDocumentBlank(Document);
+            WriteDocument(Document, fileName);
         }
         #endregion
 
@@ -515,11 +500,6 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region SpecialityAutoSet Logic
-        private void SetProfession(DisciplineProgram program)
-        {
-            SpecialityFullName = program.ProfessionName;
-        }
-
         internal void ResetCompetetions()
         {
             SelectedSpeciality = Data.SpecialityData(SpecialityHead.Name[SpecialityNo], SpecialityFullName);
@@ -557,29 +537,60 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region DisciplineAutoSet Logic
+        private void SetDiscipline(
+            List<Competetion> general,
+            List<List<Competetion>> professional,
+            List<Pair<string, ushort>> hours,
+            List<Task> metaData,
+            List<Pair<string, List<string>>> sources,
+            List<Topic> themePlan
+            )
+        {
+            SetGeneralCompetetions(general);
+            SetProfessionalCompetetions(professional);
+            SetHours(hours);
+            SetMetaData(metaData);
+            SetSources(sources);
+            SetLevels();
+            SetThemePlan(themePlan);
+        }
+
+        private void SetDiscipline(DisciplineBase program)
+        {
+            SetDiscipline(
+                program.GeneralCompetetions,
+                program.ProfessionalCompetetions,
+                program.TotalHours,
+                program.MetaData,
+                program.Sources,
+                program.Plan
+                );
+        }
+
         internal void ResetDiscipline()
         {
-            SelectedDiscipline = Data.DisciplineData(DisciplineHead.Name[DisciplineNo], DisciplineFullName);
+            SelectedDiscipline = Data.DisciplineData
+                (DisciplineHead.Name[DisciplineNo], DisciplineFullName);
 
-            SetGeneralCompetetions(SelectedDiscipline.GeneralCompetetions);
-            SetProfessionalCompetetions(SelectedDiscipline.ProfessionalCompetetions);
+            SetDiscipline(SelectedDiscipline);
+        }
 
-            List<Pair<string, ushort>> hours = SelectedDiscipline.TotalHours;
-            List<Task> metaData = SelectedDiscipline.MetaData;
-            List<Pair<string, List<string>>> sources = SelectedDiscipline.Sources;
-
+        private void SetHours(List<Pair<string, ushort>> hours)
+        {
             int study = 0;
             int self = 0;
 
-            int count = Math.Min(MetaData.Count, metaData.Count);
-            for (ushort i = 0; i < count; i++)
-                MetaData[i].SetElement(metaData[i]);
-
-            count = Math.Min(Hours.Count, hours.Count);
-            for (ushort i = 0; i < count; i++)
+            Hours.Clear();
+            for (ushort i = 0; i < hours.Count; i++)
             {
                 Pair<string, ushort> hour = hours[i];
-                Hours[i].SetElement(hour);
+                HourElement element = new HourElement
+                {
+                    ViewModel = this
+                };
+                element.SetElement(hour);
+                Hours.Add(element);
+
                 if (hour.Name == "Самостоятельная работа")
                 {
                     self += hour.Value;
@@ -592,7 +603,21 @@ namespace Wisdom.ViewModel
 
             EduHours = study.ToString();
             SelfHours = self.ToString();
+        }
 
+        private void SetMetaData(List<Task> metaData)
+        {
+            MetaData.Clear();
+            for (ushort i = 0; i < metaData.Count; i++)
+            {
+                MetaElement meta = new MetaElement();
+                meta.SetElement(metaData[i]);
+                MetaData.Add(meta);
+            }
+        }
+
+        private void SetSources(List<Pair<string, List<string>>> sources)
+        {
             Sources.Clear();
             for (ushort i = 0; i < sources.Count; i++)
             {
@@ -603,79 +628,25 @@ namespace Wisdom.ViewModel
                 source.SetElement(SourceTypes, sources[i]);
                 Sources.Add(source);
             }
+        }
 
-            SetLevels();
-            SetThemePlan();
-        }       
-
-        private void SetThemePlan()
+        private void SetThemePlan(List<Topic> plan)
         {
             ThemePlan.Clear();
-            for (ushort i = 0; i < SelectedDiscipline.Plan.Count; i++)
+            for (ushort i = 0; i < plan.Count; i++)
             {
                 PlanTopic topic = new PlanTopic
                 {
                     No = (i + 1).ToUInt()
                 };
-                topic.SetElement(SelectedDiscipline.Plan[i]);
+                topic.SetElement(plan[i]);
                 ThemePlan.Add(topic);
             }
             OnPropertyChanged(nameof(ThemePlan));
         }
-
-        private void SetDiscipline(DisciplineProgram program)
-        {
-            DisciplineFullName = program.DisciplineName;
-
-            int study = 0;
-            int self = 0;
-
-            for (byte i = 0; i < MetaData.Count; i++)
-                MetaData[i].SetElement(program.MetaData[i]);
-
-            for (byte i = 0; i < Hours.Count; i++)
-            {
-                Hours[i].SetElement(program.Hours[i]);
-                if (program.Hours[i].Name == "Самостоятельная работа")
-                {
-                    self += SelectedDiscipline.TotalHours[i].Value;
-                }
-                else
-                {
-                    study += SelectedDiscipline.TotalHours[i].Value;
-                }
-            }
-
-            EduHours = study.ToString();
-            SelfHours = self.ToString();
-
-            Sources.Clear();
-            for (byte i = 0; i < program.Sources.Count; i++)
-            {
-                SourceTypeElement source = new SourceTypeElement
-                {
-                    Groups = Sources
-                };
-                source.SetElement(SourceTypes, program.Sources[i]);
-                Sources.Add(source);
-            }
-
-            SetGeneralCompetetions(program.GeneralCompetetions);
-            SetProfessionalCompetetions(program.ProfessionalCompetetions);
-
-            SetLevels();
-
-            ThemePlan.Clear();
-            for (byte i = 0; i < program.Plan.Count; i++)
-            {
-                PlanTopic topic = new PlanTopic();
-                topic.SetElement(program.Plan[i]);
-                ThemePlan.Add(topic);
-            }
-        }
         #endregion
 
-        #region SetPrimitives Members
+        #region SetTypes Members
         private void SetLevels()
         {
             List<Task> levels = Data.LevelsData();

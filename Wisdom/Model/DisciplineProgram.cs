@@ -3,12 +3,14 @@ using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Model
 {
-    public class DisciplineProgram
+    public class DisciplineProgram : DisciplineBase
     {
         public DisciplineProgram()
         {
             ProfessionName = "";
-            DisciplineName = "";
+            GeneralCompetetions = new List<Competetion>();
+            ProfessionalCompetetions = new List<List<Competetion>>();
+
             SetHours();
             StudyLevels = new List<Task>();
             MetaData = new List<Task>();
@@ -27,25 +29,12 @@ namespace Wisdom.Model
         // Speciality
         public string ProfessionName { get; set; }
 
-        // Competetions: Knowledge, Skills, Experience (only professional)
-        public List<Competetion> GeneralCompetetions { get; set; }
-        public List<List<Competetion>> ProfessionalCompetetions { get; set; }
-
-        // Discipline
-        public string DisciplineName { get; set; }
-
         // Total hours count (user preset)
         public string MaxHours { get; set; }
         public string EduHours { get; set; }
         public string SelfHours { get; set; }
         public List<Pair<string, ushort>> Hours { get; set; }
 
-        // Educational program other useful information
-        public List<Task> MetaData { get; set; }
-        public List<Pair<string, List<string>>> Sources { get; set; }
-
-        // Theme plan: Topics -> Themes -> Works -> Tasks
-        public List<Topic> Plan { get; set; }
         public List<Task> StudyLevels { get; set; }
     }
 }
