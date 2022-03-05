@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
-using Wisdom.Controls;
+using Wisdom.Controls.Tables.Hours;
 using Wisdom.Model;
 
 namespace Wisdom.Binds.Converters

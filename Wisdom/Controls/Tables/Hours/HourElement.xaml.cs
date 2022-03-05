@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
-using Wisdom.Controls.Tables;
 using Wisdom.Model;
 using Wisdom.ViewModel;
 using Wisdom.Customing;
 
-namespace Wisdom.Controls
+namespace Wisdom.Controls.Tables.Hours
 {
     /// <summary>
     /// Record component containing total hours count (user preset)

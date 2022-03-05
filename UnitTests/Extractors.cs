@@ -5,6 +5,9 @@ using Wisdom.Model.ThemePlan;
 
 namespace UnitTests
 {
+    /// <summary>
+    /// Text extracting methods
+    /// </summary>
     public static class Extractors
     {
         private static string ExtractCompetetions(List<Competetion> competetions)
@@ -38,6 +41,88 @@ namespace UnitTests
                 competetionsText.Append(ExtractCompetetions(group));
             }
             return competetionsText.ToString();
+        }
+
+        public static string ExtractThemePlan(List<Topic> topics)
+        {
+            StringBuilder planText = new StringBuilder("Тематический план:\n\n");
+            planText.Append("Количество: " + topics.Count);
+            for (byte i = 0; i < topics.Count; i++)
+            {
+                Topic topic = topics[i];
+                planText.Append("\n\nРаздел");
+                planText.Append(" " + (i + 1) + ": ");
+                planText.Append(topic.Name + ", часы: ");
+                planText.Append(topic.Hours);
+                for (byte ii = 0; ii < topic.Themes.Count; ii++)
+                {
+                    Theme theme = topic.Themes[ii];
+                    planText.Append($"\nТема {ii + 1}: {theme.Name}, часы: {theme.Hours},");
+                    planText.Append($" УК: {theme.Level}, Компетенции: {theme.Competetions}");
+                    for (byte iii = 0; iii < theme.Works.Count; iii++)
+                    {
+                        Work work = theme.Works[iii];
+                        planText.Append($"\n{work.Type}");
+                        for (byte iv = 0; iv < work.Tasks.Count; iv++)
+                        {
+                            Task task = work.Tasks[iv];
+                            planText.Append($"\n{task.Name}: {task.Hours}");
+                        }
+                    }
+                }
+            }
+            return planText.ToString();
+        }
+
+        public static string ExtractMetaData(List<Task> tasks)
+        {
+            StringBuilder metaDataText = new StringBuilder("Метаданные:\n\n");
+            metaDataText.Append("Количество: " + tasks.Count + "\n");
+            foreach (Task pair in tasks)
+            {
+                metaDataText.Append($"\n{pair.Name}: {pair.Hours}");
+            }
+            return metaDataText.ToString();
+        }
+
+        public static string ExtractHours(List<Pair<string, ushort>> hours)
+        {
+            StringBuilder metaDataText = new StringBuilder("Часы:\n\n");
+            metaDataText.Append("Количество: " + hours.Count + "\n");
+            foreach (Pair<string, ushort> pair in hours)
+            {
+                metaDataText.Append($"\n{pair.Name}: {pair.Value}");
+            }
+            return metaDataText.ToString();
+        }
+
+        public static string ExtractSources(List<Pair<string, List<string>>> sources)
+        {
+            StringBuilder metaDataText = new StringBuilder("Источники:\n\n");
+            metaDataText.Append("Количество: " + sources.Count);
+            foreach (Pair<string, List<string>> group in sources)
+            {
+                metaDataText.Append($"\n\n{group.Name}: ");
+                List<string> values = group.Value;
+                for (byte i = 0; i < values.Count; i++)
+                {
+                    metaDataText.Append($"\n{i + 1}. {values[i]}");
+                }
+
+            }
+            return metaDataText.ToString();
+        }
+
+        public static string ExtractLevels(List<Task> levels)
+        {
+            StringBuilder metaDataText = new StringBuilder("Уровни компетенций:\n\n");
+            metaDataText.Append("Количество: " + levels.Count + "\n");
+            for (byte i = 0; i < levels.Count; i++)
+            {
+                Task level = levels[i];
+                metaDataText.Append($"\n{i + 1}. - {level.Name} ({level.Hours})");
+            }
+            return metaDataText.ToString();
         }
     }
 }

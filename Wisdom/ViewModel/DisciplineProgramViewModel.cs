@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using Wisdom.Model;
 using Wisdom.Model.ThemePlan;
 using Wisdom.Model.Tools.DataBase;
-using Wisdom.Controls;
+using Wisdom.Controls.Tables.Hours;
 using Wisdom.Controls.Tables.Competetions.General;
 using Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups;
 using Wisdom.Controls.Tables.Sources.SourceTypes;
@@ -688,21 +688,17 @@ namespace Wisdom.ViewModel
         }
         #endregion
 
-#warning Cool Features Here!!
         // TO DO
 
-        // Solve for additors:
-        // - ScrollViewer + StackPanel + Additor
-        // -                | Stackpanel + Competetions
-
-        // GENIUS IDEA
-        // We have
+        // For future development...
+        // Let's say we have
         //
-        // Dictionary<string, ushort>
-        // Dictionary<string, List<ushort>>
+        // Total hours count - Dictionary<string, ushort>
+        // Work hours count - Dictionary<string, List<ushort>>
         //
-        // Use UsedValuesConverter to compare
-        // work types with theme plan!
+        // If there is a way to bind it together,
+        // we can use UsedValuesConverter to 
+        // compare hours total with theme plan!
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
