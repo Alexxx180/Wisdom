@@ -60,5 +60,15 @@ namespace Wisdom.Customing
         {
             return string.Format("{0:00}", value);
         }
+
+        //public static string ToGeneralNo(this int value)
+        //{
+        //    return string.Format("{0:00}", value);
+        //}
+
+        public static string ToGeneralNo(this IFormattable value)
+        {
+            return string.Format("{0:00}", value);
+        }
     }
 }

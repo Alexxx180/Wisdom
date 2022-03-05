@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using System.Collections.Generic;
 using Wisdom.Controls.Tables;
+using System;
 
 namespace Wisdom.Customing
 {
@@ -18,18 +19,6 @@ namespace Wisdom.Customing
                 Visibility.Visible :
                 Visibility.Hidden;
             element.IsEnabled = isEnabled;
-        }
-        //IRawData<T>
-        public static void SetDataElements<TComponent, TData>(
-            this IList<TComponent> list, IEnumerable<TData> value)
-        {
-            list.Clear();
-            foreach (TData dataItem in value)
-            {
-                IRawData<TData> dataElement = default;
-                dataElement.SetElement(dataItem);
-                list.Add((TComponent)dataElement);
-            }
         }
 
         public static void Refresh<T>(this IList<T> list, IEnumerable<T> value)

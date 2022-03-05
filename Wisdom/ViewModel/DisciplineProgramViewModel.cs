@@ -506,8 +506,6 @@ namespace Wisdom.ViewModel
             DisciplinesSelect.Refresh(DisciplineHead.Value);
 
             SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
-
-            //GeneralCompetetions.SetDataElements(SelectedSpeciality.GeneralCompetetions);
             SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
 
             OnPropertyChanged(nameof(GeneralCompetetions));

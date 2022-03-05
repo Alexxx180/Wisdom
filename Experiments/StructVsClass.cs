@@ -1,14 +1,14 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Diagnostics;
 using Wisdom.Model;
 using Wisdom.Model.ThemePlan;
+using static Experiments.ExperimentsHelper;
 
 namespace Experiments
 {
     /// <summary>
-    /// Tests to check differences between struct and
-    /// class in order to improve performance
+    /// Tests to check differences between
+    /// struct and class performance
     /// </summary>
     [TestClass]
     public class StructVsClass
@@ -268,15 +268,6 @@ namespace Experiments
         private void PassStructIn(in Task task)
         {
             Trace.WriteLine("Struct as input object passed");
-        }
-
-        private static void PrintTime(in TimeSpan time)
-        {
-            string elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:000}",
-            time.Hours, time.Minutes, time.Seconds, time.Milliseconds);
-            Trace.WriteLine(elapsedTime);
-            Trace.Write("Ticks: ");
-            Trace.WriteLine(time.Ticks);
         }
     }
 }
