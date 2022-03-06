@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using Wisdom.Model;
-using Wisdom.Model.ThemePlan;
+using Wisdom.Model.Tables.ThemePlan;
 using static Experiments.ExperimentsHelper;
 
 namespace Experiments

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
-using Wisdom.Model;
+using Wisdom.Model.Tables;
 using Wisdom.ViewModel;
 using Wisdom.Customing;
 
@@ -10,19 +10,19 @@ namespace Wisdom.Controls.Tables.Hours
     /// <summary>
     /// Record component containing total hours count (user preset)
     /// </summary>
-    public partial class HourElement : UserControl, INotifyPropertyChanged, IRawData<Pair<string, ushort>>
+    public partial class HourElement : UserControl, INotifyPropertyChanged, IRawData<Hour>
     {
         #region IRawData Members
-        public Pair<string, ushort> Raw()
+        public Hour Raw()
         {
             ushort hours = HourValue.ParseHours();
-            return new Pair<string, ushort>(WorkType, hours);
+            return new Hour(WorkType, hours);
         }
 
-        public void SetElement(Pair<string, ushort> values)
+        public void SetElement(Hour values)
         {
             WorkType = values.Name;
-            HourValue = values.Value.ToString();
+            HourValue = values.Count.ToString();
         }
         #endregion
 

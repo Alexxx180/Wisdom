@@ -5,29 +5,30 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Customing;
-using Wisdom.Model;
+using Wisdom.Model.Tables;
 
 namespace Wisdom.Controls.Tables.Sources.SourceTypes
 {
     /// <summary>
     /// Record component containing source group with type header
     /// </summary>
-    public partial class SourceTypeElement : UserControl, INotifyPropertyChanged, IRawData<Pair<string, List<string>>>
+    public partial class SourceTypeElement : UserControl, INotifyPropertyChanged, IRawData<Source>
     {
         #region IRawData Members
-        public Pair<string, List<string>> Raw()
+        public Source Raw()
         {
-            return new Pair<string, List<string>>(Text, GetSources());
+            return new Source(Text, Sources.GetRaw());
         }
 
-        public void SetElement(Pair<string, List<string>> sources)
+        public void SetElement(Source sources)
         {
             ushort i;
-            for (i = 0; i < sources.Value.Count; i++)
+            for (i = 0; i < sources.Descriptions.Count; i++)
             {
+                string description = sources.Descriptions[i];
                 SourceElement source = new SourceElement
                 {
-                    Source = sources.Value[i],
+                    Source = description,
                     SourceType = this
                 };
                 source.Index((i + 1).ToUInt());
@@ -113,16 +114,6 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
             Sources = new ObservableCollection<SourceElement>();
         }
 
-        public List<string> GetSources()
-        {
-            List<string> values = new List<string>();
-            for (byte i = 0; i < Sources.Count - 1; i++)
-            {
-                values.Add(Sources[i].Raw());
-            }
-            return values;
-        }
-
         private void DropSourceGroup(object sender, RoutedEventArgs e)
         {
             _ = Groups.Remove(this);
@@ -152,7 +143,7 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
 
 #warning SHOULD DO SOURCE TYPES STATIC
 
-        public void SetElement(IList<string> types, Pair<string, List<string>> sources)
+        public void SetElement(IList<string> types, Source sources)
         {
             SetTypes(types);
             Text = sources.Name;

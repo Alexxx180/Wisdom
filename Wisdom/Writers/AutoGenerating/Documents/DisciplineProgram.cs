@@ -14,20 +14,20 @@ namespace Wisdom.Writers.AutoGenerating.Documents
         private const string fileName = @"\TestResources\Templates\BaseTemplate.docx";
         private static string _template => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + fileName;
 
-        public static void ProcessJson(string path, Model.DisciplineProgram program)
+        public static void ProcessJson(string path, Model.Documents.DisciplineProgram program)
         {
             byte[] jsonUtf8Bytes = JsonSerializer.SerializeToUtf8Bytes(program);
             Save(path, jsonUtf8Bytes);
         }
 
-        public static void WriteDocX(string filepath, Model.DisciplineProgram program)
+        public static void WriteDocX(string filepath, Model.Documents.DisciplineProgram program)
         {
             FullProcessing(_template, filepath, program);
         }
 
         private static void FullProcessing(
             string templatePath, string generatePath,
-            Model.DisciplineProgram program
+            Model.Documents.DisciplineProgram program
             )
         {
             byte[] byteArray = File.ReadAllBytes(templatePath);
@@ -63,7 +63,7 @@ namespace Wisdom.Writers.AutoGenerating.Documents
         private static void FastProcessing(
             IEnumerable<Paragraph> paragraphs,
             IEnumerable<TableCell> cells,
-            Model.DisciplineProgram program
+            Model.Documents.DisciplineProgram program
             )
         {
 #warning Config Feature
@@ -90,14 +90,14 @@ namespace Wisdom.Writers.AutoGenerating.Documents
             string hours = "#HOURS-";
             for (byte i = 0; i < program.Hours.Count; i++)
             {
-                ReplaceInParagraphs(paragraphs, hours + i, program.Hours[i].Value.ToString());
-                ReplaceInCells(cells, hours + i, program.Hours[i].Value.ToString());
+                ReplaceInParagraphs(paragraphs, hours + i, program.Hours[i].Count.ToString());
+                ReplaceInCells(cells, hours + i, program.Hours[i].Count.ToString());
             }
         }
 
         private static void DetailProcessing(
             IEnumerable<Paragraph> paragraphs, 
-            Model.DisciplineProgram program
+            Model.Documents.DisciplineProgram program
             )
         {
             string competetions = "#COMPETETIONS";

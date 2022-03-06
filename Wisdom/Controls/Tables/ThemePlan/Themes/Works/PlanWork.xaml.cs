@@ -5,7 +5,7 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks;
 using Wisdom.Customing;
-using Wisdom.Model.ThemePlan;
+using Wisdom.Model.Tables.ThemePlan;
 using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works

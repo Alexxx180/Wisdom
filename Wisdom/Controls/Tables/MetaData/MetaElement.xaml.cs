@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Wisdom.Model.ThemePlan;
+using Wisdom.Model.Tables.ThemePlan;
 
 namespace Wisdom.Controls.Tables.MetaData
 {

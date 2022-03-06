@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.IO;
 using System.Windows;
-using Wisdom.Model;
+using Wisdom.Model.Documents;
 using static Wisdom.Writers.AutoGenerating.Documents.DisciplineProgram;
 
 namespace Wisdom.Writers

@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Experiments")]
-namespace Wisdom.Model.ThemePlan
+namespace Wisdom.Model.Tables.ThemePlan
 {
     public struct Task
     {

@@ -1,8 +1,10 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Collections.Generic;
+using Wisdom.Model.Documents;
+using Wisdom.Model.Tables;
+using Wisdom.Model.Tables.ThemePlan;
 using Wisdom.Model;
-using Wisdom.Model.ThemePlan;
 
 namespace Wisdom.Writers
 {

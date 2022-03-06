@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
 using Wisdom.Controls.Tables.Hours;
-using Wisdom.Model;
+using Wisdom.Model.Tables;
 
 namespace Wisdom.Binds.Converters
 {
@@ -16,8 +16,8 @@ namespace Wisdom.Binds.Converters
             uint sum = 0;
             for (ushort i = 0; i < hours.Count; i++)
             {
-                Pair<string, ushort> hour = hours[i].Raw();
-                sum += hour.Value;
+                Hour hour = hours[i].Raw();
+                sum += hour.Count;
             }
             return sum.ToString();
         }

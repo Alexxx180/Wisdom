@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.IO;
-using Wisdom.Model;
+using Wisdom.Model.Documents;
 using Wisdom.Controls.Forms.MainForm.UserTemplates;
 
 namespace Wisdom.Controls.Forms.MainForm

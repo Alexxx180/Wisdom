@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.IO;
 using System.Text.Json;
-using Wisdom.Model;
+using Wisdom.Model.Documents;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 

@@ -1,8 +1,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Wisdom.Model;
-using Wisdom.Model.ThemePlan;
+using Wisdom.Model.Tables;
+using Wisdom.Model.Tables.ThemePlan;
 using Wisdom.Customing;
 using static UnitTests.Extractors;
 
@@ -165,17 +165,15 @@ namespace UnitTests
         {
             Trace.WriteLine("Total hours count check...");
 
-            List<Pair<string, ushort>> hours = new
-                List<Pair<string, ushort>>();
+            List<Hour> hours = new List<Hour>();
 
             byte count = 10;
             for (byte i = 0; i < count; i++)
             {
-                Pair<string, ushort> hour = new
-                    Pair<string, ushort>
+                Hour hour = new Hour
                 {
                     Name = "Любая работа",
-                    Value = 30
+                    Count = 30
                 };
                 hours.Add(hour);
             }
@@ -188,8 +186,7 @@ namespace UnitTests
         {
             Trace.WriteLine("Sources check...");
 
-            List<Pair<string, List<string>>> sources = new
-                List<Pair<string, List<string>>>();
+            List<Source> sources = new List<Source>();
 
             byte count = 3;
             for (byte i = 0; i < count; i++)
@@ -200,11 +197,10 @@ namespace UnitTests
                     values.Add("Пример источника");
                 }
 
-                Pair<string, List<string>> group = new
-                    Pair<string, List<string>>
+                Source group = new Source
                 {
                     Name = "Литература",
-                    Value = values
+                    Descriptions = values
                 };
                 sources.Add(group);
             }

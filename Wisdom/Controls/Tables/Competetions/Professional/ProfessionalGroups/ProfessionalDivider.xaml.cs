@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
-using Wisdom.Model;
+using Wisdom.Model.Tables;
 using Wisdom.Customing;
 using System.Text.RegularExpressions;
 

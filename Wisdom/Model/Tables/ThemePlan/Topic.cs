@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Wisdom.Model.ThemePlan
+namespace Wisdom.Model.Tables.ThemePlan
 {
     public class Topic
     {

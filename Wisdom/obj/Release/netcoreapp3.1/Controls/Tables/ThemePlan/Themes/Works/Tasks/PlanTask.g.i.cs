@@ -52,8 +52,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/tables/themeplan/themes/works/tasks/plantask." +
-                    "xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/tables/themeplan/themes/works/tasks/plantask.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\..\..\Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTask.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

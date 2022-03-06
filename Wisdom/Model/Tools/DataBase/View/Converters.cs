@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data.Common;
 using System.Windows;
-using Wisdom.Model.ThemePlan;
+using Wisdom.Model.Tables;
+using Wisdom.Model.Tables.ThemePlan;
 using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Model.Tools.DataBase
@@ -116,11 +117,11 @@ namespace Wisdom.Model.Tools.DataBase
             return data;
         }
 
-        private static List<Pair<string, ushort>>
+        private static List<Hour>
             SetTotalHours(List<object[]> totalWorkHours)
         {
-            List<Pair<string, ushort>> data = new
-                List<Pair<string, ushort>>();
+            List<Hour> data = new
+                List<Hour>();
 
             for (int i = 0; i < totalWorkHours.Count; i++)
             {
@@ -128,16 +129,15 @@ namespace Wisdom.Model.Tools.DataBase
                 string type = row[1].ToString();
                 ushort value = row[2].ToUShort();
 
-                data.Add(new Pair<string, ushort>(type, value));
+                data.Add(new Hour(type, value));
             }
             return data;
         }
 
-        private static List<Pair<string, List<string>>>
+        private static List<Source>
             SetSources(List<object[]> sourcesList)
         {
-            List<Pair<string, List<string>>> sources = new
-                List<Pair<string, List<string>>>();
+            List<Source> sources = new List<Source>();
 
             List<string> types = new List<string>();
             Dictionary<string, List<string>> sort = new
@@ -162,8 +162,7 @@ namespace Wisdom.Model.Tools.DataBase
             {
                 string typeName = types[i];
                 List<string> sourceNames = sort[typeName];
-                Pair<string, List<string>> source = new
-                    Pair<string, List<string>>(typeName, sourceNames);
+                Source source = new Source(typeName, sourceNames);
 
                 sources.Add(source);
             }

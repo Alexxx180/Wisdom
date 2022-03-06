@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using Wisdom.Model.ThemePlan;
+using Wisdom.Model.Tables;
+using Wisdom.Model.Tables.ThemePlan;
 
-namespace Wisdom.Model
+namespace Wisdom.Model.Documents
 {
     public class DisciplineProgram : DisciplineBase
     {
@@ -14,7 +15,7 @@ namespace Wisdom.Model
             SetHours();
             StudyLevels = new List<Task>();
             MetaData = new List<Task>();
-            Sources = new List<Pair<string, List<string>>>();
+            Sources = new List<Source>();
             Plan = new List<Topic>();
         }
 
@@ -23,7 +24,7 @@ namespace Wisdom.Model
             MaxHours = "-";
             EduHours = "-";
             SelfHours = "-";
-            Hours = new List<Pair<string, ushort>>();
+            Hours = new List<Hour>();
         }
 
         // Speciality
@@ -33,7 +34,7 @@ namespace Wisdom.Model
         public string MaxHours { get; set; }
         public string EduHours { get; set; }
         public string SelfHours { get; set; }
-        public List<Pair<string, ushort>> Hours { get; set; }
+        public List<Hour> Hours { get; set; }
 
         public List<Task> StudyLevels { get; set; }
     }

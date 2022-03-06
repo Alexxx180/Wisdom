@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Wisdom.Model.Tables;
 
 namespace Wisdom.Model
 {
@@ -6,8 +7,10 @@ namespace Wisdom.Model
     {
         public SpecialityBase()
         {
-            GeneralCompetetions = new List<Competetion>();
-            ProfessionalCompetetions = new List<List<Competetion>>();
+            GeneralCompetetions = new
+                List<Competetion>();
+            ProfessionalCompetetions = new
+                List<List<Competetion>>();
         }
 
         public SpecialityBase(string name) : this()
@@ -15,9 +18,13 @@ namespace Wisdom.Model
             Name = name;
         }
 
-        public SpecialityBase(string name,
-            List<Competetion> generalCompetetions,
-            List<List<Competetion>> professionalCompetetions)
+        public SpecialityBase(
+            string name,
+            List<Competetion>
+            generalCompetetions,
+            List<List<Competetion>>
+            professionalCompetetions
+            )
         {
             Name = name;
             GeneralCompetetions = generalCompetetions;
@@ -25,7 +32,10 @@ namespace Wisdom.Model
         }
 
         public string Name { get; set; }
-        public List<Competetion> GeneralCompetetions { get; set; }
-        public List<List<Competetion>> ProfessionalCompetetions { get; set; }
+
+        public List<Competetion>
+            GeneralCompetetions { get; set; }
+        public List<List<Competetion>>
+            ProfessionalCompetetions { get; set; }
     }
 }

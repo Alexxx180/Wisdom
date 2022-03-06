@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Wisdom.Model
+namespace Wisdom.Model.Documents
 {
     public static class DocumentTypes
     {

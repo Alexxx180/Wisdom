@@ -3,7 +3,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Model;
-using Wisdom.Model.ThemePlan;
+using Wisdom.Model.Documents;
+using Wisdom.Model.Tables;
+using Wisdom.Model.Tables.ThemePlan;
 using Wisdom.Model.Tools.DataBase;
 using Wisdom.Controls.Tables.Hours;
 using Wisdom.Controls.Tables.Competetions.General;
@@ -389,115 +391,6 @@ namespace Wisdom.ViewModel
         }
         #endregion
 
-        #region MVVM Tests
-        public void TestCompetetions()
-        {
-            System.Diagnostics.Trace.WriteLine(SpecialityFullName);
-            TestGeneral();
-            TestProfessional();
-        }
-
-        public void TestGeneral()
-        {
-            System.Diagnostics.Trace.WriteLine(GeneralCompetetions.Count);
-            foreach (GeneralCompetetion competetions in GeneralCompetetions)
-            {
-                System.Diagnostics.Trace.WriteLine(competetions.Raw().PrefixNo);
-                System.Diagnostics.Trace.WriteLine(competetions.Raw().Name);
-                foreach (Task pair in competetions.Raw().Abilities)
-                {
-                    System.Diagnostics.Trace.WriteLine(pair.Name);
-                    System.Diagnostics.Trace.WriteLine(pair.Hours);
-                }
-            }
-        }
-
-        public void TestProfessional()
-        {
-            System.Diagnostics.Trace.WriteLine(ProfessionalCompetetions.Count);
-            foreach (ProfessionalDivider competetions in ProfessionalCompetetions)
-            {
-                foreach (Competetion pro in competetions.Raw())
-                {
-                    System.Diagnostics.Trace.WriteLine(pro.PrefixNo);
-                    System.Diagnostics.Trace.WriteLine(pro.Name);
-                    foreach (Task pair in pro.Abilities)
-                    {
-                        System.Diagnostics.Trace.WriteLine(pair.Name);
-                        System.Diagnostics.Trace.WriteLine(pair.Hours);
-                    }
-                }
-            }
-        }
-
-        public void TestDiscipline()
-        {
-            System.Diagnostics.Trace.WriteLine(DisciplineFullName);
-            TestHours();
-            TestMetaData();
-            TestSources();
-            TestThemePlan();
-        }
-
-        public void TestHours()
-        {
-            System.Diagnostics.Trace.WriteLine(Hours.Count);
-            foreach (HourElement hour in Hours)
-            {
-                System.Diagnostics.Trace.WriteLine(hour.Raw().Name);
-                System.Diagnostics.Trace.WriteLine(hour.Raw().Value);
-            }
-        }
-
-        public void TestMetaData()
-        {
-            System.Diagnostics.Trace.WriteLine(MetaData.Count);
-            foreach (MetaElement meta in MetaData)
-            {
-                System.Diagnostics.Trace.WriteLine(meta.Raw().Name);
-                System.Diagnostics.Trace.WriteLine(meta.Raw().Hours);
-            }
-        }
-
-        public void TestSources()
-        {
-            System.Diagnostics.Trace.WriteLine(Sources.Count);
-            foreach (SourceTypeElement sourceType in Sources)
-            {
-                System.Diagnostics.Trace.WriteLine(sourceType.Raw().Name);
-                foreach (string source in sourceType.Raw().Value)
-                {
-                    System.Diagnostics.Trace.WriteLine(source);
-                }
-            }
-        }
-
-        public void TestThemePlan()
-        {
-            System.Diagnostics.Trace.WriteLine(ThemePlan.Count);
-            foreach (PlanTopic topic in ThemePlan)
-            {
-                System.Diagnostics.Trace.WriteLine(topic.Raw().Name);
-                foreach (Theme theme in topic.Raw().Themes)
-                {
-                    System.Diagnostics.Trace.WriteLine(theme.Name);
-                    System.Diagnostics.Trace.WriteLine(theme.Hours);
-                    System.Diagnostics.Trace.WriteLine(theme.Competetions);
-                    System.Diagnostics.Trace.WriteLine(theme.Level);
-                    foreach (Work work in theme.Works)
-                    {
-                        System.Diagnostics.Trace.WriteLine(work.Type);
-                        foreach (Task task in work.Tasks)
-                        {
-                            System.Diagnostics.Trace.WriteLine(task.Name);
-                            System.Diagnostics.Trace.WriteLine(task.Hours);
-                        }
-                    }
-                }
-            }
-        }
-        #endregion
-
         #region SpecialityAutoSet Logic
         internal void ResetCompetetions()
         {
@@ -539,9 +432,9 @@ namespace Wisdom.ViewModel
         private void SetDiscipline(
             List<Competetion> general,
             List<List<Competetion>> professional,
-            List<Pair<string, ushort>> hours,
+            List<Hour> hours,
             List<Task> metaData,
-            List<Pair<string, List<string>>> sources,
+            List<Source> sources,
             List<Topic> themePlan
             )
         {
@@ -574,7 +467,7 @@ namespace Wisdom.ViewModel
             SetDiscipline(SelectedDiscipline);
         }
 
-        private void SetHours(List<Pair<string, ushort>> hours)
+        private void SetHours(List<Hour> hours)
         {
             int study = 0;
             int self = 0;
@@ -582,7 +475,7 @@ namespace Wisdom.ViewModel
             Hours.Clear();
             for (ushort i = 0; i < hours.Count; i++)
             {
-                Pair<string, ushort> hour = hours[i];
+                Hour hour = hours[i];
                 HourElement element = new HourElement
                 {
                     ViewModel = this
@@ -592,11 +485,11 @@ namespace Wisdom.ViewModel
 
                 if (hour.Name == "Самостоятельная работа")
                 {
-                    self += hour.Value;
+                    self += hour.Count;
                 }
                 else
                 {
-                    study += hour.Value;
+                    study += hour.Count;
                 }
             }
 
@@ -615,7 +508,7 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private void SetSources(List<Pair<string, List<string>>> sources)
+        private void SetSources(List<Source> sources)
         {
             Sources.Clear();
             for (ushort i = 0; i < sources.Count; i++)

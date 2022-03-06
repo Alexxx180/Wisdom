@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using Wisdom.Model;
-using Wisdom.Model.ThemePlan;
+using Wisdom.Model.Tables;
+using Wisdom.Model.Tables.ThemePlan;
 
 namespace UnitTests
 {
@@ -77,7 +78,7 @@ namespace UnitTests
         public static string ExtractMetaData(List<Task> tasks)
         {
             StringBuilder metaDataText = new StringBuilder("Метаданные:\n\n");
-            metaDataText.Append("Количество: " + tasks.Count + "\n");
+            metaDataText.Append($"Количество: {tasks.Count}\n");
             foreach (Task pair in tasks)
             {
                 metaDataText.Append($"\n{pair.Name}: {pair.Hours}");
@@ -85,30 +86,29 @@ namespace UnitTests
             return metaDataText.ToString();
         }
 
-        public static string ExtractHours(List<Pair<string, ushort>> hours)
+        public static string ExtractHours(List<Hour> hours)
         {
             StringBuilder metaDataText = new StringBuilder("Часы:\n\n");
-            metaDataText.Append("Количество: " + hours.Count + "\n");
-            foreach (Pair<string, ushort> pair in hours)
+            metaDataText.Append($"Количество: {hours.Count}\n");
+            foreach (Hour hour in hours)
             {
-                metaDataText.Append($"\n{pair.Name}: {pair.Value}");
+                metaDataText.Append($"\n{hour.Name}: {hour.Count}");
             }
             return metaDataText.ToString();
         }
 
-        public static string ExtractSources(List<Pair<string, List<string>>> sources)
+        public static string ExtractSources(List<Source> sources)
         {
             StringBuilder metaDataText = new StringBuilder("Источники:\n\n");
             metaDataText.Append("Количество: " + sources.Count);
-            foreach (Pair<string, List<string>> group in sources)
+            foreach (Source group in sources)
             {
                 metaDataText.Append($"\n\n{group.Name}: ");
-                List<string> values = group.Value;
+                List<string> values = group.Descriptions;
                 for (byte i = 0; i < values.Count; i++)
                 {
                     metaDataText.Append($"\n{i + 1}. {values[i]}");
                 }
-
             }
             return metaDataText.ToString();
         }

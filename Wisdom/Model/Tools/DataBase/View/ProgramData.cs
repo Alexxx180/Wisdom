@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Wisdom.Model.ThemePlan;
+using Wisdom.Model.Tables.ThemePlan;
 using Wisdom.Customing;
 using static Wisdom.Model.Tools.DataBase.Converters;
 
