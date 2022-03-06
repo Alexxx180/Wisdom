@@ -117,7 +117,7 @@
     <Compile Update="Controls\Tables\ThemePlan\Themes\Works\PlanWorkTask.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Forms\MainForm\UserTemplates\TemplateControl.xaml.cs">
+    <Compile Update="Controls\Forms\MainForm\UserTemplates\DisciplineProgramTemplate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskFields.xaml.cs">
@@ -233,7 +233,7 @@
     <Page Update="Controls\Tables\ThemePlan\Themes\Works\PlanWorkTask.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Forms\MainForm\UserTemplates\TemplateControl.xaml">
+    <Page Update="Controls\Forms\MainForm\UserTemplates\DisciplineProgramTemplate.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskFields.xaml">

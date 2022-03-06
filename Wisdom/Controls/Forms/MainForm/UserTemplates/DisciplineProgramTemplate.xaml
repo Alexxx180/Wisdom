@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="Wisdom.Controls.Forms.MainForm.UserTemplates.TemplateControl"
+﻿<templates:TemplateControl x:Class="Wisdom.Controls.Forms.MainForm.UserTemplates.DisciplineProgramTemplate"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             xmlns:templates="clr-namespace:Wisdom.Controls.Forms.MainForm.UserTemplates"
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="45" d:DesignWidth="1000">
     <Button HorizontalContentAlignment="Left" Click="CreateFromTemplate">
@@ -11,7 +12,11 @@
             <StaticResource ResourceKey="ListCaptions"/>
         </Button.Style>
         <Button.Content>
-            <TextBlock Text="{Binding Path=FileName}" />
+            <TextBlock Text="{Binding Path=FileName}">
+                <TextBlock.TextTrimming>
+                    CharacterEllipsis
+                </TextBlock.TextTrimming>
+            </TextBlock>
         </Button.Content>
     </Button>
-</UserControl>
+</templates:TemplateControl>

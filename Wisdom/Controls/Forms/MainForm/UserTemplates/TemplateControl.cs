@@ -1,18 +1,18 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.ComponentModel;
 using System.IO;
-using System.Text.Json;
-using Wisdom.Model.Documents;
-using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Wisdom.Controls.Forms.MainForm.UserTemplates
 {
     /// <summary>
     /// User input template file unit
     /// </summary>
-    public partial class TemplateControl : UserControl, INotifyPropertyChanged
+    public class TemplateControl : UserControl, INotifyPropertyChanged
     {
+        #region TemplateControl Members
         private string _fullName;
         public string FullName
         {
@@ -20,64 +20,34 @@ namespace Wisdom.Controls.Forms.MainForm.UserTemplates
             set
             {
                 _fullName = value;
-                FileName = Path.GetFileNameWithoutExtension(value);
                 OnPropertyChanged();
+                System.Diagnostics.Trace.WriteLine("CAHEEEEEEEEEEEEEEEEEEEEL");
+                OnPropertyChanged(nameof(FileName));
             }
         }
 
-        private string _name;
-        public string FileName
-        {
-            get => _name;
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
-        }
+        public string FileName => Path.GetFileNameWithoutExtension(FullName);
+        #endregion
 
-        public TemplateControl()
-        {
-            InitializeComponent();
-        }
+        public MainPart MainForm { get; set; }
 
-        public TemplateControl(string fullName) : this()
+        public T LoadFromTemplate<T>()
         {
-            FullName = fullName;
-        }
-
-        private void RemoveSelf()
-        {
-            StackPanel templates = Parent as StackPanel;
-            templates.Children.Remove(this);
-        }
-
-        private void CreateFromTemplate(object sender, RoutedEventArgs e)
-        {
-            if (!File.Exists(FullName))
-            {
-                RemoveSelf();
-                return;
-            }
+            T progam = default;
             try
             {
-                LoadFromTemplate();
+                byte[] fileBytes = File.ReadAllBytes(FullName);
+                Utf8JsonReader utf8Reader = new Utf8JsonReader(fileBytes);
+                progam = JsonSerializer.Deserialize<T>(ref utf8Reader);
             }
             catch (IOException exception)
             {
                 LoadMessage(exception.Message);
             }
+            return progam;
         }
 
-        private void LoadFromTemplate()
-        {
-            byte[] fileBytes = File.ReadAllBytes(FullName);
-            Utf8JsonReader utf8Reader = new Utf8JsonReader(fileBytes);
-            DisciplineProgram program = JsonSerializer.Deserialize<DisciplineProgram>(ref utf8Reader);
-            MainPart.CreateDisciplineProgram(program);
-        }
-
-        private static void LoadMessage(string exception)
+        protected static void LoadMessage(string exception)
         {
             string noLoad = "Не удалось загрузить файл.";
             string message = "\nУбедитесь, что файл не поврежден или отсутствует в целевой директории.\n";

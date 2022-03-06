@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="600">
     <Grid>
@@ -59,46 +60,17 @@
                 <RowDefinition Height="0.05*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Column="1" Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.125*" />
-                    <RowDefinition Height="0.875*" />
-                </Grid.RowDefinitions>
+            <ScrollViewer Grid.Row="1" Grid.Column="1">
+                <ScrollViewer.VerticalScrollBarVisibility>
+                    Auto
+                </ScrollViewer.VerticalScrollBarVisibility>
 
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.05*" />
-                        <ColumnDefinition Width="0.9*" />
-                        <ColumnDefinition Width="0.05*" />
-                    </Grid.ColumnDefinitions>
-
-                    <!--
-                    <Image Source="/Resources/Images/Icons/Search.png"/>
-                    
-                    <TextBox Grid.Column="1" FontSize="20">
-                        <TextBox.Style>
-                            <StaticResource ResourceKey="RegularBox"/>
-                        </TextBox.Style>
-                        <TextBox.Text>
-                            Прикладное программирование
-                        </TextBox.Text>
-                    </TextBox>
-                    </TextBox>
-                    -->
-                    
-                    <Button x:Name="Refresh" Grid.Column="2" Click="RefreshTemplates">
-                        <Viewbox>
-                            <Image Source="/Refresh.png" Stretch="Fill" />
-                        </Viewbox>
-                    </Button>
-                </Grid>
-
-                <ScrollViewer Grid.Row="1">
-                    <StackPanel x:Name="Templates">
-
-                    </StackPanel>
-                </ScrollViewer>
-            </Grid>
+                <ItemsControl>
+                    <ItemsControl.ItemsSource>
+                        <Binding Path="Templates"/>
+                    </ItemsControl.ItemsSource>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

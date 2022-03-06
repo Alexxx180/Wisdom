@@ -4,8 +4,10 @@ using Wisdom.Model.Tables.ThemePlan;
 
 namespace Wisdom.Model.Documents
 {
-    public class DisciplineProgram : DisciplineBase
+    public class DisciplineProgram : DisciplineBase, IDocument
     {
+        public Document DocumentType => Document.DISIPLINE_PROGRAM;
+
         public DisciplineProgram()
         {
             ProfessionName = "";
