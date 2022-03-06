@@ -7,20 +7,21 @@
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="82" d:DesignWidth="800" x:Name="This" BorderBrush="#FF7FFFD4" BorderThickness="3">
+             d:DesignHeight="79" d:DesignWidth="800" x:Name="This" BorderBrush="#FF7FFFD4" BorderThickness="3">
     <UserControl.Style>
-        <StaticResource ResourceKey="Extendable"/>
+        <StaticResource ResourceKey="MultiRecord"/>
     </UserControl.Style>
     
     <UserControl.Resources>
         <converters:UsedValuesConverter x:Key="UsedValuesConverter"/>
         <converters:ThemeHoursConverter x:Key="ThemeHoursConverter"/>
         <converters:ExtendConverter x:Key="ExtendConverter"/>
+        <converters:WrapConverter x:Key="WrapConverter"/>
     </UserControl.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
+            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -34,7 +35,7 @@
                 <ColumnDefinition Width="0.085*" />
             </Grid.ColumnDefinitions>
 
-            <Button Click="DropTheme">
+            <Button Click="DropTheme" Height="35">
                 <Button.Style>
                     <StaticResource ResourceKey="DeleteButton"/>
                 </Button.Style>
@@ -50,6 +51,13 @@
             </TextBlock>
 
             <TextBox Grid.Column="2">
+                <TextBox.TextWrapping>
+                    <Binding Path="IsWrap">
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="WrapConverter"/>
+                        </Binding.Converter>
+                    </Binding>
+                </TextBox.TextWrapping>
                 <TextBox.Style>
                     <StaticResource ResourceKey="SubCaptionBox"/>
                 </TextBox.Style>
@@ -63,6 +71,13 @@
             </TextBox>
             
             <TextBox Grid.Column="3">
+                <TextBox.TextWrapping>
+                    <Binding Path="IsWrap">
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="WrapConverter"/>
+                        </Binding.Converter>
+                    </Binding>
+                </TextBox.TextWrapping>
                 <TextBox.Style>
                     <StaticResource ResourceKey="RegularBox"/>
                 </TextBox.Style>

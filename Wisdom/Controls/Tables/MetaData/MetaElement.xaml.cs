@@ -8,7 +8,7 @@ namespace Wisdom.Controls.Tables.MetaData
     /// <summary>
     /// Record component containing discipline meta data
     /// </summary>
-    public partial class MetaElement : UserControl, INotifyPropertyChanged, IRawData<Task>
+    public partial class MetaElement : UserControl, INotifyPropertyChanged, IRawData<Task>, IWrapFields
     {
         #region IRawData Members
         public Task Raw()
@@ -44,6 +44,24 @@ namespace Wisdom.Controls.Tables.MetaData
                 _value = value;
                 OnPropertyChanged();
             }
+        }
+        #endregion
+
+        #region IWrapFields Members
+        private bool _isWrap;
+        public bool IsWrap
+        {
+            get => _isWrap;
+            set
+            {
+                _isWrap = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void WrapFields()
+        {
+            IsWrap = !IsWrap;
         }
         #endregion
 

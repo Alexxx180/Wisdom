@@ -26,8 +26,17 @@
         <EventSetter Event="GotFocus" Handler="ForgetNo"/>
         <EventSetter Event="LostFocus" Handler="MemoryNo"/>
     </Style>
-
+    
     <Style x:Key="Extendable" TargetType="UserControl">
+        <EventSetter Event="MouseRightButtonDown" Handler="ExtendItems"/>
+    </Style>
+
+    <Style x:Key="Wrapable" TargetType="UserControl">
+        <EventSetter Event="GotFocus" Handler="WrapFields"/>
+        <EventSetter Event="LostFocus" Handler="WrapFields"/>
+    </Style>
+    
+    <Style x:Key="MultiRecord" TargetType="UserControl" BasedOn="{StaticResource Wrapable}">
         <EventSetter Event="MouseRightButtonDown" Handler="ExtendItems"/>
     </Style>
 </ResourceDictionary>

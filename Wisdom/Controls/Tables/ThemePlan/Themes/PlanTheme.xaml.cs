@@ -12,7 +12,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
     /// <summary>
     /// Theme of theme plan's topic
     /// </summary>
-    public partial class PlanTheme : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Theme>, IExtendableItems
+    public partial class PlanTheme : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Theme>, IExtendableItems, IWrapFields
     {
         #region IRawData Members
         public Theme Raw()
@@ -173,12 +173,31 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         }
         #endregion
 
+        #region IWrapFields Members
+        private bool _isWrap;
+        public bool IsWrap
+        {
+            get => _isWrap;
+            set
+            {
+                _isWrap = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void WrapFields()
+        {
+            IsWrap = !IsWrap;
+        }
+        #endregion
+
         public PlanTheme()
         {
             InitializeComponent();
             Index(1);
             Works = new ObservableCollection<IRawData<Work>>();
             Extended = true;
+            IsWrap = false;
         }
 
         private void DropTheme(object sender, RoutedEventArgs e)

@@ -9,7 +9,7 @@ namespace Wisdom.Controls.Tables.Sources
     /// <summary>
     /// Record component containing educational source
     /// </summary>
-    public partial class SourceElement : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<string>
+    public partial class SourceElement : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<string>, IWrapFields
     {
         #region IRawData Members
         public string Raw()
@@ -65,6 +65,24 @@ namespace Wisdom.Controls.Tables.Sources
                 _value = value;
                 OnPropertyChanged();
             }
+        }
+        #endregion
+
+        #region IWrapFields Members
+        private bool _isWrap;
+        public bool IsWrap
+        {
+            get => _isWrap;
+            set
+            {
+                _isWrap = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void WrapFields()
+        {
+            IsWrap = !IsWrap;
         }
         #endregion
 

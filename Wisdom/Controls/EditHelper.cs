@@ -66,5 +66,11 @@ namespace Wisdom.Controls
             extendable.ExtendItems();
             e.Handled = true;
         }
+
+        public static void DetermineWrap(object sender)
+        {
+            IWrapFields wrapFields = sender as IWrapFields;
+            wrapFields.WrapFields();
+        }
     }
 }

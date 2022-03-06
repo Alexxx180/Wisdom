@@ -8,11 +8,12 @@
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="140" d:DesignWidth="800">
     <UserControl.Style>
-        <StaticResource ResourceKey="Extendable"/>
+        <StaticResource ResourceKey="MultiRecord"/>
     </UserControl.Style>
     
     <UserControl.Resources>
         <converters:ExtendConverter x:Key="ExtendConverter"/>
+        <converters:WrapConverter x:Key="WrapConverter"/>
     </UserControl.Resources>
     
     <Grid>
@@ -57,7 +58,11 @@
 
             <TextBox Grid.Column="2">
                 <TextBox.TextWrapping>
-                    Wrap
+                    <Binding Path="IsWrap">
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="WrapConverter"/>
+                        </Binding.Converter>
+                    </Binding>
                 </TextBox.TextWrapping>
                 <TextBox.Style>
                     <StaticResource ResourceKey="RegularBox"/>
@@ -96,7 +101,11 @@
 
             <TextBox Grid.Column="1">
                 <TextBox.TextWrapping>
-                    Wrap
+                    <Binding Path="IsWrap">
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="WrapConverter"/>
+                        </Binding.Converter>
+                    </Binding>
                 </TextBox.TextWrapping>
                 <TextBox.Style>
                     <StaticResource ResourceKey="RegularBox"/>
@@ -114,7 +123,11 @@
 
             <TextBox Grid.Row="1" Grid.Column="1">
                 <TextBox.TextWrapping>
-                    Wrap
+                    <Binding Path="IsWrap">
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="WrapConverter"/>
+                        </Binding.Converter>
+                    </Binding>
                 </TextBox.TextWrapping>
                 <TextBox.Style>
                     <StaticResource ResourceKey="RegularBox"/>
@@ -132,7 +145,11 @@
 
             <TextBox Grid.Row="2" Grid.Column="1">
                 <TextBox.TextWrapping>
-                    Wrap
+                    <Binding Path="IsWrap">
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="WrapConverter"/>
+                        </Binding.Converter>
+                    </Binding>
                 </TextBox.TextWrapping>
                 <TextBox.Style>
                     <StaticResource ResourceKey="RegularBox"/>

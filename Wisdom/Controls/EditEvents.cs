@@ -50,9 +50,16 @@ namespace Wisdom.Controls
         }
         #endregion
 
+        #region Extending Members
         private void ExtendItems(object sender, MouseButtonEventArgs e)
         {
             DetermineExtension(sender, e);
         }
+
+        private void WrapFields(object sender, RoutedEventArgs e)
+        {
+            DetermineWrap(sender);
+        }
+        #endregion
     }
 }

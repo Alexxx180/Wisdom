@@ -13,7 +13,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
     /// <summary>
     /// General competetion related to speciality | discipline
     /// </summary>
-    public partial class GeneralCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Competetion>, IExtendableItems
+    public partial class GeneralCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Competetion>, IExtendableItems, IWrapFields
     {
         #region IRawData Members
         public Competetion Raw()
@@ -149,10 +149,30 @@ namespace Wisdom.Controls.Tables.Competetions.General
         }
         #endregion
 
+        #region IWrapFields Members
+        private bool _isWrap;
+        public bool IsWrap
+        {
+            get => _isWrap;
+            set
+            {
+                _isWrap = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void WrapFields()
+        {
+            IsWrap = !IsWrap;
+        }
+        #endregion
+
         public GeneralCompetetion()
         {
             InitializeComponent();
             Index(1);
+            Extended = true;
+            IsWrap = false;
         }
 
         private void DropCompetetion(object sender, RoutedEventArgs e)

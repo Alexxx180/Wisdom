@@ -9,7 +9,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
     /// <summary>
     /// Task of theme's work
     /// </summary>
-    public partial class PlanTask : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Task>
+    public partial class PlanTask : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Task>, IWrapFields
     {
         #region IRawData Members
         public Task Raw()
@@ -81,10 +81,29 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
         }
         #endregion
 
+        #region IWrapFields Members
+        private bool _isWrap;
+        public bool IsWrap
+        {
+            get => _isWrap;
+            set
+            {
+                _isWrap = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void WrapFields()
+        {
+            IsWrap = !IsWrap;
+        }
+        #endregion
+
         public PlanTask()
         {
             InitializeComponent();
             Index(1);
+            IsWrap = false;
         }
 
         private void DropTask(object sender, RoutedEventArgs e)
