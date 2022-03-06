@@ -6,7 +6,7 @@
              xmlns:sources="clr-namespace:Wisdom.Controls.Tables.Sources"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="105" d:DesignWidth="800" x:Name="This">
+             d:DesignHeight="70" d:DesignWidth="800" x:Name="This">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -57,7 +57,7 @@
                 </ItemsControl.ItemsSource>
             </ItemsControl>
 
-            <sources:SourceElementAdditor x:Name="Additor" Grid.Row="1" >
+            <sources:SourceElementAdditor x:Name="Additor" Grid.Row="1">
                 <sources:SourceElementAdditor.SourceType>
                     <Binding ElementName="This" />
                 </sources:SourceElementAdditor.SourceType>

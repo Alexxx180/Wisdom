@@ -8,7 +8,7 @@
                 <ResourceDictionary Source="Resources/Styles/Total.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Resources/Styles/Buttons.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Resources/Styles/Labels.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="Resources/Styles/TextBoxes.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resources/Styles/Editors.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Resources/Styles/CheckBoxes.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Resources/Styles/ComboBoxes.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Resources/Styles/FlowDocuments.xaml"></ResourceDictionary>

@@ -3,13 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="160" d:DesignWidth="800">
+             d:DesignHeight="140" d:DesignWidth="800">
+    <UserControl.Style>
+        <StaticResource ResourceKey="Extendable"/>
+    </UserControl.Style>
+    
+    <UserControl.Resources>
+        <converters:ExtendConverter x:Key="ExtendConverter"/>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.25*"/>
-            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="0.335*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         
@@ -21,13 +30,19 @@
             </Grid.ColumnDefinitions>
             
 
-            <Button Click="DropCompetetion">
+            <Button Click="DropCompetetion" Height="35">
                 <Button.Style>
                     <StaticResource ResourceKey="DeleteButton"/>
                 </Button.Style>
             </Button>
 
-            <TextBox Grid.Column="1" Style="{StaticResource NoBox}">
+            <TextBox Grid.Column="1" Height="35">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="NoBox"/>
+                </TextBox.Style>
+                <TextBox.TextWrapping>
+                    NoWrap
+                </TextBox.TextWrapping>
                 <TextBox.Text>
                     <Binding Path="ProfessionalNo" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
@@ -40,7 +55,13 @@
                 </TextBox.IsEnabled>
             </TextBox>
 
-            <TextBox Grid.Column="2" Style="{StaticResource RegularBox}">
+            <TextBox Grid.Column="2">
+                <TextBox.TextWrapping>
+                    Wrap
+                </TextBox.TextWrapping>
+                <TextBox.Style>
+                    <StaticResource ResourceKey="RegularBox"/>
+                </TextBox.Style>
                 <TextBox.Text>
                     <Binding Path="ProfessionalName" Mode="TwoWay" UpdateSourceTrigger="LostFocus" />
                 </TextBox.Text>
@@ -48,6 +69,17 @@
         </Grid>
 
         <Grid Grid.Row="1">
+            <Grid.IsEnabled>
+                <Binding Path="Extended"/>
+            </Grid.IsEnabled>
+            <Grid.Visibility>
+                <Binding Path="Extended">
+                    <Binding.Converter>
+                        <StaticResource ResourceKey="ExtendConverter"/>
+                    </Binding.Converter>
+                </Binding>
+            </Grid.Visibility>
+            
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -63,6 +95,9 @@
             <TextBlock Text="Опыт:" Style="{StaticResource No1}" />
 
             <TextBox Grid.Column="1">
+                <TextBox.TextWrapping>
+                    Wrap
+                </TextBox.TextWrapping>
                 <TextBox.Style>
                     <StaticResource ResourceKey="RegularBox"/>
                 </TextBox.Style>
@@ -78,6 +113,9 @@
             <TextBlock Grid.Row="1" Text="Умения:" Style="{StaticResource No1}" />
 
             <TextBox Grid.Row="1" Grid.Column="1">
+                <TextBox.TextWrapping>
+                    Wrap
+                </TextBox.TextWrapping>
                 <TextBox.Style>
                     <StaticResource ResourceKey="RegularBox"/>
                 </TextBox.Style>
@@ -93,6 +131,9 @@
             <TextBlock Grid.Row="2" Text="Знания:" Style="{StaticResource No1}" />
 
             <TextBox Grid.Row="2" Grid.Column="1">
+                <TextBox.TextWrapping>
+                    Wrap
+                </TextBox.TextWrapping>
                 <TextBox.Style>
                     <StaticResource ResourceKey="RegularBox"/>
                 </TextBox.Style>

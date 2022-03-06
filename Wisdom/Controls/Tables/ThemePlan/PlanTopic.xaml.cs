@@ -12,7 +12,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
     /// <summary>
     /// Topic of theme plan
     /// </summary>
-    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IRecordsIndexing, IRawData<Topic>
+    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IRecordsIndexing, IRawData<Topic>, IExtendableItems
     {
         #region IRawData Members
         public Topic Raw()
@@ -126,11 +126,30 @@ namespace Wisdom.Controls.Tables.ThemePlan
         }
         #endregion
 
+        #region IExtendableItems Members
+        private bool _extended;
+        public bool Extended
+        {
+            get => _extended;
+            set
+            {
+                _extended = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void ExtendItems()
+        {
+            Extended = !Extended;
+        }
+        #endregion
+
         public PlanTopic()
         {
             InitializeComponent();
             Index(1);
             Themes = new ObservableCollection<PlanTheme>();
+            Extended = true;
         }
 
         private void DropTopic(object sender, RoutedEventArgs e)

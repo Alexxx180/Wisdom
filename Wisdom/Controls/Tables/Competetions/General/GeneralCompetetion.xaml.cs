@@ -13,7 +13,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
     /// <summary>
     /// General competetion related to speciality | discipline
     /// </summary>
-    public partial class GeneralCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Competetion>
+    public partial class GeneralCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Competetion>, IExtendableItems
     {
         #region IRawData Members
         public Competetion Raw()
@@ -128,6 +128,24 @@ namespace Wisdom.Controls.Tables.Competetions.General
                 _generalKnowledge = value;
                 OnPropertyChanged();
             }
+        }
+        #endregion
+
+        #region IExtendableItems Members
+        private bool _extended;
+        public bool Extended
+        {
+            get => _extended;
+            set
+            {
+                _extended = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void ExtendItems()
+        {
+            Extended = !Extended;
         }
         #endregion
 

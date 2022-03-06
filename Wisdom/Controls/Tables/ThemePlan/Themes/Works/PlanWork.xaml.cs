@@ -13,7 +13,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
     /// <summary>
     /// Work with tasks group of theme
     /// </summary>
-    public partial class PlanWork : UserControl, INotifyPropertyChanged, IRawData<Work>
+    public partial class PlanWork : UserControl, INotifyPropertyChanged, IRawData<Work>, IExtendableItems
     {
         #region IRawData Members
         public Work Raw()
@@ -93,10 +93,29 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
         }
         #endregion
 
+        #region IExtendableItems Members
+        private bool _extended;
+        public bool Extended
+        {
+            get => _extended;
+            set
+            {
+                _extended = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void ExtendItems()
+        {
+            Extended = !Extended;
+        }
+        #endregion
+
         public PlanWork()
         {
             InitializeComponent();
             Tasks = new ObservableCollection<PlanTask>();
+            Extended = true;
         }
 
         private void DropRecord(object sender, RoutedEventArgs e)

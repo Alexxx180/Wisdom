@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
+using Wisdom.Controls.Tables;
 
 namespace Wisdom.Controls
 {
@@ -57,6 +58,13 @@ namespace Wisdom.Controls
                 memoryNo = regex.Match(memoryNo).Value;
                 box.SetCurrentValue(TextBox.TextProperty, memoryNo);
             }
+        }
+
+        public static void DetermineExtension(object sender, MouseButtonEventArgs e)
+        {
+            IExtendableItems extendable = sender as IExtendableItems;
+            extendable.ExtendItems();
+            e.Handled = true;
         }
     }
 }

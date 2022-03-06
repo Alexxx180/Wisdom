@@ -12,7 +12,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
     /// <summary>
     /// Professional competetion related to speciality | discipline
     /// </summary>
-    public partial class ProfessionalCompetetion : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Competetion>
+    public partial class ProfessionalCompetetion : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Competetion>, IExtendableItems
     {
         #region IRawData Members
         public Competetion Raw()
@@ -133,10 +133,29 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         }
         #endregion
 
+        #region IExtendableItems Members
+        private bool _extended;
+        public bool Extended
+        {
+            get => _extended;
+            set
+            {
+                _extended = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void ExtendItems()
+        {
+            Extended = !Extended;
+        }
+        #endregion
+
         public ProfessionalCompetetion()
         {
             InitializeComponent();
             Index(1);
+            Extended = true;
         }
 
         private void DropCompetetion(object sender, RoutedEventArgs e)

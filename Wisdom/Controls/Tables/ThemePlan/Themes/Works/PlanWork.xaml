@@ -4,12 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:tasks="clr-namespace:Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks"
+             xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="111" d:DesignWidth="800" x:Name="This" BorderBrush="#FFEEEBB6" BorderThickness="3">
+    <UserControl.Style>
+        <StaticResource ResourceKey="Extendable"/>
+    </UserControl.Style>
+
+    <UserControl.Resources>
+        <converters:ExtendConverter x:Key="ExtendConverter"/>
+    </UserControl.Resources>
+    
     <Grid Background="#FFEEEBB6">
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -32,9 +40,20 @@
             </TextBlock>
         </Grid>
 
-        <tasks:PlanTaskFields Grid.Row="1"/>
-
         <StackPanel Grid.Row="2">
+            <StackPanel.IsEnabled>
+                <Binding Path="Extended"/>
+            </StackPanel.IsEnabled>
+            <StackPanel.Visibility>
+                <Binding Path="Extended">
+                    <Binding.Converter>
+                        <StaticResource ResourceKey="ExtendConverter"/>
+                    </Binding.Converter>
+                </Binding>
+            </StackPanel.Visibility>
+            
+            <tasks:PlanTaskFields Grid.Row="1"/>
+            
             <ItemsControl>
                 <ItemsControl.ItemsSource>
                     <Binding Path="Tasks"/>

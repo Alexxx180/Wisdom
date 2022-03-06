@@ -7,6 +7,7 @@ namespace Wisdom.Controls
 {
     public partial class EditEvents
     {
+        #region HoursEditing Members
         private static readonly Regex _hours = new Regex("^([1-9]|[1-9]\\d\\d?)$");
 
         private void Hours(object sender, TextCompositionEventArgs e)
@@ -18,7 +19,9 @@ namespace Wisdom.Controls
         {
             CheckForPastingText(sender, e, _hours);
         }
+        #endregion
 
+        #region Naming Members
         private static readonly Regex _naming = new Regex(@"^[A-Za-zА-Яа-я0-9\s-_]*$");
 
         private void Naming(object sender, TextCompositionEventArgs e)
@@ -30,7 +33,9 @@ namespace Wisdom.Controls
         {
             CheckForPastingText(sender, e, _naming);
         }
+        #endregion
 
+        #region MemoryNo Members
         private string _memoryNo;
         private static readonly Regex _no = new Regex(@"\d+");
 
@@ -42,6 +47,12 @@ namespace Wisdom.Controls
         private void MemoryNo(object sender, RoutedEventArgs e)
         {
             MemoryNoLostFocus(sender, _memoryNo, _no);
+        }
+        #endregion
+
+        private void ExtendItems(object sender, MouseButtonEventArgs e)
+        {
+            DetermineExtension(sender, e);
         }
     }
 }

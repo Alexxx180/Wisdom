@@ -13,7 +13,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
     /// <summary>
     /// A group of professional competetions
     /// </summary>
-    public partial class ProfessionalDivider : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<List<Competetion>>
+    public partial class ProfessionalDivider : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<List<Competetion>>, IExtendableItems
     {
         #region IRawData Members
         public List<Competetion> Raw()
@@ -115,11 +115,34 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         }
         #endregion
 
+        #region IExtendableItems Members
+        private bool _extended;
+        public bool Extended
+        {
+            get => _extended;
+            set
+            {
+                _extended = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public void ExtendItems()
+        {
+            Extended = !Extended;
+            for (ushort i = 0; i < Competetions.Count; i++)
+            {
+                Competetions[i].Extended = Extended;
+            }
+        }
+        #endregion
+
         public ProfessionalDivider()
         {
             InitializeComponent();
             Competetions = new ObservableCollection<ProfessionalCompetetion>();
             Index(1);
+            Extended = true;
         }
 
         private void DropDivision(object sender, RoutedEventArgs e)

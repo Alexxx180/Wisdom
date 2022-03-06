@@ -260,7 +260,7 @@
     <Page Update="Resources\Styles\MenuItems.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Resources\Styles\TextBoxes.xaml">
+    <Page Update="Resources\Styles\Editors.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Styles\Total.xaml">

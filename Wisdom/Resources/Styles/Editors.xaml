@@ -26,4 +26,8 @@
         <EventSetter Event="GotFocus" Handler="ForgetNo"/>
         <EventSetter Event="LostFocus" Handler="MemoryNo"/>
     </Style>
+
+    <Style x:Key="Extendable" TargetType="UserControl">
+        <EventSetter Event="MouseRightButtonDown" Handler="ExtendItems"/>
+    </Style>
 </ResourceDictionary>

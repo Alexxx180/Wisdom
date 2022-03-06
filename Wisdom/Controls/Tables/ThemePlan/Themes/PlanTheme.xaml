@@ -7,16 +7,20 @@
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="105" d:DesignWidth="800" x:Name="This" BorderBrush="#FF7FFFD4" BorderThickness="3">
+             d:DesignHeight="82" d:DesignWidth="800" x:Name="This" BorderBrush="#FF7FFFD4" BorderThickness="3">
+    <UserControl.Style>
+        <StaticResource ResourceKey="Extendable"/>
+    </UserControl.Style>
+    
     <UserControl.Resources>
-        <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
+        <converters:UsedValuesConverter x:Key="UsedValuesConverter"/>
         <converters:ThemeHoursConverter x:Key="ThemeHoursConverter"/>
+        <converters:ExtendConverter x:Key="ExtendConverter"/>
     </UserControl.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
-            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -101,23 +105,35 @@
             </TextBox>
         </Grid>
 
+        <StackPanel Grid.Row="1">
+            <StackPanel.IsEnabled>
+                <Binding Path="Extended"/>
+            </StackPanel.IsEnabled>
+            <StackPanel.Visibility>
+                <Binding Path="Extended">
+                    <Binding.Converter>
+                        <StaticResource ResourceKey="ExtendConverter"/>
+                    </Binding.Converter>
+                </Binding>
+            </StackPanel.Visibility>
+            
+            <ItemsControl Grid.Row="1">
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="FrameworkElement.Margin" Value="0,0,0,15"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
 
-        <ItemsControl Grid.Row="1">
-            <ItemsControl.ItemContainerStyle>
-                <Style>
-                    <Setter Property="FrameworkElement.Margin" Value="0,0,0,15"/>
-                </Style>
-            </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemsSource>
+                    <Binding Path="Works"/>
+                </ItemsControl.ItemsSource>
+            </ItemsControl>
 
-            <ItemsControl.ItemsSource>
-                <Binding Path="Works"/>
-            </ItemsControl.ItemsSource>
-        </ItemsControl>
-
-        <works:PlanWorkAdditor Grid.Row="2">
-            <works:PlanWorkAdditor.Theme>
-                <Binding ElementName="This"/>
-            </works:PlanWorkAdditor.Theme>
-        </works:PlanWorkAdditor>
+            <works:PlanWorkAdditor>
+                <works:PlanWorkAdditor.Theme>
+                    <Binding ElementName="This"/>
+                </works:PlanWorkAdditor.Theme>
+            </works:PlanWorkAdditor>
+        </StackPanel>
     </Grid>
 </UserControl>
