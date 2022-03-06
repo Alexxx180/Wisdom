@@ -5,6 +5,7 @@ using Wisdom.Model.Documents;
 using Wisdom.Model.Tables;
 using Wisdom.Model.Tables.ThemePlan;
 using Wisdom.Model;
+using Wisdom.Customing;
 
 namespace Wisdom.Writers
 {
@@ -12,61 +13,187 @@ namespace Wisdom.Writers
     {
         public static Paragraph PageBreak()
         {
-            Break pageBreak = new Break() { Type = BreakValues.Page };
+            Break pageBreak = new Break()
+            {
+                Type = BreakValues.Page
+            };
             Run runPageBreak = new Run(pageBreak);
             return new Paragraph(runPageBreak);
         }
+
         public static Run RunPreAdd(string text)
         {
-            Run run = new Run() { RsidRunProperties = "00D933D9" };
-            Text text1 = new Text();
-            text1.Text = text;
-            run.Append(text1);
+            Run run = new Run()
+            {
+                RsidRunProperties = "00D933D9"
+            };
+
+            Text chunk = new Text
+            {
+                Text = text
+            };
+            run.Append(chunk);
             return run;
         }
-        public static Run RunAdd(string text, params OpenXmlElement[] elements)
-        {
-            Run run227 = new Run();
 
-            RunProperties runProperties217 = new RunProperties();
-            RunFonts runFonts202 = new RunFonts()
+        public static void SetTextProperties(this OpenXmlCompositeElement properties)
+        {
+            //RunProperties runProperties = new RunProperties();
+
+            RunFonts runFonts = new RunFonts()
             {
                 Ascii = "Times New Roman",
                 HighAnsi = "Times New Roman",
                 EastAsia = "Times New Roman",
                 ComplexScript = "Times New Roman"
             };
-            Color color187 = new Color() { Val = "000000" };
-            FontSize fontSize199 = new FontSize() { Val = "24" };
-            FontSizeComplexScript fontSizeComplexScript187 = new FontSizeComplexScript() { Val = "24" };
-            Languages languages182 = new Languages() { Val = "ru" };
+
+            Color color = new
+                Color()
+            {
+                Val = "000000"
+            };
+
+            FontSize
+                fontSize = new
+                FontSize()
+            {
+                Val = "24"
+            };
+
+            FontSizeComplexScript
+                fontSizeComplexScript = new
+                FontSizeComplexScript()
+                {
+                    Val = "24"
+                };
+
+            Languages
+                languages = new
+                Languages()
+            {
+                Val = "ru"
+            };
+
+            properties.Append(runFonts);
+            properties.Append(color);
+            properties.Append(fontSize);
+            properties.Append(fontSizeComplexScript);
+            properties.Append(languages);
+        }
+
+        public static void SetBorders(this TableBorders borders)
+        {
+            //(UInt32Value)
+
+            TopBorder
+                topBorder = new
+                TopBorder()
+                {
+                    Val = BorderValues.Single,
+                    Color = "auto",
+                    Size = 4U,
+                    Space = 0U
+                };
+
+            LeftBorder
+                leftBorder = new
+                LeftBorder()
+                {
+                    Val = BorderValues.Single,
+                    Color = "auto",
+                    Size = (UInt32Value)4U,
+                    Space = (UInt32Value)0U
+                };
+
+            BottomBorder
+                bottomBorder = new
+                BottomBorder()
+                {
+                    Val = BorderValues.Single,
+                    Color = "auto",
+                    Size = (UInt32Value)4U,
+                    Space = (UInt32Value)0U
+                };
+
+            RightBorder
+                rightBorder = new
+                RightBorder()
+                {
+                    Val = BorderValues.Single,
+                    Color = "auto",
+                    Size = (UInt32Value)4U,
+                    Space = (UInt32Value)0U
+                };
+
+            InsideHorizontalBorder
+                insideHorizontalBorder = new
+                InsideHorizontalBorder()
+                {
+                    Val = BorderValues.Single,
+                    Color = "auto",
+                    Size = (UInt32Value)4U,
+                    Space = (UInt32Value)0U
+                };
+
+            InsideVerticalBorder
+                insideVerticalBorder = new
+                InsideVerticalBorder()
+                {
+                    Val = BorderValues.Single,
+                    Color = "auto",
+                    Size = (UInt32Value)4U,
+                    Space = (UInt32Value)0U
+                };
+
+            borders.Append(topBorder);
+            borders.Append(leftBorder);
+            borders.Append(bottomBorder);
+            borders.Append(rightBorder);
+            borders.Append(insideHorizontalBorder);
+            borders.Append(insideVerticalBorder);
+        }
+
+        public static Run RunAdd(string text, params OpenXmlElement[] elements)
+        {
+            Run run227 = new Run();
+
+            RunProperties runProperties217 = new RunProperties();
+            runProperties217.SetTextProperties();
+
+            // SetRunProperties();
 
             for (byte i = 0; i < elements.Length; i++)
+            {
                 runProperties217.Append(elements[i]);
-            runProperties217.Append(runFonts202);
-            runProperties217.Append(color187);
-            runProperties217.Append(fontSize199);
-            runProperties217.Append(fontSizeComplexScript187);
-            runProperties217.Append(languages182);
-            Text text125 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            }
+
+            Text text125 = new Text()
+            {
+                Space = SpaceProcessingModeValues.Preserve
+            };
             text125.Text = text;
 
             run227.Append(runProperties217);
             run227.Append(text125);
             return run227;
         }
+
         public static Paragraph ParagraphPreAdd1(JustificationValues justify, params Run[] runs)
         {
-            Paragraph paragraph = new Paragraph() {
+            Paragraph paragraph = new Paragraph()
+            {
                 RsidParagraphAddition = "00D933D9",
                 RsidParagraphProperties = "00D933D9",
                 RsidRunAdditionDefault = "00D933D9"
             };
             return BaseParagraph(paragraph, justify, runs);
         }
+
         public static Paragraph ParagraphPreAdd2(JustificationValues justify, params Run[] runs)
         {
-            Paragraph paragraph = new Paragraph() {
+            Paragraph paragraph = new Paragraph()
+            {
                 RsidParagraphMarkRevision = "00D933D9",
                 RsidParagraphAddition = "00D933D9",
                 RsidParagraphProperties = "00D933D9",
@@ -74,44 +201,88 @@ namespace Wisdom.Writers
             };
             return BaseParagraph(paragraph, justify, runs);
         }
-        public static Paragraph BaseParagraph(Paragraph paragraph, JustificationValues justify, params Run[] runs) {
-            ParagraphProperties paragraphProperties = new ParagraphProperties();
-            Justification justification = new Justification() { Val = justify };
+
+        public static Paragraph BaseParagraph(Paragraph paragraph, JustificationValues justify, params Run[] runs)
+        {
+            ParagraphProperties
+                paragraphProperties = new
+                ParagraphProperties();
+
+            Justification
+                justification = new
+                Justification()
+            {
+                Val = justify
+            };
+
             paragraphProperties.Append(justification);
             for (byte i = 0; i < runs.Length; i++)
+            {
                 paragraph.Append(runs[i]);
+            }
+                
             return paragraph;
         }
+
         public static Paragraph ParagraphAdd(JustificationValues justify, params Run[] runs)
         {
-            Paragraph paragraph117 = new Paragraph() { RsidParagraphAddition = "009B27E8", RsidRunAdditionDefault = "009B27E8" };
+            Paragraph paragraph117 = new Paragraph()
+            {
+                RsidParagraphAddition = "009B27E8",
+                RsidRunAdditionDefault = "009B27E8"
+            };
 
             ParagraphProperties paragraphProperties117 = new ParagraphProperties();
-            WidowControl widowControl62 = new WidowControl() { Val = false };
-            AutoSpaceDE autoSpaceDE89 = new AutoSpaceDE() { Val = false };
-            AutoSpaceDN autoSpaceDN89 = new AutoSpaceDN() { Val = false };
-            AdjustRightIndent adjustRightIndent89 = new AdjustRightIndent() { Val = false };
-            SpacingBetweenLines spacingBetweenLines89 = new SpacingBetweenLines() { After = "0", Line = "240", LineRule = LineSpacingRuleValues.Auto };
-            Justification justification71 = new Justification() { Val = justify };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties109 = new ParagraphMarkRunProperties();
-            RunFonts runFonts201 = new RunFonts()
+            WidowControl
+                widowControl62 = new
+                WidowControl()
             {
-                Ascii = "Times New Roman",
-                HighAnsi = "Times New Roman",
-                EastAsia = "Times New Roman",
-                ComplexScript = "Times New Roman"
+                Val = false
             };
-            Color color186 = new Color() { Val = "000000" };
-            FontSize fontSize198 = new FontSize() { Val = "24" };
-            FontSizeComplexScript fontSizeComplexScript186 = new FontSizeComplexScript() { Val = "24" };
-            Languages languages181 = new Languages() { Val = "ru" };
 
-            paragraphMarkRunProperties109.Append(runFonts201);
-            paragraphMarkRunProperties109.Append(color186);
-            paragraphMarkRunProperties109.Append(fontSize198);
-            paragraphMarkRunProperties109.Append(fontSizeComplexScript186);
-            paragraphMarkRunProperties109.Append(languages181);
+            AutoSpaceDE
+                autoSpaceDE89 = new
+                AutoSpaceDE()
+            {
+                Val = false
+            };
+
+            AutoSpaceDN
+                autoSpaceDN89 = new
+                AutoSpaceDN()
+            {
+                Val = false
+            };
+
+            AdjustRightIndent
+                adjustRightIndent89 = new
+                AdjustRightIndent()
+            {
+                Val = false
+            };
+
+            SpacingBetweenLines
+                spacingBetweenLines89 = new
+                SpacingBetweenLines()
+                {
+                    After = "0",
+                    Line = "240",
+                    LineRule = LineSpacingRuleValues.Auto
+                };
+
+            Justification
+                justification71 = new
+                Justification()
+                {
+                    Val = justify
+                };
+
+            ParagraphMarkRunProperties
+                paragraphMarkRunProperties = new
+                ParagraphMarkRunProperties();
+
+            paragraphMarkRunProperties.SetTextProperties();
 
             paragraphProperties117.Append(widowControl62);
             paragraphProperties117.Append(autoSpaceDE89);
@@ -119,23 +290,35 @@ namespace Wisdom.Writers
             paragraphProperties117.Append(adjustRightIndent89);
             paragraphProperties117.Append(spacingBetweenLines89);
             paragraphProperties117.Append(justification71);
-            paragraphProperties117.Append(paragraphMarkRunProperties109);
+            paragraphProperties117.Append(paragraphMarkRunProperties);
 
             paragraph117.Append(paragraphProperties117);
             for (byte i = 0; i < runs.Length; i++)
                 paragraph117.Append(runs[i]);
             return paragraph117;
         }
+
         private static TableCell CellBase(ushort width)
         {
-            TableCell tableCell = new TableCell();
-            TableCellProperties tableCellProperties = new TableCellProperties();
+            TableCell
+                tableCell = new
+                TableCell();
+
+            TableCellProperties
+                tableCellProperties = new
+                TableCellProperties();
+
             TableCellWidth tableCellWidth = new TableCellWidth()
-            { Width = width.ToString(), Type = TableWidthUnitValues.Dxa };
+            {
+                Width = width.ToString(),
+                Type = TableWidthUnitValues.Dxa
+            };
+
             tableCellProperties.Append(tableCellWidth);
             tableCell.Append(tableCellProperties);
             return tableCell;
         }
+
         public static TableCell TableCellAdd(Paragraph par, ushort width, OpenXmlElement cellProp)
         {
             TableCell tableCell36 = CellBase(width);
@@ -143,23 +326,33 @@ namespace Wisdom.Writers
             tableCell36.Append(par);
             return tableCell36;
         }
+
         public static TableCell TableCellAdd(Paragraph par, ushort width, params OpenXmlElement[] cellProps)
         {
             TableCell tableCell36 = CellBase(width);
             for (byte i = 0; i < cellProps.Length; i++)
+            {
                 tableCell36.Append(cellProps[i]);
+            }
             tableCell36.Append(par);
             return tableCell36;
         }
+
         public static TableCell TableCellAdd(Paragraph[] pars, ushort width, params OpenXmlElement[] cellProps)
         {
             TableCell tableCell36 = CellBase(width);
             for (byte i = 0; i < cellProps.Length; i++)
+            {
                 tableCell36.Append(cellProps[i]);
+            }
+                
             for (byte i = 0; i < pars.Length; i++)
+            {
                 tableCell36.Append(pars[i]);
+            }
             return tableCell36;
         }
+
         public static TableRow TableRowAdd(params TableCell[] cells)
         {
             TableRow tableRow = new TableRow() { RsidTableRowAddition = "009B27E8", RsidTableRowProperties = "00DA092C" };
@@ -168,31 +361,40 @@ namespace Wisdom.Writers
             return tableRow;
         }
 
-
+        public static GridColumn Column(string width)
+        {
+            return new GridColumn() { Width = width };
+        }
 
         public static Table CompetetionsTable(DisciplineProgram program)
         {
-            string[] columns = { "Код компетенции", "Формулировка компетенции", "Знания, умения, практический опыт" };
+            string[] columns = {
+                "Код компетенции",
+                "Формулировка компетенции",
+                "Знания, умения, практический опыт"
+            };
 
             Table table3 = new Table();
 
-            TableProperties tableProperties3 = new TableProperties();
-            TableWidth tableWidth3 = new TableWidth() { Width = "0", Type = TableWidthUnitValues.Auto };
+            TableProperties
+                tableProperties3 = new
+                TableProperties();
 
-            TableBorders tableBorders1 = new TableBorders();
-            TopBorder topBorder1 = new TopBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder1 = new LeftBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder1 = new BottomBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            RightBorder rightBorder1 = new RightBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            InsideHorizontalBorder insideHorizontalBorder1 = new InsideHorizontalBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            InsideVerticalBorder insideVerticalBorder1 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
+            TableWidth
+                tableWidth3 = new
+                TableWidth()
+                {
+                    Width = "0",
+                    Type = TableWidthUnitValues.Auto
+                };
 
-            tableBorders1.Append(topBorder1);
-            tableBorders1.Append(leftBorder1);
-            tableBorders1.Append(bottomBorder1);
-            tableBorders1.Append(rightBorder1);
-            tableBorders1.Append(insideHorizontalBorder1);
-            tableBorders1.Append(insideVerticalBorder1);
+            TableBorders
+                tableBorders1 = new
+                TableBorders();
+            tableBorders1.SetBorders();
+            //(UInt32Value)
+
+
 
             TableLook tableLook3 = new TableLook() { Val = "04A0" };
 
@@ -201,35 +403,88 @@ namespace Wisdom.Writers
             tableProperties3.Append(tableLook3);
 
             TableGrid tableGrid3 = new TableGrid();
-            GridColumn gridColumn10 = new GridColumn() { Width = "1565" };
-            GridColumn gridColumn11 = new GridColumn() { Width = "3298" };
-            GridColumn gridColumn12 = new GridColumn() { Width = "4482" };
+
+            GridColumn gridColumn10 = Column("1565");
+            GridColumn gridColumn11 = Column("3298");
+            GridColumn gridColumn12 = Column("4482");
 
             tableGrid3.Append(gridColumn10);
             tableGrid3.Append(gridColumn11);
             tableGrid3.Append(gridColumn12);
 
-            TableRow tableRow23 = new TableRow() { RsidTableRowMarkRevision = "00D551C2", RsidTableRowAddition = "00D551C2", RsidTableRowProperties = "00D82FF5" };
+            TableRow tableRow23 = new TableRow()
+            {
+                RsidTableRowMarkRevision = "00D551C2",
+                RsidTableRowAddition = "00D551C2",
+                RsidTableRowProperties = "00D82FF5"
+            };
 
             TableCell tableCell67 = new TableCell();
 
-            TableCellProperties tableCellProperties67 = new TableCellProperties();
-            TableCellWidth tableCellWidth67 = new TableCellWidth() { Width = "1565", Type = TableWidthUnitValues.Dxa };
-            Shading shading67 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            TableCellProperties
+                tableCellProperties67 = new
+                TableCellProperties();
+
+            TableCellWidth
+                tableCellWidth67 = new
+                TableCellWidth()
+            {
+                Width = "1565",
+                Type = TableWidthUnitValues.Dxa
+            };
+
+            Shading shading67 = new Shading()
+            {
+                Val = ShadingPatternValues.Clear,
+                Color = "auto",
+                Fill = "auto"
+            };
 
             tableCellProperties67.Append(tableCellWidth67);
             tableCellProperties67.Append(shading67);
 
-            Paragraph paragraph170 = new Paragraph() { RsidParagraphMarkRevision = "00D551C2", RsidParagraphAddition = "00D551C2", RsidParagraphProperties = "00D551C2", RsidRunAdditionDefault = "00D551C2" };
+            Paragraph paragraph170 = new Paragraph()
+            {
+                RsidParagraphMarkRevision = "00D551C2",
+                RsidParagraphAddition = "00D551C2",
+                RsidParagraphProperties = "00D551C2",
+                RsidRunAdditionDefault = "00D551C2"
+            };
 
-            ParagraphProperties paragraphProperties161 = new ParagraphProperties();
+            ParagraphProperties
+                paragraphProperties161 = new
+                ParagraphProperties();
+
             KeepNext keepNext2 = new KeepNext();
-            Justification justification107 = new Justification() { Val = JustificationValues.Center };
-            OutlineLevel outlineLevel2 = new OutlineLevel() { Val = 1 };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties78 = new ParagraphMarkRunProperties();
-            ItalicComplexScript italicComplexScript6 = new ItalicComplexScript();
-            Languages languages9 = new Languages() { EastAsia = "x-none" };
+            Justification
+                justification107 = new
+                Justification()
+                {
+                    Val = JustificationValues.Center
+                };
+
+            OutlineLevel
+                outlineLevel2 = new
+                OutlineLevel()
+                {
+                    Val = 1
+                };
+
+            ParagraphMarkRunProperties
+                paragraphMarkRunProperties78 = new
+                ParagraphMarkRunProperties();
+
+            ItalicComplexScript
+                italicComplexScript6 = new
+                ItalicComplexScript();
+
+            Languages
+                languages9 = new
+                Languages()
+                {
+                    EastAsia = "x-none"
+                };
 
             paragraphMarkRunProperties78.Append(italicComplexScript6);
             paragraphMarkRunProperties78.Append(languages9);
@@ -410,31 +665,129 @@ namespace Wisdom.Writers
             Run nameRun = RunAdd(name);
 
             List<TableRow> rows = new List<TableRow>();
+
             Paragraph idParagraph = ParagraphAdd(JustificationValues.Left, idRun);
             Paragraph nameParagraph = ParagraphAdd(JustificationValues.Left, nameRun);
+
             List<Paragraph> skillsParagraph = new List<Paragraph>();
             for (byte i = 0; i < skills.Count; i++)
             {
-                Run skillsName = RunAdd(skills[i].Name + " ", new Bold());
-                Run skillsDescription = RunAdd(skills[i].Hours);
+                Task skill = skills[i];
+                Run skillsName = RunAdd(skill.Name + " ", new Bold());
+                Run skillsDescription = RunAdd(skill.Hours);
                 Paragraph skillsParagraphPart = ParagraphAdd(JustificationValues.Left, skillsName, skillsDescription);
                 skillsParagraph.Add(skillsParagraphPart);
             }
-            TableCell[] cells = TableCellsTemplate3(idParagraph, nameParagraph, skillsParagraph[0], new VerticalMerge { Val = MergedCellValues.Restart }, new VerticalMerge { Val = MergedCellValues.Restart });
+
+            TableCell[] cells = TableCellsTemplate3(
+                idParagraph,
+                nameParagraph,
+                skillsParagraph[0],
+                new VerticalMerge
+                {
+                    Val = MergedCellValues.Restart
+                },
+                new VerticalMerge
+                {
+                    Val = MergedCellValues.Restart
+                });
+
             TableRow tableRow = TableRowAdd(cells);
+
             rows.Add(tableRow);
             for (byte i = 1; i < skillsParagraph.Count; i++)
             {
-                TableCell[] cells3 = TableCellsTemplate3(ParagraphAdd(JustificationValues.Left), ParagraphAdd(JustificationValues.Left), skillsParagraph[i], new VerticalMerge(), new VerticalMerge());
+                TableCell[] cells3 = TableCellsTemplate3(
+                    ParagraphAdd(JustificationValues.Left),
+                    ParagraphAdd(JustificationValues.Left),
+                    skillsParagraph[i],
+                    new VerticalMerge(),
+                    new VerticalMerge());
+
                 TableRow tableRow2 = TableRowAdd(cells3);
                 rows.Add(tableRow2);
             }
             return rows;
         }
 
+        public static void SetGrid(this TableGrid grid, params ushort[] sizes)
+        {
+            for (byte i = 0; i < sizes.Length; i++)
+            {
+                grid.Append(Column(sizes[i].ToString()));
+            }
+        }
 
+        public static void SetTableCellProperties(this TableCell cell, ushort size)
+        {
+            TableCellProperties
+                properties = new
+                TableCellProperties();
 
+            TableCellWidth
+                width = new
+                TableCellWidth()
+                {
+                    Width = size.ToString(),
+                    Type = TableWidthUnitValues.Dxa
+                };
 
+            Shading shading = new Shading()
+            {
+                Val = ShadingPatternValues.Clear,
+                Color = "auto",
+                Fill = "auto"
+            };
+
+            properties.Append(width);
+            properties.Append(shading);
+            cell.Append(properties);
+        }
+
+        public static void SetCellParagraphProperties(this Paragraph paragraph)
+        {
+            ParagraphProperties
+                paragraphProperties = new
+                ParagraphProperties();
+
+            ParagraphMarkRunProperties
+                paragraphMarkRunProperties = new
+                ParagraphMarkRunProperties();
+
+            paragraphMarkRunProperties.Append(new BoldComplexScript());
+
+            Justification
+                justification = new
+                Justification()
+                {
+                    Val = JustificationValues.Center
+                };
+
+            paragraphProperties.Append(
+                TableTabs(),
+                justification,
+                paragraphMarkRunProperties
+                );
+
+            paragraph.Append(paragraphProperties);
+        }
+
+        public static void SetCellRunProperties(this Run run, string text, params OpenXmlElement[] elements)
+        {
+            RunProperties
+                runProperties161 = new
+                RunProperties();
+
+            runProperties161.Append(elements);
+
+            Text text307 = new Text
+            {
+                Text = text
+            };
+
+            run.Append(runProperties161);
+            run.Append(text307);
+        }
 
         public static Table ThemePlanTable(DisciplineProgram program)
         {
@@ -446,27 +799,29 @@ namespace Wisdom.Writers
                 "Уровни освоения"
             };
 
+            ushort[] sizes = { 2235, 425, 3544, 992, 1559 };
+
             Table table5 = new Table();
 
             TableProperties tableProperties5 = new TableProperties();
-            TableWidth tableWidth5 = new TableWidth() { Width = "9747", Type = TableWidthUnitValues.Dxa };
+            TableWidth tableWidth5 = new TableWidth()
+            {
+                Width = sizes.Sum().ToString(),
+                Type = TableWidthUnitValues.Dxa
+            };
 
             TableBorders tableBorders3 = new TableBorders();
-            TopBorder topBorder3 = new TopBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            LeftBorder leftBorder5 = new LeftBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            BottomBorder bottomBorder3 = new BottomBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            RightBorder rightBorder5 = new RightBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            InsideHorizontalBorder insideHorizontalBorder3 = new InsideHorizontalBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
-            InsideVerticalBorder insideVerticalBorder3 = new InsideVerticalBorder() { Val = BorderValues.Single, Color = "auto", Size = (UInt32Value)4U, Space = (UInt32Value)0U };
+            tableBorders3.SetBorders();
 
-            tableBorders3.Append(topBorder3);
-            tableBorders3.Append(leftBorder5);
-            tableBorders3.Append(bottomBorder3);
-            tableBorders3.Append(rightBorder5);
-            tableBorders3.Append(insideHorizontalBorder3);
-            tableBorders3.Append(insideVerticalBorder3);
-            TableLayout tableLayout3 = new TableLayout() { Type = TableLayoutValues.Fixed };
-            TableLook tableLook5 = new TableLook() { Val = "04A0" };
+            TableLayout tableLayout3 = new TableLayout()
+            {
+                Type = TableLayoutValues.Fixed
+            };
+
+            TableLook tableLook5 = new TableLook()
+            {
+                Val = "04A0"
+            };
 
             tableProperties5.Append(tableWidth5);
             tableProperties5.Append(tableBorders3);
@@ -474,82 +829,92 @@ namespace Wisdom.Writers
             tableProperties5.Append(tableLook5);
 
             TableGrid tableGrid5 = new TableGrid();
-            GridColumn gridColumn15 = new GridColumn() { Width = "2235" };
-            GridColumn gridColumn15_1 = new GridColumn() { Width = "425" };
-            GridColumn gridColumn16 = new GridColumn() { Width = "3544" };
-            GridColumn gridColumn17 = new GridColumn() { Width = "992" };
-            GridColumn gridColumn18 = new GridColumn() { Width = "1559" };
-            GridColumn gridColumn18_1 = new GridColumn() { Width = "992" };
+            tableGrid5.SetGrid(sizes);
 
-            tableGrid5.Append(gridColumn15);
-            tableGrid5.Append(gridColumn15_1);
-            tableGrid5.Append(gridColumn16);
-            tableGrid5.Append(gridColumn17);
-            tableGrid5.Append(gridColumn18);
-
-            TableRow tableRow43 = new TableRow() { RsidTableRowMarkRevision = "000C238F", RsidTableRowAddition = "00015275", RsidTableRowProperties = "00015275" };
+            TableRow tableRow43 = new TableRow()
+            {
+                RsidTableRowMarkRevision = "000C238F",
+                RsidTableRowAddition = "00015275",
+                RsidTableRowProperties = "00015275"
+            };
 
             TableCell tableCell111 = new TableCell();
+            tableCell111.SetTableCellProperties(sizes[0]);
 
-            TableCellProperties tableCellProperties111 = new TableCellProperties();
-            TableCellWidth tableCellWidth111 = new TableCellWidth() { Width = "2235", Type = TableWidthUnitValues.Dxa };
-            Shading shading111 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
 
-            tableCellProperties111.Append(tableCellWidth111);
-            tableCellProperties111.Append(shading111);
+            Run run309 = new Run()
+            {
+                RsidRunProperties = "000C238F"
+            };
 
-            Paragraph paragraph233 = new Paragraph() { RsidParagraphMarkRevision = "000C238F", RsidParagraphAddition = "00015275", RsidParagraphProperties = "00C32A4C", RsidRunAdditionDefault = "00015275" };
+            run309.SetCellRunProperties(columns[0], new BoldComplexScript());
 
-            ParagraphProperties paragraphProperties224 = new ParagraphProperties();
+            Paragraph paragraph233 = new Paragraph()
+            {
+                RsidParagraphMarkRevision = "000C238F",
+                RsidParagraphAddition = "00015275",
+                RsidParagraphProperties = "00C32A4C",
+                RsidRunAdditionDefault = "00015275"
+            };
 
-            Tabs tabs114 = TableTabs();
-            Justification justification163 = new Justification() { Val = JustificationValues.Center };
+            paragraph233.SetCellParagraphProperties();
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties126 = new ParagraphMarkRunProperties();
-            BoldComplexScript boldComplexScript7 = new BoldComplexScript();
-
-            paragraphMarkRunProperties126.Append(boldComplexScript7);
-
-            paragraphProperties224.Append(tabs114);
-            paragraphProperties224.Append(justification163);
-            paragraphProperties224.Append(paragraphMarkRunProperties126);
-
-            Run run309 = new Run() { RsidRunProperties = "000C238F" };
-
-            RunProperties runProperties161 = new RunProperties();
-            BoldComplexScript boldComplexScript8 = new BoldComplexScript();
-
-            runProperties161.Append(boldComplexScript8);
-            Text text307 = new Text();
-            text307.Text = columns[0];
-
-            run309.Append(runProperties161);
-            run309.Append(text307);
-
-            paragraph233.Append(paragraphProperties224);
             paragraph233.Append(run309);
 
-            tableCell111.Append(tableCellProperties111);
             tableCell111.Append(paragraph233);
 
-            TableCell tableCell112 = new TableCell();
 
-            TableCellProperties tableCellProperties112 = new TableCellProperties();
-            TableCellWidth tableCellWidth112 = new TableCellWidth() { Width = "3969", Type = TableWidthUnitValues.Dxa };
-            Shading shading112 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            TableCell
+                tableCell112 = new
+                TableCell();
+
+            TableCellProperties
+                tableCellProperties112 = new
+                TableCellProperties();
+
+            TableCellWidth
+                tableCellWidth112 = new
+                TableCellWidth()
+                {
+                    Width = (sizes[1] + sizes[2]).ToString(),
+                    Type = TableWidthUnitValues.Dxa
+                };
+
+            Shading shading112 = new Shading()
+            {
+                Val = ShadingPatternValues.Clear,
+                Color = "auto",
+                Fill = "auto"
+            };
 
             tableCellProperties112.Append(tableCellWidth112);
             tableCellProperties112.Append(shading112);
 
-            Paragraph paragraph234 = new Paragraph() { RsidParagraphMarkRevision = "000C238F", RsidParagraphAddition = "00015275", RsidParagraphProperties = "00C32A4C", RsidRunAdditionDefault = "00015275" };
+            Paragraph paragraph234 = new Paragraph()
+            {
+                RsidParagraphMarkRevision = "000C238F",
+                RsidParagraphAddition = "00015275",
+                RsidParagraphProperties = "00C32A4C",
+                RsidRunAdditionDefault = "00015275"
+            };
 
-            ParagraphProperties paragraphProperties225 = new ParagraphProperties();
+            ParagraphProperties
+                paragraphProperties225 = new
+                ParagraphProperties();
 
             Tabs tabs115 = TableTabs();
-            Justification justification164 = new Justification() { Val = JustificationValues.Center };
+            Justification justification164 = new Justification()
+            {
+                Val = JustificationValues.Center
+            };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties127 = new ParagraphMarkRunProperties();
-            BoldComplexScript boldComplexScript9 = new BoldComplexScript();
+            ParagraphMarkRunProperties
+                paragraphMarkRunProperties127 = new
+                ParagraphMarkRunProperties();
+
+            BoldComplexScript
+                boldComplexScript9 = new
+                BoldComplexScript();
 
             paragraphMarkRunProperties127.Append(boldComplexScript9);
 
@@ -557,28 +922,51 @@ namespace Wisdom.Writers
             paragraphProperties225.Append(justification164);
             paragraphProperties225.Append(paragraphMarkRunProperties127);
 
-            Run run310 = new Run() { RsidRunProperties = "000C238F" };
+            Run run310 = new Run()
+            {
+                RsidRunProperties = "000C238F"
+            };
 
-            RunProperties runProperties162 = new RunProperties();
-            BoldComplexScript boldComplexScript10 = new BoldComplexScript();
+            RunProperties
+                runProperties162 = new
+                RunProperties();
+
+            BoldComplexScript
+                boldComplexScript10 = new
+                BoldComplexScript();
 
             runProperties162.Append(boldComplexScript10);
-            Text text308 = new Text();
-            text308.Text = columns[1];
+            Text text308 = new Text
+            {
+                Text = columns[1]
+            };
 
             run310.Append(runProperties162);
             run310.Append(text308);
 
-            Run run311 = new Run() { RsidRunProperties = "000C238F" };
+            Run run311 = new Run()
+            {
+                RsidRunProperties = "000C238F"
+            };
 
-            RunProperties runProperties163 = new RunProperties();
-            BoldComplexScript boldComplexScript11 = new BoldComplexScript();
+            RunProperties
+                runProperties163 = new
+                RunProperties();
+
+            BoldComplexScript
+                boldComplexScript11 = new
+                BoldComplexScript();
+
             Italic italic73 = new Italic();
 
             runProperties163.Append(boldComplexScript11);
             runProperties163.Append(italic73);
-            Text text309 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text309.Text = " (если предусмотрены)";
+
+            Text text309 = new Text()
+            {
+                Space = SpaceProcessingModeValues.Preserve,
+                Text = " (если предусмотрены)"
+            };
 
             run311.Append(runProperties163);
             run311.Append(text309);
@@ -587,29 +975,71 @@ namespace Wisdom.Writers
             paragraph234.Append(run310);
             paragraph234.Append(run311);
 
+            GridSpan
+                span2 = new
+                GridSpan
+                {
+                    Val = 2
+                };
+
             tableCell112.Append(tableCellProperties112);
-            GridSpan span2 = new GridSpan { Val = 2 };
             tableCell112.Append(span2);
             tableCell112.Append(paragraph234);
 
             TableCell tableCell113 = new TableCell();
 
-            TableCellProperties tableCellProperties113 = new TableCellProperties();
-            TableCellWidth tableCellWidth113 = new TableCellWidth() { Width = "992", Type = TableWidthUnitValues.Dxa };
-            Shading shading113 = new Shading() { Val = ShadingPatternValues.Clear, Color = "auto", Fill = "auto" };
+            TableCellProperties
+                tableCellProperties113 = new
+                TableCellProperties();
+
+            TableCellWidth
+                tableCellWidth113 = new
+                TableCellWidth()
+                {
+                    Width = sizes[3].ToString(),
+                    Type = TableWidthUnitValues.Dxa
+                };
+
+            Shading
+                shading113 = new
+                Shading()
+                {
+                    Val = ShadingPatternValues.Clear,
+                    Color = "auto",
+                    Fill = "auto"
+                };
 
             tableCellProperties113.Append(tableCellWidth113);
             tableCellProperties113.Append(shading113);
 
-            Paragraph paragraph235 = new Paragraph() { RsidParagraphMarkRevision = "000C238F", RsidParagraphAddition = "00015275", RsidParagraphProperties = "00015275", RsidRunAdditionDefault = "00015275" };
+            Paragraph paragraph235 = new Paragraph()
+            {
+                RsidParagraphMarkRevision = "000C238F",
+                RsidParagraphAddition = "00015275",
+                RsidParagraphProperties = "00015275",
+                RsidRunAdditionDefault = "00015275"
+            };
 
-            ParagraphProperties paragraphProperties226 = new ParagraphProperties();
+            ParagraphProperties
+                paragraphProperties226 = new
+                ParagraphProperties();
 
             Tabs tabs116 = TableTabs();
-            Justification justification165 = new Justification() { Val = JustificationValues.Center };
 
-            ParagraphMarkRunProperties paragraphMarkRunProperties128 = new ParagraphMarkRunProperties();
-            BoldComplexScript boldComplexScript12 = new BoldComplexScript();
+            Justification
+                justification165 = new
+                Justification()
+                {
+                    Val = JustificationValues.Center
+                };
+
+            ParagraphMarkRunProperties
+                paragraphMarkRunProperties128 = new
+                ParagraphMarkRunProperties();
+
+            BoldComplexScript
+                boldComplexScript12 = new
+                BoldComplexScript();
 
             paragraphMarkRunProperties128.Append(boldComplexScript12);
 
@@ -619,7 +1049,10 @@ namespace Wisdom.Writers
 
             Run run312 = new Run();
 
-            RunProperties runProperties164 = new RunProperties();
+            RunProperties
+                runProperties164 = new
+                RunProperties();
+
             BoldComplexScript boldComplexScript13 = new BoldComplexScript();
 
             runProperties164.Append(boldComplexScript13);
@@ -886,7 +1319,12 @@ namespace Wisdom.Writers
 
             tableCellProperties118_1.Append(tableCellWidth118_1);
 
-            Paragraph paragraph241_1 = new Paragraph() { RsidParagraphMarkRevision = "0076108B", RsidParagraphAddition = "00015275", RsidParagraphProperties = "00C32A4C", RsidRunAdditionDefault = "0076108B" };
+            Paragraph paragraph241_1 = new Paragraph() {
+                RsidParagraphMarkRevision = "0076108B",
+                RsidParagraphAddition = "00015275",
+                RsidParagraphProperties = "00C32A4C",
+                RsidRunAdditionDefault = "0076108B"
+            };
 
             ParagraphProperties paragraphProperties232_1 = new ParagraphProperties();
 

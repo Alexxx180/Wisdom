@@ -64,5 +64,15 @@ namespace Wisdom.Customing
             }
             return result;
         }
+
+        public static uint Sum(this ushort[] numbers)
+        {
+            uint sum = 0;
+            for (byte i = 0; i < numbers.Length; i++)
+            {
+                sum += numbers[i];
+            }
+            return sum;
+        }
     }
 }
