@@ -370,13 +370,35 @@ namespace Wisdom.Writers
         public static List<TableRow> CompetetionsTableRows(DisciplineProgram program)
         {
             List<TableRow> rows = new List<TableRow>();
+
+            List<Competetion>
+                generalCompetetions = program.GeneralCompetetions;
             for (byte i = 0; i < program.GeneralCompetetions.Count; i++)
-                rows.AddRange(CompetetionAdd(program.GeneralCompetetions[i].PrefixNo, program.GeneralCompetetions[i].Name, program.GeneralCompetetions[i].Abilities));
+            {
+                Competetion general = generalCompetetions[i];
+                List<TableRow> row = CompetetionAdd(
+                    general.PrefixNo,
+                    general.Name,
+                    general.Abilities
+                    );
+                rows.AddRange(row);
+            }
+
+            List<List<Competetion>>
+                professionalCompetetions = program.ProfessionalCompetetions;
             for (byte i = 0; i < program.ProfessionalCompetetions.Count; i++)
             {
-                List<Competetion> professionalGroup = program.ProfessionalCompetetions[i];
+                List<Competetion> professionalGroup = professionalCompetetions[i];
                 for (byte ii = 0; ii < professionalGroup.Count; ii++)
-                    rows.AddRange(CompetetionAdd(professionalGroup[i].PrefixNo, professionalGroup[i].Name, professionalGroup[i].Abilities));
+                {
+                    Competetion professional = professionalGroup[ii];
+                    List<TableRow> row = CompetetionAdd(
+                        professional.PrefixNo,
+                        professional.Name,
+                        professional.Abilities
+                        );
+                    rows.AddRange(row);
+                }
             }
                 
             return rows;
@@ -1611,54 +1633,22 @@ namespace Wisdom.Writers
             return valueRow;
         }
 
-        public static List<Paragraph> Literature(List<Task> sources)
+        public static List<Paragraph> Literature(List<Source> sources)
         {
-            //DisciplineProgram program
-
             List<Paragraph> proccessedSources = new List<Paragraph>();
-            //Dictionary<string, List<Paragraph>> sources = new
-            //    Dictionary<string, List<Paragraph>>
-            //{
-            //    { "Основная литература", new List<Paragraph>() },
-            //    { "Дополнительная литература", new List<Paragraph>() },
-            //    { "Программное обеспечение", new List<Paragraph>() },
-            //    { "Базы данных, информационно-справочные и поисковые системы", new List<Paragraph>() },
-            //};
             for(byte i = 0; i < sources.Count; i++)
             {
-                #warning ATTENTION!!! THIS MUST BE REPAIRED
-                Task source = sources[i];
-                //List<Paragraph> paragraphs = NumberList(
-                //    sources.Count + 1, source.Value, ". ");
+                Source source = sources[i];
+                List<Paragraph> paragraphs = NumberList(
+                    sources.Count + 1, source.Descriptions, ". ");
 
                 Run run = RunAdd(source.Name, new Bold());
                 proccessedSources.Add(ParagraphAdd(JustificationValues.Both, run));
-                //proccessedSources.AddRange(paragraphs);
+                proccessedSources.AddRange(paragraphs);
             }
             return proccessedSources;
         }
 
-        private static TableCell[] TableCellsTemplate1(Paragraph p1,
-            Paragraph p2, Paragraph p3, Paragraph p4)
-        {
-            return new TableCell[] {
-                TableCellAdd(p1, 2235),
-                TableCellAdd(p2, 3969, new GridSpan { Val = 2 }),
-                TableCellAdd(p3, 992),
-                TableCellAdd(p4, 2551)
-            };
-        }
-        private static TableCell[] TableCellsTemplate2(Paragraph p1,
-            Paragraph p2, Paragraph p3, Paragraph p4, Paragraph p5)
-        {
-            return new TableCell[] {
-                TableCellAdd(p1, 2235),
-                TableCellAdd(p2, 425),
-                TableCellAdd(p3, 3544),
-                TableCellAdd(p4, 992),
-                TableCellAdd(p5, 2551)
-            };
-        }
         private static TableCell[] TableCellsTemplate3(Paragraph p1, Paragraph p2,
             Paragraph p3, OpenXmlElement property1, OpenXmlElement property2)
         {
@@ -1668,6 +1658,7 @@ namespace Wisdom.Writers
                 TableCellAdd(p3, 4482),
             };
         }
+
         private static TableCell[] TableCellsTemplate4(Paragraph p1,
             Paragraph p2, Paragraph p3, Paragraph p4, Paragraph p5)
         {
@@ -1679,6 +1670,7 @@ namespace Wisdom.Writers
                 TableCellAdd(p5, 992)
             };
         }
+
         private static TableCell[] TableCellsTemplate5(Paragraph p1,
             Paragraph p2, Paragraph p3, Paragraph p4, Paragraph p5, Paragraph p6)
         {
@@ -1737,7 +1729,9 @@ namespace Wisdom.Writers
             Paragraph newParagraph = ParagraphAdd(justification, newRun);
             return newParagraph;
         }
-        public static List<Paragraph> NumberList(in int start, List<string> values, string sequence)
+        public static List<Paragraph> NumberList(
+            in int start, List<string> values, string sequence
+            )
         {
             List<Paragraph> paragraphs = new List<Paragraph>();
             for (byte i = 0; i < values.Count; i++)

@@ -201,7 +201,7 @@ namespace Wisdom.Writers.AutoGenerating
                         int skip = lines[len].Length - 1; 
 
                         int endChar = match.EndCharIndex + 1;
-                        int endElement = match.EndElementIndex + 1;
+                        int endElement = match.EndElementIndex;
 
                         // Check if it has a prefix
                         if (c > 0)
@@ -218,10 +218,10 @@ namespace Wisdom.Writers.AutoGenerating
 
                         // In case value starts/ends with whitespace
                         txt.Space = new EnumValue<SpaceProcessingModeValues>
-                            (SpaceProcessingModeValues.Preserve); 
+                            (SpaceProcessingModeValues.Preserve);
                         txt.Text = lines[0];
 
-                        texts.ClearText(t + 1, match.EndElementIndex);
+                        texts.ClearText(t + 1, endElement);
 
                         // If 'with' contained line breaks - add breaks back
                         if (lines.Count() > 1)
@@ -229,7 +229,7 @@ namespace Wisdom.Writers.AutoGenerating
                             t = txt.WrapReplace(lines, t);
 
                             // New line
-                            c = skip; 
+                            c = skip;
                         }
                         else
                         {
