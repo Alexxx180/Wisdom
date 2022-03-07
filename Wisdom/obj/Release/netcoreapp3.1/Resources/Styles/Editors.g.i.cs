@@ -52,7 +52,7 @@ namespace Wisdom.Controls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/resources/styles/editors.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/resources/styles/editors.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Resources\Styles\Editors.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -193,6 +193,6 @@ D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdo
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.dll
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.pdb
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.genruntimeconfig.cache
-D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Forms\MainForm\UserTemplates\DisciplineProgramTemplate.baml
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Forms\MainForm\UserTemplates\DisciplineProgramTemplate.g.cs
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache

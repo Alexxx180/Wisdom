@@ -5,7 +5,7 @@ using System.Text.Json;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using static Wisdom.Writers.AutoGenerating.AutoFiller;
-using static Wisdom.Writers.Markup;
+using static Wisdom.Writers.Markup.DisciplineProgramMarkup;
 
 namespace Wisdom.Writers.AutoGenerating.Documents
 {
