@@ -96,7 +96,7 @@ namespace Wisdom.Writers.AutoGenerating.Documents
         }
 
         private static void DetailProcessing(
-            IEnumerable<Paragraph> paragraphs, 
+            IEnumerable<Paragraph> paragraphs,
             Model.Documents.DisciplineProgram program
             )
         {
@@ -105,6 +105,9 @@ namespace Wisdom.Writers.AutoGenerating.Documents
 
             string themePlan = "#THEME-PLAN";
             ReplaceInParagraphs(paragraphs, themePlan, ThemePlanTable(program));
+
+            string sources = "#SOURCES";
+            ReplaceInParagraphs(paragraphs, sources, Literature(program.Sources));
         }
     }
 }

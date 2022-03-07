@@ -141,8 +141,6 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
                 Types.Add(types[i]);
         }
 
-#warning SHOULD DO SOURCE TYPES STATIC
-
         public void SetElement(IList<string> types, Source sources)
         {
             SetTypes(types);

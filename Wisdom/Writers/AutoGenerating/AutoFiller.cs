@@ -53,6 +53,15 @@ namespace Wisdom.Writers.AutoGenerating
                 ReplaceText(textParagraph, find, replaceWith);
         }
 
+        public static void ReplaceInParagraphs(
+            IEnumerable<Paragraph> paragraphs,
+            string find, List<Paragraph> replaceWith
+            )
+        {
+            foreach (var textParagraph in paragraphs)
+                ReplaceText(textParagraph, find, replaceWith);
+        }
+
         public static void ReplaceInCells(IEnumerable<TableCell> cells, string find, string replaceWith)
         {
             foreach (TableCell cell in cells)
@@ -269,6 +278,40 @@ namespace Wisdom.Writers.AutoGenerating
                     parent.RemoveChild(paragraph);
                 }
             }
-        }   
+        }
+
+        /// <summary>
+        /// Figure out which Text element within the paragraph
+        /// contains the starting point of the search string 
+        /// and replace the whole paragraph on that point. It
+        /// will work once per method call. (In security terms)
+        /// </summary>
+        /// <param name="paragraph">Paragraph to search in.</param>
+        /// <param name="find">Text expression to find.</param>
+        /// <param name="replaceWith">List to replace paragraph with.</param>
+        public static void
+            ReplaceText(Paragraph paragraph,
+            string find, List<Paragraph> replaceWith)
+        {
+            var texts = paragraph.Descendants<Text>();
+            int count = texts.Count();
+            for (int t = 0; t < count; t++)
+            {
+                Text txt = texts.ElementAt(t);
+                for (int c = 0; c < txt.Text.Length; c++)
+                {
+                    var match = IsMatch(texts, t, c, find);
+                    if (match == null)
+                        return;
+
+                    OpenXmlElement parent = paragraph.Parent;
+                    for (int i = replaceWith.Count - 1; i >= 0; i--)
+                    {
+                        paragraph.InsertAfterSelf(replaceWith[i]);
+                    }
+                    parent.RemoveChild(paragraph);
+                }
+            }
+        }
     }
 }

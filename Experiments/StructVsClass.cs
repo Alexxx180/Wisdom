@@ -33,7 +33,8 @@ namespace Experiments
 
             Trace.Write("Struct results: ");
             PrintTime(stopWatch.Elapsed);
-            
+            Trace.Write(task.Name);
+
             stopWatch.Start();
             Pair<string, string> pair = new
                 Pair<string, string>();
