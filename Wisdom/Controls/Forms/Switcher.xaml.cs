@@ -24,29 +24,18 @@ namespace Wisdom.Controls.Forms
             IsNotPressedProperty = DependencyProperty.Register("IsNotPressed",
                 typeof(bool), typeof(Switcher));
 
-        //private SwitchGroup _group;
         internal SwitchGroup Group
         {
-            get => GetValue(GroupProperty) as SwitchGroup; //_group
-            set
-            {
-                SetValue(GroupProperty, value);
-                //OnPropertyChanged();
-            }
+            get => GetValue(GroupProperty) as SwitchGroup;
+            set => SetValue(GroupProperty, value);
         }
 
-        //private FrameworkElement _element;
         public FrameworkElement Element
         {
             get => GetValue(ElementProperty) as FrameworkElement;
-            set
-            {
-                SetValue(ElementProperty, value);
-                //OnPropertyChanged();
-            }
+            set => SetValue(ElementProperty, value);
         }
 
-        //private bool _isNotPressed;
         public bool IsNotPressed
         {
             get => GetValue(IsNotPressedProperty).ToBool();
@@ -67,7 +56,6 @@ namespace Wisdom.Controls.Forms
             set
             {
                 _text = value;
-                System.Diagnostics.Trace.WriteLine(value);
                 OnPropertyChanged();
             }
         }
@@ -79,7 +67,6 @@ namespace Wisdom.Controls.Forms
             set
             {
                 _viewStyle = value;
-                System.Diagnostics.Trace.WriteLine(value);
                 OnPropertyChanged();
             }
         }

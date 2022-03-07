@@ -21,7 +21,6 @@ namespace Wisdom.Controls.Forms.MainForm.UserTemplates
             {
                 _fullName = value;
                 OnPropertyChanged();
-                System.Diagnostics.Trace.WriteLine("CAHEEEEEEEEEEEEEEEEEEEEL");
                 OnPropertyChanged(nameof(FileName));
             }
         }
