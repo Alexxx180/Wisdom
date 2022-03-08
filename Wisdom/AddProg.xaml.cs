@@ -46,8 +46,6 @@ namespace Wisdom
         private void SetUp()
         {
             ViewModel = new DisciplineProgramViewModel();
-            //SettingsPart.DisciplineProgramProcessing = ReadJson<Settings>
-            //    (SettingsDirectory + SettingsPart.ProgramPreferences);
         }
 
         public AddProg(DisciplineProgram program) : this()

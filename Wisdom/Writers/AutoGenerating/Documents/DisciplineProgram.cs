@@ -7,6 +7,8 @@ using static Wisdom.Writers.AutoGenerating.AutoFiller;
 using static Wisdom.Writers.Markup.DisciplineProgramMarkup;
 using Wisdom.Model;
 using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
+using Wisdom.Model.Tables.ThemePlan;
+using Wisdom.Model.Tables;
 
 namespace Wisdom.Writers.AutoGenerating.Documents
 {
@@ -25,6 +27,16 @@ namespace Wisdom.Writers.AutoGenerating.Documents
 
         private const string fileName = @"\TestResources\Templates\BaseTemplate.docx";
         private static string _template => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + fileName;
+
+        public static string MetaData(Task task)
+        {
+            return task.Hours;
+        }
+
+        public static string Hours(Hour hour)
+        {
+            return hour.Count.ToString();
+        }
 
         public static void WriteDocX(string filepath, Model.Documents.DisciplineProgram program)
         {
@@ -65,7 +77,7 @@ namespace Wisdom.Writers.AutoGenerating.Documents
                 Save(generatePath, stream);
             }
         }
-        
+
         private static void FastProcessing(
             IEnumerable<Paragraph> paragraphs,
             IEnumerable<TableCell> cells,
@@ -79,40 +91,25 @@ namespace Wisdom.Writers.AutoGenerating.Documents
             CustomizeableProcessing(paragraphs, cells,
                 options[discipline], discipline, program.Name);
 
-            //ReplaceInParagraphs(paragraphs, discipline, program.Name);
-
             string speciality = Expressions[1].Value;
             CustomizeableProcessing(paragraphs, cells,
                 options[speciality], speciality, program.ProfessionName);
-
-            //ReplaceInParagraphs(paragraphs, speciality, program.ProfessionName);
-            //ReplaceInCells(cells, speciality, program.ProfessionName);
 
             string max = Expressions[2].Value;
             CustomizeableProcessing(paragraphs, cells,
                 options[max], max, program.MaxHours);
 
-            //ReplaceInParagraphs(paragraphs, max, program.MaxHours);
-
             string auditory = Expressions[3].Value;
             CustomizeableProcessing(paragraphs, cells,
                 options[auditory], auditory, program.EduHours);
 
-            //ReplaceInParagraphs(paragraphs, auditory, program.EduHours);
-
             string meta = Expressions[4].Value;
-            //CustomizeableProcessing(paragraphs, cells,
-            //    options[meta], meta, program.MetaData);
-
-            for (byte i = 0; i < program.MetaData.Count; i++)
-                ReplaceInParagraphs(paragraphs, meta + i, program.MetaData[i].Hours);
+            CustomizeableProcessing(paragraphs, cells,
+                options[meta], meta, program.MetaData, MetaData);
 
             string hours = Expressions[5].Value;
-            for (byte i = 0; i < program.Hours.Count; i++)
-            {
-                ReplaceInParagraphs(paragraphs, hours + i, program.Hours[i].Count.ToString());
-                ReplaceInCells(cells, hours + i, program.Hours[i].Count.ToString());
-            }
+            CustomizeableProcessing(paragraphs, cells,
+                options[hours], hours, program.Hours, Hours);
         }
 
         private static void DetailProcessing(

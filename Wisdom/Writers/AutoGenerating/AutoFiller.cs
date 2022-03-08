@@ -36,10 +36,11 @@ namespace Wisdom.Writers.AutoGenerating
             }
         }
 
-        public static void CustomizeableProcessing(
+        public static void CustomizeableProcessing<T>(
             IEnumerable<Paragraph> paragraphs,
             IEnumerable<TableCell> cells, int selection,
-            string toReplace, List<string> replaceWith)
+            string toReplace, List<T> replaceWith,
+            Func<T, string> converter)
         {
             switch (selection)
             {
@@ -47,18 +48,26 @@ namespace Wisdom.Writers.AutoGenerating
                     break;
                 case 1:
                     for (ushort i = 0; i < replaceWith.Count; i++)
-                        ReplaceInParagraphs(paragraphs,
-                            toReplace + i, replaceWith[i]);
+                    {
+                        ReplaceInParagraphs(paragraphs, toReplace + i,
+                            converter(replaceWith[i]));
+                    }
                     break;
                 case 2:
                     for (ushort i = 0; i < replaceWith.Count; i++)
-                        ReplaceInCells(cells, toReplace + i, replaceWith[i]);
+                    {
+                        ReplaceInCells(cells, toReplace + i,
+                            converter(replaceWith[i]));
+                    }
                     break;
                 default:
                     for (ushort i = 0; i < replaceWith.Count; i++)
                     {
-                        ReplaceInParagraphs(paragraphs, toReplace + i, replaceWith[i]);
-                        ReplaceInCells(cells, toReplace + i, replaceWith[i]);
+                        T unit = replaceWith[i];
+                        ReplaceInParagraphs(paragraphs, toReplace + i,
+                            converter(unit));
+                        ReplaceInCells(cells, toReplace + i,
+                            converter(unit));
                     }
                     break;
             }
