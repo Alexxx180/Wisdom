@@ -53,7 +53,7 @@ namespace Wisdom.Controls.Tables.Hours {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/tables/hours/hourelement.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/tables/hours/hourelement.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Controls\Tables\Hours\HourElement.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

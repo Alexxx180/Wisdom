@@ -15,7 +15,7 @@ namespace Wisdom.Controls.Forms.MainForm
     public partial class MainPart : UserControl, INotifyPropertyChanged
     {
         public static readonly string ProgramPreferences = "Preferences.json";
-        public static Preferences Settings { get; set; }
+        public Preferences Settings { get; set; }
 
         private ObservableCollection<DisciplineProgramTemplate> _templates;
         public ObservableCollection<DisciplineProgramTemplate> Templates
@@ -32,6 +32,9 @@ namespace Wisdom.Controls.Forms.MainForm
         {
             InitializeComponent();
             Templates = new ObservableCollection<DisciplineProgramTemplate>();
+
+            Settings = ReadJson<Preferences>
+                (ConfigDirectory + "Preferences.json") ?? new Preferences();
             LoadTemplates();
         }
 
@@ -69,12 +72,6 @@ namespace Wisdom.Controls.Forms.MainForm
         {
             try
             {
-                if (Settings == null)
-                {
-                    Settings = new Preferences();
-                    return;
-                }
-                
                 foreach (string file in
                     Directory.GetFiles(Settings.TemplatePath))
                 {

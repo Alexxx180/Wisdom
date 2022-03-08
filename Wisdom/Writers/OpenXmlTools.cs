@@ -2,6 +2,9 @@
 
 namespace Wisdom.Writers
 {
+    /// <summary>
+    /// Additional tools-pack for open xml
+    /// </summary>
     public static class OpenXmlTools
     {
         // Filters control characters but allows only properly-formed surrogate sequences

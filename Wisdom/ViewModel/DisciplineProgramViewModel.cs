@@ -388,7 +388,6 @@ namespace Wisdom.ViewModel
         {
             SetUpDocumentBlank(Document);
             return Document;
-            //WriteDocument(Document, fileName); string fileName
         }
         #endregion
 
