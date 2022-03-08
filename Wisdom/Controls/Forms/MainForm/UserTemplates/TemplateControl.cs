@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Windows;
 using System.Windows.Controls;
+using static Wisdom.Writers.AutoGenerating.Processors;
 
 namespace Wisdom.Controls.Forms.MainForm.UserTemplates
 {
@@ -32,26 +31,7 @@ namespace Wisdom.Controls.Forms.MainForm.UserTemplates
 
         public T LoadFromTemplate<T>()
         {
-            T progam = default;
-            try
-            {
-                byte[] fileBytes = File.ReadAllBytes(FullName);
-                Utf8JsonReader utf8Reader = new Utf8JsonReader(fileBytes);
-                progam = JsonSerializer.Deserialize<T>(ref utf8Reader);
-            }
-            catch (IOException exception)
-            {
-                LoadMessage(exception.Message);
-            }
-            return progam;
-        }
-
-        protected static void LoadMessage(string exception)
-        {
-            string noLoad = "Не удалось загрузить файл.";
-            string message = "\nУбедитесь, что файл не поврежден или отсутствует в целевой директории.\n";
-            string advice = "Свяжитесь с администратором насчет установления причины проблемы.\nПолное сообщение:\n";
-            _ = MessageBox.Show(noLoad + message + advice + exception);
+            return ReadJson<T>(FullName);
         }
 
         #region INotifyPropertyChanged Members

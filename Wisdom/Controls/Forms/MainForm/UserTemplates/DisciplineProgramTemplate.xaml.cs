@@ -2,7 +2,6 @@
 using System.IO;
 using Wisdom.Model.Documents;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Wisdom.Controls.Forms.MainForm.UserTemplates
 {

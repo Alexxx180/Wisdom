@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using System.Windows;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -10,29 +9,9 @@ namespace Wisdom.Writers.AutoGenerating
 {
     public static class AutoFiller
     {
-        private static void SaveMessage(string exception)
-        {
-            string noLoad = "Не удалось сохранить файл.";
-            string message = "\nУбедитесь, что посторонние процессы не мешают операции.\n";
-            string advice = "Свяжитесь с администратором насчет установления причины проблемы.\nПолное сообщение:\n";
-            _ = MessageBox.Show(noLoad + message + advice + exception);
-        }
-
-        public static void Save(string path, byte[] bytes)
-        {
-            try
-            {
-                File.WriteAllBytes(path, bytes);
-            }
-            catch (IOException exception)
-            {
-                SaveMessage(exception.Message);
-            }
-        }
-
         public static void Save(string path, MemoryStream stream)
         {
-            Save(path, stream.ToArray());
+            Processors.Save(path, stream.ToArray());
         }
 
         public static void ReplaceInParagraphs(
@@ -146,7 +125,7 @@ namespace Wisdom.Writers.AutoGenerating
         /// <returns>Match expression.</returns>
         private static Match IsMatch(
             IEnumerable<Text> texts,
-            int textElementIndex, 
+            int textElementIndex,
             int charElementIndex,
             string find
             )
@@ -177,7 +156,7 @@ namespace Wisdom.Writers.AutoGenerating
                 }
 
                 // Reset char index for next element
-                charElementIndex = 0; 
+                charElementIndex = 0;
             }
 
             // Ran out of text, not a string match

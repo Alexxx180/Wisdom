@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Wordprocessing;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
 using System.Collections.Generic;
 using Wisdom.Model.Documents;
 using Wisdom.Model.Tables;

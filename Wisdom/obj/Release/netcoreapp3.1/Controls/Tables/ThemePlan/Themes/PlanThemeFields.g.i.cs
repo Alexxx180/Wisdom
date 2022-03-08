@@ -18,6 +18,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Controls.Ribbon;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.Integration;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Markup;
@@ -52,7 +53,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/tables/themeplan/themes/planthemefields.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/tables/themeplan/themes/planthemefields.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Controls\Tables\ThemePlan\Themes\PlanThemeFields.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

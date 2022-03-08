@@ -27,19 +27,29 @@
 
             <Grid Grid.Row="1" Grid.Column="1" Visibility="Visible">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.725*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.075*"/>
+                    <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.275*"/>
                 </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
 
                 <Viewbox HorizontalAlignment="Left">
                     <TextBlock Text="Мудрость" Style="{StaticResource Steps2}" Foreground="White" />
                 </Viewbox>
 
-                <Button x:Name="Create" Grid.Column="1" Style="{StaticResource Steps2}" IsDefault="True" Click="Create_Click">
+                <Button Grid.Column="1" Click="SelectTemplatesDirectory">
+                    <Button.Style>
+                        <StaticResource ResourceKey="Steps2"/>
+                    </Button.Style>
+                    <Viewbox>
+                        <TextBlock Text="|=:|"/>
+                    </Viewbox>
+                </Button>
+
+                <Button x:Name="Create" Grid.Column="3" IsDefault="True" Click="Create_Click">
+                    <Button.Style>
+                        <StaticResource ResourceKey="Steps2"/>
+                    </Button.Style>
                     <Viewbox>
                         <TextBlock Text="Программа"/>
                     </Viewbox>

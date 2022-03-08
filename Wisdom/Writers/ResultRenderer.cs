@@ -3,12 +3,13 @@ using System.IO;
 using System.Windows;
 using Wisdom.Model.Documents;
 using static Wisdom.Writers.AutoGenerating.Documents.DisciplineProgram;
+using static Wisdom.Writers.AutoGenerating.Processors;
 
 namespace Wisdom.Writers
 {
     public static class ResultRenderer
     {
-        private static readonly string _documentFilter = 
+        private static readonly string _documentFilter =
             "Документ Microsoft Word (*.docx)|*.docx|" +
             "Документ Word 97-2003 (*.doc)|*.doc|" +
             "Текст в формате RTF (*.rtf)|*.rtf";

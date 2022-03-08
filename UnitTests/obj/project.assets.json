@@ -2037,7 +2037,7 @@
           "bin/placeholder/Wisdom.dll": {}
         },
         "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WPF"
+          "Microsoft.WindowsDesktop.App"
         ]
       }
     }

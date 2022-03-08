@@ -6,6 +6,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using static Wisdom.Writers.AutoGenerating.AutoFiller;
 using static Wisdom.Writers.Markup.DisciplineProgramMarkup;
+using Wisdom.Controls.Forms.MainForm;
 
 namespace Wisdom.Writers.AutoGenerating.Documents
 {
@@ -13,12 +14,6 @@ namespace Wisdom.Writers.AutoGenerating.Documents
     {
         private const string fileName = @"\TestResources\Templates\BaseTemplate.docx";
         private static string _template => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + fileName;
-
-        public static void ProcessJson(string path, Model.Documents.DisciplineProgram program)
-        {
-            byte[] jsonUtf8Bytes = JsonSerializer.SerializeToUtf8Bytes(program);
-            Save(path, jsonUtf8Bytes);
-        }
 
         public static void WriteDocX(string filepath, Model.Documents.DisciplineProgram program)
         {
