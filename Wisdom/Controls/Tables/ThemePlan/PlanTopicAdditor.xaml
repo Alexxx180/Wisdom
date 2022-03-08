@@ -56,13 +56,6 @@
                     </Binding.UpdateSourceTrigger>
                 </Binding>
             </TextBox.Text>
-
-            <!--<TextBox.Background> Tag="{x:Reference TotalHoursUsed}"
-                <MultiBinding Converter="{StaticResource UsedValuesConverter}">
-                    <Binding Path="Text" ElementName="SectionHours"></Binding>
-                    <Binding Path="Text" ElementName="ThemeHours"></Binding>
-                </MultiBinding>
-            </TextBox.Background>-->
         </TextBox>
     </Grid>
 </UserControl>

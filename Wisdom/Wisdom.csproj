@@ -16,8 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="TestResources\document.xml" />
-    <None Remove="TestResources\Test.docx" />
     <None Remove="Resources\Images\Icons\Wisdom.ico" />
   </ItemGroup>
 
@@ -47,7 +45,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\Configuration\Settings\" />
-    <Folder Include="TestResources\" />
   </ItemGroup>
 
 </Project>

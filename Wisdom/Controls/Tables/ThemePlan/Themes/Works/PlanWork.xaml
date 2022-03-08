@@ -37,6 +37,9 @@
                 <TextBlock.Style>
                     <StaticResource ResourceKey="RegularSections"/>
                 </TextBlock.Style>
+                <TextBlock.Text>
+                    <Binding Path="WorkType"/>
+                </TextBlock.Text>
             </TextBlock>
         </Grid>
 

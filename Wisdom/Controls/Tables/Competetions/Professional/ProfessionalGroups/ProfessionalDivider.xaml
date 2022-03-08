@@ -46,7 +46,7 @@
                         <StaticResource ResourceKey="ListCaptions"/>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBox Grid.Column="1">
+                <TextBox Grid.Column="1" Foreground="White">
                     <TextBox.Style>
                         <StaticResource ResourceKey="NoBox"/>
                     </TextBox.Style>
