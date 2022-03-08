@@ -60,7 +60,10 @@
                     </TextBox.FontSize>
                 </TextBox>
 
-                <Button Grid.Column="1" Style="{StaticResource Steps2}" Click="SetFilePath">
+                <Button Grid.Column="1" Click="SetFilePath">
+                    <Button.Style>
+                        <StaticResource ResourceKey="Steps2"/>
+                    </Button.Style>
                     <Viewbox>
                         <TextBlock Text="Выбрать" />
                     </Viewbox>

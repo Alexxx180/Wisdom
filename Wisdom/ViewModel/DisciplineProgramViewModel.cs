@@ -384,10 +384,11 @@ namespace Wisdom.ViewModel
             WriteTemplate(program, fileName);
         }
 
-        public void MakeDocument(string fileName)
+        public DisciplineProgram MakeDocument()
         {
             SetUpDocumentBlank(Document);
-            WriteDocument(Document, fileName);
+            return Document;
+            //WriteDocument(Document, fileName); string fileName
         }
         #endregion
 

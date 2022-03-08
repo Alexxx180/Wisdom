@@ -17,9 +17,7 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
     /// </summary>
     public partial class SettingsPart : UserControl, INotifyPropertyChanged
     {
-        public static readonly string ProgramPreferences = "DisciplineProgram.json";
-        public static Settings DisciplineProgramProcessing { get; set; }
-
+        #region Settings Members
         private ObservableCollection<SetterSelector> _setters;
         public ObservableCollection<SetterSelector> Setters
         {
@@ -38,10 +36,10 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
             set
             {
                 _fullPath = value;
-                DisciplineProgramProcessing.TemplatePath = value;
                 OnPropertyChanged();
             }
         }
+        #endregion
 
         private void SetUpSetter
             (string header, string cipher, int selection)
@@ -53,12 +51,26 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
             Setters.Add(setter);
         }
 
+        public void LoadSetters(Dictionary<string, int> options)
+        {
+            for (byte i = 0; i < Expressions.Length; i++)
+            {
+                Pair<string, string> expression = Expressions[i];
+                string cipher = expression.Value;
+                int selection = options.ContainsKey(cipher) ?
+                    options[cipher] : 0;
+
+                SetterSelector setter = Setters[i];
+                setter.SetElement
+                    (new Pair<string, int>(cipher, selection));
+            }
+        }
+
         public void ZeroStart()
         {
             for (byte i = 0; i < Expressions.Length; i++)
             {
                 Pair<string, string> expression = Expressions[i];
-                System.Diagnostics.Trace.WriteLine(expression.Name + " " + expression.Value);
                 SetUpSetter(expression.Name, expression.Value, 0);
             }
         }
@@ -67,39 +79,18 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
         {
             InitializeComponent();
             Setters = new ObservableCollection<SetterSelector>();
-            LoadPreferences();
+            ZeroStart();
         }
 
-        public void SerializeOptions()
+        public Dictionary<string, int> SerializeOptions()
         {
-            DisciplineProgramProcessing.Options = Setters.ToDictionary();
+            return Setters.ToDictionary();
         }
 
-        private void LoadPreferences()
+        public void LoadPreferences(Settings presets)
         {
-            DisciplineProgramProcessing = ReadJson<Settings>
-                (SettingsDirectory + ProgramPreferences);
-
-            if (DisciplineProgramProcessing == null)
-            {
-                ZeroStart();
-                DisciplineProgramProcessing = new Settings();
-                return;
-            }
-
-            FullPath = DisciplineProgramProcessing.TemplatePath;
-            for (byte i = 0; i < Expressions.Length; i++)
-            {
-                Dictionary<string, int>
-                    options = DisciplineProgramProcessing.Options;
-
-                Pair<string, string> expression = Expressions[i];
-                string cipher = expression.Value;
-                int selection = options.ContainsKey(cipher) ?
-                    options[cipher] : 0;
-
-                SetUpSetter(expression.Name, cipher, selection);
-            }
+            FullPath = presets.TemplatePath;
+            LoadSetters(presets.Options);
         }
 
         private void SetFilePath(object sender, RoutedEventArgs e)

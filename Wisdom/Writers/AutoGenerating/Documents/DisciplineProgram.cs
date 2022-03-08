@@ -1,19 +1,24 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using DocumentFormat.OpenXml.Packaging;
+﻿using System.Collections.Generic;
 using DocumentFormat.OpenXml.Wordprocessing;
-using static Wisdom.Writers.AutoGenerating.AutoFiller;
-using static Wisdom.Writers.Markup.DisciplineProgramMarkup;
 using Wisdom.Model;
-using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
 using Wisdom.Model.Tables.ThemePlan;
 using Wisdom.Model.Tables;
+using static Wisdom.Writers.AutoGenerating.AutoFiller;
+using static Wisdom.Writers.Markup.DisciplineProgramMarkup;
 
 namespace Wisdom.Writers.AutoGenerating.Documents
 {
-    public static class DisciplineProgram
+    public class DisciplineProgram : EducationalProgram<Model.Documents.DisciplineProgram>
     {
+        public static readonly string ProgramPreferences = "DisciplineProgram.json";
+
+        public DisciplineProgram(Controls.Forms.DocumentForms.AddDisciplineProgram.Settings presets)
+        {
+            Processing = presets ?? new Controls.Forms.DocumentForms.AddDisciplineProgram.Settings();
+        }
+
+        public Controls.Forms.DocumentForms.AddDisciplineProgram.Settings Processing { get; set; }
+
         public static readonly Pair<string, string>[]
             Expressions = new Pair<string, string>[]
             {
@@ -25,9 +30,6 @@ namespace Wisdom.Writers.AutoGenerating.Documents
                 new Pair<string, string>("Общие часы (Группа)", "#HOURS-")
             };
 
-        private const string fileName = @"\TestResources\Templates\BaseTemplate.docx";
-        private static string _template => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + fileName;
-
         public static string MetaData(Task task)
         {
             return task.Hours;
@@ -38,54 +40,13 @@ namespace Wisdom.Writers.AutoGenerating.Documents
             return hour.Count.ToString();
         }
 
-        public static void WriteDocX(string filepath, Model.Documents.DisciplineProgram program)
-        {
-            FullProcessing(_template, filepath, program);
-        }
-
-        private static void FullProcessing(
-            string templatePath, string generatePath,
-            Model.Documents.DisciplineProgram program
-            )
-        {
-            byte[] byteArray = File.ReadAllBytes(templatePath);
-            using (MemoryStream stream = new MemoryStream())
-            {
-                stream.Write(byteArray, 0, Convert.ToInt32(byteArray.Length));
-                using (WordprocessingDocument template = WordprocessingDocument.Open(stream, true))
-                {
-                    string docText = null;
-                    using (StreamReader sr = new StreamReader(template.MainDocumentPart.GetStream()))
-                    {
-                        docText = sr.ReadToEnd();
-                    }
-
-                    var body = template.MainDocumentPart.Document.Body;
-                    var paragraphs = body.Elements<Paragraph>();
-                    var cells = body.Descendants<TableCell>();
-
-                    FastProcessing(paragraphs, cells, program);
-                    DetailProcessing(paragraphs, program);
-
-                    using (StreamWriter sw = new StreamWriter(template.MainDocumentPart.GetStream(FileMode.Create)))
-                    {
-                        sw.Write(docText);
-                    }
-                }
-
-                // Save the file with the new name
-                Save(generatePath, stream);
-            }
-        }
-
-        private static void FastProcessing(
+        protected override void FastProcessing(
             IEnumerable<Paragraph> paragraphs,
             IEnumerable<TableCell> cells,
             Model.Documents.DisciplineProgram program
             )
         {
-            Dictionary<string, int>
-                options = SettingsPart.DisciplineProgramProcessing.Options;
+            Dictionary<string, int> options = Processing.Options;
 
             string discipline = Expressions[0].Value;
             CustomizeableProcessing(paragraphs, cells,
@@ -112,10 +73,9 @@ namespace Wisdom.Writers.AutoGenerating.Documents
                 options[hours], hours, program.Hours, Hours);
         }
 
-        private static void DetailProcessing(
+        protected override void DetailProcessing(
             IEnumerable<Paragraph> paragraphs,
-            Model.Documents.DisciplineProgram program
-            )
+            Model.Documents.DisciplineProgram program)
         {
             string competetions = "#COMPETETIONS";
             ReplaceInParagraphs(paragraphs, competetions, CompetetionsTable(program));

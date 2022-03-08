@@ -2,9 +2,11 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
-using Wisdom.Model.Documents;
 using Wisdom.ViewModel;
+using Wisdom.Writers.AutoGenerating.Documents;
 using static Wisdom.Writers.AutoGenerating.Processors;
+using static Wisdom.Writers.ResultRenderer;
+using Wisdom.Model;
 
 namespace Wisdom
 {
@@ -14,6 +16,17 @@ namespace Wisdom
     public partial class AddProg : Window, INotifyPropertyChanged
     {
         #region DisciplineProgramWindow Members
+        private DisciplineProgram _program;
+        public DisciplineProgram Program
+        {
+            get => _program;
+            set
+            {
+                _program = value;
+                OnPropertyChanged();
+            }
+        }
+
         private DisciplineProgramViewModel _viewModel;
         public DisciplineProgramViewModel ViewModel
         {
@@ -46,9 +59,12 @@ namespace Wisdom
         private void SetUp()
         {
             ViewModel = new DisciplineProgramViewModel();
+            Program = new DisciplineProgram(ReadJson<Settings>
+                (SettingsDirectory + DisciplineProgram.ProgramPreferences));
+            Page5.LoadPreferences(Program.Processing);
         }
 
-        public AddProg(DisciplineProgram program) : this()
+        public AddProg(Model.Documents.DisciplineProgram program) : this()
         {
             ViewModel.SetFromTemplate(program);
         }
@@ -60,7 +76,13 @@ namespace Wisdom
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.MakeDocument(FileName);
+            Pair<string, bool> head = UserAgreement();
+            if (head.Value)
+            {
+                Program.WriteDocument
+                    (Program.Processing.TemplatePath,
+                    head.Name, ViewModel.MakeDocument());
+            }
         }
 
         #region INotifyPropertyChanged Members
@@ -89,11 +111,12 @@ namespace Wisdom
 
         private void SavePreferences()
         {
-            Page5.SerializeOptions();
-            ProcessJson(
-                SettingsDirectory + SettingsPart.ProgramPreferences,
-                SettingsPart.DisciplineProgramProcessing
-                );
+            Program.Processing.TemplatePath = Page5.FullPath;
+            Program.Processing.Options = Page5.SerializeOptions();
+
+            ProcessJson(SettingsDirectory +
+                DisciplineProgram.ProgramPreferences,
+                Program.Processing);
         }
     }
 }
