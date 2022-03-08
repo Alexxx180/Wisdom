@@ -12,6 +12,12 @@
     <Compile Update="AddProg.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\SettingsPart.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Forms\DocumentForms\SetterSelector.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Forms\Switcher.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -126,6 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddProg.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\SettingsPart.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Forms\DocumentForms\SetterSelector.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Forms\Switcher.xaml">
@@ -249,15 +261,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Styles\ComboBoxes.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\Styles\FlowDocuments.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\Styles\Labels.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Resources\Styles\MenuItems.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Styles\Editors.xaml">

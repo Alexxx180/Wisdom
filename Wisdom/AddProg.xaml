@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:bind="clr-namespace:Wisdom.Binds"
         xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
         xmlns:forms="clr-namespace:Wisdom.Controls.Forms"
         xmlns:dpforms="clr-namespace:Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram"
@@ -11,14 +10,12 @@
         mc:Ignorable="d"
         x:Name="DisciplineProgramWindow"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="Редактирование" Height="1080" Width="1920" WindowState="Maximized" Icon="/Wisdom.png">
+        Title="Редактирование" Height="1080" Width="1920"
+        WindowState="Maximized" Icon="Resources/Images/Icons/Wisdom.ico"
+        Closing="DisciplineProgramWindow_Closing">
     <Window.Resources>
         <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
     </Window.Resources>
-    
-    <!--<Window.DataContext>
-        <viewmodel:DisciplineProgramViewModel x:Name="ProgramViewModel" />
-    </Window.DataContext>-->
 
     <Grid DataContext="{Binding Path=ViewModel}">
         <Grid.RowDefinitions>
@@ -121,6 +118,18 @@
                             <Binding ElementName="StepsGroup"/>
                         </forms:Switcher.Group>
                     </forms:Switcher>
+
+                    <forms:Switcher Grid.Column="8" Text="|=:|">
+                        <forms:Switcher.ViewStyle>
+                            <StaticResource ResourceKey="AutoSteps"/>
+                        </forms:Switcher.ViewStyle>
+                        <forms:Switcher.Element>
+                            <Binding Source="{x:Reference Page5}"/>
+                        </forms:Switcher.Element>
+                        <forms:Switcher.Group>
+                            <Binding ElementName="StepsGroup"/>
+                        </forms:Switcher.Group>
+                    </forms:Switcher>
                 </Grid>
 
                 <Button Click="MakeUserTemplate" Grid.Column="6" Style="{StaticResource Steps}">
@@ -160,5 +169,7 @@
                 <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
             </dpforms:MetaDataPart.ViewModel>
         </dpforms:MetaDataPart>
+
+        <dpforms:SettingsPart x:Name="Page5" Grid.Row="1" Visibility="Hidden"/>
     </Grid>
 </Window>

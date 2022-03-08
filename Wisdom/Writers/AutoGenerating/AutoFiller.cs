@@ -14,6 +14,56 @@ namespace Wisdom.Writers.AutoGenerating
             Processors.Save(path, stream.ToArray());
         }
 
+        public static void CustomizeableProcessing(
+            IEnumerable<Paragraph> paragraphs,
+            IEnumerable<TableCell> cells, int selection,
+            string toReplace, string replaceWith)
+        {
+            switch (selection)
+            {
+                case 0:
+                    break;
+                case 1:
+                    ReplaceInParagraphs(paragraphs, toReplace, replaceWith);
+                    break;
+                case 2:
+                    ReplaceInCells(cells, toReplace, replaceWith);
+                    break;
+                default:
+                    ReplaceInParagraphs(paragraphs, toReplace, replaceWith);
+                    ReplaceInCells(cells, toReplace, replaceWith);
+                    break;
+            }
+        }
+
+        public static void CustomizeableProcessing(
+            IEnumerable<Paragraph> paragraphs,
+            IEnumerable<TableCell> cells, int selection,
+            string toReplace, List<string> replaceWith)
+        {
+            switch (selection)
+            {
+                case 0:
+                    break;
+                case 1:
+                    for (ushort i = 0; i < replaceWith.Count; i++)
+                        ReplaceInParagraphs(paragraphs,
+                            toReplace + i, replaceWith[i]);
+                    break;
+                case 2:
+                    for (ushort i = 0; i < replaceWith.Count; i++)
+                        ReplaceInCells(cells, toReplace + i, replaceWith[i]);
+                    break;
+                default:
+                    for (ushort i = 0; i < replaceWith.Count; i++)
+                    {
+                        ReplaceInParagraphs(paragraphs, toReplace + i, replaceWith[i]);
+                        ReplaceInCells(cells, toReplace + i, replaceWith[i]);
+                    }
+                    break;
+            }
+        }
+
         public static void ReplaceInParagraphs(
             IEnumerable<Paragraph> paragraphs, 
             string find, string replaceWith

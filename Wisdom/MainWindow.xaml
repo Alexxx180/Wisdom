@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:main="clr-namespace:Wisdom.Controls.Forms.MainForm"
         mc:Ignorable="d"
-        Title="Главная" Height="450" Width="800" Icon="/Wisdom.png">
+        Title="Главная" Height="450" Width="800" Icon="Resources/Images/Icons/Wisdom.ico">
     <Grid>
         <main:MainPart/>
     </Grid>

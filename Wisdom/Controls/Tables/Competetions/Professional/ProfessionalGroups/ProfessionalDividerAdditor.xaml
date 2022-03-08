@@ -14,7 +14,7 @@
 
         <Button Click="AddDivision">
             <Button.Style>
-                <StaticResource ResourceKey="AddButton2"/>
+                <StaticResource ResourceKey="AddButton"/>
             </Button.Style>
         </Button>
 

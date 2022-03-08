@@ -161,6 +161,8 @@ namespace Wisdom.Writers.Markup
                     Space = 0U
                 };
 
+            
+
             borders.Append(topBorder);
             borders.Append(leftBorder);
             borders.Append(bottomBorder);

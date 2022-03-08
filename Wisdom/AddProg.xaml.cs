@@ -1,8 +1,10 @@
 ﻿using System.Windows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
 using Wisdom.Model.Documents;
 using Wisdom.ViewModel;
+using static Wisdom.Writers.AutoGenerating.Processors;
 
 namespace Wisdom
 {
@@ -38,7 +40,14 @@ namespace Wisdom
         public AddProg()
         {
             InitializeComponent();
+            SetUp();
+        }
+
+        private void SetUp()
+        {
             ViewModel = new DisciplineProgramViewModel();
+            //SettingsPart.DisciplineProgramProcessing = ReadJson<Settings>
+            //    (SettingsDirectory + SettingsPart.ProgramPreferences);
         }
 
         public AddProg(DisciplineProgram program) : this()
@@ -73,5 +82,20 @@ namespace Wisdom
             }
         }
         #endregion
+
+        private void DisciplineProgramWindow_Closing(object sender, CancelEventArgs e)
+        {
+            System.Diagnostics.Trace.WriteLine("SAVED");
+            SavePreferences();
+        }
+
+        private void SavePreferences()
+        {
+            Page5.SerializeOptions();
+            ProcessJson(
+                SettingsDirectory + SettingsPart.ProgramPreferences,
+                SettingsPart.DisciplineProgramProcessing
+                );
+        }
     }
 }

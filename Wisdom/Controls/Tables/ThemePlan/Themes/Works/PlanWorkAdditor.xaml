@@ -37,14 +37,8 @@
             </ComboBox.Text>
 
             <ComboBox.ItemsSource>
-                <!--<Binding Path="Types"/>-->
                 <Binding Source="{x:Static types:DocumentTypes.WorkTypes}"/>
             </ComboBox.ItemsSource>
-            
-            <!--<ComboBoxItem>Содержание учебного материала</ComboBoxItem>
-            <ComboBoxItem>Практические занятия</ComboBoxItem>
-            <ComboBoxItem>Контрольная работа</ComboBoxItem>
-            <ComboBoxItem>Самостоятельная работа</ComboBoxItem>-->
         </ComboBox>
 
         <Viewbox Grid.Column="3">

@@ -1,17 +1,28 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Text.Json;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using static Wisdom.Writers.AutoGenerating.AutoFiller;
 using static Wisdom.Writers.Markup.DisciplineProgramMarkup;
-using Wisdom.Controls.Forms.MainForm;
+using Wisdom.Model;
+using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
 
 namespace Wisdom.Writers.AutoGenerating.Documents
 {
     public static class DisciplineProgram
     {
+        public static readonly Pair<string, string>[]
+            Expressions = new Pair<string, string>[]
+            {
+                new Pair<string, string>("Название дисциплины", "#DISCIPLINE"),
+                new Pair<string, string>("Название специальности", "#SPECIALITY"),
+                new Pair<string, string>("Максимальная нагрузка", "#MAX-HOURS"),
+                new Pair<string, string>("Аудиторная нагрузка", "#AUD-HOURS"),
+                new Pair<string, string>("Метаданные (Группа)", "#META-"),
+                new Pair<string, string>("Общие часы (Группа)", "#HOURS-")
+            };
+
         private const string fileName = @"\TestResources\Templates\BaseTemplate.docx";
         private static string _template => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + fileName;
 
@@ -54,35 +65,49 @@ namespace Wisdom.Writers.AutoGenerating.Documents
                 Save(generatePath, stream);
             }
         }
-
+        
         private static void FastProcessing(
             IEnumerable<Paragraph> paragraphs,
             IEnumerable<TableCell> cells,
             Model.Documents.DisciplineProgram program
             )
         {
-#warning Config Feature
-            // Make a config file with choose where to change
-            // text expressions to necessary data
+            Dictionary<string, int>
+                options = SettingsPart.DisciplineProgramProcessing.Options;
 
-            string discipline = "#DISCIPLINE";
-            ReplaceInParagraphs(paragraphs, discipline, program.Name);
+            string discipline = Expressions[0].Value;
+            CustomizeableProcessing(paragraphs, cells,
+                options[discipline], discipline, program.Name);
 
-            string speciality = "#SPECIALITY";
-            ReplaceInParagraphs(paragraphs, speciality, program.ProfessionName);
-            ReplaceInCells(cells, speciality, program.ProfessionName);
+            //ReplaceInParagraphs(paragraphs, discipline, program.Name);
 
-            string max = "#MAX-HOURS";
-            ReplaceInParagraphs(paragraphs, max, program.MaxHours);
+            string speciality = Expressions[1].Value;
+            CustomizeableProcessing(paragraphs, cells,
+                options[speciality], speciality, program.ProfessionName);
 
-            string auditory = "#AUD-HOURS";
-            ReplaceInParagraphs(paragraphs, auditory, program.EduHours);
+            //ReplaceInParagraphs(paragraphs, speciality, program.ProfessionName);
+            //ReplaceInCells(cells, speciality, program.ProfessionName);
 
-            string meta = "#META-";
+            string max = Expressions[2].Value;
+            CustomizeableProcessing(paragraphs, cells,
+                options[max], max, program.MaxHours);
+
+            //ReplaceInParagraphs(paragraphs, max, program.MaxHours);
+
+            string auditory = Expressions[3].Value;
+            CustomizeableProcessing(paragraphs, cells,
+                options[auditory], auditory, program.EduHours);
+
+            //ReplaceInParagraphs(paragraphs, auditory, program.EduHours);
+
+            string meta = Expressions[4].Value;
+            //CustomizeableProcessing(paragraphs, cells,
+            //    options[meta], meta, program.MetaData);
+
             for (byte i = 0; i < program.MetaData.Count; i++)
                 ReplaceInParagraphs(paragraphs, meta + i, program.MetaData[i].Hours);
 
-            string hours = "#HOURS-";
+            string hours = Expressions[5].Value;
             for (byte i = 0; i < program.Hours.Count; i++)
             {
                 ReplaceInParagraphs(paragraphs, hours + i, program.Hours[i].Count.ToString());

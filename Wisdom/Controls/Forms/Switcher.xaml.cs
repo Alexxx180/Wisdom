@@ -13,18 +13,18 @@ namespace Wisdom.Controls.Forms
     public partial class Switcher : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty
-            GroupProperty = DependencyProperty.Register("Group",
-                typeof(SwitchGroup), typeof(Switcher));
+            GroupProperty = DependencyProperty.Register(
+                nameof(Group), typeof(SwitchGroup), typeof(Switcher));
 
         public static readonly DependencyProperty
-            ElementProperty = DependencyProperty.Register("Element",
+            ElementProperty = DependencyProperty.Register(nameof(Element),
                 typeof(FrameworkElement), typeof(Switcher));
 
         public static readonly DependencyProperty
-            IsNotPressedProperty = DependencyProperty.Register("IsNotPressed",
-                typeof(bool), typeof(Switcher));
+            IsNotPressedProperty = DependencyProperty.Register(
+                nameof(IsNotPressed), typeof(bool), typeof(Switcher));
 
-        internal SwitchGroup Group
+        public SwitchGroup Group
         {
             get => GetValue(GroupProperty) as SwitchGroup;
             set => SetValue(GroupProperty, value);
@@ -33,19 +33,17 @@ namespace Wisdom.Controls.Forms
         public FrameworkElement Element
         {
             get => GetValue(ElementProperty) as FrameworkElement;
-            set => SetValue(ElementProperty, value);
+            set
+            {
+                SetValue(ElementProperty, value);
+                System.Diagnostics.Trace.WriteLine(value.Name);
+            }
         }
 
         public bool IsNotPressed
         {
             get => GetValue(IsNotPressedProperty).ToBool();
-            set
-            {
-                SetValue(IsNotPressedProperty, value);
-                if (!value)
-                    Group.SwitchElement(this, Element);
-                OnPropertyChanged();
-            }
+            set => SetValue(IsNotPressedProperty, value);
         }
 
         #region Switcher Members
@@ -81,6 +79,7 @@ namespace Wisdom.Controls.Forms
         private void Switch(object sender, RoutedEventArgs e)
         {
             IsNotPressed = false;
+            Group.SwitchElement(this, Element);
         }
 
         #region INotifyPropertyChanged Members

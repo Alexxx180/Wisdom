@@ -5,17 +5,20 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
-    <ApplicationIcon>AutoGenerator.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Images\Icons\Wisdom.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Refresh.png" />
-    <None Remove="Resources\Images\Icons\AutoGenerator.png" />
-    <None Remove="Resources\Images\Icons\Search.png" />
-    <None Remove="Search.png" />
+    <Compile Remove="Resources\Templates\**" />
+    <EmbeddedResource Remove="Resources\Templates\**" />
+    <None Remove="Resources\Templates\**" />
+    <Page Remove="Resources\Templates\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="TestResources\document.xml" />
     <None Remove="TestResources\Test.docx" />
-    <None Remove="Wisdom.png" />
+    <None Remove="Resources\Images\Icons\Wisdom.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,16 +42,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Refresh.png" />
-    <Resource Include="Resources\Images\Icons\AutoGenerator.png" />
-    <Resource Include="Resources\Images\Icons\Search.png" />
-    <Resource Include="Search.png" />
-    <Resource Include="Wisdom.png" />
+    <Resource Include="Resources\Images\Icons\Wisdom.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Templates\" />
-    <Folder Include="Resources\Configuration\" />
+    <Folder Include="Resources\Configuration\Settings\" />
     <Folder Include="TestResources\" />
   </ItemGroup>
 

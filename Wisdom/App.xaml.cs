@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using Wisdom.Controls.Forms;
 using Wisdom.Controls.Forms.MainForm;
 using static Wisdom.Writers.AutoGenerating.Processors;
 

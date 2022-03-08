@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Wisdom.Controls;
+using Wisdom.Controls.Tables;
+using Wisdom.Model;
 
 namespace Wisdom.Customing
 {
@@ -61,14 +64,23 @@ namespace Wisdom.Customing
             return string.Format("{0:00}", value);
         }
 
-        //public static string ToGeneralNo(this int value)
-        //{
-        //    return string.Format("{0:00}", value);
-        //}
-
         public static string ToGeneralNo(this IFormattable value)
         {
             return string.Format("{0:00}", value);
+        }
+
+        public static Dictionary<TName, TValue> ToDictionary<TName, TValue>
+            (this IEnumerable<IRawData<Pair<TName, TValue>>> list)
+        {
+            Dictionary<TName, TValue>
+                elements = new
+                Dictionary<TName, TValue>();
+            foreach (IRawData<Pair<TName, TValue>> item in list)
+            {
+                Pair<TName, TValue> pair = item.Raw();
+                elements.Add(pair.Name, pair.Value);
+            }
+            return elements;
         }
     }
 }

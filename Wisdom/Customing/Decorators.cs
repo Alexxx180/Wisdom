@@ -2,7 +2,6 @@
 using System.Windows.Media;
 using System.Collections.Generic;
 using Wisdom.Controls.Tables;
-using System;
 
 namespace Wisdom.Customing
 {

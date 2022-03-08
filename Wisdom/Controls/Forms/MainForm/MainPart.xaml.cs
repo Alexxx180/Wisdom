@@ -5,7 +5,6 @@ using Wisdom.Controls.Forms.MainForm.UserTemplates;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
-using System;
 using static Wisdom.Writers.AutoGenerating.Processors;
 
 namespace Wisdom.Controls.Forms.MainForm
@@ -15,6 +14,7 @@ namespace Wisdom.Controls.Forms.MainForm
     /// </summary>
     public partial class MainPart : UserControl, INotifyPropertyChanged
     {
+        public static readonly string ProgramPreferences = "Preferences.json";
         public static Preferences Settings { get; set; }
 
         private ObservableCollection<DisciplineProgramTemplate> _templates;
@@ -26,11 +26,6 @@ namespace Wisdom.Controls.Forms.MainForm
                 _templates = value;
                 OnPropertyChanged();
             }
-        }
-
-        static MainPart()
-        {
-            Settings = new Preferences();
         }
 
         public MainPart()
@@ -49,20 +44,12 @@ namespace Wisdom.Controls.Forms.MainForm
         private void SelectTemplatesDirectory(object sender, RoutedEventArgs e)
         {
             using System.Windows.Forms.FolderBrowserDialog
-                dialog = new System.Windows.Forms.FolderBrowserDialog
-                {
-                    Description = "Выберите директорию пользовательских шаблонов",
-                    UseDescriptionForTitle = true,
-                    SelectedPath = Environment.GetFolderPath(
-                        Environment.SpecialFolder.DesktopDirectory)
-                        + Path.DirectorySeparatorChar,
-                    ShowNewFolderButton = true
-                };
+                dialog = CallLocator("Выберите место шаблонов учебных программ");
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Settings.TemplateDirectory = dialog.SelectedPath;
-                ProcessJson(ConfigDirectory + "Preferences.json", Settings);
+                Settings.TemplatePath = dialog.SelectedPath;
+                ProcessJson(ConfigDirectory + ProgramPreferences, Settings);
                 ReloadTemplates();
             }
         }
@@ -82,11 +69,19 @@ namespace Wisdom.Controls.Forms.MainForm
         {
             try
             {
+                if (Settings == null)
+                {
+                    Settings = new Preferences();
+                    return;
+                }
+                
                 foreach (string file in
-                    Directory.GetFiles(Settings.TemplateDirectory))
+                    Directory.GetFiles(Settings.TemplatePath))
                 {
                     if (Path.GetExtension(file).ToLower() != ".json")
+                    {
                         continue;
+                    }
 
                     DisciplineProgramTemplate
                         template = new
@@ -102,16 +97,6 @@ namespace Wisdom.Controls.Forms.MainForm
             {
                 LoadMessage(exception.Message);
             }
-        }
-
-        private static void LoadMessage(string exception)
-        {
-            string noLoad = "Не удалось загрузить шаблоны.";
-            string message = "\nФайлы повреждены или " +
-                "находятся вне досягаемости программы.\n";
-            string advice = "Полное сообщение:\n";
-            _ = MessageBox.Show
-                (noLoad + message + advice + exception);
         }
 
         #region INotifyPropertyChanged Members

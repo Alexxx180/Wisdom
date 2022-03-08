@@ -3,34 +3,19 @@
         <Setter Property="Control.FontSize" Value="20"/>
         <Setter Property="Control.FontWeight" Value="Bold"/>
         <Setter Property="Control.FontFamily" Value="Gill Sans MT"/>
-        <Setter Property="Button.Content" Value="X"/>
-    </Style>
-    
-    <Style x:Key="DeleteButton2" BasedOn="{StaticResource DropAccent}">
-        <Setter Property="Control.FontWeight" Value="Bold"/>
-        <Setter Property="Control.FontFamily" Value="Gill Sans MT"/>
         <Setter Property="Button.Content">
             <Setter.Value>
-                <Viewbox>
-                    <TextBlock Text="X" />
-                </Viewbox>
+                <TextBlock Text="X"/>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="AddButton" BasedOn="{StaticResource AddAccent}">
         <Setter Property="Control.FontSize" Value="20"/>
         <Setter Property="Control.FontFamily" Value="Gill Sans Ultra Bold"/>
-        <Setter Property="Button.Content" Value="+"/>
-    </Style>
-    
-    <Style x:Key="AddButton2" BasedOn="{StaticResource AddAccent}">
-        <Setter Property="Control.FontFamily" Value="Gill Sans Ultra Bold"/>
-        <Setter Property="Button.Content">
+        <Setter Property="Button.Content" >
             <Setter.Value>
-                <Viewbox>
-                    <TextBlock Text="+" />
-                </Viewbox>
+                <TextBlock Text="+"/>
             </Setter.Value>
         </Setter>
     </Style>

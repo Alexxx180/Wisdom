@@ -6,10 +6,10 @@ using static Wisdom.Customing.Decorators;
 
 namespace Wisdom.ViewModel
 {
-    internal class SwitchGroup : INotifyPropertyChanged
+    public class SwitchGroup : INotifyPropertyChanged
     {
         private Switcher _activeSwitcher;
-        internal Switcher ActiveSwitcher
+        public Switcher ActiveSwitcher
         {
             get => _activeSwitcher;
             set
@@ -22,7 +22,7 @@ namespace Wisdom.ViewModel
         }
 
         private FrameworkElement _activeElement;
-        internal FrameworkElement ActiveElement
+        public FrameworkElement ActiveElement
         {
             get => _activeElement;
             set
@@ -35,7 +35,7 @@ namespace Wisdom.ViewModel
             }
         }
 
-        internal void
+        public void
             SwitchElement(Switcher switcher,
             FrameworkElement element)
         {

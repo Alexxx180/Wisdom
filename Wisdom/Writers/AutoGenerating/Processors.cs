@@ -2,7 +2,9 @@
 using System.IO;
 using System.Text.Json;
 using System.Windows;
-using Wisdom.Controls.Forms.MainForm;
+using Microsoft.Win32;
+using Wisdom.Controls.Forms;
+using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
 
 namespace Wisdom.Writers.AutoGenerating
 {
@@ -10,6 +12,7 @@ namespace Wisdom.Writers.AutoGenerating
     {
         public static string ProjectDirectory => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
         public static string ConfigDirectory => ProjectDirectory + @"\Resources\Configuration\";
+        public static string SettingsDirectory = ConfigDirectory + @"Settings\";
 
         private static void SaveMessage(string exception)
         {
@@ -19,12 +22,55 @@ namespace Wisdom.Writers.AutoGenerating
             _ = MessageBox.Show(noLoad + message + advice + exception);
         }
 
-        private static void LoadMessage(string exception)
+        internal static void LoadMessage(string exception)
         {
-            string noLoad = "Не удалось загрузить файл.";
-            string message = "\nУбедитесь, что файл не поврежден или отсутствует в целевой директории.\n";
+            string noLoad = "Сбой загрузки.";
+            string message = "\nУбедитесь, что файлы не повреждены или отсутствуют в целевой директории.\n";
             string advice = "Свяжитесь с администратором насчет установления причины проблемы.\nПолное сообщение:\n";
             _ = MessageBox.Show(noLoad + message + advice + exception);
+        }
+
+        internal static void WriteMessage(string exception)
+        {
+            string message = "Файл открыт в другой " +
+                    "программе или используется другим " +
+                    "процессом. Дальнейшая запись в файл" +
+                    " невозможна.\nПолное сообщение:\n";
+            _ = MessageBox.Show(message + exception);
+        }
+
+        public static OpenFileDialog
+            CallManager(string filter, string fileName)
+        {
+            return new OpenFileDialog
+            {
+                FileName = fileName,
+                Filter = filter
+            };
+        }
+
+        public static SaveFileDialog
+            CallWriter(string filter, string fileName)
+        {
+            return new SaveFileDialog
+            {
+                FileName = fileName,
+                Filter = filter
+            };
+        }
+
+        public static System.Windows.Forms.FolderBrowserDialog
+            CallLocator(string description)
+        {
+            return new System.Windows.Forms.FolderBrowserDialog
+            {
+                Description = description,
+                UseDescriptionForTitle = true,
+                SelectedPath = Environment.GetFolderPath(
+                    Environment.SpecialFolder.DesktopDirectory)
+                    + Path.DirectorySeparatorChar,
+                ShowNewFolderButton = true
+            };
         }
 
         public static void Save(string path, byte[] bytes)
@@ -79,6 +125,11 @@ namespace Wisdom.Writers.AutoGenerating
         }
 
         public static void ProcessJson(string path, Preferences program)
+        {
+            ProcessJsonAny(path, program);
+        }
+
+        public static void ProcessJson(string path, Settings program)
         {
             ProcessJsonAny(path, program);
         }
