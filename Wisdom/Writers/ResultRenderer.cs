@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using System.IO;
 using Wisdom.Model;
 using Wisdom.Model.Documents;
 using static Wisdom.Writers.AutoGenerating.Processors;
@@ -16,13 +15,7 @@ namespace Wisdom.Writers
         private static readonly string _templateFilter =
             "Шаблон пользовательских данных (*.json)|*.json";
 
-        internal static void TruncateFile(string fileName)
-        {
-            if (File.Exists(fileName))
-            {
-                File.Delete(fileName);
-            }
-        }
+        
 
         public static Pair<string, bool> UserAgreement(string fileName = "")
         {
@@ -43,7 +36,6 @@ namespace Wisdom.Writers
             SaveFileDialog dialog = CallWriter(filter, fileName);
             if (dialog.ShowDialog().Value)
             {
-                TruncateFile(dialog.FileName);
                 ProcessJson(dialog.FileName, program);
             }
         }

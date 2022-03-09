@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Win32;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Model;
 using Wisdom.Customing;
 using static Wisdom.Writers.AutoGenerating.Processors;
 using static Wisdom.Writers.AutoGenerating.Documents.DisciplineProgram;
-using System.Windows;
-using Microsoft.Win32;
+using System;
 
 namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
 {
@@ -37,6 +38,7 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
             {
                 _fullPath = value;
                 OnPropertyChanged();
+                IsChanged = true;
             }
         }
         #endregion
@@ -48,6 +50,7 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
             setter.Header = header;
             setter.SetElement
                 (new Pair<string, int>(cipher, selection));
+            setter.OnChanged += new EventHandler(OnChanged);
             Setters.Add(setter);
         }
 
@@ -73,6 +76,11 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
                 Pair<string, string> expression = Expressions[i];
                 SetUpSetter(expression.Name, expression.Value, 0);
             }
+        }
+
+        static SettingsPart()
+        {
+            _documentFilter = "Документ Microsoft Word (*.docx)|*.docx";
         }
 
         public SettingsPart()
@@ -103,8 +111,23 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
             }
         }
 
-        private static readonly string _documentFilter =
-            "Документ Microsoft Word (*.docx)|*.docx";
+        private void OnChanged(object sender, EventArgs e)
+        {
+            IsChanged = true;
+            //Top article :
+            //https://stackoverflow.com/questions/7880850/how-do-i-make-an-event-in-the-usercontrol-and-have-it-handled-in-the-main-form
+        }
+
+        public bool WasChanged()
+        {
+            bool memory = IsChanged;
+            IsChanged = false;
+            return memory;
+        }
+
+        public bool IsChanged { get; set; }
+
+        private static readonly string _documentFilter;
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

@@ -76,6 +76,9 @@ namespace Wisdom
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
+            if (Page5.WasChanged())
+                SavePreferences();
+
             Pair<string, bool> head = UserAgreement();
             if (head.Value)
             {
@@ -83,6 +86,22 @@ namespace Wisdom
                     (Program.Processing.TemplatePath,
                     head.Name, ViewModel.MakeDocument());
             }
+        }
+
+        private void DisciplineProgramWindow_Closing(object sender, CancelEventArgs e)
+        {
+            if (Page5.WasChanged())
+                SavePreferences();
+        }
+
+        private void SavePreferences()
+        {
+            Program.Processing.TemplatePath = Page5.FullPath;
+            Program.Processing.Options = Page5.SerializeOptions();
+
+            ProcessJson(SettingsDirectory +
+                DisciplineProgram.ProgramPreferences,
+                Program.Processing);
         }
 
         #region INotifyPropertyChanged Members
@@ -102,21 +121,5 @@ namespace Wisdom
             }
         }
         #endregion
-
-        private void DisciplineProgramWindow_Closing(object sender, CancelEventArgs e)
-        {
-            System.Diagnostics.Trace.WriteLine("SAVED");
-            SavePreferences();
-        }
-
-        private void SavePreferences()
-        {
-            Program.Processing.TemplatePath = Page5.FullPath;
-            Program.Processing.Options = Page5.SerializeOptions();
-
-            ProcessJson(SettingsDirectory +
-                DisciplineProgram.ProgramPreferences,
-                Program.Processing);
-        }
     }
 }

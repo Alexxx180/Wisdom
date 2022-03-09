@@ -13,9 +13,9 @@ namespace Wisdom.Writers.AutoGenerating.Documents
         public void WriteDocument(string templatePath,
              string filePath, TProgram program)
         {
-            ResultRenderer.TruncateFile(filePath);
             try
             {
+                TruncateFile(filePath);
                 FullProcessing(templatePath, filePath, program);
             }
             catch (IOException exception)

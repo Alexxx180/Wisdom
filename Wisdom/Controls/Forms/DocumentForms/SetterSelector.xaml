@@ -27,7 +27,7 @@
         </TextBlock>
 
 
-        <ComboBox Grid.Column="1" FontSize="20">
+        <ComboBox Grid.Column="1" FontSize="20" SelectionChanged="SettingChanged">
             <ComboBox.Style>
                 <StaticResource ResourceKey="SubCaptionBox"/>
             </ComboBox.Style>

@@ -73,6 +73,14 @@ namespace Wisdom.Writers.AutoGenerating
             };
         }
 
+        internal static void TruncateFile(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+        }
+
         public static void Save(string path, byte[] bytes)
         {
             try
@@ -115,8 +123,16 @@ namespace Wisdom.Writers.AutoGenerating
 
         private static void ProcessJsonAny<T>(string path, T serilizeable)
         {
-            byte[] jsonUtf8Bytes = JsonSerializer.SerializeToUtf8Bytes(serilizeable);
-            Save(path, jsonUtf8Bytes);
+            try
+            {
+                TruncateFile(path);
+                byte[] jsonUtf8Bytes = JsonSerializer.SerializeToUtf8Bytes(serilizeable);
+                File.WriteAllBytes(path, jsonUtf8Bytes);
+            }
+            catch (IOException exception)
+            {
+                LoadMessage(exception.Message);
+            }
         }
 
         public static void ProcessJson(string path, Model.Documents.DisciplineProgram program)

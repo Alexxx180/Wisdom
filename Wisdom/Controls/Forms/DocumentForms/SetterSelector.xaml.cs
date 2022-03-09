@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -69,8 +68,15 @@ namespace Wisdom.Controls.Forms.DocumentForms
             InitializeComponent();
         }
 
-    #region INotifyPropertyChanged Members
-    public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler OnChanged;
+
+        private void SettingChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OnChanged?.Invoke(this, e);
+        }
+
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Raises this object's PropertyChanged event.
