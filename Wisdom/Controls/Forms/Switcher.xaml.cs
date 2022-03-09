@@ -24,6 +24,7 @@ namespace Wisdom.Controls.Forms
             IsNotPressedProperty = DependencyProperty.Register(
                 nameof(IsNotPressed), typeof(bool), typeof(Switcher));
 
+        #region Switcher Members
         public SwitchGroup Group
         {
             get => GetValue(GroupProperty) as SwitchGroup;
@@ -33,11 +34,7 @@ namespace Wisdom.Controls.Forms
         public FrameworkElement Element
         {
             get => GetValue(ElementProperty) as FrameworkElement;
-            set
-            {
-                SetValue(ElementProperty, value);
-                System.Diagnostics.Trace.WriteLine(value.Name);
-            }
+            set => SetValue(ElementProperty, value);
         }
 
         public bool IsNotPressed
@@ -46,7 +43,6 @@ namespace Wisdom.Controls.Forms
             set => SetValue(IsNotPressedProperty, value);
         }
 
-        #region Switcher Members
         private string _text;
         public string Text
         {

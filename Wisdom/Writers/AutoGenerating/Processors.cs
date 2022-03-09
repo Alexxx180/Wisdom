@@ -12,7 +12,18 @@ namespace Wisdom.Writers.AutoGenerating
     {
         public static string ProjectDirectory => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
         public static string ConfigDirectory => ProjectDirectory + @"\Resources\Configuration\";
-        public static string SettingsDirectory = ConfigDirectory + @"Settings\";
+        public static string SettingsDirectory => ConfigDirectory + @"Settings\";
+        private static string Runtime => ConfigDirectory + @"Runtime\Data.json";
+
+        internal static string LoadRuntime()
+        {
+            return ReadJson<string>(Runtime);
+        }
+
+        internal static void SaveRuntime(string data)
+        {
+            ProcessJsonAny(Runtime, data);
+        }
 
         private static void SaveMessage(string exception)
         {

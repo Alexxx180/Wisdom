@@ -45,6 +45,7 @@
 
   <ItemGroup>
     <Folder Include="Resources\Configuration\Settings\" />
+    <Folder Include="Resources\Configuration\Runtime\" />
   </ItemGroup>
 
 </Project>

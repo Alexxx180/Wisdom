@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Wisdom.Controls;
 using Wisdom.Controls.Tables;
 using Wisdom.Model;
+using Wisdom.Customing;
 
 namespace Wisdom.Customing
 {
@@ -36,6 +37,11 @@ namespace Wisdom.Customing
         public static ulong ToULong(this object value)
         {
             return Convert.ToUInt64(value);
+        }
+
+        public static string ToBase64(this byte[] value)
+        {
+            return Convert.ToBase64String(value);
         }
 
         public static Indexing ToMode(this object value)
