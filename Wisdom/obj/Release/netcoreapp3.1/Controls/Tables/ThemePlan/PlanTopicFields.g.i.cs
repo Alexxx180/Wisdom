@@ -53,7 +53,7 @@ namespace Wisdom.Controls.Tables.ThemePlan {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/tables/themeplan/plantopicfields.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/tables/themeplan/plantopicfields.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Controls\Tables\ThemePlan\PlanTopicFields.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -76,17 +76,8 @@ D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdo
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Wisdom.runtimeconfig.dev.json
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Wisdom.dll
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Wisdom.pdb
-D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\BouncyCastle.Crypto.dll
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\DocumentFormat.OpenXml.dll
-D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Google.Protobuf.dll
-D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\K4os.Compression.LZ4.dll
-D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\K4os.Compression.LZ4.Streams.dll
-D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\K4os.Hash.xxHash.dll
-D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\MySql.Data.dll
-D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Ubiety.Dns.Core.dll
-D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\ZstdNet.dll
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\System.Data.SqlClient.dll
-D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\runtimes\win-x64\native\sni.dll
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\runtimes\win-x86\native\sni.dll
@@ -199,3 +190,5 @@ D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdo
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\EntryWindow.g.cs
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\EntryWindow.baml
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\MySqlConnector.dll
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll

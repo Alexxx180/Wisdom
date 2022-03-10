@@ -50,6 +50,7 @@ namespace Wisdom
         {
             InitializeComponent();
             MemberMe = false;
+            Login = "";
         }
 
         private void LogInClick(object sender, RoutedEventArgs e)

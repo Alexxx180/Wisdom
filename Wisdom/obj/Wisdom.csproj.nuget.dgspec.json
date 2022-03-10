@@ -44,9 +44,9 @@
               "target": "Package",
               "version": "[2.13.1, )"
             },
-            "MySql.Data": {
+            "MySqlConnector": {
               "target": "Package",
-              "version": "[8.0.27, )"
+              "version": "[2.1.8, )"
             },
             "Open-XML-SDK": {
               "target": "Package",

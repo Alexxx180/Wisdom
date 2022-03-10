@@ -72,11 +72,6 @@ namespace Wisdom.ViewModel
                 connectionSuccessful =
                     Connector.TestConnection
                     (entry.Login, entry.Pass);
-
-                if (!connectionSuccessful)
-                {
-                    entry = new EntryWindow();
-                }
             }
             while (!connectionSuccessful);
 

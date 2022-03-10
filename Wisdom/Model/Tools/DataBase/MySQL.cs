@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Reflection;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
+using static Wisdom.Writers.AutoGenerating.Processors;
 
 namespace Wisdom.Model.Tools.DataBase
 {
@@ -15,8 +16,15 @@ namespace Wisdom.Model.Tools.DataBase
         public MySQL()
         {
             //Connection = ParentServerConnection();
+            ResetConfiguration();
         }
-        
+
+        private void ResetConfiguration()
+        {
+            Pair<string, string> config = LoadRuntime("Config.json");
+            SetConfiguration(config.Name, config.Value);
+        }
+
         public MySqlConnection NewConnection(string path)
         {
             return new MySqlConnection(path);
@@ -69,7 +77,7 @@ namespace Wisdom.Model.Tools.DataBase
             {
                 test.Close();
             }
-            return _connection is null;
+            return !(_connection is null);
         }
 
         // Server connection
@@ -81,6 +89,9 @@ namespace Wisdom.Model.Tools.DataBase
             string catalog = "DATABASE=" + _dataBaseName + ";";
             string user = "UID=" + login + ";";
             string pass = "PASSWORD=" + password + ";";
+
+            System.Diagnostics.Trace.WriteLine(source + catalog + user + pass);
+
             return NewConnection(source + catalog + user + pass);
         }
 

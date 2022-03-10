@@ -486,8 +486,6 @@ namespace Wisdom.ViewModel
                 element.SetElement(hour);
                 Hours.Add(element);
 
-                System.Diagnostics.Trace.WriteLine(element.HourValue);
-
                 if (hour.Name == "Самостоятельная работа")
                 {
                     self += hour.Count;
