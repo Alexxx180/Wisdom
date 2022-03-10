@@ -21,7 +21,7 @@ namespace Wisdom.Model.Tools.DataBase
 
         private void ResetConfiguration()
         {
-            Pair<string, string> config = LoadRuntime("Config.json");
+            Pair<string, string> config = LoadRuntime<string>("Config.json");
             SetConfiguration(config.Name, config.Value);
         }
 

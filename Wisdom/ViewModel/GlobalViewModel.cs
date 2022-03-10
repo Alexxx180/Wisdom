@@ -1,6 +1,8 @@
 ﻿using Wisdom.Model;
 using Wisdom.Model.Tools.DataBase;
+using Wisdom.Customing;
 using static Wisdom.Writers.AutoGenerating.Processors;
+using static Wisdom.Model.Tools.Security.Encryption;
 
 namespace Wisdom.ViewModel
 {
@@ -14,17 +16,18 @@ namespace Wisdom.ViewModel
         #region Connection Members
         private bool FileConnection()
         {
-            Pair<string, string> initials = LoadRuntime("Data.json");
+            Pair<string, byte[]> initials = LoadRuntime<byte[]>("Data.json");
 
-            bool connectionSuccessful = !(initials is null) &&
-                Connector.TestConnection(initials.Name, initials.Value);
+            bool connectionSuccessful =
+                !(initials is null) && Connector.TestConnection
+                (initials.Name, GetString(Unprotect(initials.Value)));
 
             return connectionSuccessful;
         }
 
         private void ResetConfiguration()
         {
-            Pair<string, string> config = LoadRuntime("Config.json");
+            Pair<string, string> config = LoadRuntime<string>("Config.json");
             Connector.SetConfiguration(config.Name, config.Value);
         }
 
@@ -39,8 +42,8 @@ namespace Wisdom.ViewModel
         private void LoginMemory(string login, string pass)
         {
             SaveRuntime("Data.json",
-                new Pair<string, string>
-                (login, pass));
+                new Pair<string, byte[]>
+                (login, Protect(GetBytes(pass))));
         }
 
         internal void Connect()

@@ -169,14 +169,14 @@ namespace Wisdom.Writers.AutoGenerating
         }
 
         internal static
-            Pair<string, string> LoadRuntime(string name)
+            Pair<string, T> LoadRuntime<T>(string name)
         {
             return !File.Exists(RuntimeDirectory + name) ? null :
-                ReadJson<Pair<string, string>>(RuntimeDirectory + name);
+                ReadJson<Pair<string, T>>(RuntimeDirectory + name);
         }
 
-        internal static void SaveRuntime
-            (string name, Pair<string, string> data)
+        internal static void SaveRuntime<T>
+            (string name, Pair<string, T> data)
         {
             ProcessJsonAny(RuntimeDirectory + name, data);
         }
