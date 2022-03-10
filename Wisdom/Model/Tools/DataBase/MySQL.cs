@@ -9,27 +9,19 @@ namespace Wisdom.Model.Tools.DataBase
 {
     public class MySQL : Sql
     {
-        private const string PublishSource =
-            @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = ";
-        private const string PublishLocation =
-            @"\Resources\Database\DesertRageGame.mdf; Integrated Security = True";
+        private string _dataBaseName;
+        private string _hostName;
+
         public MySQL()
         {
-            Con = ParentServerConnection();
+            //Connection = ParentServerConnection();
         }
         
         public MySqlConnection NewConnection(string path)
         {
             return new MySqlConnection(path);
         }
-        //[EN] Publishing experimental
-        //[RU] Публикация-эксперимент
-        public MySqlConnection PublishExperimentalConnection()
-        {
-            return NewConnection(PublishSource +
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-                + PublishLocation);
-        }
+
         //[EN] Server connection
         //[RU] Подключение через сервер (ПК создателя)
         public MySqlConnection ParentServerConnection()
@@ -40,25 +32,61 @@ namespace Wisdom.Model.Tools.DataBase
             string pass = "PASSWORD=;";
             return NewConnection(source + catalog + user + pass);
         }
-        //[EN] Local connection
-        //[RU] Подключение локально
-        public MySqlConnection LocalConnection()
+
+        internal override void SetConfiguration(in string dbName, in string host)
         {
-            return NewConnection(PublishSource +
-                Directory.GetParent(Environment.CurrentDirectory)
-                .Parent.Parent.FullName + PublishLocation);
+            _dataBaseName = dbName;
+            _hostName = host;
         }
-        //[EN] Publishing local connection
-        //[RU] Публикация с локальным подключением
-        public MySqlConnection PublishLocalConnection()
+
+        private static void ConnectionFault(string message)
         {
-            return NewConnection(PublishSource +
-                Environment.CurrentDirectory + PublishLocation);
+            //Log.Warning("Tried to connect to DB, no sucess: " + message);
+            //
+        }
+
+        public override bool TestConnection(in string login, in string password)
+        {
+            MySqlConnection test = EnterConnection(login, password);
+            try
+            {
+                test.Open();
+                _connection = test;
+            }
+            catch (MySqlException dbException)
+            {
+                ConnectionFault(dbException.Message);
+            }
+            catch (InvalidOperationException operationException)
+            {
+                ConnectionFault(operationException.Message);
+            }
+            catch (Exception exception)
+            {
+                ConnectionFault(exception.Message);
+            }
+            finally
+            {
+                test.Close();
+            }
+            return _connection is null;
+        }
+
+        // Server connection
+        private MySqlConnection EnterConnection
+            (string login, string password)
+        {
+            //Log.Debug("Connecting to DB...");
+            string source = "SERVER=" + _hostName + ";";
+            string catalog = "DATABASE=" + _dataBaseName + ";";
+            string user = "UID=" + login + ";";
+            string pass = "PASSWORD=" + password + ";";
+            return NewConnection(source + catalog + user + pass);
         }
 
         public override void Procedure(in string name)
         {
-            Cmd = new MySqlCommand(name, Con)
+            Cmd = new MySqlCommand(name, _connection)
             {
                 CommandType = CommandType.StoredProcedure
             };
@@ -77,13 +105,17 @@ namespace Wisdom.Model.Tools.DataBase
             DataReader = Cmd.ExecuteReader();
             List<object[]> table = new List<object[]>();
             if (DataReader.HasRows)
+            {
                 while (DataReader.Read())
                 {
                     object[] row = new object[DataReader.FieldCount];
                     for (int i = 0; i < DataReader.FieldCount; i++)
+                    {
                         row[i] = DataReader.GetValue(i);
+                    }
                     table.Add(row);
                 }
+            }
             Cmd.Connection.Close();
             return table;
         }
@@ -94,29 +126,37 @@ namespace Wisdom.Model.Tools.DataBase
             DataReader = Cmd.ExecuteReader();
             List<object> table = new List<object>();
             if (DataReader.HasRows)
+            {
                 while (DataReader.Read())
                 {
                     object cell = DataReader.GetValue(column);
                     table.Add(cell);
                 }
+            }
             Cmd.Connection.Close();
             return table;
         }
 
-        public override List<object[]> ReadData(in byte StartValue, in byte EndValue)
+        public override List<object[]> ReadData(in byte start, in byte end)
         {
             Cmd.Connection.Open();
             DataReader = Cmd.ExecuteReader();
             List<object[]> table = new List<object[]>();
-            int count = EndValue - StartValue;
+            int count = end - start;
             if (DataReader.HasRows)
+            {
                 while (DataReader.Read())
                 {
                     object[] row = new object[count];
-                    for (int i = 0, j = StartValue; j < EndValue; i++, j++)
+                    for (int i = 0, j = start; j < end; i++, j++)
+                    {
                         row[i] = DataReader.GetValue(j);
+                    }
+                        
                     table.Add(row);
                 }
+            }
+                
             Cmd.Connection.Close();
             return table;
         }
@@ -125,8 +165,8 @@ namespace Wisdom.Model.Tools.DataBase
         {
             Dictionary<string, MySqlDbType> types = new Dictionary<string, MySqlDbType>()
             {
-                { "Boolean", MySqlDbType.Bit }, { "UInt16", MySqlDbType.UInt16 }, //SqlDbType.SmallInt
-                { "Byte", MySqlDbType.UByte }, { "String", MySqlDbType.VarChar }, //MySqlDbType.TinyInt
+                { "Boolean", MySqlDbType.Bit }, { "UInt16", MySqlDbType.UInt16 },
+                { "Byte", MySqlDbType.UByte }, { "String", MySqlDbType.VarChar },
                 { "UInt32", MySqlDbType.UInt32 }, { "UInt64", MySqlDbType.UInt64 }
             };
             Cmd.Parameters.Add(ParamName, types[newParam.GetType().Name]).Value = newParam;
@@ -139,6 +179,6 @@ namespace Wisdom.Model.Tools.DataBase
 
         public MySqlCommand Cmd { get; set; }
         public MySqlDataReader DataReader { get; set; }
-        public MySqlConnection Con { get; set; }
+        private MySqlConnection _connection { get; set; }
     }
 }

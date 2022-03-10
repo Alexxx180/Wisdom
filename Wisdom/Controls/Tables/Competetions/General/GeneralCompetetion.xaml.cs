@@ -86,12 +86,19 @@ namespace Wisdom.Controls.Tables.Competetions.General
             set
             {
                 if (value == "")
+                {
                     return;
+                }
+
                 uint no = value.ParseHours();
                 _generalNo = no.ToGeneralNo();
+
                 if (Options != null &&
                     Options.IsManual)
+                {
                     Index(no);
+                }
+
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GeneralHeader));
             }

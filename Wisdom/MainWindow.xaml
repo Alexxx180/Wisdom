@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:main="clr-namespace:Wisdom.Controls.Forms.MainForm"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        x:Name="ProgramMain"
         mc:Ignorable="d"
         Title="Главная" Height="450" Width="800" Icon="Resources/Images/Icons/Wisdom.ico">
     <Grid>
-        <main:MainPart/>
+        <main:MainPart>
+            <main:MainPart.ViewModel>
+                <Binding ElementName="ProgramMain" Path="ViewModel"/>
+            </main:MainPart.ViewModel>
+        </main:MainPart>
     </Grid>
 </Window>

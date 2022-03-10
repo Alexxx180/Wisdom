@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using static Wisdom.Writers.AutoGenerating.Processors;
+using Wisdom.ViewModel;
 
 namespace Wisdom.Controls.Forms.MainForm
 {
@@ -14,7 +15,18 @@ namespace Wisdom.Controls.Forms.MainForm
     /// </summary>
     public partial class MainPart : UserControl, INotifyPropertyChanged
     {
-        public static readonly string ProgramPreferences = "Preferences.json";
+        public static readonly DependencyProperty
+            ViewModelProperty = DependencyProperty.Register(nameof(ViewModel),
+                typeof(GlobalViewModel), typeof(MainPart));
+
+        #region MainPart Members
+        public GlobalViewModel ViewModel
+        {
+            get => GetValue(ViewModelProperty) as GlobalViewModel;
+            set => SetValue(ViewModelProperty, value);
+        }
+
+        public static readonly string ProgramPreferences;
         public Preferences Settings { get; set; }
 
         private ObservableCollection<DisciplineProgramTemplate> _templates;
@@ -27,23 +39,47 @@ namespace Wisdom.Controls.Forms.MainForm
                 OnPropertyChanged();
             }
         }
+        #endregion
+
+        static MainPart()
+        {
+            ProgramPreferences = "Preferences.json";
+        }
 
         public MainPart()
         {
             InitializeComponent();
             Templates = new ObservableCollection<DisciplineProgramTemplate>();
 
-            Settings = ReadJson<Preferences>
-                (ConfigDirectory + "Preferences.json") ?? new Preferences();
+            Settings = LoadConfig<Preferences>
+                (ProgramPreferences) ?? new Preferences();
             LoadTemplates();
         }
 
-        public static void CreateDisciplineProgram()
+        #region CreateProgram Logic
+        private void Create_Click(object sender, RoutedEventArgs e)
         {
-            AddProg Discipline = new AddProg();
-            Discipline.Show();
+            CreateDisciplineProgram();
         }
 
+        public void CreateDisciplineProgram()
+        {
+            AddProg Discipline;
+
+            if (ViewModel.IndependentMode)
+            {
+                Discipline = new AddProg();
+            }
+            else
+            {
+                Discipline = new AddProg(ViewModel);
+            }
+
+            Discipline.Show();
+        }
+        #endregion
+
+        #region Templates Logic
         private void SelectTemplatesDirectory(object sender, RoutedEventArgs e)
         {
             using System.Windows.Forms.FolderBrowserDialog
@@ -52,14 +88,9 @@ namespace Wisdom.Controls.Forms.MainForm
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Settings.TemplatePath = dialog.SelectedPath;
-                ProcessJson(ConfigDirectory + ProgramPreferences, Settings);
+                SaveConfig(ProgramPreferences, Settings);
                 ReloadTemplates();
             }
-        }
-
-        private void Create_Click(object sender, RoutedEventArgs e)
-        {
-            CreateDisciplineProgram();
         }
 
         public void ReloadTemplates()
@@ -95,6 +126,7 @@ namespace Wisdom.Controls.Forms.MainForm
                 LoadMessage(exception.Message);
             }
         }
+        #endregion
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

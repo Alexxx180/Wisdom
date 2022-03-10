@@ -7,6 +7,7 @@ using Wisdom.Writers.AutoGenerating.Documents;
 using static Wisdom.Writers.AutoGenerating.Processors;
 using static Wisdom.Writers.ResultRenderer;
 using Wisdom.Model;
+using Wisdom.Model.Tools.DataBase;
 
 namespace Wisdom
 {
@@ -53,20 +54,33 @@ namespace Wisdom
         public AddProg()
         {
             InitializeComponent();
-            SetUp();
-        }
-
-        private void SetUp()
-        {
             ViewModel = new DisciplineProgramViewModel();
-            Program = new DisciplineProgram(ReadJson<Settings>
-                (SettingsDirectory + DisciplineProgram.ProgramPreferences));
-            Page5.LoadPreferences(Program.Processing);
+            SetUp();
         }
 
         public AddProg(Model.Documents.DisciplineProgram program) : this()
         {
             ViewModel.SetFromTemplate(program);
+        }
+
+        public AddProg(GlobalViewModel viewModel)
+        {
+            InitializeComponent();
+            ViewModel = new DisciplineProgramViewModel(viewModel);
+            SetUp();
+        }
+
+        public AddProg(GlobalViewModel viewModel,
+            Model.Documents.DisciplineProgram program) : this(viewModel)
+        {
+            ViewModel.SetFromTemplate(program);
+        }
+
+        private void SetUp()
+        {
+            Program = new DisciplineProgram(ReadJson<Settings>
+                (SettingsDirectory + DisciplineProgram.ProgramPreferences));
+            Page5.LoadPreferences(Program.Processing);
         }
 
         private void MakeUserTemplate(object sender, RoutedEventArgs e)

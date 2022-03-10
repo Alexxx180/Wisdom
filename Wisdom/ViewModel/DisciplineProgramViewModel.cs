@@ -59,7 +59,6 @@ namespace Wisdom.ViewModel
                 SourceTypes.Refresh(Data.SourceTypesData());
                 SpecialityHead = _data.ListSpecialities();
                 SpecialitySelect.Refresh(SpecialityHead.Value);
-                Document = new DisciplineProgram();
                 OnPropertyChanged();
             }
         }
@@ -347,7 +346,12 @@ namespace Wisdom.ViewModel
             ProfessionalCompetetions = new ObservableCollection<ProfessionalDivider>();
             GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
             SourceTypes = new ObservableCollection<string>();
-            Connector = new MySQL();
+            Document = new DisciplineProgram();
+        }
+
+        public DisciplineProgramViewModel(GlobalViewModel viewModel) : this()
+        {
+            Connector = viewModel.Connector;
         }
 
         #region DisciplineProgramFilling Logic
@@ -400,9 +404,6 @@ namespace Wisdom.ViewModel
 
             SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
             SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
-
-            OnPropertyChanged(nameof(GeneralCompetetions));
-            OnPropertyChanged(nameof(ProfessionalCompetetions));
         }
 
         private void SetGeneralCompetetions(List<Competetion> competetions)
@@ -414,6 +415,7 @@ namespace Wisdom.ViewModel
                 competetion.SetElement(competetions[i]);
                 GeneralCompetetions.Add(competetion);
             }
+            OnPropertyChanged(nameof(GeneralCompetetions));
         }
 
         private void SetProfessionalCompetetions(List<List<Competetion>> competetions)
@@ -425,6 +427,7 @@ namespace Wisdom.ViewModel
                 division.SetElement(competetions[i]);
                 ProfessionalCompetetions.Add(division);
             }
+            OnPropertyChanged(nameof(ProfessionalCompetetions));
         }
         #endregion
 
@@ -443,7 +446,6 @@ namespace Wisdom.ViewModel
             SetHours(hours);
             SetMetaData(metaData);
             SetSources(sources);
-            SetLevels();
             SetThemePlan(themePlan);
         }
 
@@ -465,6 +467,7 @@ namespace Wisdom.ViewModel
                 (DisciplineHead.Name[DisciplineNo], DisciplineFullName);
 
             SetDiscipline(SelectedDiscipline);
+            SetLevels();
         }
 
         private void SetHours(List<Hour> hours)
@@ -483,6 +486,8 @@ namespace Wisdom.ViewModel
                 element.SetElement(hour);
                 Hours.Add(element);
 
+                System.Diagnostics.Trace.WriteLine(element.HourValue);
+
                 if (hour.Name == "Самостоятельная работа")
                 {
                     self += hour.Count;
@@ -495,6 +500,8 @@ namespace Wisdom.ViewModel
 
             EduHours = study.ToString();
             SelfHours = self.ToString();
+
+            OnPropertyChanged(nameof(Hours));
         }
 
         private void SetMetaData(List<Task> metaData)

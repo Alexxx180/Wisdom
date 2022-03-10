@@ -74,7 +74,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             }
         }
         
-        public string ProfessionalHeader => $"{Group.Prefix} {Group.DividerNo}.{ProfessionalNo}.";
+        public string ProfessionalHeader => $"{Group.Prefix} {Group.DividerNo}.{ProfessionalNo}";
 
         private string _professionalNo;
         public string ProfessionalNo

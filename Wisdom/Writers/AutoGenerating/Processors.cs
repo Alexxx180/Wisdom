@@ -3,6 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Windows;
 using Microsoft.Win32;
+using Wisdom.Model;
 using Wisdom.Controls.Forms;
 using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
 
@@ -13,18 +14,9 @@ namespace Wisdom.Writers.AutoGenerating
         public static string ProjectDirectory => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
         public static string ConfigDirectory => ProjectDirectory + @"\Resources\Configuration\";
         public static string SettingsDirectory => ConfigDirectory + @"Settings\";
-        private static string Runtime => ConfigDirectory + @"Runtime\Data.json";
+        private static string RuntimeDirectory => ConfigDirectory + @"Runtime\";
 
-        internal static string LoadRuntime()
-        {
-            return ReadJson<string>(Runtime);
-        }
-
-        internal static void SaveRuntime(string data)
-        {
-            ProcessJsonAny(Runtime, data);
-        }
-
+        #region Messages Members
         private static void SaveMessage(string exception)
         {
             string noLoad = "Не удалось сохранить файл.";
@@ -49,7 +41,9 @@ namespace Wisdom.Writers.AutoGenerating
                     " невозможна.\nПолное сообщение:\n";
             _ = MessageBox.Show(message + exception);
         }
+        #endregion
 
+        #region Dialogs Members
         public static OpenFileDialog
             CallManager(string filter, string fileName)
         {
@@ -83,6 +77,7 @@ namespace Wisdom.Writers.AutoGenerating
                 ShowNewFolderButton = true
             };
         }
+        #endregion
 
         internal static void TruncateFile(string fileName)
         {
@@ -160,5 +155,31 @@ namespace Wisdom.Writers.AutoGenerating
         {
             ProcessJsonAny(path, program);
         }
+
+        #region SaveLoad Members
+        internal static T LoadConfig<T>(string name)
+        {
+            return !File.Exists(ConfigDirectory + name) ?
+                default : ReadJson<T>(ConfigDirectory + name);
+        }
+
+        internal static void SaveConfig<T>(string name, T config)
+        {
+            ProcessJsonAny(ConfigDirectory + name, config);
+        }
+
+        internal static
+            Pair<string, string> LoadRuntime(string name)
+        {
+            return !File.Exists(RuntimeDirectory + name) ? null :
+                ReadJson<Pair<string, string>>(RuntimeDirectory + name);
+        }
+
+        internal static void SaveRuntime
+            (string name, Pair<string, string> data)
+        {
+            ProcessJsonAny(RuntimeDirectory + name, data);
+        }
+        #endregion
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Security.Cryptography;
-using System.Text;
+﻿using System.Security.Cryptography;
 
 namespace Wisdom.Model.Tools.Security
 {
@@ -24,8 +22,6 @@ namespace Wisdom.Model.Tools.Security
             }
             catch (CryptographicException e)
             {
-                Console.WriteLine("Data was not encrypted. An error occurred.");
-                Console.WriteLine(e.ToString());
                 return null;
             }
         }
@@ -38,8 +34,6 @@ namespace Wisdom.Model.Tools.Security
             }
             catch (CryptographicException e)
             {
-                Console.WriteLine("Data was not decrypted. An error occurred.");
-                Console.WriteLine(e.ToString());
                 return null;
             }
         }

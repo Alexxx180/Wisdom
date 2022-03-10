@@ -19,6 +19,8 @@ namespace Wisdom.Controls.Tables.ThemePlan
         {
             return new Topic
             {
+                Name = TopicName,
+                Hours = TopicHours,
                 Themes = Themes.GetRaw()
             };
         }
@@ -104,8 +106,8 @@ namespace Wisdom.Controls.Tables.ThemePlan
             set
             {
                 _topicHours = value;
-                Options?.RegisterEdit();
                 OnPropertyChanged();
+                Options?.RegisterEdit();
             }
         }
 

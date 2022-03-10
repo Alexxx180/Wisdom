@@ -1,0 +1,107 @@
+﻿<Window x:Class="Wisdom.EntryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
+        mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="Вход - система автогенерации" Height="400" Width="600" WindowStartupLocation="CenterScreen" Icon="Resources\Images\Icons\Wisdom.ico">
+    <Grid Style="{StaticResource ListCaptions2}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="0.9*"/>
+            <ColumnDefinition Width="0.05*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.125*"/>
+            <RowDefinition Height="0.125*"/>
+            <RowDefinition Height="0.125*"/>
+            <RowDefinition Height="0.125*"/>
+            <RowDefinition Height="0.125*"/>
+            <RowDefinition Height="0.125*"/>
+            <RowDefinition Height="0.125*"/>
+            <RowDefinition Height="0.125*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox Grid.Row="1" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Login" Mode="TwoWay" UpdateSourceTrigger="LostFocus" />
+            </TextBox.Text>
+            <TextBox.FontSize>
+                <Binding RelativeSource="{RelativeSource Self}">
+                    <Binding.Path>
+                        ActualHeight
+                    </Binding.Path>
+                    <Binding.Converter>
+                        <converters:ProcentualHeightConverter/>
+                    </Binding.Converter>
+                    <Binding.ConverterParameter>
+                        1,6
+                    </Binding.ConverterParameter>
+                </Binding>
+            </TextBox.FontSize>
+        </TextBox>
+
+        <PasswordBox x:Name="PassBox" Grid.Row="3" Grid.Column="1">
+            <PasswordBox.FontSize>
+                <Binding RelativeSource="{RelativeSource Self}">
+                    <Binding.Path>
+                        ActualHeight
+                    </Binding.Path>
+                    <Binding.Converter>
+                        <converters:ProcentualHeightConverter/>
+                    </Binding.Converter>
+                    <Binding.ConverterParameter>
+                        1,6
+                    </Binding.ConverterParameter>
+                </Binding>
+            </PasswordBox.FontSize>
+        </PasswordBox>
+
+
+
+        <Viewbox Grid.Row="4" Grid.Column="1">
+            <CheckBox Margin="1">
+                <CheckBox.Style>
+                    <StaticResource ResourceKey="RegularCheckBox"/>
+                </CheckBox.Style>
+                <CheckBox.IsChecked>
+                    <Binding Path="MemberMe" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" />
+                </CheckBox.IsChecked>
+                <CheckBox.Content>
+                    <TextBlock Text="Запомнить меня"/>
+                </CheckBox.Content>
+            </CheckBox>
+        </Viewbox>
+
+        <Grid Grid.Row="6" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.35*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.35*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" Click="LogInClick" IsDefault="True" Style="{StaticResource Steps2}">
+                <Button.ToolTip>
+                    <TextBlock Text="Войти в систему, используя 'Логин' и 'Пароль' пользователя"/>
+                </Button.ToolTip>
+                <Viewbox>
+                    <TextBlock Text="Войти"/>
+                </Viewbox>
+            </Button>
+
+            <Button Grid.Column="3" Click="ConfigSet" IsCancel="True" Style="{StaticResource Steps}">
+                <Button.ToolTip>
+                    <TextBlock Text="Настроить подключение, используя 'Имя базы' и 'IP / Имя хоста'"/>
+                </Button.ToolTip>
+                <Viewbox>
+                    <TextBlock Text="Настроить"/>
+                </Viewbox>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
