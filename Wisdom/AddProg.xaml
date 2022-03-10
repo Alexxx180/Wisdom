@@ -11,7 +11,7 @@
         x:Name="DisciplineProgramWindow"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="Редактирование" Height="1080" Width="1920"
-        WindowState="Maximized" Icon="Resources/Images/Icons/Wisdom.ico"
+        WindowState="Maximized" Icon="Resources/Images/Icons/Wisdom3.ico"
         Closing="DisciplineProgramWindow_Closing">
     <Window.Resources>
         <converters:UsedValuesConverter x:Key="UsedValuesConverter" />

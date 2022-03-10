@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
-    <ApplicationIcon>Resources\Images\Icons\Wisdom.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Images\Icons\Wisdom3.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Images\Icons\Wisdom.ico" />
+    <None Remove="Resources\Images\Icons\Wisdom3.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Images\Icons\Wisdom.ico" />
+    <Resource Include="Resources\Images\Icons\Wisdom3.ico" />
   </ItemGroup>
 
   <ItemGroup>

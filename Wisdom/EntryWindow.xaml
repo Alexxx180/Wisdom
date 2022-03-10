@@ -6,7 +6,7 @@
         xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="Вход - система автогенерации" Height="400" Width="600" WindowStartupLocation="CenterScreen" Icon="Resources\Images\Icons\Wisdom.ico">
+        Title="Вход - система автогенерации" Height="400" Width="600" WindowStartupLocation="CenterScreen" Icon="Resources\Images\Icons\Wisdom3.ico">
     <Grid Style="{StaticResource ListCaptions2}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>

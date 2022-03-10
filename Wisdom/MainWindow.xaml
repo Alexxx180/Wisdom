@@ -7,7 +7,7 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         x:Name="ProgramMain"
         mc:Ignorable="d"
-        Title="Главная" Height="450" Width="800" Icon="Resources/Images/Icons/Wisdom.ico">
+        Title="Главная" Height="450" Width="800" Icon="Resources/Images/Icons/Wisdom3.ico">
     <Grid>
         <main:MainPart>
             <main:MainPart.ViewModel>
