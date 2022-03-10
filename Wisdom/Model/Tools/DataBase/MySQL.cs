@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using System.Reflection;
 using MySqlConnector;
 using static Wisdom.Writers.AutoGenerating.Processors;
+using static Wisdom.Model.Tools.Security.Encryption;
 
 namespace Wisdom.Model.Tools.DataBase
 {
@@ -15,30 +14,86 @@ namespace Wisdom.Model.Tools.DataBase
 
         public MySQL()
         {
-            //Connection = ParentServerConnection();
             ResetConfiguration();
         }
 
+        #region Configuration Members
         private void ResetConfiguration()
         {
             Pair<string, string> config = LoadRuntime<string>("Config.json");
             SetConfiguration(config.Name, config.Value);
         }
 
+        internal void NewConfiguration(string host, string dbName)
+        {
+            SaveRuntime("Config.json",
+                new Pair<string, string>
+                (host, dbName));
+            ResetConfiguration();
+        }
+
+        private void LoginMemory(string login, string pass)
+        {
+            SaveRuntime("Data.json",
+                new Pair<string, byte[]>
+                (login, ProtectData(pass)));
+        }
+        #endregion
+
+        #region Connection Members
+        private bool FileConnection()
+        {
+            Pair<string, byte[]> initials = LoadRuntime<byte[]>("Data.json");
+
+            bool connectionSuccessful =
+                !(initials is null) && TestConnection
+                (initials.Name, UnprotectData(initials.Value));
+
+            return connectionSuccessful;
+        }
+
+        internal override void Connect()
+        {
+            if (FileConnection())
+                return;
+
+            bool userAgreement, connectionSuccessful = false;
+            EntryWindow entry;
+
+            do
+            {
+                entry = new EntryWindow();
+                userAgreement = entry.ShowDialog().Value;
+
+                if (entry.NewConfig)
+                {
+                    NewConfiguration(entry.Login, entry.Pass);
+                    entry = new EntryWindow();
+                    continue;
+                }
+
+                if (!userAgreement)
+                {
+                    IndependentMode = true;
+                    break;
+                }
+
+                connectionSuccessful =
+                    TestConnection
+                    (entry.Login, entry.Pass);
+            }
+            while (!connectionSuccessful);
+
+            if (entry.MemberMe)
+            {
+                LoginMemory(entry.Login, entry.Pass);
+            }
+        }
+        #endregion
+
         public MySqlConnection NewConnection(string path)
         {
             return new MySqlConnection(path);
-        }
-
-        //[EN] Server connection
-        //[RU] Подключение через сервер (ПК создателя)
-        public MySqlConnection ParentServerConnection()
-        {
-            string source = "SERVER=127.0.0.1;";
-            string catalog = "DATABASE=prosperity;";
-            string user = "UID=root;";
-            string pass = "PASSWORD=;";
-            return NewConnection(source + catalog + user + pass);
         }
 
         internal override void SetConfiguration(in string dbName, in string host)
@@ -89,9 +144,6 @@ namespace Wisdom.Model.Tools.DataBase
             string catalog = "DATABASE=" + _dataBaseName + ";";
             string user = "UID=" + login + ";";
             string pass = "PASSWORD=" + password + ";";
-
-            System.Diagnostics.Trace.WriteLine(source + catalog + user + pass);
-
             return NewConnection(source + catalog + user + pass);
         }
 

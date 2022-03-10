@@ -8,6 +8,7 @@ namespace Wisdom.Model
     {
         public DisciplineBase()
         {
+            Name = "";
             TotalHours = new List<Hour>();
             MetaData = new List<Task>();
             Sources = new List<Source>();

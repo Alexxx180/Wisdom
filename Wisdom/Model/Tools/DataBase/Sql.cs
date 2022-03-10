@@ -4,9 +4,13 @@ namespace Wisdom.Model.Tools.DataBase
 {
     public abstract class Sql : IDataViewer
     {
+        public bool IndependentMode { get; set; }
+
         internal abstract void SetConfiguration(in string dbName, in string host);
 
         public abstract bool TestConnection(in string login, in string pass);
+
+        internal abstract void Connect();
 
         public abstract void PassParameter(in string ParamName, in object newParam);
 

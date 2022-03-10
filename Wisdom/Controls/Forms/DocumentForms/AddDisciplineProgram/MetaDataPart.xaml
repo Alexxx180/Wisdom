@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:sources="clr-namespace:Wisdom.Controls.Tables.Sources.SourceTypes"
+             xmlns:metadata="clr-namespace:Wisdom.Controls.Tables.MetaData"
              xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
              xmlns:forms="clr-namespace:Wisdom.Controls.Forms"
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
@@ -80,6 +81,12 @@
                                 <Binding Path="MetaData"/>
                             </ItemsControl.ItemsSource>
                         </ItemsControl>
+
+                        <metadata:MetaElementAdditor>
+                            <metadata:MetaElementAdditor.ViewModel>
+                                <Binding ElementName="TreeContext" Path="DataContext"/>
+                            </metadata:MetaElementAdditor.ViewModel>
+                        </metadata:MetaElementAdditor>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

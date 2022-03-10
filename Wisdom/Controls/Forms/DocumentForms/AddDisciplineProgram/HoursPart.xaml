@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
+             xmlns:hours="clr-namespace:Wisdom.Controls.Tables.Hours"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -12,7 +13,7 @@
         <converters:HoursConverter x:Key="HoursConverter"/>
     </UserControl.Resources>
 
-    <Grid Grid.Row="1">
+    <Grid Grid.Row="1" x:Name="TreeContext">
         <Grid.DataContext>
             <Binding Path="ViewModel"/>
         </Grid.DataContext>
@@ -219,15 +220,24 @@
                     <ScrollViewer.VerticalScrollBarVisibility>
                         Auto
                     </ScrollViewer.VerticalScrollBarVisibility>
-                    <ItemsControl>
-                        <ItemsControl.ItemsSource>
-                            <Binding Path="Hours" Mode="TwoWay">
-                                <Binding.UpdateSourceTrigger>
-                                    PropertyChanged
-                                </Binding.UpdateSourceTrigger>
-                            </Binding>
-                        </ItemsControl.ItemsSource>
-                    </ItemsControl>
+
+                    <StackPanel>
+                        <ItemsControl>
+                            <ItemsControl.ItemsSource>
+                                <Binding Path="Hours" Mode="TwoWay">
+                                    <Binding.UpdateSourceTrigger>
+                                        PropertyChanged
+                                    </Binding.UpdateSourceTrigger>
+                                </Binding>
+                            </ItemsControl.ItemsSource>
+                        </ItemsControl>
+
+                        <hours:HourElementAdditor>
+                            <hours:HourElementAdditor.ViewModel>
+                                <Binding ElementName="TreeContext" Path="DataContext"/>
+                            </hours:HourElementAdditor.ViewModel>
+                        </hours:HourElementAdditor>
+                    </StackPanel>
                 </ScrollViewer>
 
                 <Grid Grid.Row="1" Background="#FFFFFCC7">

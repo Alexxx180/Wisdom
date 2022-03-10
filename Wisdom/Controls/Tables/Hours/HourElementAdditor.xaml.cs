@@ -9,10 +9,15 @@ using System.Windows;
 namespace Wisdom.Controls.Tables.Hours
 {
     /// <summary>
-    /// Record component containing total hours count (user preset)
+    /// Special component to add new hour
     /// </summary>
-    public partial class HourElement : UserControl, INotifyPropertyChanged, IRawData<Hour>
+    public partial class HourElementAdditor : UserControl, INotifyPropertyChanged, IRawData<Hour>
     {
+        public static readonly DependencyProperty
+            ViewModelProperty = DependencyProperty.Register(
+                nameof(ViewModel), typeof(DisciplineProgramViewModel),
+                typeof(HourElementAdditor));
+
         #region IRawData Members
         public Hour Raw()
         {
@@ -28,15 +33,10 @@ namespace Wisdom.Controls.Tables.Hours
         #endregion
 
         #region Hour Members
-        private DisciplineProgramViewModel _viewModel;
-        internal DisciplineProgramViewModel ViewModel
+        public DisciplineProgramViewModel ViewModel
         {
-            get => _viewModel;
-            set
-            {
-                _viewModel = value;
-                OnPropertyChanged();
-            }
+            get => GetValue(ViewModelProperty) as DisciplineProgramViewModel;
+            set => SetValue(ViewModelProperty, value);
         }
 
         private string _type;
@@ -63,14 +63,14 @@ namespace Wisdom.Controls.Tables.Hours
         }
         #endregion
 
-        public HourElement()
+        public HourElementAdditor()
         {
             InitializeComponent();
         }
 
-        private void DropHour(object sender, RoutedEventArgs e)
+        private void AddHour(object sender, RoutedEventArgs e)
         {
-            ViewModel.DropHour(this);
+            ViewModel.AddHour(Raw());
         }
 
         #region INotifyPropertyChanged Members

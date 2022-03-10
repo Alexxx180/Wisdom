@@ -53,8 +53,6 @@ namespace Wisdom.ViewModel
             {
                 _data = value;
                 DocumentTypes.WorkTypes.Refresh(Data.WorkTypesData());
-                SetHourTypes();
-                SetMetaTypes();
                 SetLevels();
                 SourceTypes.Refresh(Data.SourceTypesData());
                 SpecialityHead = _data.ListSpecialities();
@@ -63,7 +61,6 @@ namespace Wisdom.ViewModel
             }
         }
         #endregion
-
 
         #region Types Members
         private List<string> _metaTypes;
@@ -260,6 +257,23 @@ namespace Wisdom.ViewModel
         {
             OnPropertyChanged(nameof(Hours));
         }
+
+        public void AddHour(Hour hour)
+        {
+            HourElement element = new HourElement
+            {
+                ViewModel = this
+            };
+            element.SetElement(hour);
+            Hours.Add(element);
+            OnPropertyChanged(nameof(Hours));
+        }
+
+        public void DropHour(HourElement hour)
+        {
+            _ = Hours.Remove(hour);
+            OnPropertyChanged(nameof(Hours));
+        }
         #endregion
 
         #region Competetions Members
@@ -308,6 +322,23 @@ namespace Wisdom.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        public void AddMetaData(Task data)
+        {
+            MetaElement element = new MetaElement
+            {
+                ViewModel = this
+            };
+            element.SetElement(data);
+            MetaData.Add(element);
+            OnPropertyChanged(nameof(MetaData));
+        }
+
+        public void DropMetaData(MetaElement meta)
+        {
+            _ = MetaData.Remove(meta);
+            OnPropertyChanged(nameof(MetaData));
+        }
         #endregion
 
         #region ThemePlan Members
@@ -347,6 +378,10 @@ namespace Wisdom.ViewModel
             GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
             SourceTypes = new ObservableCollection<string>();
             Document = new DisciplineProgram();
+            SpecialityFullName = "";
+            DisciplineFullName = "";
+            EduHours = "";
+            SelfHours = "";
         }
 
         public DisciplineProgramViewModel(GlobalViewModel viewModel) : this()
@@ -543,7 +578,7 @@ namespace Wisdom.ViewModel
         }
         #endregion
 
-        #region SetTypes Members
+        #region IndependentFromData Members
         private void SetLevels()
         {
             List<Task> levels = Data.LevelsData();
@@ -556,32 +591,6 @@ namespace Wisdom.ViewModel
                 };
                 level.SetElement(levels[i]);
                 Levels.Add(level);
-            }
-        }
-
-        private void SetMetaTypes()
-        {
-            MetaTypes = Data.MetaTypesData();
-            MetaData.Clear();
-            for (byte i = 0; i < MetaTypes.Count; i++)
-            {
-                MetaElement meta = new MetaElement();
-                meta.SetType(MetaTypes[i]);
-                MetaData.Add(meta);
-            }
-        }
-
-        private void SetHourTypes()
-        {
-            Hours.Clear();
-            for (byte i = 0; i < DocumentTypes.WorkTypes.Count; i++)
-            {
-                HourElement hour = new HourElement
-                {
-                    ViewModel = this
-                };
-                hour.SetType(DocumentTypes.WorkTypes[i]);
-                Hours.Add(hour);
             }
         }
         #endregion

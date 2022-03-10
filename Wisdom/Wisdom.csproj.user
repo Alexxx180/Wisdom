@@ -72,7 +72,13 @@
     <Compile Update="Controls\Forms\MainForm\MainPart.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Tables\Hours\HourElementAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Tables\MetaData\MetaElement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Tables\MetaData\MetaElementAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Tables\RecordsPanel.xaml.cs">
@@ -194,7 +200,13 @@
     <Page Update="Controls\Forms\MainForm\MainPart.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\Tables\Hours\HourElementAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\Tables\MetaData\MetaElement.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\MetaData\MetaElementAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\RecordsPanel.xaml">

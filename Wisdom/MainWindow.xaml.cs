@@ -24,7 +24,7 @@ namespace Wisdom
         public MainWindow()
         {
             ViewModel = new GlobalViewModel();
-            ViewModel.Connect();
+            ViewModel.Connector.Connect();
 
             ActivateUser();
         }

@@ -192,3 +192,7 @@ D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdo
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\EntryWindow.baml
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\MySqlConnector.dll
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\MetaData\MetaElementAdditor.baml
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\HourElementAdditor.g.cs
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\MetaData\MetaElementAdditor.g.cs
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\HourElementAdditor.baml

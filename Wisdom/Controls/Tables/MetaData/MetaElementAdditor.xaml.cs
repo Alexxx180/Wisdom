@@ -8,10 +8,15 @@ using System.Windows;
 namespace Wisdom.Controls.Tables.MetaData
 {
     /// <summary>
-    /// Record component containing discipline meta data
+    /// Special component to add new metadata
     /// </summary>
-    public partial class MetaElement : UserControl, INotifyPropertyChanged, IRawData<Task>, IWrapFields
+    public partial class MetaElementAdditor : UserControl, INotifyPropertyChanged, IRawData<Task>
     {
+        public static readonly DependencyProperty
+            ViewModelProperty = DependencyProperty.Register(
+                nameof(ViewModel), typeof(DisciplineProgramViewModel),
+                typeof(MetaElementAdditor));
+
         #region IRawData Members
         public Task Raw()
         {
@@ -26,15 +31,10 @@ namespace Wisdom.Controls.Tables.MetaData
         #endregion
 
         #region MetaData Members
-        private DisciplineProgramViewModel _viewModel;
         public DisciplineProgramViewModel ViewModel
         {
-            get => _viewModel;
-            set
-            {
-                _viewModel = value;
-                OnPropertyChanged();
-            }
+            get => GetValue(ViewModelProperty) as DisciplineProgramViewModel;
+            set => SetValue(ViewModelProperty, value);
         }
 
         public string _name;
@@ -60,32 +60,14 @@ namespace Wisdom.Controls.Tables.MetaData
         }
         #endregion
 
-        #region IWrapFields Members
-        private bool _isWrap;
-        public bool IsWrap
-        {
-            get => _isWrap;
-            set
-            {
-                _isWrap = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public void WrapFields()
-        {
-            IsWrap = !IsWrap;
-        }
-        #endregion
-
-        public MetaElement()
+        public MetaElementAdditor()
         {
             InitializeComponent();
         }
 
-        private void DropMetaData(object sender, RoutedEventArgs e)
+        private void AddMetaData(object sender, RoutedEventArgs e)
         {
-            ViewModel.DropMetaData(this);
+            ViewModel.AddMetaData(Raw());
         }
 
         #region INotifyPropertyChanged Members

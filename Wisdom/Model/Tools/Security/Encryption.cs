@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using System.Windows;
 
 namespace Wisdom.Model.Tools.Security
 {
@@ -15,61 +16,65 @@ namespace Wisdom.Model.Tools.Security
             };
         }
 
-        internal static byte[] GetBytes(string text)
+        private static byte[] GetBytes(string text)
         {
             return Encoding.UTF8.GetBytes(text);
         }
 
-        internal static string GetString(byte[] bytes)
+        private static string GetString(byte[] bytes)
         {
             return Encoding.UTF8.GetString(bytes);
         }
 
-        //internal static string Protect(string text)
-        //{
-        //    return GetString(Protect(GetBytes(text)));
-        //}
-
-        //internal static string Unprotect(string text)
-        //{
-        //    System.Diagnostics.Trace.WriteLine(text);
-        //    System.Diagnostics.Trace.WriteLine(text is null);
-        //    byte[] b = GetBytes(text);
-        //    System.Diagnostics.Trace.WriteLine(b);
-        //    System.Diagnostics.Trace.WriteLine(b is null);
-        //    byte[] un = Unprotect(b);
-        //    System.Diagnostics.Trace.WriteLine(un);
-        //    System.Diagnostics.Trace.WriteLine(un is null);
-        //    string lol = GetString(un);
-        //    System.Diagnostics.Trace.WriteLine(lol);
-        //    System.Diagnostics.Trace.WriteLine(lol is null);
-        //    return lol;
-        //    //return GetString(Unprotect(GetBytes(text)));
-        //}
-
-        internal static byte[] Protect(byte[] data)
+        internal static byte[] ProtectData(string data)
         {
-            try
-            {
-                return ProtectedData.Protect(data, s_additionalEntropy, DataProtectionScope.CurrentUser);
-            }
-            catch (CryptographicException e)
-            {
-                return null;
-            }
+            byte[] protectedData = Protect(GetBytes(data));
+            return protectedData;
         }
 
-        internal static byte[] Unprotect(byte[] data)
+        internal static string UnprotectData(byte[] data)
         {
+            if (data is null)
+                return "";
+            byte[] unprotectedData = Unprotect(data);
+            return unprotectedData is null ? "" :
+                GetString(unprotectedData);
+        }
+
+        private static byte[] Protect(byte[] data)
+        {
+            byte[] protectedData = null;
             try
             {
-                return ProtectedData.Unprotect(data, s_additionalEntropy, DataProtectionScope.CurrentUser);
+                protectedData = ProtectedData.Protect(data, s_additionalEntropy, DataProtectionScope.CurrentUser);
             }
             catch (CryptographicException e)
             {
-                throw e;
-                return null;
+                EncryptionMessage(e.Message);
             }
+            return protectedData;
+        }
+
+        private static byte[] Unprotect(byte[] data)
+        {
+            byte[] unprotectedData = null;
+            try
+            {
+                unprotectedData = ProtectedData.Unprotect(data, s_additionalEntropy, DataProtectionScope.CurrentUser);
+            }
+            catch (CryptographicException e)
+            {
+                EncryptionMessage(e.Message);
+            }
+            return unprotectedData;
+        }
+
+        internal static void EncryptionMessage(string exception)
+        {
+            string message = "Похоже ваши учетные " +
+                "данные устарели, войдите заново.\n" +
+                "\nПолное сообщение:\n";
+            _ = MessageBox.Show(message + exception);
         }
     }
 }

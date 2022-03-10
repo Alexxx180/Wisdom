@@ -66,7 +66,7 @@ namespace Wisdom.Controls.Forms.MainForm
         {
             AddProg Discipline;
 
-            if (ViewModel.IndependentMode)
+            if (ViewModel.Connector.IndependentMode)
             {
                 Discipline = new AddProg();
             }
