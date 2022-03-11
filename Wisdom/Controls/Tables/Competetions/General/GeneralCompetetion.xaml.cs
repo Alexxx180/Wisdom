@@ -32,8 +32,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
         public void SetElement(Competetion competetion)
         {
             string prefixNo = Regex.Match(competetion.PrefixNo, @"\d+").Value;
-            uint no = prefixNo.ToUInt();
-            Index(no);
+            GeneralNo = prefixNo;
 
             GeneralName = competetion.Name;
 
@@ -64,8 +63,13 @@ namespace Wisdom.Controls.Tables.Competetions.General
             set
             {
                 _no = value;
-                GeneralNo = value.ToGeneralNo();
                 OnPropertyChanged();
+
+                if (Options is null ||
+                    Options.IsManual)
+                    return;
+
+                GeneralNo = value.ToGeneralNo();
             }
         }
 
@@ -92,6 +96,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
 
                 uint no = value.ParseHours();
                 _generalNo = no.ToGeneralNo();
+                
 
                 if (Options != null &&
                     Options.IsManual)

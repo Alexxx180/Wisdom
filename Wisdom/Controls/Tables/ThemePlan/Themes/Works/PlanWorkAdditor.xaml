@@ -21,7 +21,7 @@
             </Button.Style>
         </Button>
         
-        <ComboBox Grid.Column="1">
+        <ComboBox Grid.Column="1" IsEditable="True">
             <ComboBox.Style>
                 <StaticResource ResourceKey="SubCaptionBox"/>
             </ComboBox.Style>

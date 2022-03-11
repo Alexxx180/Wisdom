@@ -31,9 +31,11 @@ namespace Wisdom.Controls.Tables.Competetions.General
             set
             {
                 _no = value;
-                if (Options == null || !Options.IsManual)
-                    GeneralNo = value.ToString();
                 OnPropertyChanged();
+
+                if (Options is null ||
+                    !Options.IsManual)
+                    GeneralNo = value.ToString();
             }
         }
 
@@ -55,10 +57,14 @@ namespace Wisdom.Controls.Tables.Competetions.General
             {
                 if (value == "")
                     return;
+
                 uint no = value.ParseHours();
                 _generalNo = string.Format("{0:00}", no);
-                if (Options != null && Options.IsManual)
-                    No = no;
+
+                if (Options != null &&
+                    Options.IsManual)
+                    Index(no);
+
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(GeneralHeader));
             }

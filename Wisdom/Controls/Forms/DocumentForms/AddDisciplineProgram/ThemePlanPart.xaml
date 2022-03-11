@@ -192,8 +192,17 @@
                             </Binding.UpdateSourceTrigger>
                         </Binding>
                     </tables:AutoPanel.Records>
+                    
                     <tables:AutoPanel.Additor>
-                        <levels:EducationLevelAdditor Options="{Binding RelativeSource={RelativeSource AncestorLevel=1, AncestorType=tables:AutoPanel}}"/>
+                        <levels:EducationLevelAdditor>
+                            <levels:EducationLevelAdditor.Options>
+                                <Binding>
+                                    <Binding.RelativeSource>
+                                        <RelativeSource AncestorType="tables:AutoPanel" AncestorLevel="1"/>
+                                    </Binding.RelativeSource>
+                                </Binding>
+                            </levels:EducationLevelAdditor.Options>
+                        </levels:EducationLevelAdditor>
                     </tables:AutoPanel.Additor>
                 </tables:AutoPanel>
             </Grid>

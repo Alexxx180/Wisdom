@@ -79,7 +79,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
             };
 
             Options.AddRecord(topic);
-            Index(No + 1);
+            Index(No);
         }
 
         #region INotifyPropertyChanged Members

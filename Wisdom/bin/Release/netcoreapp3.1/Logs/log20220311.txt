@@ -8,3 +8,197 @@
 2022-03-11 10:44:06.369 +03:00 [DBG] Collecting configuration info...
 2022-03-11 10:44:06.383 +03:00 [DBG] Project directory set as: \Resources\Configuration\
 2022-03-11 10:44:06.384 +03:00 [DBG] Loading runtime: \Resources\Configuration\Runtime\Config.json
+2022-03-11 18:05:47.549 +03:00 [INF] Application started
+2022-03-11 18:05:47.599 +03:00 [DBG] Collecting configuration info...
+2022-03-11 18:05:47.619 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 18:05:47.619 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:05:47.625 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:05:47.649 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:05:47.649 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:09:20.913 +03:00 [INF] Application started
+2022-03-11 18:09:20.946 +03:00 [DBG] Collecting configuration info...
+2022-03-11 18:09:20.960 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 18:09:20.960 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:09:20.965 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:09:20.995 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:09:20.995 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:09:32.216 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 18:09:32.216 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 18:09:32.221 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 18:09:33.856 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:12:30.807 +03:00 [INF] Application started
+2022-03-11 18:12:30.842 +03:00 [DBG] Collecting configuration info...
+2022-03-11 18:12:30.857 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 18:12:30.857 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:12:30.863 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:12:30.891 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:12:30.891 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:12:34.777 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 18:12:34.778 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 18:12:34.783 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 18:13:11.189 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:31:24.976 +03:00 [INF] Application started
+2022-03-11 18:31:25.016 +03:00 [DBG] Collecting configuration info...
+2022-03-11 18:31:25.031 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 18:31:25.031 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:31:25.037 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:31:25.061 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:31:25.061 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:31:27.487 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 18:31:27.487 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 18:31:27.492 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 18:31:28.359 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:32:25.093 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:32:37.942 +03:00 [INF] Application started
+2022-03-11 18:32:37.975 +03:00 [DBG] Collecting configuration info...
+2022-03-11 18:32:38.003 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 18:32:38.003 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:32:38.008 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:32:38.031 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:32:38.031 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:32:42.031 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 18:32:42.031 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 18:32:42.035 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 18:32:42.911 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:34:01.077 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:34:11.150 +03:00 [INF] Application started
+2022-03-11 18:34:11.187 +03:00 [DBG] Collecting configuration info...
+2022-03-11 18:34:11.202 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 18:34:11.202 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:34:11.208 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:34:11.233 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:34:11.233 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:34:14.562 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 18:34:14.563 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 18:34:14.567 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 18:34:16.037 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:34:21.878 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:34:42.512 +03:00 [INF] Application started
+2022-03-11 18:34:42.549 +03:00 [DBG] Collecting configuration info...
+2022-03-11 18:34:42.564 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 18:34:42.564 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:34:42.572 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:34:42.611 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:34:42.611 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:34:44.913 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 18:34:44.913 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 18:34:44.917 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 18:34:46.680 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:34:56.385 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:50:39.669 +03:00 [INF] Application started
+2022-03-11 18:50:39.703 +03:00 [DBG] Collecting configuration info...
+2022-03-11 18:50:39.717 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 18:50:39.717 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:50:39.723 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:50:39.746 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:50:39.746 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:50:42.408 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 18:50:42.409 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 18:50:42.418 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 18:50:43.565 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:51:14.229 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 18:59:46.474 +03:00 [INF] Application started
+2022-03-11 18:59:46.507 +03:00 [DBG] Collecting configuration info...
+2022-03-11 18:59:46.521 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 18:59:46.521 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:59:46.526 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 18:59:46.550 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:59:46.550 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 18:59:52.637 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 18:59:52.637 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 18:59:52.645 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 18:59:55.316 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:00:14.421 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:03:30.631 +03:00 [INF] Application started
+2022-03-11 19:03:30.666 +03:00 [DBG] Collecting configuration info...
+2022-03-11 19:03:30.684 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 19:03:30.685 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:03:30.690 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:03:30.717 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:03:30.717 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:03:33.750 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 19:03:33.750 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 19:03:33.754 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 19:03:34.668 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:04:56.237 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:09:41.135 +03:00 [INF] Application started
+2022-03-11 19:09:41.168 +03:00 [DBG] Collecting configuration info...
+2022-03-11 19:09:41.183 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 19:09:41.183 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:09:41.188 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:09:41.215 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:09:41.215 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:09:43.697 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 19:09:43.697 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 19:09:43.704 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 19:09:44.586 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:09:52.228 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:12:33.840 +03:00 [INF] Application started
+2022-03-11 19:12:33.878 +03:00 [DBG] Collecting configuration info...
+2022-03-11 19:12:33.892 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 19:12:33.893 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:12:33.921 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:12:33.950 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:12:33.950 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:12:36.365 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 19:12:36.365 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 19:12:36.369 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 19:12:37.239 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:16:12.213 +03:00 [INF] Application started
+2022-03-11 19:16:12.248 +03:00 [DBG] Collecting configuration info...
+2022-03-11 19:16:12.276 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 19:16:12.277 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:16:12.282 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:16:12.313 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:16:12.313 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:16:16.598 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 19:16:16.598 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 19:16:16.605 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 19:16:17.396 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:19:28.858 +03:00 [INF] Application started
+2022-03-11 19:19:28.896 +03:00 [DBG] Collecting configuration info...
+2022-03-11 19:19:28.932 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 19:19:28.932 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:19:28.943 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:19:28.969 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:19:28.969 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:19:35.018 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 19:19:35.018 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 19:19:35.024 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 19:19:36.248 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:21:07.923 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:24:22.683 +03:00 [INF] Application started
+2022-03-11 19:24:22.720 +03:00 [DBG] Collecting configuration info...
+2022-03-11 19:24:22.757 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 19:24:22.757 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:24:22.763 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:24:22.788 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:24:22.788 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:24:26.096 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 19:24:26.096 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 19:24:26.101 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 19:24:27.839 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:24:37.937 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:25:13.363 +03:00 [INF] Application started
+2022-03-11 19:25:13.398 +03:00 [DBG] Collecting configuration info...
+2022-03-11 19:25:13.413 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 19:25:13.413 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:25:13.418 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:25:13.442 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:25:13.442 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:25:15.859 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 19:25:15.859 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 19:25:15.864 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 19:25:17.336 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:31:03.406 +03:00 [INF] Application started
+2022-03-11 19:31:03.440 +03:00 [DBG] Collecting configuration info...
+2022-03-11 19:31:03.455 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-11 19:31:03.455 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:31:03.462 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-11 19:31:03.484 +03:00 [DBG] Loading runtime: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:31:03.484 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-11 19:31:07.796 +03:00 [DBG] Loading config: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-11 19:31:07.796 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-11 19:31:07.801 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-11 19:31:08.950 +03:00 [INF] Reading user data from: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-11 19:31:29.765 +03:00 [INF] Truncating file: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json

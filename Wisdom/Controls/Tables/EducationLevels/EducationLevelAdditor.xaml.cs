@@ -31,10 +31,11 @@ namespace Wisdom.Controls.Tables.EducationLevels
             set
             {
                 _no = value;
-                if (Options != null &&
-                    !Options.IsManual)
-                    LevelNo = No.ToString();
                 OnPropertyChanged();
+
+                if (Options is null ||
+                    !Options.IsManual)
+                    LevelNo = value.ToString();
             }
         }
 
@@ -53,12 +54,14 @@ namespace Wisdom.Controls.Tables.EducationLevels
             {
                 if (value == "")
                     return;
+
                 uint no = value.ParseHours();
-                _levelNo = $"{no}.";
+                _levelNo = no.ToString();
+                OnPropertyChanged();
+
                 if (Options != null &&
                     Options.IsManual)
-                    No = no;
-                OnPropertyChanged();
+                    Index(no);
             }
         }
 
@@ -95,11 +98,11 @@ namespace Wisdom.Controls.Tables.EducationLevels
         {
             EducationLevel level = new EducationLevel
             {
+                LevelNo = LevelNo,
                 Options = Options,
                 LevelName = LevelName,
                 LevelDescription = LevelDescription
             };
-            level.Index(No);
 
             if (Options.AddRecord(level))
             {
