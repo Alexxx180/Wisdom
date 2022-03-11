@@ -5,6 +5,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using static Wisdom.Writers.AutoGenerating.AutoFiller;
 using static Wisdom.Writers.AutoGenerating.Processors;
+using Serilog;
 
 namespace Wisdom.Writers.AutoGenerating.Documents
 {
@@ -20,6 +21,8 @@ namespace Wisdom.Writers.AutoGenerating.Documents
             }
             catch (IOException exception)
             {
+                Log.Error("Exception on file truncating/processing: " +
+                    exception.Message);
                 WriteMessage(exception.Message);
             }
         }

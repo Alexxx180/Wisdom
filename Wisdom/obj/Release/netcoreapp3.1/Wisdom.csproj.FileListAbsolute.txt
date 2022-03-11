@@ -196,3 +196,12 @@ D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdo
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\HourElementAdditor.g.cs
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\MetaData\MetaElementAdditor.g.cs
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\HourElementAdditor.baml
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Serilog.dll
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Serilog.Sinks.File.dll
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.Properties.Resources.resources
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.GenerateResource.cache
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom_Content.g.cs

@@ -6,15 +6,31 @@ using Microsoft.Win32;
 using Wisdom.Model;
 using Wisdom.Controls.Forms;
 using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
+using Serilog;
+using System.Reflection;
 
 namespace Wisdom.Writers.AutoGenerating
 {
     public static class Processors
     {
-        public static string ProjectDirectory => Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-        public static string ConfigDirectory => ProjectDirectory + @"\Resources\Configuration\";
+        public static string
+            ConfigDirectory => Environment.CurrentDirectory + @"\Resources\Configuration\";
         public static string SettingsDirectory => ConfigDirectory + @"Settings\";
         private static string RuntimeDirectory => ConfigDirectory + @"Runtime\";
+
+        public static string GetDirectoryPath(this Assembly assembly)
+        {
+            string filePath = new Uri(assembly.CodeBase).LocalPath;
+            return Path.GetDirectoryName(filePath);
+        }
+
+        static Processors()
+        {
+            Log.Debug(
+                "Configuration directory set as: "
+                + ConfigDirectory
+                );
+        }
 
         #region Messages Members
         private static void SaveMessage(string exception)
@@ -81,6 +97,7 @@ namespace Wisdom.Writers.AutoGenerating
 
         internal static void TruncateFile(string fileName)
         {
+            Log.Information("Truncating file: " + fileName);
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);
@@ -89,18 +106,22 @@ namespace Wisdom.Writers.AutoGenerating
 
         public static void Save(string path, byte[] bytes)
         {
+            Log.Information("Saving data... to: " + path);
             try
             {
                 File.WriteAllBytes(path, bytes);
             }
             catch (IOException exception)
             {
+                Log.Error("Save problem: " +
+                    exception.Message);
                 SaveMessage(exception.Message);
             }
         }
 
         public static T ReadJson<T>(string path)
         {
+            Log.Information("Reading user data from: " + path);
             T deserilizeable = default;
             try
             {
@@ -110,18 +131,26 @@ namespace Wisdom.Writers.AutoGenerating
             }
             catch (JsonException exception)
             {
+                Log.Error("Reading user data Json problem: " +
+                    exception.Message);
                 LoadMessage(exception.Message);
             }
             catch (ArgumentException exception)
             {
+                Log.Error("Argument is invalid: " +
+                    exception.Message);
                 LoadMessage(exception.Message);
             }
             catch (FileNotFoundException exception)
             {
+                Log.Error("File not found: " +
+                    exception.Message);
                 LoadMessage(exception.Message);
             }
             catch (IOException exception)
             {
+                Log.Error("I|O blocked by another process: " +
+                    exception.Message);
                 LoadMessage(exception.Message);
             }
             return deserilizeable;
@@ -137,6 +166,8 @@ namespace Wisdom.Writers.AutoGenerating
             }
             catch (IOException exception)
             {
+                Log.Error("I|O blocked can't process: " +
+                    exception.Message);
                 LoadMessage(exception.Message);
             }
         }
@@ -159,6 +190,7 @@ namespace Wisdom.Writers.AutoGenerating
         #region SaveLoad Members
         internal static T LoadConfig<T>(string name)
         {
+            Log.Debug("Loading config: " + RuntimeDirectory + name);
             return !File.Exists(ConfigDirectory + name) ?
                 default : ReadJson<T>(ConfigDirectory + name);
         }
@@ -171,6 +203,7 @@ namespace Wisdom.Writers.AutoGenerating
         internal static
             Pair<string, T> LoadRuntime<T>(string name)
         {
+            Log.Debug("Loading runtime: " + RuntimeDirectory + name);
             return !File.Exists(RuntimeDirectory + name) ? null :
                 ReadJson<Pair<string, T>>(RuntimeDirectory + name);
         }

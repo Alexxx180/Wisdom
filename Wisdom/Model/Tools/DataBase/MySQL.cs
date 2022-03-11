@@ -43,11 +43,17 @@ namespace Wisdom.Model.Tools.DataBase
         #region Connection Members
         private bool FileConnection()
         {
-            Pair<string, byte[]> initials = LoadRuntime<byte[]>("Data.json");
+            Pair<string, byte[]>
+                initials = LoadRuntime<byte[]>("Data.json");
 
             bool connectionSuccessful =
-                !(initials is null) && TestConnection
-                (initials.Name, UnprotectData(initials.Value));
+                !(initials is null ||
+                (initials.Name is null) ||
+                (initials.Value is null))
+                && TestConnection(
+                    initials.Name,
+                    UnprotectData(initials.Value)
+                );
 
             return connectionSuccessful;
         }

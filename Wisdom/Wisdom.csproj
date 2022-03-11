@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Configuration\Preferences.json" />
+    <None Remove="Resources\Configuration\Runtime\Config.json" />
+    <None Remove="Resources\Configuration\Runtime\Data.json" />
+    <None Remove="Resources\Configuration\Settings\DisciplineProgram.json" />
     <None Remove="Resources\Images\Icons\Wisdom3.ico" />
   </ItemGroup>
 
@@ -33,9 +37,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Configuration\Preferences.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Configuration\Runtime\Config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Configuration\Runtime\Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Configuration\Settings\DisciplineProgram.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.13.1" />
     <PackageReference Include="MySqlConnector" Version="2.1.8" />
-    <PackageReference Include="Open-XML-SDK" Version="2.5.0" />
+    <PackageReference Include="Open-XML-SDK" Version="2.9.1" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
@@ -44,8 +65,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Configuration\Settings\" />
-    <Folder Include="Resources\Configuration\Runtime\" />
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

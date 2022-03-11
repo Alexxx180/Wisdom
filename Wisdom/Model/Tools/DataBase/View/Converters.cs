@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Serilog;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Windows;
 using Wisdom.Model.Tables;
@@ -268,6 +269,8 @@ namespace Wisdom.Model.Tools.DataBase
             }
             catch (DbException exception)
             {
+                Log.Error("Exception on speciality head hooking from DB: " +
+                    exception.Message);
                 string noLoad = "Заголовки спеицальностей";
                 ConnectionMessage(noLoad, exception.Message);
             }
@@ -285,8 +288,11 @@ namespace Wisdom.Model.Tools.DataBase
             }
             catch (DbException exception)
             {
+                Log.Error("Exception on speciality base object hooking from DB: " +
+                    exception.Message);
                 string noLoad = "Выбранная специальность";
                 ConnectionMessage(noLoad, exception.Message);
+                
             }
             return speciality;
         }
@@ -312,6 +318,8 @@ namespace Wisdom.Model.Tools.DataBase
             }
             catch (DbException exception)
             {
+                Log.Error("Exception on discipline head hooking from DB: " +
+                    exception.Message);
                 string noLoad = "Заголовки дисциплин";
                 ConnectionMessage(noLoad, exception.Message);
             }
@@ -341,6 +349,8 @@ namespace Wisdom.Model.Tools.DataBase
             }
             catch (DbException exception)
             {
+                Log.Error("Exception on discipline base object hooking from DB: " +
+                    exception.Message);
                 string noLoad = "Выбранная дисциплина";
                 ConnectionMessage(noLoad, exception.Message);
             }
@@ -357,6 +367,8 @@ namespace Wisdom.Model.Tools.DataBase
             }
             catch (DbException exception)
             {
+                Log.Error("Exception on hour types object hooking from DB: " +
+                    exception.Message);
                 string noLoad = "Типы работ тематического плана";
                 ConnectionMessage(noLoad, exception.Message);
             }
@@ -373,6 +385,8 @@ namespace Wisdom.Model.Tools.DataBase
             }
             catch (DbException exception)
             {
+                Log.Error("Exception on meta types object hooking from DB: " +
+                    exception.Message);
                 string noLoad = "Типы метаданных";
                 ConnectionMessage(noLoad, exception.Message);
             }
@@ -389,6 +403,8 @@ namespace Wisdom.Model.Tools.DataBase
             }
             catch (DbException exception)
             {
+                Log.Error("Exception on source types object hooking from DB: " +
+                    exception.Message);
                 string noLoad = "Типы источников";
                 ConnectionMessage(noLoad, exception.Message);
             }

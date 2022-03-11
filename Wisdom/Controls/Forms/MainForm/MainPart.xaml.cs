@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using static Wisdom.Writers.AutoGenerating.Processors;
 using Wisdom.ViewModel;
+using Serilog;
 
 namespace Wisdom.Controls.Forms.MainForm
 {
@@ -101,6 +102,8 @@ namespace Wisdom.Controls.Forms.MainForm
 
         private void LoadTemplates()
         {
+            Log.Information("Loading templates from folder: " +
+                Settings.TemplatePath);
             try
             {
                 foreach (string file in
@@ -123,6 +126,8 @@ namespace Wisdom.Controls.Forms.MainForm
             }
             catch (IOException exception)
             {
+                Log.Error("Exception on templates loading: " +
+                    exception.Message);
                 LoadMessage(exception.Message);
             }
         }

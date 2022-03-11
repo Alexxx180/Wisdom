@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using Serilog;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 
@@ -48,9 +49,11 @@ namespace Wisdom.Model.Tools.Security
             {
                 protectedData = ProtectedData.Protect(data, s_additionalEntropy, DataProtectionScope.CurrentUser);
             }
-            catch (CryptographicException e)
+            catch (CryptographicException exception)
             {
-                EncryptionMessage(e.Message);
+                Log.Error("Exception on decryption: " +
+                    exception.Message);
+                EncryptionMessage(exception.Message);
             }
             return protectedData;
         }
@@ -62,9 +65,11 @@ namespace Wisdom.Model.Tools.Security
             {
                 unprotectedData = ProtectedData.Unprotect(data, s_additionalEntropy, DataProtectionScope.CurrentUser);
             }
-            catch (CryptographicException e)
+            catch (CryptographicException exception)
             {
-                EncryptionMessage(e.Message);
+                Log.Error("Exception on decryption: " +
+                    exception.Message);
+                EncryptionMessage(exception.Message);
             }
             return unprotectedData;
         }

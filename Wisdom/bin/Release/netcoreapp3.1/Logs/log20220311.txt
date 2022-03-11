@@ -1,0 +1,10 @@
+2022-03-11 00:44:00.215 +03:00 [INF] Application started
+2022-03-11 00:44:00.333 +03:00 [DBG] Collecting configuration info...
+2022-03-11 00:44:00.348 +03:00 [DBG] Project directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Wisdom.dll
+2022-03-11 09:49:59.668 +03:00 [INF] Application started
+2022-03-11 09:49:59.715 +03:00 [DBG] Collecting configuration info...
+2022-03-11 09:49:59.730 +03:00 [DBG] Project directory set as: D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Wisdom.dll
+2022-03-11 10:44:06.336 +03:00 [INF] Application started
+2022-03-11 10:44:06.369 +03:00 [DBG] Collecting configuration info...
+2022-03-11 10:44:06.383 +03:00 [DBG] Project directory set as: \Resources\Configuration\
+2022-03-11 10:44:06.384 +03:00 [DBG] Loading runtime: \Resources\Configuration\Runtime\Config.json
