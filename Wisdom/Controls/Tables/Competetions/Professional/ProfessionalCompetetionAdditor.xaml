@@ -19,7 +19,7 @@
             </Button.Style>
         </Button>
 
-        <TextBox Grid.Column="1">
+        <TextBox Grid.Column="1" Foreground="Black">
             <TextBox.Style>
                 <StaticResource ResourceKey="NoBox"/>
             </TextBox.Style>

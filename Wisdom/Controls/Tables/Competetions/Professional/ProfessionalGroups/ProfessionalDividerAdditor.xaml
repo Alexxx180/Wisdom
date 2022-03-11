@@ -34,7 +34,7 @@
             </TextBlock>
             <TextBox Grid.Column="1">
                 <TextBox.Style>
-                    <StaticResource ResourceKey="NoBox"/>
+                    <StaticResource ResourceKey="DividerBox"/>
                 </TextBox.Style>
                 <TextBox.Text>
                     <Binding Path="DividerNo" Mode="TwoWay">

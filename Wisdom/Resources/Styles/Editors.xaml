@@ -26,7 +26,17 @@
         <EventSetter Event="GotFocus" Handler="ForgetNo"/>
         <EventSetter Event="LostFocus" Handler="MemoryNo"/>
     </Style>
-    
+
+    <Style x:Key="DividerBox" TargetType="TextBox" BasedOn="{StaticResource NoBox}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="Extendable" TargetType="UserControl">
         <EventSetter Event="MouseRightButtonDown" Handler="ExtendItems"/>
     </Style>

@@ -37,7 +37,7 @@
                 </TextBlock>
             </Viewbox>
 
-            <TextBox Grid.Column="1" FontSize="22">
+            <TextBox Grid.Column="1" FontSize="22" Foreground="Black">
                 <TextBox.Style>
                     <StaticResource ResourceKey="NoBox"/>
                 </TextBox.Style>
