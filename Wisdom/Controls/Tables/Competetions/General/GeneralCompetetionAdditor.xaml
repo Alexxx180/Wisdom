@@ -54,9 +54,9 @@
             </TextBox>
         </Grid>
 
-        <TextBox Grid.Column="2">
+        <TextBox Grid.Column="2" FontSize="20">
             <TextBox.Style>
-                <StaticResource ResourceKey="RegularBox"/>
+                <StaticResource ResourceKey="Dark"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="GeneralName" Mode="TwoWay">

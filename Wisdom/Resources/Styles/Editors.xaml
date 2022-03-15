@@ -42,7 +42,7 @@
         <EventSetter Event="DataObject.Pasting" Handler="PastingHours"/>
     </Style>
 
-    <Style x:Key="NoBox" TargetType="TextBox" BasedOn="{StaticResource HoursBox}">
+    <Style x:Key="NoBox" TargetType="TextBox" BasedOn="{StaticResource HoursBoxLight}">
         <EventSetter Event="GotFocus" Handler="ForgetNo"/>
         <EventSetter Event="LostFocus" Handler="MemoryNo"/>
     </Style>

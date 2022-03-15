@@ -37,8 +37,8 @@
                 <Binding Path="Header"/>
             </TextBlock.Text>
         </TextBlock>
-        
-        <TextBox Grid.Column="2">
+
+        <TextBox Grid.Column="2" FontSize="20">
             <TextBox.TextWrapping>
                 <Binding Path="IsWrap">
                     <Binding.Converter>

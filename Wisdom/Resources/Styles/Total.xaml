@@ -69,14 +69,14 @@
         <Setter Property="Control.FontWeight" Value="Bold"/>
     </Style>
 
-    <Style x:Key="No1">
+    <Style x:Key="No1" BasedOn="{StaticResource GlobalFont}">
         <Setter Property="Control.HorizontalAlignment" Value="Right"/>
-        <Setter Property="Control.FontSize" Value="26"/>
+        <Setter Property="Control.FontSize" Value="24"/>
     </Style>
 
-    <Style x:Key="No2">
+    <Style x:Key="No2" BasedOn="{StaticResource GlobalFont}">
         <Setter Property="Control.HorizontalAlignment" Value="Center"/>
-        <Setter Property="Control.FontSize" Value="26"/>
+        <Setter Property="Control.FontSize" Value="24"/>
     </Style>
 
     <Style x:Key="CaptionSections">

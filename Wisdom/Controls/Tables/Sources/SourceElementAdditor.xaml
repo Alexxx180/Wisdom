@@ -29,7 +29,7 @@
             </TextBlock.Text>
         </TextBlock>
 
-        <TextBox Grid.Column="2">
+        <TextBox Grid.Column="2" FontSize="20">
             <TextBox.Text>
                 <Binding Path="Source"/>
             </TextBox.Text>

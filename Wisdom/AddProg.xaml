@@ -59,11 +59,24 @@
 
                 <TextBox MaxLength="255">
                     <TextBox.Style>
-                        <StaticResource ResourceKey="CaptionBox"/>
+                        <StaticResource ResourceKey="Dark"/>
                     </TextBox.Style>
                     <TextBox.Text>
                         <Binding ElementName="DisciplineProgramWindow" Path="FileName"/>
                     </TextBox.Text>
+                    <TextBox.FontSize>
+                        <Binding RelativeSource="{RelativeSource Self}">
+                            <Binding.Path>
+                                ActualHeight
+                            </Binding.Path>
+                            <Binding.Converter>
+                                <converters:ProcentualHeightConverter/>
+                            </Binding.Converter>
+                            <Binding.ConverterParameter>
+                                1,675
+                            </Binding.ConverterParameter>
+                        </Binding>
+                    </TextBox.FontSize>
                 </TextBox>
 
                 <Grid Grid.Column="2">

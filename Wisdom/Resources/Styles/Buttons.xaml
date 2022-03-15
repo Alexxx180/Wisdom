@@ -32,6 +32,7 @@
     </Style>
 
     <Style x:Key="Steps2" BasedOn="{StaticResource GlobalFont}">
+        <Setter Property="Control.FontWeight" Value="Bold"/>
         <Setter Property="Control.Background" Value="#FF002FA7"/>
         <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>
         <Setter Property="Control.BorderBrush" Value="#FFFFFFFF"/>
@@ -39,6 +40,7 @@
     </Style>
     
     <Style x:Key="Steps3" TargetType="Button" BasedOn="{StaticResource Box}">
+        <Setter Property="Control.FontWeight" Value="Bold"/>
         <Setter Property="Control.Background" Value="#FFFFFFFF"/>
         <Setter Property="Control.Foreground" Value="#FF002FA7"/>
         <Setter Property="Control.BorderBrush" Value="#FF002FA7"/>

@@ -9,10 +9,13 @@
              d:DesignHeight="45" d:DesignWidth="1000">
     <Button HorizontalContentAlignment="Left" Click="CreateFromTemplate">
         <Button.Style>
-            <StaticResource ResourceKey="ListCaptions"/>
+            <StaticResource ResourceKey="Steps2"/>
         </Button.Style>
         <Button.Content>
-            <TextBlock Text="{Binding Path=FileName}">
+            <TextBlock Padding="2" FontSize="28">
+                <TextBlock.Text>
+                    <Binding Path="FileName"/>
+                </TextBlock.Text>
                 <TextBlock.TextTrimming>
                     CharacterEllipsis
                 </TextBlock.TextTrimming>
