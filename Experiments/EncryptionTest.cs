@@ -13,17 +13,17 @@ namespace Experiments
         [TestMethod]
         public void EncryptTest()
         {
-            byte[] someData = { 0, 1, 2, 3, 4, 5 };
+            string someData = "Hello";
             Trace.Write("Original: ");
-            Print(someData);
+            Trace.Write(someData);
 
-            byte[] encrypted = Encryption.Protect(someData);
+            byte[] encrypted = Encryption.ProtectData(someData);
             Trace.Write("\nEncrypted: ");
             Print(encrypted);
 
-            byte[] decrypted = Encryption.Unprotect(encrypted);
+            string decrypted = Encryption.UnprotectData(encrypted);
             Trace.Write("\nDecrypted: ");
-            Print(decrypted);
+            Trace.Write(decrypted);
         }
 
         private static void Print(byte[] data)

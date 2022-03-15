@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Wisdom.Controls;
 using Wisdom.Controls.Tables;
 using Wisdom.Model;
-using Wisdom.Customing;
 
 namespace Wisdom.Customing
 {
@@ -56,7 +55,7 @@ namespace Wisdom.Customing
 
         public static ushort ParseHours(this string hours)
         {
-            return ushort.TryParse(hours, out ushort result) ? 
+            return ushort.TryParse(hours, out ushort result) ?
                 result : 0.ToUShort();
         }
 
@@ -75,7 +74,8 @@ namespace Wisdom.Customing
             return string.Format("{0:00}", value);
         }
 
-        public static Dictionary<TName, TValue> ToDictionary<TName, TValue>
+        public static
+            Dictionary<TName, TValue> ToDictionary<TName, TValue>
             (this IEnumerable<IRawData<Pair<TName, TValue>>> list)
         {
             Dictionary<TName, TValue>

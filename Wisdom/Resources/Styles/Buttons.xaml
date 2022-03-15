@@ -17,41 +17,44 @@
         <Setter Property="Control.FontFamily" Value="Cambria"/>
     </Style>
 
-    <Style x:Key="Steps" BasedOn="{StaticResource BoldCambria}">
-        <Setter Property="Control.Background" Value="#FFEFE4B0"/>
-        <Setter Property="Control.Foreground" Value="#FF00A2E8"/>
-        <Setter Property="Control.BorderBrush" Value="#FFEFE4B0"/>
+    <Style x:Key="Steps" BasedOn="{StaticResource GlobalFont}">
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+        <Setter Property="Control.Background" Value="#FFFFFFFF"/>
+        <Setter Property="Control.Foreground" Value="#FF002FA7"/>
+        <Setter Property="Control.BorderBrush" Value="#FF002FA7"/>
     </Style>
-    
-    <Style x:Key="Steps2" BasedOn="{StaticResource BoldCambria}">
-        <Setter Property="Control.Background" Value="#FF00A2E8"/>
-        <Setter Property="Control.Foreground" Value="#FFEFE4B0"/>
-        <Setter Property="Control.BorderBrush" Value="#FFEFE4B0"/>
+
+    <Style x:Key="Steps2" BasedOn="{StaticResource GlobalFont}">
+        <Setter Property="Control.Background" Value="#FF002FA7"/>
+        <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>
+        <Setter Property="Control.BorderBrush" Value="#FFFFFFFF"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
     </Style>
     
     <Style x:Key="Steps3" TargetType="Button" BasedOn="{StaticResource Box}">
-        <Setter Property="Control.Background" Value="White"/>
-        <Setter Property="Control.Foreground" Value="#FF00A2E8"/>
-        <Setter Property="Control.BorderBrush" Value="#FF00A2E8"/>
+        <Setter Property="Control.Background" Value="#FFFFFFFF"/>
+        <Setter Property="Control.Foreground" Value="#FF002FA7"/>
+        <Setter Property="Control.BorderBrush" Value="#FF002FA7"/>
         <Setter Property="Control.FontWeight" Value="Bold"/>
         <Setter Property="Control.FontSize" Value="28"/>
         <Setter Property="Control.FontFamily" Value="Franklin Gothic Demi"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="#FF00A2E8"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="#FF002FA7"/>
+                <Setter Property="Foreground" Value="#FFFFFFFF"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="AutoSteps" TargetType="Button" BasedOn="{StaticResource BoldCambria}">
-        <Setter Property="Control.Background" Value="#FF00A2E8"/>
-        <Setter Property="Control.Foreground" Value="#FFEFE4B0"/>
-        <Setter Property="Control.BorderBrush" Value="#FFEFE4B0"/>
+    <Style x:Key="AutoSteps" TargetType="Button" BasedOn="{StaticResource GlobalFont}">
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+        <Setter Property="Control.Background" Value="#FF002FA7"/>
+        <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>
+        <Setter Property="Control.BorderBrush" Value="#FFFFFFFF"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Control.Background" Value="#FFEFE4B0"/>
-                <Setter Property="Control.Foreground" Value="#FF00A2E8"/>
+                <Setter Property="Control.Background" Value="#FFFFFFFF"/>
+                <Setter Property="Control.Foreground" Value="#FF002FA7"/>
             </Trigger>
         </Style.Triggers>
     </Style>

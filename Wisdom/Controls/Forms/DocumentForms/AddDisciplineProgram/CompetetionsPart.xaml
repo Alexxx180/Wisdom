@@ -10,14 +10,21 @@
              xmlns:professional="clr-namespace:Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups"
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding RelativeSource="{RelativeSource Self}"/>
+    </UserControl.DataContext>
+    
     <UserControl.Resources>
         <converters:GeneralCompetetionsConverter x:Key="GeneralCompetetionsConverter"/>
         <converters:ProfessionalCompetetionsConverter x:Key="ProfessionalCompetetionsConverter"/>
     </UserControl.Resources>
     
-    <Grid Grid.Row="1" x:Name="TreeContext" DataContext="{Binding Path=ViewModel}">
+    <Grid Grid.Row="1" x:Name="TreeContext">
+        <Grid.DataContext>
+            <Binding Path="ViewModel"/>
+        </Grid.DataContext>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.025*"/>
             <ColumnDefinition Width="0.95*"/>
@@ -67,27 +74,75 @@
 
             <tables:AutoPanel Grid.Row="1" x:Name="General" Visibility="Hidden">
                 <tables:AutoPanel.Records>
-                    <Binding Path="DataContext.GeneralCompetetions"
-                             ElementName="TreeContext"
-                             Converter="{StaticResource GeneralCompetetionsConverter}"
-                             UpdateSourceTrigger="Explicit"
-                             Mode="TwoWay" />
+                    <Binding>
+                        <Binding.ElementName>
+                            TreeContext
+                        </Binding.ElementName>
+                        <Binding.Path>
+                            DataContext.GeneralCompetetions
+                        </Binding.Path>
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="GeneralCompetetionsConverter"/>
+                        </Binding.Converter>
+                        <Binding.Mode>
+                            TwoWay
+                        </Binding.Mode>
+                        <Binding.UpdateSourceTrigger>
+                            Explicit
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
                 </tables:AutoPanel.Records>
                 <tables:AutoPanel.Additor>
-                    <general:GeneralCompetetionAdditor Options="{Binding RelativeSource={RelativeSource AncestorLevel=1, AncestorType=tables:AutoPanel}}"/>
+                    <general:GeneralCompetetionAdditor>
+                        <general:GeneralCompetetionAdditor.Options>
+                            <Binding>
+                                <Binding.RelativeSource>
+                                    <RelativeSource AncestorType="tables:AutoPanel">
+                                        <RelativeSource.AncestorLevel>
+                                            1
+                                        </RelativeSource.AncestorLevel>
+                                    </RelativeSource>
+                                </Binding.RelativeSource>
+                            </Binding>
+                        </general:GeneralCompetetionAdditor.Options>
+                    </general:GeneralCompetetionAdditor>
                 </tables:AutoPanel.Additor>
             </tables:AutoPanel>
 
-            <tables:AutoPanel Grid.Row="1" x:Name="Professional" Visibility="Hidden">
+            <tables:AutoPanel Grid.Row="1" x:Name="Professional" Visibility="Visible">
                 <tables:AutoPanel.Records>
-                    <Binding Path="DataContext.ProfessionalCompetetions"
-                             ElementName="TreeContext"
-                             Converter="{StaticResource ProfessionalCompetetionsConverter}"
-                             UpdateSourceTrigger="Explicit"
-                             Mode="TwoWay" />
+                    <Binding>
+                        <Binding.ElementName>
+                            TreeContext
+                        </Binding.ElementName>
+                        <Binding.Path>
+                            DataContext.ProfessionalCompetetions
+                        </Binding.Path>
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="ProfessionalCompetetionsConverter"/>
+                        </Binding.Converter>
+                        <Binding.Mode>
+                            TwoWay
+                        </Binding.Mode>
+                        <Binding.UpdateSourceTrigger>
+                            Explicit
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
                 </tables:AutoPanel.Records>
                 <tables:AutoPanel.Additor>
-                    <professional:ProfessionalDividerAdditor Options="{Binding RelativeSource={RelativeSource AncestorLevel=1, AncestorType=tables:AutoPanel}}"/>
+                    <professional:ProfessionalDividerAdditor>
+                        <professional:ProfessionalDividerAdditor.Options>
+                            <Binding>
+                                <Binding.RelativeSource>
+                                    <RelativeSource AncestorType="tables:AutoPanel">
+                                        <RelativeSource.AncestorLevel>
+                                            1
+                                        </RelativeSource.AncestorLevel>
+                                    </RelativeSource>
+                                </Binding.RelativeSource>
+                            </Binding>
+                        </professional:ProfessionalDividerAdditor.Options>
+                    </professional:ProfessionalDividerAdditor>
                 </tables:AutoPanel.Additor>
             </tables:AutoPanel>
         </Grid>

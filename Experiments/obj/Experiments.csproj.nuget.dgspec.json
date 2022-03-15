@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Experiments\\Experiments.csproj": {}
+    "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Experiments\\Experiments.csproj": {}
   },
   "projects": {
-    "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Experiments\\Experiments.csproj": {
+    "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Experiments\\Experiments.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Experiments\\Experiments.csproj",
+        "projectUniqueName": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Experiments\\Experiments.csproj",
         "projectName": "Experiments",
-        "projectPath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Experiments\\Experiments.csproj",
+        "projectPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Experiments\\Experiments.csproj",
         "packagesPath": "C:\\Users\\Администратор\\.nuget\\packages\\",
-        "outputPath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Experiments\\obj\\",
+        "outputPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Experiments\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Администратор\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0-windows7.0": {
             "targetAlias": "net5.0-windows",
             "projectReferences": {
-              "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj": {
-                "projectPath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj"
+              "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj": {
+                "projectPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj"
               }
             }
           }
@@ -83,14 +83,14 @@
         }
       }
     },
-    "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj": {
+    "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+        "projectUniqueName": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
         "projectName": "Wisdom",
-        "projectPath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+        "projectPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
         "packagesPath": "C:\\Users\\Администратор\\.nuget\\packages\\",
-        "outputPath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\obj\\",
+        "outputPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Администратор\\AppData\\Roaming\\NuGet\\NuGet.Config",

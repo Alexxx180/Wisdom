@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yPBtY/ya0vWwOJ/RWh0UiSackw1V5PoU43lU6Le8hDb8ZymzfqWaNm3RIE8AY/7veMuOMYKF3n7FIH3WEnpXIQ==",
+  "dgSpecHash": "gxZaLhKZPXsZ6MQnimgzv87RXlyWDgLNf8Q4TDQp6HhgE6lWSHT9AwZr7OuMJQKQvIKhTJCNpAuRFqFPE4rqAA==",
   "success": true,
-  "projectFilePath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+  "projectFilePath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Администратор\\.nuget\\packages\\documentformat.openxml\\2.13.1\\documentformat.openxml.2.13.1.nupkg.sha512",
     "C:\\Users\\Администратор\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

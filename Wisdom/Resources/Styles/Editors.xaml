@@ -22,6 +22,13 @@
         <EventSetter Event="DataObject.Pasting" Handler="PastingHours"/>
     </Style>
 
+    <Style x:Key="HoursCountBox" TargetType="TextBox" BasedOn="{StaticResource CustomBoxLight}">
+        <Setter Property="TextBox.TextAlignment" Value="Right"/>
+        <Setter Property="TextBox.MaxLength" Value="3"/>
+        <EventSetter Event="PreviewTextInput" Handler="Hours"/>
+        <EventSetter Event="DataObject.Pasting" Handler="PastingHours"/>
+    </Style>
+
     <Style x:Key="NoBox" TargetType="TextBox" BasedOn="{StaticResource HoursBox}">
         <EventSetter Event="GotFocus" Handler="ForgetNo"/>
         <EventSetter Event="LostFocus" Handler="MemoryNo"/>

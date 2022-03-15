@@ -19,12 +19,18 @@
 
     <Grid DataContext="{Binding Path=ViewModel}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*"/>
-            <RowDefinition Height="0.95*"/>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.85*"/>
         </Grid.RowDefinitions>
         
 
-        <Grid Background="#FF00A2E8" Visibility="Visible">
+        <Grid Background="#FF002FA7" Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.05*"/>
                 <ColumnDefinition Width="0.9*"/>
@@ -44,7 +50,7 @@
                     <ColumnDefinition Width="0.15*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBox MaxLength="200" >
+                <TextBox MaxLength="255">
                     <TextBox.Style>
                         <StaticResource ResourceKey="CaptionBox"/>
                     </TextBox.Style>
@@ -119,7 +125,7 @@
                         </forms:Switcher.Group>
                     </forms:Switcher>
 
-                    <forms:Switcher Grid.Column="8" Text="|=:|">
+                    <forms:Switcher Grid.Column="8" Text="[@*]">
                         <forms:Switcher.ViewStyle>
                             <StaticResource ResourceKey="AutoSteps"/>
                         </forms:Switcher.ViewStyle>
@@ -138,7 +144,8 @@
                     </Viewbox>
                 </Button>
 
-                <Button x:Name="Create" Click="Create_Click" Grid.Column="8" IsDefault="True" Style="{StaticResource Steps}">
+                <Button x:Name="Create" Click="Create_Click" Grid.Column="8"
+                        IsDefault="True" Style="{StaticResource Steps}" TextBlock.FontWeight="Bold">
                     <Viewbox>
                         <TextBlock Text="Подтвердить" Padding="2" />
                     </Viewbox>
@@ -146,7 +153,7 @@
             </Grid>
         </Grid>
 
-        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" Visibility="Hidden">
+        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" Visibility="Visible">
             <dpforms:HoursPart.ViewModel>
                 <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
             </dpforms:HoursPart.ViewModel>

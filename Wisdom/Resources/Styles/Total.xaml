@@ -7,6 +7,10 @@
         <Setter Property="Control.VerticalAlignment" Value="Stretch"/>
     </Style>
 
+    <Style x:Key="GlobalFont" BasedOn="{StaticResource Box}">
+        <Setter Property="Control.FontFamily" Value="Lucida Sans Unicode"/>
+    </Style>
+    
     <Style x:Key="InverseBox" BasedOn="{StaticResource Box}">
         <Setter Property="Control.Foreground" Value="White"/>
         <Setter Property="Control.BorderBrush" Value="Black"/>
@@ -19,6 +23,24 @@
         <Setter Property="Control.BorderThickness" Value="2"/>
         <Setter Property="Control.FontSize" Value="26"/>
     </Style>
+
+
+    <Style x:Key="CustomBoxDark" BasedOn="{StaticResource GlobalFont}">
+        <Setter Property="Control.Background" Value="#FF002FA7"/>
+        <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>
+        <Setter Property="Control.BorderBrush" Value="#FFFFFFFF"/>
+        <Setter Property="Control.BorderThickness" Value="2"/>
+        <Setter Property="Control.FontSize" Value="26"/>
+    </Style>
+
+    <Style x:Key="CustomBoxLight" BasedOn="{StaticResource GlobalFont}">
+        <Setter Property="Control.Background" Value="#FFFFFFFF"/>
+        <Setter Property="Control.Foreground" Value="#FF002FA7"/>
+        <Setter Property="Control.BorderBrush" Value="#FF002FA7"/>
+        <Setter Property="Control.BorderThickness" Value="2"/>
+        <Setter Property="Control.FontSize" Value="26"/>
+    </Style>
+    
 
     <Style x:Key="ThemePlan">
         <Setter Property="Control.Background" Value="#FFFFFFC7"/>

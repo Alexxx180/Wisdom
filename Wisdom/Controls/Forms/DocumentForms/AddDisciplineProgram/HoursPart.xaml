@@ -7,7 +7,8 @@
              xmlns:hours="clr-namespace:Wisdom.Controls.Tables.Hours"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Style="{StaticResource GlobalFont}">
     <UserControl.Resources>
         <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
         <converters:HoursConverter x:Key="HoursConverter"/>
@@ -31,9 +32,9 @@
             <RowDefinition Height="0.75*"/>
             <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
-        
 
-        <Grid Grid.Row="1" Grid.Column="1">
+
+        <Grid Grid.Row="1" Grid.Column="1" TextBlock.FontWeight="Bold">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.475*" />
                 <ColumnDefinition Width="0.05*" />
@@ -118,7 +119,7 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="1" Background="#FFFCC7">
+        <Grid Grid.Row="3" Grid.Column="1" Style="{StaticResource CustomBoxLight}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="105"/>
                 <RowDefinition/>
@@ -134,13 +135,13 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.75*"/>
-                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="75"/>
                     </Grid.ColumnDefinitions>
 
 
                     <Viewbox HorizontalAlignment="Left">
-                        <TextBlock Text=" Аудиторная нагрузка, часы"/>
+                        <TextBlock Text=" Аудиторная нагрузка, часы" />
                     </Viewbox>
 
                     <TextBox Grid.Column="1">
@@ -148,19 +149,21 @@
                             <StaticResource ResourceKey="HoursBox"/>
                         </TextBox.Style>
                         <TextBox.Text>
-                            <Binding Path="EduHours" Mode="TwoWay">
+                            999
+                        </TextBox.Text>
+
+                        <!--<Binding Path="EduHours" Mode="TwoWay">
                                 <Binding.UpdateSourceTrigger>
                                     LostFocus
                                 </Binding.UpdateSourceTrigger>
-                            </Binding>
-                        </TextBox.Text>
+                            </Binding>-->
                     </TextBox>
                 </Grid>
 
-                <Grid Grid.Row="1">
+                <Grid  Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.75*"/>
-                        <ColumnDefinition Width="0.25*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="75"/>
                     </Grid.ColumnDefinitions>
 
 
@@ -182,7 +185,7 @@
                     </TextBox>
                 </Grid>
 
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="2"  Style="{StaticResource CustomBoxDark}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.75*"/>
                         <ColumnDefinition Width="0.25*"/>
@@ -216,7 +219,7 @@
                 </Grid.RowDefinitions>
 
 
-                <ScrollViewer Background="#FFFFFCC7">
+                <ScrollViewer>
                     <ScrollViewer.VerticalScrollBarVisibility>
                         Auto
                     </ScrollViewer.VerticalScrollBarVisibility>
@@ -240,7 +243,7 @@
                     </StackPanel>
                 </ScrollViewer>
 
-                <Grid Grid.Row="1" Background="#FFFFFCC7">
+                <Grid Grid.Row="1" Style="{StaticResource CustomBoxDark}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.9*"/>
                         <ColumnDefinition Width="0.1*"/>

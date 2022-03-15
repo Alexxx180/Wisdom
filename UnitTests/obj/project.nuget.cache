@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TyjYHjT1aB2c/Mq1v1t3hq+a3YAOz+PxZxNsCc6PN1cbXkzR6RuKEIgJJAclg7N5kQYHctaEg/8Vs6+lc1r1gA==",
+  "dgSpecHash": "IKw7YZR1dmT/Q9dRXfOTOzUDbdZ/A+MFLn7qAfTEg30pi0DlguRSmoo5PxGGNu14/706mHo1UqMS3mmiwnNk2w==",
   "success": true,
-  "projectFilePath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\UnitTests\\UnitTests.csproj",
+  "projectFilePath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\UnitTests\\UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Администратор\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\Администратор\\.nuget\\packages\\documentformat.openxml\\2.13.1\\documentformat.openxml.2.13.1.nupkg.sha512",

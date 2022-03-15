@@ -12,7 +12,7 @@
             <RowDefinition Height="0.75*"/>
         </Grid.RowDefinitions>
 
-        <Grid Background="#FF00A2E8" Visibility="Visible">
+        <Grid Style="{StaticResource Steps2}" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.05*"/>
                 <ColumnDefinition Width="0.85*"/>
@@ -20,9 +20,9 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="1" Grid.Column="1" Visibility="Visible">
@@ -42,7 +42,7 @@
                         <StaticResource ResourceKey="Steps2"/>
                     </Button.Style>
                     <Viewbox>
-                        <TextBlock Text="|=:|"/>
+                        <TextBlock Text="[ii.I]"/>
                     </Viewbox>
                 </Button>
 
