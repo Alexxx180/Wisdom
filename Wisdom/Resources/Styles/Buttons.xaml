@@ -24,6 +24,13 @@
         <Setter Property="Control.BorderBrush" Value="#FF002FA7"/>
     </Style>
 
+    <Style x:Key="Steps1" BasedOn="{StaticResource GlobalFont}">
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+        <Setter Property="Control.Background" Value="#FF002FA7"/>
+        <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>
+        <Setter Property="Control.BorderBrush" Value="#FF000000"/>
+    </Style>
+
     <Style x:Key="Steps2" BasedOn="{StaticResource GlobalFont}">
         <Setter Property="Control.Background" Value="#FF002FA7"/>
         <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>

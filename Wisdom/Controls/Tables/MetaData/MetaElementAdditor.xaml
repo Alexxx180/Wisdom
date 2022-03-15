@@ -22,7 +22,7 @@
 
         <TextBox Grid.Column="1">
             <TextBox.Style>
-                <StaticResource ResourceKey="CustomBoxLight"/>
+                <StaticResource ResourceKey="Dark"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="MetaName" Mode="TwoWay">
@@ -35,7 +35,7 @@
 
         <TextBox Grid.Column="2">
             <TextBox.Style>
-                <StaticResource ResourceKey="HoursCountBox"/>
+                <StaticResource ResourceKey="Dark"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="MetaValue" Mode="TwoWay">

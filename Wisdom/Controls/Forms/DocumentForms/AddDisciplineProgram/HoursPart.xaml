@@ -119,7 +119,7 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Row="3" Grid.Column="1" Style="{StaticResource CustomBoxLight}">
+        <Grid Grid.Row="3" Grid.Column="1" Style="{StaticResource Light}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="105"/>
                 <RowDefinition/>
@@ -149,14 +149,12 @@
                             <StaticResource ResourceKey="HoursBox"/>
                         </TextBox.Style>
                         <TextBox.Text>
-                            999
-                        </TextBox.Text>
-
-                        <!--<Binding Path="EduHours" Mode="TwoWay">
+                            <Binding Path="EduHours" Mode="TwoWay">
                                 <Binding.UpdateSourceTrigger>
                                     LostFocus
                                 </Binding.UpdateSourceTrigger>
-                            </Binding>-->
+                            </Binding>
+                        </TextBox.Text>
                     </TextBox>
                 </Grid>
 
@@ -185,7 +183,7 @@
                     </TextBox>
                 </Grid>
 
-                <Grid Grid.Row="2"  Style="{StaticResource CustomBoxDark}">
+                <Grid Grid.Row="2"  Style="{StaticResource Dark}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.75*"/>
                         <ColumnDefinition Width="0.25*"/>
@@ -197,6 +195,10 @@
                     </Viewbox>
 
                     <Border Grid.Column="1">
+                        <Border.Style>
+                            <StaticResource ResourceKey="Light"/>
+                        </Border.Style>
+
                         <Border.Background>
                             <MultiBinding Converter="{StaticResource UsedValuesConverter}">
                                 <Binding Path="MaxHours"/>
@@ -243,7 +245,7 @@
                     </StackPanel>
                 </ScrollViewer>
 
-                <Grid Grid.Row="1" Style="{StaticResource CustomBoxDark}">
+                <Grid Grid.Row="1" Style="{StaticResource Dark}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.9*"/>
                         <ColumnDefinition Width="0.1*"/>

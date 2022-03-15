@@ -31,7 +31,7 @@
 
         <TextBox Grid.Column="1">
             <TextBox.Style>
-                <StaticResource ResourceKey="CustomBoxLight"/>
+                <StaticResource ResourceKey="Light"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="MetaName" Mode="TwoWay">
@@ -51,7 +51,7 @@
                 </Binding>
             </TextBox.TextWrapping>
             <TextBox.Style>
-                <StaticResource ResourceKey="HoursCountBox"/>
+                <StaticResource ResourceKey="Light"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="MetaValue" Mode="TwoWay">

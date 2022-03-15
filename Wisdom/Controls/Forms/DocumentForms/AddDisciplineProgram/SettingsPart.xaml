@@ -5,8 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding RelativeSource="{RelativeSource Self}"/>
+    </UserControl.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.025*"/>
@@ -23,21 +26,28 @@
 
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
                 <RowDefinition Height="0.05*"/>
-                <RowDefinition Height="0.025*"/>
-                <RowDefinition Height="0.05*"/>
-                <RowDefinition Height="0.875*"/>
+                <RowDefinition Height="0.95*"/>
             </Grid.RowDefinitions>
 
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.75*"/>
-                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
 
 
-                <TextBox>
+                <Viewbox HorizontalAlignment="Left">
+                    <TextBlock Text="Обработать"/>
+                </Viewbox>
+
+                <TextBox Grid.Column="1" FontWeight="Bold">
+                    <TextBox.Style>
+                        <StaticResource ResourceKey="Light"/>
+                    </TextBox.Style>
                     <TextBox.Text>
                         <Binding Path="FullPath" Mode="TwoWay">
                             <Binding.UpdateSourceTrigger>
@@ -60,9 +70,9 @@
                     </TextBox.FontSize>
                 </TextBox>
 
-                <Button Grid.Column="1" Click="SetFilePath">
+                <Button Grid.Column="2" Click="SetFilePath">
                     <Button.Style>
-                        <StaticResource ResourceKey="Steps2"/>
+                        <StaticResource ResourceKey="Steps1"/>
                     </Button.Style>
                     <Viewbox>
                         <TextBlock Text="Выбрать" />
@@ -70,11 +80,7 @@
                 </Button>
             </Grid>
 
-            <Viewbox Grid.Row="2">
-                <TextBlock Text="Настройка поиска и замены содержимого"/>
-            </Viewbox>
-
-            <ItemsControl Grid.Row="3">
+            <ItemsControl Grid.Row="2">
                 <ItemsControl.ItemsSource>
                     <Binding Path="Setters"/>
                 </ItemsControl.ItemsSource>

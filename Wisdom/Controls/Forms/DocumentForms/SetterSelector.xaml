@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Wisdom.Controls.Forms.DocumentForms"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="35" d:DesignWidth="400" x:Name="This">
+    <UserControl.DataContext>
+        <Binding RelativeSource="{RelativeSource Self}"/>
+    </UserControl.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
 
@@ -19,18 +21,25 @@
                 <Binding Path="Expression"/>
             </TextBlock.ToolTip>
             <TextBlock.Style>
-                <StaticResource ResourceKey="RegularBox"/>
+                <StaticResource ResourceKey="Light"/>
             </TextBlock.Style>
             <TextBlock.Text>
                 <Binding Path="Header"/>
             </TextBlock.Text>
+            <TextBlock.TextTrimming>
+                CharacterEllipsis
+            </TextBlock.TextTrimming>
         </TextBlock>
 
 
         <ComboBox Grid.Column="1" FontSize="20" SelectionChanged="SettingChanged">
             <ComboBox.Style>
-                <StaticResource ResourceKey="SubCaptionBox"/>
+                <StaticResource ResourceKey="ImpactBox"/>
             </ComboBox.Style>
+            <ComboBox.ItemContainerStyle>
+                <StaticResource ResourceKey="ItemsBox"/>
+            </ComboBox.ItemContainerStyle>
+            
             <ComboBox.SelectedIndex>
                 <Binding Path="Selected" Mode="TwoWay">
                     <Binding.UpdateSourceTrigger>

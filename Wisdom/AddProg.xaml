@@ -9,20 +9,27 @@
         xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
         mc:Ignorable="d"
         x:Name="DisciplineProgramWindow"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="Редактирование" Height="1080" Width="1920"
+        Title="Редактирование рабочей программы - учебная дисциплина" Height="1080" Width="1920"
         WindowState="Maximized" Icon="Resources/Images/Icons/Wisdom3.ico"
         Closing="DisciplineProgramWindow_Closing">
+    <Window.DataContext>
+        <Binding RelativeSource="{RelativeSource Self}"/>
+    </Window.DataContext>
+    
     <Window.Resources>
         <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
     </Window.Resources>
 
-    <Grid DataContext="{Binding Path=ViewModel}">
+    <Grid>
+        <Grid.DataContext>
+            <Binding Path="ViewModel"/>
+        </Grid.DataContext>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="0.15*"/>
             <RowDefinition Height="0.85*"/>
         </Grid.RowDefinitions>
-        
+
 
         <Grid Background="#FF002FA7" Visibility="Visible">
             <Grid.RowDefinitions>
@@ -155,25 +162,53 @@
 
         <dpforms:HoursPart x:Name="Page1" Grid.Row="1" Visibility="Visible">
             <dpforms:HoursPart.ViewModel>
-                <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
+                <Binding>
+                    <Binding.ElementName>
+                        DisciplineProgramWindow
+                    </Binding.ElementName>
+                    <Binding.Path>
+                        ViewModel
+                    </Binding.Path>
+                </Binding>
             </dpforms:HoursPart.ViewModel>
         </dpforms:HoursPart>
 
         <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1" Visibility="Hidden">
             <dpforms:CompetetionsPart.ViewModel>
-                <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
+                <Binding>
+                    <Binding.ElementName>
+                        DisciplineProgramWindow
+                    </Binding.ElementName>
+                    <Binding.Path>
+                        ViewModel
+                    </Binding.Path>
+                </Binding>
             </dpforms:CompetetionsPart.ViewModel>
         </dpforms:CompetetionsPart>
 
         <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" Visibility="Hidden">
             <dpforms:ThemePlanPart.ViewModel>
-                <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
+                <Binding>
+                    <Binding.ElementName>
+                        DisciplineProgramWindow
+                    </Binding.ElementName>
+                    <Binding.Path>
+                        ViewModel
+                    </Binding.Path>
+                </Binding>
             </dpforms:ThemePlanPart.ViewModel>
         </dpforms:ThemePlanPart>
 
         <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" Visibility="Hidden">
             <dpforms:MetaDataPart.ViewModel>
-                <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
+                <Binding>
+                    <Binding.ElementName>
+                        DisciplineProgramWindow
+                    </Binding.ElementName>
+                    <Binding.Path>
+                        ViewModel
+                    </Binding.Path>
+                </Binding>
             </dpforms:MetaDataPart.ViewModel>
         </dpforms:MetaDataPart>
 

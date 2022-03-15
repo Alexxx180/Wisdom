@@ -15,6 +15,12 @@
         <Setter Property="Control.FontWeight" Value="Bold"/>
     </Style>
 
+    <Style x:Key="ImpactBox" BasedOn="{StaticResource GlobalFont}">
+        <Setter Property="Control.BorderThickness" Value="2"/>
+        <Setter Property="Control.BorderBrush" Value="Black"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+    </Style>
+
     <Style x:Key="HoursBox" TargetType="TextBox" BasedOn="{StaticResource RegularBox}">
         <Setter Property="TextBox.TextAlignment" Value="Right"/>
         <Setter Property="TextBox.MaxLength" Value="3"/>
@@ -22,7 +28,14 @@
         <EventSetter Event="DataObject.Pasting" Handler="PastingHours"/>
     </Style>
 
-    <Style x:Key="HoursCountBox" TargetType="TextBox" BasedOn="{StaticResource CustomBoxLight}">
+    <Style x:Key="HoursBoxLight" TargetType="TextBox" BasedOn="{StaticResource Light}">
+        <Setter Property="TextBox.TextAlignment" Value="Right"/>
+        <Setter Property="TextBox.MaxLength" Value="3"/>
+        <EventSetter Event="PreviewTextInput" Handler="Hours"/>
+        <EventSetter Event="DataObject.Pasting" Handler="PastingHours"/>
+    </Style>
+
+    <Style x:Key="HoursBoxDark" TargetType="TextBox" BasedOn="{StaticResource Dark}">
         <Setter Property="TextBox.TextAlignment" Value="Right"/>
         <Setter Property="TextBox.MaxLength" Value="3"/>
         <EventSetter Event="PreviewTextInput" Handler="Hours"/>

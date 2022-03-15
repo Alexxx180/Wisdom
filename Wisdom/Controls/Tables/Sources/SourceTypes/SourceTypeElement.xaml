@@ -29,7 +29,7 @@
 
             <ComboBox Grid.Column="1" IsEditable="True" FontSize="20">
                 <ComboBox.Style>
-                    <StaticResource ResourceKey="SubCaptionBox"/>
+                    <StaticResource ResourceKey="ImpactBox"/>
                 </ComboBox.Style>
                 <ComboBox.ItemContainerStyle>
                     <StaticResource ResourceKey="ItemsBox"/>

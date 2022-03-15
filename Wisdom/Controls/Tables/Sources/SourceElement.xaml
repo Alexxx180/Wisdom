@@ -47,7 +47,7 @@
                 </Binding>
             </TextBox.TextWrapping>
             <TextBox.Style>
-                <StaticResource ResourceKey="RegularBox"/>
+                <StaticResource ResourceKey="Light"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="Source"/>

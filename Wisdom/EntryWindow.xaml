@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="Вход - система автогенерации"
-        Height="200" Width="300" ResizeMode="NoResize"
+        Height="300" Width="450" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Icon="Resources\Images\Icons\Wisdom3.ico">
     <Grid Style="{StaticResource ListCaptions2}">
@@ -41,7 +41,7 @@
                         <converters:ProcentualHeightConverter/>
                     </Binding.Converter>
                     <Binding.ConverterParameter>
-                        1,6
+                        1,675
                     </Binding.ConverterParameter>
                 </Binding>
             </TextBox.FontSize>
@@ -57,7 +57,7 @@
                         <converters:ProcentualHeightConverter/>
                     </Binding.Converter>
                     <Binding.ConverterParameter>
-                        1,6
+                        1,675
                     </Binding.ConverterParameter>
                 </Binding>
             </PasswordBox.FontSize>
@@ -74,7 +74,7 @@
                     <Binding Path="MemberMe" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" />
                 </CheckBox.IsChecked>
                 <CheckBox.Content>
-                    <TextBlock Text="Запомнить меня"/>
+                    <TextBlock Text=" Запомнить меня"/>
                 </CheckBox.Content>
             </CheckBox>
         </Viewbox>
@@ -88,7 +88,7 @@
                 <ColumnDefinition Width="0.1*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Click="LogInClick" IsDefault="True" Style="{StaticResource Steps2}">
+            <Button Grid.Column="1" Click="LogInClick" IsDefault="True" Style="{StaticResource Steps1}">
                 <Button.ToolTip>
                     <TextBlock Text="Войти в систему, используя 'Логин' и 'Пароль' пользователя"/>
                 </Button.ToolTip>

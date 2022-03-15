@@ -48,25 +48,33 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                
-                <forms:Switcher Text="Метаданные"
-                                    Group="{Binding ElementName=MetaGroup}"
-                                    Element="{Binding ElementName=MetaData}">
+
+                <forms:Switcher Text="Метаданные">
+                    <forms:Switcher.Group>
+                        <Binding ElementName="MetaGroup"/>
+                    </forms:Switcher.Group>
+                    <forms:Switcher.Element>
+                        <Binding ElementName="MetaData"/>
+                    </forms:Switcher.Element>
                     <forms:Switcher.ViewStyle>
                         <StaticResource ResourceKey="Steps3"/>
                     </forms:Switcher.ViewStyle>
                 </forms:Switcher>
 
-                <forms:Switcher Grid.Column="1" Text="Источники"
-                                    Group="{Binding ElementName=MetaGroup}"
-                                    Element="{Binding ElementName=EducationSources}">
+                <forms:Switcher Text="Источники" Grid.Column="1">
+                    <forms:Switcher.Group>
+                        <Binding ElementName="MetaGroup"/>
+                    </forms:Switcher.Group>
+                    <forms:Switcher.Element>
+                        <Binding ElementName="EducationSources"/>
+                    </forms:Switcher.Element>
                     <forms:Switcher.ViewStyle>
                         <StaticResource ResourceKey="Steps3"/>
                     </forms:Switcher.ViewStyle>
                 </forms:Switcher>
             </Grid>
 
-            <ScrollViewer Grid.Row="1" Visibility="Visible">
+            <ScrollViewer x:Name="MetaData" Visibility="Hidden" Grid.Row="1">
                 <ScrollViewer.VerticalScrollBarVisibility>
                     Auto
                 </ScrollViewer.VerticalScrollBarVisibility>
@@ -85,40 +93,41 @@
                 </StackPanel>
             </ScrollViewer>
 
-            <Grid x:Name="EducationSources" Grid.Row="1" Grid.Column="1" Background="#FFFFFCC7" Visibility="Hidden">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.05*"/>
-                    <RowDefinition Height="0.95*"/>
-                </Grid.RowDefinitions>
+            <ScrollViewer x:Name="EducationSources" Visibility="Visible" Grid.Row="1" Grid.Column="1">
+                <ScrollViewer.VerticalScrollBarVisibility>
+                    Auto
+                </ScrollViewer.VerticalScrollBarVisibility>
+                <StackPanel>
+                    <ItemsControl>
+                        <ItemsControl.ItemsSource>
+                            <Binding Path="Sources"/>
+                        </ItemsControl.ItemsSource>
+                    </ItemsControl>
 
-                <Border Background="#FF03C6FF">
-                    <Viewbox Style="{StaticResource ResourceKey=ListCaptions}">
-                        <TextBlock Text="Источники и литература"/>
-                    </Viewbox>
-                </Border>
-
-                <ScrollViewer Grid.Row="1" Grid.Column="1">
-                    <ScrollViewer.VerticalScrollBarVisibility>
-                        Auto
-                    </ScrollViewer.VerticalScrollBarVisibility>
-                    <StackPanel>
-                        <ItemsControl>
-                            <ItemsControl.ItemsSource>
-                                <Binding Path="Sources"/>
-                            </ItemsControl.ItemsSource>
-                        </ItemsControl>
-
-                        <sources:SourceTypeElementAdditor>
-                            <sources:SourceTypeElementAdditor.Types>
-                                <Binding ElementName="TreeContext" Path="DataContext.SourceTypes" />
-                            </sources:SourceTypeElementAdditor.Types>
-                            <sources:SourceTypeElementAdditor.Group>
-                                <Binding ElementName="TreeContext" Path="DataContext.Sources" />
-                            </sources:SourceTypeElementAdditor.Group>
-                        </sources:SourceTypeElementAdditor>
-                    </StackPanel>
-                </ScrollViewer>
-            </Grid>
+                    <sources:SourceTypeElementAdditor>
+                        <sources:SourceTypeElementAdditor.Types>
+                            <Binding>
+                                <Binding.ElementName>
+                                    TreeContext
+                                </Binding.ElementName>
+                                <Binding.Path>
+                                    DataContext.SourceTypes
+                                </Binding.Path>
+                            </Binding>
+                        </sources:SourceTypeElementAdditor.Types>
+                        <sources:SourceTypeElementAdditor.Group>
+                            <Binding>
+                                <Binding.ElementName>
+                                    TreeContext
+                                </Binding.ElementName>
+                                <Binding.Path>
+                                    DataContext.Sources
+                                </Binding.Path>
+                            </Binding>
+                        </sources:SourceTypeElementAdditor.Group>
+                    </sources:SourceTypeElementAdditor>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

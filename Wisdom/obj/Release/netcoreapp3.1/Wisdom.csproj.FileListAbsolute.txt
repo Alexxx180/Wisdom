@@ -227,7 +227,6 @@ D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Interop.Microsoft.Office.Interop.Word.dll
-D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Interop.Microsoft.Office.Interop.Word.dll
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.ResolveComReference.cache
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Forms\MainForm\MainPart.baml
@@ -340,3 +339,4 @@ D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.dll
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.pdb
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.genruntimeconfig.cache
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache
