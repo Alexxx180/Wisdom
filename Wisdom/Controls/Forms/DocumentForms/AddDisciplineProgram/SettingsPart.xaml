@@ -46,7 +46,7 @@
 
                 <TextBox Grid.Column="1" FontWeight="Bold">
                     <TextBox.Style>
-                        <StaticResource ResourceKey="Light"/>
+                        <StaticResource ResourceKey="LightBox"/>
                     </TextBox.Style>
                     <TextBox.Text>
                         <Binding Path="FullPath" Mode="TwoWay">

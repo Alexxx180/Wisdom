@@ -120,17 +120,17 @@ D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdo
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\UnitTests\obj\Release\net5.0-windows\UnitTests.pdb
 D:\Aleksandr\Windows-7\misc\Надгробные плиты\PL-Projects\C#\Wisdom\UnitTests\obj\Release\net5.0-windows\UnitTests.genruntimeconfig.cache
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\CoverletSourceRootsMapping
-D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\testhost.exe
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\testhost.dll
-D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
-D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
-D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
-D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Microsoft.TestPlatform.AdapterUtilities.dll
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Wisdom.deps.json
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Wisdom.runtimeconfig.json
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Wisdom.runtimeconfig.dev.json
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Wisdom.exe
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\testhost.exe
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Microsoft.TestPlatform.PlatformAbstractions.dll
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Microsoft.TestPlatform.AdapterUtilities.dll
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\UnitTests\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json

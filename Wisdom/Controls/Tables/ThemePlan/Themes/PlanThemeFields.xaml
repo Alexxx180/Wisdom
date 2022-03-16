@@ -7,7 +7,7 @@
              d:DesignHeight="35" d:DesignWidth="800">
     <Grid Grid.Row="1" Background="Aquamarine" Style="{StaticResource ListCaptions}" Height="35">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="40" />
             <ColumnDefinition Width="0.15*" />
             <ColumnDefinition Width="0.475*" />
             <ColumnDefinition Width="0.19*" />

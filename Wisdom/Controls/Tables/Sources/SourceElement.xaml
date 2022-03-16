@@ -17,7 +17,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="40" />
             <ColumnDefinition Width="0.15*" />
             <ColumnDefinition Width="0.8*" />
         </Grid.ColumnDefinitions>
@@ -47,7 +47,7 @@
                 </Binding>
             </TextBox.TextWrapping>
             <TextBox.Style>
-                <StaticResource ResourceKey="Light"/>
+                <StaticResource ResourceKey="LightBox"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="Source"/>

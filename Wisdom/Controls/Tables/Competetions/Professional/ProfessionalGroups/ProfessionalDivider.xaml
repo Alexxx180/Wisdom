@@ -21,7 +21,7 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.05*" />
+                <ColumnDefinition Width="40" />
                 <ColumnDefinition Width="0.95*" />
             </Grid.ColumnDefinitions>
 
@@ -32,35 +32,45 @@
                 </Button.Style>
             </Button>
 
-            <Grid Grid.Column="1" Background="#FF03C6FF">
+            <Grid Grid.Column="1" Style="{StaticResource Dark}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock>
-                    <TextBlock.Text>
-                        <Binding Path="Prefix"/>
-                    </TextBlock.Text>
-                    <TextBlock.Style>
-                        <StaticResource ResourceKey="ListCaptions"/>
-                    </TextBlock.Style>
-                </TextBlock>
-                <TextBox Grid.Column="1">
-                    <TextBox.Style>
-                        <StaticResource ResourceKey="DividerBox"/>
-                    </TextBox.Style>
-                    <TextBox.Text>
-                        <Binding Path="DividerNo" Mode="TwoWay">
-                            <Binding.UpdateSourceTrigger>
-                                LostFocus
-                            </Binding.UpdateSourceTrigger>
-                        </Binding>
-                    </TextBox.Text>
-                    <TextBox.IsEnabled>
-                        <Binding Path="Options.IsManual" />
-                    </TextBox.IsEnabled>
-                </TextBox>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock>
+                        <TextBlock.Style>
+                            <StaticResource ResourceKey="No2"/>
+                        </TextBlock.Style>
+                        <TextBlock.Text>
+                            <Binding Path="Prefix"/>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBox Grid.Column="1">
+                        <TextBox.Style>
+                            <StaticResource ResourceKey="DividerBox"/>
+                        </TextBox.Style>
+                        <TextBox.Text>
+                            <Binding Path="DividerNo" Mode="TwoWay">
+                                <Binding.UpdateSourceTrigger>
+                                    LostFocus
+                                </Binding.UpdateSourceTrigger>
+                            </Binding>
+                        </TextBox.Text>
+                        <TextBox.IsEnabled>
+                            <Binding Path="Options.IsManual" />
+                        </TextBox.IsEnabled>
+                    </TextBox>
+                </Grid>
+
+                <TextBlock Grid.Column="1" Text=" Сведения"/>
             </Grid>
         </Grid>
 

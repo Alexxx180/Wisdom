@@ -7,7 +7,7 @@
              d:DesignHeight="35" d:DesignWidth="800">
     <Grid Style="{StaticResource Dark}" TextBlock.FontWeight="Bold">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="40" />
             <ColumnDefinition Width="0.15*" />
             <ColumnDefinition Width="0.3*" />
             <ColumnDefinition Width="0.5*" />

@@ -8,7 +8,7 @@
              d:DesignHeight="45" d:DesignWidth="800">
     <Grid Background="#777FFFD4">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="40" />
             <ColumnDefinition Width="0.15*" />
             <ColumnDefinition Width="0.475*" />
             <ColumnDefinition Width="0.19*" />
@@ -46,7 +46,7 @@
         
         <TextBox Grid.Column="3">
             <TextBox.Style>
-                <StaticResource ResourceKey="RegularBox"/>
+                <StaticResource ResourceKey="LightBox"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="ThemeCompetetions" Mode="TwoWay">

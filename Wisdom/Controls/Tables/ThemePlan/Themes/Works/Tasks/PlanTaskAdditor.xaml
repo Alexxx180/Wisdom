@@ -8,7 +8,7 @@
              d:DesignHeight="35" d:DesignWidth="600">
     <Grid Height="35">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="40" />
             <ColumnDefinition Width="0.15*" />
             <ColumnDefinition Width="0.7*" />
             <ColumnDefinition Width="0.1*" />
@@ -32,7 +32,7 @@
 
         <TextBox Grid.Column="2">
             <TextBox.Style>
-                <StaticResource ResourceKey="RegularBox"/>
+                <StaticResource ResourceKey="LightBox"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="TaskName" Mode="TwoWay">

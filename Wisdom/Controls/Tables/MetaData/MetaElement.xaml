@@ -17,7 +17,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="40"/>
             <ColumnDefinition Width="0.45*"/>
             <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
@@ -31,7 +31,7 @@
 
         <TextBox Grid.Column="1">
             <TextBox.Style>
-                <StaticResource ResourceKey="Light"/>
+                <StaticResource ResourceKey="LightBox"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="MetaName" Mode="TwoWay">
@@ -51,7 +51,7 @@
                 </Binding>
             </TextBox.TextWrapping>
             <TextBox.Style>
-                <StaticResource ResourceKey="Light"/>
+                <StaticResource ResourceKey="LightBox"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="MetaValue" Mode="TwoWay">

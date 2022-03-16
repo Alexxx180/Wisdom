@@ -6,10 +6,10 @@
              xmlns:types="clr-namespace:Wisdom.Model.Documents"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="41" Height="41" d:DesignWidth="900" BorderBrush="#FFEEEBB6" BorderThickness="3">
+             d:DesignHeight="41" Height="41" d:DesignWidth="900" BorderBrush="#FFEEEBB6">
     <Grid Height="35">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*"/>
+            <ColumnDefinition Width="40"/>
             <ColumnDefinition Width="0.75*"/>
             <ColumnDefinition Width="0.2*"/>
         </Grid.ColumnDefinitions>

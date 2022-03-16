@@ -59,7 +59,7 @@
 
                 <TextBox MaxLength="255">
                     <TextBox.Style>
-                        <StaticResource ResourceKey="Dark"/>
+                        <StaticResource ResourceKey="DarkBox"/>
                     </TextBox.Style>
                     <TextBox.Text>
                         <Binding ElementName="DisciplineProgramWindow" Path="FileName"/>
@@ -158,14 +158,37 @@
                     </forms:Switcher>
                 </Grid>
 
-                <Button Click="MakeUserTemplate" Grid.Column="6" Style="{StaticResource Steps}">
+                <Button Click="MakeUserTemplate">
+                    <Grid.Column>
+                        6
+                    </Grid.Column>
+
+                    <Button.IsCancel>
+                        True
+                    </Button.IsCancel>
+                    
+                    <Button.Style>
+                        <StaticResource ResourceKey="Steps"/>
+                    </Button.Style>
+                    
                     <Viewbox>
                         <TextBlock Text="★" />
                     </Viewbox>
                 </Button>
 
-                <Button x:Name="Create" Click="Create_Click" Grid.Column="8"
-                        IsDefault="True" Style="{StaticResource Steps}" TextBlock.FontWeight="Bold">
+                <Button Click="Create_Click" x:Name="Create">
+                    <Grid.Column>
+                        8
+                    </Grid.Column>
+
+                    <Button.IsDefault>
+                        True
+                    </Button.IsDefault>
+                    
+                    <Button.Style>
+                        <StaticResource ResourceKey="Steps"/>
+                    </Button.Style>
+
                     <Viewbox>
                         <TextBlock Text="Подтвердить" Padding="2" />
                     </Viewbox>
@@ -173,7 +196,7 @@
             </Grid>
         </Grid>
 
-        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" Visibility="Visible">
+        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" Visibility="Hidden">
             <dpforms:HoursPart.ViewModel>
                 <Binding>
                     <Binding.ElementName>
@@ -199,7 +222,7 @@
             </dpforms:CompetetionsPart.ViewModel>
         </dpforms:CompetetionsPart>
 
-        <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" Visibility="Hidden">
+        <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" Visibility="Visible">
             <dpforms:ThemePlanPart.ViewModel>
                 <Binding>
                     <Binding.ElementName>
