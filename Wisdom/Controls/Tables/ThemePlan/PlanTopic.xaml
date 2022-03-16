@@ -7,7 +7,7 @@
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="80" d:DesignWidth="800" x:Name="This" BorderBrush="#FF03C6FF">
+             d:DesignHeight="80" d:DesignWidth="800" x:Name="This" FontWeight="Bold">
     <UserControl.Style>
         <StaticResource ResourceKey="MultiRecord"/>
     </UserControl.Style>
@@ -26,12 +26,12 @@
         </Grid.RowDefinitions>
 
 
-        <Grid Background="#7703C6FF">
+        <Grid Style="{StaticResource Light}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="0.15*" />
-                <ColumnDefinition Width="0.65*" />
-                <ColumnDefinition Width="0.15*" />
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition/>
+                <ColumnDefinition Width="60" />
             </Grid.ColumnDefinitions>
 
             <Button Click="DropTopic" Height="35">
@@ -58,7 +58,7 @@
                     </Binding>
                 </TextBox.TextWrapping>
                 <TextBox.Style>
-                    <StaticResource ResourceKey="SubCaptionBox"/>
+                    <StaticResource ResourceKey="LightBox"/>
                 </TextBox.Style>
                 <TextBox.Text>
                     <Binding Path="TopicName" Mode="TwoWay">
@@ -71,7 +71,7 @@
 
             <TextBox Grid.Column="3">
                 <TextBox.Style>
-                    <StaticResource ResourceKey="HoursBox"/>
+                    <StaticResource ResourceKey="HoursBoxLight"/>
                 </TextBox.Style>
                 <TextBox.Background>
                     <MultiBinding>

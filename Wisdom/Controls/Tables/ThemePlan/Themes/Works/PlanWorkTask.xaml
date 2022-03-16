@@ -6,12 +6,12 @@
              mc:Ignorable="d"
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="45" d:DesignWidth="900">
-    <Grid Background="#FFEEEBB6">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="0.35*"/>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="60"/>
         </Grid.ColumnDefinitions>
 
         
@@ -20,15 +20,21 @@
                 <StaticResource ResourceKey="DeleteButton"/>
             </Button.Style>
         </Button>
-        
-        <TextBlock Grid.Column="1">
-            <TextBlock.Style>
-                <StaticResource ResourceKey="No2"/>
-            </TextBlock.Style>
-            <TextBlock.Text>
-                <Binding Path="WorkType"/>
-            </TextBlock.Text>
-        </TextBlock>
+
+        <Border Grid.Column="1">
+            <Border.Style>
+                <StaticResource ResourceKey="Neutral"/>
+            </Border.Style>
+
+            <TextBlock>
+                <TextBlock.Style>
+                    <StaticResource ResourceKey="No2"/>
+                </TextBlock.Style>
+                <TextBlock.Text>
+                    <Binding Path="WorkType"/>
+                </TextBlock.Text>
+            </TextBlock>
+        </Border>
         
         <TextBox Grid.Column="2">
             <TextBox.Style>
@@ -45,7 +51,7 @@
         
         <TextBox Grid.Column="3">
             <TextBox.Style>
-                <StaticResource ResourceKey="HoursBox"/>
+                <StaticResource ResourceKey="HoursBoxLight"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="TaskHours" Mode="TwoWay">

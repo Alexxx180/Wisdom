@@ -25,6 +25,17 @@
     </Style>
 
 
+    <Style x:Key="Neutral" BasedOn="{StaticResource GlobalFont}">
+        <Setter Property="Control.Foreground" Value="#FF000000"/>
+        <Setter Property="Control.BorderBrush" Value="#FF000000"/>
+        <Setter Property="Control.BorderThickness" Value="1"/>
+        <Setter Property="Control.FontSize" Value="24"/>
+    </Style>
+
+    <Style x:Key="NeutralPad" BasedOn="{StaticResource Neutral}">
+        <Setter Property="Control.Padding" Value="5,0,5,0"/>
+    </Style>
+
     <Style x:Key="Dark" BasedOn="{StaticResource GlobalFont}">
         <Setter Property="Control.Background" Value="#FF002FA7"/>
         <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>

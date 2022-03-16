@@ -7,7 +7,7 @@
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="111" d:DesignWidth="800" x:Name="This" BorderBrush="#FFEEEBB6">
+             d:DesignHeight="111" d:DesignWidth="800" x:Name="This">
     <UserControl.Style>
         <StaticResource ResourceKey="Extendable"/>
     </UserControl.Style>
@@ -16,7 +16,7 @@
         <converters:ExtendConverter x:Key="ExtendConverter"/>
     </UserControl.Resources>
     
-    <Grid Background="#FFEEEBB6">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition/>
@@ -25,7 +25,8 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="0.95*" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <Button Click="DropRecord">
@@ -33,9 +34,9 @@
                     <StaticResource ResourceKey="DeleteButton"/>
                 </Button.Style>
             </Button>
-            <TextBlock Grid.Column="1">
+            <TextBlock Grid.Column="2">
                 <TextBlock.Style>
-                    <StaticResource ResourceKey="RegularSections"/>
+                    <StaticResource ResourceKey="Neutral"/>
                 </TextBlock.Style>
                 <TextBlock.Text>
                     <Binding Path="WorkType"/>

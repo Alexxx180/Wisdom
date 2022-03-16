@@ -6,12 +6,12 @@
              xmlns:types="clr-namespace:Wisdom.Model.Documents"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="41" Height="41" d:DesignWidth="900" BorderBrush="#FFEEEBB6">
-    <Grid Height="35">
+             d:DesignHeight="35" Height="35" d:DesignWidth="900">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="0.75*"/>
-            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
 
         
@@ -54,7 +54,7 @@
                     </Binding>
                 </CheckBox.IsChecked>
                 <CheckBox.Content>
-                    <TextBlock Text="Группа"/>
+                    <TextBlock Text=" Группа"/>
                 </CheckBox.Content>
             </CheckBox>
         </Viewbox>

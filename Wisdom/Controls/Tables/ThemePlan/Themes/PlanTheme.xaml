@@ -7,7 +7,7 @@
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="79" d:DesignWidth="800" x:Name="This" BorderBrush="#FF7FFFD4">
+             d:DesignHeight="79" d:DesignWidth="800" x:Name="This">
     <UserControl.Style>
         <StaticResource ResourceKey="MultiRecord"/>
     </UserControl.Style>
@@ -25,14 +25,14 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid Background="#777FFFD4">
+        <Grid Style="{StaticResource Dark}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="0.15*" />
-                <ColumnDefinition Width="0.475*" />
-                <ColumnDefinition Width="0.19*" />
-                <ColumnDefinition Width="0.05*" />
-                <ColumnDefinition Width="0.085*" />
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition Width="0.75*" />
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="60" />
             </Grid.ColumnDefinitions>
 
             <Button Click="DropTheme" Height="35">
@@ -59,7 +59,7 @@
                     </Binding>
                 </TextBox.TextWrapping>
                 <TextBox.Style>
-                    <StaticResource ResourceKey="SubCaptionBox"/>
+                    <StaticResource ResourceKey="LightBox"/>
                 </TextBox.Style>
                 <TextBox.Text>
                     <Binding Path="ThemeName" Mode="TwoWay">
@@ -102,7 +102,7 @@
 
             <TextBox Grid.Column="5">
                 <TextBox.Style>
-                    <StaticResource ResourceKey="HoursBox"/>
+                    <StaticResource ResourceKey="HoursBoxLight"/>
                 </TextBox.Style>
                 <TextBox.Text>
                     <Binding Path="ThemeHours" Mode="TwoWay">

@@ -217,7 +217,7 @@
             <Grid x:Name="TotalHoursCountPanel" Grid.Row="7" Grid.Column="1" Grid.RowSpan="12">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.9*"/>
-                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
 
 

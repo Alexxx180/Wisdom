@@ -339,3 +339,4 @@ D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.dll
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.pdb
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.genruntimeconfig.cache
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache

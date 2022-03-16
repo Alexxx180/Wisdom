@@ -9,9 +9,9 @@
     <Grid Height="35">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="0.15*" />
+            <ColumnDefinition Width="90" />
             <ColumnDefinition Width="0.7*" />
-            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="60" />
         </Grid.ColumnDefinitions>
 
 
@@ -45,7 +45,7 @@
 
         <TextBox Grid.Column="3">
             <TextBox.Style>
-                <StaticResource ResourceKey="HoursBox"/>
+                <StaticResource ResourceKey="HoursBoxLight"/>
             </TextBox.Style>
             <TextBox.Text>
                 <Binding Path="TaskHours" Mode="TwoWay">
