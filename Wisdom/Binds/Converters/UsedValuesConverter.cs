@@ -25,7 +25,7 @@ namespace Wisdom.Binds.Converters
                 sum += values[i].ConvertHours();
             }
 
-            Color defaultColor = Rgb(255, 252, 199);
+            Color defaultColor = Rgb(255, 255, 255);
             Color[] colors = {
                 Rgb(255, 152, 99),
                 Rgb(155, 252, 199)

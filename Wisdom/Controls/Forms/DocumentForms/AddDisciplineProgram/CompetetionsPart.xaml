@@ -109,7 +109,7 @@
                 </tables:AutoPanel.Additor>
             </tables:AutoPanel>
 
-            <tables:AutoPanel Grid.Row="1" x:Name="Professional" Visibility="Visible">
+            <tables:AutoPanel Grid.Row="1" x:Name="Professional" Visibility="Hidden">
                 <tables:AutoPanel.Records>
                     <Binding>
                         <Binding.ElementName>

@@ -8,7 +8,7 @@
     <Grid Style="{StaticResource Dark}" TextBlock.FontWeight="Bold">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="0.15*" />
+            <ColumnDefinition Width="90" />
             <ColumnDefinition Width="0.3*" />
             <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>

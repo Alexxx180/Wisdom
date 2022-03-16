@@ -93,7 +93,7 @@
                 </StackPanel>
             </ScrollViewer>
 
-            <ScrollViewer x:Name="EducationSources" Visibility="Visible" Grid.Row="1" Grid.Column="1">
+            <ScrollViewer x:Name="EducationSources" Visibility="Hidden" Grid.Row="1" Grid.Column="1">
                 <ScrollViewer.VerticalScrollBarVisibility>
                     Auto
                 </ScrollViewer.VerticalScrollBarVisibility>
