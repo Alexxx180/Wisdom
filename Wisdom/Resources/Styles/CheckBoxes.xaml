@@ -4,6 +4,8 @@
         <Setter Property="Control.Background" Value="{x:Null}"/>
         <Setter Property="Control.FontFamily" Value="Gill Sans Ultra Bold"/>
         <Setter Property="Control.HorizontalAlignment" Value="Center"/>
+        <Setter Property="Control.HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Control.VerticalAlignment" Value="Center"/>
+        <Setter Property="Control.VerticalContentAlignment" Value="Center"/>
     </Style>
 </ResourceDictionary>

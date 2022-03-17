@@ -37,7 +37,7 @@
                     <TextBlock Text="Мудрость" FontWeight="Bold" />
                 </Viewbox>
 
-                <Button Grid.Column="1" Click="SelectTemplatesDirectory" BorderThickness="0">
+                <Button Grid.Column="1" Click="SelectTemplatesDirectory">
                     <Button.Style>
                         <StaticResource ResourceKey="Steps2"/>
                     </Button.Style>

@@ -57,7 +57,7 @@
                         <Binding ElementName="MetaData"/>
                     </forms:Switcher.Element>
                     <forms:Switcher.ViewStyle>
-                        <StaticResource ResourceKey="Steps3"/>
+                        <StaticResource ResourceKey="AutoSteps"/>
                     </forms:Switcher.ViewStyle>
                 </forms:Switcher>
 
@@ -69,7 +69,7 @@
                         <Binding ElementName="EducationSources"/>
                     </forms:Switcher.Element>
                     <forms:Switcher.ViewStyle>
-                        <StaticResource ResourceKey="Steps3"/>
+                        <StaticResource ResourceKey="AutoSteps"/>
                     </forms:Switcher.ViewStyle>
                 </forms:Switcher>
             </Grid>

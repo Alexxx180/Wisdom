@@ -55,7 +55,7 @@
 
                 <forms:Switcher>
                     <forms:Switcher.ViewStyle>
-                        <StaticResource ResourceKey="Steps3"/>
+                        <StaticResource ResourceKey="AutoSteps"/>
                     </forms:Switcher.ViewStyle>
                     <forms:Switcher.Text>
                         Тематический план
@@ -70,7 +70,7 @@
 
                 <forms:Switcher Grid.Column="1">
                     <forms:Switcher.ViewStyle>
-                        <StaticResource ResourceKey="Steps3"/>
+                        <StaticResource ResourceKey="AutoSteps"/>
                     </forms:Switcher.ViewStyle>
                     <forms:Switcher.Text>
                         Уровни компетенций

@@ -59,7 +59,7 @@
                                     Group="{Binding ElementName=CompetetionsGroup}"
                                     Element="{Binding ElementName=General}">
                     <forms:Switcher.ViewStyle>
-                        <StaticResource ResourceKey="Steps3"/>
+                        <StaticResource ResourceKey="AutoSteps"/>
                     </forms:Switcher.ViewStyle>
                 </forms:Switcher>
 
@@ -67,7 +67,7 @@
                                     Group="{Binding ElementName=CompetetionsGroup}"
                                     Element="{Binding ElementName=Professional}">
                     <forms:Switcher.ViewStyle>
-                        <StaticResource ResourceKey="Steps3"/>
+                        <StaticResource ResourceKey="AutoSteps"/>
                     </forms:Switcher.ViewStyle>
                 </forms:Switcher>
             </Grid>

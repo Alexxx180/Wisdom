@@ -5494,19 +5494,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Администратор\\.nuget\\packages\\": {}
+    "C:\\Users\\user\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Desktop\\Wisdom\\Wisdom\\Wisdom.csproj",
       "projectName": "Wisdom",
-      "projectPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
-      "packagesPath": "C:\\Users\\Администратор\\.nuget\\packages\\",
-      "outputPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\obj\\",
+      "projectPath": "C:\\Users\\user\\Desktop\\Wisdom\\Wisdom\\Wisdom.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\user\\Desktop\\Wisdom\\Wisdom\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Администратор\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5575,7 +5579,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
