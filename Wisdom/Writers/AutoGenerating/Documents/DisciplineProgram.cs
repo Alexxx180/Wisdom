@@ -3,6 +3,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using Wisdom.Model;
 using Wisdom.Model.Tables.ThemePlan;
 using Wisdom.Model.Tables;
+using Wisdom.Customing;
 using static Wisdom.Writers.AutoGenerating.AutoFiller;
 using static Wisdom.Writers.Markup.DisciplineProgramMarkup;
 
@@ -25,9 +26,11 @@ namespace Wisdom.Writers.AutoGenerating.Documents
                 new Pair<string, string>("Название дисциплины", "#DISCIPLINE"),
                 new Pair<string, string>("Название специальности", "#SPECIALITY"),
                 new Pair<string, string>("Максимальная нагрузка", "#MAX-HOURS"),
-                new Pair<string, string>("Аудиторная нагрузка", "#AUD-HOURS"),
+                new Pair<string, string>("Аудиторная нагрузка", "#CLASS-TOTAL"),
+                new Pair<string, string>("Самостоятельная нагрузка", "#SELF-TOTAL"),
                 new Pair<string, string>("Метаданные (Группа)", "#META-"),
-                new Pair<string, string>("Общие часы (Группа)", "#HOURS-")
+                new Pair<string, string>("Аудиторные часы (Группа)", "#CLASS-"),
+                new Pair<string, string>("Практические часы (Группа)", "#SELF-")
             };
 
         public static string MetaData(Task task)
@@ -60,17 +63,29 @@ namespace Wisdom.Writers.AutoGenerating.Documents
             CustomizeableProcessing(paragraphs, cells,
                 options[max], max, program.MaxHours);
 
-            string auditory = Expressions[3].Value;
-            CustomizeableProcessing(paragraphs, cells,
-                options[auditory], auditory, program.EduHours);
+            string classTotal = Expressions[3].Value;
+            CustomizeableProcessing(paragraphs,
+                cells, options[classTotal], classTotal,
+                program.ClassHours.Sum().ToString());
 
-            string meta = Expressions[4].Value;
+            string selfTotal = Expressions[4].Value;
+            CustomizeableProcessing(paragraphs,
+                cells, options[selfTotal], selfTotal,
+                program.SelfHours.Sum().ToString());
+
+            string meta = Expressions[5].Value;
             CustomizeableProcessing(paragraphs, cells,
                 options[meta], meta, program.MetaData, MetaData);
 
-            string hours = Expressions[5].Value;
+            string classHours = Expressions[6].Value;
             CustomizeableProcessing(paragraphs, cells,
-                options[hours], hours, program.Hours, Hours);
+                options[classHours], classHours,
+                program.ClassHours, Hours);
+
+            string selfHours = Expressions[7].Value;
+            CustomizeableProcessing(paragraphs, cells,
+                options[selfHours], selfHours,
+                program.SelfHours, Hours);
         }
 
         protected override void DetailProcessing(

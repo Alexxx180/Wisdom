@@ -9,27 +9,13 @@
 
     <Style x:Key="GlobalFont" BasedOn="{StaticResource Box}">
         <Setter Property="Control.FontFamily" Value="Lucida Sans Unicode"/>
+        <Setter Property="Control.FontSize" Value="24"/>
     </Style>
-    
-    <Style x:Key="InverseBox" BasedOn="{StaticResource Box}">
-        <Setter Property="Control.Foreground" Value="White"/>
-        <Setter Property="Control.BorderBrush" Value="Black"/>
-    </Style>
-
-    <Style x:Key="RegularBox" BasedOn="{StaticResource Box}">
-        <Setter Property="Control.Background" Value="{x:Null}"/>
-        <Setter Property="Control.Foreground" Value="Black"/>
-        <Setter Property="Control.BorderBrush" Value="#FF00A2E8"/>
-        <Setter Property="Control.BorderThickness" Value="1"/>
-        <Setter Property="Control.FontSize" Value="26"/>
-    </Style>
-
 
     <Style x:Key="Neutral" BasedOn="{StaticResource GlobalFont}">
         <Setter Property="Control.Foreground" Value="#FF000000"/>
         <Setter Property="Control.BorderBrush" Value="#FF000000"/>
         <Setter Property="Control.BorderThickness" Value="1"/>
-        <Setter Property="Control.FontSize" Value="24"/>
     </Style>
 
     <Style x:Key="NeutralPad" BasedOn="{StaticResource Neutral}">
@@ -41,7 +27,6 @@
         <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>
         <Setter Property="Control.BorderBrush" Value="#FFFFFFFF"/>
         <Setter Property="Control.BorderThickness" Value="1"/>
-        <Setter Property="Control.FontSize" Value="24"/>
     </Style>
 
     <Style x:Key="Light" BasedOn="{StaticResource GlobalFont}">
@@ -49,7 +34,6 @@
         <Setter Property="Control.Foreground" Value="#FF002FA7"/>
         <Setter Property="Control.BorderBrush" Value="#FF002FA7"/>
         <Setter Property="Control.BorderThickness" Value="1"/>
-        <Setter Property="Control.FontSize" Value="24"/>
     </Style>
 
     <Style x:Key="LightBox" BasedOn="{StaticResource Light}">
@@ -62,18 +46,11 @@
         <Setter Property="TextBox.Padding" Value="5,0,5,0"/>
     </Style>
 
-    <Style x:Key="ThemePlan">
-        <Setter Property="Control.Background" Value="#FFFFFFC7"/>
-        <Setter Property="Control.FontWeight" Value="Bold"/>
+    <Style x:Key="InverseBox" BasedOn="{StaticResource Box}">
+        <Setter Property="Control.Foreground" Value="White"/>
+        <Setter Property="Control.BorderBrush" Value="Black"/>
     </Style>
-
-    <Style x:Key="ListCaptions2">
-        <Setter Property="Control.Background" Value="#FFF5FFFF"/>
-        <Setter Property="Control.Foreground" Value="#FF474747"/>
-        <Setter Property="Control.FontSize" Value="26"/>
-        <Setter Property="Control.FontWeight" Value="Bold"/>
-    </Style>
-
+    
     <Style x:Key="AddAccent" BasedOn="{StaticResource InverseBox}">
         <Setter Property="Control.Background" Value="#FF00FF2A"/>
     </Style>
@@ -82,30 +59,12 @@
         <Setter Property="Control.Background" Value="#FFFF2A2A"/>
     </Style>
 
-    <Style x:Key="ListCaptions">
-        <Setter Property="Control.Background" Value="#FF03C6FF"/>
-        <Setter Property="Control.Foreground" Value="White"/>
-        <Setter Property="Control.FontSize" Value="26"/>
-        <Setter Property="Control.FontWeight" Value="Bold"/>
-    </Style>
-
     <Style x:Key="No1" BasedOn="{StaticResource GlobalFont}">
         <Setter Property="Control.HorizontalAlignment" Value="Right"/>
-        <Setter Property="Control.FontSize" Value="24"/>
+        
     </Style>
 
     <Style x:Key="No2" BasedOn="{StaticResource GlobalFont}">
         <Setter Property="Control.HorizontalAlignment" Value="Center"/>
-        <Setter Property="Control.FontSize" Value="24"/>
-    </Style>
-
-    <Style x:Key="CaptionSections">
-        <Setter Property="Control.HorizontalAlignment" Value="Right"/>
-        <Setter Property="Control.FontWeight" Value="Bold"/>
-    </Style>
-
-    <Style x:Key="RegularSections">
-        <Setter Property="Control.HorizontalAlignment" Value="Left"/>
-        <Setter Property="Control.FontSize" Value="26"/>
     </Style>
 </ResourceDictionary>

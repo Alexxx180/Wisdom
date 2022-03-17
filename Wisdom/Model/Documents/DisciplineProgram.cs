@@ -24,9 +24,8 @@ namespace Wisdom.Model.Documents
         private void SetHours()
         {
             MaxHours = "-";
-            EduHours = "-";
-            SelfHours = "-";
-            Hours = new List<Hour>();
+            SelfHours = new List<Hour>();
+            ClassHours = new List<Hour>();
         }
 
         // Speciality
@@ -34,9 +33,8 @@ namespace Wisdom.Model.Documents
 
         // Total hours count (user preset)
         public string MaxHours { get; set; }
-        public string EduHours { get; set; }
-        public string SelfHours { get; set; }
-        public List<Hour> Hours { get; set; }
+        public List<Hour> SelfHours { get; set; }
+        public List<Hour> ClassHours { get; set; }
 
         public List<Task> StudyLevels { get; set; }
     }

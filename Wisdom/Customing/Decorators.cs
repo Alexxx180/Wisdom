@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using System.Collections.Generic;
 using Wisdom.Controls.Tables;
+using Wisdom.Model.Tables;
 
 namespace Wisdom.Customing
 {
@@ -80,9 +81,19 @@ namespace Wisdom.Customing
         public static uint Sum(this ushort[] numbers)
         {
             uint sum = 0;
-            for (byte i = 0; i < numbers.Length; i++)
+            for (ushort i = 0; i < numbers.Length; i++)
             {
                 sum += numbers[i];
+            }
+            return sum;
+        }
+
+        public static uint Sum(this List<Hour> hours)
+        {
+            uint sum = 0;
+            for (ushort i = 0; i < hours.Count; i++)
+            {
+                sum += hours[i].Count;
             }
             return sum;
         }

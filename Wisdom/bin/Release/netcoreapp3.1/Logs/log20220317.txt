@@ -1,0 +1,191 @@
+2022-03-17 09:06:04.621 +03:00 [INF] Application started
+2022-03-17 09:06:04.656 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:06:04.669 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:06:04.669 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:06:04.721 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:06:04.777 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:06:04.777 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:06:17.338 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:06:17.338 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:06:17.340 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:06:17.378 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:07:25.615 +03:00 [INF] Application started
+2022-03-17 09:07:25.650 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:07:25.664 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:07:25.664 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:07:25.669 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:07:25.690 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:07:25.690 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:07:32.233 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:07:32.233 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:07:32.234 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:07:32.268 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:08:04.614 +03:00 [INF] Application started
+2022-03-17 09:08:04.651 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:08:04.665 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:08:04.665 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:08:04.670 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:08:04.691 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:08:04.691 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:08:09.690 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:08:09.690 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:08:09.692 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:08:09.723 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:09:22.765 +03:00 [INF] Application started
+2022-03-17 09:09:22.806 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:09:22.821 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:09:22.821 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:09:22.827 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:09:22.852 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:09:22.852 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:09:30.793 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:09:30.794 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:09:30.795 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:09:30.829 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:09:33.223 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:11:03.960 +03:00 [INF] Application started
+2022-03-17 09:11:03.998 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:11:04.013 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:11:04.013 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:11:04.021 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:11:04.043 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:11:04.043 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:11:11.149 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:11:11.149 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:11:11.151 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:11:11.185 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:11:13.481 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:11:15.900 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:12:36.313 +03:00 [INF] Application started
+2022-03-17 09:12:36.346 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:12:36.360 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:12:36.360 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:12:36.377 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:12:36.398 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:12:36.398 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:12:44.236 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:12:44.236 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:12:44.237 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:12:44.283 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:12:46.143 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:13:50.899 +03:00 [INF] Application started
+2022-03-17 09:13:50.936 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:13:50.954 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:13:50.954 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:13:50.960 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:13:50.981 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:13:50.981 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:13:55.897 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:13:55.898 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:13:55.899 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:13:55.933 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:13:58.223 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:16:02.122 +03:00 [INF] Application started
+2022-03-17 09:16:02.158 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:16:02.179 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:16:02.179 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:16:02.189 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:16:02.236 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:16:02.236 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:16:10.254 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:16:10.254 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:16:10.256 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:16:10.288 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:16:12.267 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:16:32.065 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:20:52.520 +03:00 [INF] Application started
+2022-03-17 09:20:52.556 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:20:52.572 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:20:52.572 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:20:52.578 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:20:52.598 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:20:52.598 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:20:59.576 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:20:59.576 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:20:59.578 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:20:59.611 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:21:02.312 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:21:37.057 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:22:29.195 +03:00 [INF] Application started
+2022-03-17 09:22:29.230 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:22:29.244 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:22:29.244 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:22:29.249 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:22:29.270 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:22:29.270 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:22:40.130 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:22:40.130 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:22:40.132 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:22:40.166 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:22:42.189 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:22:57.666 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:24:27.728 +03:00 [INF] Application started
+2022-03-17 09:24:27.762 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:24:27.778 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:24:27.778 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:24:27.783 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:24:27.803 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:24:27.803 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:24:33.054 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:24:33.054 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:24:33.055 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:24:33.089 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:24:34.914 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:24:51.608 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:25:38.014 +03:00 [INF] Application started
+2022-03-17 09:25:38.048 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:25:38.062 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:25:38.062 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:25:38.067 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:25:38.087 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:25:38.087 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:25:47.300 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:25:47.300 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:25:47.302 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:25:47.335 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:25:49.167 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:26:18.005 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:28:56.222 +03:00 [INF] Application started
+2022-03-17 09:28:56.271 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:28:56.288 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:28:56.288 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:28:56.294 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:28:56.316 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:28:56.316 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:29:06.940 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:29:06.940 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:29:06.942 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:29:06.977 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:29:08.564 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:29:15.170 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:31:05.091 +03:00 [INF] Application started
+2022-03-17 09:31:05.125 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:31:05.140 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:31:05.141 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:31:05.147 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:31:05.168 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:31:05.168 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:31:11.391 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:31:11.392 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:31:11.393 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:31:11.427 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:31:13.520 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:31:34.632 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:32:04.148 +03:00 [INF] Application started
+2022-03-17 09:32:04.181 +03:00 [DBG] Collecting configuration info...
+2022-03-17 09:32:04.195 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\
+2022-03-17 09:32:04.195 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:32:04.200 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Config.json
+2022-03-17 09:32:04.222 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:32:04.222 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Data.json
+2022-03-17 09:32:08.090 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Runtime\Preferences.json
+2022-03-17 09:32:08.090 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Preferences.json
+2022-03-17 09:32:08.092 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-03-17 09:32:08.126 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-03-17 09:32:10.106 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:32:55.026 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:32:59.729 +03:00 [INF] Truncating file: C:\Users\Администратор\Desktop\1.docx
+2022-03-17 09:32:59.786 +03:00 [ERR] Exception on file truncating/processing: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны заполнения WORD\BaseTemplate.docx'.
+2022-03-17 09:33:35.043 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\bin\Release\netcoreapp3.1\Resources\Configuration\Settings\DisciplineProgram.json
+2022-03-17 09:33:40.309 +03:00 [INF] Truncating file: C:\Users\Администратор\Desktop\1.docx
+2022-03-17 09:33:41.448 +03:00 [INF] Saving data... to: C:\Users\Администратор\Desktop\1.docx

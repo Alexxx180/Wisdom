@@ -23,9 +23,6 @@
 
         <Viewbox Grid.Column="1">
             <TextBlock>
-                <TextBlock.Style>
-                    <StaticResource ResourceKey="CaptionSections"/>
-                </TextBlock.Style>
                 <TextBlock.Text>
                     <Binding Path="No"/>
                 </TextBlock.Text>

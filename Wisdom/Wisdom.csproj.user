@@ -66,10 +66,13 @@
     <Compile Update="Controls\Tables\EducationLevels\EducationLevelFields.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Tables\Hours\HourElement.xaml.cs">
+    <Compile Update="Controls\Tables\Hours\Groups\HourGroup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Forms\MainForm\MainPart.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Tables\Hours\HourElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Tables\Hours\HourElementAdditor.xaml.cs">
@@ -194,10 +197,13 @@
     <Page Update="Controls\Tables\EducationLevels\EducationLevelFields.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Tables\Hours\HourElement.xaml">
+    <Page Update="Controls\Tables\Hours\Groups\HourGroup.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Forms\MainForm\MainPart.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\Hours\HourElement.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\Hours\HourElementAdditor.xaml">

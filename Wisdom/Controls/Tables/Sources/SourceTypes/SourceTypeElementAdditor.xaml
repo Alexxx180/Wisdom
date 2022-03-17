@@ -21,7 +21,7 @@
 
         <ComboBox Grid.Column="1" IsEditable="True" FontSize="20">
             <ComboBox.Style>
-                <StaticResource ResourceKey="ImpactBox"/>
+                <StaticResource ResourceKey="NeutralPad"/>
             </ComboBox.Style>
             <ComboBox.ItemContainerStyle>
                 <StaticResource ResourceKey="ItemsBox"/>

@@ -2,20 +2,20 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Wisdom.Model.Tables;
-using Wisdom.ViewModel;
 using Wisdom.Customing;
 using System.Windows;
+using Wisdom.Controls.Tables.Hours.Groups;
 
 namespace Wisdom.Controls.Tables.Hours
 {
     /// <summary>
-    /// Special component to add new hour
+    /// Логика взаимодействия для HourElementAdditor.xaml
     /// </summary>
     public partial class HourElementAdditor : UserControl, INotifyPropertyChanged, IRawData<Hour>
     {
         public static readonly DependencyProperty
-            ViewModelProperty = DependencyProperty.Register(
-                nameof(ViewModel), typeof(DisciplineProgramViewModel),
+            HourGroupProperty = DependencyProperty.Register(
+                nameof(Group), typeof(HourGroup),
                 typeof(HourElementAdditor));
 
         #region IRawData Members
@@ -33,10 +33,10 @@ namespace Wisdom.Controls.Tables.Hours
         #endregion
 
         #region Hour Members
-        public DisciplineProgramViewModel ViewModel
+        public HourGroup Group
         {
-            get => GetValue(ViewModelProperty) as DisciplineProgramViewModel;
-            set => SetValue(ViewModelProperty, value);
+            get => GetValue(HourGroupProperty) as HourGroup;
+            set => SetValue(HourGroupProperty, value);
         }
 
         private string _type;
@@ -58,7 +58,7 @@ namespace Wisdom.Controls.Tables.Hours
             {
                 _value = value;
                 OnPropertyChanged();
-                ViewModel.RefreshHours();
+                Group.RefreshHours();
             }
         }
         #endregion
@@ -70,7 +70,13 @@ namespace Wisdom.Controls.Tables.Hours
 
         private void AddHour(object sender, RoutedEventArgs e)
         {
-            ViewModel.AddHour(Raw());
+            HourElement element = new HourElement
+            {
+                Group = Group,
+                WorkType = WorkType,
+                HourValue = HourValue
+            };
+            Group.AddHour(element);
         }
 
         #region INotifyPropertyChanged Members

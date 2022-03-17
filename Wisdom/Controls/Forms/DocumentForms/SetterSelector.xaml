@@ -34,7 +34,7 @@
 
         <ComboBox Grid.Column="1" FontSize="20" SelectionChanged="SettingChanged">
             <ComboBox.Style>
-                <StaticResource ResourceKey="ImpactBox"/>
+                <StaticResource ResourceKey="NeutralPad"/>
             </ComboBox.Style>
             <ComboBox.ItemContainerStyle>
                 <StaticResource ResourceKey="ItemsBox"/>

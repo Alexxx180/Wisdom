@@ -2,14 +2,14 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Wisdom.Model.Tables;
-using Wisdom.ViewModel;
 using Wisdom.Customing;
 using System.Windows;
+using Wisdom.Controls.Tables.Hours.Groups;
 
 namespace Wisdom.Controls.Tables.Hours
 {
     /// <summary>
-    /// Record component containing total hours count (user preset)
+    /// Логика взаимодействия для HourElement.xaml
     /// </summary>
     public partial class HourElement : UserControl, INotifyPropertyChanged, IRawData<Hour>
     {
@@ -28,13 +28,13 @@ namespace Wisdom.Controls.Tables.Hours
         #endregion
 
         #region Hour Members
-        private DisciplineProgramViewModel _viewModel;
-        internal DisciplineProgramViewModel ViewModel
+        private HourGroup _group;
+        internal HourGroup Group
         {
-            get => _viewModel;
+            get => _group;
             set
             {
-                _viewModel = value;
+                _group = value;
                 OnPropertyChanged();
             }
         }
@@ -58,7 +58,7 @@ namespace Wisdom.Controls.Tables.Hours
             {
                 _value = value;
                 OnPropertyChanged();
-                ViewModel.RefreshHours();
+                Group?.RefreshHours();
             }
         }
         #endregion
@@ -70,7 +70,7 @@ namespace Wisdom.Controls.Tables.Hours
 
         private void DropHour(object sender, RoutedEventArgs e)
         {
-            ViewModel.DropHour(this);
+            Group.DropHour(this);
         }
 
         #region INotifyPropertyChanged Members

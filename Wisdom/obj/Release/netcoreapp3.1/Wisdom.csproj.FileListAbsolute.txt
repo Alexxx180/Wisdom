@@ -239,15 +239,12 @@ D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\EducationLevels\EducationLevel.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\EducationLevels\EducationLevelAdditor.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\EducationLevels\EducationLevelFields.baml
-D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\HourElement.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\MetaData\MetaElementAdditor.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\RecordsPanel.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Sources\SourceElementAdditor.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\PlanTopicAdditor.baml
-D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\PlanTopicFields.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\PlanThemeAdditor.baml
-D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\PlanThemeFields.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\Works\PlanWorkTask.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskAdditor.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskFields.baml
@@ -278,6 +275,7 @@ D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\EducationLevels\EducationLevel.g.cs
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\EducationLevels\EducationLevelAdditor.g.cs
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\EducationLevels\EducationLevelFields.g.cs
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\Groups\HourGroup.g.cs
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\HourElement.g.cs
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\HourElementAdditor.g.cs
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\MetaData\MetaElement.g.cs
@@ -318,12 +316,16 @@ D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Competetions\General\GeneralCompetetion.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Competetions\Professional\ProfessionalCompetetion.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Competetions\Professional\ProfessionalGroups\ProfessionalDivider.baml
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\Groups\HourGroup.baml
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\HourElement.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Hours\HourElementAdditor.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\MetaData\MetaElement.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Sources\SourceElement.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\Sources\SourceTypes\SourceTypeElement.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\PlanTopic.baml
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\PlanTopicFields.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\PlanTheme.baml
+D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\PlanThemeFields.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\Works\PlanWork.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\Works\PlanWorkAdditor.baml
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTask.baml
@@ -339,4 +341,3 @@ D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.dll
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.pdb
 D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.genruntimeconfig.cache
-D:\Aleksandr\misc\Tombstones\PL-Projects\C#\Wisdom\Wisdom\obj\Release\netcoreapp3.1\Wisdom.csproj.AssemblyReference.cache

@@ -20,10 +20,10 @@
                 <StaticResource ResourceKey="AddButton"/>
             </Button.Style>
         </Button>
-        
-        <ComboBox Grid.Column="1" IsEditable="True">
+
+        <ComboBox Grid.Column="1" IsEditable="True" FontWeight="Bold">
             <ComboBox.Style>
-                <StaticResource ResourceKey="SubCaptionBox"/>
+                <StaticResource ResourceKey="NeutralPad"/>
             </ComboBox.Style>
             <ComboBox.ItemContainerStyle>
                 <StaticResource ResourceKey="ItemsBox"/>

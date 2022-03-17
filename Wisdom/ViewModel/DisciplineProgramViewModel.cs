@@ -7,7 +7,7 @@ using Wisdom.Model.Documents;
 using Wisdom.Model.Tables;
 using Wisdom.Model.Tables.ThemePlan;
 using Wisdom.Model.Tools.DataBase;
-using Wisdom.Controls.Tables.Hours;
+using Wisdom.Controls.Tables.Hours.Groups;
 using Wisdom.Controls.Tables.Competetions.General;
 using Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups;
 using Wisdom.Controls.Tables.Sources.SourceTypes;
@@ -16,6 +16,7 @@ using Wisdom.Controls.Tables.EducationLevels;
 using Wisdom.Controls.Tables.MetaData;
 using Wisdom.Customing;
 using static Wisdom.Writers.ResultRenderer;
+using Wisdom.Controls.Tables.Hours;
 
 namespace Wisdom.ViewModel
 {
@@ -211,68 +212,40 @@ namespace Wisdom.ViewModel
         public string MaxHours {
             get
             {
-                int max = EduHours.ParseHours()
-                    + SelfHours.ParseHours();
+                int max = 0;
+
+                for (ushort i = 0; i < HourGroups.Count; i++)
+                {
+                    max += HourGroups[i].Total.ParseHours();
+                }
+
                 return max.ToString();
             }
         }
 
-        private string _selfHours;
-        public string SelfHours
+        private ObservableCollection<HourGroup> _hourGroups;
+        public ObservableCollection<HourGroup> HourGroups
         {
-            get => _selfHours;
+            get => _hourGroups;
             set
             {
-                _selfHours = value;
+                _hourGroups = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(MaxHours));
             }
         }
 
-        private string _eduHours;
-        public string EduHours
+        private void AddGroup(string description)
         {
-            get => _eduHours;
-            set
+            HourGroup group = new HourGroup
             {
-                _eduHours = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(MaxHours));
-            }
-        }
-
-        private ObservableCollection<HourElement> _hours;
-        public ObservableCollection<HourElement> Hours
-        {
-            get => _hours;
-            set
-            {
-                _hours = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(MaxHours));
-            }
+                Type = description
+            };
+            HourGroups.Add(group);
         }
 
         public void RefreshHours()
         {
-            OnPropertyChanged(nameof(Hours));
-        }
-
-        public void AddHour(Hour hour)
-        {
-            HourElement element = new HourElement
-            {
-                ViewModel = this
-            };
-            element.SetElement(hour);
-            Hours.Add(element);
-            OnPropertyChanged(nameof(Hours));
-        }
-
-        public void DropHour(HourElement hour)
-        {
-            _ = Hours.Remove(hour);
-            OnPropertyChanged(nameof(Hours));
+            OnPropertyChanged(nameof(MaxHours));
         }
         #endregion
 
@@ -373,15 +346,18 @@ namespace Wisdom.ViewModel
             ThemePlan = new ObservableCollection<PlanTopic>();
             Sources = new ObservableCollection<SourceTypeElement>();
             MetaData = new ObservableCollection<MetaElement>();
-            Hours = new ObservableCollection<HourElement>();
             ProfessionalCompetetions = new ObservableCollection<ProfessionalDivider>();
             GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
             SourceTypes = new ObservableCollection<string>();
             Document = new DisciplineProgram();
+            HourGroups = new ObservableCollection<HourGroup>();
+
+            AddGroup("Аудиторная нагрузка, часы");
+            AddGroup("Практическая подготовка, часы");
+            OnPropertyChanged(nameof(HourGroups));
+
             SpecialityFullName = "";
             DisciplineFullName = "";
-            EduHours = "";
-            SelfHours = "";
         }
 
         public DisciplineProgramViewModel(GlobalViewModel viewModel) : this()
@@ -404,11 +380,10 @@ namespace Wisdom.ViewModel
             document.ProfessionName = SpecialityFullName;
 
             document.MaxHours = MaxHours;
-            document.SelfHours = SelfHours;
-            document.EduHours = EduHours;
+            document.ClassHours.Refresh(HourGroups[0].Raw());
+            document.SelfHours.Refresh(HourGroups[1].Raw());
 
             document.MetaData.Refresh(MetaData);
-            document.Hours.Refresh(Hours);
             document.GeneralCompetetions.Refresh(GeneralCompetetions);
             document.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
             document.Sources.Refresh(Sources);
@@ -507,34 +482,23 @@ namespace Wisdom.ViewModel
 
         private void SetHours(List<Hour> hours)
         {
-            int study = 0;
-            int self = 0;
+            HourGroups[0].Hours.Clear();
+            HourGroups[1].Hours.Clear();
 
-            Hours.Clear();
             for (ushort i = 0; i < hours.Count; i++)
             {
                 Hour hour = hours[i];
-                HourElement element = new HourElement
-                {
-                    ViewModel = this
-                };
+                int no = hour.Name == "Самостоятельная работа" ? 1 : 0;
+                
+                HourElement element = new HourElement();
+                element.Group = HourGroups[no];
                 element.SetElement(hour);
-                Hours.Add(element);
 
-                if (hour.Name == "Самостоятельная работа")
-                {
-                    self += hour.Count;
-                }
-                else
-                {
-                    study += hour.Count;
-                }
+                HourGroups[no].AddHour(element);
             }
 
-            EduHours = study.ToString();
-            SelfHours = self.ToString();
-
-            OnPropertyChanged(nameof(Hours));
+            OnPropertyChanged(nameof(HourGroups));
+            OnPropertyChanged(nameof(MaxHours));
         }
 
         private void SetMetaData(List<Task> metaData)
