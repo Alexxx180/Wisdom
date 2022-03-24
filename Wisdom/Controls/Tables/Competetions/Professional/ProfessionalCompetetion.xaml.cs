@@ -4,8 +4,8 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups;
-using Wisdom.Model.Tables.ThemePlan;
-using Wisdom.Model.Tables;
+using ControlMaterials.Tables.ThemePlan;
+using ControlMaterials.Tables;
 
 namespace Wisdom.Controls.Tables.Competetions.Professional
 {

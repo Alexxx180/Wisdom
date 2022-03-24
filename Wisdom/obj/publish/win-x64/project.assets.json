@@ -7816,11 +7816,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+      "projectUniqueName": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
       "projectName": "Wisdom",
-      "projectPath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
+      "projectPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\Wisdom.csproj",
       "packagesPath": "C:\\Users\\Администратор\\.nuget\\packages\\",
-      "outputPath": "D:\\Aleksandr\\Windows-7\\misc\\Надгробные плиты\\PL-Projects\\C#\\Wisdom\\Wisdom\\obj\\publish\\win-x64\\",
+      "outputPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom\\Wisdom\\obj\\publish\\win-x64\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Администратор\\AppData\\Roaming\\NuGet\\NuGet.Config",

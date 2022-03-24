@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Customing;
-using Wisdom.Model.Tables.ThemePlan;
+using ControlMaterials.Tables.ThemePlan;
 
 namespace Wisdom.Controls.Tables.EducationLevels
 {

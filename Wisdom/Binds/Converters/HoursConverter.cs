@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
 using Wisdom.Controls.Tables.Hours;
-using Wisdom.Model.Tables;
+using ControlMaterials.Tables;
 
 namespace Wisdom.Binds.Converters
 {

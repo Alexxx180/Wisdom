@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Wisdom.Controls.Tables.ThemePlan.Themes;
 using Wisdom.Customing;
-using Wisdom.Model.Tables.ThemePlan;
+using ControlMaterials.Tables.ThemePlan;
 
 namespace Wisdom.Controls.Tables.ThemePlan
 {

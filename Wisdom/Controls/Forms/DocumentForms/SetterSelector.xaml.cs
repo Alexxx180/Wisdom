@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Controls.Tables;
 using Wisdom.Customing;
-using Wisdom.Model;
+using ControlMaterials;
 
 namespace Wisdom.Controls.Forms.DocumentForms
 {

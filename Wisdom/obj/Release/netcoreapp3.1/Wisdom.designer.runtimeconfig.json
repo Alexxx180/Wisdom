@@ -6,12 +6,10 @@
       "version": "3.1.0"
     },
     "additionalProbingPaths": [
-      "C:\\Users\\user\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\user\\.nuget\\packages",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      "C:\\Users\\Администратор\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Администратор\\.nuget\\packages"
     ],
     "configProperties": {
-      "System.Reflection.Metadata.MetadataUpdater.IsSupported": false,
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
     }
   }

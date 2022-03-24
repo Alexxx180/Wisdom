@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Customing;
-using Wisdom.Model.Tables;
+using ControlMaterials.Tables;
 
 namespace Wisdom.Controls.Tables.Sources.SourceTypes
 {

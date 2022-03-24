@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Model;
+using ControlMaterials;
 using Wisdom.Customing;
 using static Wisdom.Writers.AutoGenerating.Processors;
 using static Wisdom.Writers.AutoGenerating.Documents.DisciplineProgram;

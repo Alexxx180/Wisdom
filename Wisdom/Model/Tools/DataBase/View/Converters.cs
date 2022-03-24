@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Windows;
-using Wisdom.Model.Tables;
-using Wisdom.Model.Tables.ThemePlan;
+using ControlMaterials;
+using ControlMaterials.Tables;
+using ControlMaterials.Tables.ThemePlan;
 using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Model.Tools.DataBase
@@ -340,7 +341,21 @@ namespace Wisdom.Model.Tools.DataBase
             try
             {
                 discipline.MetaData = SetMetaData(metaData);
-                discipline.TotalHours = SetTotalHours(totalHours);
+                
+                List<Hour> hours = SetTotalHours(totalHours);
+                discipline.ClassHours.Clear();
+                for (ushort i = 0; i < hours.Count; i++)
+                {
+                    Hour hour = hours[i];
+                    if (hour.Name == "Самостоятельная работа")
+                    {
+                        discipline.SelfHours.Add(hour);
+                    }
+                    else
+                    {
+                        discipline.ClassHours.Add(hour);
+                    }
+                }
 
                 discipline.Sources.AddRange(SetSources(sources));
                 discipline.Plan.AddRange(themePlan);

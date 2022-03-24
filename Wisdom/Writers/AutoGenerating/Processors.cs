@@ -3,11 +3,10 @@ using System.IO;
 using System.Text.Json;
 using System.Windows;
 using Microsoft.Win32;
-using Wisdom.Model;
+using ControlMaterials;
 using Wisdom.Controls.Forms;
 using Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram;
 using Serilog;
-using System.Reflection;
 
 namespace Wisdom.Writers.AutoGenerating
 {
@@ -17,12 +16,6 @@ namespace Wisdom.Writers.AutoGenerating
             ConfigDirectory => Environment.CurrentDirectory + @"\Resources\Configuration\";
         public static string SettingsDirectory => ConfigDirectory + @"Settings\";
         private static string RuntimeDirectory => ConfigDirectory + @"Runtime\";
-
-        public static string GetDirectoryPath(this Assembly assembly)
-        {
-            string filePath = new Uri(assembly.CodeBase).LocalPath;
-            return Path.GetDirectoryName(filePath);
-        }
 
         static Processors()
         {
@@ -172,7 +165,8 @@ namespace Wisdom.Writers.AutoGenerating
             }
         }
 
-        public static void ProcessJson(string path, Model.Documents.DisciplineProgram program)
+        public static void ProcessJson(string path,
+            ControlMaterials.Documents.DisciplineProgram program)
         {
             ProcessJsonAny(path, program);
         }

@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Model.Tables.ThemePlan;
+using ControlMaterials.Tables.ThemePlan;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 {

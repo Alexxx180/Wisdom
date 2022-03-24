@@ -4,8 +4,8 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Model.Tables;
-using Wisdom.Model.Tables.ThemePlan;
+using ControlMaterials.Tables;
+using ControlMaterials.Tables.ThemePlan;
 using static Wisdom.Customing.Converters;
 
 namespace Wisdom.Controls.Tables.Competetions.General

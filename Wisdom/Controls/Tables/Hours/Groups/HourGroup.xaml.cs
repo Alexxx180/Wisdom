@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
-using Wisdom.Model.Tables;
+using ControlMaterials.Tables;
 using Wisdom.Customing;
 using System.Windows;
 using System.Collections.ObjectModel;

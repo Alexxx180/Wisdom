@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using DocumentFormat.OpenXml.Wordprocessing;
-using Wisdom.Model;
-using Wisdom.Model.Tables.ThemePlan;
-using Wisdom.Model.Tables;
+using ControlMaterials;
+using ControlMaterials.Tables.ThemePlan;
+using ControlMaterials.Tables;
 using Wisdom.Customing;
 using static Wisdom.Writers.AutoGenerating.AutoFiller;
 using static Wisdom.Writers.Markup.DisciplineProgramMarkup;
 
 namespace Wisdom.Writers.AutoGenerating.Documents
 {
-    public class DisciplineProgram : EducationalProgram<Model.Documents.DisciplineProgram>
+    public class DisciplineProgram : EducationalProgram<ControlMaterials.Documents.DisciplineProgram>
     {
         public static readonly string ProgramPreferences = "DisciplineProgram.json";
 
@@ -46,7 +46,7 @@ namespace Wisdom.Writers.AutoGenerating.Documents
         protected override void FastProcessing(
             IEnumerable<Paragraph> paragraphs,
             IEnumerable<TableCell> cells,
-            Model.Documents.DisciplineProgram program
+            ControlMaterials.Documents.DisciplineProgram program
             )
         {
             Dictionary<string, int> options = Processing.Options;
@@ -90,7 +90,7 @@ namespace Wisdom.Writers.AutoGenerating.Documents
 
         protected override void DetailProcessing(
             IEnumerable<Paragraph> paragraphs,
-            Model.Documents.DisciplineProgram program)
+            ControlMaterials.Documents.DisciplineProgram program)
         {
             string competetions = "#COMPETETIONS";
             ReplaceInParagraphs(paragraphs, competetions, CompetetionsTable(program));

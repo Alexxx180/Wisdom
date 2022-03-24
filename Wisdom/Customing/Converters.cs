@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Wisdom.Controls;
 using Wisdom.Controls.Tables;
-using Wisdom.Model;
+using ControlMaterials;
 
 namespace Wisdom.Customing
 {

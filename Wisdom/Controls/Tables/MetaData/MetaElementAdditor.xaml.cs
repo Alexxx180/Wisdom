@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Wisdom.Model.Tables.ThemePlan;
+using ControlMaterials.Tables.ThemePlan;
 using Wisdom.ViewModel;
 using System.Windows;
 

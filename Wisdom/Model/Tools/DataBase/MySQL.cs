@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using MySqlConnector;
+using ControlMaterials;
+using static ControlMaterials.Tools.Security.Encryption;
 using static Wisdom.Writers.AutoGenerating.Processors;
-using static Wisdom.Model.Tools.Security.Encryption;
 
 namespace Wisdom.Model.Tools.DataBase
 {

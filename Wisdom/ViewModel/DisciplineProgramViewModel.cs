@@ -2,11 +2,12 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Wisdom.Model;
-using Wisdom.Model.Documents;
-using Wisdom.Model.Tables;
-using Wisdom.Model.Tables.ThemePlan;
+using ControlMaterials;
+using ControlMaterials.Documents;
+using ControlMaterials.Tables;
+using ControlMaterials.Tables.ThemePlan;
 using Wisdom.Model.Tools.DataBase;
+using Wisdom.Controls.Tables.Hours;
 using Wisdom.Controls.Tables.Hours.Groups;
 using Wisdom.Controls.Tables.Competetions.General;
 using Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups;
@@ -16,7 +17,6 @@ using Wisdom.Controls.Tables.EducationLevels;
 using Wisdom.Controls.Tables.MetaData;
 using Wisdom.Customing;
 using static Wisdom.Writers.ResultRenderer;
-using Wisdom.Controls.Tables.Hours;
 
 namespace Wisdom.ViewModel
 {
@@ -53,6 +53,7 @@ namespace Wisdom.ViewModel
             set
             {
                 _data = value;
+
                 DocumentTypes.WorkTypes.Refresh(Data.WorkTypesData());
                 SetLevels();
                 SourceTypes.Refresh(Data.SourceTypesData());
@@ -445,7 +446,8 @@ namespace Wisdom.ViewModel
         private void SetDiscipline(
             List<Competetion> general,
             List<List<Competetion>> professional,
-            List<Hour> hours,
+            List<Hour> classHours,
+            List<Hour> selfHours,
             List<Task> metaData,
             List<Source> sources,
             List<Topic> themePlan
@@ -453,7 +455,7 @@ namespace Wisdom.ViewModel
         {
             SetGeneralCompetetions(general);
             SetProfessionalCompetetions(professional);
-            SetHours(hours);
+            SetHourGroups(classHours, selfHours);
             SetMetaData(metaData);
             SetSources(sources);
             SetThemePlan(themePlan);
@@ -464,7 +466,8 @@ namespace Wisdom.ViewModel
             SetDiscipline(
                 program.GeneralCompetetions,
                 program.ProfessionalCompetetions,
-                program.TotalHours,
+                program.ClassHours,
+                program.SelfHours,
                 program.MetaData,
                 program.Sources,
                 program.Plan
@@ -480,22 +483,28 @@ namespace Wisdom.ViewModel
             SetLevels();
         }
 
-        private void SetHours(List<Hour> hours)
+        private void SetHours(in int groupNo, List<Hour> hours)
         {
-            HourGroups[0].Hours.Clear();
-            HourGroups[1].Hours.Clear();
-
+            HourGroups[groupNo].Hours.Clear();
             for (ushort i = 0; i < hours.Count; i++)
             {
                 Hour hour = hours[i];
-                int no = hour.Name == "Самостоятельная работа" ? 1 : 0;
-                
+
                 HourElement element = new HourElement();
-                element.Group = HourGroups[no];
+                element.Group = HourGroups[groupNo];
                 element.SetElement(hour);
 
-                HourGroups[no].AddHour(element);
+                HourGroups[groupNo].AddHour(element);
             }
+        }
+
+        private void SetHourGroups(
+            List<Hour> classHours,
+            List<Hour> selfHours
+            )
+        {
+            SetHours(0, classHours);
+            SetHours(1, selfHours);
 
             OnPropertyChanged(nameof(HourGroups));
             OnPropertyChanged(nameof(MaxHours));

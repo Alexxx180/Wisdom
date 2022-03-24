@@ -1,8 +1,8 @@
 ﻿using DocumentFormat.OpenXml.Wordprocessing;
 using System.Collections.Generic;
-using Wisdom.Model.Documents;
-using Wisdom.Model.Tables;
-using Wisdom.Model.Tables.ThemePlan;
+using ControlMaterials.Documents;
+using ControlMaterials.Tables;
+using ControlMaterials.Tables.ThemePlan;
 using Wisdom.Customing;
 using static Wisdom.Writers.Markup.Decorators;
 

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.IO;
-using Wisdom.Model.Documents;
+using ControlMaterials.Documents;
 using System.ComponentModel;
 
 namespace Wisdom.Controls.Forms.MainForm.UserTemplates

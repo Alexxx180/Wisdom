@@ -170,6 +170,10 @@
                     <Button.Style>
                         <StaticResource ResourceKey="Steps"/>
                     </Button.Style>
+
+                    <Button.ToolTip>
+                        <TextBlock Text="Сохранить | Esc" FontSize="18"/>
+                    </Button.ToolTip>
                     
                     <Viewbox>
                         <TextBlock Text="★" />
@@ -189,6 +193,10 @@
                         <StaticResource ResourceKey="Steps"/>
                     </Button.Style>
 
+                    <Button.ToolTip>
+                        <TextBlock Text="Сохранить как документ | Enter" FontSize="18"/>
+                    </Button.ToolTip>
+                    
                     <Viewbox>
                         <TextBlock Text="Подтвердить" Padding="2" />
                     </Viewbox>

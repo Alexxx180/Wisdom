@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
-using Wisdom.Model;
-using Wisdom.Model.Documents;
+using ControlMaterials;
+using ControlMaterials.Documents;
 using static Wisdom.Writers.AutoGenerating.Processors;
 
 namespace Wisdom.Writers

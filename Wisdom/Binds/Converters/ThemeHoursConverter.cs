@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Windows.Data;
 using Wisdom.Controls.Tables;
 using Wisdom.Customing;
-using Wisdom.Model.Tables.ThemePlan;
+using ControlMaterials.Tables.ThemePlan;
 
 namespace Wisdom.Binds.Converters
 {
