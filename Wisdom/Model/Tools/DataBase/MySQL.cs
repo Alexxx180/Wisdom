@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using MySqlConnector;
 using ControlMaterials;
+using Serilog;
 using static ControlMaterials.Tools.Security.Encryption;
 using static Wisdom.Writers.AutoGenerating.Processors;
 
@@ -111,8 +112,7 @@ namespace Wisdom.Model.Tools.DataBase
 
         private static void ConnectionFault(string message)
         {
-            //Log.Warning("Tried to connect to DB, no sucess: " + message);
-            //
+            Log.Warning("Tried to connect to DB, no sucess: " + message);
         }
 
         public override bool TestConnection(in string login, in string password)
@@ -125,15 +125,15 @@ namespace Wisdom.Model.Tools.DataBase
             }
             catch (MySqlException dbException)
             {
-                ConnectionFault(dbException.Message);
+                ConnectionFault(dbException.HelpLink);
             }
             catch (InvalidOperationException operationException)
             {
-                ConnectionFault(operationException.Message);
+                ConnectionFault(operationException.HelpLink);
             }
             catch (Exception exception)
             {
-                ConnectionFault(exception.Message);
+                ConnectionFault(exception.HelpLink);
             }
             finally
             {
@@ -146,7 +146,6 @@ namespace Wisdom.Model.Tools.DataBase
         private MySqlConnection EnterConnection
             (string login, string password)
         {
-            //Log.Debug("Connecting to DB...");
             string source = "SERVER=" + _hostName + ";";
             string catalog = "DATABASE=" + _dataBaseName + ";";
             string user = "UID=" + login + ";";

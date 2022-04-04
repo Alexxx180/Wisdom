@@ -88,4 +88,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties resources_4configuration_4runtime_4config_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

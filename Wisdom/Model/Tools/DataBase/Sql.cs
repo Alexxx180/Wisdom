@@ -4,6 +4,7 @@ namespace Wisdom.Model.Tools.DataBase
 {
     public abstract class Sql : IDataViewer
     {
+        #region Configuration Members
         public bool IndependentMode { get; set; }
 
         internal abstract void SetConfiguration(in string dbName, in string host);
@@ -11,7 +12,11 @@ namespace Wisdom.Model.Tools.DataBase
         public abstract bool TestConnection(in string login, in string pass);
 
         internal abstract void Connect();
+        #endregion
 
+        public abstract void Procedure(in string name);
+
+        #region WorkWithParameters Members
         public abstract void PassParameter(in string ParamName, in object newParam);
 
         public void PassParameters(Dictionary<string, object> parameters)
@@ -20,23 +25,25 @@ namespace Wisdom.Model.Tools.DataBase
                 PassParameter(entry.Key, entry.Value);
         }
 
-        public abstract void OnlyExecute();
+        public abstract void ClearParameters();
+        #endregion
 
-        public abstract void Procedure(in string name);
+        #region ProcedureExecuteOnly Members
+        public abstract void OnlyExecute();
 
         public void ExecuteProcedure(string name)
         {
             Procedure(name);
             OnlyExecute();
         }
+        #endregion
 
+        #region ReadRecords Members
         public abstract List<object[]> ReadData();
 
         public abstract List<object> ReadData(in int column);
 
         public abstract List<object[]> ReadData(in byte StartValue, in byte EndValue);
-
-        public abstract void ClearParameters();
 
         public List<object[]> GetRecords(string name)
         {
@@ -63,7 +70,9 @@ namespace Wisdom.Model.Tools.DataBase
             ClearParameters();
             return records;
         }
+        #endregion
 
+        #region Data view methods
         public List<object[]> ProfessionalCompetetion(ulong value)
         {
             return GetRecords("get_professional_competetion", "comp_id", value);
@@ -168,5 +177,6 @@ namespace Wisdom.Model.Tools.DataBase
         {
             return GetRecords("get_all_levels");
         }
+        #endregion
     }
 }

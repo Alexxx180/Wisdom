@@ -21,6 +21,9 @@
     <Compile Update="Controls\Forms\Switcher.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\MultiComboBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Tables\AutoIndexer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -150,6 +153,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Forms\Switcher.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\MultiComboBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\AutoIndexer.xaml">

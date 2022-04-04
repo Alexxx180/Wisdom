@@ -1,0 +1,677 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram.CompetetionsPart" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAABAAAkAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Forms\DocumentForms\AddDisciplineProgram\CompetetionsPart.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram.HoursPart" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAABAAAkAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Forms\DocumentForms\AddDisciplineProgram\HoursPart.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram.MetaDataPart" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAABAAAkAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Forms\DocumentForms\AddDisciplineProgram\MetaDataPart.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram.Settings" Collapsed="true">
+    <Position X="3.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Controls\Forms\DocumentForms\AddDisciplineProgram\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram.SettingsPart" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAIABAAQAABABQIAACACIEgAAAAEAAAAACAAAAAAA=</HashCode>
+      <FileName>Controls\Forms\DocumentForms\AddDisciplineProgram\SettingsPart.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram.ThemePlanPart" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAABAAAkAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Forms\DocumentForms\AddDisciplineProgram\ThemePlanPart.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.DocumentForms.SetterSelector" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAQAACIAEIAAQAAAAgAAAAAAQAgAAAAAAAAI=</HashCode>
+      <FileName>Controls\Forms\DocumentForms\SetterSelector.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.MainForm.UserTemplates.DisciplineProgramTemplate" Collapsed="true">
+    <Position X="6.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Forms\MainForm\UserTemplates\DisciplineProgramTemplate.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.MainForm.UserTemplates.TemplateControl" Collapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAIIAIAAAAAIAgAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Controls\Forms\MainForm\UserTemplates\TemplateControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.MainForm.MainPart" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCAAAAAAEAAAAAAIAAABAAAlAAAAkAAgQAQAAAAAAA=</HashCode>
+      <FileName>Controls\Forms\MainForm\MainPart.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.Preferences" Collapsed="true">
+    <Position X="3.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Forms\Preferences.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Controls.Forms.Switcher" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAFAAAAAAEIAIIAgAAAAAgAASAAAIAAAECAAAAAA=</HashCode>
+      <FileName>Controls\Forms\Switcher.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Competetions.General.GeneralCompetetion" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IGQAIAAAAwIASIgAIAAAEgACgiAAAAAAAEEAACDEAAA=</HashCode>
+      <FileName>Controls\Tables\Competetions\General\GeneralCompetetion.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Competetions.General.GeneralCompetetionAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAIAAAAgAAAAAAIAAIAAACgCAAAAAAAEEAAADABAA=</HashCode>
+      <FileName>Controls\Tables\Competetions\General\GeneralCompetetionAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups.ProfessionalDivider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYACIAAAQoADIgBIAAAAAACgCAAAAABAAEAACDAAAA=</HashCode>
+      <FileName>Controls\Tables\Competetions\Professional\ProfessionalGroups\ProfessionalDivider.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups.ProfessionalDividerAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABIAAIIAAAgCAAAAABCAEAAADAAAA=</HashCode>
+      <FileName>Controls\Tables\Competetions\Professional\ProfessionalGroups\ProfessionalDividerAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Competetions.Professional.ProfessionalCompetetion" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICQAAEAAAEIAGIiAIAAAAQAAgiAQAAABEAEAACCAkgA=</HashCode>
+      <FileName>Controls\Tables\Competetions\Professional\ProfessionalCompetetion.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Competetions.Professional.ProfessionalCompetetionAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAEAAAAAAEACIIAAAAAAAgCAAAAAAAAEAAACAhAA=</HashCode>
+      <FileName>Controls\Tables\Competetions\Professional\ProfessionalCompetetionAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.EducationLevels.EducationLevel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAQAACIA0IAAAAAAAgiACAAAAAEEAAADAAAA=</HashCode>
+      <FileName>Controls\Tables\EducationLevels\EducationLevel.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.EducationLevels.EducationLevelAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAACAUIAAIAAAAgiACAAAAAEEAAADAAAA=</HashCode>
+      <FileName>Controls\Tables\EducationLevels\EducationLevelAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.EducationLevels.EducationLevelFields" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Tables\EducationLevels\EducationLevelFields.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Hours.Groups.HourGroup" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAAAQiIgAIAAAAAAAgAAgQAgAAQAACCAAAAA=</HashCode>
+      <FileName>Controls\Tables\Hours\Groups\HourGroup.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Hours.HourElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAEAAAAAACIQAIAAAAAAAgQABAAABAAAACAAAAAA=</HashCode>
+      <FileName>Controls\Tables\Hours\HourElement.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Hours.HourElementAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAEEAAAAAACIQAIAAAAAAAgQABAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Controls\Tables\Hours\HourElementAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.MetaData.MetaElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IDAAIAAAAAAACIAQIBAAAACAkgAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Tables\MetaData\MetaElement.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.MetaData.MetaElementAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAAAAAAACIAAIBAABAAAkIAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Tables\MetaData\MetaElementAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Sources.SourceTypes.SourceTypeElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAMAAAAAACIRiIAAAAIAAgAAQgAAIAQAACAAACAA=</HashCode>
+      <FileName>Controls\Tables\Sources\SourceTypes\SourceTypeElement.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Sources.SourceTypes.SourceTypeElementAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAQAEAAAAAEAIAIIAAAAAAAgAAAAAAIAAAACAAACAA=</HashCode>
+      <FileName>Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Sources.SourceElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JDAAAAAAAgAACIAAIAAAIAAAgiAAgAAAAAEACACAAAA=</HashCode>
+      <FileName>Controls\Tables\Sources\SourceElement.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.Sources.SourceElementAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAEAAAgAAgAAAIAAgAAAAgCAAAAAAAAEACACAAAA=</HashCode>
+      <FileName>Controls\Tables\Sources\SourceElementAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks.PlanTask" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICgAAAAAAAAACIAAJAAAAAAAgiAABAAAIQECAACAAAg=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTask.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks.PlanTaskAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAACAAAAAAAAAAJAAAAAAAgCAAAAAEIQECAACAAAg=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks.PlanTaskFields" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskFields.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.Themes.Works.PlanWork" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwgAIAAAAAACIgQIAAAAAAAgQAABQgAAQAIACQAAAA=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\Themes\Works\PlanWork.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.Themes.Works.PlanWorkAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgAQACAAAAAAAAAQIEAAAAAAgQAAAAAAAAAAAAQIAAg=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\Themes\Works\PlanWorkAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.Themes.Works.PlanWorkTask" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAACIAQJAAAAAAAgQAABAAAIQAAAAQAAAg=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\Themes\Works\PlanWorkTask.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.Themes.PlanTheme" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICQABICAAAAkCIgAIABgAAAAgiACAAhMAAEAACiEAAA=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\Themes\PlanTheme.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.Themes.PlanThemeAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABICAAAAgAAAAIABgAAAAgCACAABIAAEAACiAAAA=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\Themes\PlanThemeAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.Themes.PlanThemeFields" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\Themes\PlanThemeFields.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.PlanTopic" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ICQABIABAQAACIhQIAAAAAAggiAAAAgAAQEAECDACQA=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\PlanTopic.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.PlanTopicAdditor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAABAIAAIAAAAgCAAAAAAAAEAEADACQA=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\PlanTopicAdditor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.ThemePlan.PlanTopicFields" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Tables\ThemePlan\PlanTopicFields.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.AutoIndexer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAIAAAAgAAAAAEAAAAAAABAAAI=</HashCode>
+      <FileName>Controls\Tables\AutoIndexer.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.AutoPanel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAJAAEYAIBAABIgAAAAAAgACAAQAAAQAAAIAAAAA=</HashCode>
+      <FileName>Controls\Tables\AutoPanel.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.Tables.RecordsPanel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAJAAEAAIAAABIAAAAAAAgACAAQAAAQAAAIAAAAA=</HashCode>
+      <FileName>Controls\Tables\RecordsPanel.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.EditEvents" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAABAAAAEAQEAAAAABAAAAEAAhAAAAAAAAAACCAAAA=</HashCode>
+      <FileName>Controls\EditEvents.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Controls.EditHelper" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAEAAAAAAAAAAAAgAAAAAAAAIAAAAhIAAAAAA=</HashCode>
+      <FileName>Controls\EditHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Controls.MultiComboBox" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAEAAAAAgBAAABAAAAAAAEAAACIAAAAA=</HashCode>
+      <FileName>Controls\MultiComboBox.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Customing.Converters" Collapsed="true">
+    <Position X="17" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAFAAAAAQAAABAAAAAAIAgAAAAAgAAABgAAAQAAAA=</HashCode>
+      <FileName>Customing\Converters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Customing.Decorators" Collapsed="true">
+    <Position X="22.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAABAAAAAAAAACAoAAAAAAAAAAAAAAIAAAAQ=</HashCode>
+      <FileName>Customing\Decorators.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.Extractors.ThemePlanHours" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\Extractors\ThemePlanHours.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.ExtendConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\ExtendConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.GeneralCompetetionsConverter" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\GeneralCompetetionsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.HoursConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\HoursConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.IndexableCollectionConverter&lt;TSource, TIndexability&gt;" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\IndexableCollectionConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.LevelsConverter" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\LevelsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.ProcentualHeightConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\ProcentualHeightConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.ProfessionalCompetetionsConverter" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\ProfessionalCompetetionsConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.ThemeHoursConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="22.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\ThemeHoursConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.ThemePlanConverter" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\ThemePlanConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.TopicHoursConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\TopicHoursConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.UsedValuesConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\UsedValuesConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Binds.Converters.WrapConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Binds\Converters\WrapConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Writers.AutoGenerating.Documents.DisciplineProgram" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAQAAACAAAAAEAAAAAAAgAAAAQ=</HashCode>
+      <FileName>Writers\AutoGenerating\Documents\DisciplineProgram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Writers.AutoGenerating.Documents.EducationalProgram&lt;TProgram&gt;" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAQAAAAAQAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Writers\AutoGenerating\Documents\EducationalProgram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Writers.AutoGenerating.AutoFiller" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAIAAAAAAAAAAACACAAAAAACAAAAAACAAAAAIAQA=</HashCode>
+      <FileName>Writers\AutoGenerating\AutoFiller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Writers.AutoGenerating.Match" Collapsed="true">
+    <Position X="22.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Writers\AutoGenerating\Match.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Writers.AutoGenerating.Processors" Collapsed="true">
+    <Position X="24" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IABIAIAgAUAAAAAACQASgACQAAAACQAAAAAEAAAACAA=</HashCode>
+      <FileName>Writers\AutoGenerating\Processors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Writers.Markup.Decorators" Collapsed="true">
+    <Position X="20.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAACAQICQEACACIwBAIIABEAAwgDAASgGCCAYKIAg=</HashCode>
+      <FileName>Writers\Markup\Decorators.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Writers.Markup.DisciplineProgramMarkup" Collapsed="true">
+    <Position X="24" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAACQgAAAIAAQAAAEQBgAAAgAggAIgAAAACAAAEA=</HashCode>
+      <FileName>Writers\Markup\DisciplineProgramMarkup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Writers.Markup.Section" Collapsed="true">
+    <Position X="22.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Writers\Markup\Section.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Writers.OpenXmlTools" Collapsed="true">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Writers\OpenXmlTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Writers.ResultRenderer" Collapsed="true">
+    <Position X="20.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAIABAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Writers\ResultRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.ViewModel.DisciplineProgramViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>r0CAEKAAHkCABEKioEAyIAKAoIC2gFwbAQEAmSgAIQA=</HashCode>
+      <FileName>ViewModel\DisciplineProgramViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.ViewModel.GlobalViewModel" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\GlobalViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.ViewModel.SwitchGroup" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAIAAgIAAAgAAAAAAAAAAAAAAIBAA=</HashCode>
+      <FileName>ViewModel\SwitchGroup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Wisdom.Model.Tools.DataBase.Converters" Collapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgADgUAECEEACAAAAAAgAwAAAIQAAQAAAAAAAgA=</HashCode>
+      <FileName>Model\Tools\DataBase\View\Converters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Model.Tools.DataBase.ProgramData" Collapsed="true">
+    <Position X="17" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gABQAAAANBAAAAAAACAACAAAgAQAAAQAAABAAAAAAhA=</HashCode>
+      <FileName>Model\Tools\DataBase\View\ProgramData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Model.Tools.DataBase.MySQL" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAwBALAABAAAwAAhIAIBAACAAAAAAAAAYBAAABEA=</HashCode>
+      <FileName>Model\Tools\DataBase\MySQL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wisdom.Model.Tools.DataBase.Sql" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CACAYQAACoABCACwAEBEAIAAAQAQAEAJEAAIVCAEAAA=</HashCode>
+      <FileName>Model\Tools\DataBase\Sql.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Wisdom.Controls.Tables.IAutoIndexing" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controls\Tables\IAutoIndexing.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Wisdom.Controls.Tables.IExtendableItems" Collapsed="true">
+    <Position X="11.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Controls\Tables\IExtendableItems.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Wisdom.Controls.Tables.IOptionableIndexing" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Controls\Tables\IOptionableIndexing.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Wisdom.Controls.Tables.IRawData&lt;T&gt;" Collapsed="true">
+    <Position X="13.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Tables\IRawData.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Wisdom.Controls.Tables.IRecordsIndexing" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Controls\Tables\IRecordsIndexing.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Wisdom.Controls.Tables.IWrapFields" Collapsed="true">
+    <Position X="15.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\Tables\IWrapFields.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Wisdom.Model.Tools.IDataViewer" Collapsed="true">
+    <Position X="10" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CACAQAAAAAAACACQAEAAAAAAAQAQAEAJEAAIUCAEAAA=</HashCode>
+      <FileName>Model\Tools\IDataViewer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Wisdom.Controls.Indexing" Collapsed="true">
+    <Position X="10" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAEAAAACAAAAAA=</HashCode>
+      <FileName>Controls\Tables\Indexing.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI Semibold" Size="8.25" />
+</ClassDiagram>
