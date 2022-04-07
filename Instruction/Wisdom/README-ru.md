@@ -9,3 +9,5 @@
 ## Независимый режим
 
 Закройте окно входа. Авто-заполнение данными с хранилища воспроизводиться не будет.
+
+[Содержание](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/Contents.md)
