@@ -33,3 +33,6 @@
 ## Генерация программы
 
 Нажмите «**Подтвердить**». Укажите нужное место.
+
+[Главное окно](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/Main-ru.md) |
+[Содержание](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/Contents.md)
