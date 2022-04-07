@@ -4,3 +4,5 @@
 2. [Начало работы](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/README-ru.md)
 3. [Главное окно](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/Main-ru.md)
 4. [Настройка шаблонов](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/Templates-ru.md)
+
+[Содержание](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Contents.md)
