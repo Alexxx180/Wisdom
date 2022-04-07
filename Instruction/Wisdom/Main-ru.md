@@ -9,3 +9,5 @@
 
 Нажимаем «Программа»:
 - [Рабочая программа учебной дисциплины](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/DisciplineProgram-ru.md)
+
+[Содержание](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/Contents.md)
