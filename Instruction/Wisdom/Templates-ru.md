@@ -20,3 +20,6 @@
 - Только текст - меняет значения только в тексте
 - Только таблицы - меняет только в таблицах
 - Все - меняет и в тексте, и в таблицах
+
+[Содержание](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/Contents.md) |
+[Главное окно](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/Main-ru.md)
