@@ -8,4 +8,4 @@
 ## Создание программы
 
 Нажимаем «Программа»:
-- Рабочая программа учебной дисциплины
+- [Рабочая программа учебной дисциплины](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/DisciplineProgram-ru.md)
