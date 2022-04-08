@@ -3,4 +3,4 @@
 - [Вход в систему](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Configuration.md)
 - [Мудрость](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wisdom/Contents.md)
 - [Процветание](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Prosperity/Contents.md)
-- [Венец](https://github.com/Alexxx180/Wisdom/edit/master/Instruction/Wreath/Contents.md)
+- [Венец](https://github.com/Alexxx180/Wisdom/blob/master/Instruction/Wreath/Contents.md)
