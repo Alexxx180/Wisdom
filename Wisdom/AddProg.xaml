@@ -46,9 +46,7 @@
 
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.3*"/>
-                    <ColumnDefinition Width="0.025*"/>
-                    <ColumnDefinition Width="0.35*"/>
+                    <ColumnDefinition Width="0.675*"/>
                     <ColumnDefinition Width="0.025*"/>
                     <ColumnDefinition Width="0.05*"/>
                     <ColumnDefinition Width="0.025*"/>
@@ -79,88 +77,9 @@
                     </TextBox.FontSize>
                 </TextBox>
 
-                <Grid Grid.Column="2">
-                    <Grid.DataContext>
-                        <viewmodel:SwitchGroup x:Name="StepsGroup" />
-                    </Grid.DataContext>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.15*"/>
-                        <ColumnDefinition Width="0.02*"/>
-                        <ColumnDefinition Width="0.15*"/>
-                        <ColumnDefinition Width="0.02*"/>
-                        <ColumnDefinition Width="0.15*"/>
-                        <ColumnDefinition Width="0.02*"/>
-                        <ColumnDefinition Width="0.15*"/>
-                        <ColumnDefinition Width="0.02*"/>
-                        <ColumnDefinition Width="0.15*"/>
-                        <ColumnDefinition Width="0.02*"/>
-                        <ColumnDefinition Width="0.15*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <forms:Switcher Grid.Column="0" Text="1">
-                        <forms:Switcher.ViewStyle>
-                            <StaticResource ResourceKey="AutoSteps"/>
-                        </forms:Switcher.ViewStyle>
-                        <forms:Switcher.Element>
-                            <Binding ElementName="Page1"/>
-                        </forms:Switcher.Element>
-                        <forms:Switcher.Group>
-                            <Binding ElementName="StepsGroup"/>
-                        </forms:Switcher.Group>
-                    </forms:Switcher>
-
-                    <forms:Switcher Grid.Column="2" Text="2">
-                        <forms:Switcher.ViewStyle>
-                            <StaticResource ResourceKey="AutoSteps"/>
-                        </forms:Switcher.ViewStyle>
-                        <forms:Switcher.Element>
-                            <Binding ElementName="Page2"/>
-                        </forms:Switcher.Element>
-                        <forms:Switcher.Group>
-                            <Binding ElementName="StepsGroup"/>
-                        </forms:Switcher.Group>
-                    </forms:Switcher>
-
-                    <forms:Switcher Grid.Column="4" Text="3">
-                        <forms:Switcher.ViewStyle>
-                            <StaticResource ResourceKey="AutoSteps"/>
-                        </forms:Switcher.ViewStyle>
-                        <forms:Switcher.Element>
-                            <Binding ElementName="Page3"/>
-                        </forms:Switcher.Element>
-                        <forms:Switcher.Group>
-                            <Binding ElementName="StepsGroup"/>
-                        </forms:Switcher.Group>
-                    </forms:Switcher>
-
-                    <forms:Switcher Grid.Column="6" Text="4">
-                        <forms:Switcher.ViewStyle>
-                            <StaticResource ResourceKey="AutoSteps"/>
-                        </forms:Switcher.ViewStyle>
-                        <forms:Switcher.Element>
-                            <Binding ElementName="Page4"/>
-                        </forms:Switcher.Element>
-                        <forms:Switcher.Group>
-                            <Binding ElementName="StepsGroup"/>
-                        </forms:Switcher.Group>
-                    </forms:Switcher>
-
-                    <forms:Switcher Grid.Column="8" Text="[@*]">
-                        <forms:Switcher.ViewStyle>
-                            <StaticResource ResourceKey="AutoSteps"/>
-                        </forms:Switcher.ViewStyle>
-                        <forms:Switcher.Element>
-                            <Binding Source="{x:Reference Page5}"/>
-                        </forms:Switcher.Element>
-                        <forms:Switcher.Group>
-                            <Binding ElementName="StepsGroup"/>
-                        </forms:Switcher.Group>
-                    </forms:Switcher>
-                </Grid>
-
                 <Button Click="MakeUserTemplate">
                     <Grid.Column>
-                        6
+                        4
                     </Grid.Column>
 
                     <Button.IsCancel>
@@ -182,7 +101,7 @@
 
                 <Button Click="Create_Click" x:Name="Create">
                     <Grid.Column>
-                        8
+                        6
                     </Grid.Column>
 
                     <Button.IsDefault>
@@ -204,58 +123,110 @@
             </Grid>
         </Grid>
 
-        <dpforms:HoursPart x:Name="Page1" Grid.Row="1" Visibility="Hidden">
-            <dpforms:HoursPart.ViewModel>
-                <Binding>
-                    <Binding.ElementName>
-                        DisciplineProgramWindow
-                    </Binding.ElementName>
-                    <Binding.Path>
-                        ViewModel
-                    </Binding.Path>
-                </Binding>
-            </dpforms:HoursPart.ViewModel>
-        </dpforms:HoursPart>
+        <TabControl Grid.Row="1">
+            <TabItem Style="{StaticResource Steps}" Padding="10,0">
+                <TabItem.Header>
+                    <Border TextBlock.FontSize="24">
+                        <TextBlock Text="Общее" Padding="10,0"/>
+                    </Border>
+                </TabItem.Header>
 
-        <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1" Visibility="Hidden">
-            <dpforms:CompetetionsPart.ViewModel>
-                <Binding>
-                    <Binding.ElementName>
-                        DisciplineProgramWindow
-                    </Binding.ElementName>
-                    <Binding.Path>
-                        ViewModel
-                    </Binding.Path>
-                </Binding>
-            </dpforms:CompetetionsPart.ViewModel>
-        </dpforms:CompetetionsPart>
+                <TabItem.Content>
+                    <dpforms:HoursPart x:Name="Page1" Grid.Row="1">
+                        <dpforms:HoursPart.ViewModel>
+                            <Binding>
+                                <Binding.ElementName>
+                                    DisciplineProgramWindow
+                                </Binding.ElementName>
+                                <Binding.Path>
+                                    ViewModel
+                                </Binding.Path>
+                            </Binding>
+                        </dpforms:HoursPart.ViewModel>
+                    </dpforms:HoursPart>
+                </TabItem.Content>
+            </TabItem>
 
-        <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1" Visibility="Hidden">
-            <dpforms:ThemePlanPart.ViewModel>
-                <Binding>
-                    <Binding.ElementName>
-                        DisciplineProgramWindow
-                    </Binding.ElementName>
-                    <Binding.Path>
-                        ViewModel
-                    </Binding.Path>
-                </Binding>
-            </dpforms:ThemePlanPart.ViewModel>
-        </dpforms:ThemePlanPart>
+            <TabItem Style="{StaticResource Steps}" Padding="10,0">
+                <TabItem.Header>
+                    <Border TextBlock.FontSize="24">
+                        <TextBlock Text="ОК-ПК" Padding="10,0"/>
+                    </Border>
+                </TabItem.Header>
 
-        <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1" Visibility="Hidden">
-            <dpforms:MetaDataPart.ViewModel>
-                <Binding>
-                    <Binding.ElementName>
-                        DisciplineProgramWindow
-                    </Binding.ElementName>
-                    <Binding.Path>
-                        ViewModel
-                    </Binding.Path>
-                </Binding>
-            </dpforms:MetaDataPart.ViewModel>
-        </dpforms:MetaDataPart>
+                <TabItem.Content>
+                    <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1">
+                        <dpforms:CompetetionsPart.ViewModel>
+                            <Binding>
+                                <Binding.ElementName>
+                                    DisciplineProgramWindow
+                                </Binding.ElementName>
+                                <Binding.Path>
+                                    ViewModel
+                                </Binding.Path>
+                            </Binding>
+                        </dpforms:CompetetionsPart.ViewModel>
+                    </dpforms:CompetetionsPart>
+                </TabItem.Content>
+            </TabItem>
 
-        <dpforms:SettingsPart x:Name="Page5" Grid.Row="1" Visibility="Hidden"/>
+            <TabItem Style="{StaticResource Steps}" Padding="10,0">
+                <TabItem.Header>
+                    <Border TextBlock.FontSize="24">
+                        <TextBlock Text="План" Padding="10,0"/>
+                    </Border>
+                </TabItem.Header>
+
+                <TabItem.Content>
+                    <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1">
+                        <dpforms:ThemePlanPart.ViewModel>
+                            <Binding>
+                                <Binding.ElementName>
+                                    DisciplineProgramWindow
+                                </Binding.ElementName>
+                                <Binding.Path>
+                                    ViewModel
+                                </Binding.Path>
+                            </Binding>
+                        </dpforms:ThemePlanPart.ViewModel>
+                    </dpforms:ThemePlanPart>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Style="{StaticResource Steps}" Padding="10,0">
+                <TabItem.Header>
+                    <Border TextBlock.FontSize="24">
+                        <TextBlock Text="Источники" Padding="10,0"/>
+                    </Border>
+                </TabItem.Header>
+
+                <TabItem.Content>
+                    <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1">
+                        <dpforms:MetaDataPart.ViewModel>
+                            <Binding>
+                                <Binding.ElementName>
+                                    DisciplineProgramWindow
+                                </Binding.ElementName>
+                                <Binding.Path>
+                                    ViewModel
+                                </Binding.Path>
+                            </Binding>
+                        </dpforms:MetaDataPart.ViewModel>
+                    </dpforms:MetaDataPart>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Style="{StaticResource Steps}" Padding="10,0">
+                <TabItem.Header>
+                    <Border TextBlock.FontSize="24">
+                        <TextBlock Text="Настройки" Padding="10,0"/>
+                    </Border>
+                </TabItem.Header>
+
+                <TabItem.Content>
+                    <dpforms:SettingsPart x:Name="Page5" Grid.Row="1"/>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

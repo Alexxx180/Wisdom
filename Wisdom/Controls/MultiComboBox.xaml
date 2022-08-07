@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wisdom.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="35" d:DesignWidth="400" ToolTip="{Binding Path=Text, RelativeSource={RelativeSource Self}}">
     <ComboBox
         x:Name="MultiSelectCombo"  
         SnapsToDevicePixels="True"
@@ -19,12 +19,13 @@
                 <CheckBox Content="{Binding Title}"
                   IsChecked="{Binding Path=IsSelected, Mode=TwoWay}"
                   Tag="{RelativeSource FindAncestor, 
-                  AncestorType={x:Type ComboBox}}"/>
+                  AncestorType={x:Type ComboBox}}"
+                  Click="OnSelect"/>
             </DataTemplate>
         </ComboBox.ItemTemplate>
         <ComboBox.Template>
             <ControlTemplate TargetType="ComboBox">
-                <Grid >
+                <Grid>
                     <ToggleButton 
                         x:Name="ToggleButton" 
                         Grid.Column="2"

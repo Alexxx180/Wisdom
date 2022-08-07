@@ -12,7 +12,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="125"/>
         </Grid.ColumnDefinitions>
 
 
@@ -39,7 +39,7 @@
             <ComboBox.ItemContainerStyle>
                 <StaticResource ResourceKey="ItemsBox"/>
             </ComboBox.ItemContainerStyle>
-            
+
             <ComboBox.SelectedIndex>
                 <Binding Path="Selected" Mode="TwoWay">
                     <Binding.UpdateSourceTrigger>
@@ -49,9 +49,9 @@
             </ComboBox.SelectedIndex>
 
             <ComboBox.Items>
-                <ComboBoxItem>Отключить</ComboBoxItem>
-                <ComboBoxItem>Только текст</ComboBoxItem>
-                <ComboBoxItem>Только таблицы</ComboBoxItem>
+                <ComboBoxItem>Нет</ComboBoxItem>
+                <ComboBoxItem>Текст</ComboBoxItem>
+                <ComboBoxItem>Таблицы</ComboBoxItem>
                 <ComboBoxItem>Все</ComboBoxItem>
             </ComboBox.Items>
         </ComboBox>
