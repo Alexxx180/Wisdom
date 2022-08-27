@@ -41,7 +41,7 @@
         </Grid.DataContext>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.125*"/>
+            <RowDefinition Height="0.125*" MinHeight="50" />
             <RowDefinition Height="0.875*"/>
         </Grid.RowDefinitions>
 
@@ -113,16 +113,12 @@
                         4
                     </Grid.Column>
 
-                    <Button.IsCancel>
-                        True
-                    </Button.IsCancel>
-                    
                     <Button.Style>
                         <StaticResource ResourceKey="Steps"/>
                     </Button.Style>
 
                     <Button.ToolTip>
-                        <TextBlock Text="Сохранить | Esc" FontSize="18"/>
+                        <TextBlock Text="Сохранить | Shift + Enter" FontSize="18"/>
                     </Button.ToolTip>
 
                     <TextBlock Text="★" />
@@ -162,6 +158,16 @@
                 <TabItem.Header>
                     <Border>
                         <TextBlock Text="Общее"/>
+
+                        <Border.ToolTip>
+                            <ToolTip FontSize="18">
+                                <TextBlock>
+                                    <Run FontWeight="Bold" Text="Общее"/>
+                                    <LineBreak/>
+                                    <Run Text="Установить специальность, дисциплину, общую нагрузку"/>
+                                </TextBlock>
+                            </ToolTip>
+                        </Border.ToolTip>
                     </Border>
                 </TabItem.Header>
 
@@ -185,6 +191,14 @@
                 <TabItem.Header>
                     <Border>
                         <TextBlock Text="ОК"/>
+
+                        <Border.ToolTip>
+                            <ToolTip FontSize="18">
+                                <TextBlock>
+                                    <Run Text="Общие компетенции"/>
+                                </TextBlock>
+                            </ToolTip>
+                        </Border.ToolTip>
                     </Border>
                 </TabItem.Header>
 
@@ -233,6 +247,14 @@
                 <TabItem.Header>
                     <Border>
                         <TextBlock Text="ПК"/>
+
+                        <Border.ToolTip>
+                            <ToolTip FontSize="18">
+                                <TextBlock>
+                                    <Run Text="Профессиональные компетенции"/>
+                                </TextBlock>
+                            </ToolTip>
+                        </Border.ToolTip>
                     </Border>
                 </TabItem.Header>
 
@@ -274,6 +296,15 @@
                 <TabItem.Header>
                     <Border>
                         <TextBlock Text="УК"/>
+
+                        <Border.ToolTip>
+                            <ToolTip FontSize="18">
+                                <TextBlock>
+                                    <Run Text="Уровни компетенции (освоения)"/>
+                                    <Run FontStyle="Italic" Text="Данный способ является устаревшим."/>
+                                </TextBlock>
+                            </ToolTip>
+                        </Border.ToolTip>
                     </Border>
                 </TabItem.Header>
 

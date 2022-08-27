@@ -74,11 +74,13 @@
                 </TextBox>
             </Grid>
 
-            <ItemsControl Grid.Row="2">
-                <ItemsControl.ItemsSource>
-                    <Binding Path="Setters"/>
-                </ItemsControl.ItemsSource>
-            </ItemsControl>
+            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                <ItemsControl>
+                    <ItemsControl.ItemsSource>
+                        <Binding Path="Setters"/>
+                    </ItemsControl.ItemsSource>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>
