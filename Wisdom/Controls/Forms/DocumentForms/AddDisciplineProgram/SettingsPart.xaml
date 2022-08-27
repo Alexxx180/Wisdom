@@ -36,13 +36,16 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
 
-
-                <Viewbox HorizontalAlignment="Left">
-                    <TextBlock Text="Обработать"/>
-                </Viewbox>
+                <Button Click="SetFilePath">
+                    <Button.Style>
+                        <StaticResource ResourceKey="Steps1"/>
+                    </Button.Style>
+                    <Viewbox>
+                        <TextBlock Text="Обработать" />
+                    </Viewbox>
+                </Button>
 
                 <TextBox Grid.Column="1" FontWeight="Bold">
                     <TextBox.Style>
@@ -69,15 +72,6 @@
                         </Binding>
                     </TextBox.FontSize>
                 </TextBox>
-
-                <Button Grid.Column="2" Click="SetFilePath">
-                    <Button.Style>
-                        <StaticResource ResourceKey="Steps1"/>
-                    </Button.Style>
-                    <Viewbox>
-                        <TextBlock Text="Выбрать" />
-                    </Viewbox>
-                </Button>
             </Grid>
 
             <ItemsControl Grid.Row="2">

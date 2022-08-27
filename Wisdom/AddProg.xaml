@@ -4,9 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
+        xmlns:levels="clr-namespace:Wisdom.Controls.Tables.EducationLevels"
         xmlns:forms="clr-namespace:Wisdom.Controls.Forms"
         xmlns:dpforms="clr-namespace:Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram"
+        xmlns:plan="clr-namespace:Wisdom.Controls.Tables.ThemePlan"
         xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
+        xmlns:sources="clr-namespace:Wisdom.Controls.Tables.Sources.SourceTypes"
+        xmlns:tables="clr-namespace:Wisdom.Controls.Tables"
+        xmlns:general="clr-namespace:Wisdom.Controls.Tables.Competetions.General"
+        xmlns:professional="clr-namespace:Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups"
+        xmlns:metadata="clr-namespace:Wisdom.Controls.Tables.MetaData"
+        xmlns:extractors="clr-namespace:Wisdom.Binds.Converters.Extractors"
         mc:Ignorable="d"
         x:Name="DisciplineProgramWindow"
         Title="Редактирование рабочей программы - учебная дисциплина" Height="1080" Width="1920"
@@ -17,7 +25,12 @@
     </Window.DataContext>
     
     <Window.Resources>
+        <extractors:ThemePlanHours x:Key="ThemePlanHours" />
+        <converters:ThemePlanConverter x:Key="ThemePlanConverter"/>
+        <converters:LevelsConverter x:Key="LevelsConverter"/>
         <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
+        <converters:GeneralCompetetionsConverter x:Key="GeneralCompetetionsConverter"/>
+        <converters:ProfessionalCompetetionsConverter x:Key="ProfessionalCompetetionsConverter"/>
     </Window.Resources>
 
     <Grid>
@@ -123,8 +136,12 @@
             </Grid>
         </Grid>
 
-        <TabControl Grid.Row="1">
-            <TabItem Style="{StaticResource Steps}" Padding="10,0">
+        <TabControl Grid.Row="1" Style="{StaticResource Light}" BorderThickness="2">
+            <TabControl.Resources>
+                <Style TargetType="TabItem" BasedOn="{StaticResource HeaderMenuItems}"/>
+            </TabControl.Resources>
+
+            <TabItem>
                 <TabItem.Header>
                     <Border TextBlock.FontSize="24">
                         <TextBlock Text="Общее" Padding="10,0"/>
@@ -147,30 +164,147 @@
                 </TabItem.Content>
             </TabItem>
 
-            <TabItem Style="{StaticResource Steps}" Padding="10,0">
+            <TabItem>
                 <TabItem.Header>
                     <Border TextBlock.FontSize="24">
-                        <TextBlock Text="ОК-ПК" Padding="10,0"/>
+                        <TextBlock Text="ОК" Padding="10,0"/>
                     </Border>
                 </TabItem.Header>
 
                 <TabItem.Content>
-                    <dpforms:CompetetionsPart x:Name="Page2" Grid.Row="1">
-                        <dpforms:CompetetionsPart.ViewModel>
+                    <tables:AutoPanel Grid.Row="1" x:Name="General">
+                        <tables:AutoPanel.Records>
                             <Binding>
                                 <Binding.ElementName>
-                                    DisciplineProgramWindow
+                                    TreeContext
                                 </Binding.ElementName>
                                 <Binding.Path>
-                                    ViewModel
+                                    DataContext.GeneralCompetetions
                                 </Binding.Path>
+                                <Binding.Converter>
+                                    <StaticResource ResourceKey="GeneralCompetetionsConverter"/>
+                                </Binding.Converter>
+                                <Binding.Mode>
+                                    TwoWay
+                                </Binding.Mode>
+                                <Binding.UpdateSourceTrigger>
+                                    Explicit
+                                </Binding.UpdateSourceTrigger>
                             </Binding>
-                        </dpforms:CompetetionsPart.ViewModel>
-                    </dpforms:CompetetionsPart>
+                        </tables:AutoPanel.Records>
+
+                        <tables:AutoPanel.Additor>
+                            <general:GeneralCompetetionAdditor>
+                                <general:GeneralCompetetionAdditor.Options>
+                                    <Binding>
+                                        <Binding.RelativeSource>
+                                            <RelativeSource AncestorType="tables:AutoPanel">
+                                                <RelativeSource.AncestorLevel>
+                                                    1
+                                                </RelativeSource.AncestorLevel>
+                                            </RelativeSource>
+                                        </Binding.RelativeSource>
+                                    </Binding>
+                                </general:GeneralCompetetionAdditor.Options>
+                            </general:GeneralCompetetionAdditor>
+                        </tables:AutoPanel.Additor>
+                    </tables:AutoPanel>
                 </TabItem.Content>
             </TabItem>
 
-            <TabItem Style="{StaticResource Steps}" Padding="10,0">
+            <TabItem>
+                <TabItem.Header>
+                    <Border TextBlock.FontSize="24">
+                        <TextBlock Text="ПК" Padding="10,0"/>
+                    </Border>
+                </TabItem.Header>
+
+                <TabItem.Content>
+                    <tables:AutoPanel Grid.Row="1" x:Name="Professional">
+                        <tables:AutoPanel.Records>
+                            <Binding Mode="TwoWay">
+                                <Binding.Path>
+                                    ProfessionalCompetetions
+                                </Binding.Path>
+                                <Binding.Converter>
+                                    <StaticResource ResourceKey="ProfessionalCompetetionsConverter"/>
+                                </Binding.Converter>
+                                <Binding.UpdateSourceTrigger>
+                                    Explicit
+                                </Binding.UpdateSourceTrigger>
+                            </Binding>
+                        </tables:AutoPanel.Records>
+                        <tables:AutoPanel.Additor>
+                            <professional:ProfessionalDividerAdditor>
+                                <professional:ProfessionalDividerAdditor.Options>
+                                    <Binding>
+                                        <Binding.RelativeSource>
+                                            <RelativeSource AncestorType="tables:AutoPanel">
+                                                <RelativeSource.AncestorLevel>
+                                                    1
+                                                </RelativeSource.AncestorLevel>
+                                            </RelativeSource>
+                                        </Binding.RelativeSource>
+                                    </Binding>
+                                </professional:ProfessionalDividerAdditor.Options>
+                            </professional:ProfessionalDividerAdditor>
+                        </tables:AutoPanel.Additor>
+                    </tables:AutoPanel>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <Border TextBlock.FontSize="24">
+                        <TextBlock Text="УК" Padding="10,0"/>
+                    </Border>
+                </TabItem.Header>
+
+                <Grid x:Name="Levels" Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.06*" />
+                        <RowDefinition Height="0.94*" />
+                    </Grid.RowDefinitions>
+
+                    <levels:EducationLevelFields/>
+
+                    <tables:AutoPanel Grid.Row="1">
+                        <tables:AutoPanel.Records>
+                            <Binding>
+                                <Binding.ElementName>
+                                    TreeContext
+                                </Binding.ElementName>
+                                <Binding.Path>
+                                    DataContext.Levels
+                                </Binding.Path>
+                                <Binding.Converter>
+                                    <StaticResource ResourceKey="LevelsConverter"/>
+                                </Binding.Converter>
+                                <Binding.Mode>
+                                    TwoWay
+                                </Binding.Mode>
+                                <Binding.UpdateSourceTrigger>
+                                    Explicit
+                                </Binding.UpdateSourceTrigger>
+                            </Binding>
+                        </tables:AutoPanel.Records>
+
+                        <tables:AutoPanel.Additor>
+                            <levels:EducationLevelAdditor>
+                                <levels:EducationLevelAdditor.Options>
+                                    <Binding>
+                                        <Binding.RelativeSource>
+                                            <RelativeSource AncestorType="tables:AutoPanel" AncestorLevel="1"/>
+                                        </Binding.RelativeSource>
+                                    </Binding>
+                                </levels:EducationLevelAdditor.Options>
+                            </levels:EducationLevelAdditor>
+                        </tables:AutoPanel.Additor>
+                    </tables:AutoPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem>
                 <TabItem.Header>
                     <Border TextBlock.FontSize="24">
                         <TextBlock Text="План" Padding="10,0"/>
@@ -178,22 +312,116 @@
                 </TabItem.Header>
 
                 <TabItem.Content>
-                    <dpforms:ThemePlanPart x:Name="Page3" Grid.Row="1">
-                        <dpforms:ThemePlanPart.ViewModel>
-                            <Binding>
-                                <Binding.ElementName>
-                                    DisciplineProgramWindow
-                                </Binding.ElementName>
-                                <Binding.Path>
-                                    ViewModel
-                                </Binding.Path>
-                            </Binding>
-                        </dpforms:ThemePlanPart.ViewModel>
-                    </dpforms:ThemePlanPart>
+                    <Grid Grid.Row="1" x:Name="Plan">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.95*" />
+                            <RowDefinition Height="35" />
+                        </Grid.RowDefinitions>
+
+
+                        <ScrollViewer Grid.Column="1">
+                            <ScrollViewer.VerticalScrollBarVisibility>
+                                Auto
+                            </ScrollViewer.VerticalScrollBarVisibility>
+
+                            <StackPanel>
+                                <plan:PlanTopicFields/>
+
+                                <tables:RecordsPanel Grid.Row="1">
+                                    <tables:RecordsPanel.Records>
+                                        <Binding>
+                                            <Binding.ElementName>
+                                                TreeContext
+                                            </Binding.ElementName>
+                                            <Binding.Path>
+                                                DataContext.ThemePlan
+                                            </Binding.Path>
+                                            <Binding.Converter>
+                                                <StaticResource ResourceKey="ThemePlanConverter"/>
+                                            </Binding.Converter>
+                                            <Binding.Mode>
+                                                TwoWay
+                                            </Binding.Mode>
+                                            <Binding.UpdateSourceTrigger>
+                                                Explicit
+                                            </Binding.UpdateSourceTrigger>
+                                        </Binding>
+                                    </tables:RecordsPanel.Records>
+                                    <tables:RecordsPanel.Additor>
+                                        <plan:PlanTopicAdditor>
+                                            <plan:PlanTopicAdditor.Options>
+                                                <Binding>
+                                                    <Binding.RelativeSource>
+                                                        <RelativeSource AncestorLevel="1" AncestorType="tables:RecordsPanel"/>
+                                                    </Binding.RelativeSource>
+                                                </Binding>
+                                            </plan:PlanTopicAdditor.Options>
+                                        </plan:PlanTopicAdditor>
+                                    </tables:RecordsPanel.Additor>
+                                </tables:RecordsPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <Grid Grid.Row="1" TextBlock.FontWeight="Bold">
+                            <Grid.Style>
+                                <StaticResource ResourceKey="Dark"/>
+                            </Grid.Style>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.8*" />
+                                <ColumnDefinition Width="120" />
+                            </Grid.ColumnDefinitions>
+
+                            <Viewbox HorizontalAlignment="Left">
+                                <TextBlock Text=" Объём часов:" />
+                            </Viewbox>
+
+                            <Border Grid.Column="1">
+                                <Viewbox HorizontalAlignment="Right">
+                                    <TextBlock Padding="5,0,5,0">
+                                        <TextBlock.Text>
+                                            <Binding Path="ThemePlan">
+                                                <Binding.Converter>
+                                                    <StaticResource ResourceKey="ThemePlanHours"/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Viewbox>
+                            </Border>
+                        </Grid>
+                    </Grid>
                 </TabItem.Content>
             </TabItem>
 
-            <TabItem Style="{StaticResource Steps}" Padding="10,0">
+            <TabItem>
+                <TabItem.Header>
+                    <Border TextBlock.FontSize="24">
+                        <TextBlock Text="Сведения" Padding="10,0"/>
+                    </Border>
+                </TabItem.Header>
+                
+                <ScrollViewer x:Name="MetaData" Grid.Row="1">
+                    <ScrollViewer.VerticalScrollBarVisibility>
+                        Auto
+                    </ScrollViewer.VerticalScrollBarVisibility>
+                    <StackPanel>
+                        <ItemsControl>
+                            <ItemsControl.ItemsSource>
+                                <Binding Path="MetaData"/>
+                            </ItemsControl.ItemsSource>
+                        </ItemsControl>
+
+                        <metadata:MetaElementAdditor>
+                            <metadata:MetaElementAdditor.ViewModel>
+                                <Binding ElementName="TreeContext" Path="DataContext"/>
+                            </metadata:MetaElementAdditor.ViewModel>
+                        </metadata:MetaElementAdditor>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
+            <TabItem>
                 <TabItem.Header>
                     <Border TextBlock.FontSize="24">
                         <TextBlock Text="Источники" Padding="10,0"/>
@@ -201,22 +429,45 @@
                 </TabItem.Header>
 
                 <TabItem.Content>
-                    <dpforms:MetaDataPart x:Name="Page4" Grid.Row="1">
-                        <dpforms:MetaDataPart.ViewModel>
-                            <Binding>
-                                <Binding.ElementName>
-                                    DisciplineProgramWindow
-                                </Binding.ElementName>
-                                <Binding.Path>
-                                    ViewModel
-                                </Binding.Path>
-                            </Binding>
-                        </dpforms:MetaDataPart.ViewModel>
-                    </dpforms:MetaDataPart>
+                    <ScrollViewer x:Name="EducationSources" Grid.Row="1" Grid.Column="1">
+                        <ScrollViewer.VerticalScrollBarVisibility>
+                            Auto
+                        </ScrollViewer.VerticalScrollBarVisibility>
+                        <StackPanel>
+                            <ItemsControl>
+                                <ItemsControl.ItemsSource>
+                                    <Binding Path="Sources"/>
+                                </ItemsControl.ItemsSource>
+                            </ItemsControl>
+
+                            <sources:SourceTypeElementAdditor>
+                                <sources:SourceTypeElementAdditor.Types>
+                                    <Binding>
+                                        <Binding.ElementName>
+                                            TreeContext
+                                        </Binding.ElementName>
+                                        <Binding.Path>
+                                            DataContext.SourceTypes
+                                        </Binding.Path>
+                                    </Binding>
+                                </sources:SourceTypeElementAdditor.Types>
+                                <sources:SourceTypeElementAdditor.Group>
+                                    <Binding>
+                                        <Binding.ElementName>
+                                            TreeContext
+                                        </Binding.ElementName>
+                                        <Binding.Path>
+                                            DataContext.Sources
+                                        </Binding.Path>
+                                    </Binding>
+                                </sources:SourceTypeElementAdditor.Group>
+                            </sources:SourceTypeElementAdditor>
+                        </StackPanel>
+                    </ScrollViewer>
                 </TabItem.Content>
             </TabItem>
 
-            <TabItem Style="{StaticResource Steps}" Padding="10,0">
+            <TabItem>
                 <TabItem.Header>
                     <Border TextBlock.FontSize="24">
                         <TextBlock Text="Настройки" Padding="10,0"/>

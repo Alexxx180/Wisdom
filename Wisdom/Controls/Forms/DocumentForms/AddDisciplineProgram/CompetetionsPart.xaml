@@ -6,6 +6,7 @@
              xmlns:forms="clr-namespace:Wisdom.Controls.Forms"
              xmlns:tables="clr-namespace:Wisdom.Controls.Tables"
              xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
+             
              xmlns:general="clr-namespace:Wisdom.Controls.Tables.Competetions.General"
              xmlns:professional="clr-namespace:Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups"
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
@@ -92,6 +93,7 @@
                         </Binding.UpdateSourceTrigger>
                     </Binding>
                 </tables:AutoPanel.Records>
+                
                 <tables:AutoPanel.Additor>
                     <general:GeneralCompetetionAdditor>
                         <general:GeneralCompetetionAdditor.Options>

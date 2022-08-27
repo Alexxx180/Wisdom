@@ -5496,11 +5496,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom-and-Prosperity\\Wisdom\\Wisdom\\Wisdom.csproj",
+      "projectUniqueName": "D:\\Aleksandr\\misc\\Development\\Projects\\Wisdom-and-Prosperity\\Wisdom\\Wisdom\\Wisdom.csproj",
       "projectName": "Wisdom",
-      "projectPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom-and-Prosperity\\Wisdom\\Wisdom\\Wisdom.csproj",
+      "projectPath": "D:\\Aleksandr\\misc\\Development\\Projects\\Wisdom-and-Prosperity\\Wisdom\\Wisdom\\Wisdom.csproj",
       "packagesPath": "C:\\Users\\Администратор\\.nuget\\packages\\",
-      "outputPath": "D:\\Aleksandr\\misc\\Tombstones\\PL-Projects\\C#\\Wisdom-and-Prosperity\\Wisdom\\Wisdom\\obj\\",
+      "outputPath": "D:\\Aleksandr\\misc\\Development\\Projects\\Wisdom-and-Prosperity\\Wisdom\\Wisdom\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Администратор\\AppData\\Roaming\\NuGet\\NuGet.Config",

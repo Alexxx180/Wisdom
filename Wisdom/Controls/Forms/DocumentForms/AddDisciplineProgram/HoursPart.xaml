@@ -7,7 +7,7 @@
              xmlns:hours="clr-namespace:Wisdom.Controls.Tables.Hours.Groups"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="450" d:DesignWidth="1920"
              Style="{StaticResource GlobalFont}">
     <UserControl.Resources>
         <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
@@ -27,14 +27,119 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.05*"/>
-            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.9*"/>
+            <!--<RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.05*"/>
-            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="0.75*"/>-->
             <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
 
 
-        <Grid Grid.Row="1" Grid.Column="1" TextBlock.FontWeight="Bold">
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*" MinWidth="250"/>
+                <ColumnDefinition Width="0.7*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="10">
+                <UniformGrid Columns="1">
+                    <TextBlock Text="Специальность" TextAlignment="Right" Padding="10,5"/>
+
+                    <ComboBox Grid.Row="1" IsEditable="True" FontWeight="Bold">
+                        <ComboBox.Style>
+                            <StaticResource ResourceKey="NeutralPad"/>
+                        </ComboBox.Style>
+                        <ComboBox.ItemContainerStyle>
+                            <StaticResource ResourceKey="ItemsBox"/>
+                        </ComboBox.ItemContainerStyle>
+                        <ComboBox.ItemsSource>
+                            <Binding Path="SpecialitySelect"/>
+                        </ComboBox.ItemsSource>
+                        <ComboBox.SelectedIndex>
+                            <Binding Path="SpecialityNo" Mode="TwoWay">
+                                <Binding.UpdateSourceTrigger>
+                                    PropertyChanged
+                                </Binding.UpdateSourceTrigger>
+                            </Binding>
+                        </ComboBox.SelectedIndex>
+                        <ComboBox.Text>
+                            <Binding Path="SpecialityFullName" Mode="TwoWay">
+                                <Binding.UpdateSourceTrigger>
+                                    LostFocus
+                                </Binding.UpdateSourceTrigger>
+                            </Binding>
+                        </ComboBox.Text>
+                    </ComboBox>
+                </UniformGrid>
+                <UniformGrid Columns="1" Margin="0,10">
+                    <TextBlock Text="Дисциплина" MinWidth="250" TextAlignment="Right" Padding="10,5" />
+
+                    <ComboBox Grid.Row="1" IsEditable="True" FontWeight="Bold" MinWidth="250">
+                        <ComboBox.Style>
+                            <StaticResource ResourceKey="NeutralPad"/>
+                        </ComboBox.Style>
+                        <ComboBox.ItemContainerStyle>
+                            <StaticResource ResourceKey="ItemsBox"/>
+                        </ComboBox.ItemContainerStyle>
+                        <ComboBox.ItemsSource>
+                            <Binding Path="SpecialitySelect"/>
+                        </ComboBox.ItemsSource>
+                        <ComboBox.SelectedIndex>
+                            <Binding Path="SpecialityNo" Mode="TwoWay">
+                                <Binding.UpdateSourceTrigger>
+                                    PropertyChanged
+                                </Binding.UpdateSourceTrigger>
+                            </Binding>
+                        </ComboBox.SelectedIndex>
+                        <ComboBox.Text>
+                            <Binding Path="SpecialityFullName" Mode="TwoWay">
+                                <Binding.UpdateSourceTrigger>
+                                    LostFocus
+                                </Binding.UpdateSourceTrigger>
+                            </Binding>
+                        </ComboBox.Text>
+                    </ComboBox>
+                </UniformGrid>
+            </StackPanel>
+
+            <Grid Grid.Row="3" Grid.Column="1" Style="{StaticResource Light}">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+
+
+                <ItemsControl Padding="10" Style="{StaticResource Light}">
+                    <ItemsControl.ItemsSource>
+                        <Binding Path="HourGroups"/>
+                    </ItemsControl.ItemsSource>
+                </ItemsControl>
+
+                <Grid Grid.Row="1" Style="{StaticResource Dark}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.75*"/>
+                        <ColumnDefinition Width="0.25*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Viewbox HorizontalAlignment="Left">
+                        <TextBlock Text=" Максимальная нагрузка, часы: "/>
+                    </Viewbox>
+
+                    <Border Grid.Column="1">
+                        <Border.Style>
+                            <StaticResource ResourceKey="Light"/>
+                        </Border.Style>
+
+                        <Viewbox HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding MaxHours}"/>
+                        </Viewbox>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+        
+        <!--<Grid Grid.Row="1" Grid.Column="1" TextBlock.FontWeight="Bold">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.475*" />
                 <ColumnDefinition Width="0.05*" />
@@ -153,6 +258,6 @@
                     </Viewbox>
                 </Border>
             </Grid>
-        </Grid>
+        </Grid>-->
     </Grid>
 </UserControl>

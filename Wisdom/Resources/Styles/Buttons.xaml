@@ -38,6 +38,21 @@
         <Setter Property="Control.BorderBrush" Value="#FFFFFFFF"/>
     </Style>
 
+    <Style x:Key="HeaderMenuItems" TargetType="TabItem" BasedOn="{StaticResource GlobalFont}">
+        <Setter Property="Padding" Value="10,0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+        <Setter Property="Control.Background" Value="#FF002FA7"/>
+        <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>
+        <Setter Property="Control.BorderBrush" Value="#FFFFFFFF"/>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="False">
+                <Setter Property="Control.Background" Value="#FFFFFFFF"/>
+                <Setter Property="Control.Foreground" Value="#FF002FA7"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
     <Style x:Key="AutoSteps" TargetType="Button" BasedOn="{StaticResource GlobalFont}">
         <Setter Property="Control.FontWeight" Value="Bold"/>
         <Setter Property="Control.Background" Value="#FF002FA7"/>

@@ -11,28 +11,12 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
             <ColumnDefinition Width="125"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
 
-        <TextBlock>
-            <TextBlock.ToolTip>
-                <Binding Path="Expression"/>
-            </TextBlock.ToolTip>
-            <TextBlock.Style>
-                <StaticResource ResourceKey="Light"/>
-            </TextBlock.Style>
-            <TextBlock.Text>
-                <Binding Path="Header"/>
-            </TextBlock.Text>
-            <TextBlock.TextTrimming>
-                CharacterEllipsis
-            </TextBlock.TextTrimming>
-        </TextBlock>
-
-
-        <ComboBox Grid.Column="1" FontSize="20" SelectionChanged="SettingChanged">
+        <ComboBox FontSize="20" SelectionChanged="SettingChanged">
             <ComboBox.Style>
                 <StaticResource ResourceKey="NeutralPad"/>
             </ComboBox.Style>
@@ -55,5 +39,20 @@
                 <ComboBoxItem>Все</ComboBoxItem>
             </ComboBox.Items>
         </ComboBox>
+
+        <TextBlock Grid.Column="1" Padding="5,0">
+            <TextBlock.ToolTip>
+                <Binding Path="Expression"/>
+            </TextBlock.ToolTip>
+            <TextBlock.Style>
+                <StaticResource ResourceKey="Light"/>
+            </TextBlock.Style>
+            <TextBlock.Text>
+                <Binding Path="Header"/>
+            </TextBlock.Text>
+            <TextBlock.TextTrimming>
+                CharacterEllipsis
+            </TextBlock.TextTrimming>
+        </TextBlock>
     </Grid>
 </UserControl>
