@@ -17,7 +17,9 @@
         xmlns:extractors="clr-namespace:Wisdom.Binds.Converters.Extractors"
         mc:Ignorable="d"
         x:Name="DisciplineProgramWindow"
-        Title="Редактирование рабочей программы - учебная дисциплина" Height="1080" Width="1920"
+        Title="Редактирование рабочей программы - учебная дисциплина"
+        Width="1280" Height="720"
+        MinWidth="500" MinHeight="350"
         WindowState="Maximized" Icon="Resources/Images/Icons/Wisdom3.ico"
         Closing="DisciplineProgramWindow_Closing">
     <Window.DataContext>
@@ -39,56 +41,72 @@
         </Grid.DataContext>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.15*"/>
-            <RowDefinition Height="0.85*"/>
+            <RowDefinition Height="0.125*"/>
+            <RowDefinition Height="0.875*"/>
         </Grid.RowDefinitions>
 
 
         <Grid Background="#FF002FA7">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="35"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.05*"/>
-                <ColumnDefinition Width="0.9*"/>
-                <ColumnDefinition Width="0.05*"/>
+                <ColumnDefinition Width="0.025*"/>
+                <ColumnDefinition Width="0.95*"/>
+                <ColumnDefinition Width="0.025*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="TextElement.FontSize" Value="17"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="TextElement.FontSize" Value="17"/>
+                    </Style>
+                </Grid.Resources>
+                
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.675*"/>
-                    <ColumnDefinition Width="0.025*"/>
-                    <ColumnDefinition Width="0.05*"/>
-                    <ColumnDefinition Width="0.025*"/>
-                    <ColumnDefinition Width="0.05*"/>
-                    <ColumnDefinition Width="0.025*"/>
-                    <ColumnDefinition Width="0.15*"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="160"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBox MaxLength="255">
+                <TextBox MaxLength="250">
                     <TextBox.Style>
                         <StaticResource ResourceKey="DarkBox"/>
                     </TextBox.Style>
                     <TextBox.Text>
                         <Binding ElementName="DisciplineProgramWindow" Path="FileName"/>
                     </TextBox.Text>
-                    <TextBox.FontSize>
-                        <Binding RelativeSource="{RelativeSource Self}">
-                            <Binding.Path>
-                                ActualHeight
-                            </Binding.Path>
-                            <Binding.Converter>
-                                <converters:ProcentualHeightConverter/>
-                            </Binding.Converter>
-                            <Binding.ConverterParameter>
-                                1,675
-                            </Binding.ConverterParameter>
-                        </Binding>
-                    </TextBox.FontSize>
                 </TextBox>
+
+                <Button>
+                    <Grid.Column>
+                        2
+                    </Grid.Column>
+
+                    <Button.IsCancel>
+                        True
+                    </Button.IsCancel>
+
+                    <Button.Style>
+                        <StaticResource ResourceKey="Steps"/>
+                    </Button.Style>
+
+                    <Button.ToolTip>
+                        <TextBlock Text="Открыть файл | Esc" FontSize="18"/>
+                    </Button.ToolTip>
+
+                    <TextBlock Text="[ I ]" />
+                </Button>
 
                 <Button Click="MakeUserTemplate">
                     <Grid.Column>
@@ -106,10 +124,8 @@
                     <Button.ToolTip>
                         <TextBlock Text="Сохранить | Esc" FontSize="18"/>
                     </Button.ToolTip>
-                    
-                    <Viewbox>
-                        <TextBlock Text="★" />
-                    </Viewbox>
+
+                    <TextBlock Text="★" />
                 </Button>
 
                 <Button Click="Create_Click" x:Name="Create">
@@ -128,23 +144,24 @@
                     <Button.ToolTip>
                         <TextBlock Text="Сохранить как документ | Enter" FontSize="18"/>
                     </Button.ToolTip>
-                    
-                    <Viewbox>
-                        <TextBlock Text="Подтвердить" Padding="2" />
-                    </Viewbox>
+
+                    <TextBlock Text="Подтвердить" Padding="2" />
                 </Button>
             </Grid>
         </Grid>
 
         <TabControl Grid.Row="1" Style="{StaticResource Light}" BorderThickness="2">
             <TabControl.Resources>
-                <Style TargetType="TabItem" BasedOn="{StaticResource HeaderMenuItems}"/>
+                <Style TargetType="TabItem" BasedOn="{StaticResource HeaderMenuItems}">
+                    <Setter Property="TextBlock.FontSize" Value="20"/>
+                    <Setter Property="TextBlock.Padding" Value="10,0"/>
+                </Style>
             </TabControl.Resources>
 
             <TabItem>
                 <TabItem.Header>
-                    <Border TextBlock.FontSize="24">
-                        <TextBlock Text="Общее" Padding="10,0"/>
+                    <Border>
+                        <TextBlock Text="Общее"/>
                     </Border>
                 </TabItem.Header>
 
@@ -166,8 +183,8 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <Border TextBlock.FontSize="24">
-                        <TextBlock Text="ОК" Padding="10,0"/>
+                    <Border>
+                        <TextBlock Text="ОК"/>
                     </Border>
                 </TabItem.Header>
 
@@ -214,8 +231,8 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <Border TextBlock.FontSize="24">
-                        <TextBlock Text="ПК" Padding="10,0"/>
+                    <Border>
+                        <TextBlock Text="ПК"/>
                     </Border>
                 </TabItem.Header>
 
@@ -255,15 +272,15 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <Border TextBlock.FontSize="24">
-                        <TextBlock Text="УК" Padding="10,0"/>
+                    <Border>
+                        <TextBlock Text="УК"/>
                     </Border>
                 </TabItem.Header>
 
                 <Grid x:Name="Levels" Grid.Row="1" Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.06*" />
-                        <RowDefinition Height="0.94*" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
                     <levels:EducationLevelFields/>
@@ -306,8 +323,8 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <Border TextBlock.FontSize="24">
-                        <TextBlock Text="План" Padding="10,0"/>
+                    <Border>
+                        <TextBlock Text="План"/>
                     </Border>
                 </TabItem.Header>
 
@@ -396,8 +413,8 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <Border TextBlock.FontSize="24">
-                        <TextBlock Text="Сведения" Padding="10,0"/>
+                    <Border>
+                        <TextBlock Text="Сведения"/>
                     </Border>
                 </TabItem.Header>
                 
@@ -423,8 +440,8 @@
             
             <TabItem>
                 <TabItem.Header>
-                    <Border TextBlock.FontSize="24">
-                        <TextBlock Text="Источники" Padding="10,0"/>
+                    <Border>
+                        <TextBlock Text="Источники"/>
                     </Border>
                 </TabItem.Header>
 
@@ -469,8 +486,8 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <Border TextBlock.FontSize="24">
-                        <TextBlock Text="Настройки" Padding="10,0"/>
+                    <Border>
+                        <TextBlock Text="Настройки"/>
                     </Border>
                 </TabItem.Header>
 
