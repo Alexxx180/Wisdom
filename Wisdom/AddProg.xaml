@@ -16,16 +16,12 @@
         xmlns:metadata="clr-namespace:Wisdom.Controls.Tables.MetaData"
         xmlns:extractors="clr-namespace:Wisdom.Binds.Converters.Extractors"
         mc:Ignorable="d"
-        x:Name="DisciplineProgramWindow"
         Title="Редактирование рабочей программы - учебная дисциплина"
-        Width="1280" Height="720"
+        Width="800" Height="600"
         MinWidth="500" MinHeight="350"
         WindowState="Maximized" Icon="Resources/Images/Icons/Wisdom3.ico"
-        Closing="DisciplineProgramWindow_Closing">
-    <Window.DataContext>
-        <Binding RelativeSource="{RelativeSource Self}"/>
-    </Window.DataContext>
-    
+        Closing="DisciplineProgramWindow_Closing"
+        x:Name="DisciplineProgramWindow">
     <Window.Resources>
         <extractors:ThemePlanHours x:Key="ThemePlanHours" />
         <converters:ThemePlanConverter x:Key="ThemePlanConverter"/>
@@ -37,7 +33,7 @@
 
     <Grid>
         <Grid.DataContext>
-            <Binding Path="ViewModel"/>
+            <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
         </Grid.DataContext>
         
         <Grid.RowDefinitions>
@@ -206,11 +202,8 @@
                     <tables:AutoPanel Grid.Row="1" x:Name="General">
                         <tables:AutoPanel.Records>
                             <Binding>
-                                <Binding.ElementName>
-                                    TreeContext
-                                </Binding.ElementName>
                                 <Binding.Path>
-                                    DataContext.GeneralCompetetions
+                                    GeneralCompetetions
                                 </Binding.Path>
                                 <Binding.Converter>
                                     <StaticResource ResourceKey="GeneralCompetetionsConverter"/>
@@ -273,6 +266,7 @@
                                 </Binding.UpdateSourceTrigger>
                             </Binding>
                         </tables:AutoPanel.Records>
+                        
                         <tables:AutoPanel.Additor>
                             <professional:ProfessionalDividerAdditor>
                                 <professional:ProfessionalDividerAdditor.Options>
@@ -319,11 +313,8 @@
                     <tables:AutoPanel Grid.Row="1">
                         <tables:AutoPanel.Records>
                             <Binding>
-                                <Binding.ElementName>
-                                    TreeContext
-                                </Binding.ElementName>
                                 <Binding.Path>
-                                    DataContext.Levels
+                                    Levels
                                 </Binding.Path>
                                 <Binding.Converter>
                                     <StaticResource ResourceKey="LevelsConverter"/>
@@ -378,11 +369,8 @@
                                 <tables:RecordsPanel Grid.Row="1">
                                     <tables:RecordsPanel.Records>
                                         <Binding>
-                                            <Binding.ElementName>
-                                                TreeContext
-                                            </Binding.ElementName>
                                             <Binding.Path>
-                                                DataContext.ThemePlan
+                                                ThemePlan
                                             </Binding.Path>
                                             <Binding.Converter>
                                                 <StaticResource ResourceKey="ThemePlanConverter"/>

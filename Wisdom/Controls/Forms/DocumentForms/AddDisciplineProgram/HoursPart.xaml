@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
-             xmlns:hours="clr-namespace:Wisdom.Controls.Tables.Hours.Groups"
+             xmlns:hours="clr-namespace:Wisdom.Controls.Tables.Hours"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="450" d:DesignWidth="1920"
-             Style="{StaticResource GlobalFont}">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Style="{StaticResource GlobalFont}"
+             x:Name="HoursPartControl">
     <UserControl.Resources>
         <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
         <converters:HoursConverter x:Key="HoursConverter"/>
@@ -16,7 +16,7 @@
 
     <Grid Grid.Row="1" x:Name="TreeContext">
         <Grid.DataContext>
-            <Binding Path="ViewModel"/>
+            <Binding ElementName="HoursPartControl" Path="ViewModel"/>
         </Grid.DataContext>
         
         <Grid.ColumnDefinitions>
@@ -114,6 +114,12 @@
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ItemsControl Padding="10" Style="{StaticResource Light}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <hours:HourElement WorkType="{Binding Name}" HourValue="{Binding Value}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        
                         <ItemsControl.ItemsSource>
                             <Binding Path="HourGroups"/>
                         </ItemsControl.ItemsSource>

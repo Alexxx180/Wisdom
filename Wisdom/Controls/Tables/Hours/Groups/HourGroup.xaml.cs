@@ -52,13 +52,13 @@ namespace Wisdom.Controls.Tables.Hours.Groups
             {
                 uint total = 0;
 
-                if (Hours != null)
-                {
-                    for (ushort i = 0; i < Hours.Count; i++)
-                    {
-                        total += Hours[i].HourValue.ParseHours();
-                    }
-                }
+                //if (Hours != null)
+                //{
+                //    for (ushort i = 0; i < Hours.Count; i++)
+                //    {
+                //        total += Hours[i].HourValue.ParseHours();
+                //    }
+                //}
 
                 return total.ToString();
             }

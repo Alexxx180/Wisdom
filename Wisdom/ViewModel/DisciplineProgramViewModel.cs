@@ -17,6 +17,8 @@ using Wisdom.Controls.Tables.EducationLevels;
 using Wisdom.Controls.Tables.MetaData;
 using Wisdom.Customing;
 using static Wisdom.Writers.ResultRenderer;
+using Wisdom.Model;
+using System.Windows.Input;
 
 namespace Wisdom.ViewModel
 {
@@ -217,15 +219,15 @@ namespace Wisdom.ViewModel
 
                 for (ushort i = 0; i < HourGroups.Count; i++)
                 {
-                    max += HourGroups[i].Total.ParseHours();
+                    max += HourGroups[i].Value; //.Total.ParseHours();
                 }
 
                 return max.ToString();
             }
         }
 
-        private ObservableCollection<HourGroup> _hourGroups;
-        public ObservableCollection<HourGroup> HourGroups
+        private ObservableCollection<TaskHours> _hourGroups;
+        public ObservableCollection<TaskHours> HourGroups
         {
             get => _hourGroups;
             set
@@ -237,11 +239,11 @@ namespace Wisdom.ViewModel
 
         private void AddGroup(string description)
         {
-            HourGroup group = new HourGroup
-            {
-                Type = description
-            };
-            HourGroups.Add(group);
+            //HourGroup group = new HourGroup
+            //{
+            //    Type = description
+            //};
+            //HourGroups.Add(group);
         }
 
         public void RefreshHours()
@@ -339,6 +341,8 @@ namespace Wisdom.ViewModel
         }
         #endregion
 
+        public ICommand RemoveCommand { get; }
+
         public DisciplineProgramViewModel()
         {
             SpecialitySelect = new ObservableCollection<string>();
@@ -351,7 +355,12 @@ namespace Wisdom.ViewModel
             GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
             SourceTypes = new ObservableCollection<string>();
             Document = new DisciplineProgram();
-            HourGroups = new ObservableCollection<HourGroup>();
+            //HourGroup
+            HourGroups = new ObservableCollection<TaskHours>();
+
+            HourGroups.Add(new TaskHours("Hours", 40));
+            HourGroups.Add(new TaskHours("Hours", 40));
+            HourGroups.Add(new TaskHours("Hours", 40));
 
             AddGroup("Аудиторная нагрузка, часы");
             AddGroup("Практическая подготовка, часы");
@@ -381,8 +390,8 @@ namespace Wisdom.ViewModel
             document.ProfessionName = SpecialityFullName;
 
             document.MaxHours = MaxHours;
-            document.ClassHours.Refresh(HourGroups[0].Raw());
-            document.SelfHours.Refresh(HourGroups[1].Raw());
+            //document.ClassHours.Refresh(HourGroups[0].Raw());
+            //document.SelfHours.Refresh(HourGroups[1].Raw());
 
             document.MetaData.Refresh(MetaData);
             document.GeneralCompetetions.Refresh(GeneralCompetetions);
@@ -485,17 +494,17 @@ namespace Wisdom.ViewModel
 
         private void SetHours(in int groupNo, List<Hour> hours)
         {
-            HourGroups[groupNo].Hours.Clear();
-            for (ushort i = 0; i < hours.Count; i++)
-            {
-                Hour hour = hours[i];
+            //HourGroups[groupNo].Hours.Clear();
+            //for (ushort i = 0; i < hours.Count; i++)
+            //{
+            //    Hour hour = hours[i];
 
-                HourElement element = new HourElement();
-                element.Group = HourGroups[groupNo];
-                element.SetElement(hour);
+            //    HourElement element = new HourElement();
+            //    element.Group = HourGroups[groupNo];
+            //    element.SetElement(hour);
 
-                HourGroups[groupNo].AddHour(element);
-            }
+            //    HourGroups[groupNo].AddHour(element);
+            //}
         }
 
         private void SetHourGroups(

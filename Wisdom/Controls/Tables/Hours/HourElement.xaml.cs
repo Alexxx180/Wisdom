@@ -5,6 +5,7 @@ using ControlMaterials.Tables;
 using Wisdom.Customing;
 using System.Windows;
 using Wisdom.Controls.Tables.Hours.Groups;
+using System.Windows.Input;
 
 namespace Wisdom.Controls.Tables.Hours
 {
@@ -13,17 +14,36 @@ namespace Wisdom.Controls.Tables.Hours
     /// </summary>
     public partial class HourElement : UserControl, INotifyPropertyChanged, IRawData<Hour>
     {
+        public static readonly DependencyProperty
+            WorkTypeProperty = DependencyProperty.Register(nameof(WorkType),
+                typeof(string), typeof(HourElement));
+
+        public static readonly DependencyProperty
+            HourValueProperty = DependencyProperty.Register(nameof(HourValue),
+                typeof(ushort), typeof(HourElement));
+
+        public static readonly DependencyProperty
+            RemoveProperty = DependencyProperty.Register(nameof(HourValue),
+                typeof(ushort), typeof(HourElement));
+
+
+        public ICommand Remove
+        {
+            get => GetValue(RemoveProperty) as ICommand;
+            set => SetValue(RemoveProperty, value);
+        }
+
         #region IRawData Members
         public Hour Raw()
         {
-            ushort hours = HourValue.ParseHours();
-            return new Hour(WorkType, hours);
+            //ushort hours = HourValue.ParseHours(); //WorkType
+            return new Hour("", 0);
         }
 
         public void SetElement(Hour values)
         {
             WorkType = values.Name;
-            HourValue = values.Count.ToString();
+            //HourValue = values.Count.ToString();
         }
         #endregion
 
@@ -39,27 +59,18 @@ namespace Wisdom.Controls.Tables.Hours
             }
         }
 
-        private string _type;
+        //private string _type;
         public string WorkType
         {
-            get => _type;
-            set
-            {
-                _type = value;
-                OnPropertyChanged();
-            }
+            get => GetValue(WorkTypeProperty) as string;
+            set => SetValue(WorkTypeProperty, value);
         }
 
-        private string _value;
-        public string HourValue
+        //private ushort _value;
+        public ushort HourValue
         {
-            get => _value;
-            set
-            {
-                _value = value;
-                OnPropertyChanged();
-                Group?.RefreshHours();
-            }
+            get => GetValue(HourValueProperty).ToUShort();
+            set => SetValue(HourValueProperty, value);
         }
         #endregion
 
@@ -70,7 +81,7 @@ namespace Wisdom.Controls.Tables.Hours
 
         private void DropHour(object sender, RoutedEventArgs e)
         {
-            Group.DropHour(this);
+            //Group.DropHour(this);
         }
 
         #region INotifyPropertyChanged Members

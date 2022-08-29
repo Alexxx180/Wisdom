@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Wisdom.Controls.Tables.Hours"
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d" 
-             d:DesignHeight="35" d:DesignWidth="800">
+             d:DesignHeight="35" d:DesignWidth="800"
+             x:Name="This">
     <Grid>
+        <Grid.DataContext>
+            <Binding ElementName="This"/>
+        </Grid.DataContext>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40" />
             <ColumnDefinition />
@@ -25,6 +28,7 @@
             <TextBox.Style>
                 <StaticResource ResourceKey="LightBox"/>
             </TextBox.Style>
+            
             <TextBox.Text>
                 <Binding Path="WorkType" Mode="TwoWay">
                     <Binding.UpdateSourceTrigger>
@@ -38,6 +42,7 @@
             <TextBox.Style>
                 <StaticResource ResourceKey="HoursBoxLight"/>
             </TextBox.Style>
+            
             <TextBox.Text>
                 <Binding Path="HourValue" Mode="TwoWay">
                     <Binding.UpdateSourceTrigger>

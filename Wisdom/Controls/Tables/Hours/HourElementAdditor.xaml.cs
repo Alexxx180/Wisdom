@@ -74,7 +74,7 @@ namespace Wisdom.Controls.Tables.Hours
             {
                 Group = Group,
                 WorkType = WorkType,
-                HourValue = HourValue
+                //HourValue = HourValue
             };
             Group.AddHour(element);
         }

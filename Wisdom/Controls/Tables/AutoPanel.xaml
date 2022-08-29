@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:indexer="clr-namespace:Wisdom.Controls.Tables"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="450" d:DesignWidth="800" x:Name="This">
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="This">
     <Grid>
+        <Grid.DataContext>
+            <Binding ElementName="This"/>
+        </Grid.DataContext>
+        
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="35"/>

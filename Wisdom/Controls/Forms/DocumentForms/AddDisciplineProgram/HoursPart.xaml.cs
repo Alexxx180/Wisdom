@@ -12,10 +12,10 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram
     public partial class HoursPart : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty
-            ViewModelProperty = DependencyProperty.Register("ViewModel",
+            ViewModelProperty = DependencyProperty.Register(nameof(ViewModel),
                 typeof(DisciplineProgramViewModel), typeof(HoursPart));
 
-        internal DisciplineProgramViewModel ViewModel
+        public DisciplineProgramViewModel ViewModel
         {
             get => GetValue(ViewModelProperty) as DisciplineProgramViewModel;
             set => SetValue(ViewModelProperty, value);
