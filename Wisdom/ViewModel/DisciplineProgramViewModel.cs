@@ -227,16 +227,7 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private ObservableCollection<TaskHours> _hourGroups;
-        public ObservableCollection<TaskHours> HourGroups
-        {
-            get => _hourGroups;
-            set
-            {
-                _hourGroups = value;
-                OnPropertyChanged();
-            }
-        }
+        
 
         private void AddGroup(string description)
         {
@@ -343,6 +334,85 @@ namespace Wisdom.ViewModel
         #endregion
 
         public ICommand RemoveCommand { get; }
+
+        #region Data template members
+        private ObservableCollection<Hour> _hourGroups;
+        public ObservableCollection<Hour> HourGroups
+        {
+            get => _hourGroups;
+            set
+            {
+                _hourGroups = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private ObservableCollection<Source> _sourceNodes;
+        public ObservableCollection<Source> SourceNodes
+        {
+            get => _sourceNodes;
+            set
+            {
+                _sourceNodes = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private ObservableCollection<Competetion> _gCompetetions;
+        public ObservableCollection<Competetion> GCompetetions
+        {
+            get => _gCompetetions;
+            set
+            {
+                _gCompetetions = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private ObservableCollection<Competetion> _pCompetetions;
+        public ObservableCollection<Competetion> PCompetetions
+        {
+            get => _pCompetetions;
+            set
+            {
+                _pCompetetions = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private ObservableCollection<Topic> _levels;
+        public ObservableCollection<Topic> Levels
+        {
+            get => _levels;
+            set
+            {
+                _levels = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private ObservableCollection<Task> _metadata;
+        public ObservableCollection<Task> Metadata
+        {
+            get => _metadata;
+            set
+            {
+                _metadata = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        private ObservableCollection<Hour> _processSettings;
+        public ObservableCollection<Hour> ProcessSettings
+        {
+            get => _processSettings;
+            set
+            {
+                _processSettings = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
 
         public DisciplineProgramViewModel()
         {
