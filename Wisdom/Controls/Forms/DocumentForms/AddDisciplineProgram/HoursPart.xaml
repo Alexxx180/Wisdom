@@ -116,7 +116,7 @@
                     <ItemsControl x:Name="Hours" Padding="10" Style="{StaticResource Light}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <hours:HourElement WorkType="{Binding Name}" HourValue="{Binding Value}" Remove="{Binding ElementName=TreeContext, Path=DataContext.RemoveCommand}" />
+                                <hours:HourElement WorkType="{Binding Name}" HourValue="{Binding Value}" Remove="{Binding ElementName=TreeContext, Path=DataContext.RemoveHourCommand}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         
