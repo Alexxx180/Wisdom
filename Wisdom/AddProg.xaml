@@ -16,7 +16,7 @@
         xmlns:metadata="clr-namespace:Wisdom.Controls.Tables.MetaData"
         xmlns:extractors="clr-namespace:Wisdom.Binds.Converters.Extractors"
         mc:Ignorable="d"
-        Title="Редактирование рабочей программы - учебная дисциплина"
+        Title="{Binding FileName}"
         Width="800" Height="600"
         MinWidth="500" MinHeight="350"
         WindowState="Maximized" Icon="Resources/Images/Icons/Wisdom3.ico"
@@ -98,7 +98,7 @@
                     </Button.Style>
 
                     <Button.ToolTip>
-                        <TextBlock Text="Открыть файл | Esc" FontSize="18"/>
+                        <TextBlock Text="Открыть файл | Ctrl + O" FontSize="18"/>
                     </Button.ToolTip>
 
                     <TextBlock Text="[ I ]" />
@@ -443,6 +443,12 @@
                     </ScrollViewer.VerticalScrollBarVisibility>
                     <StackPanel>
                         <ItemsControl>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <metadata:MetaElement MetaName="{Binding Name}" MetaValue="{Binding Hours}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                                
                             <ItemsControl.ItemsSource>
                                 <Binding Path="MetaData"/>
                             </ItemsControl.ItemsSource>
@@ -506,7 +512,9 @@
             <TabItem>
                 <TabItem.Header>
                     <Border>
-                        <TextBlock Text="Настройки"/>
+                        <TextBlock Text="Настройки">
+                            <AccessText Text="Настройки_Escape"/>
+                        </TextBlock>
                     </Border>
                 </TabItem.Header>
 
