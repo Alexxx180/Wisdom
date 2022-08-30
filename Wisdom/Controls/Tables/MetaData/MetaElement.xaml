@@ -23,48 +23,47 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
 
-
-        <Button Click="DropMetaData">
+        <Button Command="{Binding Path=Remove}" CommandParameter="{Binding}">
             <Button.Style>
                 <StaticResource ResourceKey="DeleteButton"/>
             </Button.Style>
         </Button>
 
-        <TextBox Grid.Column="1">
-            <TextBox.Style>
-                <StaticResource ResourceKey="LightBox"/>
-            </TextBox.Style>
-            <TextBox.Text>
-                <Binding Path="MetaName" Mode="TwoWay">
-                    <Binding.UpdateSourceTrigger>
-                        LostFocus
-                    </Binding.UpdateSourceTrigger>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+        <UniformGrid Grid.Column="1" Columns="2">
+            <TextBox Grid.Column="1">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="LightBox"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="MetaName" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
 
-        <TextBox Grid.Column="2" Grid.ColumnSpan="2">
-            <TextBox.TextWrapping>
-                <Binding Path="IsWrap">
-                    <Binding.Converter>
-                        <StaticResource ResourceKey="WrapConverter"/>
-                    </Binding.Converter>
-                </Binding>
-            </TextBox.TextWrapping>
-            <TextBox.Style>
-                <StaticResource ResourceKey="LightBox"/>
-            </TextBox.Style>
-            <TextBox.Text>
-                <Binding Path="MetaValue" Mode="TwoWay">
-                    <Binding.UpdateSourceTrigger>
-                        LostFocus
-                    </Binding.UpdateSourceTrigger>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+            <TextBox Grid.Column="2" Grid.ColumnSpan="2">
+                <TextBox.TextWrapping>
+                    <Binding Path="IsWrap">
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="WrapConverter"/>
+                        </Binding.Converter>
+                    </Binding>
+                </TextBox.TextWrapping>
+                <TextBox.Style>
+                    <StaticResource ResourceKey="LightBox"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="MetaValue" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </UniformGrid>
     </Grid>
 </UserControl>

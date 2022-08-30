@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using ControlMaterials.Tables.ThemePlan;
 using Wisdom.ViewModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Wisdom.Controls.Tables.MetaData
 {
@@ -12,6 +13,25 @@ namespace Wisdom.Controls.Tables.MetaData
     /// </summary>
     public partial class MetaElement : UserControl, INotifyPropertyChanged, IRawData<Task>, IWrapFields
     {
+        public static readonly DependencyProperty
+            MetaNameProperty = DependencyProperty.Register(nameof(MetaName),
+                typeof(string), typeof(MetaElement));
+
+        public static readonly DependencyProperty
+            MetaValueProperty = DependencyProperty.Register(nameof(MetaValue),
+                typeof(string), typeof(MetaElement));
+
+        public static readonly DependencyProperty
+            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+                typeof(ICommand), typeof(MetaElement));
+
+        public ICommand Remove
+        {
+            get => GetValue(RemoveProperty) as ICommand;
+            set => SetValue(RemoveProperty, value);
+        }
+
+
         #region IRawData Members
         public Task Raw()
         {
@@ -37,26 +57,16 @@ namespace Wisdom.Controls.Tables.MetaData
             }
         }
 
-        public string _name;
         public string MetaName
         {
-            get => _name;
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
+            get => GetValue(MetaNameProperty) as string;
+            set => SetValue(MetaNameProperty, value);
         }
 
-        public string _value;
         public string MetaValue
         {
-            get => _value;
-            set
-            {
-                _value = value;
-                OnPropertyChanged();
-            }
+            get => GetValue(MetaValueProperty) as string;
+            set => SetValue(MetaValueProperty, value);
         }
         #endregion
 

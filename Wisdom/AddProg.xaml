@@ -198,7 +198,7 @@
                     </Border>
                 </TabItem.Header>
 
-                <TabItem.Content>
+                <!--<TabItem.Content>
                     <tables:AutoPanel Grid.Row="1" x:Name="General">
                         <tables:AutoPanel.Records>
                             <Binding>
@@ -233,7 +233,7 @@
                             </general:GeneralCompetetionAdditor>
                         </tables:AutoPanel.Additor>
                     </tables:AutoPanel>
-                </TabItem.Content>
+                </TabItem.Content>-->
             </TabItem>
 
             <TabItem>
@@ -251,7 +251,7 @@
                     </Border>
                 </TabItem.Header>
 
-                <TabItem.Content>
+                <!--<TabItem.Content>
                     <tables:AutoPanel Grid.Row="1" x:Name="Professional">
                         <tables:AutoPanel.Records>
                             <Binding Mode="TwoWay">
@@ -283,7 +283,7 @@
                             </professional:ProfessionalDividerAdditor>
                         </tables:AutoPanel.Additor>
                     </tables:AutoPanel>
-                </TabItem.Content>
+                </TabItem.Content>-->
             </TabItem>
 
             <TabItem>
@@ -310,7 +310,7 @@
 
                     <levels:EducationLevelFields/>
 
-                    <tables:AutoPanel Grid.Row="1">
+                    <!--<tables:AutoPanel Grid.Row="1">
                         <tables:AutoPanel.Records>
                             <Binding>
                                 <Binding.Path>
@@ -339,7 +339,7 @@
                                 </levels:EducationLevelAdditor.Options>
                             </levels:EducationLevelAdditor>
                         </tables:AutoPanel.Additor>
-                    </tables:AutoPanel>
+                    </tables:AutoPanel>-->
                 </Grid>
             </TabItem>
 
@@ -366,7 +366,7 @@
                             <StackPanel>
                                 <plan:PlanTopicFields/>
 
-                                <tables:RecordsPanel Grid.Row="1">
+                                <!--<tables:RecordsPanel Grid.Row="1">
                                     <tables:RecordsPanel.Records>
                                         <Binding>
                                             <Binding.Path>
@@ -394,7 +394,7 @@
                                             </plan:PlanTopicAdditor.Options>
                                         </plan:PlanTopicAdditor>
                                     </tables:RecordsPanel.Additor>
-                                </tables:RecordsPanel>
+                                </tables:RecordsPanel>-->
                             </StackPanel>
                         </ScrollViewer>
 
@@ -412,7 +412,7 @@
                                 <TextBlock Text=" Объём часов:" />
                             </Viewbox>
 
-                            <Border Grid.Column="1">
+                            <!--<Border Grid.Column="1">
                                 <Viewbox HorizontalAlignment="Right">
                                     <TextBlock Padding="5,0,5,0">
                                         <TextBlock.Text>
@@ -424,7 +424,7 @@
                                         </TextBlock.Text>
                                     </TextBlock>
                                 </Viewbox>
-                            </Border>
+                            </Border>-->
                         </Grid>
                     </Grid>
                 </TabItem.Content>
@@ -450,7 +450,7 @@
                             </ItemsControl.ItemTemplate>
                                 
                             <ItemsControl.ItemsSource>
-                                <Binding Path="MetaData"/>
+                                <Binding Path="Metadata"/>
                             </ItemsControl.ItemsSource>
                         </ItemsControl>
 
@@ -476,13 +476,13 @@
                             Auto
                         </ScrollViewer.VerticalScrollBarVisibility>
                         <StackPanel>
-                            <ItemsControl>
+                            <!--<ItemsControl>
                                 <ItemsControl.ItemsSource>
                                     <Binding Path="Sources"/>
                                 </ItemsControl.ItemsSource>
-                            </ItemsControl>
+                            </ItemsControl>-->
 
-                            <sources:SourceTypeElementAdditor>
+                            <!--<sources:SourceTypeElementAdditor>
                                 <sources:SourceTypeElementAdditor.Types>
                                     <Binding>
                                         <Binding.ElementName>
@@ -503,7 +503,7 @@
                                         </Binding.Path>
                                     </Binding>
                                 </sources:SourceTypeElementAdditor.Group>
-                            </sources:SourceTypeElementAdditor>
+                            </sources:SourceTypeElementAdditor>-->
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem.Content>
@@ -512,9 +512,7 @@
             <TabItem>
                 <TabItem.Header>
                     <Border>
-                        <TextBlock Text="Настройки">
-                            <AccessText Text="Настройки_Escape"/>
-                        </TextBlock>
+                        <TextBlock Text="Настройки"/>
                     </Border>
                 </TabItem.Header>
 

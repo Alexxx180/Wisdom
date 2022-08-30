@@ -220,7 +220,7 @@ namespace Wisdom.ViewModel
 
                 for (ushort i = 0; i < HourGroups.Count; i++)
                 {
-                    max += HourGroups[i].Value; //.Total.ParseHours();
+                    max += HourGroups[i].Count;//Value; //.Total.ParseHours();
                 }
 
                 return max.ToString();
@@ -269,27 +269,27 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region Sources Members
-        private ObservableCollection<MetaElement> _metaData;
-        public ObservableCollection<MetaElement> MetaData
-        {
-            get => _metaData;
-            set
-            {
-                _metaData = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<MetaElement> _metaData;
+        //public ObservableCollection<MetaElement> MetaData
+        //{
+        //    get => _metaData;
+        //    set
+        //    {
+        //        _metaData = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private ObservableCollection<SourceTypeElement> _sources;
-        public ObservableCollection<SourceTypeElement> Sources
-        {
-            get => _sources;
-            set
-            {
-                _sources = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<SourceTypeElement> _sources;
+        //public ObservableCollection<SourceTypeElement> Sources
+        //{
+        //    get => _sources;
+        //    set
+        //    {
+        //        _sources = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public void AddMetaData(Task data)
         {
@@ -298,39 +298,39 @@ namespace Wisdom.ViewModel
                 ViewModel = this
             };
             element.SetElement(data);
-            MetaData.Add(element);
-            OnPropertyChanged(nameof(MetaData));
+            //MetaData.Add(element);
+            //OnPropertyChanged(nameof(MetaData));
         }
 
         public void DropMetaData(MetaElement meta)
         {
-            _ = MetaData.Remove(meta);
-            OnPropertyChanged(nameof(MetaData));
+            //_ = MetaData.Remove(meta);
+            //OnPropertyChanged(nameof(MetaData));
         }
         #endregion
 
         #region ThemePlan Members
-        private ObservableCollection<PlanTopic> _themePlan;
-        public ObservableCollection<PlanTopic> ThemePlan
-        {
-            get => _themePlan;
-            set
-            {
-                _themePlan = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<PlanTopic> _themePlan;
+        //public ObservableCollection<PlanTopic> ThemePlan
+        //{
+        //    get => _themePlan;
+        //    set
+        //    {
+        //        _themePlan = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private ObservableCollection<EducationLevel> _levels;
-        public ObservableCollection<EducationLevel> Levels
-        {
-            get => _levels;
-            set
-            {
-                _levels = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<EducationLevel> _levels;
+        //public ObservableCollection<EducationLevel> Levels
+        //{
+        //    get => _levels;
+        //    set
+        //    {
+        //        _levels = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         #endregion
 
         public ICommand RemoveHourCommand { get; }
@@ -385,14 +385,36 @@ namespace Wisdom.ViewModel
                 OnPropertyChanged();
             }
         }
-        
-        private ObservableCollection<Topic> _levels;
-        public ObservableCollection<Topic> Levels
+
+        private ObservableCollection<Task> _levels;
+        public ObservableCollection<Task> Levels
         {
             get => _levels;
             set
             {
                 _levels = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Source> _sources;
+        public ObservableCollection<Source> Sources
+        {
+            get => _sources;
+            set
+            {
+                _sources = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Topic> _themePlan;
+        public ObservableCollection<Topic> ThemePlan
+        {
+            get => _themePlan;
+            set
+            {
+                _themePlan = value;
                 OnPropertyChanged();
             }
         }
@@ -424,18 +446,18 @@ namespace Wisdom.ViewModel
         {
             SpecialitySelect = new ObservableCollection<string>();
             DisciplinesSelect = new ObservableCollection<string>();
-            Levels = new ObservableCollection<EducationLevel>();
-            ThemePlan = new ObservableCollection<PlanTopic>();
-            Sources = new ObservableCollection<SourceTypeElement>();
-            MetaData = new ObservableCollection<MetaElement>();
+            Levels = new ObservableCollection<Task>();
+            ThemePlan = new ObservableCollection<Topic>();
+            //Sources = new ObservableCollection<SourceTypeElement>();
+            //MetaData = new ObservableCollection<MetaElement>();
             ProfessionalCompetetions = new ObservableCollection<ProfessionalDivider>();
             GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
             SourceTypes = new ObservableCollection<string>();
             Document = new DisciplineProgram();
 
-            RemoveCommand = new RelayCommand(argument =>
+            RemoveHourCommand = new RelayCommand(argument =>
             {
-                HourGroups.Remove((TaskHours)argument);
+                HourGroups.Remove((Hour)argument);
             });
             
             RemoveMetaCommand = new RelayCommand(argument =>
@@ -453,22 +475,22 @@ namespace Wisdom.ViewModel
                 Sources.Remove((Source)argument);
             });
             
-            RemoveGCompetetionCommand = new RelayCommand(argument =>
-            {
-                GCompetetions.Remove((GCompetetion)argument);
-            });
+            //RemoveGCompetetionCommand = new RelayCommand(argument =>
+            //{
+            //    GCompetetions.Remove((GCompetetion)argument);
+            //});
             
-            RemovePCompetetionCommand = new RelayCommand(argument =>
-            {
-                PCompetetions.Remove((PCompetetion)argument);
-            });
+            //RemovePCompetetionCommand = new RelayCommand(argument =>
+            //{
+            //    PCompetetions.Remove((PCompetetion)argument);
+            //});
 
             //HourGroup
-            HourGroups = new ObservableCollection<TaskHours>();
+            HourGroups = new ObservableCollection<Hour>();
 
-            HourGroups.Add(new TaskHours("Hours", 40));
-            HourGroups.Add(new TaskHours("Hours", 40));
-            HourGroups.Add(new TaskHours("Hours", 40));
+            HourGroups.Add(new Hour("Hours", 40));
+            HourGroups.Add(new Hour("Hours", 40));
+            HourGroups.Add(new Hour("Hours", 40));
 
             AddGroup("Аудиторная нагрузка, часы");
             AddGroup("Практическая подготовка, часы");
@@ -501,10 +523,10 @@ namespace Wisdom.ViewModel
             //document.ClassHours.Refresh(HourGroups[0].Raw());
             //document.SelfHours.Refresh(HourGroups[1].Raw());
 
-            document.MetaData.Refresh(MetaData);
+            //document.MetaData.Refresh(MetaData);
             document.GeneralCompetetions.Refresh(GeneralCompetetions);
             document.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
-            document.Sources.Refresh(Sources);
+            //document.Sources.Refresh(Sources);
             document.Plan.Refresh(ThemePlan);
             document.StudyLevels.Refresh(Levels);
         }
@@ -629,59 +651,59 @@ namespace Wisdom.ViewModel
 
         private void SetMetaData(List<Task> metaData)
         {
-            MetaData.Clear();
-            for (ushort i = 0; i < metaData.Count; i++)
-            {
-                MetaElement meta = new MetaElement();
-                meta.SetElement(metaData[i]);
-                MetaData.Add(meta);
-            }
+            //MetaData.Clear();
+            //for (ushort i = 0; i < metaData.Count; i++)
+            //{
+            //    MetaElement meta = new MetaElement();
+            //    meta.SetElement(metaData[i]);
+            //    MetaData.Add(meta);
+            //}
         }
 
         private void SetSources(List<Source> sources)
         {
-            Sources.Clear();
-            for (ushort i = 0; i < sources.Count; i++)
-            {
-                SourceTypeElement source = new SourceTypeElement
-                {
-                    Groups = Sources
-                };
-                source.SetElement(SourceTypes, sources[i]);
-                Sources.Add(source);
-            }
+            //Sources.Clear();
+            //for (ushort i = 0; i < sources.Count; i++)
+            //{
+            //    SourceTypeElement source = new SourceTypeElement
+            //    {
+            //        Groups = Sources
+            //    };
+            //    source.SetElement(SourceTypes, sources[i]);
+            //    Sources.Add(source);
+            //}
         }
 
         private void SetThemePlan(List<Topic> plan)
         {
-            ThemePlan.Clear();
-            for (ushort i = 0; i < plan.Count; i++)
-            {
-                PlanTopic topic = new PlanTopic
-                {
-                    No = (i + 1).ToUInt()
-                };
-                topic.SetElement(plan[i]);
-                ThemePlan.Add(topic);
-            }
-            OnPropertyChanged(nameof(ThemePlan));
+            //ThemePlan.Clear();
+            //for (ushort i = 0; i < plan.Count; i++)
+            //{
+            //    PlanTopic topic = new PlanTopic
+            //    {
+            //        No = (i + 1).ToUInt()
+            //    };
+            //    topic.SetElement(plan[i]);
+            //    ThemePlan.Add(topic);
+            //}
+            //OnPropertyChanged(nameof(ThemePlan));
         }
         #endregion
 
         #region IndependentFromData Members
         private void SetLevels()
         {
-            List<Task> levels = Data.LevelsData();
-            Levels.Clear();
-            for (byte i = 0; i < levels.Count; i++)
-            {
-                EducationLevel level = new EducationLevel
-                {
-                    LevelNo = (i + 1).ToString()
-                };
-                level.SetElement(levels[i]);
-                Levels.Add(level);
-            }
+            //List<Task> levels = Data.LevelsData();
+            //Levels.Clear();
+            //for (byte i = 0; i < levels.Count; i++)
+            //{
+            //    EducationLevel level = new EducationLevel
+            //    {
+            //        LevelNo = (i + 1).ToString()
+            //    };
+            //    level.SetElement(levels[i]);
+            //    Levels.Add(level);
+            //}
         }
         #endregion
 

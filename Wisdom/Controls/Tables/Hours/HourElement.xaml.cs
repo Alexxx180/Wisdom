@@ -16,6 +16,11 @@ namespace Wisdom.Controls.Tables.Hours
     public partial class HourElement : UserControl, INotifyPropertyChanged, IRawData<Hour>
     {
         public static readonly DependencyProperty
+            HourProperty = DependencyProperty.Register(nameof(Hour),
+                typeof(Hour), typeof(HourElement));
+
+
+        public static readonly DependencyProperty
             WorkTypeProperty = DependencyProperty.Register(nameof(WorkType),
                 typeof(string), typeof(HourElement));
 
@@ -57,6 +62,12 @@ namespace Wisdom.Controls.Tables.Hours
                 _group = value;
                 OnPropertyChanged();
             }
+        }
+
+        public Hour Hour
+        {
+            get => (Hour)GetValue(HourProperty);
+            set => SetValue(HourProperty, value);
         }
 
         //private string _type;
