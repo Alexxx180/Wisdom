@@ -333,7 +333,13 @@ namespace Wisdom.ViewModel
         }
         #endregion
 
-        public ICommand RemoveCommand { get; }
+        public ICommand RemoveHourCommand { get; }
+        public ICommand RemoveMetaCommand { get; }
+        public ICommand RemoveTopicCommand { get; }
+        public ICommand RemoveLevelCommand { get; }
+        public ICommand RemoveSourceCommand { get; }
+        public ICommand RemoveGCompetetionCommand { get; }
+        public ICommand RemovePCompetetionCommand { get; }
 
         #region Data template members
         private ObservableCollection<Hour> _hourGroups;
@@ -430,6 +436,31 @@ namespace Wisdom.ViewModel
             RemoveCommand = new RelayCommand(argument =>
             {
                 HourGroups.Remove((TaskHours)argument);
+            });
+            
+            RemoveMetaCommand = new RelayCommand(argument =>
+            {
+                Metadata.Remove((Task)argument);
+            });
+            
+            RemoveTopicCommand = new RelayCommand(argument =>
+            {
+                ThemePlan.Remove((Topic)argument);
+            });
+            
+            RemoveSourceCommand = new RelayCommand(argument =>
+            {
+                Sources.Remove((Source)argument);
+            });
+            
+            RemoveGCompetetionCommand = new RelayCommand(argument =>
+            {
+                GCompetetions.Remove((GCompetetion)argument);
+            });
+            
+            RemovePCompetetionCommand = new RelayCommand(argument =>
+            {
+                PCompetetions.Remove((PCompetetion)argument);
             });
 
             //HourGroup
