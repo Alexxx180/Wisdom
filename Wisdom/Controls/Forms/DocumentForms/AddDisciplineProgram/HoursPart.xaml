@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Style="{StaticResource GlobalFont}"
-             x:Name="HoursPartControl">
+             x:Name="This">
     <UserControl.Resources>
         <converters:UsedValuesConverter x:Key="UsedValuesConverter" />
         <converters:HoursConverter x:Key="HoursConverter"/>
@@ -16,7 +16,7 @@
 
     <Grid Grid.Row="1" x:Name="TreeContext">
         <Grid.DataContext>
-            <Binding ElementName="HoursPartControl" Path="ViewModel"/>
+            <Binding ElementName="This" Path="ViewModel"/>
         </Grid.DataContext>
         
         <Grid.ColumnDefinitions>
@@ -113,10 +113,10 @@
                 </Grid.RowDefinitions>
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ItemsControl Padding="10" Style="{StaticResource Light}">
+                    <ItemsControl x:Name="Hours" Padding="10" Style="{StaticResource Light}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <hours:HourElement WorkType="{Binding Name}" HourValue="{Binding Value}" />
+                                <hours:HourElement WorkType="{Binding Name}" HourValue="{Binding Value}" Remove="{Binding ElementName=TreeContext, Path=DataContext.RemoveCommand}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         

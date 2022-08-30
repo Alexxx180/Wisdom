@@ -6,6 +6,7 @@ using Wisdom.Customing;
 using System.Windows;
 using Wisdom.Controls.Tables.Hours.Groups;
 using System.Windows.Input;
+using Wisdom.Model;
 
 namespace Wisdom.Controls.Tables.Hours
 {
@@ -23,9 +24,8 @@ namespace Wisdom.Controls.Tables.Hours
                 typeof(ushort), typeof(HourElement));
 
         public static readonly DependencyProperty
-            RemoveProperty = DependencyProperty.Register(nameof(HourValue),
-                typeof(ushort), typeof(HourElement));
-
+            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+                typeof(ICommand), typeof(HourElement));
 
         public ICommand Remove
         {

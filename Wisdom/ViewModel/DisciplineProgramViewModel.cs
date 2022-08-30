@@ -19,6 +19,7 @@ using Wisdom.Customing;
 using static Wisdom.Writers.ResultRenderer;
 using Wisdom.Model;
 using System.Windows.Input;
+using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel
 {
@@ -355,6 +356,12 @@ namespace Wisdom.ViewModel
             GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
             SourceTypes = new ObservableCollection<string>();
             Document = new DisciplineProgram();
+
+            RemoveCommand = new RelayCommand(argument =>
+            {
+                HourGroups.Remove((TaskHours)argument);
+            });
+
             //HourGroup
             HourGroups = new ObservableCollection<TaskHours>();
 

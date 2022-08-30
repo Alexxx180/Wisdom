@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <Button Click="DropHour">
+        <Button Click="DropHour" Command="{Binding Path=Remove}" CommandParameter="{Binding ElementName=This}">
             <Button.Style>
                 <StaticResource ResourceKey="DeleteButton"/>
             </Button.Style>
