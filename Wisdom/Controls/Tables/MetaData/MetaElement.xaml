@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="30" d:DesignWidth="600">
+             d:DesignHeight="30" d:DesignWidth="600"
+             x:Name="This">
     <UserControl.Style>
         <StaticResource ResourceKey="Wrapable"/>
     </UserControl.Style>
@@ -16,6 +16,10 @@
     </UserControl.Resources>
 
     <Grid>
+        <Grid.DataContext>
+            <Binding ElementName="This"/>
+        </Grid.DataContext>
+      
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
