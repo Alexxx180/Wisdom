@@ -1,60 +1,29 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using ControlMaterials.Total;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class Work
+    public class Work : NameLabel
     {
-        public Work()
-        {
+        public Work() { }
 
-        }
-
-        public Work(string type, ObservableCollection<Task> tasks)
+        public Work(string name, ObservableCollection<Task> tasks)
         {
-            Type = type;
+            Name = name;
             Tasks = tasks;
         }
 
-        public Work(string type, Task task)
+        public Work(string name, Task task)
         {
-            Type = type;
+            Name = name;
             Tasks = new ObservableCollection<Task>
             {
                 task
             };
         }
-
-        private string _type;
-        public string Type
-        {
-            get => _type;
-            set
-            {
-                _type = value;
-                OnPropertyChanged();
-            }
-        }
         
         public ObservableCollection<Task> Tasks { get; }
-        
-        #region INotifyPropertyChanged Members
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Raises this object's PropertyChanged event.
-        /// </summary>
-        /// <param name="propertyName">The property that has a new value.</param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
-                handler(this, e);
-            }
-        }
-        #endregion
     }
 }
