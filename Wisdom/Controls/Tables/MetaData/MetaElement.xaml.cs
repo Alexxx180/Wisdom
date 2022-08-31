@@ -14,12 +14,8 @@ namespace Wisdom.Controls.Tables.MetaData
     public partial class MetaElement : UserControl, INotifyPropertyChanged, IRawData<Task>, IWrapFields
     {
         public static readonly DependencyProperty
-            MetaNameProperty = DependencyProperty.Register(nameof(MetaName),
-                typeof(string), typeof(MetaElement));
-
-        public static readonly DependencyProperty
-            MetaValueProperty = DependencyProperty.Register(nameof(MetaValue),
-                typeof(string), typeof(MetaElement));
+            PairProperty = DependencyProperty.Register(nameof(Pair),
+                typeof(Task), typeof(MetaElement));
 
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
@@ -57,16 +53,10 @@ namespace Wisdom.Controls.Tables.MetaData
             }
         }
 
-        public string MetaName
+        public Task Pair
         {
-            get => GetValue(MetaNameProperty) as string;
-            set => SetValue(MetaNameProperty, value);
-        }
-
-        public string MetaValue
-        {
-            get => GetValue(MetaValueProperty) as string;
-            set => SetValue(MetaValueProperty, value);
+            get => GetValue(PairProperty) as Task;
+            set => SetValue(PairProperty, value);
         }
         #endregion
 
@@ -91,11 +81,6 @@ namespace Wisdom.Controls.Tables.MetaData
         public MetaElement()
         {
             InitializeComponent();
-        }
-
-        private void DropMetaData(object sender, RoutedEventArgs e)
-        {
-            ViewModel.DropMetaData(this);
         }
 
         #region INotifyPropertyChanged Members
