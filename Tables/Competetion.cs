@@ -5,7 +5,7 @@ using ControlMaterials.Tables.ThemePlan;
 
 namespace ControlMaterials.Tables
 {
-    public class Competetion : HybridNode
+    public class Competetion : HybridNode<Task>
     {
         public Competetion() : base() { }
         
