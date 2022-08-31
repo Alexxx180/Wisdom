@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 
-namespace ControlMaterials.Tables
+namespace ControlMaterials.Total
 {
     public class NameNode<T> : NameLabel
     {
