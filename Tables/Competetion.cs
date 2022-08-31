@@ -1,13 +1,23 @@
-﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 using ControlMaterials.Tables.ThemePlan;
 
 namespace ControlMaterials.Tables
 {
-    public class Competetion
+    public class Competetion : HybridNode
     {
-        public string PrefixNo { get; set; }
-        public string Name { get; set; }
-
-        public List<Task> Abilities { get; set; }
+        public Competetion() : base() { }
+        
+        private string _prefix;
+        public string Prefix
+        {
+            get => _prefix;
+            set
+            {
+                _prefix = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
