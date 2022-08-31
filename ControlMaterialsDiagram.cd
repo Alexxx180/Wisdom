@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ControlMaterials.Documents.DisciplineProgram" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAEAAABAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\DisciplineProgram.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ControlMaterials.Documents.DocumentTypes" Collapsed="true">
+    <Position X="10" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\DocumentTypes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlMaterials.Tables.ThemePlan.Theme" Collapsed="true">
+    <Position X="8.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAQAAAAAAAAAAQAAAAAAAABAAAAAAAEAAA=</HashCode>
+      <FileName>Tables\ThemePlan\Theme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlMaterials.Tables.ThemePlan.Topic" Collapsed="true">
+    <Position X="8.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tables\ThemePlan\Topic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlMaterials.Tables.ThemePlan.Work" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAA=</HashCode>
+      <FileName>Tables\ThemePlan\Work.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlMaterials.Tables.Competetion" Collapsed="true">
+    <Position X="11.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAABAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tables\Competetion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlMaterials.Tables.Source" Collapsed="true">
+    <Position X="9" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tables\Source.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlMaterials.DisciplineBase" Collapsed="true">
+    <Position X="10" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAQAEABABAAAAAAAAA=</HashCode>
+      <FileName>DisciplineBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ControlMaterials.SpecialityBase" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAACAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpecialityBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ControlMaterials.Tables.ThemePlan.Task" Collapsed="true">
+    <Position X="8.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tables\ThemePlan\Task.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="ControlMaterials.Documents.IDocument" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\IDocument.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ControlMaterials.Documents.Document" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Documents\Document.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI Semibold" Size="8.25" />
+</ClassDiagram>

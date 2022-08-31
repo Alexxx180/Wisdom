@@ -6,6 +6,6 @@ namespace ControlMaterials.Tables.ThemePlan
     {
         public string Name { get; set; }
         public string Hours { get; set; }
-        internal List<Theme> Themes { get; set; }
+        public List<Theme> Themes { get; set; }
     }
 }

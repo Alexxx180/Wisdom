@@ -1,6 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("UnitTests")]
 namespace ControlMaterials.Tables.ThemePlan
 {
     public struct Task

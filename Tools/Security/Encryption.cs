@@ -45,7 +45,8 @@ namespace ControlMaterials.Tools.Security
             byte[] protectedData;
             try
             {
-                protectedData = ProtectedData.Protect(data, s_additionalEntropy, DataProtectionScope.CurrentUser);
+                protectedData = ProtectedData.Protect
+                    (data, s_additionalEntropy, DataProtectionScope.CurrentUser);
             }
             catch (CryptographicException exception)
             {
@@ -59,7 +60,8 @@ namespace ControlMaterials.Tools.Security
             byte[] unprotectedData;
             try
             {
-                unprotectedData = ProtectedData.Unprotect(data, s_additionalEntropy, DataProtectionScope.CurrentUser);
+                unprotectedData = ProtectedData.Unprotect
+                    (data, s_additionalEntropy, DataProtectionScope.CurrentUser);
             }
             catch (CryptographicException exception)
             {

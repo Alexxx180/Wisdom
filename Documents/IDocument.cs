@@ -1,6 +1,6 @@
 ﻿namespace ControlMaterials.Documents
 {
-    internal interface IDocument
+    public interface IDocument
     {
         public Document DocumentType { get; }
     }

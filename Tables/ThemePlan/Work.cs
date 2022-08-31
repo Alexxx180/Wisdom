@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("UnitTests")]
 namespace ControlMaterials.Tables.ThemePlan
 {
-    internal class Work
+    public class Work
     {
         public Work()
         {
@@ -26,7 +24,7 @@ namespace ControlMaterials.Tables.ThemePlan
             };
         }
 
-        internal string Type { get; set; }
-        internal List<Task> Tasks { get; set; }
+        public string Type { get; set; }
+        public List<Task> Tasks { get; set; }
     }
 }
