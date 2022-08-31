@@ -19,15 +19,6 @@ namespace Wisdom.Controls.Tables.Hours
             HourProperty = DependencyProperty.Register(nameof(Hour),
                 typeof(Hour), typeof(HourElement));
 
-
-        public static readonly DependencyProperty
-            WorkTypeProperty = DependencyProperty.Register(nameof(WorkType),
-                typeof(string), typeof(HourElement));
-
-        public static readonly DependencyProperty
-            HourValueProperty = DependencyProperty.Register(nameof(HourValue),
-                typeof(ushort), typeof(HourElement));
-
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
                 typeof(ICommand), typeof(HourElement));
@@ -45,54 +36,25 @@ namespace Wisdom.Controls.Tables.Hours
             return new Hour("", 0);
         }
 
-        public void SetElement(Hour values)
+        public void SetElement(Hour value)
         {
-            WorkType = values.Name;
+            Hour = value;
+            //WorkType = values.Name;
             //HourValue = values.Count.ToString();
         }
         #endregion
 
         #region Hour Members
-        private HourGroup _group;
-        internal HourGroup Group
-        {
-            get => _group;
-            set
-            {
-                _group = value;
-                OnPropertyChanged();
-            }
-        }
-
         public Hour Hour
         {
             get => (Hour)GetValue(HourProperty);
             set => SetValue(HourProperty, value);
-        }
-
-        //private string _type;
-        public string WorkType
-        {
-            get => GetValue(WorkTypeProperty) as string;
-            set => SetValue(WorkTypeProperty, value);
-        }
-
-        //private ushort _value;
-        public ushort HourValue
-        {
-            get => GetValue(HourValueProperty).ToUShort();
-            set => SetValue(HourValueProperty, value);
         }
         #endregion
 
         public HourElement()
         {
             InitializeComponent();
-        }
-
-        private void DropHour(object sender, RoutedEventArgs e)
-        {
-            //Group.DropHour(this);
         }
 
         #region INotifyPropertyChanged Members
