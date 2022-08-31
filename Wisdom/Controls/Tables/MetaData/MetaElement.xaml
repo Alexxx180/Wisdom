@@ -25,19 +25,23 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Command="{Binding Path=Remove}" CommandParameter="{Binding}">
+        <Button Command="{Binding Path=Remove}" CommandParameter="{Binding Pair}">
             <Button.Style>
                 <StaticResource ResourceKey="DeleteButton"/>
             </Button.Style>
         </Button>
 
         <UniformGrid Grid.Column="1" Columns="2">
+            <UniformGrid.DataContext>
+                <Binding Path="Pair"/>
+            </UniformGrid.DataContext>
+          
             <TextBox Grid.Column="1">
                 <TextBox.Style>
                     <StaticResource ResourceKey="LightBox"/>
                 </TextBox.Style>
                 <TextBox.Text>
-                    <Binding Path="MetaName" Mode="TwoWay">
+                    <Binding Path="Name" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
                             LostFocus
                         </Binding.UpdateSourceTrigger>
@@ -57,7 +61,7 @@
                     <StaticResource ResourceKey="LightBox"/>
                 </TextBox.Style>
                 <TextBox.Text>
-                    <Binding Path="MetaValue" Mode="TwoWay">
+                    <Binding Path="Value" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
                             LostFocus
                         </Binding.UpdateSourceTrigger>
