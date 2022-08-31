@@ -8,7 +8,7 @@ namespace ControlMaterials.Total
     {
         public NameNode()
         {
-            Themes = new ObservableCollection<T>();
+            Items = new ObservableCollection<T>();
         }
         
         public ObservableCollection<T> Items { get; }
