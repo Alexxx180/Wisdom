@@ -23,7 +23,9 @@
         </Button>
         
         <Grid Grid.Column="1">
-            
+            <Grid.DataContext>
+                <Binding Path="Hour"/>
+            </Grid.DataContext>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -36,7 +38,7 @@
                 </TextBox.Style>
 
                 <TextBox.Text>
-                    <Binding Path="WorkType" Mode="TwoWay">
+                    <Binding Path="Name" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
                             LostFocus
                         </Binding.UpdateSourceTrigger>
@@ -50,7 +52,7 @@
                 </TextBox.Style>
 
                 <TextBox.Text>
-                    <Binding Path="HourValue" Mode="TwoWay">
+                    <Binding Path="Count" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
                             LostFocus
                         </Binding.UpdateSourceTrigger>
