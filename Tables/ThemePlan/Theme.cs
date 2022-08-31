@@ -1,17 +1,16 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using ControlMaterials.Total;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class Theme
+    public class Theme : NameLabel
     {
         public Theme()
         {
             Works = new ObservableCollection<Work>();
         }
-        
-        public string Name { get; set; }
         
         private ushort _hours;
         public ushort Hours
@@ -58,23 +57,5 @@ namespace ControlMaterials.Tables.ThemePlan
         }
         
         public ObservableCollection<Work> Works { get; }
-        
-        #region INotifyPropertyChanged Members
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Raises this object's PropertyChanged event.
-        /// </summary>
-        /// <param name="propertyName">The property that has a new value.</param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
-                handler(this, e);
-            }
-        }
-        #endregion
     }
 }
