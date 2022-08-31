@@ -1,16 +1,26 @@
-﻿using System.Runtime.CompilerServices;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using ControlMaterials.Total;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public struct Task
+    public struct Task : NameLabel
     {
-        public Task(string name, string hours)
+        public Task(string name, string data)
         {
             Name = name;
-            Hours = hours;
+            Data = data;
         }
 
-        public string Name { get; set; }
-        public string Hours { get; set; }
+        private string _data;
+        public string Data
+        {
+            get => _data;
+            set
+            {
+                _data = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
