@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
@@ -9,7 +11,7 @@ namespace ControlMaterials.Tables.ThemePlan
 
         }
 
-        public Work(string type, List<Task> tasks)
+        public Work(string type, ObservableCollection<Task> tasks)
         {
             Type = type;
             Tasks = tasks;
@@ -18,13 +20,41 @@ namespace ControlMaterials.Tables.ThemePlan
         public Work(string type, Task task)
         {
             Type = type;
-            Tasks = new List<Task>
+            Tasks = new ObservableCollection<Task>
             {
                 task
             };
         }
 
-        public string Type { get; set; }
-        public List<Task> Tasks { get; set; }
+        private string _type;
+        public string Type
+        {
+            get => _type;
+            set
+            {
+                _type = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public ObservableCollection<Task> Tasks { get; }
+        
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Raises this object's PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">The property that has a new value.</param>
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
+        }
+        #endregion
     }
 }
