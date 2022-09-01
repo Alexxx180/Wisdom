@@ -46,6 +46,8 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
         }
         #endregion
     
+        public ICommand RemoveSource { get; }
+        
         #region IRawData Members
         public Source Raw()
         {
@@ -142,6 +144,11 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
         public SourceType()
         {
             InitializeComponent();
+            RemoveSource = new RelayCommand(argument =>
+            {
+                Data.Items.Remove((Source)argument);
+            });
+            
             Types = new ObservableCollection<string>();
             Sources = new ObservableCollection<SourceElement>();
         }
