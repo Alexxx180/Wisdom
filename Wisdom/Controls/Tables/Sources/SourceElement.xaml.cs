@@ -11,6 +11,27 @@ namespace Wisdom.Controls.Tables.Sources
     /// </summary>
     public partial class SourceElement : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<string>, IWrapFields
     {
+        #region Dependency Properties
+        public static readonly DependencyProperty
+            DataProperty = DependencyProperty.Register(nameof(Data),
+                typeof(Source), typeof(SourceElement));
+
+        public static readonly DependencyProperty
+            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+                typeof(ICommand), typeof(SourceElement));
+
+        public ICommand Remove
+        {
+            get => GetValue(RemoveProperty) as ICommand;
+            set => SetValue(RemoveProperty, value);
+        }
+        
+        public IndexedLabel Data
+        {
+            get => GetValue(DataProperty) as Source;
+            set => SetValue(DataProperty, value);
+        }
+    
         #region IRawData Members
         public string Raw()
         {
