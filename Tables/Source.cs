@@ -2,7 +2,7 @@
 
 namespace ControlMaterials.Tables
 {
-    public class Source : NameNode<string>
+    public class Source : NameNode<IndexedLabel>
     {
         public Source() { }
     }
