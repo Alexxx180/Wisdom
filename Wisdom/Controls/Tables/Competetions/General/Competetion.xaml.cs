@@ -13,8 +13,31 @@ namespace Wisdom.Controls.Tables.Competetions.General
     /// <summary>
     /// General competetion related to speciality | discipline
     /// </summary>
-    public partial class GeneralCompetetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Competetion>, IExtendableItems, IWrapFields
+    public partial class Competetion : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Competetion>, IExtendableItems, IWrapFields
     {
+        #region Dependency Properties
+        public static readonly DependencyProperty
+            DataProperty = DependencyProperty.Register(nameof(Data),
+                typeof(Competetion), typeof(GeneralCompetetion));
+
+        public static readonly DependencyProperty
+            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+                typeof(ICommand), typeof(GeneralCompetetion));
+
+        public ICommand Remove
+        {
+            get => GetValue(RemoveProperty) as ICommand;
+            set => SetValue(RemoveProperty, value);
+        }
+        
+        public Competetion Data
+        {
+            get => GetValue(DataProperty) as Competetion;
+            set => SetValue(DataProperty, value);
+        }
+        #endregion
+    
+    
         #region IRawData Members
         public Competetion Raw()
         {
