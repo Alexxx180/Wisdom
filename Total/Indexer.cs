@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Collections.Generic;
 
 namespace ControlMaterials.Total
 {
@@ -17,11 +16,16 @@ namespace ControlMaterials.Total
             }
         }
         
-        public void Add(short no)
+        public void Increment(ushort no)
         {
             No += no;
         }
-        
+
+        public void Decrement(ushort no)
+        {
+            No -= no;
+        }
+
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
 

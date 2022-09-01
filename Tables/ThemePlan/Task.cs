@@ -1,10 +1,8 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using ControlMaterials.Total;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public struct Task : NameLabel
+    public class Task : NameLabel
     {
         public Task(string name, string data)
         {

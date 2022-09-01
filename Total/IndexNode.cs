@@ -1,6 +1,4 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ControlMaterials.Total
 {
@@ -8,7 +6,7 @@ namespace ControlMaterials.Total
     {
         public IndexNode()
         {
-            Themes = new ObservableCollection<T>();
+            Items = new ObservableCollection<T>();
         }
         
         public ObservableCollection<T> Items { get; }

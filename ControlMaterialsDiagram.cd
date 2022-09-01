@@ -18,35 +18,35 @@
   <Class Name="ControlMaterials.Tables.ThemePlan.Theme" Collapsed="true">
     <Position X="8.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAQAAAAAAAAAAQAAAAAAAABAAAAAAAEAAA=</HashCode>
+      <HashCode>AAEAAAAAAAAQAAAAAAAAAQAEAAAAgAABAAAAQAAECAA=</HashCode>
       <FileName>Tables\ThemePlan\Theme.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ControlMaterials.Tables.ThemePlan.Topic" Collapsed="true">
     <Position X="8.25" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAQAAAQAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tables\ThemePlan\Topic.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ControlMaterials.Tables.ThemePlan.Work" Collapsed="true">
     <Position X="8.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAIAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>Tables\ThemePlan\Work.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ControlMaterials.Tables.Competetion" Collapsed="true">
     <Position X="11.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAQAABAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Tables\Competetion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ControlMaterials.Tables.Source" Collapsed="true">
     <Position X="9" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tables\Source.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -64,13 +64,6 @@
       <FileName>SpecialityBase.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="ControlMaterials.Tables.ThemePlan.Task" Collapsed="true">
-    <Position X="8.25" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Tables\ThemePlan\Task.cs</FileName>
-    </TypeIdentifier>
-  </Struct>
   <Interface Name="ControlMaterials.Documents.IDocument" Collapsed="true">
     <Position X="10" Y="2.5" Width="1.5" />
     <TypeIdentifier>

@@ -1,7 +1,5 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Collections.Generic;
 using ControlMaterials.Total;
+using System.Collections.ObjectModel;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
