@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="35" d:DesignWidth="800">
     <UserControl.Style>
         <StaticResource ResourceKey="Wrapable"/>
@@ -16,42 +15,65 @@
     </UserControl.Resources>
 
     <Grid>
+        <Grid.DataContext>
+            <Binding ElementName="This"/>
+        </Grid.DataContext>
+        
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="90" />
-            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         
-        <Button Click="DropSource" Height="35">
+        <Button Command="{Binding Path=Remove}" CommandParameter="{Binding Path=Data}">
             <Button.Style>
                 <StaticResource ResourceKey="DeleteButton"/>
             </Button.Style>
         </Button>
         
-        <TextBlock Grid.Column="1">
-            <TextBlock.Style>
-                <StaticResource ResourceKey="No1"/>
-            </TextBlock.Style>
-            <TextBlock.Text>
-                <Binding Path="Header"/>
-            </TextBlock.Text>
-        </TextBlock>
-
-        <TextBox Grid.Column="2" FontSize="20">
-            <TextBox.TextWrapping>
-                <Binding Path="IsWrap">
-                    <Binding.Converter>
-                        <StaticResource ResourceKey="WrapConverter"/>
-                    </Binding.Converter>
-                </Binding>
-            </TextBox.TextWrapping>
-            <TextBox.Style>
-                <StaticResource ResourceKey="LightBox"/>
-            </TextBox.Style>
-            <TextBox.Text>
-                <Binding Path="Source"/>
-            </TextBox.Text>
-        </TextBox>
+        <Grid Grid.Column="1">
+            <Grid.DataContext>
+                <Binding Path="Data"/>
+            </Grid.DataContext>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBox FontSize="20" Foreground="Black">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="NoBox"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="No" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+                <TextBox.IsEnabled>
+                    <Binding Path="Options.IsManual"/>
+                </TextBox.IsEnabled>
+            </TextBox>
+            
+            <TextBox Grid.Column="1" FontSize="20">
+                <TextBox.TextWrapping>
+                    <Binding ElementName="This" Path="IsWrap">
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="WrapConverter"/>
+                        </Binding.Converter>
+                    </Binding>
+                </TextBox.TextWrapping>
+                <TextBox.Style>
+                    <StaticResource ResourceKey="LightBox"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="Name"/>
+                </TextBox.Text>
+            </TextBox>
+            
+        </Grid>
+        
     </Grid>
 </UserControl>
