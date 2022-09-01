@@ -3,11 +3,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups;
-using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Tables;
+using Wisdom.ViewModel.Commands;
 
-namespace Wisdom.Controls.Tables.Competetions.Professional
+namespace Wisdom.Controls.Tables.Competetions
 {
     /// <summary>
     /// Professional competetion related to speciality | discipline
@@ -34,7 +33,9 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             get => GetValue(DataProperty) as Competetion;
             set => SetValue(DataProperty, value);
         }
-       
+
+        public ICommand RemoveCompetetion { get; }
+
         #region IExtendableItems Members
         private bool _extended;
         public bool Extended
@@ -57,6 +58,10 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         {
             InitializeComponent();
             Extended = true;
+            RemoveCompetetion = new RelayCommand(argument =>
+            {
+                Data.Items.Remove((Competetion)argument);
+            });
         }
 
         #region INotifyPropertyChanged Members
