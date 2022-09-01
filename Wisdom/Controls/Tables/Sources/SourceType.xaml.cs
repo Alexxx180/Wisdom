@@ -12,8 +12,40 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
     /// <summary>
     /// Record component containing source group with type header
     /// </summary>
-    public partial class SourceTypeElement : UserControl, INotifyPropertyChanged, IRawData<Source>
+    public partial class SourceType : UserControl, INotifyPropertyChanged, IRawData<Source>
     {
+        #region Dependency Properties
+        public static readonly DependencyProperty
+            VariantsProperty = DependencyProperty.Register(nameof(Variants),
+                typeof(ObservableCollection<string>), typeof(SourceType));
+        
+        public static readonly DependencyProperty
+            DataProperty = DependencyProperty.Register(nameof(Data),
+                typeof(Source), typeof(SourceType));
+
+        public static readonly DependencyProperty
+            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+                typeof(ICommand), typeof(SourceType));
+
+        public ICommand Remove
+        {
+            get => GetValue(RemoveProperty) as ICommand;
+            set => SetValue(RemoveProperty, value);
+        }
+        
+        public Source Data
+        {
+            get => GetValue(DataProperty) as Source;
+            set => SetValue(DataProperty, value);
+        }
+        
+        public ObservableCollection<string> Variants
+        {
+            get => GetValue(VariantsProperty) as ObservableCollection<string>;
+            set => SetValue(VariantsProperty, value);
+        }
+        #endregion
+    
         #region IRawData Members
         public Source Raw()
         {
@@ -107,7 +139,7 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
         }
         #endregion
 
-        public SourceTypeElement()
+        public SourceType()
         {
             InitializeComponent();
             Types = new ObservableCollection<string>();
