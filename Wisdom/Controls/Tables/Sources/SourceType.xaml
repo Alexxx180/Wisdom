@@ -35,9 +35,9 @@
                 <ComboBox.ItemsSource>
                     <Binding Path="Variants"/>
                 </ComboBox.ItemsSource>
-                <ComboBox.SelectedIndex>
-                    <Binding Path="SelectedSource"/>
-                </ComboBox.SelectedIndex>
+                <ComboBox.SelectedItem>
+                    <Binding Path="Data.Name"/>
+                </ComboBox.SelectedItem>
                 <ComboBox.Text>
                     <Binding Path="Text"/>
                 </ComboBox.Text>
