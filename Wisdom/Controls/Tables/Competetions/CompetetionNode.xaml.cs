@@ -17,7 +17,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         #region Dependency Properties
         public static readonly DependencyProperty
             DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(Node<Competetion>), typeof(CompetetionNode));
+                typeof(IndexNode<Competetion>), typeof(CompetetionNode));
 
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
@@ -29,7 +29,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
             set => SetValue(RemoveProperty, value);
         }
         
-        public Node<Competetion> Data
+        public IndexNode<Competetion> Data
         {
             get => GetValue(DataProperty) as Competetion;
             set => SetValue(DataProperty, value);
