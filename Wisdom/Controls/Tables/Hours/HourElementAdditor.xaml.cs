@@ -70,13 +70,13 @@ namespace Wisdom.Controls.Tables.Hours
 
         private void AddHour(object sender, RoutedEventArgs e)
         {
-            HourElement element = new HourElement
-            {
-                Group = Group,
-                WorkType = WorkType,
-                //HourValue = HourValue
-            };
-            Group.AddHour(element);
+            //HourElement element = new HourElement
+            //{
+            //    Group = Group,
+            //    WorkType = WorkType,
+            //    //HourValue = HourValue
+            //};
+            //Group.AddHour(element);
         }
 
         #region INotifyPropertyChanged Members

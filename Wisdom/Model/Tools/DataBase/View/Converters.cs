@@ -160,14 +160,14 @@ namespace Wisdom.Model.Tools.DataBase
                 sort[typeName].Add(name);
             }
 
-            for (ushort i = 0; i < types.Count; i++)
-            {
-                string typeName = types[i];
-                List<string> sourceNames = sort[typeName];
-                Source source = new Source(typeName, sourceNames);
+            //for (ushort i = 0; i < types.Count; i++)
+            //{
+            //    string typeName = types[i];
+            //    List<string> sourceNames = sort[typeName];
+            //    Source source = new Source(typeName, sourceNames);
 
-                sources.Add(source);
-            }
+            //    sources.Add(source);
+            //}
 
             return sources;
         }
@@ -186,13 +186,15 @@ namespace Wisdom.Model.Tools.DataBase
 
                 Competetion competetion = new Competetion
                 {
-                    PrefixNo = no,
                     Name = name,
-                    Abilities = new List<Task>
-                    {
-                        new Task("Умения", skills),
-                        new Task("Знания", knowledge)
-                    }
+
+
+                    //PrefixNo = no,
+                    //Abilities = new List<Task>
+                    //{
+                    //    new Task("Умения", skills),
+                    //    new Task("Знания", knowledge)
+                    //}
                 };
 
                 competetions.Add(competetion);
@@ -226,14 +228,16 @@ namespace Wisdom.Model.Tools.DataBase
 
                 Competetion competetion = new Competetion
                 {
-                    PrefixNo = $"ПК {no1}.{no2}",
                     Name = name,
-                    Abilities = new List<Task>
-                    {
-                        new Task("Практический опыт", experience),
-                        new Task("Умения", skills),
-                        new Task("Знания", knowledge)
-                    }
+
+
+                    //PrefixNo = $"ПК {no1}.{no2}",
+                    //Abilities = new List<Task>
+                    //{
+                    //    new Task("Практический опыт", experience),
+                    //    new Task("Умения", skills),
+                    //    new Task("Знания", knowledge)
+                    //}
                 };
 
                 competetions[recount].Add(competetion);

@@ -445,7 +445,7 @@
                         <ItemsControl>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <metadata:MetaElement MetaName="{Binding Name}" MetaValue="{Binding Hours}" />
+                                    <metadata:MetaElement Pair="{Binding}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                                 

@@ -21,7 +21,7 @@ namespace Wisdom.Controls.Tables.EducationLevels
         public void SetElement(Task level)
         {
             LevelName = level.Name;
-            LevelDescription = level.Hours;
+            LevelDescription = level.Data;
         }
         #endregion
 

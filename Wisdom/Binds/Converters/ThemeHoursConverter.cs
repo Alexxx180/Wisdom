@@ -21,12 +21,12 @@ namespace Wisdom.Binds.Converters
             uint sum = 0;
             for (ushort i = 0; i < works.Count; i++)
             {
-                List<Task> work = works[i].Raw().Tasks;
-                for (ushort ii = 0; ii < work.Count; ii++)
-                {
-                    Task task = work[ii];
-                    sum += task.Hours.ParseHours();
-                }
+                //List<Task> work = works[i].Raw().Tasks;
+                //for (ushort ii = 0; ii < work.Count; ii++)
+                //{
+                //    Task task = work[ii];
+                //    sum += task.Hours.ParseHours();
+                //}
             }
             return sum.ToString();
         }

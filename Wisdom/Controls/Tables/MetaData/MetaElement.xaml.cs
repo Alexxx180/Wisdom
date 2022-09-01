@@ -31,13 +31,12 @@ namespace Wisdom.Controls.Tables.MetaData
         #region IRawData Members
         public Task Raw()
         {
-            return new Task(MetaName, MetaValue);
+            return new Task("MetaName", "MetaValue");
         }
 
         public void SetElement(Task values)
         {
-            MetaName = values.Name;
-            MetaValue = values.Hours;
+            Pair = values;
         }
         #endregion
 

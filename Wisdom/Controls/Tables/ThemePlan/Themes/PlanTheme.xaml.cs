@@ -20,19 +20,19 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             return new Theme
             {
                 Name = ThemeName,
-                Hours = ThemeHours,
-                Competetions = ThemeCompetetions,
-                Level = ThemeLevel,
-                Works = Works.GetRaw()
+                //Hours = ThemeHours,
+                //Competetions = ThemeCompetetions,
+                //Level = ThemeLevel,
+                //Works = Works.GetRaw()
             };
         }
 
         public void SetElement(Theme theme)
         {
             ThemeName = theme.Name;
-            ThemeHours = theme.Hours;
-            ThemeCompetetions = theme.Competetions;
-            ThemeLevel = theme.Level;
+            //ThemeHours = theme.Hours;
+            //ThemeCompetetions = theme.Competetions;
+            //ThemeLevel = theme.Level;
 
             for (ushort i = 0; i < theme.Works.Count; i++)
             {

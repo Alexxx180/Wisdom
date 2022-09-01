@@ -26,7 +26,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             if (competetions.Count < 0)
                 return;
 
-            DividerNo = Regex.Match(competetions[0].PrefixNo, ".\\d+").Value;
+            //DividerNo = Regex.Match(competetions[0].PrefixNo, ".\\d+").Value;
             for (ushort i = 0; i < competetions.Count; i++)
             {
                 ProfessionalCompetetion competetion = new ProfessionalCompetetion

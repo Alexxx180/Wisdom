@@ -35,7 +35,7 @@ namespace Wisdom.Writers.AutoGenerating.Documents
 
         public static string MetaData(Task task)
         {
-            return task.Hours;
+            return "";//task.Hours;
         }
 
         public static string Hours(Hour hour)

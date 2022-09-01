@@ -91,8 +91,8 @@ namespace Wisdom.Model.Tools.DataBase
                 Topic topic = new Topic
                 {
                     Name = row[2].ToString(),
-                    Hours = row[3].ToString(),
-                    Themes = themes
+                    //Hours = row[3].ToString(),
+                    //Themes = themes
                 };
 
                 plan.Add(topic);
@@ -115,10 +115,10 @@ namespace Wisdom.Model.Tools.DataBase
                 Theme theme = new Theme
                 {
                     Name = row[2].ToString(),
-                    Hours = row[3].ToString(),
-                    Level = row[4].ToString(),
-                    Competetions = competetions,
-                    Works = works
+                    //Hours = row[3].ToString(),
+                    //Level = row[4].ToString(),
+                    //Competetions = competetions,
+                    //Works = works
                 };
 
                 group.Add(theme);
@@ -131,15 +131,15 @@ namespace Wisdom.Model.Tools.DataBase
             List<Work> group = new List<Work>();
             for (int iii = 0; iii < works.Count; iii++)
             {
-                object[] row = works[iii];
+                //object[] row = works[iii];
 
-                uint workId = row[0].ToUInt();
-                List<object[]> tasksData = _dataBase.Tasks(workId);
-                List<Task> tasks = GetTasks(tasksData);
+                //uint workId = row[0].ToUInt();
+                //List<object[]> tasksData = _dataBase.Tasks(workId);
+                //List<Task> tasks = GetTasks(tasksData);
 
-                Work work = new Work(row[1].ToString(), tasks);
+                //Work work = new Work(row[1].ToString(), tasks);
 
-                group.Add(work);
+                //group.Add(work);
             }
             return group;
         }

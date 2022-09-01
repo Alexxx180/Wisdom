@@ -19,8 +19,8 @@ namespace Wisdom.Binds.Converters
             uint sum = 0;
             for (ushort i = 0; i < themes.Count; i++)
             {
-                string hours = themes[i].Raw().Hours;
-                sum += hours.ParseHours();
+                //string hours = themes[i].Raw().Hours;
+                //sum += hours.ParseHours();
             }
             return sum.ToString();
         }

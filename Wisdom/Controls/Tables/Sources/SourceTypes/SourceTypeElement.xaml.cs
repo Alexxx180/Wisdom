@@ -17,24 +17,24 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
         #region IRawData Members
         public Source Raw()
         {
-            return new Source(Text, Sources.GetRaw());
+            return null;//new Source(Text, Sources.GetRaw());
         }
 
         public void SetElement(Source sources)
         {
-            ushort i;
-            for (i = 0; i < sources.Descriptions.Count; i++)
-            {
-                string description = sources.Descriptions[i];
-                SourceElement source = new SourceElement
-                {
-                    Source = description,
-                    SourceType = this
-                };
-                source.Index((i + 1).ToUInt());
-                Sources.Add(source);
-            }
-            Additor.Index((i + 1).ToUInt());
+            //ushort i;
+            //for (i = 0; i < sources.Descriptions.Count; i++)
+            //{
+            //    string description = sources.Descriptions[i];
+            //    SourceElement source = new SourceElement
+            //    {
+            //        Source = description,
+            //        SourceType = this
+            //    };
+            //    source.Index((i + 1).ToUInt());
+            //    Sources.Add(source);
+            //}
+            //Additor.Index((i + 1).ToUInt());
         }
         #endregion
 

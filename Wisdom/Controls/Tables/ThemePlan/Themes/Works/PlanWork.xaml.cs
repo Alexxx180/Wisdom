@@ -18,12 +18,12 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
         #region IRawData Members
         public Work Raw()
         {
-            return new Work(WorkType, Tasks.GetRaw());
+            return null;//new Work(WorkType, "Tasks");
         }
 
         public void SetElement(Work work)
         {
-            WorkType = work.Type;
+            //WorkType = work.Type;
 
             ushort i;
             for (i = 0; i < work.Tasks.Count; i++)

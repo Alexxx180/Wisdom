@@ -20,7 +20,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
         public void SetElement(Task task)
         {
             TaskName = task.Name;
-            TaskHours = task.Hours;
+            //TaskHours = task.Hours;
         }
         #endregion
 

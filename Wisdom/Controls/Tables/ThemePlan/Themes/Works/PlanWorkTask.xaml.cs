@@ -19,14 +19,14 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 
         public void SetElement(Work workTask)
         {
-            WorkType = workTask.Type;
-            if (workTask.Tasks is null ||
-                workTask.Tasks.Count < 1)
-                return;
+            //WorkType = workTask.Type;
+            //if (workTask.Tasks is null ||
+            //    workTask.Tasks.Count < 1)
+            //    return;
 
-            Task task = workTask.Tasks[0];
-            TaskName = task.Name;
-            TaskHours = task.Hours;
+            //Task task = workTask.Tasks[0];
+            //TaskName = task.Name;
+            //TaskHours = task.Hours;
         }
         #endregion
 

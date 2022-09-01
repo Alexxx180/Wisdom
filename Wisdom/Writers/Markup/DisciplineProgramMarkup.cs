@@ -22,14 +22,14 @@ namespace Wisdom.Writers.Markup
             for (byte i = 0; i < sources.Count; i++)
             {
                 Source source = sources[i];
-                List<Paragraph> paragraphs = NumberList
-                    (source.Descriptions, ". ");
+                //List<Paragraph> paragraphs = NumberList
+                //    (source.Descriptions, ". ");
 
                 Run chunk = RunBase(source.Name, Bold());
                 Paragraph header = ParagraphBase(Both(), chunk);
 
                 proccessedSources.Add(header);
-                proccessedSources.AddRange(paragraphs);
+                //proccessedSources.AddRange(paragraphs);
             }
             return proccessedSources;
         }
@@ -44,29 +44,29 @@ namespace Wisdom.Writers.Markup
             for (byte i = 0; i < program.GeneralCompetetions.Count; i++)
             {
                 Competetion general = generalCompetetions[i];
-                List<TableRow> row = CompetetionBase(
-                    general.PrefixNo,
-                    general.Name,
-                    general.Abilities
-                    );
-                rows.AddRange(row);
+                //List<TableRow> row = CompetetionBase(
+                //    general.PrefixNo,
+                //    general.Name,
+                //    general.Abilities
+                //    );
+                //rows.AddRange(row);
             }
 
             List<List<Competetion>>
                 professionalCompetetions = program.ProfessionalCompetetions;
             for (byte i = 0; i < program.ProfessionalCompetetions.Count; i++)
             {
-                List<Competetion> professionalGroup = professionalCompetetions[i];
-                for (byte ii = 0; ii < professionalGroup.Count; ii++)
-                {
-                    Competetion professional = professionalGroup[ii];
-                    List<TableRow> row = CompetetionBase(
-                        professional.PrefixNo,
-                        professional.Name,
-                        professional.Abilities
-                        );
-                    rows.AddRange(row);
-                }
+                //List<Competetion> professionalGroup = professionalCompetetions[i];
+                //for (byte ii = 0; ii < professionalGroup.Count; ii++)
+                //{
+                //    Competetion professional = professionalGroup[ii];
+                //    List<TableRow> row = CompetetionBase(
+                //        professional.PrefixNo,
+                //        professional.Name,
+                //        professional.Abilities
+                //        );
+                //    rows.AddRange(row);
+                //}
             }
 
             return rows;
@@ -104,7 +104,7 @@ namespace Wisdom.Writers.Markup
                 Task skill = skills[i];
 
                 Run skillsName = RunBase(skill.Name + " ", Bold());
-                Run description = RunBase(skill.Hours);
+                Run description = RunBase(skill.Data);
 
                 skillsParagraphs.Add(ParagraphBase(Left(), skillsName, description));
             }
@@ -155,17 +155,17 @@ namespace Wisdom.Writers.Markup
                 Topic topic = topics[i];
 
                 string topicHeader = $"Раздел {i + 1}. {topic.Name}";
-                rows.Add(Topic(topicHeader, topic.Hours));
+                //rows.Add(Topic(topicHeader, topic.Hours));
 
-                List<Theme> themes = topic.Themes;
-                for (byte ii = 0; ii < themes.Count; ii++)
-                {
-                    Theme theme = themes[ii];
+                //List<Theme> themes = topic.Themes;
+                //for (byte ii = 0; ii < themes.Count; ii++)
+                //{
+                //    Theme theme = themes[ii];
 
-                    string themeHeader = $"Тема {i + 1}.{ii + 1}. {theme.Name}";
-                    rows.AddRange(Theme(themeHeader, theme.Hours,
-                        theme.Competetions, theme.Level, theme.Works));
-                }
+                //    string themeHeader = $"Тема {i + 1}.{ii + 1}. {theme.Name}";
+                //    rows.AddRange(Theme(themeHeader, theme.Hours,
+                //        theme.Competetions, theme.Level, theme.Works));
+                //}
             }
 
             return rows;
@@ -249,46 +249,46 @@ namespace Wisdom.Writers.Markup
 
             TableCell[] columns =
                 ThemeTemplate(RunBase(title, Bold()),
-                RunBase(data[0].Type), RunBase(hours),
+                RunBase("data[0].Type"), RunBase(hours),
                 RunBase(competetions), RunBase(level));
 
             TableRow headerRow = TableRowBase(columns);
 
             themeContents.Add(headerRow);
-            List<Task> startTasks = data[0].Tasks;
-            for (byte ii = 0; ii < startTasks.Count; ii++)
-            {
-                Task task = startTasks[ii];
-                themeContents.Add(ThemeContentFew(
-                    ii + 1, task.Name, task.Hours));
-            }
+            //List<Task> startTasks = data[0].Tasks;
+            //for (byte ii = 0; ii < startTasks.Count; ii++)
+            //{
+            //    Task task = startTasks[ii];
+            //    themeContents.Add(ThemeContentFew(
+            //        ii + 1, task.Name, task.Hours));
+            //}
 
-            for (ushort i = 1; i < data.Count; i++)
-            {
-                Work work = data[i];
-                List<Task> tasks = work.Tasks;
-                if (tasks.Count <= 1)
-                {
-                    Task task = tasks[0];
-                    themeContents.Add(ThemeContentSingle
-                        ($"{work.Type} {task.Name}", task.Hours));
-                    continue;
-                }
+            //for (ushort i = 1; i < data.Count; i++)
+            //{
+            //    Work work = data[i];
+            //    List<Task> tasks = work.Tasks;
+            //    if (tasks.Count <= 1)
+            //    {
+            //        Task task = tasks[0];
+            //        themeContents.Add(ThemeContentSingle
+            //            ($"{work.Name} {task.Name}", task.Hours));
+            //        continue;
+            //    }
 
-                TableCell[] cells = ThemeTemplate(
-                    RunBase(), RunBase(work.Type, Bold()),
-                    RunBase(), RunBase(), RunBase());
+            //    TableCell[] cells = ThemeTemplate(
+            //        RunBase(), RunBase(work.Type, Bold()),
+            //        RunBase(), RunBase(), RunBase());
 
-                TableRow subHeaderRow = TableRowBase(cells);
+            //    TableRow subHeaderRow = TableRowBase(cells);
 
-                themeContents.Add(subHeaderRow);
-                for (byte ii = 0; ii < tasks.Count; ii++)
-                {
-                    Task task = tasks[ii];
-                    themeContents.Add(ThemeContentFew(
-                        ii + 1, task.Name, task.Hours));
-                }
-            }
+            //    themeContents.Add(subHeaderRow);
+            //    for (byte ii = 0; ii < tasks.Count; ii++)
+            //    {
+            //        Task task = tasks[ii];
+            //        themeContents.Add(ThemeContentFew(
+            //            ii + 1, task.Name, task.Hours));
+            //    }
+            //}
 
             return themeContents;
         }

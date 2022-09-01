@@ -19,27 +19,28 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
         {
             return new Competetion
             {
-                PrefixNo = ProfessionalHeader,
                 Name = ProfessionalName,
-                Abilities = new List<Task> {
-                    new Task("Практический опыт", ProfessionalExperience),
-                    new Task("Умения", ProfessionalSkills),
-                    new Task("Знания", ProfessionalKnowledge)
-                }
+                //PrefixNo = ProfessionalHeader,
+                
+                //Abilities = new List<Task> {
+                //    new Task("Практический опыт", ProfessionalExperience),
+                //    new Task("Умения", ProfessionalSkills),
+                //    new Task("Знания", ProfessionalKnowledge)
+                //}
             };
         }
 
         public void SetElement(Competetion competetion)
         {
-            string no = competetion.PrefixNo;
+            //string no = competetion.PrefixNo;
 
-            ProfessionalNo = no[(no.LastIndexOf('.') + 1)..];
-            ProfessionalName = competetion.Name;
+            //ProfessionalNo = no[(no.LastIndexOf('.') + 1)..];
+            //ProfessionalName = competetion.Name;
 
-            List<Task> value = competetion.Abilities;
-            ProfessionalExperience = value[0].Hours;
-            ProfessionalSkills = value[1].Hours;
-            ProfessionalKnowledge = value[2].Hours;
+            //List<Task> value = competetion.Abilities;
+            //ProfessionalExperience = value[0].Hours;
+            //ProfessionalSkills = value[1].Hours;
+            //ProfessionalKnowledge = value[2].Hours;
         }
         #endregion
 

@@ -20,15 +20,15 @@ namespace Wisdom.Controls.Tables.ThemePlan
             return new Topic
             {
                 Name = TopicName,
-                Hours = TopicHours,
-                Themes = Themes.GetRaw()
+                //Hours = TopicHours,
+                //Themes = Themes.GetRaw()
             };
         }
 
         public void SetElement(Topic topic)
         {
             TopicName = topic.Name;
-            TopicHours = topic.Hours;
+            //TopicHours = topic.Hours;
 
             ushort i;
             for (i = 0; i < topic.Themes.Count; i++)

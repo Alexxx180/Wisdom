@@ -20,25 +20,26 @@ namespace Wisdom.Controls.Tables.Competetions.General
         {
             return new Competetion
             {
-                PrefixNo = GeneralHeader,
                 Name = GeneralName,
-                Abilities = new List<Task> {
-                    new Task("Умения", GeneralSkills),
-                    new Task("Знания", GeneralKnowledge)
-                }
+
+                //PrefixNo = GeneralHeader,
+                //Abilities = new List<Task> {
+                //    new Task("Умения", GeneralSkills),
+                //    new Task("Знания", GeneralKnowledge)
+                //}
             };
         }
 
         public void SetElement(Competetion competetion)
         {
-            string prefixNo = Regex.Match(competetion.PrefixNo, @"\d+").Value;
-            GeneralNo = prefixNo;
+            //string prefixNo = Regex.Match(competetion.PrefixNo, @"\d+").Value;
+            //GeneralNo = prefixNo;
 
-            GeneralName = competetion.Name;
+            //GeneralName = competetion.Name;
 
-            List<Task> data = competetion.Abilities;
-            GeneralSkills = data[0].Hours;
-            GeneralKnowledge = data[1].Hours;
+            //List<Task> data = competetion.Abilities;
+            //GeneralSkills = data[0].Hours;
+            //GeneralKnowledge = data[1].Hours;
         }
         #endregion
 

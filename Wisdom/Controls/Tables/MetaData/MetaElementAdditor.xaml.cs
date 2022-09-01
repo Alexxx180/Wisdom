@@ -26,7 +26,7 @@ namespace Wisdom.Controls.Tables.MetaData
         public void SetElement(Task values)
         {
             MetaName = values.Name;
-            MetaValue = values.Hours;
+            //MetaValue = values.Hours;
         }
         #endregion
 
