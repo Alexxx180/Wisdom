@@ -3,27 +3,35 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Customing;
-using ControlMaterials.Tables.ThemePlan;
+using ControlMaterials.Tables;
 
-namespace Wisdom.Controls.Tables.EducationLevels
+namespace Wisdom.Controls.Tables.Competetions
 {
     /// <summary>
     /// Record component containing theme plan education (competetion) levels
     /// </summary>
-    public partial class EducationLevel : UserControl, INotifyPropertyChanged, IOptionableIndexing, IRawData<Task>
+    public partial class Stage : UserControl, INotifyPropertyChanged, IOptionableIndexing
     {
-        #region IRawData Members
-        public Task Raw()
-        {
-            return new Task(LevelName, LevelDescription);
-        }
+        #region Dependency Properties
+        public static readonly DependencyProperty
+            DataProperty = DependencyProperty.Register(nameof(Data),
+                typeof(Level), typeof(Stage));
 
-        public void SetElement(Task level)
+        public static readonly DependencyProperty
+            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+                typeof(ICommand), typeof(Stage));
+
+        public ICommand Remove
         {
-            LevelName = level.Name;
-            LevelDescription = level.Data;
+            get => GetValue(RemoveProperty) as ICommand;
+            set => SetValue(RemoveProperty, value);
         }
-        #endregion
+        
+        public Level Data
+        {
+            get => GetValue(DataProperty) as Level;
+            set => SetValue(DataProperty, value);
+        }
 
         #region IOptionableIndexing Members
         private AutoPanel _options;
@@ -105,7 +113,7 @@ namespace Wisdom.Controls.Tables.EducationLevels
         }
         #endregion
 
-        public EducationLevel()
+        public Stage()
         {
             InitializeComponent();
             Index(1);
