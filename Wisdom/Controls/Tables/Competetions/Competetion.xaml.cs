@@ -8,7 +8,7 @@ using ControlMaterials.Tables;
 using ControlMaterials.Tables.ThemePlan;
 using static Wisdom.Customing.Converters;
 
-namespace Wisdom.Controls.Tables.Competetions.General
+namespace Wisdom.Controls.Tables.Competetions
 {
     /// <summary>
     /// General competetion related to speciality | discipline
