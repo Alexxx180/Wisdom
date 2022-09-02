@@ -13,83 +13,45 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
     /// <summary>
     /// Work with tasks group of theme
     /// </summary>
-    public partial class PlanWork : UserControl, INotifyPropertyChanged, IRawData<Work>, IExtendableItems
+    public partial class PlanWork : UserControl, INotifyPropertyChanged, IExtendableItems
     {
-        #region IRawData Members
-        public Work Raw()
+        #region Dependency Properties
+        public static readonly DependencyProperty
+            DataProperty = DependencyProperty.Register(nameof(Data),
+                typeof(Theme), typeof(PlanWork));
+
+        public static readonly DependencyProperty
+            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+                typeof(ICommand), typeof(PlanWork));
+                
+        public static readonly DependencyProperty
+            RemoveTaskProperty = DependencyProperty.Register(nameof(RemoveTask),
+                typeof(ICommand), typeof(PlanWork));
+
+        public ICommand Remove
         {
-            return null;//new Work(WorkType, "Tasks");
+            get => GetValue(RemoveProperty) as ICommand;
+            set => SetValue(RemoveProperty, value);
         }
-
-        public void SetElement(Work work)
+        
+        public ICommand RemoveTask
         {
-            //WorkType = work.Type;
-
-            ushort i;
-            for (i = 0; i < work.Tasks.Count; i++)
-            {
-                PlanTask task = new PlanTask
-                {
-                    No = (i + 1).ToUInt(),
-                    Work = this
-                };
-                //task.SetElement(work.Tasks[i]);
-                Tasks.Add(task);
-            }
-            TaskAdditor.Index((i + 1).ToUInt());
+            get => GetValue(RemoveTaskProperty) as ICommand;
+            set => SetValue(RemoveTaskProperty, value);
         }
-        #endregion
-
-        #region AutoIndexing Logic
-        public void AutoIndexing()
+        
+        public Work Data
         {
-            ushort i;
-            for (i = 0; i < Tasks.Count; i++)
-            {
-                Tasks[i].Index((i + 1).ToUInt());
-            }
-            TaskAdditor.Index((i + 1).ToUInt());
+            get => GetValue(DataProperty) as Work;
+            set => SetValue(DataProperty, value);
         }
         #endregion
 
         #region PlanWork Members
-        private PlanTheme _theme;
-        public PlanTheme Theme
-        {
-            get => _theme;
-            set
-            {
-                _theme = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _workType;
-        public string WorkType
-        {
-            get => _workType;
-            set
-            {
-                _workType = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ObservableCollection<PlanTask> _tasks;
-        public ObservableCollection<PlanTask> Tasks
-        {
-            get => _tasks;
-            set
-            {
-                _tasks = value;
-                OnPropertyChanged();
-            }
-        }
-
         public void RefreshHours()
         {
-            OnPropertyChanged(nameof(Tasks));
-            Theme.RefreshHours();
+            //OnPropertyChanged(nameof(Tasks));
+            //Theme.RefreshHours();
         }
         #endregion
 
@@ -114,28 +76,8 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
         public PlanWork()
         {
             InitializeComponent();
-            Tasks = new ObservableCollection<PlanTask>();
             Extended = true;
         }
-
-        private void DropRecord(object sender, RoutedEventArgs e)
-        {
-            Theme.DropWork(this);
-        }
-
-        #region TasksGroup Members
-        public void DropTask(PlanTask task)
-        {
-            _ = Tasks.Remove(task);
-            OnPropertyChanged(nameof(Tasks));
-        }
-
-        public void AddRecord(PlanTask task)
-        {
-            Tasks.Add(task);
-            OnPropertyChanged(nameof(Tasks));
-        }
-        #endregion
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
