@@ -109,44 +109,48 @@
                     </TextBox.Text>
                 </TextBox>
             </Grid>
-
-            
             
         </Grid>
         
-        <!--<StackPanel Grid.Row="1" Background="#FFF5FFFF">
-                <StackPanel.Visibility>
-                    <Binding Path="Extended">
-                        <Binding.Converter>
-                            <StaticResource ResourceKey="ExtendConverter"/>
-                        </Binding.Converter>
-                    </Binding>
-                </StackPanel.Visibility>
+        <StackPanel Grid.Row="1" Background="#FFF5FFFF">
+              <StackPanel.Visibility>
+                  <Binding Path="Extended">
+                      <Binding.Converter>
+                          <StaticResource ResourceKey="ExtendConverter"/>
+                      </Binding.Converter>
+                  </Binding>
+              </StackPanel.Visibility>
 
-                <themes:PlanThemeFields/>
+              <themes:PlanThemeFields/>
 
-                <ItemsControl>
-                    <ItemsControl.ItemContainerStyle>
-                        <Style>
-                            <Setter Property="FrameworkElement.Margin" Value="0,0,0,15"/>
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
+              <ItemsControl>
+                  <!--<ItemsControl.ItemContainerStyle>
+                      <Style>
+                          <Setter Property="FrameworkElement.Margin" Value="0,0,0,15"/>
+                      </Style>
+                  </ItemsControl.ItemContainerStyle>-->
+                  
+                  <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <themes:PlanTheme Data="{Binding}" Remove="{Binding ElementName=This, Path=DataContext.RemoveTheme}" />
+                        </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                  
+                  <ItemsControl.ItemsSource>
+                      <Binding Path="Data.Themes" Mode="TwoWay">
+                          <Binding.UpdateSourceTrigger>
+                              PropertyChanged
+                          </Binding.UpdateSourceTrigger>
+                      </Binding>
+                  </ItemsControl.ItemsSource>
+              </ItemsControl>
 
-                    <ItemsControl.ItemsSource>
-                        <Binding Path="Themes" Mode="TwoWay">
-                            <Binding.UpdateSourceTrigger>
-                                PropertyChanged
-                            </Binding.UpdateSourceTrigger>
-                        </Binding>
-                    </ItemsControl.ItemsSource>
-                </ItemsControl>
-
-                <themes:PlanThemeAdditor x:Name="ThemeAdditor">
-                    <themes:PlanThemeAdditor.Topic>
-                        <Binding ElementName="This"/>
-                    </themes:PlanThemeAdditor.Topic>
-                </themes:PlanThemeAdditor>
-            </StackPanel>-->
+              <!--<themes:PlanThemeAdditor x:Name="ThemeAdditor">
+                  <themes:PlanThemeAdditor.Topic>
+                      <Binding ElementName="This"/>
+                  </themes:PlanThemeAdditor.Topic>
+              </themes:PlanThemeAdditor>-->
+          </StackPanel>
         
         
         
