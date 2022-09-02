@@ -12,142 +12,41 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
     /// <summary>
     /// Theme of theme plan's topic
     /// </summary>
-    public partial class PlanTheme : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Theme>, IExtendableItems, IWrapFields
+    public partial class PlanTheme : UserControl, INotifyPropertyChanged, IExtendableItems, IWrapFields
     {
-        #region IRawData Members
-        public Theme Raw()
+        #region Dependency Properties
+        public static readonly DependencyProperty
+            DataProperty = DependencyProperty.Register(nameof(Data),
+                typeof(Theme), typeof(PlanTheme));
+
+        public static readonly DependencyProperty
+            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+                typeof(ICommand), typeof(PlanTheme));
+                
+        public static readonly DependencyProperty
+            RemoveWorkProperty = DependencyProperty.Register(nameof(RemoveWork),
+                typeof(ICommand), typeof(PlanTheme));
+
+        public ICommand Remove
         {
-            return new Theme
-            {
-                Name = ThemeName,
-                //Hours = ThemeHours,
-                //Competetions = ThemeCompetetions,
-                //Level = ThemeLevel,
-                //Works = Works.GetRaw()
-            };
+            get => GetValue(RemoveProperty) as ICommand;
+            set => SetValue(RemoveProperty, value);
         }
-
-        public void SetElement(Theme theme)
+        
+        public ICommand RemoveWork
         {
-            ThemeName = theme.Name;
-            //ThemeHours = theme.Hours;
-            //ThemeCompetetions = theme.Competetions;
-            //ThemeLevel = theme.Level;
-
-            for (ushort i = 0; i < theme.Works.Count; i++)
-            {
-                Work workData = theme.Works[i];
-                IRawData<Work> work;
-                if (workData.Tasks.Count > 1)
-                {
-                    PlanWork group = new PlanWork
-                    {
-                        Theme = this
-                    };
-                    group.SetElement(workData);
-                    work = group;
-                }
-                else
-                {
-                    PlanWorkTask single = new PlanWorkTask
-                    {
-                        Theme = this
-                    };
-                    single.SetElement(workData);
-                    work = single;
-                }
-                Works.Add(work);
-            }
-            RefreshHours();
+            get => GetValue(RemoveWorkProperty) as ICommand;
+            set => SetValue(RemoveWorkProperty, value);
         }
-        #endregion
-
-        #region IAutoIndexing Members
-        private uint _no;
-        public uint No
+        
+        public Theme Data
         {
-            get => _no;
-            set
-            {
-                _no = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
+            get => GetValue(DataProperty) as Theme;
+            set => SetValue(DataProperty, value);
         }
         #endregion
 
         #region Theme Members
-        private PlanTopic _topic;
-        public PlanTopic Topic
-        {
-            get => _topic;
-            set
-            {
-                _topic = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _themeName;
-        public string ThemeName
-        {
-            get => _themeName;
-            set
-            {
-                _themeName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _themeHours;
-        public string ThemeHours
-        {
-            get => _themeHours;
-            set
-            {
-                _themeHours = value;
-                OnPropertyChanged();
-                Topic?.RefreshHours();
-            }
-        }
-
-        private string _themeCompetetions;
-        public string ThemeCompetetions
-        {
-            get => _themeCompetetions;
-            set
-            {
-                _themeCompetetions = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _themeLevel;
-        public string ThemeLevel
-        {
-            get => _themeLevel;
-            set
-            {
-                _themeLevel = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ObservableCollection<IRawData<Work>> _works;
-        public ObservableCollection<IRawData<Work>> Works
-        {
-            get => _works;
-            set
-            {
-                _works = value;
-                OnPropertyChanged();
-            }
-        }
-
         public void RefreshHours()
         {
             OnPropertyChanged(nameof(Works));
@@ -199,25 +98,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             Extended = true;
             IsWrap = false;
         }
-
-        private void DropTheme(object sender, RoutedEventArgs e)
-        {
-            Topic.DropTheme(this);
-        }
-
-        #region WorksGroup Members
-        public void DropWork(IRawData<Work> work)
-        {
-            _ = Works.Remove(work);
-            OnPropertyChanged(nameof(Works));
-        }
-
-        public void AddRecord(IRawData<Work> work)
-        {
-            Works.Add(work);
-            OnPropertyChanged(nameof(Works));
-        }
-        #endregion
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
