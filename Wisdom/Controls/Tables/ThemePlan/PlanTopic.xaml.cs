@@ -12,37 +12,37 @@ namespace Wisdom.Controls.Tables.ThemePlan
     /// <summary>
     /// Topic of theme plan
     /// </summary>
-    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IRecordsIndexing, IRawData<Topic>, IExtendableItems, IWrapFields
+    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IRecordsIndexing, IExtendableItems, IWrapFields
     {
-        #region IRawData Members
-        public Topic Raw()
+        #region Dependency Properties
+        public static readonly DependencyProperty
+            DataProperty = DependencyProperty.Register(nameof(Data),
+                typeof(Topic), typeof(PlanTopic));
+
+        public static readonly DependencyProperty
+            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+                typeof(ICommand), typeof(PlanTopic));
+                
+        public static readonly DependencyProperty
+            RemoveThemeProperty = DependencyProperty.Register(nameof(RemoveTheme),
+                typeof(ICommand), typeof(PlanTopic));
+
+        public ICommand Remove
         {
-            return new Topic
-            {
-                Name = TopicName,
-                //Hours = TopicHours,
-                //Themes = Themes.GetRaw()
-            };
+            get => GetValue(RemoveProperty) as ICommand;
+            set => SetValue(RemoveProperty, value);
         }
-
-        public void SetElement(Topic topic)
+        
+        public ICommand RemoveTheme
         {
-            TopicName = topic.Name;
-            //TopicHours = topic.Hours;
-
-            ushort i;
-            for (i = 0; i < topic.Themes.Count; i++)
-            {
-                PlanTheme theme = new PlanTheme
-                {
-                    No = (i + 1).ToUInt(),
-                    Topic = this
-                };
-                theme.SetElement(topic.Themes[i]);
-                Themes.Add(theme);
-            }
-            ThemeAdditor.Index((i + 1).ToUInt());
-            RefreshHours();
+            get => GetValue(RemoveThemeProperty) as ICommand;
+            set => SetValue(RemoveThemeProperty, value);
+        }
+        
+        public Topic Data
+        {
+            get => GetValue(DataProperty) as Topic;
+            set => SetValue(DataProperty, value);
         }
         #endregion
 
