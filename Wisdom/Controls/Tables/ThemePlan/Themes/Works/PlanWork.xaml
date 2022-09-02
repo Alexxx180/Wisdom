@@ -7,7 +7,8 @@
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="111" d:DesignWidth="800" x:Name="This">
+             d:DesignHeight="111" d:DesignWidth="800"
+             x:Name="This">
     <UserControl.Style>
         <StaticResource ResourceKey="Extendable"/>
     </UserControl.Style>
@@ -15,39 +16,35 @@
     <UserControl.Resources>
         <converters:ExtendConverter x:Key="ExtendConverter"/>
     </UserControl.Resources>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <Grid>
+    <StackPanel>
+        <StackPanel.DataContext>
+            <Binding ElementName="This"/>
+        </StackPanel.DataContext>
+
+        <Grid Height="35">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="35" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Click="DropRecord">
+            <Button Command="{Binding Remove}" CommandParameter="{Binding Data}">
                 <Button.Style>
                     <StaticResource ResourceKey="DeleteButton"/>
                 </Button.Style>
             </Button>
-            <TextBlock Grid.Column="2">
+            
+            <TextBlock Grid.Column="1" Padding="5,0">
                 <TextBlock.Style>
                     <StaticResource ResourceKey="Neutral"/>
                 </TextBlock.Style>
                 <TextBlock.Text>
-                    <Binding Path="WorkType"/>
+                    <Binding Path="Data.Name"/>
                 </TextBlock.Text>
             </TextBlock>
         </Grid>
 
-        <StackPanel Grid.Row="2">
-            <StackPanel.IsEnabled>
-                <Binding Path="Extended"/>
-            </StackPanel.IsEnabled>
+        <!--<StackPanel Grid.Row="2">
             <StackPanel.Visibility>
                 <Binding Path="Extended">
                     <Binding.Converter>
@@ -69,6 +66,7 @@
                     <Binding ElementName="This"/>
                 </tasks:PlanTaskAdditor.Work>
             </tasks:PlanTaskAdditor>
-        </StackPanel>
-    </Grid>
+        </StackPanel>-->
+        
+    </StackPanel>
 </UserControl>
