@@ -144,10 +144,7 @@
             
         </Grid>
 
-        <!--<StackPanel Grid.Row="1">
-            <StackPanel.IsEnabled>
-                <Binding Path="Extended"/>
-            </StackPanel.IsEnabled>
+        <StackPanel>
             <StackPanel.Visibility>
                 <Binding Path="Extended">
                     <Binding.Converter>
@@ -157,23 +154,29 @@
             </StackPanel.Visibility>
             
             <ItemsControl Grid.Row="1">
-                <ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <works:PlanWork Data="{Binding}" Remove="{Binding ElementName=This, Path=DataContext.RemoveWork}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              
+                <!--<ItemsControl.ItemContainerStyle>
                     <Style>
                         <Setter Property="FrameworkElement.Margin" Value="0,0,0,15"/>
                     </Style>
-                </ItemsControl.ItemContainerStyle>
+                </ItemsControl.ItemContainerStyle>-->
 
                 <ItemsControl.ItemsSource>
-                    <Binding Path="Works"/>
+                    <Binding Path="Data.Works"/>
                 </ItemsControl.ItemsSource>
             </ItemsControl>
 
-            <works:PlanWorkAdditor>
+            <!--<works:PlanWorkAdditor>
                 <works:PlanWorkAdditor.Theme>
                     <Binding ElementName="This"/>
                 </works:PlanWorkAdditor.Theme>
-            </works:PlanWorkAdditor>
-        </StackPanel>-->
+            </works:PlanWorkAdditor>-->
+        </StackPanel>
       
     </StackPanel>
 </UserControl>
