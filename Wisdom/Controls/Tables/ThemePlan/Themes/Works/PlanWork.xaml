@@ -58,7 +58,7 @@
             <ItemsControl>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <hours:HourElement Data="{Binding}" Remove="{Binding ElementName=This, Path=DataContext.RemoveTask}" />
+                        <tasks:PlanTask Data="{Binding}" Remove="{Binding ElementName=This, Path=DataContext.RemoveTask}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
               
