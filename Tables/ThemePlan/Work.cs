@@ -22,6 +22,6 @@ namespace ControlMaterials.Tables.ThemePlan
             };
         }
         
-        public ObservableCollection<Task> Tasks { get; }
+        public ObservableCollection<IndexedHour> Tasks { get; }
     }
 }
