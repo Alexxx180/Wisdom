@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Customing;
 using ControlMaterials.Tables;
+using System.Windows.Input;
 
 namespace Wisdom.Controls.Tables.Competetions
 {
@@ -32,6 +33,7 @@ namespace Wisdom.Controls.Tables.Competetions
             get => GetValue(DataProperty) as Level;
             set => SetValue(DataProperty, value);
         }
+        #endregion
 
         #region IOptionableIndexing Members
         private AutoPanel _options;

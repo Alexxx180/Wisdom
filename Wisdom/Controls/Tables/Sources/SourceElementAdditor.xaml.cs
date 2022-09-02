@@ -13,7 +13,7 @@ namespace Wisdom.Controls.Tables.Sources
     {
         public static readonly DependencyProperty
             TypeProperty = DependencyProperty.Register(nameof(SourceType),
-                typeof(SourceTypeElement), typeof(SourceElementAdditor));
+                typeof(SourceType), typeof(SourceElementAdditor));
 
         #region IAutoIndexing
         private uint _no;
@@ -35,9 +35,9 @@ namespace Wisdom.Controls.Tables.Sources
         #endregion
 
         #region SourceAdditor Members
-        public SourceTypeElement SourceType
+        public SourceType SourceType
         {
-            get => GetValue(TypeProperty) as SourceTypeElement;
+            get => GetValue(TypeProperty) as SourceType;
             set => SetValue(TypeProperty, value);
         }
 
@@ -67,9 +67,9 @@ namespace Wisdom.Controls.Tables.Sources
             {
                 No = No,
                 Source = Source,
-                SourceType = SourceType
+                //SourceType = SourceType
             };
-            SourceType.AddRecord(source);
+            //SourceType.AddRecord(source);
             Index(No + 1);
         }
 

@@ -14,7 +14,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
         #region IRawData Members
         public Work Raw()
         {
-            return new Work(WorkType, new Task(TaskName, TaskHours));
+            return null; // new Work(WorkType, new Task(TaskName, TaskHours));
         }
 
         public void SetElement(Work workTask)

@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Wisdom.Customing;
+using Wisdom.Controls.Tables.Competetions;
 
 namespace Wisdom.Controls.Tables.EducationLevels
 {
@@ -96,7 +97,7 @@ namespace Wisdom.Controls.Tables.EducationLevels
 
         private void AddLevel(object sender, RoutedEventArgs e)
         {
-            EducationLevel level = new EducationLevel
+            Stage level = new Stage
             {
                 LevelNo = LevelNo,
                 Options = Options,

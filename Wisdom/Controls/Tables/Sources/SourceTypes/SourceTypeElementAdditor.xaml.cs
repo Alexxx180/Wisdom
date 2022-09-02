@@ -19,13 +19,13 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
 
         public static readonly DependencyProperty
             GroupProperty = DependencyProperty.Register(nameof(Group),
-                typeof(ObservableCollection<SourceTypeElement>),
+                typeof(ObservableCollection<SourceType>),
                 typeof(SourceTypeElementAdditor));
 
         #region SourceType Members
-        public ObservableCollection<SourceTypeElement> Group
+        public ObservableCollection<SourceType> Group
         {
-            get => GetValue(GroupProperty) as ObservableCollection<SourceTypeElement>;
+            get => GetValue(GroupProperty) as ObservableCollection<SourceType>;
             set => SetValue(GroupProperty, value);
         }
 
@@ -65,12 +65,12 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
 
         private void AddSourceGroup(object sender, RoutedEventArgs e)
         {
-            SourceTypeElement group = new SourceTypeElement
+            SourceType group = new SourceType
             {
-                Groups = Group
+                //Groups = Group
             };
-            group.SetTypes(Types);
-            group.Text = Text;
+            //group.SetTypes(Types);
+            //group.Text = Text;
             Group.Add(group);
             OnPropertyChanged(nameof(Group));
         }

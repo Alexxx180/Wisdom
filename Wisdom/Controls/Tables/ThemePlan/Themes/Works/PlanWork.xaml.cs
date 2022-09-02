@@ -33,7 +33,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
                     No = (i + 1).ToUInt(),
                     Work = this
                 };
-                task.SetElement(work.Tasks[i]);
+                //task.SetElement(work.Tasks[i]);
                 Tasks.Add(task);
             }
             TaskAdditor.Index((i + 1).ToUInt());

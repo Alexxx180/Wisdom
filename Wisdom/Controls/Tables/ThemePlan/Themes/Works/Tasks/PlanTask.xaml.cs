@@ -9,20 +9,20 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
     /// <summary>
     /// Task of theme's work
     /// </summary>
-    public partial class PlanTask : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<Task>, IWrapFields
+    public partial class PlanTask : UserControl, INotifyPropertyChanged, IAutoIndexing, IWrapFields //IRawData<Task>,
     {
-        #region IRawData Members
-        public Task Raw()
-        {
-            return new Task(TaskName, TaskHours);
-        }
+        //#region IRawData Members
+        //public Task Raw()
+        //{
+        //    return new Task(TaskName, TaskHours);
+        //}
 
-        public void SetElement(Task task)
-        {
-            TaskName = task.Name;
-            //TaskHours = task.Hours;
-        }
-        #endregion
+        //public void SetElement(Task task)
+        //{
+        //    TaskName = task.Name;
+        //    //TaskHours = task.Hours;
+        //}
+        //#endregion
 
         #region IAutoIndexing Members
         private uint _no;

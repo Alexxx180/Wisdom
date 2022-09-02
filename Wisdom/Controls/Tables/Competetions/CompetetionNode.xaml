@@ -60,12 +60,12 @@
                             </Binding.UpdateSourceTrigger>
                         </Binding>
                     </TextBox.Text>
-                    <TextBox.IsEnabled>
+                    <!--<TextBox.IsEnabled>
                         <Binding Path="Group.Options.IsManual"/>
-                    </TextBox.IsEnabled>
+                    </TextBox.IsEnabled>-->
                 </TextBox>
-                
-                <TextBlock Text="{Binding Path=Items.Count}" StringFormat="x {}{0}" Grid.Column="1" Style="{StaticResource No2}"/>
+
+                <TextBlock Text="{Binding Path=Items.Count, StringFormat=x{}{0}}"  Grid.Column="1" Style="{StaticResource No2}"/>
             </Grid>
             
         </Grid>
@@ -79,11 +79,11 @@
                 </Binding>
             </ItemsControl.Visibility>
             
-            <ItemsControl.ItemTemplate>
+            <!--<ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <local:Competetion Remove="{Binding ElementName=This, Path=RemoveCompetetion}" Competetion="{Binding}" />
                 </DataTemplate>
-            </ItemsControl.ItemTemplate>
+            </ItemsControl.ItemTemplate>-->
             
             <ItemsControl.ItemsSource>
                 <Binding Path="Data.Items"/>

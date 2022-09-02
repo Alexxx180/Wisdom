@@ -3,10 +3,13 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Controls;
 using ControlMaterials.Tables;
 using ControlMaterials.Tables.ThemePlan;
+
 using static Wisdom.Customing.Converters;
+using CompetetionModel = ControlMaterials.Tables.Competetion;
 
 namespace Wisdom.Controls.Tables.Competetions
 {
@@ -18,11 +21,11 @@ namespace Wisdom.Controls.Tables.Competetions
         #region Dependency Properties
         public static readonly DependencyProperty
             DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(Competetion), typeof(GeneralCompetetion));
+                typeof(CompetetionModel), typeof(Competetion));
 
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
-                typeof(ICommand), typeof(GeneralCompetetion));
+                typeof(ICommand), typeof(Competetion));
 
         public ICommand Remove
         {
@@ -30,9 +33,9 @@ namespace Wisdom.Controls.Tables.Competetions
             set => SetValue(RemoveProperty, value);
         }
         
-        public Competetion Data
+        public CompetetionModel Data
         {
-            get => GetValue(DataProperty) as Competetion;
+            get => GetValue(DataProperty) as CompetetionModel;
             set => SetValue(DataProperty, value);
         }
         #endregion
@@ -203,7 +206,7 @@ namespace Wisdom.Controls.Tables.Competetions
         }
         #endregion
 
-        public GeneralCompetetion()
+        public Competetion()
         {
             InitializeComponent();
             Index(1);

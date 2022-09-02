@@ -245,8 +245,8 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region Competetions Members
-        private ObservableCollection<GeneralCompetetion> _generalCompetetions;
-        public ObservableCollection<GeneralCompetetion> GeneralCompetetions
+        private ObservableCollection<Competetion> _generalCompetetions;
+        public ObservableCollection<Competetion> GeneralCompetetions
         {
             get => _generalCompetetions;
             set
@@ -451,7 +451,7 @@ namespace Wisdom.ViewModel
             //Sources = new ObservableCollection<SourceTypeElement>();
             //MetaData = new ObservableCollection<MetaElement>();
             ProfessionalCompetetions = new ObservableCollection<ProfessionalDivider>();
-            GeneralCompetetions = new ObservableCollection<GeneralCompetetion>();
+            //GeneralCompetetions = new ObservableCollection<Competetion>();
             SourceTypes = new ObservableCollection<string>();
             Document = new DisciplineProgram();
 
@@ -525,7 +525,7 @@ namespace Wisdom.ViewModel
 
             //document.MetaData.Refresh(MetaData);
             document.GeneralCompetetions.Refresh(GeneralCompetetions);
-            document.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
+            //document.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
             //document.Sources.Refresh(Sources);
             document.Plan.Refresh(ThemePlan);
             document.StudyLevels.Refresh(Levels);
@@ -561,8 +561,8 @@ namespace Wisdom.ViewModel
             GeneralCompetetions.Clear();
             for (byte i = 0; i < competetions.Count; i++)
             {
-                GeneralCompetetion competetion = new GeneralCompetetion();
-                competetion.SetElement(competetions[i]);
+                Competetion competetion = new Competetion();
+                //competetion.SetElement(competetions[i]);
                 GeneralCompetetions.Add(competetion);
             }
             OnPropertyChanged(nameof(GeneralCompetetions));
@@ -574,7 +574,7 @@ namespace Wisdom.ViewModel
             for (byte i = 0; i < competetions.Count; i++)
             {
                 ProfessionalDivider division = new ProfessionalDivider();
-                division.SetElement(competetions[i]);
+                //division.SetElement(competetions[i]);
                 ProfessionalCompetetions.Add(division);
             }
             OnPropertyChanged(nameof(ProfessionalCompetetions));

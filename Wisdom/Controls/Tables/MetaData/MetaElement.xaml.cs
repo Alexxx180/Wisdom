@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using ControlMaterials.Tables.ThemePlan;
+using ControlMaterials.Tables;
 using Wisdom.ViewModel;
 using System.Windows;
 using System.Windows.Input;
@@ -25,6 +25,12 @@ namespace Wisdom.Controls.Tables.MetaData
         {
             get => GetValue(RemoveProperty) as ICommand;
             set => SetValue(RemoveProperty, value);
+        }
+
+        public Task Pair
+        {
+            get => GetValue(PairProperty) as Task;
+            set => SetValue(PairProperty, value);
         }
 
 
@@ -52,11 +58,7 @@ namespace Wisdom.Controls.Tables.MetaData
             }
         }
 
-        public Task Pair
-        {
-            get => GetValue(PairProperty) as Task;
-            set => SetValue(PairProperty, value);
-        }
+        
         #endregion
 
         #region IWrapFields Members

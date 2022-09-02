@@ -91,8 +91,8 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/forms/documentforms/adddisciplineprogram/competetionsp" +
-                    "art.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/forms/documentforms/adddisciplineprogram/comp" +
+                    "etetionspart.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Controls\Forms\DocumentForms\AddDisciplineProgram\CompetetionsPart.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

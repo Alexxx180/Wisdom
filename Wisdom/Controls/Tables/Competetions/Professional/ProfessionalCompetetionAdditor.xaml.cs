@@ -72,11 +72,11 @@ namespace Wisdom.Controls.Tables.Competetions.Professional
 
         private void AddCompetetion(object sender, RoutedEventArgs e)
         {
-            ProfessionalCompetetion competetion = new ProfessionalCompetetion
+            Competetion competetion = new Competetion
             {
-                ProfessionalNo = ProfessionalNo,
-                ProfessionalName = ProfessionalName,
-                Group = Group
+                //ProfessionalNo = ProfessionalNo,
+                //ProfessionalName = ProfessionalName,
+                //Group = Group
             };
 
             if (Group.AddRecord(competetion))

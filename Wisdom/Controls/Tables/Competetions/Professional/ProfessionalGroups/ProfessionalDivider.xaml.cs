@@ -29,9 +29,9 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             //DividerNo = Regex.Match(competetions[0].PrefixNo, ".\\d+").Value;
             for (ushort i = 0; i < competetions.Count; i++)
             {
-                ProfessionalCompetetion competetion = new ProfessionalCompetetion
+                Competetion competetion = new Competetion
                 {
-                    Group = this
+                    //Group = this
                 };
                 competetion.SetElement(competetions[i]);
                 Competetions.Add(competetion);
@@ -87,8 +87,8 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             }
         }
 
-        private ObservableCollection<ProfessionalCompetetion> _competetions;
-        public ObservableCollection<ProfessionalCompetetion> Competetions
+        private ObservableCollection<Competetion> _competetions;
+        public ObservableCollection<Competetion> Competetions
         {
             get => _competetions;
             set
@@ -140,7 +140,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         public ProfessionalDivider()
         {
             InitializeComponent();
-            Competetions = new ObservableCollection<ProfessionalCompetetion>();
+            //Competetions = new ObservableCollection<ProfessionalCompetetion>();
             Index(1);
             Extended = true;
         }
@@ -151,14 +151,14 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         }
 
         #region CompetetionsGroup Members
-        public void DropCompetetion(ProfessionalCompetetion competetion)
+        public void DropCompetetion(Competetion competetion)
         {
             _ = Competetions.Remove(competetion);
             OnPropertyChanged(nameof(Competetions));
             CheckAuto();
         }
 
-        public bool AddRecord(ProfessionalCompetetion record)
+        public bool AddRecord(Competetion record)
         {
             Competetions.Add(record);
             OnPropertyChanged(nameof(Competetions));

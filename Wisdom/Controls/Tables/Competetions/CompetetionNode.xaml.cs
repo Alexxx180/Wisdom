@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using ControlMaterials.Tables;
 using Wisdom.ViewModel.Commands;
+using System.Windows.Input;
+using ControlMaterials.Total;
 
 namespace Wisdom.Controls.Tables.Competetions
 {
@@ -30,9 +32,10 @@ namespace Wisdom.Controls.Tables.Competetions
         
         public IndexNode<Competetion> Data
         {
-            get => GetValue(DataProperty) as Competetion;
+            get => GetValue(DataProperty) as IndexNode<Competetion>;
             set => SetValue(DataProperty, value);
         }
+        #endregion
 
         public ICommand RemoveCompetetion { get; }
 

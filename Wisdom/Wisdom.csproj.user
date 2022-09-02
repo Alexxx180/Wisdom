@@ -30,13 +30,7 @@
     <Compile Update="Controls\Tables\AutoPanel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Tables\Competetions\General\GeneralCompetetion.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Controls\Tables\Competetions\General\GeneralCompetetionAdditor.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\Tables\Competetions\Professional\ProfessionalCompetetion.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Tables\Competetions\Professional\ProfessionalCompetetionAdditor.xaml.cs">
@@ -48,19 +42,7 @@
     <Compile Update="Controls\Tables\Competetions\Professional\ProfessionalGroups\ProfessionalDividerAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\CompetetionsPart.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\HoursPart.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\MetaDataPart.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\ThemePlanPart.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\Tables\EducationLevels\EducationLevel.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Tables\EducationLevels\EducationLevelAdditor.xaml.cs">
@@ -94,9 +76,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Tables\Sources\SourceElementAdditor.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\Tables\Sources\SourceTypes\SourceTypeElement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.xaml.cs">
@@ -164,13 +143,7 @@
     <Page Update="Controls\Tables\AutoPanel.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Tables\Competetions\General\GeneralCompetetion.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Controls\Tables\Competetions\General\GeneralCompetetionAdditor.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Tables\Competetions\Professional\ProfessionalCompetetion.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\Competetions\Professional\ProfessionalCompetetionAdditor.xaml">
@@ -182,19 +155,7 @@
     <Page Update="Controls\Tables\Competetions\Professional\ProfessionalGroups\ProfessionalDividerAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\CompetetionsPart.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\HoursPart.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\MetaDataPart.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\ThemePlanPart.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Tables\EducationLevels\EducationLevel.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\EducationLevels\EducationLevelAdditor.xaml">
@@ -228,9 +189,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\Sources\SourceElementAdditor.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Tables\Sources\SourceTypes\SourceTypeElement.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.xaml">

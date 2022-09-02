@@ -89,8 +89,8 @@ namespace Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/forms/documentforms/adddisciplineprogram/metadatapart." +
-                    "xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/forms/documentforms/adddisciplineprogram/meta" +
+                    "datapart.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\..\Controls\Forms\DocumentForms\AddDisciplineProgram\MetaDataPart.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

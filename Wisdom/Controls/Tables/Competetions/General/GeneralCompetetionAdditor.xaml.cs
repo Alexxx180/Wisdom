@@ -90,7 +90,7 @@ namespace Wisdom.Controls.Tables.Competetions.General
 
         private void AddCompetetion(object sender, RoutedEventArgs e)
         {
-            GeneralCompetetion competetion = new GeneralCompetetion
+            Competetion competetion = new Competetion
             {
                 GeneralNo = GeneralNo,
                 GeneralName = GeneralName

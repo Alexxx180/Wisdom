@@ -1,8 +1,12 @@
-﻿using System.ComponentModel;
+﻿using ControlMaterials.Tables;
+using ControlMaterials.Total;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Controls.Tables.Sources.SourceTypes;
+using System.Windows.Input;
+using Wisdom.Controls.Tables.Sources;
+//.SourceTypes;
 
 namespace Wisdom.Controls.Tables.Sources
 {
@@ -14,7 +18,7 @@ namespace Wisdom.Controls.Tables.Sources
         #region Dependency Properties
         public static readonly DependencyProperty
             DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(Source), typeof(SourceElement));
+                typeof(IndexedLabel), typeof(SourceElement));
 
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
@@ -28,10 +32,11 @@ namespace Wisdom.Controls.Tables.Sources
         
         public IndexedLabel Data
         {
-            get => GetValue(DataProperty) as Source;
+            get => GetValue(DataProperty) as IndexedLabel;
             set => SetValue(DataProperty, value);
         }
-    
+        #endregion
+
         #region IRawData Members
         public string Raw()
         {
@@ -64,16 +69,16 @@ namespace Wisdom.Controls.Tables.Sources
         #endregion
 
         #region Source Members
-        private SourceTypeElement _sourceType;
-        public SourceTypeElement SourceType
-        {
-            get => _sourceType;
-            set
-            {
-                _sourceType = value;
-                OnPropertyChanged();
-            }
-        }
+        //private SourceTypeElement _sourceType;
+        //public SourceTypeElement SourceType
+        //{
+        //    get => _sourceType;
+        //    set
+        //    {
+        //        _sourceType = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public string Header => $"{No}.";
 
@@ -115,7 +120,7 @@ namespace Wisdom.Controls.Tables.Sources
 
         private void DropSource(object sender, RoutedEventArgs e)
         {
-            SourceType.DropSource(this);
+            //SourceType.DropSource(this);
         }
 
         #region INotifyPropertyChanged Members

@@ -27,7 +27,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Command="Remove" CommandParameter="{Binding Data}">
+            <Button Command="{Binding Remove}" CommandParameter="{Binding Data}">
                 <Button.Style>
                     <StaticResource ResourceKey="DeleteButton"/>
                 </Button.Style>
@@ -127,5 +127,5 @@
                 <Binding Path="Data.Items"/>
             </ItemsControl.ItemsSource>
         </ItemsControl>
-    </Grid>
+    </StackPanel>
 </UserControl>

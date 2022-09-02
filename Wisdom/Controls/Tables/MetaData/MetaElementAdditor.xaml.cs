@@ -10,25 +10,25 @@ namespace Wisdom.Controls.Tables.MetaData
     /// <summary>
     /// Special component to add new metadata
     /// </summary>
-    public partial class MetaElementAdditor : UserControl, INotifyPropertyChanged, IRawData<Task>
+    public partial class MetaElementAdditor : UserControl, INotifyPropertyChanged //, IRawData<Task>
     {
         public static readonly DependencyProperty
             ViewModelProperty = DependencyProperty.Register(
                 nameof(ViewModel), typeof(DisciplineProgramViewModel),
                 typeof(MetaElementAdditor));
 
-        #region IRawData Members
-        public Task Raw()
-        {
-            return new Task(MetaName, MetaValue);
-        }
+        //#region IRawData Members
+        //public Task Raw()
+        //{
+        //    return new Task(MetaName, MetaValue);
+        //}
 
-        public void SetElement(Task values)
-        {
-            MetaName = values.Name;
-            //MetaValue = values.Hours;
-        }
-        #endregion
+        //public void SetElement(Task values)
+        //{
+        //    MetaName = values.Name;
+        //    //MetaValue = values.Hours;
+        //}
+        //#endregion
 
         #region MetaData Members
         public DisciplineProgramViewModel ViewModel
@@ -67,7 +67,7 @@ namespace Wisdom.Controls.Tables.MetaData
 
         private void AddMetaData(object sender, RoutedEventArgs e)
         {
-            ViewModel.AddMetaData(Raw());
+            //ViewModel.AddMetaData(Raw());
         }
 
         #region INotifyPropertyChanged Members

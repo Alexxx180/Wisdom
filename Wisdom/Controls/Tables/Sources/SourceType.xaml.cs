@@ -6,8 +6,11 @@ using System.Windows;
 using System.Windows.Controls;
 using Wisdom.Customing;
 using ControlMaterials.Tables;
+using System.Windows.Input;
+using Wisdom.ViewModel.Commands;
+using ControlMaterials.Total;
 
-namespace Wisdom.Controls.Tables.Sources.SourceTypes
+namespace Wisdom.Controls.Tables.Sources
 {
     /// <summary>
     /// Record component containing source group with type header
@@ -72,121 +75,121 @@ namespace Wisdom.Controls.Tables.Sources.SourceTypes
         }
         #endregion
 
-        #region SourceType Members
-        private ObservableCollection<SourceTypeElement> _groups;
-        public ObservableCollection<SourceTypeElement> Groups
-        {
-            get => _groups;
-            set
-            {
-                _groups = value;
-                OnPropertyChanged();
-            }
-        }
+        //#region SourceType Members
+        //private ObservableCollection<SourceTypeElement> _groups;
+        //public ObservableCollection<SourceTypeElement> Groups
+        //{
+        //    get => _groups;
+        //    set
+        //    {
+        //        _groups = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private ObservableCollection<string> _types;
-        public ObservableCollection<string> Types
-        {
-            get => _types;
-            set
-            {
-                _types = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<string> _types;
+        //public ObservableCollection<string> Types
+        //{
+        //    get => _types;
+        //    set
+        //    {
+        //        _types = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private int _selectedSource;
-        public int SelectedSource
-        {
-            get => _selectedSource;
-            set
-            {
-                _selectedSource = value;
-                OnPropertyChanged();
-            }
-        }
+        //private int _selectedSource;
+        //public int SelectedSource
+        //{
+        //    get => _selectedSource;
+        //    set
+        //    {
+        //        _selectedSource = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private string _text;
-        public string Text
-        {
-            get => _text;
-            set
-            {
-                _text = value;
-                OnPropertyChanged();
-            }
-        }
+        //private string _text;
+        //public string Text
+        //{
+        //    get => _text;
+        //    set
+        //    {
+        //        _text = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private ObservableCollection<SourceElement> _sources;
-        public ObservableCollection<SourceElement> Sources
-        {
-            get => _sources;
-            set
-            {
-                _sources = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
+        //private ObservableCollection<SourceElement> _sources;
+        //public ObservableCollection<SourceElement> Sources
+        //{
+        //    get => _sources;
+        //    set
+        //    {
+        //        _sources = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+        //#endregion
 
-        #region AutoIndexing Logic
-        public void AutoIndexing()
-        {
-            ushort i;
-            for (i = 0; i < Sources.Count; i++)
-            {
-                Sources[i].Index((i + 1).ToUInt());
-            }
-            Additor.Index((i + 1).ToUInt());
-        }
-        #endregion
+        //#region AutoIndexing Logic
+        //public void AutoIndexing()
+        //{
+        //    ushort i;
+        //    for (i = 0; i < Sources.Count; i++)
+        //    {
+        //        Sources[i].Index((i + 1).ToUInt());
+        //    }
+        //    //Additor.Index((i + 1).ToUInt());
+        //}
+        //#endregion
 
         public SourceType()
         {
             InitializeComponent();
             RemoveSource = new RelayCommand(argument =>
             {
-                Data.Items.Remove((Source)argument);
+                Data.Items.Remove((IndexedLabel)argument);
             });
             
-            Types = new ObservableCollection<string>();
-            Sources = new ObservableCollection<SourceElement>();
+            //Types = new ObservableCollection<string>();
+            //Sources = new ObservableCollection<SourceElement>();
         }
 
-        private void DropSourceGroup(object sender, RoutedEventArgs e)
-        {
-            _ = Groups.Remove(this);
-            OnPropertyChanged(nameof(Groups));
-        }
+        //private void DropSourceGroup(object sender, RoutedEventArgs e)
+        //{
+        //    _ = Groups.Remove(this);
+        //    OnPropertyChanged(nameof(Groups));
+        //}
 
-        #region SourceGroup Members
-        public void DropSource(SourceElement source)
-        {
-            _ = Sources.Remove(source);
-            AutoIndexing();
-            OnPropertyChanged(nameof(Sources));
-        }
+        //#region SourceGroup Members
+        //public void DropSource(SourceElement source)
+        //{
+        //    _ = Sources.Remove(source);
+        //    AutoIndexing();
+        //    OnPropertyChanged(nameof(Sources));
+        //}
 
-        public void AddRecord(SourceElement record)
-        {
-            Sources.Add(record);
-            OnPropertyChanged(nameof(Sources));
-        }
-        #endregion
+        //public void AddRecord(SourceElement record)
+        //{
+        //    Sources.Add(record);
+        //    OnPropertyChanged(nameof(Sources));
+        //}
+        //#endregion
 
-        public void SetTypes(IList<string> types)
-        {
-            for (ushort i = 0; i < types.Count; i++)
-                Types.Add(types[i]);
-        }
+        //public void SetTypes(IList<string> types)
+        //{
+        //    for (ushort i = 0; i < types.Count; i++)
+        //        Types.Add(types[i]);
+        //}
 
-        public void SetElement(IList<string> types, Source sources)
-        {
-            SetTypes(types);
-            Text = sources.Name;
+        //public void SetElement(IList<string> types, Source sources)
+        //{
+        //    SetTypes(types);
+        //    Text = sources.Name;
 
-            SetElement(sources);
-        }
+        //    SetElement(sources);
+        //}
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
