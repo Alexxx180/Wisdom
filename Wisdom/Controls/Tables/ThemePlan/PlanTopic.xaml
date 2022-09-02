@@ -6,8 +6,8 @@
              xmlns:themes="clr-namespace:Wisdom.Controls.Tables.ThemePlan.Themes"
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="80" d:DesignWidth="800" x:Name="This" FontWeight="Bold">
+             d:DesignHeight="35" d:DesignWidth="800" x:Name="This" FontWeight="Bold"
+             x:Name="This">
     <UserControl.Style>
         <StaticResource ResourceKey="MultiRecord"/>
     </UserControl.Style>
@@ -19,118 +19,136 @@
         <converters:WrapConverter x:Key="WrapConverter"/>
     </UserControl.Resources>
     
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <StackPanel>
+        <StackPanel.DataContext>
+            <Binding ElementName="This"/>
+        </StackPanel.DataContext>
 
-
-        <Grid Style="{StaticResource Light}">
+        <Grid Style="{StaticResource Light}" Height="35">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="90" />
+                <ColumnDefinition Width="35" />
                 <ColumnDefinition/>
-                <ColumnDefinition Width="60" />
             </Grid.ColumnDefinitions>
-
-            <Button Click="DropTopic" Height="35">
+            
+            <Button Command="{Binding Remove}" CommandParameter="{Binding Data}">
                 <Button.Style>
                     <StaticResource ResourceKey="DeleteButton"/>
                 </Button.Style>
             </Button>
+            
+            <Grid>
+                <StackPanel.DataContext>
+                    <Binding Path="Data"/>
+                </StackPanel.DataContext>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="1">
-                <TextBlock.Style>
-                    <StaticResource ResourceKey="No2"/>
-                </TextBlock.Style>
-                <TextBlock.Text>
-                    <Binding Path="No"/>
-                </TextBlock.Text>
-            </TextBlock>
+                <TextBox FontSize="20" Foreground="Black">
+                    <TextBox.Style>
+                        <StaticResource ResourceKey="NoBox"/>
+                    </TextBox.Style>
+                    <TextBox.Text>
+                        <Binding Path="No" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                LostFocus
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </TextBox.Text>
+                    <TextBox.IsEnabled>
+                        <Binding Path="Options.IsManual"/>
+                    </TextBox.IsEnabled>
+                </TextBox>
 
-            <TextBox Grid.Column="2">
-                <TextBox.TextWrapping>
-                    <Binding Path="IsWrap">
-                        <Binding.Converter>
-                            <StaticResource ResourceKey="WrapConverter"/>
-                        </Binding.Converter>
-                    </Binding>
-                </TextBox.TextWrapping>
-                <TextBox.Style>
-                    <StaticResource ResourceKey="LightBox"/>
-                </TextBox.Style>
-                <TextBox.Text>
-                    <Binding Path="TopicName" Mode="TwoWay">
-                        <Binding.UpdateSourceTrigger>
-                            LostFocus
-                        </Binding.UpdateSourceTrigger>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-
-            <TextBox Grid.Column="3">
-                <TextBox.Style>
-                    <StaticResource ResourceKey="HoursBoxLight"/>
-                </TextBox.Style>
-                <TextBox.Background>
-                    <MultiBinding>
-                        <MultiBinding.Converter>
-                            <StaticResource ResourceKey="UsedValuesConverter"/>
-                        </MultiBinding.Converter>
-                        <Binding Path="TopicHours"/>
-                        <Binding Path="Themes">
+                <TextBox Grid.Column="1">
+                    <TextBox.TextWrapping>
+                        <Binding Path="IsWrap">
                             <Binding.Converter>
-                                <StaticResource ResourceKey="TopicHoursConverter"/>
+                                <StaticResource ResourceKey="WrapConverter"/>
                             </Binding.Converter>
                         </Binding>
-                    </MultiBinding>
-                </TextBox.Background>
-                <TextBox.Text>
-                    <Binding Path="TopicHours" Mode="TwoWay">
-                        <Binding.UpdateSourceTrigger>
-                            LostFocus
-                        </Binding.UpdateSourceTrigger>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-        </Grid>
+                    </TextBox.TextWrapping>
+                    <TextBox.Style>
+                        <StaticResource ResourceKey="LightBox"/>
+                    </TextBox.Style>
+                    <TextBox.Text>
+                        <Binding Path="Name" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                LostFocus
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
-        <StackPanel Grid.Row="1" Background="#FFF5FFFF">
-            <StackPanel.IsEnabled>
-                <Binding Path="Extended"/>
-            </StackPanel.IsEnabled>
-            <StackPanel.Visibility>
-                <Binding Path="Extended">
-                    <Binding.Converter>
-                        <StaticResource ResourceKey="ExtendConverter"/>
-                    </Binding.Converter>
-                </Binding>
-            </StackPanel.Visibility>
+                <TextBox Grid.Column="2">
+                    <TextBox.Style>
+                        <StaticResource ResourceKey="HoursBoxLight"/>
+                    </TextBox.Style>
+                    <!--<TextBox.Background>
+                        <MultiBinding>
+                            <MultiBinding.Converter>
+                                <StaticResource ResourceKey="UsedValuesConverter"/>
+                            </MultiBinding.Converter>
+                            <Binding Path="TopicHours"/>
+                            <Binding Path="Themes">
+                                <Binding.Converter>
+                                    <StaticResource ResourceKey="TopicHoursConverter"/>
+                                </Binding.Converter>
+                            </Binding>
+                        </MultiBinding>
+                    </TextBox.Background>-->
+                    <TextBox.Text>
+                        <Binding Path="Hours" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                LostFocus
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+
             
-            <themes:PlanThemeFields/>
-
-            <ItemsControl>
-                <ItemsControl.ItemContainerStyle>
-                    <Style>
-                        <Setter Property="FrameworkElement.Margin" Value="0,0,0,15"/>
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-                
-                <ItemsControl.ItemsSource>
-                    <Binding Path="Themes" Mode="TwoWay">
-                        <Binding.UpdateSourceTrigger>
-                            PropertyChanged
-                        </Binding.UpdateSourceTrigger>
+            
+        </Grid>
+        
+        <!--<StackPanel Grid.Row="1" Background="#FFF5FFFF">
+                <StackPanel.Visibility>
+                    <Binding Path="Extended">
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="ExtendConverter"/>
+                        </Binding.Converter>
                     </Binding>
-                </ItemsControl.ItemsSource>
-            </ItemsControl>
+                </StackPanel.Visibility>
 
-            <themes:PlanThemeAdditor x:Name="ThemeAdditor">
-                <themes:PlanThemeAdditor.Topic>
-                    <Binding ElementName="This"/>
-                </themes:PlanThemeAdditor.Topic>
-            </themes:PlanThemeAdditor>
-        </StackPanel>
-    </Grid>
+                <themes:PlanThemeFields/>
+
+                <ItemsControl>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="FrameworkElement.Margin" Value="0,0,0,15"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+
+                    <ItemsControl.ItemsSource>
+                        <Binding Path="Themes" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                PropertyChanged
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </ItemsControl.ItemsSource>
+                </ItemsControl>
+
+                <themes:PlanThemeAdditor x:Name="ThemeAdditor">
+                    <themes:PlanThemeAdditor.Topic>
+                        <Binding ElementName="This"/>
+                    </themes:PlanThemeAdditor.Topic>
+                </themes:PlanThemeAdditor>
+            </StackPanel>-->
+        
+        
+        
+    </StackPanel>
 </UserControl>
