@@ -44,7 +44,7 @@
             </TextBlock>
         </Grid>
 
-        <!--<StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="2">
             <StackPanel.Visibility>
                 <Binding Path="Extended">
                     <Binding.Converter>
@@ -56,17 +56,23 @@
             <tasks:PlanTaskFields Grid.Row="1"/>
             
             <ItemsControl>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <hours:HourElement Data="{Binding}" Remove="{Binding ElementName=This, Path=DataContext.RemoveTask}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              
                 <ItemsControl.ItemsSource>
-                    <Binding Path="Tasks"/>
+                    <Binding Path="Data.Tasks"/>
                 </ItemsControl.ItemsSource>
             </ItemsControl>
 
-            <tasks:PlanTaskAdditor x:Name="TaskAdditor">
+            <!--<tasks:PlanTaskAdditor x:Name="TaskAdditor">
                 <tasks:PlanTaskAdditor.Work>
                     <Binding ElementName="This"/>
                 </tasks:PlanTaskAdditor.Work>
-            </tasks:PlanTaskAdditor>
-        </StackPanel>-->
+            </tasks:PlanTaskAdditor>-->
+        </StackPanel>
         
     </StackPanel>
 </UserControl>
