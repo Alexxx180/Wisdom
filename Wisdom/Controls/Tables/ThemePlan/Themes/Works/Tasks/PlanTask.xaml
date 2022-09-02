@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="35" d:DesignWidth="800">
+             d:DesignHeight="35" d:DesignWidth="800"
+             x:Name="This">
     <UserControl.Style>
         <StaticResource ResourceKey="MultiRecord"/>
     </UserControl.Style>
@@ -14,62 +14,82 @@
     <UserControl.Resources>
         <converters:WrapConverter x:Key="WrapConverter"/>
     </UserControl.Resources>
-
-    <Grid>
+   
+    <Grid Height="35">
+        <Grid.DataContext>
+            <Binding ElementName="This"/>
+        </Grid.DataContext>
+        
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="90" />
-            <ColumnDefinition Width="0.7*" />
-            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-
-
-        <Button Click="DropTask" Height="35">
+        
+        <Button Command="{Binding Remove}" CommandParameter="{Binding Data}">
             <Button.Style>
                 <StaticResource ResourceKey="DeleteButton"/>
             </Button.Style>
         </Button>
-
-        <TextBlock Grid.Column="1">
-            <TextBlock.Style>
-                <StaticResource ResourceKey="No2"/>
-            </TextBlock.Style>
-            <TextBlock.Text>
-                <Binding Path="TaskHeader"/>
-            </TextBlock.Text>
-        </TextBlock>
-
-        <TextBox Grid.Column="2">
-            <TextBox.TextWrapping>
-                <Binding Path="IsWrap">
-                    <Binding.Converter>
-                        <StaticResource ResourceKey="WrapConverter"/>
-                    </Binding.Converter>
-                </Binding>
-            </TextBox.TextWrapping>
-            <TextBox.Style>
-                <StaticResource ResourceKey="LightBox"/>
-            </TextBox.Style>
-            <TextBox.Text>
-                <Binding Path="TaskName" Mode="TwoWay">
-                    <Binding.UpdateSourceTrigger>
-                        LostFocus
-                    </Binding.UpdateSourceTrigger>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-
-        <TextBox Grid.Column="3">
-            <TextBox.Style>
-                <StaticResource ResourceKey="HoursBoxLight"/>
-            </TextBox.Style>
-            <TextBox.Text>
-                <Binding Path="TaskHours" Mode="TwoWay">
-                    <Binding.UpdateSourceTrigger>
-                        LostFocus
-                    </Binding.UpdateSourceTrigger>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+        
+        <Grid>
+            <Grid.DataContext>
+                <Binding Path="Data"/>
+            </Grid.DataContext>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="60" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBox FontSize="20" Foreground="Black">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="NoBox"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="No" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+                <TextBox.IsEnabled>
+                    <Binding Path="Options.IsManual"/>
+                </TextBox.IsEnabled>
+            </TextBox>
+            
+            <TextBox Grid.Column="1">
+                <TextBox.TextWrapping>
+                    <Binding Path="IsWrap">
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="WrapConverter"/>
+                        </Binding.Converter>
+                    </Binding>
+                </TextBox.TextWrapping>
+                <TextBox.Style>
+                    <StaticResource ResourceKey="LightBox"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="Name" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            
+            <TextBox Grid.Column="2">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="HoursBoxLight"/>
+                </TextBox.Style>
+                <TextBox.Text>
+                    <Binding Path="Count" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
     </Grid>
 </UserControl>
