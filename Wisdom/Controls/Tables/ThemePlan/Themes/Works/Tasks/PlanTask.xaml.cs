@@ -9,75 +9,27 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
     /// <summary>
     /// Task of theme's work
     /// </summary>
-    public partial class PlanTask : UserControl, INotifyPropertyChanged, IAutoIndexing, IWrapFields //IRawData<Task>,
+    public partial class PlanTask : UserControl, INotifyPropertyChanged, IAutoIndexing, IWrapFields
     {
-        //#region IRawData Members
-        //public Task Raw()
-        //{
-        //    return new Task(TaskName, TaskHours);
-        //}
+        #region Dependency Properties
+        public static readonly DependencyProperty
+            DataProperty = DependencyProperty.Register(nameof(Data),
+                typeof(Theme), typeof(PlanTask));
 
-        //public void SetElement(Task task)
-        //{
-        //    TaskName = task.Name;
-        //    //TaskHours = task.Hours;
-        //}
-        //#endregion
+        public static readonly DependencyProperty
+            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+                typeof(ICommand), typeof(PlanTask));
 
-        #region IAutoIndexing Members
-        private uint _no;
-        public uint No
+        public ICommand Remove
         {
-            get => _no;
-            set
-            {
-                _no = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(TaskHeader));
-            }
+            get => GetValue(RemoveProperty) as ICommand;
+            set => SetValue(RemoveProperty, value);
         }
-
-        public void Index(uint no)
+               
+        public IndexedHour Data
         {
-            No = no;
-        }
-        #endregion
-
-        #region PlanTask Members
-        private PlanWork _work;
-        public PlanWork Work
-        {
-            get => _work;
-            set
-            {
-                _work = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string TaskHeader => $"{No}.";
-
-        private string _taskName;
-        public string TaskName
-        {
-            get => _taskName;
-            set
-            {
-                _taskName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _taskHours;
-        public string TaskHours
-        {
-            get => _taskHours;
-            set
-            {
-                _taskHours = value;
-                OnPropertyChanged();
-                Work?.RefreshHours();
-            }
+            get => GetValue(DataProperty) as IndexedHour;
+            set => SetValue(DataProperty, value);
         }
         #endregion
 
@@ -102,15 +54,9 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
         public PlanTask()
         {
             InitializeComponent();
-            Index(1);
             IsWrap = false;
         }
-
-        private void DropTask(object sender, RoutedEventArgs e)
-        {
-            Work.DropTask(this);
-        }
-
+        
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
 
