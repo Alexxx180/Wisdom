@@ -1,27 +1,14 @@
-using System.Collections.ObjectModel;
 using ControlMaterials.Total;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class Work : NameLabel
+    public class Work : NameNode<IndexedHour>
     {
-        public Work() { }
+        public Work() : base() { }
 
-        public Work(string name, ObservableCollection<Task> tasks)
+        public Work(string name) : this()
         {
             Name = name;
-            Tasks = tasks;
         }
-
-        public Work(string name, Task task)
-        {
-            Name = name;
-            Tasks = new ObservableCollection<Task>
-            {
-                task
-            };
-        }
-        
-        public ObservableCollection<IndexedHour> Tasks { get; }
     }
 }

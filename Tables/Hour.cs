@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using ControlMaterials.Total;
 
 namespace ControlMaterials.Tables
 {
     public class Hour : NameLabel
     {
+        public Hour() { }
+
         public Hour(string name, ushort count)
         {
             Name = name;

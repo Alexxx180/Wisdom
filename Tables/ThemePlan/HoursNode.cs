@@ -1,15 +1,9 @@
-using System.Collections.ObjectModel;
-using ControlMaterials.Total;
+﻿using ControlMaterials.Total;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class Topic : NameLabel
+    public class HoursNode<T> : HybridNode<T>
     {
-        public Topic()
-        {
-            Themes = new ObservableCollection<Theme>();
-        }
-      
         private ushort _hours;
         public ushort Hours
         {
@@ -20,7 +14,5 @@ namespace ControlMaterials.Tables.ThemePlan
                 OnPropertyChanged();
             }
         }
-        
-        public ObservableCollection<Theme> Themes { get; }
     }
 }

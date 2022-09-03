@@ -4,6 +4,8 @@ namespace ControlMaterials.Tables
 {
     public class Task : NameLabel
     {
+        public Task() { }
+
         public Task(string name, string data)
         {
             Name = name;

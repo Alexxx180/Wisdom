@@ -14,7 +14,7 @@ namespace ControlMaterials.Documents
             StudyLevels = new List<Task>();
             MetaData = new List<Task>();
             Sources = new List<Source>();
-            Plan = new List<Topic>();
+            Plan = new List<HoursNode<Theme>>();
         }
 
         // Speciality
