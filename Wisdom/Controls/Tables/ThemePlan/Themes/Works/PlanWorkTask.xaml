@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
         
-        <Button Click="DropTask">
+        <Button>
             <Button.Style>
                 <StaticResource ResourceKey="DeleteButton"/>
             </Button.Style>

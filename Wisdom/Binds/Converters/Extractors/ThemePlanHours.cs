@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
 using Wisdom.Controls.Tables.ThemePlan;
-using Wisdom.Customing;
 
 namespace Wisdom.Binds.Converters.Extractors
 {
@@ -15,7 +14,7 @@ namespace Wisdom.Binds.Converters.Extractors
             uint sum = 0;
             for (ushort i = 0; i < plan.Count; i++)
             {
-                sum += plan[i].TopicHours.ParseHours();
+                sum += plan[i].Data.Hours;
             }
             return sum;
         }

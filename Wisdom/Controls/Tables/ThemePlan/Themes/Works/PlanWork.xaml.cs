@@ -7,6 +7,7 @@ using Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks;
 using Wisdom.Customing;
 using ControlMaterials.Tables.ThemePlan;
 using static Wisdom.Customing.Converters;
+using System.Windows.Input;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
 {
@@ -33,7 +34,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             get => GetValue(RemoveProperty) as ICommand;
             set => SetValue(RemoveProperty, value);
         }
-        
+
         public ICommand RemoveTask
         {
             get => GetValue(RemoveTaskProperty) as ICommand;

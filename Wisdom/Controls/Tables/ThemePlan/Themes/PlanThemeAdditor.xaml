@@ -16,7 +16,7 @@
             <ColumnDefinition Width="60" />
         </Grid.ColumnDefinitions>
 
-        <Button Click="AddTheme">
+        <Button>
             <Button.Style>
                 <StaticResource ResourceKey="AddButton"/>
             </Button.Style>

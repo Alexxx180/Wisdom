@@ -82,11 +82,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             InitializeComponent();
         }
 
-        private void DropTask(object sender, RoutedEventArgs e)
-        {
-            Theme.DropWork(this);
-        }
-
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
 

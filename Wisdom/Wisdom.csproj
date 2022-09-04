@@ -74,6 +74,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Controls\Tables\Hours\Groups\HourGroupAdditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -86,6 +89,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\Tables\Hours\Groups\HourGroupAdditor.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties resources_4configuration_4runtime_4config_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

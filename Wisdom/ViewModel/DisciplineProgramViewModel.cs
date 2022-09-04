@@ -61,8 +61,8 @@ namespace Wisdom.ViewModel
                 DocumentTypes.WorkTypes.Refresh(Data.WorkTypesData());
                 SetLevels();
                 SourceTypes.Refresh(Data.SourceTypesData());
-                SpecialityHead = _data.ListSpecialities();
-                SpecialitySelect.Refresh(SpecialityHead.Value);
+                //SpecialityHead = _data.ListSpecialities();
+                //SpecialitySelect.Refresh(SpecialityHead.Value);
                 OnPropertyChanged();
             }
         }
@@ -89,9 +89,9 @@ namespace Wisdom.ViewModel
                 _specialityNo = value;
                 OnPropertyChanged();
                 DisciplineNo = -1;
-                if (value >= 0 &&
-                    value < SpecialityHead.Name.Count)
-                    ResetCompetetions();
+                //if (value >= 0 &&
+                //    value < SpecialityHead.Name.Count)
+                //    ResetCompetetions();
             }
         }
 
@@ -127,9 +127,9 @@ namespace Wisdom.ViewModel
             {
                 _disciplineNo = value;
                 OnPropertyChanged();
-                if (value >= 0 && SpecialityNo >= 0 &&
-                    value < DisciplineHead.Name.Count)
-                    ResetDiscipline();
+                //if (value >= 0 && SpecialityNo >= 0 &&
+                //    value < DisciplineHead.Name.Count)
+                //    ResetDiscipline();
             }
         }
 
@@ -162,7 +162,7 @@ namespace Wisdom.ViewModel
             {
                 int max = 0;
 
-                for (ushort i = 0; i < HourGroups.Count; i++)
+                for (ushort i = 0; i < Hours.Count; i++)
                 {
                     max += Hours[i].No;//Value; //.Total.ParseHours();
                 }
@@ -241,8 +241,8 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private ObservableCollection<NameNode<IndexLabel>> _sources;
-        public ObservableCollection<NameNode<IndexLabel>> Sources
+        private ObservableCollection<NameNode<IndexedLabel>> _sources;
+        public ObservableCollection<NameNode<IndexedLabel>> Sources
         {
             get => _sources;
             set
@@ -252,8 +252,8 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private ObservableCollection<Topic> _themePlan;
-        public ObservableCollection<Topic> ThemePlan
+        private ObservableCollection<HoursNode<Theme>> _themePlan;
+        public ObservableCollection<HoursNode<Theme>> ThemePlan
         {
             get => _themePlan;
             set
@@ -288,15 +288,15 @@ namespace Wisdom.ViewModel
 
         public DisciplineProgramViewModel()
         {
-            SpecialitySelect = new ObservableCollection<string>();
-            DisciplinesSelect = new ObservableCollection<string>();
+            SpecialitySelect = new ObservableCollection<Task>();
+            DisciplinesSelect = new ObservableCollection<Task>();
             
             Levels = new ObservableCollection<Level>();
             
-            ThemePlan = new ObservableCollection<Topic>();
+            ThemePlan = new ObservableCollection<HoursNode<Theme>>();
             
-            Sources = new ObservableCollection<NameNode<IndexLabel>>();
-            MetaData = new ObservableCollection<Task>();
+            Sources = new ObservableCollection<NameNode<IndexedLabel>>();
+            Metadata = new ObservableCollection<Task>();
             
             PCompetetions = new ObservableCollection<IndexNode<Competetion>>();
             GCompetetions = new ObservableCollection<Competetion>();
@@ -306,7 +306,7 @@ namespace Wisdom.ViewModel
 
             RemoveHourCommand = new RelayCommand(argument =>
             {
-                HourGroups.Remove((HybridNode<Hour>)argument);
+                Hours.Remove((HybridNode<Hour>)argument);
             });
             
             RemoveMetaCommand = new RelayCommand(argument =>
@@ -316,7 +316,7 @@ namespace Wisdom.ViewModel
             
             RemoveTopicCommand = new RelayCommand(argument =>
             {
-                ThemePlan.Remove((Topic)argument);
+                ThemePlan.Remove((HoursNode<Theme>)argument);
             });
             
             RemoveSourceCommand = new RelayCommand(argument =>
@@ -337,13 +337,12 @@ namespace Wisdom.ViewModel
             //HourGroup
             Hours = new ObservableCollection<HybridNode<Hour>>();
 
-            Hours.Add(new HybridNode<Hour>());
-            Hours.Items.Add("Hours", 40);
-            Hours.Add(new HybridNode<Hour>());
-            Hours.Items.Add("Hours", 40);
-            Hours.Add(new HybridNode<Hour>());
-            Hours.Items.Add("Hours", 40);
-
+            for (byte i = 0; i < 3; i++)
+            {
+                Hours.Add(new HybridNode<Hour>());
+                Hours[i].Items.Add(new Hour("Hours", 40));
+            }
+            
             //AddGroup("Аудиторная нагрузка, часы");
             //AddGroup("Практическая подготовка, часы");
             OnPropertyChanged(nameof(Hours));
@@ -376,11 +375,11 @@ namespace Wisdom.ViewModel
             //document.SelfHours.Refresh(HourGroups[1].Raw());
 
             //document.MetaData.Refresh(MetaData);
-            document.GeneralCompetetions.Refresh(GeneralCompetetions);
+            //document.GeneralCompetetions.Refresh(GeneralCompetetions);
             //document.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
             //document.Sources.Refresh(Sources);
             document.Plan.Refresh(ThemePlan);
-            document.StudyLevels.Refresh(Levels);
+            //document.StudyLevels.Refresh(Levels);
         }
 
         internal void CreateTemplate(string fileName)
@@ -400,36 +399,36 @@ namespace Wisdom.ViewModel
         #region SpecialityAutoSet Logic
         internal void ResetCompetetions()
         {
-            SelectedSpeciality = Data.SpecialityData(SpecialityHead.Name[SpecialityNo], SpecialityFullName);
-            DisciplineHead = Data.ListDisciplines(SpecialityHead.Name[SpecialityNo]);
-            DisciplinesSelect.Refresh(DisciplineHead.Value);
+            //SelectedSpeciality = Data.SpecialityData(SpecialityHead.Name[SpecialityNo], SpecialityFullName);
+            //DisciplineHead = Data.ListDisciplines(SpecialityHead.Name[SpecialityNo]);
+            //DisciplinesSelect.Refresh(DisciplineHead.Value);
 
-            SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
-            SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
+            //SetGeneralCompetetions(SelectedSpeciality.GeneralCompetetions);
+            //SetProfessionalCompetetions(SelectedSpeciality.ProfessionalCompetetions);
         }
 
         private void SetGeneralCompetetions(List<Competetion> competetions)
         {
-            GeneralCompetetions.Clear();
+            //GeneralCompetetions.Clear();
             for (byte i = 0; i < competetions.Count; i++)
             {
                 Competetion competetion = new Competetion();
                 //competetion.SetElement(competetions[i]);
-                GeneralCompetetions.Add(competetion);
+                //GeneralCompetetions.Add(competetion);
             }
-            OnPropertyChanged(nameof(GeneralCompetetions));
+            //OnPropertyChanged(nameof(GeneralCompetetions));
         }
 
         private void SetProfessionalCompetetions(List<List<Competetion>> competetions)
         {
-            ProfessionalCompetetions.Clear();
+            //ProfessionalCompetetions.Clear();
             for (byte i = 0; i < competetions.Count; i++)
             {
                 ProfessionalDivider division = new ProfessionalDivider();
                 //division.SetElement(competetions[i]);
-                ProfessionalCompetetions.Add(division);
+                //ProfessionalCompetetions.Add(division);
             }
-            OnPropertyChanged(nameof(ProfessionalCompetetions));
+            //OnPropertyChanged(nameof(ProfessionalCompetetions));
         }
         #endregion
 
@@ -441,12 +440,12 @@ namespace Wisdom.ViewModel
             List<Hour> selfHours,
             List<Task> metaData,
             List<Source> sources,
-            List<Topic> themePlan
+            List<HoursNode<Theme>> themePlan
             )
         {
             SetGeneralCompetetions(general);
             SetProfessionalCompetetions(professional);
-            SetHourGroups(classHours, selfHours);
+            //SetHourGroups(classHours, selfHours);
             SetMetaData(metaData);
             SetSources(sources);
             SetThemePlan(themePlan);
@@ -467,10 +466,10 @@ namespace Wisdom.ViewModel
 
         internal void ResetDiscipline()
         {
-            SelectedDiscipline = Data.DisciplineData
-                (DisciplineHead.Name[DisciplineNo], DisciplineFullName);
+            //SelectedDiscipline = Data.DisciplineData
+            //    (DisciplineHead.Name[DisciplineNo], DisciplineFullName);
 
-            SetDiscipline(SelectedDiscipline);
+            //SetDiscipline(SelectedDiscipline);
             SetLevels();
         }
 
@@ -501,7 +500,7 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private void SetThemePlan(List<Topic> plan)
+        private void SetThemePlan(List<HoursNode<Theme>> plan)
         {
             ThemePlan.Clear();
             for (ushort i = 0; i < plan.Count; i++)
@@ -516,10 +515,10 @@ namespace Wisdom.ViewModel
         {
             List<Task> levels = Data.LevelsData();
             Levels.Clear();
-            for (ushort i = 0; i < levels.Count; i++)
-            {
-                Levels.Add(levels[i]);
-            }
+            //for (ushort i = 0; i < levels.Count; i++)
+            //{
+            //    Levels.Add(levels[i]);
+            //}
         }
         #endregion
 

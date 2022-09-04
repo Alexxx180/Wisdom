@@ -68,20 +68,6 @@ namespace Wisdom.Controls.Tables.ThemePlan
             Index(1);
         }
 
-        private void AddTopic(object sender, RoutedEventArgs e)
-        {
-            PlanTopic topic = new PlanTopic
-            {
-                No = No,
-                TopicName = TopicName,
-                TopicHours = TopicHours,
-                Options = Options
-            };
-
-            Options.AddRecord(topic);
-            Index(No);
-        }
-
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
 

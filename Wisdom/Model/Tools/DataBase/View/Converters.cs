@@ -333,7 +333,7 @@ namespace Wisdom.Model.Tools.DataBase
 
         public static DisciplineBase GetDiscipline(string name,
             List<object[]> totalHours, List<object[]> metaData,
-            List<Topic> themePlan,
+            List<HoursNode<Theme>> themePlan,
             List<object[]> sources, List<object[]> generalCompetetions, 
             List<object[]> professionalCompetetions)
         {

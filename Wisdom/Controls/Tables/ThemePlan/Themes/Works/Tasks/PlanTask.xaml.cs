@@ -3,13 +3,15 @@ using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using ControlMaterials.Tables.ThemePlan;
+using ControlMaterials.Tables;
+using System.Windows.Input;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
 {
     /// <summary>
     /// Task of theme's work
     /// </summary>
-    public partial class PlanTask : UserControl, INotifyPropertyChanged, IAutoIndexing, IWrapFields
+    public partial class PlanTask : UserControl, INotifyPropertyChanged, IWrapFields
     {
         #region Dependency Properties
         public static readonly DependencyProperty

@@ -64,32 +64,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
             InitializeComponent();
         }
 
-        private void AddWork(object sender, RoutedEventArgs e)
-        {
-            IRawData<Work> work;
-
-            if (IsGroup)
-            {
-                PlanWork group = new PlanWork
-                {
-                    WorkType = WorkType,
-                    Theme = Theme
-                };
-                work = group;
-            }
-            else
-            {
-                PlanWorkTask single = new PlanWorkTask
-                {
-                    WorkType = WorkType,
-                    Theme = Theme
-                };
-                work = single;
-            }
-
-            Theme.AddRecord(work);
-        }
-
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
 

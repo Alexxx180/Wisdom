@@ -6,18 +6,19 @@ using System.Collections.ObjectModel;
 using Wisdom.Controls.Tables.ThemePlan.Themes;
 using Wisdom.Customing;
 using ControlMaterials.Tables.ThemePlan;
+using System.Windows.Input;
 
 namespace Wisdom.Controls.Tables.ThemePlan
 {
     /// <summary>
     /// Topic of theme plan
     /// </summary>
-    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IRecordsIndexing, IExtendableItems, IWrapFields
+    public partial class PlanTopic : UserControl, INotifyPropertyChanged, IExtendableItems, IWrapFields
     {
         #region Dependency Properties
         public static readonly DependencyProperty
             DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(Topic), typeof(PlanTopic));
+                typeof(HoursNode<Theme>), typeof(PlanTopic));
 
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
@@ -39,9 +40,9 @@ namespace Wisdom.Controls.Tables.ThemePlan
             set => SetValue(RemoveThemeProperty, value);
         }
         
-        public Topic Data
+        public HoursNode<Theme> Data
         {
-            get => GetValue(DataProperty) as Topic;
+            get => GetValue(DataProperty) as HoursNode<Theme>;
             set => SetValue(DataProperty, value);
         }
         #endregion
@@ -67,60 +68,16 @@ namespace Wisdom.Controls.Tables.ThemePlan
         #region AutoIndexing Logic
         public void AutoIndexing()
         {
-            ushort i;
-            for (i = 0; i < Themes.Count; i++)
-            {
-                Themes[i].Index((i + 1).ToUInt());
-            }
-            ThemeAdditor.Index((i + 1).ToUInt());
+            //ushort i;
+            //for (i = 0; i < Themes.Count; i++)
+            //{
+            //    Themes[i].Index((i + 1).ToUInt());
+            //}
+            //ThemeAdditor.Index((i + 1).ToUInt());
         }
         #endregion
 
         #region PlanTopic Members
-        public RecordsPanel _options;
-        public RecordsPanel Options
-        {
-            get => _options;
-            set
-            {
-                _options = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _topicName;
-        public string TopicName
-        {
-            get => _topicName;
-            set
-            {
-                _topicName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _topicHours;
-        public string TopicHours
-        {
-            get => _topicHours;
-            set
-            {
-                _topicHours = value;
-                OnPropertyChanged();
-                Options?.RegisterEdit();
-            }
-        }
-
-        private ObservableCollection<PlanTheme> _themes;
-        public ObservableCollection<PlanTheme> Themes
-        {
-            get => _themes;
-            set
-            {
-                _themes = value;
-                OnPropertyChanged();
-            }
-        }
 
         public void RefreshHours()
         {
@@ -168,30 +125,9 @@ namespace Wisdom.Controls.Tables.ThemePlan
         {
             InitializeComponent();
             Index(1);
-            Themes = new ObservableCollection<PlanTheme>();
             Extended = true;
             IsWrap = false;
         }
-
-        private void DropTopic(object sender, RoutedEventArgs e)
-        {
-            Options.DropRecord(this);
-        }
-
-        #region ThemesGroup Members
-        public void DropTheme(PlanTheme source)
-        {
-            _ = Themes.Remove(source);
-            AutoIndexing();
-            OnPropertyChanged(nameof(Themes));
-        }
-
-        public void AddRecord(PlanTheme record)
-        {
-            Themes.Add(record);
-            OnPropertyChanged(nameof(Themes));
-        }
-        #endregion
 
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;

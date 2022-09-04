@@ -2,18 +2,15 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using ControlMaterials.Tables;
-using Wisdom.Customing;
 using System.Windows;
-using Wisdom.Controls.Tables.Hours.Groups;
 using System.Windows.Input;
-using Wisdom.Model;
 
 namespace Wisdom.Controls.Tables.Hours
 {
     /// <summary>
     /// Логика взаимодействия для HourElement.xaml
     /// </summary>
-    public partial class HourElement : UserControl, INotifyPropertyChanged, IRawData<Hour>
+    public partial class HourElement : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty
             HourProperty = DependencyProperty.Register(nameof(Hour),
@@ -29,28 +26,11 @@ namespace Wisdom.Controls.Tables.Hours
             set => SetValue(RemoveProperty, value);
         }
 
-        #region IRawData Members
-        public Hour Raw()
-        {
-            //ushort hours = HourValue.ParseHours(); //WorkType
-            return new Hour("", 0);
-        }
-
-        public void SetElement(Hour value)
-        {
-            Hour = value;
-            //WorkType = values.Name;
-            //HourValue = values.Count.ToString();
-        }
-        #endregion
-
-        #region Hour Members
         public Hour Hour
         {
-            get => (Hour)GetValue(HourProperty);
+            get => GetValue(HourProperty) as Hour;
             set => SetValue(HourProperty, value);
         }
-        #endregion
 
         public HourElement()
         {

@@ -2,65 +2,55 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using ControlMaterials.Tables;
+using Wisdom.Customing;
 using System.Windows;
-using ControlMaterials.Total;
-using System.Windows.Input;
-using Wisdom.ViewModel.Commands;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Wisdom.Controls.Tables.Hours.Groups
 {
     /// <summary>
     /// Record component containing total hours count (user preset)
     /// </summary>
-    public partial class HourGroup : UserControl, INotifyPropertyChanged, IExtendableItems
+    public partial class HourGroupAdditor : UserControl, INotifyPropertyChanged, IExtendableItems
     {
         public static readonly DependencyProperty
-            GroupProperty = DependencyProperty.Register(nameof(Group),
-                typeof(HybridNode<Hour>), typeof(HourGroup));
+            TypeProperty = DependencyProperty.Register(nameof(Type),
+                typeof(string), typeof(HourGroup));
 
         public static readonly DependencyProperty
-            RemoveProperty = DependencyProperty.Register(nameof(Remove),
-                typeof(ICommand), typeof(HourGroup));
-
-        public static readonly DependencyProperty
-            RemoveHourProperty = DependencyProperty.Register(nameof(RemoveHour),
-                typeof(ICommand), typeof(HourGroup));
-
-        public ICommand Remove
-        {
-            get => GetValue(RemoveProperty) as ICommand;
-            set => SetValue(RemoveProperty, value);
-        }
-
-        public ICommand RemoveHour
-        {
-            get => GetValue(RemoveHourProperty) as ICommand;
-            set => SetValue(RemoveHourProperty, value);
-        }
-
-        public HybridNode<Hour> Group
-        {
-            get => GetValue(GroupProperty) as HybridNode<Hour>;
-            set => SetValue(GroupProperty, value);
-        }
+            HoursProperty = DependencyProperty.Register(nameof(Hours),
+                typeof(ObservableCollection<HourElement>), typeof(HourGroup));
 
         #region Hour Members
-        public uint Total
+        public string Type
+        {
+            get => GetValue(TypeProperty) as string;
+            set => SetValue(TypeProperty, value);
+        }
+
+        public string Total
         {
             get
             {
                 uint total = 0;
 
-                if (Group != null)
-                {
-                    for (ushort i = 0; i < Group.Items.Count; i++)
-                    {
-                        total += Group.Items[i].Count;
-                    }
-                }
+                //if (Hours != null)
+                //{
+                //    for (ushort i = 0; i < Hours.Count; i++)
+                //    {
+                //        total += Hours[i].HourValue.ParseHours();
+                //    }
+                //}
 
-                return total;
+                return total.ToString();
             }
+        }
+
+        public ObservableCollection<HourElement> Hours
+        {
+            get => GetValue(HoursProperty) as ObservableCollection<HourElement>;
+            set => SetValue(HoursProperty, value);
         }
 
         public void RefreshHours()
@@ -87,16 +77,25 @@ namespace Wisdom.Controls.Tables.Hours.Groups
         }
         #endregion
 
-        public HourGroup()
+        public HourGroupAdditor()
         {
             InitializeComponent();
-            RemoveHour = new RelayCommand(argument =>
-            {
-                _ = Group.Remove((Hour)argument);
-                System.Diagnostics.Trace.WriteLine("LOL");
-            });
-
+            Hours = new ObservableCollection<HourElement>();
             Extended = true;
+        }
+
+        public void DropHour(HourElement hour)
+        {
+            _ = Hours.Remove(hour);
+            OnPropertyChanged(nameof(Hours));
+            RefreshHours();
+        }
+
+        public void AddHour(HourElement hour)
+        {
+            Hours.Add(hour);
+            OnPropertyChanged(nameof(Hours));
+            RefreshHours();
         }
 
         #region INotifyPropertyChanged Members

@@ -78,9 +78,9 @@ namespace Wisdom.Model.Tools.DataBase
             return competetions;
         }
 
-        private static List<Topic> GetThemePlan(List<object[]> themePlan)
+        private static List<HoursNode<Theme>> GetThemePlan(List<object[]> themePlan)
         {
-            List<Topic> plan = new List<Topic>();
+            List<HoursNode<Theme>> plan = new List<HoursNode<Theme>>();
             for (int i = 0; i < themePlan.Count; i++)
             {
                 object[] row = themePlan[i];
@@ -89,7 +89,7 @@ namespace Wisdom.Model.Tools.DataBase
                 List<object[]> themesData = _dataBase.Themes(topicId);
                 List<Theme> themes = GetThemes(themesData);
 
-                Topic topic = new Topic
+                HoursNode<Theme> topic = new HoursNode<Theme>
                 {
                     Name = row[2].ToString(),
                     //Hours = row[3].ToString(),

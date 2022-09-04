@@ -164,6 +164,9 @@
     <Page Update="Controls\Tables\EducationLevels\EducationLevelFields.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\Tables\Hours\Groups\HourGroupAdditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\Tables\Hours\Groups\HourGroup.xaml">
       <SubType>Designer</SubType>
     </Page>

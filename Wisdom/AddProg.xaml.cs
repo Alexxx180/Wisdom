@@ -90,9 +90,10 @@ namespace Wisdom
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Trace.WriteLine(ViewModel.HourGroups[0].Name);
-            System.Diagnostics.Trace.WriteLine(ViewModel.HourGroups[0].Count);
+            System.Diagnostics.Trace.WriteLine(ViewModel.Hours[0].Name);
+            System.Diagnostics.Trace.WriteLine(ViewModel.Hours[0].Items.Count);
             return;
+
             if (Page5.WasChanged())
                 SavePreferences();
 

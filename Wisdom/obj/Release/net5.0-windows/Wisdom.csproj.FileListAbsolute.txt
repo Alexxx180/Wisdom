@@ -418,3 +418,5 @@ D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\R
 D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Controls\Tables\Competetions\Competetion.baml
 D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Controls\Tables\Competetions\CompetetionNode.baml
 D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Controls\Tables\Sources\SourceType.baml
+D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Controls\Tables\Hours\Groups\HourGroupAdditor.g.cs
+D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Controls\Tables\Hours\Groups\HourGroupAdditor.baml

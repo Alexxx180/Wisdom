@@ -71,20 +71,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
             Index(1);
         }
 
-        private void AddTask(object sender, RoutedEventArgs e)
-        {
-            PlanTask task = new PlanTask
-            {
-                No = No,
-                TaskName = TaskName,
-                TaskHours = TaskHours,
-                Work = Work
-            };
-
-            Work.AddRecord(task);
-            Index(No + 1);
-        }
-
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
 

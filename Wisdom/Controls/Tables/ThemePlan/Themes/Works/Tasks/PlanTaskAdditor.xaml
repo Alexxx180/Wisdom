@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <Button Click="AddTask">
+        <Button>
             <Button.Style>
                 <StaticResource ResourceKey="AddButton"/>
             </Button.Style>

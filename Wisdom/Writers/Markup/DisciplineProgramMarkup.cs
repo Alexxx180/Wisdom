@@ -149,10 +149,10 @@ namespace Wisdom.Writers.Markup
         {
             List<TableRow> rows = new List<TableRow>();
 
-            List<Topic> topics = program.Plan;
+            List<HoursNode<Theme>> topics = program.Plan;
             for (byte i = 0; i < topics.Count; i++)
             {
-                Topic topic = topics[i];
+                HoursNode<Theme> topic = topics[i];
 
                 string topicHeader = $"Раздел {i + 1}. {topic.Name}";
                 //rows.Add(Topic(topicHeader, topic.Hours));

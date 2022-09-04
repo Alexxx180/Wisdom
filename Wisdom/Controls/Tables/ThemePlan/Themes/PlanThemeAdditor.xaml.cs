@@ -90,22 +90,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             Index(1);
         }
 
-        private void AddTheme(object sender, RoutedEventArgs e)
-        {
-            PlanTheme theme = new PlanTheme
-            {
-                No = No,
-                ThemeName = ThemeName,
-                ThemeHours = ThemeHours,
-                ThemeCompetetions = ThemeCompetetions,
-                ThemeLevel = ThemeLevel,
-                Topic = Topic
-            };
-
-            Topic.AddRecord(theme);
-            Index(No + 1);
-        }
-
         #region INotifyPropertyChanged Members
         public event PropertyChangedEventHandler PropertyChanged;
 

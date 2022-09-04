@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
-             xmlns:hours="clr-namespace:Wisdom.Controls.Tables.Hours"
+             xmlns:hours="clr-namespace:Wisdom.Controls.Tables.Hours.Groups"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Style="{StaticResource GlobalFont}"
@@ -116,13 +116,12 @@
                     <ItemsControl x:Name="Hours" Padding="10" Style="{StaticResource Light}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <hours:HourElement Hour="{Binding}"
-                                                   Remove="{Binding ElementName=TreeContext, Path=DataContext.RemoveHourCommand}" />
+                                <hours:HourGroup Group="{Binding}" Remove="{Binding ElementName=TreeContext, Path=DataContext.RemoveHourCommand}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         
                         <ItemsControl.ItemsSource>
-                            <Binding Path="HourGroups"/>
+                            <Binding Path="Hours"/>
                         </ItemsControl.ItemsSource>
                     </ItemsControl>
                 </ScrollViewer>

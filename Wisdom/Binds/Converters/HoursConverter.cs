@@ -16,7 +16,7 @@ namespace Wisdom.Binds.Converters
             uint sum = 0;
             for (ushort i = 0; i < hours.Count; i++)
             {
-                Hour hour = hours[i].Raw();
+                Hour hour = hours[i].Hour;
                 sum += hour.Count;
             }
             return sum.ToString();

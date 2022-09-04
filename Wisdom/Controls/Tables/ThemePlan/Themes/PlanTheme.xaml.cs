@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using Wisdom.Controls.Tables.ThemePlan.Themes.Works;
 using Wisdom.Customing;
 using ControlMaterials.Tables.ThemePlan;
+using System.Windows.Input;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes
 {
@@ -50,7 +51,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         public void RefreshHours()
         {
             OnPropertyChanged(nameof(Works));
-            Topic.RefreshHours();
+            //Topic.RefreshHours();
         }
         #endregion
 
@@ -93,8 +94,6 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
         public PlanTheme()
         {
             InitializeComponent();
-            Index(1);
-            Works = new ObservableCollection<IRawData<Work>>();
             Extended = true;
             IsWrap = false;
         }
