@@ -6,6 +6,14 @@ namespace ControlMaterials.Total
 {
     public class NameLabel
     {
+        public virtual NameLabel Copy()
+        {
+            return new NameLabel
+            {
+                Name = Name
+            };
+        }
+
         private string _name;
         public string Name
         {

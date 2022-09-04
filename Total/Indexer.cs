@@ -5,6 +5,14 @@ namespace ControlMaterials.Total
 {
     public class Indexer
     {
+        public virtual Indexer Copy()
+        {
+            return new Indexer
+            {
+                No = No
+            };
+        }
+
         private ushort _no;
         public ushort No
         {

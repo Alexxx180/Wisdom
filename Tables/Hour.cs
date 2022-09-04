@@ -11,7 +11,16 @@ namespace ControlMaterials.Tables
             Name = name;
             Count = count;
         }
-        
+
+        public override Hour Copy()
+        {
+            return new Hour
+            {
+                Name = Name,
+                Count = Count
+            };
+        }
+
         private ushort _count;
         public ushort Count
         {

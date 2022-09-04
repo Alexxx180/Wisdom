@@ -9,6 +9,19 @@ namespace ControlMaterials.Total
             Items = new ObservableCollection<T>();
         }
 
+        public NameNode(ObservableCollection<T> items)
+        {
+            Items = new ObservableCollection<T>(items);
+        }
+
+        public override NameNode<T> Copy()
+        {
+            return new NameNode<T>(Items)
+            {
+                Name = Name
+            };
+        }
+
         public void Add(T item)
         {
             Items.Add(item);

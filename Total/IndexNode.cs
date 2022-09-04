@@ -9,6 +9,19 @@ namespace ControlMaterials.Total
             Items = new ObservableCollection<T>();
         }
 
+        public IndexNode(ObservableCollection<T> items)
+        {
+            Items = new ObservableCollection<T>(items);
+        }
+
+        public override IndexNode<T> Copy()
+        {
+            return new IndexNode<T>(Items)
+            {
+                No = No
+            };
+        }
+
         public void Add(T item)
         {
             Items.Add(item);
