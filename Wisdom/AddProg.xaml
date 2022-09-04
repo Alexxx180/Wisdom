@@ -31,7 +31,7 @@
         <converters:ProfessionalCompetetionsConverter x:Key="ProfessionalCompetetionsConverter"/>
     </Window.Resources>
 
-    <Grid>
+    <Grid x:Name="VM">
         <Grid.DataContext>
             <Binding ElementName="DisciplineProgramWindow" Path="ViewModel"/>
         </Grid.DataContext>
@@ -445,7 +445,7 @@
                         <ItemsControl>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <metadata:MetaElement Pair="{Binding}" />
+                                    <metadata:MetaElement Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveMetaCommand}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                                 
@@ -454,11 +454,8 @@
                             </ItemsControl.ItemsSource>
                         </ItemsControl>
 
-                        <metadata:MetaElementAdditor>
-                            <metadata:MetaElementAdditor.ViewModel>
-                                <Binding ElementName="TreeContext" Path="DataContext"/>
-                            </metadata:MetaElementAdditor.ViewModel>
-                        </metadata:MetaElementAdditor>
+                        <metadata:MetaElementAdditor Add="{Binding ElementName=VM, Path=DataContext.AddMetaCommand}"/>
+
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

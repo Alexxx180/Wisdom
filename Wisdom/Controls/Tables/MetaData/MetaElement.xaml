@@ -1,9 +1,12 @@
-﻿<UserControl x:Class="Wisdom.Controls.Tables.MetaData.MetaElement"
+﻿<controls:OldItem x:Class="Wisdom.Controls.Tables.MetaData.MetaElement"
+             x:TypeArguments="model:Task"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
+             xmlns:controls="clr-namespace:Wisdom.Controls.Templates"
+             xmlns:model="clr-namespace:ControlMaterials.Tables;assembly=ControlMaterials"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="600"
              x:Name="This">
@@ -21,11 +24,11 @@
         </Grid.DataContext>
       
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="35"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Command="{Binding Path=Remove}" CommandParameter="{Binding Pair}">
+        <Button Command="{Binding Path=Remove}" CommandParameter="{Binding Data}">
             <Button.Style>
                 <StaticResource ResourceKey="DeleteButton"/>
             </Button.Style>
@@ -33,7 +36,7 @@
 
         <UniformGrid Grid.Column="1" Columns="2">
             <UniformGrid.DataContext>
-                <Binding Path="Pair"/>
+                <Binding Path="Data"/>
             </UniformGrid.DataContext>
           
             <TextBox Grid.Column="1">
@@ -70,4 +73,4 @@
             </TextBox>
         </UniformGrid>
     </Grid>
-</UserControl>
+</controls:OldItem>

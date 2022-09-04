@@ -61,7 +61,7 @@ namespace Wisdom.Controls.Tables.Competetions {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wisdom;component/controls/tables/competetions/stage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Wisdom;V1.0.0.0;component/controls/tables/competetions/stage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Controls\Tables\Competetions\Stage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

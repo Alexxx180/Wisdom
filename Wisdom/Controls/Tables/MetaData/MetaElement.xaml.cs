@@ -1,66 +1,13 @@
-﻿using System.Windows.Controls;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using ControlMaterials.Tables;
-using Wisdom.ViewModel;
-using System.Windows;
-using System.Windows.Input;
+﻿using ControlMaterials.Tables;
+using Wisdom.Controls.Templates;
 
 namespace Wisdom.Controls.Tables.MetaData
 {
     /// <summary>
     /// Record component containing discipline meta data
     /// </summary>
-    public partial class MetaElement : UserControl, INotifyPropertyChanged, IRawData<Task>, IWrapFields
+    public partial class MetaElement : OldItem<Task>, IWrapFields
     {
-        public static readonly DependencyProperty
-            PairProperty = DependencyProperty.Register(nameof(Pair),
-                typeof(Task), typeof(MetaElement));
-
-        public static readonly DependencyProperty
-            RemoveProperty = DependencyProperty.Register(nameof(Remove),
-                typeof(ICommand), typeof(MetaElement));
-
-        public ICommand Remove
-        {
-            get => GetValue(RemoveProperty) as ICommand;
-            set => SetValue(RemoveProperty, value);
-        }
-
-        public Task Pair
-        {
-            get => GetValue(PairProperty) as Task;
-            set => SetValue(PairProperty, value);
-        }
-
-
-        #region IRawData Members
-        public Task Raw()
-        {
-            return new Task("MetaName", "MetaValue");
-        }
-
-        public void SetElement(Task values)
-        {
-            Pair = values;
-        }
-        #endregion
-
-        #region MetaData Members
-        private DisciplineProgramViewModel _viewModel;
-        public DisciplineProgramViewModel ViewModel
-        {
-            get => _viewModel;
-            set
-            {
-                _viewModel = value;
-                OnPropertyChanged();
-            }
-        }
-
-        
-        #endregion
-
         #region IWrapFields Members
         private bool _isWrap;
         public bool IsWrap
@@ -83,23 +30,5 @@ namespace Wisdom.Controls.Tables.MetaData
         {
             InitializeComponent();
         }
-
-        #region INotifyPropertyChanged Members
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Raises this object's PropertyChanged event.
-        /// </summary>
-        /// <param name="propertyName">The property that has a new value.</param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
-                handler(this, e);
-            }
-        }
-        #endregion
     }
 }

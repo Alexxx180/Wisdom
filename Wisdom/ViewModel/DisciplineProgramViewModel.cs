@@ -318,6 +318,13 @@ namespace Wisdom.ViewModel
                 Hours.Add(hour.Copy());
             });
 
+            AddMetaCommand = new RelayCommand(argument =>
+            {
+                Task data = argument as Task;
+                Metadata.Add(data.Copy());
+                System.Diagnostics.Trace.WriteLine("РАБОТАААЙ!");
+            });
+
             RemoveHourCommand = new RelayCommand(argument =>
             {
                 Hours.Remove((HybridNode<Hour>)argument);
