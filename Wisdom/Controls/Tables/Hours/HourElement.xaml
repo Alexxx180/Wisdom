@@ -12,19 +12,15 @@
         </Grid.DataContext>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="35" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Button Command="{Binding Remove}" CommandParameter="{Binding Hour}">
-            <Button.Style>
-                <StaticResource ResourceKey="DeleteButton"/>
-            </Button.Style>
-        </Button>
-        
+        <Button Style="{StaticResource DeleteButton}"/>
+
         <Grid Grid.Column="1">
             <Grid.DataContext>
-                <Binding Path="Hour"/>
+                <Binding Path="Data"/>
             </Grid.DataContext>
 
             <Grid.ColumnDefinitions>

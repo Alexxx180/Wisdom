@@ -15,7 +15,7 @@ namespace Wisdom.Controls.Tables.Hours.Groups
     public partial class HourGroup : UserControl, INotifyPropertyChanged, IExtendableItems
     {
         public static readonly DependencyProperty
-            GroupProperty = DependencyProperty.Register(nameof(Group),
+            DataProperty = DependencyProperty.Register(nameof(Data),
                 typeof(HybridNode<Hour>), typeof(HourGroup));
 
         public static readonly DependencyProperty
@@ -24,6 +24,10 @@ namespace Wisdom.Controls.Tables.Hours.Groups
 
         public static readonly DependencyProperty
             RemoveHourProperty = DependencyProperty.Register(nameof(RemoveHour),
+                typeof(ICommand), typeof(HourGroup));
+
+        public static readonly DependencyProperty
+            AddHourProperty = DependencyProperty.Register(nameof(AddHour),
                 typeof(ICommand), typeof(HourGroup));
 
         public ICommand Remove
@@ -38,10 +42,16 @@ namespace Wisdom.Controls.Tables.Hours.Groups
             set => SetValue(RemoveHourProperty, value);
         }
 
-        public HybridNode<Hour> Group
+        public ICommand AddHour
         {
-            get => GetValue(GroupProperty) as HybridNode<Hour>;
-            set => SetValue(GroupProperty, value);
+            get => GetValue(AddHourProperty) as ICommand;
+            set => SetValue(AddHourProperty, value);
+        }
+
+        public HybridNode<Hour> Data
+        {
+            get => GetValue(DataProperty) as HybridNode<Hour>;
+            set => SetValue(DataProperty, value);
         }
 
         #region Hour Members
@@ -51,11 +61,11 @@ namespace Wisdom.Controls.Tables.Hours.Groups
             {
                 uint total = 0;
 
-                if (Group != null)
+                if (Data != null)
                 {
-                    for (ushort i = 0; i < Group.Items.Count; i++)
+                    for (ushort i = 0; i < Data.Items.Count; i++)
                     {
-                        total += Group.Items[i].Count;
+                        total += Data.Items[i].Count;
                     }
                 }
 
@@ -90,10 +100,16 @@ namespace Wisdom.Controls.Tables.Hours.Groups
         public HourGroup()
         {
             InitializeComponent();
+            
             RemoveHour = new RelayCommand(argument =>
             {
-                _ = Group.Remove((Hour)argument);
-                System.Diagnostics.Trace.WriteLine("LOL");
+                _ = Data.Remove((Hour)argument);
+            });
+
+            AddHour = new RelayCommand(argument =>
+            {
+                Hour hour = argument as Hour;
+                Data.Add(hour.Copy());
             });
 
             Extended = true;

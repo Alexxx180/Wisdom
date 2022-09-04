@@ -176,7 +176,15 @@ namespace Wisdom.ViewModel
             OnPropertyChanged(nameof(MaxHours));
         }
         #endregion
-        
+
+        public ICommand AddHourCommand { get; }
+        public ICommand AddMetaCommand { get; }
+        public ICommand AddTopicCommand { get; }
+        public ICommand AddLevelCommand { get; }
+        public ICommand AddSourceCommand { get; }
+        public ICommand AddGCompetetionCommand { get; }
+        public ICommand AddPCompetetionCommand { get; }
+
         public ICommand RemoveHourCommand { get; }
         public ICommand RemoveMetaCommand { get; }
         public ICommand RemoveTopicCommand { get; }
@@ -303,6 +311,12 @@ namespace Wisdom.ViewModel
             
             SourceTypes = new ObservableCollection<string>();
             Document = new DisciplineProgram();
+
+            AddHourCommand = new RelayCommand(argument =>
+            {
+                HybridNode<Hour> hour = argument as HybridNode<Hour>;
+                Hours.Add(hour.Copy());
+            });
 
             RemoveHourCommand = new RelayCommand(argument =>
             {

@@ -24,19 +24,15 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="35" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Command="{Binding Remove}" CommandParameter="{Binding Group}">
-                <Button.Style>
-                    <StaticResource ResourceKey="DeleteButton"/>
-                </Button.Style>
-            </Button>
+            <Button Style="{StaticResource DeleteButton}"/>
 
             <Grid Grid.Column="1">
                 <Grid.DataContext>
-                    <Binding Path="Group"/>
+                    <Binding Path="Data"/>
                 </Grid.DataContext>
 
                 <Grid.ColumnDefinitions>
@@ -86,28 +82,16 @@
             <ItemsControl>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <hours:HourElement Hour="{Binding}" Remove="{Binding ElementName=ThisGroup, Path=RemoveHour}" />
+                        <hours:HourElement Data="{Binding}" Remove="{Binding ElementName=ThisGroup, Path=RemoveHour}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
 
                 <ItemsControl.ItemsSource>
-                    <Binding Path="Group.Items"/>
+                    <Binding Path="Data.Items"/>
                 </ItemsControl.ItemsSource>
             </ItemsControl>
 
-            <!--<hours:HourElementAdditor>
-                <hours:HourElementAdditor.Group>
-                    <Binding>
-                        <Binding.RelativeSource>
-                            <RelativeSource AncestorType="groups:HourGroup">
-                                <RelativeSource.AncestorLevel>
-                                    1
-                                </RelativeSource.AncestorLevel>
-                            </RelativeSource>
-                        </Binding.RelativeSource>
-                    </Binding>
-                </hours:HourElementAdditor.Group>
-            </hours:HourElementAdditor>-->
+            <hours:HourElementAdditor Add="{Binding ElementName=ThisGroup, Path=AddHour}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

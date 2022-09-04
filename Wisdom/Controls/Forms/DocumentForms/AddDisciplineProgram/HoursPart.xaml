@@ -113,17 +113,21 @@
                 </Grid.RowDefinitions>
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ItemsControl x:Name="Hours" Padding="10" Style="{StaticResource Light}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <hours:HourGroup Group="{Binding}" Remove="{Binding ElementName=TreeContext, Path=DataContext.RemoveHourCommand}" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
+                    <StackPanel Margin="10">
+                        <ItemsControl x:Name="Hours" Style="{StaticResource Light}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <hours:HourGroup Data="{Binding}" Remove="{Binding ElementName=TreeContext, Path=DataContext.RemoveHourCommand}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
                         
-                        <ItemsControl.ItemsSource>
-                            <Binding Path="Hours"/>
-                        </ItemsControl.ItemsSource>
-                    </ItemsControl>
+                            <ItemsControl.ItemsSource>
+                                <Binding Path="Hours"/>
+                            </ItemsControl.ItemsSource>
+                        </ItemsControl>
+
+                        <hours:HourGroupAdditor Add="{Binding ElementName=TreeContext, Path=DataContext.AddHourCommand}"/>
+                    </StackPanel>
                 </ScrollViewer>
 
                 <Grid Grid.Row="1" Style="{StaticResource Dark}">

@@ -2,81 +2,40 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using ControlMaterials.Tables;
-using Wisdom.Customing;
 using System.Windows;
-using Wisdom.Controls.Tables.Hours.Groups;
+using System.Windows.Input;
 
 namespace Wisdom.Controls.Tables.Hours
 {
     /// <summary>
     /// Логика взаимодействия для HourElementAdditor.xaml
     /// </summary>
-    public partial class HourElementAdditor : UserControl, INotifyPropertyChanged, IRawData<Hour>
+    public partial class HourElementAdditor : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty
-            HourGroupProperty = DependencyProperty.Register(
-                nameof(Group), typeof(HourGroup),
-                typeof(HourElementAdditor));
+            DataProperty = DependencyProperty.Register(nameof(Data),
+                typeof(Hour), typeof(HourElementAdditor));
 
-        #region IRawData Members
-        public Hour Raw()
+        public static readonly DependencyProperty
+            AddProperty = DependencyProperty.Register(nameof(Add),
+                typeof(ICommand), typeof(HourElementAdditor));
+
+        public ICommand Add
         {
-            ushort hours = HourValue.ParseHours();
-            return new Hour(WorkType, hours);
+            get => GetValue(AddProperty) as ICommand;
+            set => SetValue(AddProperty, value);
         }
 
-        public void SetElement(Hour values)
+        public Hour Data
         {
-            WorkType = values.Name;
-            HourValue = values.Count.ToString();
+            get => GetValue(DataProperty) as Hour;
+            set => SetValue(DataProperty, value);
         }
-        #endregion
-
-        #region Hour Members
-        public HourGroup Group
-        {
-            get => GetValue(HourGroupProperty) as HourGroup;
-            set => SetValue(HourGroupProperty, value);
-        }
-
-        private string _type;
-        public string WorkType
-        {
-            get => _type;
-            set
-            {
-                _type = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _value;
-        public string HourValue
-        {
-            get => _value;
-            set
-            {
-                _value = value;
-                OnPropertyChanged();
-                Group.RefreshHours();
-            }
-        }
-        #endregion
 
         public HourElementAdditor()
         {
             InitializeComponent();
-        }
-
-        private void AddHour(object sender, RoutedEventArgs e)
-        {
-            //HourElement element = new HourElement
-            //{
-            //    Group = Group,
-            //    WorkType = WorkType,
-            //    //HourValue = HourValue
-            //};
-            //Group.AddHour(element);
+            Data = new Hour();
         }
 
         #region INotifyPropertyChanged Members

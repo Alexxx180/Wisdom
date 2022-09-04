@@ -13,7 +13,7 @@ namespace Wisdom.Controls.Tables.Hours
     public partial class HourElement : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty
-            HourProperty = DependencyProperty.Register(nameof(Hour),
+            DataProperty = DependencyProperty.Register(nameof(Data),
                 typeof(Hour), typeof(HourElement));
 
         public static readonly DependencyProperty
@@ -26,10 +26,10 @@ namespace Wisdom.Controls.Tables.Hours
             set => SetValue(RemoveProperty, value);
         }
 
-        public Hour Hour
+        public Hour Data
         {
-            get => GetValue(HourProperty) as Hour;
-            set => SetValue(HourProperty, value);
+            get => GetValue(DataProperty) as Hour;
+            set => SetValue(DataProperty, value);
         }
 
         public HourElement()

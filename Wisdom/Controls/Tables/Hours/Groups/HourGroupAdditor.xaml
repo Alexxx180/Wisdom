@@ -8,7 +8,8 @@
              xmlns:groups="clr-namespace:Wisdom.Controls.Tables.Hours.Groups"
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="70" d:DesignWidth="600">
+             d:DesignHeight="35" d:DesignWidth="600" Height="35"
+             x:Name="ThisGroup">
     <UserControl.Style>
         <StaticResource ResourceKey="Extendable"/>
     </UserControl.Style>
@@ -18,72 +19,54 @@
     </UserControl.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        <Grid.DataContext>
+            <Binding ElementName="ThisGroup"/>
+        </Grid.DataContext>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-        <Grid>
+        <Button Style="{StaticResource AddButton}"/>
+
+        <Grid Grid.Column="1">
+            <Grid.DataContext>
+                <Binding Path="Data"/>
+            </Grid.DataContext>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
 
+            <TextBox>
+                <TextBox.Style>
+                    <StaticResource ResourceKey="DarkBox"/>
+                </TextBox.Style>
 
-            <TextBlock>
-                <TextBlock.Style>
-                    <StaticResource ResourceKey="LightBox"/>
-                </TextBlock.Style>
-                <TextBlock.Text>
-                    <Binding Path="Type" Mode="TwoWay">
+                <TextBox.Text>
+                    <Binding Path="Name" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
                             LostFocus
                         </Binding.UpdateSourceTrigger>
                     </Binding>
-                </TextBlock.Text>
-            </TextBlock>
+                </TextBox.Text>
+            </TextBox>
 
-            <TextBlock Grid.Column="1" HorizontalAlignment="Right" Padding="5,0,5,0">
-                <TextBlock.Style>
-                    <StaticResource ResourceKey="Light"/>
-                </TextBlock.Style>
-                <TextBlock.Text>
-                    <Binding Path="Total"/>
-                </TextBlock.Text>
-            </TextBlock>
-        </Grid>
-        
-        <StackPanel Grid.Row="1">
-            <StackPanel.IsEnabled>
-                <Binding Path="Extended"/>
-            </StackPanel.IsEnabled>
-            <StackPanel.Visibility>
-                <Binding Path="Extended">
-                    <Binding.Converter>
-                        <StaticResource ResourceKey="ExtendConverter"/>
-                    </Binding.Converter>
-                </Binding>
-            </StackPanel.Visibility>
-            
-            <ItemsControl>
-                <ItemsControl.ItemsSource>
-                    <Binding Path="Hours"/>
-                </ItemsControl.ItemsSource>
-            </ItemsControl>
+            <TextBox Grid.Column="1">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="HoursBoxDark"/>
+                </TextBox.Style>
 
-            <hours:HourElementAdditor>
-                <hours:HourElementAdditor.Group>
-                    <Binding>
-                        <Binding.RelativeSource>
-                            <RelativeSource AncestorType="groups:HourGroup">
-                                <RelativeSource.AncestorLevel>
-                                    1
-                                </RelativeSource.AncestorLevel>
-                            </RelativeSource>
-                        </Binding.RelativeSource>
+                <TextBox.Text>
+                    <Binding Path="No" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
                     </Binding>
-                </hours:HourElementAdditor.Group>
-            </hours:HourElementAdditor>
-        </StackPanel>
+                </TextBox.Text>
+            </TextBox>
+        </Grid>
     </Grid>
 </UserControl>
