@@ -6,94 +6,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Wisdom.Controls.Tables.Sources;
-//.SourceTypes;
+using Wisdom.Controls.Templates;
 
 namespace Wisdom.Controls.Tables.Sources
 {
     /// <summary>
     /// Record component containing educational source
     /// </summary>
-    public partial class SourceElement : UserControl, INotifyPropertyChanged, IAutoIndexing, IRawData<string>, IWrapFields
+    public partial class SourceElement : OldItem<IndexedLabel>, IWrapFields
     {
-        #region Dependency Properties
-        public static readonly DependencyProperty
-            DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(IndexedLabel), typeof(SourceElement));
-
-        public static readonly DependencyProperty
-            RemoveProperty = DependencyProperty.Register(nameof(Remove),
-                typeof(ICommand), typeof(SourceElement));
-
-        public ICommand Remove
-        {
-            get => GetValue(RemoveProperty) as ICommand;
-            set => SetValue(RemoveProperty, value);
-        }
-        
-        public IndexedLabel Data
-        {
-            get => GetValue(DataProperty) as IndexedLabel;
-            set => SetValue(DataProperty, value);
-        }
-        #endregion
-
-        #region IRawData Members
-        public string Raw()
-        {
-            return Source;
-        }
-
-        public void SetElement(string name)
-        {
-            Source = name;
-        }
-        #endregion
-
-        #region IAutoIndexing Members
-        private uint _no;
-        public uint No
-        {
-            get => _no;
-            set
-            {
-                _no = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(Header));
-            }
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
-        }
-        #endregion
-
-        #region Source Members
-        //private SourceTypeElement _sourceType;
-        //public SourceTypeElement SourceType
-        //{
-        //    get => _sourceType;
-        //    set
-        //    {
-        //        _sourceType = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        public string Header => $"{No}.";
-
-        public string _value;
-        public string Source
-        {
-            get => _value;
-            set
-            {
-                _value = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
-
         #region IWrapFields Members
         private bool _isWrap;
         public bool IsWrap
@@ -115,30 +36,6 @@ namespace Wisdom.Controls.Tables.Sources
         public SourceElement()
         {
             InitializeComponent();
-            Index(1);
         }
-
-        private void DropSource(object sender, RoutedEventArgs e)
-        {
-            //SourceType.DropSource(this);
-        }
-
-        #region INotifyPropertyChanged Members
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Raises this object's PropertyChanged event.
-        /// </summary>
-        /// <param name="propertyName">The property that has a new value.</param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
-                handler(this, e);
-            }
-        }
-        #endregion
     }
 }
