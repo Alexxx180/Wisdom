@@ -19,11 +19,7 @@
             </Grid.ColumnDefinitions>
             
 
-            <Button Command="{Binding Remove}" CommandParameter="{Binding Data}">
-                <Button.Style>
-                    <StaticResource ResourceKey="DeleteButton"/>
-                </Button.Style>
-            </Button>
+            <Button Style="{StaticResource DeleteButton}"/>
 
             <ComboBox Grid.Column="1" IsEditable="True" FontSize="20">
                 <ComboBox.Style>
