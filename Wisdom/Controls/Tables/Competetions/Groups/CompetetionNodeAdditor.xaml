@@ -17,73 +17,50 @@
         <converters:WrapConverter x:Key="WrapConverter"/>
     </UserControl.Resources>
     
-    <StackPanel>
-        <StackPanel.DataContext>
+    <Grid Height="35">
+        <Grid.DataContext>
             <Binding ElementName="This"/>
-        </StackPanel.DataContext>
-        
-        <Grid Height="35">
+        </Grid.DataContext>
+      
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+
+        <Button Style="{StaticResource DeleteButton}"/>
+
+        <Grid Grid.Column="1" Height="35">
+            <Grid.DataContext>
+                <Binding Path="Data"/>
+            </Grid.DataContext>
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="35" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
 
-            <Button Style="{StaticResource DeleteButton}"/>
+            <TextBox Foreground="Black">
+                <TextBox.Style>
+                    <StaticResource ResourceKey="NoBox"/>
+                </TextBox.Style>
+                <TextBox.TextWrapping>
+                    NoWrap
+                </TextBox.TextWrapping>
+                <TextBox.Text>
+                    <Binding Path="No" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+                <!--<TextBox.IsEnabled>
+                    <Binding Path="Group.Options.IsManual"/>
+                </TextBox.IsEnabled>-->
+            </TextBox>
 
-            <Grid Grid.Column="1" Height="35">
-                <Grid.DataContext>
-                    <Binding Path="Data"/>
-                </Grid.DataContext>
-                
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <TextBox Foreground="Black">
-                    <TextBox.Style>
-                        <StaticResource ResourceKey="NoBox"/>
-                    </TextBox.Style>
-                    <TextBox.TextWrapping>
-                        NoWrap
-                    </TextBox.TextWrapping>
-                    <TextBox.Text>
-                        <Binding Path="No" Mode="TwoWay">
-                            <Binding.UpdateSourceTrigger>
-                                LostFocus
-                            </Binding.UpdateSourceTrigger>
-                        </Binding>
-                    </TextBox.Text>
-                    <!--<TextBox.IsEnabled>
-                        <Binding Path="Group.Options.IsManual"/>
-                    </TextBox.IsEnabled>-->
-                </TextBox>
-
-                <TextBlock Text="{Binding Path=Items.Count, StringFormat=x{}{0}}"  Grid.Column="1" Style="{StaticResource No2}"/>
-            </Grid>
-            
+            <TextBlock Text="{Binding Path=Items.Count, StringFormat=x{}{0}}"  Grid.Column="1" Style="{StaticResource No2}"/>
         </Grid>
-        
-         <ItemsControl>
-            <ItemsControl.Visibility>
-                <Binding Path="Extended">
-                    <Binding.Converter>
-                        <StaticResource ResourceKey="ExtendConverter"/>
-                    </Binding.Converter>
-                </Binding>
-            </ItemsControl.Visibility>
-            
-            <!--<ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <local:Competetion Remove="{Binding ElementName=This, Path=RemoveCompetetion}" Competetion="{Binding}" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>-->
-            
-            <ItemsControl.ItemsSource>
-                <Binding Path="Data.Items"/>
-            </ItemsControl.ItemsSource>
-        </ItemsControl>
 
-    </StackPanel>
+    </Grid>
 </UserControl>
