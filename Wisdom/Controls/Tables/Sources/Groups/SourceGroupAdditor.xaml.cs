@@ -10,12 +10,12 @@ using System.Windows.Input;
 using Wisdom.ViewModel.Commands;
 using ControlMaterials.Total;
 
-namespace Wisdom.Controls.Tables.Sources.SourceTypes
+namespace Wisdom.Controls.Tables.Sources.Groups
 {
     /// <summary>
     /// Special component to add new source type group
     /// </summary>
-    public partial class SourceTypeAdditor : UserControl, INotifyPropertyChanged
+    public partial class SourceGroupAdditor : UserControl, INotifyPropertyChanged
     {
         #region Dependency Properties
         public static readonly DependencyProperty
