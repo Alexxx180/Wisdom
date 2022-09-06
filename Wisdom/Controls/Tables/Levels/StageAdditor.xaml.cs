@@ -13,7 +13,7 @@ namespace Wisdom.Controls.Tables.Levels
     /// </summary>
     public partial class StageAdditor : NewItem<Level>, INotifyPropertyChanged
     {
-        public EducationLevelAdditor()
+        public StageAdditor()
         {
             InitializeComponent();
             Data = new Level();
