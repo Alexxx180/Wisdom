@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
-        xmlns:levels="clr-namespace:Wisdom.Controls.Tables.EducationLevels"
+        xmlns:levels="clr-namespace:Wisdom.Controls.Tables.Levels"
         xmlns:forms="clr-namespace:Wisdom.Controls.Forms"
         xmlns:dpforms="clr-namespace:Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram"
         xmlns:plan="clr-namespace:Wisdom.Controls.Tables.ThemePlan"
@@ -302,45 +302,53 @@
                     </Border>
                 </TabItem.Header>
 
-                <Grid x:Name="Levels" Grid.Row="1" Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="35" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+                <TabItem.Content>
+                    <StackPanel x:Name="Levels">
+                        <Grid Style="{StaticResource Dark}" Height="35">
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="FontSize" Value="20"/>
+                                </Style>
+                            </Grid.Resources>
 
-                    <levels:EducationLevelFields/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="35" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
 
-                    <!--<tables:AutoPanel Grid.Row="1">
-                        <tables:AutoPanel.Records>
-                            <Binding>
-                                <Binding.Path>
-                                    Levels
-                                </Binding.Path>
-                                <Binding.Converter>
-                                    <StaticResource ResourceKey="LevelsConverter"/>
-                                </Binding.Converter>
-                                <Binding.Mode>
-                                    TwoWay
-                                </Binding.Mode>
-                                <Binding.UpdateSourceTrigger>
-                                    Explicit
-                                </Binding.UpdateSourceTrigger>
-                            </Binding>
-                        </tables:AutoPanel.Records>
+                            <TextBlock Grid.Column="1" Text="№"/>
 
-                        <tables:AutoPanel.Additor>
-                            <levels:EducationLevelAdditor>
-                                <levels:EducationLevelAdditor.Options>
-                                    <Binding>
-                                        <Binding.RelativeSource>
-                                            <RelativeSource AncestorType="tables:AutoPanel" AncestorLevel="1"/>
-                                        </Binding.RelativeSource>
-                                    </Binding>
-                                </levels:EducationLevelAdditor.Options>
-                            </levels:EducationLevelAdditor>
-                        </tables:AutoPanel.Additor>
-                    </tables:AutoPanel>-->
-                </Grid>
+                            <UniformGrid Grid.Column="2" Columns="2">
+                                <TextBlock Text="Название"/>
+                                <TextBlock Text="Описание"/>
+                            </UniformGrid>
+                        </Grid>
+
+                        <ScrollViewer>
+                            <ScrollViewer.VerticalScrollBarVisibility>
+                                Auto
+                            </ScrollViewer.VerticalScrollBarVisibility>
+                            
+                            <StackPanel>
+                                <ItemsControl>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <levels:Stage Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveLevelCommand}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+
+                                    <ItemsControl.ItemsSource>
+                                        <Binding Path="Levels"/>
+                                    </ItemsControl.ItemsSource>
+                                </ItemsControl>
+                                
+                                <levels:StageAdditor Add="{Binding ElementName=VM, Path=DataContext.AddLevelCommand}"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </StackPanel>
+                </TabItem.Content>
             </TabItem>
 
             <TabItem>
