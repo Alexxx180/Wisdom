@@ -10,7 +10,7 @@ using System.Windows.Input;
 using Wisdom.ViewModel.Commands;
 using ControlMaterials.Total;
 
-namespace Wisdom.Controls.Tables.Sources
+namespace Wisdom.Controls.Tables.Sources.Groups
 {
     /// <summary>
     /// Record component containing source group with type header
