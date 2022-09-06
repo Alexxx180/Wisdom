@@ -6,7 +6,6 @@
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
               xmlns:local="Wisdom.Controls.Tables.Competetions"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
              d:DesignHeight="35" d:DesignWidth="800"
              x:Name="This">
     <UserControl.Style>
