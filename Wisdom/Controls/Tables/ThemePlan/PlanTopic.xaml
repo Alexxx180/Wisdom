@@ -30,11 +30,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Command="{Binding ElementName=This, Path=Remove}" CommandParameter="{Binding Data}">
-                <Button.Style>
-                    <StaticResource ResourceKey="DeleteButton"/>
-                </Button.Style>
-            </Button>
+            <Button Style="{StaticResource DeleteButton}"/>
             
             <Grid>
                 <Grid.DataContext>
