@@ -47,44 +47,6 @@ namespace Wisdom.Controls.Tables.ThemePlan
         }
         #endregion
 
-        #region IAutoIndexing Members
-        private uint _no;
-        public uint No
-        {
-            get => _no;
-            set
-            {
-                _no = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public void Index(uint no)
-        {
-            No = no;
-        }
-        #endregion
-
-        #region AutoIndexing Logic
-        public void AutoIndexing()
-        {
-            //ushort i;
-            //for (i = 0; i < Themes.Count; i++)
-            //{
-            //    Themes[i].Index((i + 1).ToUInt());
-            //}
-            //ThemeAdditor.Index((i + 1).ToUInt());
-        }
-        #endregion
-
-        #region PlanTopic Members
-
-        public void RefreshHours()
-        {
-            OnPropertyChanged(nameof(Themes));
-        }
-        #endregion
-
         #region IExtendableItems Members
         private bool _extended;
         public bool Extended
@@ -124,7 +86,6 @@ namespace Wisdom.Controls.Tables.ThemePlan
         public PlanTopic()
         {
             InitializeComponent();
-            Index(1);
             Extended = true;
             IsWrap = false;
         }
