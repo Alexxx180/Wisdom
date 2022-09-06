@@ -8,64 +8,31 @@ namespace Wisdom.Controls.Tables.ThemePlan
     /// <summary>
     /// Special component to add new topic to theme plan
     /// </summary>
-    public partial class PlanTopicAdditor : UserControl, IRecordsIndexing, INotifyPropertyChanged
+    public partial class PlanTopicAdditor : UserControl, INotifyPropertyChanged
     {
         public static readonly DependencyProperty
-            OptionsProperty = DependencyProperty.Register(nameof(Options),
-                typeof(RecordsPanel), typeof(PlanTopicAdditor));
+            DataProperty = DependencyProperty.Register(nameof(Data),
+                typeof(HoursNode<Theme>), typeof(PlanTopicAdditor));
 
-        #region IAutoIndexing Members
-        private uint _no;
-        public uint No
-        {
-            get => _no;
-            set
-            {
-                _no = value;
-                OnPropertyChanged();
-            }
-        }
+        public static readonly DependencyProperty
+            AddProperty = DependencyProperty.Register(nameof(Add),
+                typeof(ICommand), typeof(PlanTopicAdditor));
 
-        public void Index(uint no)
+        public ICommand Add
         {
-            No = no;
+            get => GetValue(AddProperty) as ICommand;
+            set => SetValue(AddProperty, value);
         }
-        #endregion
-
-        #region TopicAdditor Members
-        public RecordsPanel Options
+        
+        public HoursNode<Theme> Data
         {
-            get => GetValue(OptionsProperty) as RecordsPanel;
-            set => SetValue(OptionsProperty, value);
+            get => GetValue(DataProperty) as HoursNode<Theme>;
+            set => SetValue(DataProperty, value);
         }
-
-        private string _topicName;
-        public string TopicName
-        {
-            get => _topicName;
-            set
-            {
-                _topicName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _topicHours;
-        public string TopicHours
-        {
-            get => _topicHours;
-            set
-            {
-                _topicHours = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
 
         public PlanTopicAdditor()
         {
             InitializeComponent();
-            Index(1);
         }
 
         #region INotifyPropertyChanged Members
