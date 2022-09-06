@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DataTemplate x:Key="MetaElement">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Command="Delete" CommandParameter="{Binding}">
+                <Button.Style>
+                    <StaticResource ResourceKey="DeleteButton"/>
+                </Button.Style>
+            </Button>
+
+            <UniformGrid Grid.Column="1" Columns="2">
+                <TextBox>
+                    <TextBox.Style>
+                        <StaticResource ResourceKey="LightBox"/>
+                    </TextBox.Style>
+                    <TextBox.Text>
+                        <Binding Path="Name" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                LostFocus
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <TextBox>
+                    <TextBox.Style>
+                        <StaticResource ResourceKey="LightBox"/>
+                    </TextBox.Style>
+                    <TextBox.Text>
+                        <Binding Path="Data" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                LostFocus
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </UniformGrid>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

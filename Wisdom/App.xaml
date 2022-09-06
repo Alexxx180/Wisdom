@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Resources/Styles/Editors.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/CheckBoxes.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/ComboBoxes.xaml"/>
+                <ResourceDictionary Source="Resources/DataTemplates/TableItems.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
