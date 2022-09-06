@@ -9,8 +9,10 @@
         xmlns:dpforms="clr-namespace:Wisdom.Controls.Forms.DocumentForms.AddDisciplineProgram"
         xmlns:plan="clr-namespace:Wisdom.Controls.Tables.ThemePlan"
         xmlns:viewmodel="clr-namespace:Wisdom.ViewModel"
-        xmlns:sources="clr-namespace:Wisdom.Controls.Tables.Sources.SourceTypes"
+        xmlns:sources="clr-namespace:Wisdom.Controls.Tables.Sources.Groups"
         xmlns:tables="clr-namespace:Wisdom.Controls.Tables"
+        xmlns:competetions="clr-namespace:Wisdom.Controls.Tables.Competetions"
+        xmlns:competetiongroups="clr-namespace:Wisdom.Controls.Tables.Competetions.Groups"
         xmlns:general="clr-namespace:Wisdom.Controls.Tables.Competetions.General"
         xmlns:professional="clr-namespace:Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups"
         xmlns:metadata="clr-namespace:Wisdom.Controls.Tables.MetaData"
@@ -198,42 +200,29 @@
                     </Border>
                 </TabItem.Header>
 
-                <!--<TabItem.Content>
-                    <tables:AutoPanel Grid.Row="1" x:Name="General">
-                        <tables:AutoPanel.Records>
-                            <Binding>
-                                <Binding.Path>
-                                    GeneralCompetetions
-                                </Binding.Path>
-                                <Binding.Converter>
-                                    <StaticResource ResourceKey="GeneralCompetetionsConverter"/>
-                                </Binding.Converter>
-                                <Binding.Mode>
-                                    TwoWay
-                                </Binding.Mode>
-                                <Binding.UpdateSourceTrigger>
-                                    Explicit
-                                </Binding.UpdateSourceTrigger>
-                            </Binding>
-                        </tables:AutoPanel.Records>
+                <TabItem.Content>
+                    <ScrollViewer>
+                        <ScrollViewer.VerticalScrollBarVisibility>
+                            Auto
+                        </ScrollViewer.VerticalScrollBarVisibility>
 
-                        <tables:AutoPanel.Additor>
-                            <general:GeneralCompetetionAdditor>
-                                <general:GeneralCompetetionAdditor.Options>
-                                    <Binding>
-                                        <Binding.RelativeSource>
-                                            <RelativeSource AncestorType="tables:AutoPanel">
-                                                <RelativeSource.AncestorLevel>
-                                                    1
-                                                </RelativeSource.AncestorLevel>
-                                            </RelativeSource>
-                                        </Binding.RelativeSource>
-                                    </Binding>
-                                </general:GeneralCompetetionAdditor.Options>
-                            </general:GeneralCompetetionAdditor>
-                        </tables:AutoPanel.Additor>
-                    </tables:AutoPanel>
-                </TabItem.Content>-->
+                        <StackPanel>
+                            <ItemsControl>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <competetions:Competetion Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveGCompetetionCommand}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                                <ItemsControl.ItemsSource>
+                                    <Binding Path="GCompetetions"/>
+                                </ItemsControl.ItemsSource>
+                            </ItemsControl>
+
+                            <competetions:CompetetionAdditor Add="{Binding ElementName=VM, Path=DataContext.AddGCompetetionCommand}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem.Content>
             </TabItem>
 
             <TabItem>
@@ -251,39 +240,29 @@
                     </Border>
                 </TabItem.Header>
 
-                <!--<TabItem.Content>
-                    <tables:AutoPanel Grid.Row="1" x:Name="Professional">
-                        <tables:AutoPanel.Records>
-                            <Binding Mode="TwoWay">
-                                <Binding.Path>
-                                    ProfessionalCompetetions
-                                </Binding.Path>
-                                <Binding.Converter>
-                                    <StaticResource ResourceKey="ProfessionalCompetetionsConverter"/>
-                                </Binding.Converter>
-                                <Binding.UpdateSourceTrigger>
-                                    Explicit
-                                </Binding.UpdateSourceTrigger>
-                            </Binding>
-                        </tables:AutoPanel.Records>
-                        
-                        <tables:AutoPanel.Additor>
-                            <professional:ProfessionalDividerAdditor>
-                                <professional:ProfessionalDividerAdditor.Options>
-                                    <Binding>
-                                        <Binding.RelativeSource>
-                                            <RelativeSource AncestorType="tables:AutoPanel">
-                                                <RelativeSource.AncestorLevel>
-                                                    1
-                                                </RelativeSource.AncestorLevel>
-                                            </RelativeSource>
-                                        </Binding.RelativeSource>
-                                    </Binding>
-                                </professional:ProfessionalDividerAdditor.Options>
-                            </professional:ProfessionalDividerAdditor>
-                        </tables:AutoPanel.Additor>
-                    </tables:AutoPanel>
-                </TabItem.Content>-->
+                <TabItem.Content>
+                    <ScrollViewer>
+                        <ScrollViewer.VerticalScrollBarVisibility>
+                            Auto
+                        </ScrollViewer.VerticalScrollBarVisibility>
+
+                        <StackPanel>
+                            <ItemsControl>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <competetiongroups:CompetetionNode Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemovePCompetetionCommand}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                                <ItemsControl.ItemsSource>
+                                    <Binding Path="PCompetetions"/>
+                                </ItemsControl.ItemsSource>
+                            </ItemsControl>
+
+                            <competetiongroups:CompetetionNodeAdditor Add="{Binding ElementName=VM, Path=DataContext.AddPCompetetionCommand}"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem.Content>
             </TabItem>
 
             <TabItem>
@@ -359,9 +338,9 @@
                 </TabItem.Header>
 
                 <TabItem.Content>
-                    <Grid Grid.Row="1" x:Name="Plan">
+                    <Grid x:Name="Plan">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="0.95*" />
+                            <RowDefinition />
                             <RowDefinition Height="35" />
                         </Grid.RowDefinitions>
 
@@ -372,67 +351,67 @@
                             </ScrollViewer.VerticalScrollBarVisibility>
 
                             <StackPanel>
-                                <plan:PlanTopicFields/>
+                                <Grid Grid.Row="1" Style="{StaticResource Dark}">
+                                    <Grid.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                            <Setter Property="FontSize" Value="20"/>
+                                        </Style>
+                                    </Grid.Resources>
+                                    
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="35" />
+                                        <ColumnDefinition Width="90" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="60" />
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="1" Text="№"/>
+                                    <TextBlock Grid.Column="2" Text="Раздел"/>
+                                    <TextBlock Grid.Column="3" Text="Часы"/>
+                                </Grid>
+                                
+                                <ItemsControl>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <plan:PlanTopic Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveTopicCommand}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
 
-                                <!--<tables:RecordsPanel Grid.Row="1">
-                                    <tables:RecordsPanel.Records>
-                                        <Binding>
-                                            <Binding.Path>
-                                                ThemePlan
-                                            </Binding.Path>
-                                            <Binding.Converter>
-                                                <StaticResource ResourceKey="ThemePlanConverter"/>
-                                            </Binding.Converter>
-                                            <Binding.Mode>
-                                                TwoWay
-                                            </Binding.Mode>
-                                            <Binding.UpdateSourceTrigger>
-                                                Explicit
-                                            </Binding.UpdateSourceTrigger>
-                                        </Binding>
-                                    </tables:RecordsPanel.Records>
-                                    <tables:RecordsPanel.Additor>
-                                        <plan:PlanTopicAdditor>
-                                            <plan:PlanTopicAdditor.Options>
-                                                <Binding>
-                                                    <Binding.RelativeSource>
-                                                        <RelativeSource AncestorLevel="1" AncestorType="tables:RecordsPanel"/>
-                                                    </Binding.RelativeSource>
-                                                </Binding>
-                                            </plan:PlanTopicAdditor.Options>
-                                        </plan:PlanTopicAdditor>
-                                    </tables:RecordsPanel.Additor>
-                                </tables:RecordsPanel>-->
+                                    <ItemsControl.ItemsSource>
+                                        <Binding Path="ThemePlan"/>
+                                    </ItemsControl.ItemsSource>
+                                </ItemsControl>
+                                
+                                <plan:PlanTopicAdditor Add="{Binding ElementName=VM, Path=DataContext.AddTopicCommand}"/>
                             </StackPanel>
                         </ScrollViewer>
 
-                        <Grid Grid.Row="1" TextBlock.FontWeight="Bold">
-                            <Grid.Style>
-                                <StaticResource ResourceKey="Dark"/>
-                            </Grid.Style>
+                        <Grid Grid.Row="1" Style="{StaticResource Dark}">
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Padding" Value="5,0,5,0"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Style>
+                            </Grid.Resources>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.8*" />
-                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="60" />
                             </Grid.ColumnDefinitions>
 
-                            <Viewbox HorizontalAlignment="Left">
-                                <TextBlock Text=" Объём часов:" />
-                            </Viewbox>
+                            <TextBlock Text="Объём часов:" />
 
-                            <!--<Border Grid.Column="1">
-                                <Viewbox HorizontalAlignment="Right">
-                                    <TextBlock Padding="5,0,5,0">
-                                        <TextBlock.Text>
-                                            <Binding Path="ThemePlan">
-                                                <Binding.Converter>
-                                                    <StaticResource ResourceKey="ThemePlanHours"/>
-                                                </Binding.Converter>
-                                            </Binding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </Viewbox>
-                            </Border>-->
+                            <TextBlock TextAlignment="Right" Text="0">
+                                <!--<TextBlock.Text>
+                                    <Binding Path="ThemePlan">
+                                        <Binding.Converter>
+                                            <StaticResource ResourceKey="ThemePlanHours"/>
+                                        </Binding.Converter>
+                                    </Binding>
+                                </TextBlock.Text>-->
+                            </TextBlock>
+                            
                         </Grid>
                     </Grid>
                 </TabItem.Content>
@@ -463,7 +442,6 @@
                         </ItemsControl>
 
                         <metadata:MetaElementAdditor Add="{Binding ElementName=VM, Path=DataContext.AddMetaCommand}"/>
-
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -480,35 +458,21 @@
                         <ScrollViewer.VerticalScrollBarVisibility>
                             Auto
                         </ScrollViewer.VerticalScrollBarVisibility>
+                        
                         <StackPanel>
-                            <!--<ItemsControl>
-                                <ItemsControl.ItemsSource>
-                                    <Binding Path="Sources"/>
-                                </ItemsControl.ItemsSource>
-                            </ItemsControl>-->
+                            <ItemsControl>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <sources:SourceGroup Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveSourceCommand}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
 
-                            <!--<sources:SourceTypeElementAdditor>
-                                <sources:SourceTypeElementAdditor.Types>
-                                    <Binding>
-                                        <Binding.ElementName>
-                                            TreeContext
-                                        </Binding.ElementName>
-                                        <Binding.Path>
-                                            DataContext.SourceTypes
-                                        </Binding.Path>
-                                    </Binding>
-                                </sources:SourceTypeElementAdditor.Types>
-                                <sources:SourceTypeElementAdditor.Group>
-                                    <Binding>
-                                        <Binding.ElementName>
-                                            TreeContext
-                                        </Binding.ElementName>
-                                        <Binding.Path>
-                                            DataContext.Sources
-                                        </Binding.Path>
-                                    </Binding>
-                                </sources:SourceTypeElementAdditor.Group>
-                            </sources:SourceTypeElementAdditor>-->
+                                <ItemsControl.ItemsSource>
+                                    <Binding Path="Metadata"/>
+                                </ItemsControl.ItemsSource>
+                            </ItemsControl>
+
+                            <sources:SourceGroupAdditor Add="{Binding ElementName=VM, Path=DataContext.AddSourceCommand}"/>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem.Content>
