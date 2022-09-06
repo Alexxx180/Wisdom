@@ -6,7 +6,7 @@ using Wisdom.Customing;
 using Wisdom.Controls.Tables.Competetions;
 using ControlMaterials.Tables;
 
-namespace Wisdom.Controls.Tables.EducationLevels
+namespace Wisdom.Controls.Tables.Levels
 {
     /// <summary>
     /// Adds new education level when used
