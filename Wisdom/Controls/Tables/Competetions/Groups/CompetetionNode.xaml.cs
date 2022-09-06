@@ -8,10 +8,10 @@ using Wisdom.ViewModel.Commands;
 using System.Windows.Input;
 using ControlMaterials.Total;
 
-namespace Wisdom.Controls.Tables.Competetions
+namespace Wisdom.Controls.Tables.Competetions.Groups
 {
     /// <summary>
-    /// Professional competetion related to speciality | discipline
+    /// Professional competetion related to speciality-discipline
     /// </summary>
     public partial class CompetetionNode : UserControl, INotifyPropertyChanged, IExtendableItems
     {
