@@ -1,25 +1,22 @@
-﻿<UserControl x:Class="Wisdom.Controls.Tables.ThemePlan.Themes.Works.PlanWorkAdditor"
+﻿<controls:NewItem x:Class="Wisdom.Controls.Tables.ThemePlan.Themes.Works.PlanWorkAdditor"
+             x:TypeArguments="model:Work"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:types="clr-namespace:ControlMaterials.Documents;assembly=ControlMaterials"
+             xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              mc:Ignorable="d" 
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             d:DesignHeight="35" Height="35" d:DesignWidth="900">
+             xmlns:controls="clr-namespace:Wisdom.Controls.Templates"
+             xmlns:model="clr-namespace:ControlMaterials.Tables.ThemePlan;assembly=ControlMaterials"
+             d:DesignHeight="111" d:DesignWidth="800" Height="35"
+             x:Name="This">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        
-        <Button>
-            <Button.Style>
-                <StaticResource ResourceKey="AddButton"/>
-            </Button.Style>
-        </Button>
+        <Button Style="{StaticResource AddButton}"/>
 
         <ComboBox Grid.Column="1" IsEditable="True" FontWeight="Bold">
             <ComboBox.Style>
@@ -29,7 +26,7 @@
                 <StaticResource ResourceKey="ItemsBox"/>
             </ComboBox.ItemContainerStyle>
             <ComboBox.Text>
-                <Binding Path="WorkType" Mode="TwoWay">
+                <Binding Path="Data.Name" Mode="TwoWay">
                     <Binding.UpdateSourceTrigger>
                         LostFocus
                     </Binding.UpdateSourceTrigger>
@@ -40,23 +37,5 @@
                 <Binding Source="{x:Static types:DocumentTypes.WorkTypes}"/>
             </ComboBox.ItemsSource>
         </ComboBox>
-
-        <Viewbox Grid.Column="3">
-            <CheckBox Margin="1">
-                <CheckBox.Style>
-                    <StaticResource ResourceKey="RegularCheckBox"/>
-                </CheckBox.Style>
-                <CheckBox.IsChecked>
-                    <Binding Path="IsGroup" Mode="TwoWay">
-                        <Binding.UpdateSourceTrigger>
-                            PropertyChanged
-                        </Binding.UpdateSourceTrigger>
-                    </Binding>
-                </CheckBox.IsChecked>
-                <CheckBox.Content>
-                    <TextBlock Text=" Группа"/>
-                </CheckBox.Content>
-            </CheckBox>
-        </Viewbox>
     </Grid>
-</UserControl>
+</controls:NewItem>
