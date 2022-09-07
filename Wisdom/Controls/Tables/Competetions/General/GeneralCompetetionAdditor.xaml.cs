@@ -92,14 +92,14 @@ namespace Wisdom.Controls.Tables.Competetions.General
         {
             Competetion competetion = new Competetion
             {
-                GeneralNo = GeneralNo,
-                GeneralName = GeneralName
+                //GeneralNo = GeneralNo,
+                //GeneralName = GeneralName
             };
 
-            if (Options.AddRecord(competetion))
-            {
-                Index(No + 1);
-            }
+            //if (Options.AddRecord(competetion))
+            //{
+            //    Index(No + 1);
+            //}
         }
 
         #region INotifyPropertyChanged Members

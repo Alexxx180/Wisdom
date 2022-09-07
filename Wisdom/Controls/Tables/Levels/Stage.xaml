@@ -13,52 +13,59 @@
         <Grid.DataContext>
             <Binding ElementName="This"/>
         </Grid.DataContext>
-      
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35" />
-            <ColumnDefinition Width="90" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Button Style="{StaticResource DeleteButton}"/>
-        
-        <TextBox Grid.Column="1">
-            <TextBox.Style>
-                <StaticResource ResourceKey="DividerBox"/>
-            </TextBox.Style>
-            <TextBox.Text>
-                <Binding Path="Data.No" Mode="TwoWay">
-                    <Binding.UpdateSourceTrigger>
-                        LostFocus
-                    </Binding.UpdateSourceTrigger>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        
-        <UniformGrid Columns="2">
-            <UniformGrid.DataContext>
-                <Binding Path="Data.Description"/>
-            </UniformGrid.DataContext>
-            
-            <TextBox Style="{StaticResource LightBox}">
+
+        <Grid Grid.Column="1">
+            <Grid.DataContext>
+                <Binding Path="Data"/>
+            </Grid.DataContext>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Style="{StaticResource NoBox}">
                 <TextBox.Text>
-                    <Binding Path="Name" Mode="TwoWay">
+                    <Binding Path="No" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
                             LostFocus
                         </Binding.UpdateSourceTrigger>
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            
-            <TextBox Style="{StaticResource LightBox}">
-                <TextBox.Text>
-                    <Binding Path="Data" Mode="TwoWay">
-                        <Binding.UpdateSourceTrigger>
-                            LostFocus
-                        </Binding.UpdateSourceTrigger>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-        </UniformGrid>
+
+            <UniformGrid Grid.Column="1" Columns="2">
+                <UniformGrid.DataContext>
+                    <Binding Path="Description"/>
+                </UniformGrid.DataContext>
+
+                <TextBox Style="{StaticResource LightBox}">
+                    <TextBox.Text>
+                        <Binding Path="Name" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                LostFocus
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <TextBox Style="{StaticResource LightBox}">
+                    <TextBox.Text>
+                        <Binding Path="Data" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                LostFocus
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </UniformGrid>
+        </Grid>
     </Grid>
-</UserControl>
+</controls:OldItem>

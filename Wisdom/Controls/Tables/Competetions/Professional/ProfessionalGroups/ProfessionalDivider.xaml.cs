@@ -18,7 +18,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
         #region IRawData Members
         public List<Competetion> Raw()
         {
-            return Competetions.GetRaw();
+            return null;// Competetions.GetRaw();
         }
 
         public void SetElement(List<Competetion> competetions)
@@ -33,7 +33,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
                 {
                     //Group = this
                 };
-                competetion.SetElement(competetions[i]);
+                //competetion.SetElement(competetions[i]);
                 Competetions.Add(competetion);
             }
         }
@@ -109,7 +109,7 @@ namespace Wisdom.Controls.Tables.Competetions.Professional.ProfessionalGroups
             ushort i;
             for (i = 0; i < Competetions.Count; i++)
             {
-                Competetions[i].Index((i + 1).ToUInt());
+                //Competetions[i].Index((i + 1).ToUInt());
             }
             Additor.Index((i + 1).ToUInt());
         }

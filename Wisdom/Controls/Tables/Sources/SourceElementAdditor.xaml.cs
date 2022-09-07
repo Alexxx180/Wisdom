@@ -1,10 +1,4 @@
-using ControlMaterials.Tables;
 using ControlMaterials.Total;
-using System.Windows;
-using System.Windows.Controls;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Wisdom.Controls.Tables.Sources.SourceTypes;
 using Wisdom.Controls.Templates;
 
 namespace Wisdom.Controls.Tables.Sources

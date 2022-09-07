@@ -2,9 +2,6 @@
 using System.Windows.Controls;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
-using System.Collections.ObjectModel;
-using Wisdom.Controls.Tables.ThemePlan.Themes;
-using Wisdom.Customing;
 using ControlMaterials.Tables.ThemePlan;
 using System.Windows.Input;
 

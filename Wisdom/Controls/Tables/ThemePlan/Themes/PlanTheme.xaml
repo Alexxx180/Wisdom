@@ -58,19 +58,19 @@
                                 </Binding.UpdateSourceTrigger>
                             </Binding>
                         </TextBox.Text>
-                        <TextBox.IsEnabled>
+                        <!--<TextBox.IsEnabled>
                             <Binding Path="Options.IsManual"/>
-                        </TextBox.IsEnabled>
+                        </TextBox.IsEnabled>-->
                     </TextBox>
                     
                     <TextBox>
-                        <TextBox.TextWrapping>
+                        <!--<TextBox.TextWrapping>
                             <Binding Path="IsWrap">
                                 <Binding.Converter>
                                     <StaticResource ResourceKey="WrapConverter"/>
                                 </Binding.Converter>
                             </Binding>
-                        </TextBox.TextWrapping>
+                        </TextBox.TextWrapping>-->
                         <TextBox.Style>
                             <StaticResource ResourceKey="LightBox"/>
                         </TextBox.Style>
@@ -83,8 +83,8 @@
                         </TextBox.Text>
                     </TextBox>
 
-                    <controls:MultiComboBox Grid.Column="2" />
-                    <controls:MultiComboBox Grid.Column="3" />
+                    <!--<controls:MultiComboBox Grid.Column="2" />
+                    <controls:MultiComboBox Grid.Column="3" />-->
 
                     <TextBox Style="{StaticResource NoBox}">
                         <TextBox.Text>

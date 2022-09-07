@@ -45,12 +45,6 @@
     <Compile Update="Controls\Forms\DocumentForms\AddDisciplineProgram\HoursPart.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Tables\EducationLevels\EducationLevelAdditor.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\Tables\EducationLevels\EducationLevelFields.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Controls\Tables\Hours\Groups\HourGroup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -78,15 +72,6 @@
     <Compile Update="Controls\Tables\Sources\SourceElementAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\Tables\ThemePlan\PlanTopicFields.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\Tables\ThemePlan\Themes\PlanThemeFields.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTask.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -111,13 +96,7 @@
     <Compile Update="Controls\Tables\ThemePlan\Themes\Works\PlanWorkAdditor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\Tables\ThemePlan\Themes\Works\PlanWorkTask.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Controls\Forms\MainForm\UserTemplates\DisciplineProgramTemplate.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskFields.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -158,12 +137,6 @@
     <Page Update="Controls\Forms\DocumentForms\AddDisciplineProgram\HoursPart.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Tables\EducationLevels\EducationLevelAdditor.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Tables\EducationLevels\EducationLevelFields.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Controls\Tables\Hours\Groups\HourGroupAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -194,15 +167,6 @@
     <Page Update="Controls\Tables\Sources\SourceElementAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Tables\Sources\SourceTypes\SourceTypeElementAdditor.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Tables\ThemePlan\PlanTopicFields.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Tables\ThemePlan\Themes\PlanThemeFields.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTask.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -227,13 +191,7 @@
     <Page Update="Controls\Tables\ThemePlan\Themes\Works\PlanWorkAdditor.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Controls\Tables\ThemePlan\Themes\Works\PlanWorkTask.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Controls\Forms\MainForm\UserTemplates\DisciplineProgramTemplate.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\Tables\ThemePlan\Themes\Works\Tasks\PlanTaskFields.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

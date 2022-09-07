@@ -5,10 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
              xmlns:hours="clr-namespace:Wisdom.Controls.Tables.Hours"
-             xmlns:groups="clr-namespace:Wisdom.Controls.Tables.Hours.Groups"
-             xmlns:controls="clr-namespace:Wisdom.Controls"
-             xmlns:tables="clr-namespace:ControlMaterials.Tables;assembly=ControlMaterials"
-             xmlns:total="clr-namespace:ControlMaterials.Total;assembly=ControlMaterials"
              mc:Ignorable="d" 
              d:DesignHeight="70" d:DesignWidth="600"
              x:Name="ThisGroup">

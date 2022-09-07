@@ -32,7 +32,7 @@
 
             <Button Style="{StaticResource DeleteButton}"/>
 
-            <Grid>
+            <Grid Grid.Column="1">
                 <Grid.DataContext>
                     <Binding Path="Data"/>
                 </Grid.DataContext>
@@ -42,10 +42,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 
-                <TextBox FontSize="20" Foreground="Black">
-                    <TextBox.Style>
-                        <StaticResource ResourceKey="NoBox"/>
-                    </TextBox.Style>
+                <TextBox Style="{StaticResource NoBox}">
                     <TextBox.Text>
                         <Binding Path="No" Mode="TwoWay">
                             <Binding.UpdateSourceTrigger>
@@ -53,22 +50,19 @@
                             </Binding.UpdateSourceTrigger>
                         </Binding>
                     </TextBox.Text>
-                    <TextBox.IsEnabled>
+                    <!--<TextBox.IsEnabled>
                         <Binding Path="Options.IsManual"/>
-                    </TextBox.IsEnabled>
+                    </TextBox.IsEnabled>-->
                 </TextBox>
 
-                <TextBox Grid.Column="1" FontSize="20">
-                    <TextBox.TextWrapping>
+                <TextBox Grid.Column="1" Style="{StaticResource LightBox}">
+                    <!--<TextBox.TextWrapping>
                         <Binding Path="IsWrap">
                             <Binding.Converter>
                                 <StaticResource ResourceKey="WrapConverter"/>
                             </Binding.Converter>
                         </Binding>
-                    </TextBox.TextWrapping>
-                    <TextBox.Style>
-                        <StaticResource ResourceKey="LightBox"/>
-                    </TextBox.Style>
+                    </TextBox.TextWrapping>-->
                     <TextBox.Text>
                         <Binding Path="Name" Mode="TwoWay">
                             <Binding.UpdateSourceTrigger>
@@ -98,4 +92,4 @@
             </ItemsControl.ItemsSource>
         </ItemsControl>
     </StackPanel>
-</UserControl>
+</controls:OldItem>

@@ -1,10 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using ControlMaterials.Tables.ThemePlan;
-using ControlMaterials.Tables;
-using System.Windows.Input;
+﻿using ControlMaterials.Tables;
 using Wisdom.Controls.Templates;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
@@ -12,7 +6,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
     /// <summary>
     /// Task of theme's work
     /// </summary>
-    public partial class PlanTask : OldItem<IndexedHour>, INotifyPropertyChanged, IWrapFields
+    public partial class PlanTask : OldItem<IndexedHour>, IWrapFields
     {
         #region IWrapFields Members
         private bool _isWrap;

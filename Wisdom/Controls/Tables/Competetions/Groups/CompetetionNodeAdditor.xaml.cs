@@ -21,13 +21,13 @@ namespace Wisdom.Controls.Tables.Competetions.Groups
                 typeof(IndexNode<Competetion>), typeof(CompetetionNodeAdditor));
 
         public static readonly DependencyProperty
-            RemoveProperty = DependencyProperty.Register(nameof(Remove),
+            AddProperty = DependencyProperty.Register(nameof(Add),
                 typeof(ICommand), typeof(CompetetionNodeAdditor));
 
-        public ICommand Remove
+        public ICommand Add
         {
-            get => GetValue(RemoveProperty) as ICommand;
-            set => SetValue(RemoveProperty, value);
+            get => GetValue(AddProperty) as ICommand;
+            set => SetValue(AddProperty, value);
         }
         
         public IndexNode<Competetion> Data

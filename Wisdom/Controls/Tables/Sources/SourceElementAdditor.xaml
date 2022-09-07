@@ -7,37 +7,45 @@
              mc:Ignorable="d" 
              xmlns:controls="clr-namespace:Wisdom.Controls.Templates"
              xmlns:model="clr-namespace:ControlMaterials.Total;assembly=ControlMaterials"
-             d:DesignHeight="35" d:DesignWidth="800">
-    <Grid Height="35">
+             d:DesignHeight="35" d:DesignWidth="800" Height="35"
+             x:Name="This">
+    <Grid>
         <Grid.DataContext>
             <Binding ElementName="This"/>
         </Grid.DataContext>
       
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35" />
-            <ColumnDefinition Width="90" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
 
         <Button Style="{StaticResource AddButton}"/>
 
-        <TextBlock Grid.Column="1">
-            <TextBlock.Style>
-                <StaticResource ResourceKey="No1"/>
-            </TextBlock.Style>
-            <TextBlock.Text>
-                <Binding Path="Data.No"/>
-            </TextBlock.Text>
-        </TextBlock>
+        <Grid Grid.Column="1">
+            <Grid.DataContext>
+                <Binding Path="Data"/>
+            </Grid.DataContext>
 
-        <TextBox Grid.Column="2" FontSize="20">
-            <TextBox.Text>
-                <Binding Path="Data.Name"/>
-            </TextBox.Text>
-            <TextBox.Style>
-                <StaticResource ResourceKey="Light"/>
-            </TextBox.Style>
-        </TextBox>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Style="{StaticResource NoBox}">
+                <TextBox.Text>
+                    <Binding Path="No"/>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBox Grid.Column="1">
+                <TextBox.Text>
+                    <Binding Path="Name"/>
+                </TextBox.Text>
+                <TextBox.Style>
+                    <StaticResource ResourceKey="Light"/>
+                </TextBox.Style>
+            </TextBox>
+        </Grid>
     </Grid>
 </controls:NewItem>

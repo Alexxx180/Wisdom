@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using ControlMaterials.Tables;
 using Wisdom.ViewModel.Commands;
 using System.Windows.Input;
 using ControlMaterials.Total;
@@ -63,7 +61,7 @@ namespace Wisdom.Controls.Tables.Competetions.Groups
             Extended = true;
             RemoveCompetetion = new RelayCommand(argument =>
             {
-                Data.Items.Remove((Competetion)argument);
+                Data.Remove((Competetion)argument);
             });
         }
 

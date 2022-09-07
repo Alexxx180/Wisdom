@@ -1,8 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Controls;
-using ControlMaterials.Tables.ThemePlan;
+﻿using ControlMaterials.Tables;
 using Wisdom.Controls.Templates;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
@@ -10,12 +6,12 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
     /// <summary>
     /// Special component to add new task to work
     /// </summary>
-    public partial class PlanTaskAdditor : NewItem<Task>, INotifyPropertyChanged, IAutoIndexing
+    public partial class PlanTaskAdditor : NewItem<IndexedHour>
     {
         public PlanTaskAdditor()
         {
             InitializeComponent();
-            Data = new Task();
+            Data = new IndexedHour();
         }
     }
 }

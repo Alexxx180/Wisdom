@@ -1,13 +1,10 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using Wisdom.Customing;
 using ControlMaterials.Tables;
 using System.Windows.Input;
-using Wisdom.ViewModel.Commands;
 using ControlMaterials.Total;
 
 namespace Wisdom.Controls.Tables.Sources.Groups
@@ -20,20 +17,20 @@ namespace Wisdom.Controls.Tables.Sources.Groups
         #region Dependency Properties
         public static readonly DependencyProperty
             VariantsProperty = DependencyProperty.Register(nameof(Variants),
-                typeof(ObservableCollection<string>), typeof(SourceType));
+                typeof(ObservableCollection<string>), typeof(SourceGroupAdditor));
         
         public static readonly DependencyProperty
             DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(NameNode<IndexedLabel>), typeof(SourceType));
+                typeof(NameNode<IndexedLabel>), typeof(SourceGroupAdditor));
 
         public static readonly DependencyProperty
-            RemoveProperty = DependencyProperty.Register(nameof(Remove),
-                typeof(ICommand), typeof(SourceType));
+            AddProperty = DependencyProperty.Register(nameof(Add),
+                typeof(ICommand), typeof(SourceGroupAdditor));
 
-        public ICommand Remove
+        public ICommand Add
         {
-            get => GetValue(RemoveProperty) as ICommand;
-            set => SetValue(RemoveProperty, value);
+            get => GetValue(AddProperty) as ICommand;
+            set => SetValue(AddProperty, value);
         }
         
         public NameNode<IndexedLabel> Data
@@ -49,10 +46,28 @@ namespace Wisdom.Controls.Tables.Sources.Groups
         }
         #endregion
 
-        public SourceTypeElementAdditor()
+        public SourceGroupAdditor()
         {
             InitializeComponent();
             Data = new NameNode<IndexedLabel>();
         }
+
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Raises this object's PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">The property that has a new value.</param>
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
+        }
+        #endregion
     }
 }

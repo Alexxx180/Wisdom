@@ -15,20 +15,20 @@ namespace Wisdom.Controls.Tables.Sources.Groups
     /// <summary>
     /// Record component containing source group with type header
     /// </summary>
-    public partial class SourceType : UserControl, INotifyPropertyChanged
+    public partial class SourceGroup : UserControl, INotifyPropertyChanged
     {
         #region Dependency Properties
         public static readonly DependencyProperty
             VariantsProperty = DependencyProperty.Register(nameof(Variants),
-                typeof(ObservableCollection<string>), typeof(SourceType));
+                typeof(ObservableCollection<string>), typeof(SourceGroup));
         
         public static readonly DependencyProperty
             DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(NameNode<IndexedLabel>), typeof(SourceType));
+                typeof(NameNode<IndexedLabel>), typeof(SourceGroup));
 
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
-                typeof(ICommand), typeof(SourceType));
+                typeof(ICommand), typeof(SourceGroup));
 
         public ICommand Remove
         {
@@ -51,7 +51,7 @@ namespace Wisdom.Controls.Tables.Sources.Groups
     
         public ICommand RemoveSource { get; }
 
-        public SourceType()
+        public SourceGroup()
         {
             InitializeComponent();
             RemoveSource = new RelayCommand(argument =>
@@ -59,5 +59,23 @@ namespace Wisdom.Controls.Tables.Sources.Groups
                 Data.Remove((IndexedLabel)argument);
             });
         }
+
+        #region INotifyPropertyChanged Members
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Raises this object's PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">The property that has a new value.</param>
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs(propertyName);
+                handler(this, e);
+            }
+        }
+        #endregion
     }
 }

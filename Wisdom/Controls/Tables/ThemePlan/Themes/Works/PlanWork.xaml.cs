@@ -1,13 +1,6 @@
-﻿using System.Windows.Controls;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Collections.ObjectModel;
-using Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks;
-using Wisdom.Customing;
+﻿using System.Windows;
 using Wisdom.Controls.Templates;
 using ControlMaterials.Tables.ThemePlan;
-using static Wisdom.Customing.Converters;
 using System.Windows.Input;
 
 namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
@@ -26,6 +19,16 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works
         {
             get => GetValue(RemoveTaskProperty) as ICommand;
             set => SetValue(RemoveTaskProperty, value);
+        }
+
+        public static readonly DependencyProperty
+            AddTaskProperty = DependencyProperty.Register(nameof(AddTask),
+                typeof(ICommand), typeof(PlanWork));
+
+        public ICommand AddTask
+        {
+            get => GetValue(AddTaskProperty) as ICommand;
+            set => SetValue(AddTaskProperty, value);
         }
         #endregion
 

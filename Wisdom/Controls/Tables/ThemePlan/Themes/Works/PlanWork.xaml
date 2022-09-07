@@ -11,13 +11,13 @@
              xmlns:model="clr-namespace:ControlMaterials.Tables.ThemePlan;assembly=ControlMaterials"
              d:DesignHeight="111" d:DesignWidth="800"
              x:Name="This">
-    <UserControl.Style>
+    <!--<UserControl.Style>
         <StaticResource ResourceKey="Extendable"/>
-    </UserControl.Style>
+    </UserControl.Style>-->
 
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <converters:ExtendConverter x:Key="ExtendConverter"/>
-    </UserControl.Resources>
+    </UserControl.Resources>-->
 
     <StackPanel>
         <StackPanel.DataContext>
@@ -46,21 +46,18 @@
                         </Binding.UpdateSourceTrigger>
                     </Binding>
                 </ComboBox.Text>
-
-                <ComboBox.ItemsSource>
-                    <Binding Source="{x:Static types:DocumentTypes.WorkTypes}"/>
-                </ComboBox.ItemsSource>
             </ComboBox>
         </Grid>
 
         <StackPanel Grid.Row="2">
-            <StackPanel.Visibility>
+            <!--<StackPanel.Visibility>
                 <Binding Path="Extended">
                     <Binding.Converter>
+        }
                         <StaticResource ResourceKey="ExtendConverter"/>
                     </Binding.Converter>
                 </Binding>
-            </StackPanel.Visibility>
+            </StackPanel.Visibility>-->
             
             <Grid>
                 <Grid.Resources>
@@ -91,7 +88,7 @@
                 </ItemsControl.ItemTemplate>
               
                 <ItemsControl.ItemsSource>
-                    <Binding Path="Data.Tasks"/>
+                    <Binding Path="Data.Items"/>
                 </ItemsControl.ItemsSource>
             </ItemsControl>
 

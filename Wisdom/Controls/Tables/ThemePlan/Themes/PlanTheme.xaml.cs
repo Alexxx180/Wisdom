@@ -1,11 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Controls;
-using Wisdom.Controls.Tables.ThemePlan.Themes.Works;
+﻿using System.Windows;
 using Wisdom.Controls.Templates;
-using Wisdom.Customing;
 using ControlMaterials.Tables.ThemePlan;
 using System.Windows.Input;
 
@@ -26,8 +20,18 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes
             get => GetValue(RemoveWorkProperty) as ICommand;
             set => SetValue(RemoveWorkProperty, value);
         }
+
+        public static readonly DependencyProperty
+            AddWorkProperty = DependencyProperty.Register(nameof(AddWork),
+                typeof(ICommand), typeof(PlanTheme));
+
+        public ICommand AddWork
+        {
+            get => GetValue(AddWorkProperty) as ICommand;
+            set => SetValue(AddWorkProperty, value);
+        }
         #endregion
-        
+
         #region IExtendableItems Members
         private bool _extended;
         public bool Extended
