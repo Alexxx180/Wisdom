@@ -219,7 +219,7 @@
                                 </ItemsControl.ItemsSource>
                             </ItemsControl>
 
-                            <competetions:CompetetionAdditor Add="{Binding ElementName=VM, Path=DataContext.AddGCompetetionCommand}"/>
+                            <competetions:CompetetionAdditor Add="{Binding ElementName=VM, Path=AddGCompetetionCommand}"/>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem.Content>
@@ -259,7 +259,7 @@
                                 </ItemsControl.ItemsSource>
                             </ItemsControl>
 
-                            <competetiongroups:CompetetionNodeAdditor Add="{Binding ElementName=VM, Path=DataContext.AddPCompetetionCommand}"/>
+                            <competetiongroups:CompetetionNodeAdditor Add="{Binding ElementName=VM, Path=AddPCompetetionCommand}"/>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem.Content>
@@ -323,7 +323,7 @@
                                     </ItemsControl.ItemsSource>
                                 </ItemsControl>
                                 
-                                <levels:StageAdditor Add="{Binding ElementName=VM, Path=DataContext.AddLevelCommand}"/>
+                                <levels:StageAdditor Add="{Binding ElementName=VM, Path=AddLevelCommand}"/>
                             </StackPanel>
                         </ScrollViewer>
                     </StackPanel>
@@ -383,7 +383,7 @@
                                     </ItemsControl.ItemsSource>
                                 </ItemsControl>
                                 
-                                <plan:PlanTopicAdditor Add="{Binding ElementName=VM, Path=DataContext.AddTopicCommand}"/>
+                                <plan:PlanTopicAdditor Add="{Binding ElementName=VM, Path=AddTopicCommand}"/>
                             </StackPanel>
                         </ScrollViewer>
 
@@ -441,7 +441,7 @@
                             </ItemsControl.ItemsSource>
                         </ItemsControl>
 
-                        <metadata:MetaElementAdditor Add="{Binding ElementName=VM, Path=DataContext.AddMetaCommand}"/>
+                        <metadata:MetaElementAdditor Add="{Binding ElementName=VM, Path=AddMetaCommand}"/>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -472,7 +472,7 @@
                                 </ItemsControl.ItemsSource>
                             </ItemsControl>
 
-                            <sources:SourceGroupAdditor Add="{Binding ElementName=VM, Path=DataContext.AddSourceCommand}"/>
+                            <sources:SourceGroupAdditor Add="{Binding ElementName=VM, Path=AddSourceCommand}"/>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem.Content>
