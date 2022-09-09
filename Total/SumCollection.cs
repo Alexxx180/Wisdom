@@ -4,6 +4,12 @@ namespace ControlMaterials.Total
 {
     public class SumCollection<T> : ObservaleCollection<T> where T : ISummable
     {
+        public SumCollection()
+        {
+            // When the collection changes set the Sum to the new Sum of TotalValues
+            CollectionChanged += OnCollectionChanged;
+        }
+    
         private uint sum;
         public uint Sum
         { 
@@ -13,12 +19,6 @@ namespace ControlMaterials.Total
                 sum = value;
                 OnPropertyChanged();
             }
-        }
-        
-        public ParagonCollection()
-        {
-            // When the collection changes set the Sum to the new Sum of TotalValues
-            this.CollectionChanged += OnCollectionChanged;
         }
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
@@ -38,13 +38,11 @@ namespace ControlMaterials.Total
             Recalculate();
         }
 
+        // Recalculate sum when item changed
         private void OnItemChanged(object sender, PropertyChangedEventArgs args)
         {
-            Recalulate();
-            // If it is need to decide that we only want to recalculate for some property 
-            // changes, and do something like the following instead
-            // if (args.PropertyName=="TotalValue")
-            //   Recalulate();
+            if (args.PropertyName=="Count")
+                Recalulate();
         }
 
         private void Recalculate()
