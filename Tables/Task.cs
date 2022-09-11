@@ -12,6 +12,15 @@ namespace ControlMaterials.Tables
             Data = data;
         }
 
+        public override Task Copy()
+        {
+            return new Task
+            {
+                Name = Name,
+                Data = Data
+            };
+        }
+
         private string _data;
         public string Data
         {

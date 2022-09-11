@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace ControlMaterials.Total
 {
-    public class Indexer
+    public class Indexer : INotifyPropertyChanged, INumerable
     {
         public virtual Indexer Copy()
         {
@@ -24,6 +24,11 @@ namespace ControlMaterials.Total
             }
         }
         
+        public void SetNumber(ushort no)
+        {
+            No = no;
+        }
+
         public void Increment(ushort no)
         {
             No += no;

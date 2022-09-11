@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ControlMaterials.Total
 {
-    public class NameLabel
+    public class NameLabel : IChangeable, INotifyPropertyChanged
     {
         public virtual NameLabel Copy()
         {

@@ -9,6 +9,15 @@ namespace ControlMaterials.Tables
             Description = new Task("", "");
         }
 
+        public override Level Copy()
+        {
+            return new Level
+            {
+                No = No,
+                Description = Description
+            };
+        }
+
         private Task _description;
         public Task Description
         {

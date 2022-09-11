@@ -1,7 +1,0 @@
-namespace ControlMaterials.Total
-{
-    public interface ISummable
-    {
-        public uint Sum();
-    }
-}

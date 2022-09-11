@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class HoursNode<T> : HybridNode<T>
+    public class HoursNode<T> : HybridNode<T>, ISum
     {
         public HoursNode() : base() { }
 
@@ -18,6 +18,8 @@ namespace ControlMaterials.Tables.ThemePlan
                 Hours = Hours
             };
         }
+
+        public ushort Sum => Hours;
 
         private ushort _hours;
         public ushort Hours
