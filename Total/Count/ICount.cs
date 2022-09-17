@@ -2,11 +2,11 @@
 {
     public interface ICount
     {
-        public uint Sum { get; }
+        public ushort Sum { get; }
 
         public void Append(ushort increment);
         public void Reduce(ushort decrement);
 
-        public void SetTotal(uint sum);
+        public void SetTotal(ushort sum);
     }
 }

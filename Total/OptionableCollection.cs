@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace ControlMaterials.Total
@@ -17,6 +15,7 @@ namespace ControlMaterials.Total
         public void Set(int no, int no2)
         {
             Sets[no] = Options[no][no2];
+            Sets[no].Recalculate();
         }
 
         public OptionableCollection(params State<T>[][] options)
@@ -27,7 +26,8 @@ namespace ControlMaterials.Total
             Options = options;
             for (byte i = 0; i < Options.Length; i++)
             {
-                Options[i][0].SetItems(this);
+                for (byte ii = 0; ii < Options.Length; ii++)
+                    Options[i][ii].SetItems(this);
             }
             
             Sets = new State<T>[options.Length];
@@ -55,6 +55,7 @@ namespace ControlMaterials.Total
                 item.PropertyChanged += OnItemChanged;
                 for (byte i = 0; i < Sets.Length; i++)
                 {
+                        //throw new System.Exception($"IS NULL: {Sets[i] is null}");
                     Sets[i].Add(item);
                 }
             }

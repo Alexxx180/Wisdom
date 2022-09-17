@@ -8,5 +8,10 @@ namespace ControlMaterials.Total.Count.Highlighting
 
         public Color Conformity { get; }
         public Color Violation { get; }
+
+        public void SetColorHighlight()
+        {
+
+        }
     }
 }

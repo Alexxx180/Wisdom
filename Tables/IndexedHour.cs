@@ -2,7 +2,7 @@
 
 namespace ControlMaterials.Tables
 {
-    public class IndexedHour : IndexedLabel
+    public class IndexedHour : IndexedLabel, ISum
     {
         public IndexedHour() : base() { }
 
@@ -10,6 +10,8 @@ namespace ControlMaterials.Tables
         {
             Count = count;
         }
+
+        public ushort Sum => Count;
 
         private ushort _count;
         public ushort Count

@@ -16,6 +16,6 @@
             }
         }
 
-        public void Recalculate() { }
+        public static void Recalculate() { }
     }
 }

@@ -2,7 +2,7 @@ using ControlMaterials.Total;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class Work : HoursNode<IndexedHour>, ISum
+    public class Work : HoursNode<IndexedHour>, ISum, INumerable
     {
         public Work() : base() { }
 

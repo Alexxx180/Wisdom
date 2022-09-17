@@ -1,6 +1,6 @@
 ﻿namespace ControlMaterials.Total.Count
 {
-    public class AutoCount<T> : State<T> where T : ISum
+    public class AutoCount<T> : ManualCount<T> where T : ISum
     {
         public ICount _node;
 
@@ -21,7 +21,7 @@
 
         public override void Recalculate()
         {
-            uint sum = 0;
+            ushort sum = 0;
             for (ushort i = 0; i < Items.Count; i++)
             {
                 sum += Items[i].Sum;

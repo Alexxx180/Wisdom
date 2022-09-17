@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class Theme : HoursNode<Work>
+    public class Theme : HoursNode<Work>, ISum, INumerable
     {
         public Theme() : base()
         {

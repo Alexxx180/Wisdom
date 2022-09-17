@@ -7,7 +7,7 @@
             PropertyName = name;
         }
 
-        public void SetItems(OptionableCollection<T> items)
+        public void SetItems(IOptionableCollection<T> items)
         {
             Items = items;
         }

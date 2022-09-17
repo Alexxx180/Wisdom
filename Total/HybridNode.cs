@@ -1,12 +1,10 @@
-using System.Collections.ObjectModel;
-
 namespace ControlMaterials.Total
 {
-    public class HybridNode<T> : IndexNode<T>
+    public class HybridNode<T> : IndexNode<T>, INumerable where T : INumerable
     {
         public HybridNode() : base() { }
 
-        public HybridNode(ObservableCollection<T> items) : base(items) { }
+        private protected HybridNode(OptionableCollection<T> items) : base(items) { }
 
         public override HybridNode<T> Copy()
         {
