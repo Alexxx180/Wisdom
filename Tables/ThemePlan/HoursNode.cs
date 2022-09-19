@@ -3,16 +3,19 @@ using ControlMaterials.Total.Count;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class HoursNode<T> : HybridNode<T>, ISum, ICount where T : INumerable, ISum
+    public class HoursNode<T> : HybridNode<T>, ISum, ICount where T : INumerable, ISum, ICloneable<T>
     {
-        public HoursNode()
+        public HoursNode(T additor)
         {
-            SetItems(Numeration(), Count());
-            Items.Set(0, 0);
-            Items.Set(1, 0);
+            SetItems(additor, Numeration(), SumCount());
+            Option(0, 0);
+            Option(1, 0);
         }
 
-        private protected State<T>[] Count()
+        private protected HoursNode(OptionableCollection<T> items) : base(items) { }
+
+
+        private protected State<T>[] SumCount()
         {
             return new State<T>[]
             {
@@ -21,11 +24,10 @@ namespace ControlMaterials.Tables.ThemePlan
             };
         }
 
-        private HoursNode(OptionableCollection<T> items) : base(items) { }
 
         public override HoursNode<T> Copy()
         {
-            return new HoursNode<T>(Items)
+            return new HoursNode<T>(_items)
             {
                 No = No,
                 Name = Name,

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace ControlMaterials.Total
 {
-    public class OptionableCollection<T> : ObservableCollection<T>, IOptionableCollection<T> where T : IChangeable
+    public class OptionableCollection<T> : ObservableCollection<T>, IOptionableCollection<T> where T : IChangeable, ICloneable<T>
     {
         public State<T>[] Sets { get; }
         public State<T>[][] Options { get; }
@@ -18,15 +18,22 @@ namespace ControlMaterials.Total
             Sets[no].Recalculate();
         }
 
-        public OptionableCollection(params State<T>[][] options)
+        public void Add()
         {
+            Add(Additor.Copy());
+        }
+
+        public OptionableCollection(T additor, params State<T>[][] options)
+        {
+            Additor = additor;
+
             // When the collection changes set the Sum to the new Sum of TotalValues
             this.CollectionChanged += OnCollectionChanged;
 
             Options = options;
             for (byte i = 0; i < Options.Length; i++)
             {
-                for (byte ii = 0; ii < Options.Length; ii++)
+                for (byte ii = 0; ii < Options[i].Length; ii++)
                     Options[i][ii].SetItems(this);
             }
             
@@ -35,8 +42,6 @@ namespace ControlMaterials.Total
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
-            //throw new System.Exception($"IS NULL: {args.OldItems is null}");
-
             if (args.OldItems is not null)
             foreach (T item in args.OldItems)
             {
@@ -55,7 +60,6 @@ namespace ControlMaterials.Total
                 item.PropertyChanged += OnItemChanged;
                 for (byte i = 0; i < Sets.Length; i++)
                 {
-                        //throw new System.Exception($"IS NULL: {Sets[i] is null}");
                     Sets[i].Add(item);
                 }
             }

@@ -9,10 +9,12 @@
 
         public void SetItems(IOptionableCollection<T> items)
         {
-            Items = items;
+            _items = items;
         }
 
-        public IOptionableCollection<T> Items { get; set; }
+        private IOptionableCollection<T> _items;
+        public IOptionableCollection<T> Items => _items;
+
         public string PropertyName { get; }
 
         public abstract void Add(T item);

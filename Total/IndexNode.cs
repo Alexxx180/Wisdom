@@ -2,12 +2,27 @@ using ControlMaterials.Total.Numeration;
 
 namespace ControlMaterials.Total
 {
-    public class IndexNode<T> : Indexer where T : INumerable
+    public class IndexNode<T> : Indexer where T : INumerable, ICloneable<T>
     {
-        public IndexNode()
+        public int Count => _items.Count;
+
+        public T this[int no]
         {
-            SetItems(Numeration());
-            Items.Set(0, 0);
+            get => _items[no];
+            set => _items[no] = value;
+        }
+
+        private protected IndexNode() { }
+
+        public IndexNode(T additor)
+        {
+            SetItems(additor, Numeration());
+            Option(0, 0);
+        }
+
+        private protected IndexNode(OptionableCollection<T> items)
+        {
+            SetItems(items);
         }
 
         private protected State<T>[] Numeration()
@@ -20,41 +35,44 @@ namespace ControlMaterials.Total
             };
         }
 
-        private protected IndexNode(OptionableCollection<T> items)
-        {
-            SetItems(items);
-        }
-
         public override IndexNode<T> Copy()
         {
-            return new IndexNode<T>(Items)
+            return new IndexNode<T>(_items)
             {
                 No = No
             };
         }
 
+        public void Add()
+        {
+            _items.Add();
+        }
+
         public void Add(T item)
         {
-            Items.Add(item);
+            _items.Add(item);
         }
 
         public bool Remove(T item)
         {
-            return Items.Remove(item);
+            return _items.Remove(item);
         }
 
-        private protected void SetItems(params State<T>[][] states)
+        public void Option(int no, int no2)
         {
-            SetItems(new OptionableCollection<T>(states));
+            _items.Set(no, no2);
+        }
+
+        private protected void SetItems(T additor, params State<T>[][] states)
+        {
+            SetItems(new OptionableCollection<T>(additor, states));
         }
 
         private protected void SetItems(OptionableCollection<T> items)
         {
             _items = items;
-            OnPropertyChanged(nameof(Items));
         }
 
-        private OptionableCollection<T> _items;
-        public OptionableCollection<T> Items => _items;
+        private protected OptionableCollection<T> _items;
     }
 }

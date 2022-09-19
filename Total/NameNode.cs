@@ -4,12 +4,18 @@ namespace ControlMaterials.Total
 {
     public class NameNode<T> : NameLabel
     {
+        public T this[int no]
+        {
+            get => Items[no];
+            set => Items[no] = value;
+        }
+
         public NameNode()
         {
             Items = new ObservableCollection<T>();
         }
 
-        public NameNode(ObservableCollection<T> items)
+        private protected NameNode(ObservableCollection<T> items)
         {
             Items = new ObservableCollection<T>(items);
         }

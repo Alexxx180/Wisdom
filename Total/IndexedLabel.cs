@@ -19,5 +19,13 @@ namespace ControlMaterials.Total
                 OnPropertyChanged();
             }
         }
+
+        public override IndexedLabel Copy()
+        {
+            return new IndexedLabel(Name)
+            {
+                No = No
+            };
+        }
     }
 }

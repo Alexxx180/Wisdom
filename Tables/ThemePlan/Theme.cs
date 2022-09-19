@@ -3,14 +3,22 @@ using System.Collections.ObjectModel;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class Theme : HoursNode<Work>, ISum, INumerable
+    public class Theme : HoursNode<Work>, ISum, INumerable, ICloneable<Theme>
     {
-        public Theme() : base()
+        public Theme() : base(new Work())
         {
             GCompetetions = new ObservableCollection<Competetion>();
             PCompetetions = new ObservableCollection<IndexNode<Competetion>>();
         }
-        
+
+        private protected Theme
+            (OptionableCollection<Work> items, ObservableCollection<Competetion> gcompetetions,
+            ObservableCollection<IndexNode<Competetion>> pcompetetions) : base(items)
+        {
+            GCompetetions = new ObservableCollection<Competetion>(gcompetetions);
+            PCompetetions = new ObservableCollection<IndexNode<Competetion>>(pcompetetions);
+        }
+
         private ushort _level;
         public ushort Level
         {
@@ -20,6 +28,16 @@ namespace ControlMaterials.Tables.ThemePlan
                 _level = value;
                 OnPropertyChanged();
             }
+        }
+
+        public override Theme Copy()
+        {
+            return new Theme(_items, GCompetetions, PCompetetions)
+            {
+                No = No,
+                Name = Name,
+                Hours = Hours
+            };
         }
 
         public ObservableCollection<Competetion> GCompetetions { get; }

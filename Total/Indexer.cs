@@ -21,6 +21,7 @@ namespace ControlMaterials.Total
             {
                 _no = value;
                 OnPropertyChanged();
+                //#error Here is a recursion!
             }
         }
         

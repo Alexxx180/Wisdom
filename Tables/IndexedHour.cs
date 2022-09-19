@@ -2,7 +2,7 @@
 
 namespace ControlMaterials.Tables
 {
-    public class IndexedHour : IndexedLabel, ISum
+    public class IndexedHour : IndexedLabel, ISum, ICloneable<IndexedHour>
     {
         public IndexedHour() : base() { }
 
@@ -22,6 +22,14 @@ namespace ControlMaterials.Tables
                 _count = value;
                 OnPropertyChanged();
             }
+        }
+
+        public override IndexedHour Copy()
+        {
+            return new IndexedHour(Name, Count)
+            {
+                No = No
+            };
         }
     }
 }

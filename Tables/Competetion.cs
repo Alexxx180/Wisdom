@@ -1,8 +1,9 @@
 using ControlMaterials.Total;
+using System.Collections.ObjectModel;
 
 namespace ControlMaterials.Tables
 {
-    public class Competetion : NameNode<Task>, INumerable
+    public class Competetion : NameNode<Task>, INumerable, ICloneable<Competetion>
     {
         public Competetion() : base() { }
 
@@ -14,6 +15,17 @@ namespace ControlMaterials.Tables
         public Competetion(string prefix, ushort no) : this(prefix)
         {
             No = no;
+        }
+
+        private protected Competetion(ObservableCollection<Task> items) : base(items) { }
+
+        public override Competetion Copy()
+        {
+            return new Competetion(Items)
+            {
+                No = No,
+                Name = Name,
+            };
         }
 
         private ushort _no;

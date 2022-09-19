@@ -1,14 +1,16 @@
 namespace ControlMaterials.Total
 {
-    public class HybridNode<T> : IndexNode<T>, INumerable where T : INumerable
+    public class HybridNode<T> : IndexNode<T>, INumerable where T : INumerable, ICloneable<T>
     {
-        public HybridNode() : base() { }
+        private protected HybridNode() { }
+
+        public HybridNode(T additor) : base(additor) { }
 
         private protected HybridNode(OptionableCollection<T> items) : base(items) { }
 
         public override HybridNode<T> Copy()
         {
-            return new HybridNode<T>(Items)
+            return new HybridNode<T>(_items)
             {
                 No = No,
                 Name = Name
