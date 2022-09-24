@@ -1,4 +1,4 @@
-﻿namespace ControlMaterials.Total
+﻿namespace ControlMaterials.Total.Numeration
 {
     public interface INumerable : IChangeable
     {

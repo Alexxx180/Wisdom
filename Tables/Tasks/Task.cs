@@ -1,6 +1,6 @@
 using ControlMaterials.Total;
 
-namespace ControlMaterials.Tables
+namespace ControlMaterials.Tables.Tasks
 {
     public class Task : NameLabel
     {

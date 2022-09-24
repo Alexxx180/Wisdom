@@ -1,6 +1,6 @@
 using ControlMaterials.Total.Numeration;
 
-namespace ControlMaterials.Total
+namespace ControlMaterials.Total.Collections.Nodes
 {
     public class IndexNode<T> : Indexer where T : INumerable, ICloneable<T>
     {
@@ -17,7 +17,6 @@ namespace ControlMaterials.Total
         public IndexNode(T additor)
         {
             SetItems(additor, Numeration());
-            Option(0, 0);
         }
 
         private protected IndexNode(OptionableCollection<T> items)

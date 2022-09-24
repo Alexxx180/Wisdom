@@ -1,6 +1,6 @@
 ﻿using ControlMaterials.Total;
 
-namespace ControlMaterials.Tables
+namespace ControlMaterials.Tables.Hours
 {
     public class Hour : NameLabel
     {

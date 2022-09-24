@@ -1,4 +1,8 @@
+using ControlMaterials.Tables.Hours;
 using ControlMaterials.Total;
+using ControlMaterials.Total.Collections;
+using ControlMaterials.Total.Count;
+using ControlMaterials.Total.Numeration;
 
 namespace ControlMaterials.Tables.ThemePlan
 {

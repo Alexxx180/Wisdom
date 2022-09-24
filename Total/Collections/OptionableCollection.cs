@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ControlMaterials.Total
+namespace ControlMaterials.Total.Collections
 {
     public class OptionableCollection<T> : ObservableCollection<T>, IOptionableCollection<T> where T : IChangeable, ICloneable<T>
     {
@@ -15,7 +15,7 @@ namespace ControlMaterials.Total
         public void Set(int no, int no2)
         {
             Sets[no] = Options[no][no2];
-            Sets[no].Recalculate();
+            Sets[no].Setup();
         }
 
         public void Add()
@@ -28,41 +28,44 @@ namespace ControlMaterials.Total
             Additor = additor;
 
             // When the collection changes set the Sum to the new Sum of TotalValues
-            this.CollectionChanged += OnCollectionChanged;
+            CollectionChanged += OnCollectionChanged;
 
             Options = options;
+            Sets = new State<T>[options.Length];
+
             for (byte i = 0; i < Options.Length; i++)
             {
                 for (byte ii = 0; ii < Options[i].Length; ii++)
+                {
                     Options[i][ii].SetItems(this);
+                }
+                Set(i, 0);
             }
-            
-            Sets = new State<T>[options.Length];
         }
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
             if (args.OldItems is not null)
-            foreach (T item in args.OldItems)
-            {
-                // Unsubscribe to changes in each item
-                item.PropertyChanged -= OnItemChanged;
-                for (byte i = 0; i < Sets.Length; i++)
+                foreach (T item in args.OldItems)
                 {
-                    Sets[i].Remove(item);
+                    // Unsubscribe to changes in each item
+                    item.PropertyChanged -= OnItemChanged;
+                    for (byte i = 0; i < Sets.Length; i++)
+                    {
+                        Sets[i].Remove(item);
+                    }
                 }
-            }
 
             if (args.NewItems is not null)
-            foreach (T item in args.NewItems)
-            {
-                // Subscribe to future changes for each item
-                item.PropertyChanged += OnItemChanged;
-                for (byte i = 0; i < Sets.Length; i++)
+                foreach (T item in args.NewItems)
                 {
-                    Sets[i].Add(item);
+                    // Subscribe to future changes for each item
+                    item.PropertyChanged += OnItemChanged;
+                    for (byte i = 0; i < Sets.Length; i++)
+                    {
+                        Sets[i].Add(item);
+                    }
                 }
-            }
         }
 
         private void OnItemChanged(object sender, PropertyChangedEventArgs args)

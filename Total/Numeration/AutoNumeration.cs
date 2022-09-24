@@ -36,5 +36,10 @@
             }
             _isCalculating = false;
         }
+
+        public override void Setup()
+        {
+            Recalculate();
+        }
     }
 }

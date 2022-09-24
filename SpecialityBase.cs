@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ControlMaterials.Tables;
+using ControlMaterials.Tables.Tasks;
 
 namespace ControlMaterials
 {

@@ -1,4 +1,7 @@
-namespace ControlMaterials.Total
+using ControlMaterials.Total.Collections;
+using ControlMaterials.Total.Numeration;
+
+namespace ControlMaterials.Total.Collections.Nodes
 {
     public class HybridNode<T> : IndexNode<T>, INumerable where T : INumerable, ICloneable<T>
     {

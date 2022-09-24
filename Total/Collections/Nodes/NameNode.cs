@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace ControlMaterials.Total
+namespace ControlMaterials.Total.Collections.Nodes
 {
     public class NameNode<T> : NameLabel
     {
@@ -37,7 +37,7 @@ namespace ControlMaterials.Total
         {
             return Items.Remove(item);
         }
-        
+
         public ObservableCollection<T> Items { get; }
     }
 }

@@ -1,4 +1,9 @@
+using ControlMaterials.Tables.Tasks;
 using ControlMaterials.Total;
+using ControlMaterials.Total.Collections;
+using ControlMaterials.Total.Collections.Nodes;
+using ControlMaterials.Total.Count;
+using ControlMaterials.Total.Numeration;
 using System.Collections.ObjectModel;
 
 namespace ControlMaterials.Tables.ThemePlan

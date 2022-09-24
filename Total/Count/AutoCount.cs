@@ -1,10 +1,12 @@
 ﻿namespace ControlMaterials.Total.Count
 {
-    public class AutoCount<T> : ManualCount<T> where T : ISum
+    public class AutoCount<T> : ManualCount<T>, ISummator where T : ISum
     {
-        public ICount _node;
+        public readonly ICount _node;
+        public override ushort PrevSum => _node.Sum;
 
-        public AutoCount(ICount node, string property) : base(property)
+        public AutoCount(Bridge<ISummator> count, ICount node,
+            string property) : base(count, property)
         {
             _node = node;
         }
@@ -21,12 +23,13 @@
 
         public override void Recalculate()
         {
-            ushort sum = 0;
-            for (ushort i = 0; i < Items.Count; i++)
-            {
-                sum += Items[i].Sum;
-            }
-            _node.SetTotal(sum);
+            _node.SetTotal(GetSum());
+        }
+
+        public override void Setup()
+        {
+            base.Setup();
+            Recalculate();
         }
     }
 }

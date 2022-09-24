@@ -1,6 +1,7 @@
 ﻿using ControlMaterials.Total;
+using ControlMaterials.Total.Count;
 
-namespace ControlMaterials.Tables
+namespace ControlMaterials.Tables.Hours
 {
     public class IndexedHour : IndexedLabel, ISum, ICloneable<IndexedHour>
     {

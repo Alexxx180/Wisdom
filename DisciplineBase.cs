@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using ControlMaterials.Tables;
+using ControlMaterials.Tables.Hours;
+using ControlMaterials.Tables.Tasks;
 using ControlMaterials.Tables.ThemePlan;
 
 namespace ControlMaterials

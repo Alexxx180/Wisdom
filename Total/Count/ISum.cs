@@ -1,4 +1,4 @@
-﻿namespace ControlMaterials.Total
+﻿namespace ControlMaterials.Total.Count
 {
     public interface ISum : IChangeable
     {

@@ -1,21 +1,35 @@
 ﻿namespace ControlMaterials.Total.Count.Highlighting
 {
-    public class HighlightOn
+    public class HighlightOn<T> : HighlightOff<T> where T : ISum
     {
-        public IHighlighting Item { get; set; }
+        private readonly Bridge<ISummator> Count;
 
-        public void ChangeHighlight(uint head)
+        public HighlightOn(Bridge<ISummator> count,
+            IHighlighting item, string property) : base(item, property)
         {
-            if (head > Item.Sum)
+            Count = count;
+        }
+
+        public override void Recalculate()
+        {
+            ISummator summator = Count.Reference;
+            if (summator.Sum > summator.PrevSum)
             {
-                Item.SetColor(Item.Violation);
+                Item.SetColor(HighlightColor.VIOLATION);
             }
-            else if (head == Item.Sum)
+            else if (summator.Sum == summator.PrevSum)
             {
-                Item.SetColor(Item.Conformity);
+                Item.SetColor(HighlightColor.CONFORMITY);
+            }
+            else
+            {
+                Item.SetColor(HighlightColor.NEUTRAL);
             }
         }
 
-        public static void Recalculate() { }
+        public override void Setup()
+        {
+            Recalculate();
+        }
     }
 }
