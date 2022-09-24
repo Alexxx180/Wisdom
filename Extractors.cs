@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using ControlMaterials;
-using ControlMaterials.Tables;
+using ControlMaterials.Tables.Hours;
+using ControlMaterials.Tables.Tasks;
 using ControlMaterials.Tables.ThemePlan;
 
 namespace UnitTests
@@ -16,10 +16,10 @@ namespace UnitTests
             StringBuilder competetionsText = new StringBuilder();
             foreach (Competetion competetion in competetions)
             {
-                competetionsText.Append("\n\n" + competetion.PrefixNo + ". " + competetion.Name);
-                foreach (Task pair in competetion.Abilities)
+                competetionsText.Append("\n\n" + competetion.Prefix + ". " + competetion.Name);
+                foreach (Task pair in competetion.Items)
                 {
-                    competetionsText.Append("\n" + pair.Name + ": " + pair.Hours);
+                    competetionsText.Append("\n" + pair.Name + ": " + pair.Data);
                 }
             }
             return competetionsText.ToString();
@@ -44,30 +44,34 @@ namespace UnitTests
             return competetionsText.ToString();
         }
 
-        public static string ExtractThemePlan(List<Topic> topics)
+        public static string ExtractThemePlan(List<HoursNode<Theme>> topics)
         {
             StringBuilder planText = new StringBuilder("Тематический план:\n\n");
             planText.Append("Количество: " + topics.Count);
             for (byte i = 0; i < topics.Count; i++)
             {
-                Topic topic = topics[i];
+                HoursNode<Theme> topic = topics[i];
                 planText.Append("\n\nРаздел");
                 planText.Append(" " + (i + 1) + ": ");
                 planText.Append(topic.Name + ", часы: ");
                 planText.Append(topic.Hours);
-                for (byte ii = 0; ii < topic.Themes.Count; ii++)
+                for (byte ii = 0; ii < topic.Count; ii++)
                 {
-                    Theme theme = topic.Themes[ii];
+                    Theme theme = topic[ii];
                     planText.Append($"\nТема {ii + 1}: {theme.Name}, часы: {theme.Hours},");
-                    planText.Append($" УК: {theme.Level}, Компетенции: {theme.Competetions}");
-                    for (byte iii = 0; iii < theme.Works.Count; iii++)
+
+                    string gcompetetions = $"{theme.GCompetetions[0].Prefix} {theme.GCompetetions[0].No}";
+                    string pcompetetions = $"{theme.PCompetetions[0][0].Prefix} {theme.PCompetetions[0].No}.{theme.PCompetetions[0][0].No}";
+
+                    planText.Append($" УК: {theme.Level}, Компетенции: {gcompetetions}. {pcompetetions}");
+                    for (byte iii = 0; iii < theme.Count; iii++)
                     {
-                        Work work = theme.Works[iii];
-                        planText.Append($"\n{work.Type}");
-                        for (byte iv = 0; iv < work.Tasks.Count; iv++)
+                        Work work = theme[iii];
+                        planText.Append($"\n{work.Name}");
+                        for (byte iv = 0; iv < work.Count; iv++)
                         {
-                            Task task = work.Tasks[iv];
-                            planText.Append($"\n{task.Name}: {task.Hours}");
+                            IndexedHour task = work[iv];
+                            planText.Append($"\n{task.Name}: {task.Count}");
                         }
                     }
                 }
@@ -81,7 +85,7 @@ namespace UnitTests
             metaDataText.Append($"Количество: {tasks.Count}\n");
             foreach (Task pair in tasks)
             {
-                metaDataText.Append($"\n{pair.Name}: {pair.Hours}");
+                metaDataText.Append($"\n{pair.Name}: {pair.Data}");
             }
             return metaDataText.ToString();
         }
@@ -104,23 +108,22 @@ namespace UnitTests
             foreach (Source group in sources)
             {
                 metaDataText.Append($"\n\n{group.Name}: ");
-                List<string> values = group.Descriptions;
-                for (byte i = 0; i < values.Count; i++)
+                for (byte i = 0; i < group.Items.Count; i++)
                 {
-                    metaDataText.Append($"\n{i + 1}. {values[i]}");
+                    metaDataText.Append($"\n{i + 1}. {group.Items[i].Name}");
                 }
             }
             return metaDataText.ToString();
         }
 
-        public static string ExtractLevels(List<Task> levels)
+        public static string ExtractLevels(List<Level> levels)
         {
             StringBuilder metaDataText = new StringBuilder("Уровни компетенций:\n\n");
             metaDataText.Append("Количество: " + levels.Count + "\n");
             for (byte i = 0; i < levels.Count; i++)
             {
-                Task level = levels[i];
-                metaDataText.Append($"\n{i + 1}. - {level.Name} ({level.Hours})");
+                Level level = levels[i];
+                metaDataText.Append($"\n{level.No}. - {level.Description.Name} ({level.Description.Data})");
             }
             return metaDataText.ToString();
         }

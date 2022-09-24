@@ -1,9 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics;
-using ControlMaterials.Tables;
+using ControlMaterials.Total;
 using ControlMaterials.Tables.ThemePlan;
 using static UnitTests.Extractors;
+using ControlMaterials.Total.Collections.Nodes;
+using ControlMaterials.Tables.Hours;
+using ControlMaterials.Tables.Tasks;
 
 namespace UnitTests
 {
@@ -26,14 +29,11 @@ namespace UnitTests
                 string totalNo = string.Format("{0:00}", i + 1);
                 Competetion competetion = new Competetion
                 {
-                    PrefixNo = "ОК " + totalNo,
+                    Prefix = "ОК " + totalNo,
                     Name = "Общая компетенция",
-                    Abilities = new List<Task>
-                    {
-                        new Task("Умения", "ОК-Умение"),
-                        new Task("Знания", "ОК-Знание")
-                    }
                 };
+                competetion.Items.Add(new Task("Умения", "ОК-Умение"));
+                competetion.Items.Add(new Task("Знания", "ОК-Знание"));
                 competetions.Add(competetion);
             }
 
@@ -56,15 +56,13 @@ namespace UnitTests
                 {
                     Competetion competetion = new Competetion
                     {
-                        PrefixNo = $"ПК {i + 1}.{ii + 1}",
-                        Name = "Профессиональная компетенция",
-                        Abilities = new List<Task>
-                        {
-                            new Task("Практический опыт", "ОК-Практический опыт"),
-                            new Task("Умения", "ОК-Умение"),
-                            new Task("Знания", "ОК-Знание")
-                        }
+                        Prefix = $"ПК {i + 1}.{ii + 1}",
+                        Name = "Профессиональная компетенция"
                     };
+                    competetion.Items.Add(new Task("Практический опыт", "ОК-Практический опыт"));
+                    competetion.Items.Add(new Task("Умения", "ОК-Умение"));
+                    competetion.Items.Add(new Task("Знания", "ОК-Знание"));
+
                     competetions.Add(competetion);
                 }
 
@@ -79,60 +77,69 @@ namespace UnitTests
         {
             Trace.WriteLine("Theme plan check...");
 
-            List<Topic> plan = new List<Topic>();
+            List<HoursNode<Theme>> plan = new List<HoursNode<Theme>>();
 
             byte count = 3;
             for (byte i = 0; i < count; i++)
             {
                 byte topicHours = 0;
-                List<Theme> themes = new List<Theme>();
+
+                HoursNode<Theme> topic = new HoursNode<Theme>(new Theme())
+                {
+                    Name = "Имя раздела"
+                };
+
                 for (byte ii = 0; ii < count; ii++)
                 {
                     byte themeHours = 0;
-                    List<Work> works = new List<Work>();
-                    for (byte iii = 0; iii < count; iii++)
-                    {
-                        byte workHours = 0;
-                        List<Task> tasks = new List<Task>();
-                        for (byte iv = 0; iv < count; iv++)
-                        {
-                            byte taskHours = 10;
-                            Task task = new Task
-                            {
-                                Name = "Задача",
-                                Hours = $"{taskHours}"
-                            };
-                            tasks.Add(task);
-                            workHours += taskHours;
-                        }
-
-                        Work work = new Work
-                        {
-                            Type = "Любая работа",
-                            Tasks = tasks
-                        };
-                        works.Add(work);
-                        themeHours += workHours;
-                    }
 
                     Theme theme = new Theme
                     {
                         Name = "Любая тема",
-                        Hours = $"{themeHours}",
-                        Level = "2",
-                        Competetions = $"ОК {i + 1}. ПК {i + 1}.{ii + 1}",
-                        Works = works
+                        Level = 2
                     };
-                    themes.Add(theme);
+
+                    ushort no = (ushort)(i + 1);
+                    theme.GCompetetions.Add(new Competetion("ОК", no));
+
+                    IndexNode<Competetion> pc = new
+                        IndexNode<Competetion>(new Competetion())
+                    {
+                        No = no
+                    };
+                    pc.Add(new Competetion("ПК", (ushort)(ii + 1)));
+
+                    theme.PCompetetions.Add(pc);
+
+                    for (byte iii = 0; iii < count; iii++)
+                    {
+                        byte workHours = 0;
+
+                        Work work = new Work
+                        {
+                            Name = "Любая работа"
+                        };
+
+                        for (byte iv = 0; iv < count; iv++)
+                        {
+                            byte taskHours = 10;
+
+                            IndexedHour task = new IndexedHour("Задача", taskHours);
+                            work.Add(task);
+
+                            workHours += taskHours;
+                        }
+
+                        theme.Add(work);
+                        themeHours += workHours;
+                    }
+
+                    theme.Hours = themeHours;
+                    topic.Add(theme);
                     topicHours += themeHours;
                 }
 
-                Topic topic = new Topic
-                {
-                    Name = "Имя раздела",
-                    Hours = $"{topicHours}",
-                    Themes = themes
-                };
+                topic.Hours = topicHours;
                 plan.Add(topic);
             }
 
@@ -149,11 +156,7 @@ namespace UnitTests
             byte count = 10;
             for (byte i = 0; i < count; i++)
             {
-                Task data = new Task
-                {
-                    Name = "Курс ДО",
-                    Hours = "https://..."
-                };
+                Task data = new Task("Курс ДО", "https://...");
                 metaData.Add(data);
             }
 
@@ -191,17 +194,16 @@ namespace UnitTests
             byte count = 3;
             for (byte i = 0; i < count; i++)
             {
-                List<string> values = new List<string>();
-                for (byte ii = 0; ii < count; ii++)
-                {
-                    values.Add("Пример источника");
-                }
-
                 Source group = new Source
                 {
                     Name = "Литература",
-                    Descriptions = values
                 };
+
+                for (byte ii = 0; ii < count; ii++)
+                {
+                    group.Items.Add(new IndexedLabel("Пример источника"));
+                }
+                
                 sources.Add(group);
             }
 
@@ -213,15 +215,19 @@ namespace UnitTests
         {
             Trace.WriteLine("Levels check...");
 
-            List<Task> levels = new List<Task>();
+            List<Level> levels = new List<Level>();
 
             byte count = 3;
             for (byte i = 0; i < count; i++)
             {
-                Task level = new Task
+                Level level = new Level
                 {
-                    Name = "Название уровня",
-                    Hours = "Описание уровня"
+                    No = (ushort)(i + 1),
+                    Description =
+                    {
+                        Name = "Название уровня",
+                        Data = "Описание уровня"
+                    }
                 };
                 levels.Add(level);
             }
