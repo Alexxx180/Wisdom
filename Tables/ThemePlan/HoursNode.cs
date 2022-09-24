@@ -34,7 +34,7 @@ namespace ControlMaterials.Tables.ThemePlan
         {
             return new State<T>[]
             {
-                new ManualCount<T>(bridge, nameof(Hours)),
+                new ManualCount<T>(bridge, this, nameof(Hours)),
                 new AutoCount<T>(bridge, this, nameof(Hours))
             };
         }

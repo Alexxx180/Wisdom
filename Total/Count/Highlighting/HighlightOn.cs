@@ -10,6 +10,16 @@
             Count = count;
         }
 
+        public override void Add(T item)
+        {
+            Recalculate();
+        }
+
+        public override void Remove(T item)
+        {
+            Recalculate();
+        }
+
         public override void Recalculate()
         {
             ISummator summator = Count.Reference;

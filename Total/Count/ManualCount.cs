@@ -16,7 +16,7 @@ namespace ControlMaterials.Total.Count
             Count = count;
         }
 
-        public ManualCount(ISum node, Bridge<ISummator> count,
+        public ManualCount(Bridge<ISummator> count, ISum node,
             string property) : this(count, property)
         {
             _node = node;
