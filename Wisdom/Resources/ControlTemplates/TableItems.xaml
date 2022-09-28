@@ -67,9 +67,9 @@
               </Binding>
             </StackPanel.Visibility>-->
 
-            <ItemsControl>
+            <ItemsControl x:Name="ItemsContainer">
                 <ItemsControl.ItemTemplate>
-                    <StaticResource ResourceKey="Ttemp1"/>
+                    <StaticResource ResourceKey="TopicRemover"/>
                 </ItemsControl.ItemTemplate>
                 
                 <ItemsControl.ItemsSource>
@@ -81,20 +81,7 @@
                 </ItemsControl.ItemsSource>
             </ItemsControl>
 
-            <Grid Style="{StaticResource Light}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="35" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <Button Style="{StaticResource AddButton}"
-                    Command="{Binding AddCommand}"/>
-
-                <ContentControl Grid.Column="1" Template="{StaticResource TopicTemp}"
-                            DataContext="{Binding Items.Additor}"/>
-            </Grid>
-
-            
+            <ContentControl Template="{StaticResource TopicAdditor}"/>
         </StackPanel>
     </ControlTemplate>
 
