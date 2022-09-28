@@ -184,7 +184,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="1" Text="Вид учебно-методической работы"/>
+                <TextBlock Grid.Column="1" Text="Работы"/>
             </Grid>
 
             <ItemsControl x:Name="ItemsContainer">
@@ -252,6 +252,13 @@
             <ContentControl Template="{StaticResource Topic}"/>
 
             <Grid Style="{StaticResource Dark}">
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </Grid.Resources>
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="35" />
                     <ColumnDefinition Width="60" />
@@ -290,4 +297,48 @@
         </StackPanel>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="CompetetionLevel">
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Style="{StaticResource NoBox}">
+                <TextBox.Text>
+                    <Binding Path="No" Mode="TwoWay">
+                        <Binding.UpdateSourceTrigger>
+                            LostFocus
+                        </Binding.UpdateSourceTrigger>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <UniformGrid Grid.Column="1" Columns="2">
+                <UniformGrid.DataContext>
+                    <Binding Path="Description"/>
+                </UniformGrid.DataContext>
+
+                <TextBox Style="{StaticResource LightBox}">
+                    <TextBox.Text>
+                        <Binding Path="Name" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                LostFocus
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <TextBox Style="{StaticResource LightBox}">
+                    <TextBox.Text>
+                        <Binding Path="Data" Mode="TwoWay">
+                            <Binding.UpdateSourceTrigger>
+                                LostFocus
+                            </Binding.UpdateSourceTrigger>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </UniformGrid>
+        </Grid>
+    </ControlTemplate>
 </ResourceDictionary>

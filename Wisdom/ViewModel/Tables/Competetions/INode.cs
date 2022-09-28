@@ -1,16 +1,14 @@
 ﻿using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
-using ControlMaterials.Total.Count;
-using ControlMaterials.Total.Count.Highlighting;
 using ControlMaterials.Total.Numeration;
 using System.Windows.Input;
 using Wisdom.ViewModel.Commands;
 
-namespace Wisdom.ViewModel.Tables
+namespace Wisdom.ViewModel.Tables.Competetions
 {
-    public abstract class TNode<T> : Highlightable where T : ISum, IHighlighting, INumerable, ICloneable<T>
+    public abstract class INode<T> : Numerable where T : INumerable, ICloneable<T>
     {
-        private TNode()
+        private INode()
         {
             AddCommand = new RelayCommand(argument => Items.Add());
             RemoveCommand = new RelayCommand(argument =>
@@ -19,11 +17,9 @@ namespace Wisdom.ViewModel.Tables
             });
         }
 
-        public TNode(T additor) : this()
+        public INode(T additor) : this()
         {
-            Bridge<ISummator> bridge = new Bridge<ISummator>();
-            SetItems(additor, Numeration<T>(), SumCount<T>(bridge),
-                Highlighting<T>(bridge));
+            SetItems(additor, Numeration<T>());
         }
 
         public T this[int no]

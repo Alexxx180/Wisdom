@@ -20,6 +20,7 @@ using ControlMaterials.Tables.Tasks;
 using ControlMaterials.Total.Collections;
 using ControlMaterials.Total.Numeration;
 using Wisdom.ViewModel.Tables.ThemePlan;
+using Wisdom.ViewModel.Tables.Competetions;
 
 namespace Wisdom.ViewModel
 {
@@ -237,8 +238,8 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private OptionableCollection<Level> _levels;
-        public OptionableCollection<Level> Levels
+        private LevelsVM _levels;
+        public LevelsVM Levels
         {
             get => _levels;
             set
@@ -298,8 +299,7 @@ namespace Wisdom.ViewModel
             SpecialitySelect = new ObservableCollection<Task>();
             DisciplinesSelect = new ObservableCollection<Task>();
             
-            Levels = new OptionableCollection<Level>(new Level(),
-                new State<Level>[][] { IndexNode<Level>.Numeration() });
+            Levels = new LevelsVM();
             
             ThemePlan = new ThemePlanVM(new Plan());
             
@@ -316,11 +316,11 @@ namespace Wisdom.ViewModel
 
             AddHourCommand = new RelayCommand(argument => Hours.Add());
             AddMetaCommand = new RelayCommand(argument => Metadata.Add((argument as Task).Copy()));
-            AddLevelCommand = new RelayCommand(argument => Levels.Add());
+            //AddLevelCommand = new RelayCommand(argument => Levels.Add());
 
             RemoveHourCommand = new RelayCommand(argument => Hours.Remove(argument as HoursNode<IndexedHour>));
             RemoveMetaCommand = new RelayCommand(argument => Metadata.Remove(argument as Task));
-            RemoveLevelCommand = new RelayCommand(argument => Levels.Remove(argument as Level));
+            //RemoveLevelCommand = new RelayCommand(argument => Levels.Remove(argument as Level));
             //RemoveTopicCommand = new RelayCommand(argument => ThemePlan.Remove(argument as HoursNode<Theme>));
             RemoveSourceCommand = new RelayCommand(argument => Sources.Remove(argument as HybridNode<IndexedLabel>));
             
@@ -509,7 +509,7 @@ namespace Wisdom.ViewModel
         private void SetLevels()
         {
             List<Task> levels = Data.LevelsData();
-            Levels.Clear();
+            //Levels.Clear();
             //for (ushort i = 0; i < levels.Count; i++)
             //{
             //    Levels.Add(levels[i]);

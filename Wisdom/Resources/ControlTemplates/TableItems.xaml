@@ -3,14 +3,6 @@
                     xmlns:tables="clr-namespace:Wisdom.Controls.Tables">
     <ControlTemplate x:Key="ThemePlanVM">
         <StackPanel Grid.Row="1" Background="#FFF5FFFF">
-            <!--<StackPanel.Visibility>
-              <Binding Path="Extended">
-                  <Binding.Converter>
-                      <StaticResource ResourceKey="ExtendConverter"/>
-                  </Binding.Converter>
-              </Binding>
-            </StackPanel.Visibility>-->
-
             <ItemsControl x:Name="ItemsContainer">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -31,27 +23,25 @@
         </StackPanel>
     </ControlTemplate>
 
-    <!--<ContentControl x:Key="TaskBase">
-        <UniformGrid Grid.Column="1" Columns="2">
-            <TextBox Style="{StaticResource LightBox}">
-                <TextBox.Text>
-                    <Binding Path="Name" Mode="TwoWay">
-                        <Binding.UpdateSourceTrigger>
-                            LostFocus
-                        </Binding.UpdateSourceTrigger>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
+    <ControlTemplate x:Key="LevelsVM">
+        <StackPanel Grid.Row="1" Background="#FFF5FFFF">
+            <ItemsControl x:Name="ItemsContainer">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <tables:Remover Item="{StaticResource CompetetionLevel}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
 
-            <TextBox Style="{StaticResource LightBox}">
-                <TextBox.Text>
-                    <Binding Path="Data" Mode="TwoWay">
+                <ItemsControl.ItemsSource>
+                    <Binding Path="Items" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
-                            LostFocus
+                            PropertyChanged
                         </Binding.UpdateSourceTrigger>
                     </Binding>
-                </TextBox.Text>
-            </TextBox>
-        </UniformGrid>
-    </ContentControl>-->
+                </ItemsControl.ItemsSource>
+            </ItemsControl>
+
+            <tables:Additor Item="{StaticResource CompetetionLevel}"/>
+        </StackPanel>
+    </ControlTemplate>
 </ResourceDictionary>

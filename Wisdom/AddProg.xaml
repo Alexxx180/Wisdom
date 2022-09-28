@@ -309,22 +309,8 @@
                             <ScrollViewer.VerticalScrollBarVisibility>
                                 Auto
                             </ScrollViewer.VerticalScrollBarVisibility>
-                            
-                            <StackPanel>
-                                <!--<ItemsControl>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <levels:Stage Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveLevelCommand}" />
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
 
-                                    <ItemsControl.ItemsSource>
-                                        <Binding Path="Levels"/>
-                                    </ItemsControl.ItemsSource>
-                                </ItemsControl>
-
-                                <levels:StageAdditor Add="{Binding ElementName=VM, Path=DataContext.AddLevelCommand}"/>-->
-                            </StackPanel>
+                            <ContentControl Template="{StaticResource LevelsVM}" DataContext="{Binding Levels}"/>
                         </ScrollViewer>
                     </StackPanel>
                 </TabItem.Content>
@@ -372,19 +358,6 @@
                                 </Grid>
 
                                 <ContentControl Template="{StaticResource ThemePlanVM}" DataContext="{Binding ThemePlan}"/>
-                                <!--<ItemsControl>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <plan:PlanTopic Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveTopicCommand}" />
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-
-                                    <ItemsControl.ItemsSource>
-                                        <Binding Path="ThemePlan"/>
-                                    </ItemsControl.ItemsSource>
-                                </ItemsControl>
-
-                                <plan:PlanTopicAdditor Add="{Binding ElementName=VM, Path=DataContext.AddTopicCommand}"/>-->
                             </StackPanel>
                         </ScrollViewer>
 
