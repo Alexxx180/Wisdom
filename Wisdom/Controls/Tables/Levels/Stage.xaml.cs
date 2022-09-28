@@ -6,7 +6,7 @@ namespace Wisdom.Controls.Tables.Levels
     /// <summary>
     /// Education level editor
     /// </summary>
-    public partial class Stage : OldItem<Level>
+    public partial class Stage //: OldItem<Level>
     {
         public Stage()
         {

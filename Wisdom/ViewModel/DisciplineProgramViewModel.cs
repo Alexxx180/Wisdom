@@ -14,6 +14,12 @@ using static Wisdom.Writers.ResultRenderer;
 using Wisdom.Model;
 using System.Windows.Input;
 using Wisdom.ViewModel.Commands;
+using ControlMaterials.Total.Collections.Nodes;
+using ControlMaterials.Tables.Hours;
+using ControlMaterials.Tables.Tasks;
+using ControlMaterials.Total.Collections;
+using ControlMaterials.Total.Numeration;
+using Wisdom.ViewModel.Tables.ThemePlan;
 
 namespace Wisdom.ViewModel
 {
@@ -187,8 +193,8 @@ namespace Wisdom.ViewModel
         public ICommand RemovePCompetetionCommand { get; }
 
         #region Data template members
-        private ObservableCollection<HybridNode<Hour>> _hours;
-        public ObservableCollection<HybridNode<Hour>> Hours
+        private HoursNode<HoursNode<IndexedHour>> _hours;
+        public HoursNode<HoursNode<IndexedHour>> Hours
         {
             get => _hours;
             set
@@ -209,8 +215,8 @@ namespace Wisdom.ViewModel
             }
         }
         
-        private ObservableCollection<Competetion> _gCompetetions;
-        public ObservableCollection<Competetion> GCompetetions
+        private OptionableCollection<Competetion> _gCompetetions;
+        public OptionableCollection<Competetion> GCompetetions
         {
             get => _gCompetetions;
             set
@@ -231,8 +237,8 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private ObservableCollection<Level> _levels;
-        public ObservableCollection<Level> Levels
+        private OptionableCollection<Level> _levels;
+        public OptionableCollection<Level> Levels
         {
             get => _levels;
             set
@@ -242,8 +248,8 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private ObservableCollection<NameNode<IndexedLabel>> _sources;
-        public ObservableCollection<NameNode<IndexedLabel>> Sources
+        private ObservableCollection<HybridNode<IndexedLabel>> _sources;
+        public ObservableCollection<HybridNode<IndexedLabel>> Sources
         {
             get => _sources;
             set
@@ -253,8 +259,8 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private ObservableCollection<HoursNode<Theme>> _themePlan;
-        public ObservableCollection<HoursNode<Theme>> ThemePlan
+        private ThemePlanVM _themePlan;
+        public ThemePlanVM ThemePlan
         {
             get => _themePlan;
             set
@@ -292,69 +298,44 @@ namespace Wisdom.ViewModel
             SpecialitySelect = new ObservableCollection<Task>();
             DisciplinesSelect = new ObservableCollection<Task>();
             
-            Levels = new ObservableCollection<Level>();
+            Levels = new OptionableCollection<Level>(new Level(),
+                new State<Level>[][] { IndexNode<Level>.Numeration() });
             
-            ThemePlan = new ObservableCollection<HoursNode<Theme>>();
+            ThemePlan = new ThemePlanVM(new Plan());
             
-            Sources = new ObservableCollection<NameNode<IndexedLabel>>();
+            Sources = new ObservableCollection<HybridNode<IndexedLabel>>();
             Metadata = new ObservableCollection<Task>();
-            
+
+
             PCompetetions = new ObservableCollection<IndexNode<Competetion>>();
-            GCompetetions = new ObservableCollection<Competetion>();
+            GCompetetions = new OptionableCollection<Competetion>(new Competetion(), 
+                new State<Competetion>[][] { IndexNode<Competetion>.Numeration() });
             
             SourceTypes = new ObservableCollection<string>();
             Document = new DisciplineProgram();
 
-            AddHourCommand = new RelayCommand(argument =>
-            {
-                HybridNode<Hour> hour = argument as HybridNode<Hour>;
-                Hours.Add(hour.Copy());
-            });
+            AddHourCommand = new RelayCommand(argument => Hours.Add());
+            AddMetaCommand = new RelayCommand(argument => Metadata.Add((argument as Task).Copy()));
+            AddLevelCommand = new RelayCommand(argument => Levels.Add());
 
-            AddMetaCommand = new RelayCommand(argument =>
-            {
-                Task data = argument as Task;
-                Metadata.Add(data.Copy());
-                System.Diagnostics.Trace.WriteLine("РАБОТАААЙ!");
-            });
-
-            RemoveHourCommand = new RelayCommand(argument =>
-            {
-                Hours.Remove((HybridNode<Hour>)argument);
-            });
+            RemoveHourCommand = new RelayCommand(argument => Hours.Remove(argument as HoursNode<IndexedHour>));
+            RemoveMetaCommand = new RelayCommand(argument => Metadata.Remove(argument as Task));
+            RemoveLevelCommand = new RelayCommand(argument => Levels.Remove(argument as Level));
+            //RemoveTopicCommand = new RelayCommand(argument => ThemePlan.Remove(argument as HoursNode<Theme>));
+            RemoveSourceCommand = new RelayCommand(argument => Sources.Remove(argument as HybridNode<IndexedLabel>));
             
-            RemoveMetaCommand = new RelayCommand(argument =>
-            {
-                Metadata.Remove((Task)argument);
-            });
+            RemoveGCompetetionCommand = new RelayCommand(argument => GCompetetions.Remove(argument as Competetion));
             
-            RemoveTopicCommand = new RelayCommand(argument =>
-            {
-                ThemePlan.Remove((HoursNode<Theme>)argument);
-            });
-            
-            RemoveSourceCommand = new RelayCommand(argument =>
-            {
-                Sources.Remove((Source)argument);
-            });
-            
-            RemoveGCompetetionCommand = new RelayCommand(argument =>
-            {
-                GCompetetions.Remove((Competetion)argument);
-            });
-            
-            RemovePCompetetionCommand = new RelayCommand(argument =>
-            {
-                PCompetetions.Remove((IndexNode<Competetion>)argument);
-            });
+            RemovePCompetetionCommand = new RelayCommand(argument => PCompetetions.Remove(argument as IndexNode<Competetion>));
 
             //HourGroup
-            Hours = new ObservableCollection<HybridNode<Hour>>();
+            Hours = new HoursNode<HoursNode<IndexedHour>>
+                (new HoursNode<IndexedHour>(new IndexedHour()));
 
             for (byte i = 0; i < 3; i++)
             {
-                Hours.Add(new HybridNode<Hour>());
-                Hours[i].Items.Add(new Hour("Hours", 40));
+                Hours.Add(new HoursNode<IndexedHour>(new IndexedHour()));
+                Hours[i].Add(new IndexedHour("Hours", 40));
             }
             
             //AddGroup("Аудиторная нагрузка, часы");
@@ -392,7 +373,7 @@ namespace Wisdom.ViewModel
             //document.GeneralCompetetions.Refresh(GeneralCompetetions);
             //document.ProfessionalCompetetions.Refresh(ProfessionalCompetetions);
             //document.Sources.Refresh(Sources);
-            document.Plan.Refresh(ThemePlan);
+            //document.Plan.Refresh(ThemePlan);
             //document.StudyLevels.Refresh(Levels);
         }
 
@@ -453,7 +434,7 @@ namespace Wisdom.ViewModel
             List<Hour> classHours,
             List<Hour> selfHours,
             List<Task> metaData,
-            List<Source> sources,
+            List<HybridNode<IndexedLabel>> sources,
             List<HoursNode<Theme>> themePlan
             )
         {
@@ -487,7 +468,7 @@ namespace Wisdom.ViewModel
             SetLevels();
         }
 
-        private void SetHours(in int groupNo, List<HybridNode<Hour>> hours)
+        private void SetHours(in int groupNo, HoursNode<HoursNode<IndexedHour>> hours)
         {
             Hours.Clear();
             for (ushort i = 0; i < hours.Count; i++)
@@ -505,7 +486,7 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private void SetSources(List<Source> sources)
+        private void SetSources(List<HybridNode<IndexedLabel>> sources)
         {
             Sources.Clear();
             for (ushort i = 0; i < sources.Count; i++)
@@ -516,11 +497,11 @@ namespace Wisdom.ViewModel
 
         private void SetThemePlan(List<HoursNode<Theme>> plan)
         {
-            ThemePlan.Clear();
-            for (ushort i = 0; i < plan.Count; i++)
-            {
-                ThemePlan.Add(plan[i]);
-            }
+            //ThemePlan.Clear();
+            //for (ushort i = 0; i < plan.Count; i++)
+            //{
+            //    ThemePlan.Add(plan[i]);
+            //}
         }
         #endregion
 

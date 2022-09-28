@@ -1,15 +1,18 @@
-﻿<controls:OldItem x:Class="Wisdom.Controls.Tables.MetaData.MetaElement"
-                 x:TypeArguments="model:Task"
+﻿<UserControl x:Class="Wisdom.Controls.Tables.MetaData.MetaElement"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                  xmlns:converters="clr-namespace:Wisdom.Binds.Converters"
                  xmlns:controls="clr-namespace:Wisdom.Controls.Templates"
-                 xmlns:model="clr-namespace:ControlMaterials.Tables;assembly=ControlMaterials"
                  mc:Ignorable="d" 
                  d:DesignHeight="30" d:DesignWidth="600"
                  x:Name="This">
+    <!--
+                 xmlns:model="clr-namespace:ControlMaterials.Tables;assembly=ControlMaterials"
+    
+                 x:TypeArguments="model:Task"
+    
     <UserControl.Style>
         <StaticResource ResourceKey="Wrapable"/>
     </UserControl.Style>
@@ -46,13 +49,13 @@
             </TextBox>
 
             <TextBox Style="{StaticResource LightBox}">
-                <!--<TextBox.TextWrapping>
+                <TextBox.TextWrapping>
                     <Binding Path="IsWrap">
                         <Binding.Converter>
                             <StaticResource ResourceKey="WrapConverter"/>
                         </Binding.Converter>
                     </Binding>
-                </TextBox.TextWrapping>-->
+                </TextBox.TextWrapping>
                 <TextBox.Text>
                     <Binding Path="Data" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
@@ -62,5 +65,5 @@
                 </TextBox.Text>
             </TextBox>
         </UniformGrid>
-    </Grid>
-</controls:OldItem>
+    </Grid>-->
+</UserControl>

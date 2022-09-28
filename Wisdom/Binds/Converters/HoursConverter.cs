@@ -14,11 +14,11 @@ namespace Wisdom.Binds.Converters
             ObservableCollection<HourElement> hours = value as ObservableCollection<HourElement>;
 
             uint sum = 0;
-            for (ushort i = 0; i < hours.Count; i++)
-            {
-                Hour hour = hours[i].Data;
-                sum += hour.Count;
-            }
+            //for (ushort i = 0; i < hours.Count; i++)
+            //{
+            //    Hour hour = hours[i].Data;
+            //    sum += hour.Count;
+            //}
             return sum.ToString();
         }
 

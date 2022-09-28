@@ -78,7 +78,7 @@
                 </Binding>
             </StackPanel.Visibility>
             
-            <ItemsControl>
+            <!--<ItemsControl>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <hours:HourElement Data="{Binding}" Remove="{Binding ElementName=ThisGroup, Path=RemoveHour}" />
@@ -88,9 +88,9 @@
                 <ItemsControl.ItemsSource>
                     <Binding Path="Data.Items"/>
                 </ItemsControl.ItemsSource>
-            </ItemsControl>
+            </ItemsControl>-->
 
-            <hours:HourElementAdditor Add="{Binding ElementName=ThisGroup, Path=AddHour}"/>
+            <!--<hours:HourElementAdditor Add="{Binding ElementName=ThisGroup, Path=AddHour}"/>-->
         </StackPanel>
     </StackPanel>
 </UserControl>

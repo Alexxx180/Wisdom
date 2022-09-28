@@ -12,8 +12,8 @@
         <Setter Property="Control.FontSize" Value="20"/>
         <Setter Property="Control.FontFamily" Value="Gill Sans Ultra Bold"/>
         <Setter Property="Button.Content" Value="+"/>
-        <Setter Property="Button.Command" Value="{Binding Add}"/>
-        <Setter Property="Button.CommandParameter" Value="{Binding Data}"/>
+        <!--<Setter Property="Button.Command" Value="{Binding Add}"/>
+        <Setter Property="Button.CommandParameter" Value="{Binding Data}"/>-->
     </Style>
 
     <Style x:Key="BoldCambria" BasedOn="{StaticResource Box}">

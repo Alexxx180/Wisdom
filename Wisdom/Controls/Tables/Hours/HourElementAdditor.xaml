@@ -1,14 +1,17 @@
-﻿<controls:NewItem x:Class="Wisdom.Controls.Tables.Hours.HourElementAdditor"
-             x:TypeArguments="model:Hour"
+﻿<UserControl x:Class="Wisdom.Controls.Tables.Hours.HourElementAdditor"
+             
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:Wisdom.Controls.Templates"
-             xmlns:model="clr-namespace:ControlMaterials.Tables;assembly=ControlMaterials"
              mc:Ignorable="d" 
              d:DesignHeight="35" d:DesignWidth="800"
              x:Name="This">
+    <!--
+             xmlns:model="clr-namespace:ControlMaterials.Tables;assembly=ControlMaterials"
+    
+    x:TypeArguments="model:Hour"
     <Grid>
         <Grid.DataContext>
             <Binding ElementName="This"/>
@@ -60,4 +63,5 @@
             </TextBox>
         </Grid>
     </Grid>
-</controls:NewItem>
+</controls:NewItem>-->
+</UserControl>

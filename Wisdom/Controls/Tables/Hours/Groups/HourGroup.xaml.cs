@@ -14,9 +14,9 @@ namespace Wisdom.Controls.Tables.Hours.Groups
     /// </summary>
     public partial class HourGroup : UserControl, INotifyPropertyChanged, IExtendableItems
     {
-        public static readonly DependencyProperty
-            DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(HybridNode<Hour>), typeof(HourGroup));
+        //public static readonly DependencyProperty
+        //    DataProperty = DependencyProperty.Register(nameof(Data),
+        //        typeof(HybridNode<Hour>), typeof(HourGroup));
 
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
@@ -48,11 +48,11 @@ namespace Wisdom.Controls.Tables.Hours.Groups
             set => SetValue(AddHourProperty, value);
         }
 
-        public HybridNode<Hour> Data
-        {
-            get => GetValue(DataProperty) as HybridNode<Hour>;
-            set => SetValue(DataProperty, value);
-        }
+        //public HybridNode<Hour> Data
+        //{
+        //    get => GetValue(DataProperty) as HybridNode<Hour>;
+        //    set => SetValue(DataProperty, value);
+        //}
 
         #region Hour Members
         public uint Total
@@ -61,13 +61,13 @@ namespace Wisdom.Controls.Tables.Hours.Groups
             {
                 uint total = 0;
 
-                if (Data != null)
-                {
-                    for (ushort i = 0; i < Data.Items.Count; i++)
-                    {
-                        total += Data.Items[i].Count;
-                    }
-                }
+                //if (Data != null)
+                //{
+                //    for (ushort i = 0; i < Data.Items.Count; i++)
+                //    {
+                //        total += Data.Items[i].Count;
+                //    }
+                //}
 
                 return total;
             }
@@ -101,16 +101,16 @@ namespace Wisdom.Controls.Tables.Hours.Groups
         {
             InitializeComponent();
             
-            RemoveHour = new RelayCommand(argument =>
-            {
-                _ = Data.Remove((Hour)argument);
-            });
+            //RemoveHour = new RelayCommand(argument =>
+            //{
+            //    _ = Data.Remove((Hour)argument);
+            //});
 
-            AddHour = new RelayCommand(argument =>
-            {
-                Hour hour = argument as Hour;
-                Data.Add(hour.Copy());
-            });
+            //AddHour = new RelayCommand(argument =>
+            //{
+            //    Hour hour = argument as Hour;
+            //    Data.Add(hour.Copy());
+            //});
 
             Extended = true;
         }

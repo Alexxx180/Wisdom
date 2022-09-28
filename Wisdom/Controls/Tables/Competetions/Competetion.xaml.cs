@@ -1,4 +1,4 @@
-﻿using CompetetionModel = ControlMaterials.Tables.Competetion;
+﻿//using CompetetionModel = ControlMaterials.Tables.Competetion;
 using Wisdom.Controls.Templates;
 
 namespace Wisdom.Controls.Tables.Competetions
@@ -6,7 +6,7 @@ namespace Wisdom.Controls.Tables.Competetions
     /// <summary>
     /// General competetion related to speciality-discipline
     /// </summary>
-    public partial class Competetion : OldItem<CompetetionModel>, IExtendableItems, IWrapFields
+    public partial class Competetion //: OldItem<CompetetionModel>, IExtendableItems, IWrapFields
     {
         #region IExtendableItems Members
         private bool _extended;
@@ -16,7 +16,7 @@ namespace Wisdom.Controls.Tables.Competetions
             set
             {
                 _extended = value;
-                OnPropertyChanged();
+                //OnPropertyChanged();
             }
         }
 
@@ -34,7 +34,7 @@ namespace Wisdom.Controls.Tables.Competetions
             set
             {
                 _isWrap = value;
-                OnPropertyChanged();
+                //OnPropertyChanged();
             }
         }
 

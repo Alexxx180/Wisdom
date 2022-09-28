@@ -88,14 +88,14 @@ namespace Wisdom.Customing
             return sum;
         }
 
-        public static uint Sum(this List<Hour> hours)
-        {
-            uint sum = 0;
-            for (ushort i = 0; i < hours.Count; i++)
-            {
-                sum += hours[i].Count;
-            }
-            return sum;
-        }
+        //public static uint Sum(this List<Hour> hours)
+        //{
+        //    uint sum = 0;
+        //    for (ushort i = 0; i < hours.Count; i++)
+        //    {
+        //        sum += hours[i].Count;
+        //    }
+        //    return sum;
+        //}
     }
 }

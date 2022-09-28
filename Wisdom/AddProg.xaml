@@ -207,7 +207,7 @@
                         </ScrollViewer.VerticalScrollBarVisibility>
 
                         <StackPanel>
-                            <ItemsControl>
+                            <!--<ItemsControl>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <competetions:Competetion Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveGCompetetionCommand}" />
@@ -219,7 +219,7 @@
                                 </ItemsControl.ItemsSource>
                             </ItemsControl>
 
-                            <competetions:CompetetionAdditor Add="{Binding ElementName=VM, Path=AddGCompetetionCommand}"/>
+                            <competetions:CompetetionAdditor Add="{Binding ElementName=VM, Path=DataContext.AddGCompetetionCommand}"/>-->
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem.Content>
@@ -247,7 +247,7 @@
                         </ScrollViewer.VerticalScrollBarVisibility>
 
                         <StackPanel>
-                            <ItemsControl>
+                            <!--<ItemsControl>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <competetiongroups:CompetetionNode Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemovePCompetetionCommand}" />
@@ -259,7 +259,7 @@
                                 </ItemsControl.ItemsSource>
                             </ItemsControl>
 
-                            <competetiongroups:CompetetionNodeAdditor Add="{Binding ElementName=VM, Path=AddPCompetetionCommand}"/>
+                            <competetiongroups:CompetetionNodeAdditor Add="{Binding ElementName=VM, Path=DataContext.AddPCompetetionCommand}"/>-->
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem.Content>
@@ -311,7 +311,7 @@
                             </ScrollViewer.VerticalScrollBarVisibility>
                             
                             <StackPanel>
-                                <ItemsControl>
+                                <!--<ItemsControl>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <levels:Stage Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveLevelCommand}" />
@@ -322,8 +322,8 @@
                                         <Binding Path="Levels"/>
                                     </ItemsControl.ItemsSource>
                                 </ItemsControl>
-                                
-                                <levels:StageAdditor Add="{Binding ElementName=VM, Path=AddLevelCommand}"/>
+
+                                <levels:StageAdditor Add="{Binding ElementName=VM, Path=DataContext.AddLevelCommand}"/>-->
                             </StackPanel>
                         </ScrollViewer>
                     </StackPanel>
@@ -370,8 +370,9 @@
                                     <TextBlock Grid.Column="2" Text="Раздел"/>
                                     <TextBlock Grid.Column="3" Text="Часы"/>
                                 </Grid>
-                                
-                                <ItemsControl>
+
+                                <ContentControl Template="{StaticResource ThemePlanVM}" DataContext="{Binding ThemePlan}"/>
+                                <!--<ItemsControl>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <plan:PlanTopic Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveTopicCommand}" />
@@ -382,8 +383,8 @@
                                         <Binding Path="ThemePlan"/>
                                     </ItemsControl.ItemsSource>
                                 </ItemsControl>
-                                
-                                <plan:PlanTopicAdditor Add="{Binding ElementName=VM, Path=AddTopicCommand}"/>
+
+                                <plan:PlanTopicAdditor Add="{Binding ElementName=VM, Path=DataContext.AddTopicCommand}"/>-->
                             </StackPanel>
                         </ScrollViewer>
 
@@ -429,7 +430,7 @@
                         Auto
                     </ScrollViewer.VerticalScrollBarVisibility>
                     <StackPanel>
-                        <ItemsControl>
+                        <!--<ItemsControl>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <metadata:MetaElement Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveMetaCommand}" />
@@ -441,7 +442,7 @@
                             </ItemsControl.ItemsSource>
                         </ItemsControl>
 
-                        <metadata:MetaElementAdditor Add="{Binding ElementName=VM, Path=AddMetaCommand}"/>
+                        <metadata:MetaElementAdditor Add="{Binding ElementName=VM, Path=DataContext.AddMetaCommand}"/>-->
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
@@ -460,7 +461,7 @@
                         </ScrollViewer.VerticalScrollBarVisibility>
                         
                         <StackPanel>
-                            <ItemsControl>
+                            <!--<ItemsControl>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <sources:SourceGroup Data="{Binding}" Remove="{Binding ElementName=VM, Path=DataContext.RemoveSourceCommand}" />
@@ -472,7 +473,7 @@
                                 </ItemsControl.ItemsSource>
                             </ItemsControl>
 
-                            <sources:SourceGroupAdditor Add="{Binding ElementName=VM, Path=AddSourceCommand}"/>
+                            <sources:SourceGroupAdditor Add="{Binding ElementName=VM, Path=DataContext.AddSourceCommand}"/>-->
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem.Content>

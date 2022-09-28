@@ -6,6 +6,8 @@ using ControlMaterials.Tables;
 using Wisdom.Customing;
 using static Wisdom.Writers.AutoGenerating.AutoFiller;
 using static Wisdom.Writers.Markup.DisciplineProgramMarkup;
+using ControlMaterials.Tables.Tasks;
+using ControlMaterials.Tables.Hours;
 
 namespace Wisdom.Writers.AutoGenerating.Documents
 {
@@ -64,14 +66,14 @@ namespace Wisdom.Writers.AutoGenerating.Documents
                 options[max], max, program.MaxHours);
 
             string classTotal = Expressions[3].Value;
-            CustomizeableProcessing(paragraphs,
-                cells, options[classTotal], classTotal,
-                program.ClassHours.Sum().ToString());
+            //CustomizeableProcessing(paragraphs,
+            //    cells, options[classTotal], classTotal,
+            //    program.ClassHours.Sum().ToString());
 
             string selfTotal = Expressions[4].Value;
-            CustomizeableProcessing(paragraphs,
-                cells, options[selfTotal], selfTotal,
-                program.SelfHours.Sum().ToString());
+            //CustomizeableProcessing(paragraphs,
+            //    cells, options[selfTotal], selfTotal,
+            //    program.SelfHours.Sum().ToString());
 
             string meta = Expressions[5].Value;
             CustomizeableProcessing(paragraphs, cells,
@@ -99,7 +101,7 @@ namespace Wisdom.Writers.AutoGenerating.Documents
             ReplaceInParagraphs(paragraphs, themePlan, ThemePlanTable(program));
 
             string sources = "#SOURCES";
-            ReplaceInParagraphs(paragraphs, sources, Literature(program.Sources));
+            //ReplaceInParagraphs(paragraphs, sources, Literature(program.Sources));
         }
     }
 }

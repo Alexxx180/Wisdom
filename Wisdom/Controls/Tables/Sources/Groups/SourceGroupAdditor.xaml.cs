@@ -19,9 +19,9 @@ namespace Wisdom.Controls.Tables.Sources.Groups
             VariantsProperty = DependencyProperty.Register(nameof(Variants),
                 typeof(ObservableCollection<string>), typeof(SourceGroupAdditor));
         
-        public static readonly DependencyProperty
-            DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(NameNode<IndexedLabel>), typeof(SourceGroupAdditor));
+        //public static readonly DependencyProperty
+        //    DataProperty = DependencyProperty.Register(nameof(Data),
+        //        typeof(NameNode<IndexedLabel>), typeof(SourceGroupAdditor));
 
         public static readonly DependencyProperty
             AddProperty = DependencyProperty.Register(nameof(Add),
@@ -33,11 +33,11 @@ namespace Wisdom.Controls.Tables.Sources.Groups
             set => SetValue(AddProperty, value);
         }
         
-        public NameNode<IndexedLabel> Data
-        {
-            get => GetValue(DataProperty) as Source;
-            set => SetValue(DataProperty, value);
-        }
+        //public NameNode<IndexedLabel> Data
+        //{
+        //    get => GetValue(DataProperty) as Source;
+        //    set => SetValue(DataProperty, value);
+        //}
         
         public ObservableCollection<string> Variants
         {
@@ -49,7 +49,7 @@ namespace Wisdom.Controls.Tables.Sources.Groups
         public SourceGroupAdditor()
         {
             InitializeComponent();
-            Data = new NameNode<IndexedLabel>();
+            //Data = new NameNode<IndexedLabel>();
         }
 
         #region INotifyPropertyChanged Members

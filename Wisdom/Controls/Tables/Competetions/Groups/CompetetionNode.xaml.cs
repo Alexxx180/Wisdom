@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Wisdom.ViewModel.Commands;
 using System.Windows.Input;
 using ControlMaterials.Total;
+using ControlMaterials.Total.Collections.Nodes;
 
 namespace Wisdom.Controls.Tables.Competetions.Groups
 {
@@ -14,9 +15,9 @@ namespace Wisdom.Controls.Tables.Competetions.Groups
     public partial class CompetetionNode : UserControl, INotifyPropertyChanged, IExtendableItems
     {
         #region Dependency Properties
-        public static readonly DependencyProperty
-            DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(IndexNode<Competetion>), typeof(CompetetionNode));
+        //public static readonly DependencyProperty
+        //    DataProperty = DependencyProperty.Register(nameof(Data),
+        //        typeof(IndexNode<Competetion>), typeof(CompetetionNode));
 
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
@@ -28,11 +29,11 @@ namespace Wisdom.Controls.Tables.Competetions.Groups
             set => SetValue(RemoveProperty, value);
         }
         
-        public IndexNode<Competetion> Data
-        {
-            get => GetValue(DataProperty) as IndexNode<Competetion>;
-            set => SetValue(DataProperty, value);
-        }
+        //public IndexNode<Competetion> Data
+        //{
+        //    get => GetValue(DataProperty) as IndexNode<Competetion>;
+        //    set => SetValue(DataProperty, value);
+        //}
         #endregion
 
         public ICommand RemoveCompetetion { get; }
@@ -59,10 +60,10 @@ namespace Wisdom.Controls.Tables.Competetions.Groups
         {
             InitializeComponent();
             Extended = true;
-            RemoveCompetetion = new RelayCommand(argument =>
-            {
-                Data.Remove((Competetion)argument);
-            });
+            //RemoveCompetetion = new RelayCommand(argument =>
+            //{
+            //    Data.Remove((Competetion)argument);
+            //});
         }
 
         #region INotifyPropertyChanged Members

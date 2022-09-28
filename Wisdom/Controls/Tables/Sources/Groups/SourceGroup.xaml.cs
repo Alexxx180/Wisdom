@@ -22,9 +22,9 @@ namespace Wisdom.Controls.Tables.Sources.Groups
             VariantsProperty = DependencyProperty.Register(nameof(Variants),
                 typeof(ObservableCollection<string>), typeof(SourceGroup));
         
-        public static readonly DependencyProperty
-            DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(NameNode<IndexedLabel>), typeof(SourceGroup));
+        //public static readonly DependencyProperty
+        //    DataProperty = DependencyProperty.Register(nameof(Data),
+        //        typeof(NameNode<IndexedLabel>), typeof(SourceGroup));
 
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
@@ -36,11 +36,11 @@ namespace Wisdom.Controls.Tables.Sources.Groups
             set => SetValue(RemoveProperty, value);
         }
         
-        public NameNode<IndexedLabel> Data
-        {
-            get => GetValue(DataProperty) as Source;
-            set => SetValue(DataProperty, value);
-        }
+        //public NameNode<IndexedLabel> Data
+        //{
+        //    get => GetValue(DataProperty) as Source;
+        //    set => SetValue(DataProperty, value);
+        //}
         
         public ObservableCollection<string> Variants
         {
@@ -54,10 +54,10 @@ namespace Wisdom.Controls.Tables.Sources.Groups
         public SourceGroup()
         {
             InitializeComponent();
-            RemoveSource = new RelayCommand(argument =>
-            {
-                Data.Remove((IndexedLabel)argument);
-            });
+            //RemoveSource = new RelayCommand(argument =>
+            //{
+            //    Data.Remove((IndexedLabel)argument);
+            //});
         }
 
         #region INotifyPropertyChanged Members

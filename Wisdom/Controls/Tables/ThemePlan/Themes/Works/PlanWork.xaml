@@ -80,7 +80,7 @@
                 <TextBlock Grid.Column="3" Text="Часы "/>
             </Grid>
             
-            <ItemsControl>
+            <!--<ItemsControl>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <tasks:PlanTask Data="{Binding}" Remove="{Binding ElementName=This, Path=DataContext.RemoveTask}" />
@@ -92,7 +92,7 @@
                 </ItemsControl.ItemsSource>
             </ItemsControl>
 
-            <tasks:PlanTaskAdditor Add="{Binding Path=AddTask}"/>
+            <tasks:PlanTaskAdditor Add="{Binding Path=AddTask}"/>-->
         </StackPanel>
         
     </StackPanel>

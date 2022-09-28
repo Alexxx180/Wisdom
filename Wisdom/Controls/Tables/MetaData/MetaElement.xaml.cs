@@ -6,7 +6,7 @@ namespace Wisdom.Controls.Tables.MetaData
     /// <summary>
     /// Record component containing discipline meta data
     /// </summary>
-    public partial class MetaElement : OldItem<Task>, IWrapFields
+    public partial class MetaElement //: OldItem<Task>, IWrapFields
     {
         #region IWrapFields Members
         private bool _isWrap;
@@ -16,7 +16,7 @@ namespace Wisdom.Controls.Tables.MetaData
             set
             {
                 _isWrap = value;
-                OnPropertyChanged();
+                //OnPropertyChanged();
             }
         }
 

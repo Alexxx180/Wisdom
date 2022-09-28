@@ -414,3 +414,6 @@ D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\R
 D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Controls\Tables\Levels\Stage.baml
 D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Controls\Tables\Levels\StageAdditor.baml
 D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Controls\Tables\Sources\Groups\SourceGroup.baml
+D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Wisdom.csproj.AssemblyReference.cache
+D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Resources\ControlTemplates\TableItems.baml
+D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\obj\Release\net5.0-windows\Resources\ControlTemplates\ItemLayouts.baml

@@ -16,9 +16,9 @@ namespace Wisdom.Controls.Tables.Competetions.Groups
     public partial class CompetetionNodeAdditor : UserControl, INotifyPropertyChanged, IExtendableItems
     {
         #region Dependency Properties
-        public static readonly DependencyProperty
-            DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(IndexNode<Competetion>), typeof(CompetetionNodeAdditor));
+        //public static readonly DependencyProperty
+        //    DataProperty = DependencyProperty.Register(nameof(Data),
+        //        typeof(IndexNode<Competetion>), typeof(CompetetionNodeAdditor));
 
         public static readonly DependencyProperty
             AddProperty = DependencyProperty.Register(nameof(Add),
@@ -30,11 +30,11 @@ namespace Wisdom.Controls.Tables.Competetions.Groups
             set => SetValue(AddProperty, value);
         }
         
-        public IndexNode<Competetion> Data
-        {
-            get => GetValue(DataProperty) as IndexNode<Competetion>;
-            set => SetValue(DataProperty, value);
-        }
+        //public IndexNode<Competetion> Data
+        //{
+        //    get => GetValue(DataProperty) as IndexNode<Competetion>;
+        //    set => SetValue(DataProperty, value);
+        //}
         #endregion
 
         public ICommand RemoveCompetetion { get; }
@@ -61,10 +61,10 @@ namespace Wisdom.Controls.Tables.Competetions.Groups
         {
             InitializeComponent();
             Extended = true;
-            RemoveCompetetion = new RelayCommand(argument =>
-            {
-                Data.Items.Remove((Competetion)argument);
-            });
+            //RemoveCompetetion = new RelayCommand(argument =>
+            //{
+            //    Data.Items.Remove((Competetion)argument);
+            //});
         }
 
         #region INotifyPropertyChanged Members

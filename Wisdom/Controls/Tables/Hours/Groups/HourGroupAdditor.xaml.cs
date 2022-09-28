@@ -13,9 +13,9 @@ namespace Wisdom.Controls.Tables.Hours.Groups
     /// </summary>
     public partial class HourGroupAdditor : UserControl, INotifyPropertyChanged
     {
-        public static readonly DependencyProperty
-            DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(HybridNode<Hour>), typeof(HourGroupAdditor));
+        //public static readonly DependencyProperty
+        //    DataProperty = DependencyProperty.Register(nameof(Data),
+        //        typeof(HybridNode<Hour>), typeof(HourGroupAdditor));
 
         public static readonly DependencyProperty
             AddProperty = DependencyProperty.Register(nameof(Add),
@@ -27,11 +27,11 @@ namespace Wisdom.Controls.Tables.Hours.Groups
             set => SetValue(AddProperty, value);
         }
 
-        public HybridNode<Hour> Data
-        {
-            get => GetValue(DataProperty) as HybridNode<Hour>;
-            set => SetValue(DataProperty, value);
-        }
+        //public HybridNode<Hour> Data
+        //{
+        //    get => GetValue(DataProperty) as HybridNode<Hour>;
+        //    set => SetValue(DataProperty, value);
+        //}
 
         #region Hour Members
         public void RefreshHours()
@@ -43,7 +43,7 @@ namespace Wisdom.Controls.Tables.Hours.Groups
         public HourGroupAdditor()
         {
             InitializeComponent();
-            Data = new HybridNode<Hour>();
+            //Data = new HybridNode<Hour>();
         }
 
         #region INotifyPropertyChanged Members

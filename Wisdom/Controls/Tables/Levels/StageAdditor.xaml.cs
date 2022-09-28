@@ -6,12 +6,12 @@ namespace Wisdom.Controls.Tables.Levels
     /// <summary>
     /// Adds new education level when used
     /// </summary>
-    public partial class StageAdditor : NewItem<Level>
+    public partial class StageAdditor //: NewItem<Level>
     {
         public StageAdditor()
         {
             InitializeComponent();
-            Data = new Level();
+            //Data = new Level();
         }
     }
 }

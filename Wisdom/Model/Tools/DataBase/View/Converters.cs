@@ -6,6 +6,8 @@ using ControlMaterials;
 using ControlMaterials.Tables;
 using ControlMaterials.Tables.ThemePlan;
 using static Wisdom.Customing.Converters;
+using ControlMaterials.Tables.Tasks;
+using ControlMaterials.Tables.Hours;
 
 namespace Wisdom.Model.Tools.DataBase
 {
@@ -361,7 +363,7 @@ namespace Wisdom.Model.Tools.DataBase
                     }
                 }
 
-                discipline.Sources.AddRange(SetSources(sources));
+                //discipline.Sources.AddRange(SetSources(sources));
                 discipline.Plan.AddRange(themePlan);
                 discipline.GeneralCompetetions.AddRange(SetGeneral(generalCompetetions));
                 discipline.ProfessionalCompetetions.AddRange(SetProfessional(professionalCompetetions));

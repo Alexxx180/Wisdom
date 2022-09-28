@@ -4,6 +4,7 @@ using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Tables;
 using Wisdom.Customing;
 using static Wisdom.Model.Tools.DataBase.Converters;
+using ControlMaterials.Tables.Tasks;
 
 namespace Wisdom.Model.Tools.DataBase
 {
@@ -89,7 +90,7 @@ namespace Wisdom.Model.Tools.DataBase
                 List<object[]> themesData = _dataBase.Themes(topicId);
                 List<Theme> themes = GetThemes(themesData);
 
-                HoursNode<Theme> topic = new HoursNode<Theme>
+                HoursNode<Theme> topic = new HoursNode<Theme>(new Theme())
                 {
                     Name = row[2].ToString(),
                     //Hours = row[3].ToString(),

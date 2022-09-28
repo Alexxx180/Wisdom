@@ -1,15 +1,16 @@
-﻿<controls:NewItem x:Class="Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks.PlanTaskAdditor"
-                 x:TypeArguments="model:IndexedHour"
+﻿<UserControl x:Class="Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks.PlanTaskAdditor"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                  xmlns:controls="clr-namespace:Wisdom.Controls.Templates"
-                 xmlns:model="clr-namespace:ControlMaterials.Tables;assembly=ControlMaterials"
                  mc:Ignorable="d" 
                  d:DesignHeight="35" d:DesignWidth="600" x:Name="This"
                  Height="35">
-    <Grid>
+    <!--<Grid>
+                 x:TypeArguments="model:IndexedHour"
+                 xmlns:model="clr-namespace:ControlMaterials.Tables;assembly=ControlMaterials"
+    
         <Grid.DataContext>
             <Binding ElementName="This"/>
         </Grid.DataContext>
@@ -63,5 +64,5 @@
                 </TextBox.Text>
             </TextBox>
         </Grid>
-    </Grid>
-</controls:NewItem>
+    </Grid>-->
+</UserControl>
