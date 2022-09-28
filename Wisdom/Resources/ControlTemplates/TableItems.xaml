@@ -1,62 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ControlTemplate x:Key="TopicAdditor">
-        <Grid Style="{StaticResource Light}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="35" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-
-            <Button Style="{StaticResource AddButton}"
-                    Command="{Binding AddCommand}"/>
-
-            <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="90" />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="60" />
-                </Grid.ColumnDefinitions>
-
-                <TextBox Style="{StaticResource NoBox}">
-                    <TextBox.Text>
-                        <Binding Path="No" Mode="TwoWay">
-                            <Binding.UpdateSourceTrigger>
-                                LostFocus
-                            </Binding.UpdateSourceTrigger>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-
-                <TextBox Grid.Column="1">
-                    <TextBox.Style>
-                        <StaticResource ResourceKey="LightBox"/>
-                    </TextBox.Style>
-                    <TextBox.Text>
-                        <Binding Path="Name" Mode="TwoWay">
-                            <Binding.UpdateSourceTrigger>
-                                LostFocus
-                            </Binding.UpdateSourceTrigger>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-
-                <TextBox Grid.Column="3">
-                    <TextBox.Style>
-                        <StaticResource ResourceKey="HoursBoxLight"/>
-                    </TextBox.Style>
-                    <TextBox.Text>
-                        <Binding Path="Hours" Mode="TwoWay">
-                            <Binding.UpdateSourceTrigger>
-                                LostFocus
-                            </Binding.UpdateSourceTrigger>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-            </Grid>
-        </Grid>
-    </ControlTemplate>
-
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:tables="clr-namespace:Wisdom.Controls.Tables">
     <ControlTemplate x:Key="ThemePlanVM">
         <StackPanel Grid.Row="1" Background="#FFF5FFFF">
             <!--<StackPanel.Visibility>
@@ -69,7 +13,9 @@
 
             <ItemsControl x:Name="ItemsContainer">
                 <ItemsControl.ItemTemplate>
-                    <StaticResource ResourceKey="TopicRemover"/>
+                    <DataTemplate>
+                        <tables:Remover Item="{StaticResource TopicNode}"/>
+                    </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 
                 <ItemsControl.ItemsSource>
@@ -81,7 +27,7 @@
                 </ItemsControl.ItemsSource>
             </ItemsControl>
 
-            <ContentControl Template="{StaticResource TopicAdditor}"/>
+            <tables:Additor Item="{StaticResource Topic}"/>
         </StackPanel>
     </ControlTemplate>
 

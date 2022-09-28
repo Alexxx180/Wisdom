@@ -156,3 +156,193 @@
 2022-09-28 16:19:19.916 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
 2022-09-28 16:19:21.422 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
 2022-09-28 16:20:10.361 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 16:46:10.482 +03:00 [INF] Application started
+2022-09-28 16:46:10.513 +03:00 [DBG] Collecting configuration info...
+2022-09-28 16:46:10.532 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 16:46:10.532 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 16:46:10.537 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 16:46:10.568 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 16:46:10.568 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 16:46:13.565 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 16:46:13.565 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 16:46:13.570 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 16:46:13.606 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 16:46:15.363 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 16:46:19.009 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 16:46:50.226 +03:00 [INF] Application started
+2022-09-28 16:46:50.259 +03:00 [DBG] Collecting configuration info...
+2022-09-28 16:46:50.281 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 16:46:50.281 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 16:46:50.287 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 16:46:50.324 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 16:46:50.324 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 16:46:52.692 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 16:46:52.692 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 16:46:52.696 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 16:46:52.733 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 16:46:54.184 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 16:56:13.409 +03:00 [INF] Application started
+2022-09-28 16:56:13.440 +03:00 [DBG] Collecting configuration info...
+2022-09-28 16:56:13.459 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 16:56:13.459 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 16:56:13.464 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 16:56:13.494 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 16:56:13.494 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 16:56:15.744 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 16:56:15.744 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 16:56:15.751 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 16:56:15.812 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 16:56:17.465 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 16:58:19.551 +03:00 [INF] Application started
+2022-09-28 16:58:19.582 +03:00 [DBG] Collecting configuration info...
+2022-09-28 16:58:19.600 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 16:58:19.600 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 16:58:19.605 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 16:58:19.635 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 16:58:19.635 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 16:58:22.042 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 16:58:22.042 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 16:58:22.048 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 16:58:22.088 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 16:58:23.699 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 16:58:30.874 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 17:09:26.762 +03:00 [INF] Application started
+2022-09-28 17:09:26.793 +03:00 [DBG] Collecting configuration info...
+2022-09-28 17:09:26.812 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 17:09:26.812 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 17:09:26.817 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 17:09:26.851 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 17:09:26.851 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 17:09:29.464 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 17:09:29.464 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 17:09:29.469 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 17:09:29.523 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 17:09:45.395 +03:00 [INF] Application started
+2022-09-28 17:09:45.430 +03:00 [DBG] Collecting configuration info...
+2022-09-28 17:09:45.448 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 17:09:45.448 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 17:09:45.453 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 17:09:45.482 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 17:09:45.482 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 17:09:47.936 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 17:09:47.936 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 17:09:47.940 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 17:09:47.974 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 17:09:49.541 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 17:11:14.309 +03:00 [INF] Application started
+2022-09-28 17:11:14.341 +03:00 [DBG] Collecting configuration info...
+2022-09-28 17:11:14.362 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 17:11:14.362 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 17:11:14.370 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 17:11:14.401 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 17:11:14.401 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 17:11:18.091 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 17:11:18.091 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 17:11:18.096 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 17:11:18.141 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 17:11:19.892 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 17:11:26.893 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 18:06:46.545 +03:00 [INF] Application started
+2022-09-28 18:06:46.576 +03:00 [DBG] Collecting configuration info...
+2022-09-28 18:06:46.597 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 18:06:46.597 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 18:06:46.603 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 18:06:46.642 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 18:06:46.642 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 18:06:48.939 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 18:06:48.939 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 18:06:48.944 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 18:06:48.982 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 18:06:50.716 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 18:07:28.105 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 18:09:14.958 +03:00 [INF] Application started
+2022-09-28 18:09:14.990 +03:00 [DBG] Collecting configuration info...
+2022-09-28 18:09:15.016 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 18:09:15.016 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 18:09:15.022 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 18:09:15.053 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 18:09:15.053 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 18:09:17.773 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 18:09:17.773 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 18:09:17.780 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 18:09:17.825 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 18:09:19.590 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 18:10:20.882 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 18:11:14.753 +03:00 [INF] Application started
+2022-09-28 18:11:14.787 +03:00 [DBG] Collecting configuration info...
+2022-09-28 18:11:14.805 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 18:11:14.805 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 18:11:14.810 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 18:11:14.841 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 18:11:14.841 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 18:11:17.286 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 18:11:17.286 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 18:11:17.292 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 18:11:17.332 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 18:11:19.287 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 18:13:18.059 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 19:30:31.117 +03:00 [INF] Application started
+2022-09-28 19:30:31.157 +03:00 [DBG] Collecting configuration info...
+2022-09-28 19:30:31.177 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 19:30:31.177 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 19:30:31.177 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 19:30:31.237 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 19:30:31.237 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 19:30:33.567 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 19:30:33.567 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 19:30:33.572 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 19:30:33.611 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 19:30:35.330 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 19:30:42.108 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 19:30:56.238 +03:00 [INF] Application started
+2022-09-28 19:30:56.278 +03:00 [DBG] Collecting configuration info...
+2022-09-28 19:30:56.298 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 19:30:56.298 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 19:30:56.308 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 19:30:56.338 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 19:30:56.338 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 19:30:59.055 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 19:30:59.055 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 19:30:59.059 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 19:30:59.094 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 19:31:01.084 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 19:31:28.767 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 19:32:42.026 +03:00 [INF] Application started
+2022-09-28 19:32:42.056 +03:00 [DBG] Collecting configuration info...
+2022-09-28 19:32:42.076 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 19:32:42.076 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 19:32:42.116 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 19:32:42.156 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 19:32:42.156 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 19:32:44.358 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 19:32:44.359 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 19:32:44.363 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 19:32:44.396 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 19:32:46.088 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 19:33:16.329 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 19:41:35.545 +03:00 [INF] Application started
+2022-09-28 19:41:35.575 +03:00 [DBG] Collecting configuration info...
+2022-09-28 19:41:35.595 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 19:41:35.595 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 19:41:35.625 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 19:41:35.665 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 19:41:35.665 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 19:41:38.073 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 19:41:38.073 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 19:41:38.078 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 19:41:38.123 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 19:41:40.124 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 19:41:50.905 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 19:43:15.532 +03:00 [INF] Application started
+2022-09-28 19:43:15.562 +03:00 [DBG] Collecting configuration info...
+2022-09-28 19:43:15.592 +03:00 [DBG] Configuration directory set as: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\
+2022-09-28 19:43:15.592 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 19:43:15.602 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Config.json
+2022-09-28 19:43:15.632 +03:00 [DBG] Loading runtime: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 19:43:15.632 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Data.json
+2022-09-28 19:43:18.145 +03:00 [DBG] Loading config: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Runtime\Preferences.json
+2022-09-28 19:43:18.145 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Preferences.json
+2022-09-28 19:43:18.150 +03:00 [INF] Loading templates from folder: D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON
+2022-09-28 19:43:18.188 +03:00 [ERR] Exception on templates loading: Could not find a part of the path 'D:\Aleksandr\Windows-7\Учёба, ПТК НовГУ\4 курс\ДИПЛОМ\Шаблоны JSON'.
+2022-09-28 19:43:19.886 +03:00 [INF] Reading user data from: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json
+2022-09-28 19:44:55.041 +03:00 [INF] Truncating file: D:\Aleksandr\misc\Development\Projects\Wisdom-and-Prosperity\Wisdom\Wisdom\bin\Release\net5.0-windows\Resources\Configuration\Settings\DisciplineProgram.json

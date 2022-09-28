@@ -24,6 +24,9 @@
     <Compile Update="Controls\MultiComboBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\Tables\Additor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\Tables\AutoIndexer.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -64,6 +67,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Tables\RecordsPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\Tables\Remover.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\Tables\Sources\SourceElement.xaml.cs">
@@ -116,6 +122,9 @@
     <Page Update="Controls\MultiComboBox.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Controls\Tables\Additor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\Tables\AutoIndexer.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -159,6 +168,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\RecordsPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\Tables\Remover.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\Tables\Sources\SourceElement.xaml">

@@ -1,19 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:plan="clr-namespace:Wisdom.ViewModel.Tables.ThemePlan">
-    <DataTemplate x:Key="TopicRemover">
-        <Grid Style="{StaticResource Light}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="35" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-            <Button Style="{StaticResource DeleteButton}"/>
-            <ContentControl Grid.Column="1" Template="{StaticResource Topic}"
-                            DataContext="{Binding Items.Additor}"/>
-        </Grid>
-    </DataTemplate>
-    
+                    xmlns:plan="clr-namespace:Wisdom.ViewModel.Tables.ThemePlan"
+                    xmlns:tables="clr-namespace:Wisdom.Controls.Tables">
     <DataTemplate DataType="plan:TopicVM">
         <!--x:Key="TOPIC1" -->
         <StackPanel>
