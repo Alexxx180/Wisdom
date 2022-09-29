@@ -8,22 +8,21 @@ using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables
 {
-    public abstract class TNode<T> : Highlightable where T : ISum, IHighlighting, INumerable, ICloneable<T>
+    public abstract class TNode<T> : Highlightable, IParent<T> where T : ISum, IHighlighting, INumerable, ICloneable<T>
     {
-        private TNode()
+        private protected TNode()
         {
             AddCommand = new RelayCommand(argument => Items.Add());
-            RemoveCommand = new RelayCommand(argument =>
-            {
-                _ = Items.Remove((T)argument);
-            });
+            //RemoveCommand = new RelayCommand(argument =>
+            //{
+            //    _ = Items.Remove((T)argument);
+            //});
         }
 
-        public TNode(T additor) : this()
+        private protected void BuildItems(T additor)
         {
             Bridge<ISummator> bridge = new Bridge<ISummator>();
-            SetItems(additor, Numeration<T>(), SumCount<T>(bridge),
-                Highlighting<T>(bridge));
+            SetItems(additor, Numeration<T>(), SumCount<T>(bridge), Highlighting<T>(bridge));
         }
 
         public T this[int no]
@@ -43,6 +42,11 @@ namespace Wisdom.ViewModel.Tables
             }
         }
 
+        public void Remove(T item)
+        {
+            _ = Items.Remove(item);
+        }
+
         private protected void SetItems(T additor, params State<T>[][] states)
         {
             SetItems(new OptionableCollection<T>(additor, states));
@@ -54,6 +58,6 @@ namespace Wisdom.ViewModel.Tables
         }
 
         public ICommand AddCommand { get; }
-        public ICommand RemoveCommand { get; }
+        //public ICommand RemoveCommand { get; }
     }
 }

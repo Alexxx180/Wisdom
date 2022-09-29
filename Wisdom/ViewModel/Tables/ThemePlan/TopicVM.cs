@@ -1,5 +1,7 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
+using System.Windows.Input;
+using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
@@ -7,9 +9,14 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
     {
         private readonly HoursNode<Theme> _topic;
 
-        public TopicVM(HoursNode<Theme> topic) : base(new ThemeVM(new Theme()))
+        public TopicVM(HoursNode<Theme> topic, IParent<TopicVM> parent)
         {
             _topic = topic;
+            Parent = parent;
+            RemoveCommand = new RelayCommand
+                (argument => Parent.Remove(this));
+
+            BuildItems(new ThemeVM(new Theme(), this));
         }
 
         public override ushort No
@@ -41,7 +48,10 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
                 OnPropertyChanged();
             }
         }
-        
-        public TopicVM Copy() => new TopicVM(_topic.Copy());
+
+        public IParent<TopicVM> Parent { get; set; }
+        public ICommand RemoveCommand { get; }
+
+        public TopicVM Copy() => new TopicVM(_topic.Copy(), Parent);
     }
 }

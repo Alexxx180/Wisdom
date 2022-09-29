@@ -5,14 +5,10 @@
         <Setter Property="Control.FontFamily" Value="Gill Sans MT"/>
         <Setter Property="Button.Content" Value="X"/>
         <Setter Property="Button.CommandParameter" Value="{Binding}"/>
-        <Setter Property="Button.Command">
-            <Setter.Value>
-                <Binding ElementName="ItemsContainer" Path="DataContext.RemoveCommand">
-                    <!--<Binding.RelativeSource>
-                        <RelativeSource AncestorLevel="1" AncestorType="OptionableCollection"/>
-                    </Binding.RelativeSource>-->
-                </Binding>
-            </Setter.Value>
+        <Setter Property="Button.Command" Value="{Binding RemoveCommand}">
+            <!--<Setter.Value>
+                <Binding ElementName="ItemsContainer" Path="DataContext.RemoveCommand"/>
+            </Setter.Value>-->
         </Setter>
     </Style>
 

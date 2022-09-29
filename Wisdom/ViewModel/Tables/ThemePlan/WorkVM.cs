@@ -1,6 +1,8 @@
 ﻿using ControlMaterials.Tables.Hours;
 using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
+using System.Windows.Input;
+using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
@@ -8,9 +10,13 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
     {
         private readonly Work _work;
 
-        public WorkVM(Work work) : base(new TaskVM(new IndexedHour()))
+        public WorkVM(Work work)
         {
             _work = work;
+            RemoveCommand = new RelayCommand
+                (argument => Parent.Remove((WorkVM)argument));
+
+            BuildItems(new TaskVM(new IndexedHour()) { Parent = this });
         }
 
         public override ushort No
@@ -43,6 +49,15 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public WorkVM Copy() => new WorkVM(_work.Copy());
+        public IParent<WorkVM> Parent { get; set; }
+        public ICommand RemoveCommand { get; }
+        
+        public WorkVM Copy()
+        {
+            return new WorkVM(_work.Copy())
+            {
+                Parent = Parent
+            };
+        }
     }
 }

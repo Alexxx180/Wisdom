@@ -299,7 +299,7 @@ namespace Wisdom.ViewModel
             SpecialitySelect = new ObservableCollection<Task>();
             DisciplinesSelect = new ObservableCollection<Task>();
             
-            Levels = new LevelsVM();
+            //Levels = new LevelsVM();
             
             ThemePlan = new ThemePlanVM(new Plan());
             

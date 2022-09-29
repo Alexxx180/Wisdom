@@ -1,6 +1,5 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
-using ControlMaterials.Total.Count;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
@@ -8,9 +7,11 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
     {
         private readonly Plan _plan;
 
-        public ThemePlanVM(Plan plan) : base(new TopicVM(new HoursNode<Theme>(new Theme())))
+        public ThemePlanVM(Plan plan)
         {
             _plan = plan;
+
+            BuildItems(new TopicVM(new HoursNode<Theme>(new Theme()), this));
         }
 
         private ushort _no;

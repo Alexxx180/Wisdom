@@ -2,6 +2,8 @@
 using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
+using System.Windows.Input;
+using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
@@ -9,9 +11,14 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
     {
         private readonly Theme _theme;
 
-        public ThemeVM(Theme theme) : base(new WorkVM(new Work()))
+        public ThemeVM(Theme theme, IParent<ThemeVM> parent)
         {
             _theme = theme;
+            Parent = parent;
+            RemoveCommand = new RelayCommand
+                (argument => Parent.Remove((ThemeVM)argument));
+
+            BuildItems(new WorkVM(new Work()) { Parent = this });
         }
 
         public override ushort No
@@ -65,6 +72,9 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public ThemeVM Copy() => new ThemeVM(_theme.Copy());
+        public IParent<ThemeVM> Parent { get; set; }
+        public ICommand RemoveCommand { get; }
+
+        public ThemeVM Copy() => new ThemeVM(_theme.Copy(), Parent);
     }
 }
