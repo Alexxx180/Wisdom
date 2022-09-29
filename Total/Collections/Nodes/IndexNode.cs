@@ -24,7 +24,7 @@ namespace ControlMaterials.Total.Collections.Nodes
             SetItems(items);
         }
 
-        private protected State<T>[] Numeration()
+        public static State<T>[] Numeration()
         {
             return new State<T>[]
             {
@@ -60,6 +60,11 @@ namespace ControlMaterials.Total.Collections.Nodes
         public void Option(int no, int no2)
         {
             _items.Set(no, no2);
+        }
+
+        public void Clear()
+        {
+            _items.Clear();
         }
 
         private protected void SetItems(T additor, params State<T>[][] states)

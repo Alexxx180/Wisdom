@@ -2,31 +2,21 @@ using ControlMaterials.Total;
 
 namespace ControlMaterials.Tables.Tasks
 {
-    public class Level : Indexer
+    public class Level : Metadata, ICloneable<Level>
     {
-        public Level()
+        public Level() { }
+
+        public Level(ushort no, string name, string data) :
+            base(name, data)
         {
-            Description = new Task("", "");
+            No = no;
         }
+
+        public ushort No { get; set; }
 
         public override Level Copy()
         {
-            return new Level
-            {
-                No = No,
-                Description = Description
-            };
-        }
-
-        private Task _description;
-        public Task Description
-        {
-            get => _description;
-            set
-            {
-                _description = value;
-                OnPropertyChanged();
-            }
+            return new Level(No, Name, Data);
         }
     }
 }

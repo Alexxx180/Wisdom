@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class HoursNode<T> : HybridNode<T>, ISum, ICount, IHighlighting where T : INumerable, ISum, ICloneable<T>
+    public class HoursNode<T> : HybridNode<T>, ISum, ICount, IHighlighting, ICloneable<HoursNode<T>> where T : INumerable, ISum, ICloneable<T>
     {
         static HoursNode()
         {

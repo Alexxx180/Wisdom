@@ -1,35 +1,21 @@
-using ControlMaterials.Tables.Hours;
 using ControlMaterials.Total;
-using ControlMaterials.Total.Collections;
-using ControlMaterials.Total.Count;
-using ControlMaterials.Total.Numeration;
 
 namespace ControlMaterials.Tables.ThemePlan
 {
-    public class Work : HoursNode<IndexedHour>, ISum, INumerable, ICloneable<Work>
+    public class Work : NameLabel, ICloneable<Work>
     {
-        public Work() : base(new IndexedHour()) { }
+        public Work() { }
 
-        public Work(OptionableCollection<IndexedHour> items) : base(items) { }
-
-        public Work(string name) : this()
+        public Work(string name, ushort hours) : base(name)
         {
-            Name = name;
+            Hours = hours;
         }
 
-        public void SetHours(ushort count)
-        {
-            Hours = count;
-        }
-
+        public ushort Hours { get; set; }
+        
         public override Work Copy()
         {
-            return new Work(_items)
-            {
-                No = No,
-                Name = Name,
-                Hours = Hours
-            };
+            return new Work(Name, Hours);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using ControlMaterials.Tables.Tasks;
 using ControlMaterials.Tables.ThemePlan;
+using ControlMaterials.Total;
+using ControlMaterials.Total.Collections.Nodes;
 
 namespace ControlMaterials.Documents
 {
@@ -11,10 +13,10 @@ namespace ControlMaterials.Documents
         public DisciplineProgram() : base()
         {
             MaxHours = "-";
-            StudyLevels = new List<Task>();
-            MetaData = new List<Task>();
-            Sources = new List<Source>();
-            Plan = new List<HoursNode<Theme>>();
+            StudyLevels = new List<Metadata>();
+            MetaData = new List<Metadata>();
+            Sources = new List<HybridNode<IndexedLabel>>();
+            Plan = new List<Topic>();
         }
 
         // Speciality
@@ -23,6 +25,6 @@ namespace ControlMaterials.Documents
         // Total hours count (user preset)
         public string MaxHours { get; set; }
 
-        public List<Task> StudyLevels { get; set; }
+        public List<Metadata> StudyLevels { get; set; }
     }
 }

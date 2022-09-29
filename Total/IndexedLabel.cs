@@ -1,6 +1,6 @@
 namespace ControlMaterials.Total
 {
-    public class IndexedLabel : Indexer
+    public class IndexedLabel : Indexer, ICloneable<IndexedLabel>
     {
         public IndexedLabel() { }
 
