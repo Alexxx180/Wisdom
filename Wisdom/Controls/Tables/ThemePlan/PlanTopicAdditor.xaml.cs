@@ -14,7 +14,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
     {
         public static readonly DependencyProperty
             DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(HoursNode<Theme>), typeof(PlanTopicAdditor));
+                typeof(Topic), typeof(PlanTopicAdditor));
 
         public static readonly DependencyProperty
             AddProperty = DependencyProperty.Register(nameof(Add),
@@ -26,9 +26,9 @@ namespace Wisdom.Controls.Tables.ThemePlan
             set => SetValue(AddProperty, value);
         }
         
-        public HoursNode<Theme> Data
+        public Topic Data
         {
-            get => GetValue(DataProperty) as HoursNode<Theme>;
+            get => GetValue(DataProperty) as Topic;
             set => SetValue(DataProperty, value);
         }
 

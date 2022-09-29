@@ -15,12 +15,11 @@ using Wisdom.Model;
 using System.Windows.Input;
 using Wisdom.ViewModel.Commands;
 using ControlMaterials.Total.Collections.Nodes;
-using ControlMaterials.Tables.Hours;
-using ControlMaterials.Tables.Tasks;
 using ControlMaterials.Total.Collections;
 using ControlMaterials.Total.Numeration;
 using Wisdom.ViewModel.Tables.ThemePlan;
 using Wisdom.ViewModel.Tables.Competetions;
+using ControlMaterials.Tables.Tasks;
 
 namespace Wisdom.ViewModel
 {
@@ -106,8 +105,8 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private ObservableCollection<Task> _specialitySelect;
-        public ObservableCollection<Task> SpecialitySelect
+        private ObservableCollection<Metadata> _specialitySelect;
+        public ObservableCollection<Metadata> SpecialitySelect
         {
             get => _specialitySelect;
             set
@@ -144,8 +143,8 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private ObservableCollection<Task> _disciplinesSelect;
-        public ObservableCollection<Task> DisciplinesSelect
+        private ObservableCollection<Metadata> _disciplinesSelect;
+        public ObservableCollection<Metadata> DisciplinesSelect
         {
             get => _disciplinesSelect;
             set
@@ -162,10 +161,11 @@ namespace Wisdom.ViewModel
             {
                 int max = 0;
 
-                for (ushort i = 0; i < Hours.Count; i++)
-                {
-                    max += Hours[i].No;//Value; //.Total.ParseHours();
-                }
+                //Value; //.Total.ParseHours();
+                //for (ushort i = 0; i < Hours.Count; i++)
+                //{
+                //    max += Hours[i].No;
+                //}
 
                 return max.ToString();
             }
@@ -194,49 +194,49 @@ namespace Wisdom.ViewModel
         public ICommand RemovePCompetetionCommand { get; }
 
         #region Data template members
-        private HoursNode<HoursNode<IndexedHour>> _hours;
-        public HoursNode<HoursNode<IndexedHour>> Hours
-        {
-            get => _hours;
-            set
-            {
-                _hours = value;
-                OnPropertyChanged();
-            }
-        }
+        //private HoursNode<HoursNode<Topic>> _hours;
+        //public HoursNode<HoursNode<Topic>> Hours
+        //{
+        //    get => _hours;
+        //    set
+        //    {
+        //        _hours = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         
-        private ObservableCollection<Source> _sourceNodes;
-        public ObservableCollection<Source> SourceNodes
-        {
-            get => _sourceNodes;
-            set
-            {
-                _sourceNodes = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<NameLabel> _sourceNodes;
+        //public ObservableCollection<Source> SourceNodes
+        //{
+        //    get => _sourceNodes;
+        //    set
+        //    {
+        //        _sourceNodes = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         
-        private OptionableCollection<Competetion> _gCompetetions;
-        public OptionableCollection<Competetion> GCompetetions
-        {
-            get => _gCompetetions;
-            set
-            {
-                _gCompetetions = value;
-                OnPropertyChanged();
-            }
-        }
+        //private OptionableCollection<Competetion> _gCompetetions;
+        //public OptionableCollection<Competetion> GCompetetions
+        //{
+        //    get => _gCompetetions;
+        //    set
+        //    {
+        //        _gCompetetions = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         
-        private ObservableCollection<IndexNode<Competetion>> _pCompetetions;
-        public ObservableCollection<IndexNode<Competetion>> PCompetetions
-        {
-            get => _pCompetetions;
-            set
-            {
-                _pCompetetions = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<IndexNode<Competetion>> _pCompetetions;
+        //public ObservableCollection<IndexNode<Competetion>> PCompetetions
+        //{
+        //    get => _pCompetetions;
+        //    set
+        //    {
+        //        _pCompetetions = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private LevelsVM _levels;
         public LevelsVM Levels
@@ -271,8 +271,8 @@ namespace Wisdom.ViewModel
             }
         }
         
-        private ObservableCollection<Task> _metadata;
-        public ObservableCollection<Task> Metadata
+        private ObservableCollection<Metadata> _metadata;
+        public ObservableCollection<Metadata> Metadata
         {
             get => _metadata;
             set
@@ -282,65 +282,64 @@ namespace Wisdom.ViewModel
             }
         }
         
-        private ObservableCollection<Hour> _processSettings;
-        public ObservableCollection<Hour> ProcessSettings
-        {
-            get => _processSettings;
-            set
-            {
-                _processSettings = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<Hour> _processSettings;
+        //public ObservableCollection<Hour> ProcessSettings
+        //{
+        //    get => _processSettings;
+        //    set
+        //    {
+        //        _processSettings = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
         #endregion
 
         public DisciplineProgramViewModel()
         {
-            SpecialitySelect = new ObservableCollection<Task>();
-            DisciplinesSelect = new ObservableCollection<Task>();
+            SpecialitySelect = new ObservableCollection<Metadata>();
+            DisciplinesSelect = new ObservableCollection<Metadata>();
             
             //Levels = new LevelsVM();
             
             ThemePlan = new ThemePlanVM(new Plan());
             
             Sources = new ObservableCollection<HybridNode<IndexedLabel>>();
-            Metadata = new ObservableCollection<Task>();
+            Metadata = new ObservableCollection<Metadata>();
 
 
-            PCompetetions = new ObservableCollection<IndexNode<Competetion>>();
-            GCompetetions = new OptionableCollection<Competetion>(new Competetion(), 
-                new State<Competetion>[][] { IndexNode<Competetion>.Numeration() });
+            //PCompetetions = new ObservableCollection<IndexNode<Competetion>>();
+            //GCompetetions = new OptionableCollection<Competetion>(new Competetion(), 
+            //    new State<Competetion>[][] { IndexNode<Competetion>.Numeration() });
             
             SourceTypes = new ObservableCollection<string>();
             Document = new DisciplineProgram();
 
-            AddHourCommand = new RelayCommand(argument => Hours.Add());
-            AddMetaCommand = new RelayCommand(argument => Metadata.Add((argument as Task).Copy()));
+            //AddHourCommand = new RelayCommand(argument => Hours.Add());
+            AddMetaCommand = new RelayCommand(argument => Metadata.Add((argument as Metadata).Copy()));
             //AddLevelCommand = new RelayCommand(argument => Levels.Add());
 
-            RemoveHourCommand = new RelayCommand(argument => Hours.Remove(argument as HoursNode<IndexedHour>));
-            RemoveMetaCommand = new RelayCommand(argument => Metadata.Remove(argument as Task));
+            //RemoveHourCommand = new RelayCommand(argument => Hours.Remove(argument as HoursNode<Topic>));
+            RemoveMetaCommand = new RelayCommand(argument => Metadata.Remove(argument as Metadata));
             //RemoveLevelCommand = new RelayCommand(argument => Levels.Remove(argument as Level));
-            //RemoveTopicCommand = new RelayCommand(argument => ThemePlan.Remove(argument as HoursNode<Theme>));
+            //RemoveTopicCommand = new RelayCommand(argument => ThemePlan.Remove(argument as Topic));
             RemoveSourceCommand = new RelayCommand(argument => Sources.Remove(argument as HybridNode<IndexedLabel>));
             
-            RemoveGCompetetionCommand = new RelayCommand(argument => GCompetetions.Remove(argument as Competetion));
-            
-            RemovePCompetetionCommand = new RelayCommand(argument => PCompetetions.Remove(argument as IndexNode<Competetion>));
+            //RemoveGCompetetionCommand = new RelayCommand(argument => GCompetetions.Remove(argument as Competetion));
+            //RemovePCompetetionCommand = new RelayCommand(argument => PCompetetions.Remove(argument as IndexNode<Competetion>));
 
             //HourGroup
-            Hours = new HoursNode<HoursNode<IndexedHour>>
-                (new HoursNode<IndexedHour>(new IndexedHour()));
+            //Hours = new HoursNode<HoursNode<Topic>>
+            //    (new HoursNode<Topic>(new Topic()));
 
-            for (byte i = 0; i < 3; i++)
-            {
-                Hours.Add(new HoursNode<IndexedHour>(new IndexedHour()));
-                Hours[i].Add(new IndexedHour("Hours", 40));
-            }
+            //for (byte i = 0; i < 3; i++)
+            //{
+            //    Hours.Add(new HoursNode<Topic>(new Topic()));
+            //    Hours[i].Add(new Topic("Hours", 40));
+            //}
             
             //AddGroup("Аудиторная нагрузка, часы");
             //AddGroup("Практическая подготовка, часы");
-            OnPropertyChanged(nameof(Hours));
+            //OnPropertyChanged(nameof(Hours));
 
             //SpecialityFullName = "";
             //DisciplineFullName = "";
@@ -357,7 +356,7 @@ namespace Wisdom.ViewModel
             SpecialityFullName = program.ProfessionName;
             DisciplineFullName = program.Name;
 
-            SetDiscipline(program);
+            //SetDiscipline(program);
         }
 
         internal void SetUpDocumentBlank(in DisciplineProgram document)
@@ -428,36 +427,36 @@ namespace Wisdom.ViewModel
         #endregion
 
         #region DisciplineAutoSet Logic
-        private void SetDiscipline(
-            List<Competetion> general,
-            List<List<Competetion>> professional,
-            List<Hour> classHours,
-            List<Hour> selfHours,
-            List<Task> metaData,
-            List<HybridNode<IndexedLabel>> sources,
-            List<HoursNode<Theme>> themePlan
-            )
-        {
-            SetGeneralCompetetions(general);
-            SetProfessionalCompetetions(professional);
-            //SetHourGroups(classHours, selfHours);
-            SetMetaData(metaData);
-            SetSources(sources);
-            SetThemePlan(themePlan);
-        }
+        //private void SetDiscipline(
+        //    List<Competetion> general,
+        //    List<List<Competetion>> professional,
+        //    List<Hour> classHours,
+        //    List<Hour> selfHours,
+        //    List<Metadata> metaData,
+        //    List<HybridNode<IndexedLabel>> sources,
+        //    List<Topic> themePlan
+        //    )
+        //{
+        //    SetGeneralCompetetions(general);
+        //    SetProfessionalCompetetions(professional);
+        //    //SetHourGroups(classHours, selfHours);
+        //    SetMetaData(metaData);
+        //    SetSources(sources);
+        //    SetThemePlan(themePlan);
+        //}
 
-        private void SetDiscipline(DisciplineBase program)
-        {
-            SetDiscipline(
-                program.GeneralCompetetions,
-                program.ProfessionalCompetetions,
-                program.ClassHours,
-                program.SelfHours,
-                program.MetaData,
-                program.Sources,
-                program.Plan
-                );
-        }
+        //private void SetDiscipline(DisciplineBase program)
+        //{
+        //    SetDiscipline(
+        //        program.GeneralCompetetions,
+        //        program.ProfessionalCompetetions,
+        //        program.ClassHours,
+        //        program.SelfHours,
+        //        program.MetaData,
+        //        program.Sources,
+        //        program.Plan
+        //        );
+        //}
 
         internal void ResetDiscipline()
         {
@@ -468,16 +467,16 @@ namespace Wisdom.ViewModel
             SetLevels();
         }
 
-        private void SetHours(in int groupNo, HoursNode<HoursNode<IndexedHour>> hours)
-        {
-            Hours.Clear();
-            for (ushort i = 0; i < hours.Count; i++)
-            {
-                Hours.Add(hours[i]);
-            }
-        }
+        //private void SetHours(in int groupNo, HoursNode<HoursNode<Topic>> hours)
+        //{
+        //    Hours.Clear();
+        //    for (ushort i = 0; i < hours.Count; i++)
+        //    {
+        //        Hours.Add(hours[i]);
+        //    }
+        //}
 
-        private void SetMetaData(List<Task> data)
+        private void SetMetaData(List<Metadata> data)
         {
             Metadata.Clear();
             for (ushort i = 0; i < data.Count; i++)
@@ -495,20 +494,20 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private void SetThemePlan(List<HoursNode<Theme>> plan)
-        {
-            //ThemePlan.Clear();
-            //for (ushort i = 0; i < plan.Count; i++)
-            //{
-            //    ThemePlan.Add(plan[i]);
-            //}
-        }
+        //private void SetThemePlan(List<Topic> plan)
+        //{
+        //    ThemePlan.Clear();
+        //    for (ushort i = 0; i < plan.Count; i++)
+        //    {
+        //        ThemePlan.Add(plan[i]);
+        //    }
+        //}
         #endregion
 
         #region IndependentFromData Members
         private void SetLevels()
         {
-            List<Task> levels = Data.LevelsData();
+            //List<Metadata> levels = Data.LevelsData();
             //Levels.Clear();
             //for (ushort i = 0; i < levels.Count; i++)
             //{

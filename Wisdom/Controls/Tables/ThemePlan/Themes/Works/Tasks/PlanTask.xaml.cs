@@ -6,7 +6,7 @@ namespace Wisdom.Controls.Tables.ThemePlan.Themes.Works.Tasks
     /// <summary>
     /// Task of theme's work
     /// </summary>
-    public partial class PlanTask //: OldItem<IndexedHour>, IWrapFields
+    public partial class PlanTask //: OldItem<Topic>, IWrapFields
     {
         #region IWrapFields Members
         private bool _isWrap;

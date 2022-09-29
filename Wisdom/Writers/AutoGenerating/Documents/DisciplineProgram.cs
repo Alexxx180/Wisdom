@@ -7,7 +7,6 @@ using Wisdom.Customing;
 using static Wisdom.Writers.AutoGenerating.AutoFiller;
 using static Wisdom.Writers.Markup.DisciplineProgramMarkup;
 using ControlMaterials.Tables.Tasks;
-using ControlMaterials.Tables.Hours;
 
 namespace Wisdom.Writers.AutoGenerating.Documents
 {
@@ -35,14 +34,14 @@ namespace Wisdom.Writers.AutoGenerating.Documents
                 new Pair<string, string>("Практические часы (Группа)", "#SELF-")
             };
 
-        public static string MetaData(Task task)
+        public static string MetaData(Metadata task)
         {
             return "";//task.Hours;
         }
 
-        public static string Hours(Hour hour)
+        public static string Hours(Work hour)
         {
-            return hour.Count.ToString();
+            return hour.Hours.ToString();
         }
 
         protected override void FastProcessing(
@@ -79,15 +78,15 @@ namespace Wisdom.Writers.AutoGenerating.Documents
             CustomizeableProcessing(paragraphs, cells,
                 options[meta], meta, program.MetaData, MetaData);
 
-            string classHours = Expressions[6].Value;
-            CustomizeableProcessing(paragraphs, cells,
-                options[classHours], classHours,
-                program.ClassHours, Hours);
+            //string classHours = Expressions[6].Value;
+            //CustomizeableProcessing(paragraphs, cells,
+            //    options[classHours], classHours,
+            //    program.ClassHours, Hours);
 
-            string selfHours = Expressions[7].Value;
-            CustomizeableProcessing(paragraphs, cells,
-                options[selfHours], selfHours,
-                program.SelfHours, Hours);
+            //string selfHours = Expressions[7].Value;
+            //CustomizeableProcessing(paragraphs, cells,
+            //    options[selfHours], selfHours,
+            //    program.SelfHours, Hours);
         }
 
         protected override void DetailProcessing(

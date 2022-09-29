@@ -11,7 +11,7 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
         {
             _plan = plan;
 
-            BuildItems(new TopicVM(new HoursNode<Theme>(new Theme()), this));
+            BuildItems(new TopicVM(new Topic(), this));
         }
 
         private ushort _no;

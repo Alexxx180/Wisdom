@@ -1,4 +1,4 @@
-﻿using ControlMaterials.Tables.Hours;
+﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
 using System.Windows.Input;
 using Wisdom.ViewModel.Commands;
@@ -7,9 +7,9 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
 {
     public class TaskVM : Highlightable, ICloneable<TaskVM>
     {
-        private IndexedHour _task;
+        private Topic _task;
 
-        public TaskVM(IndexedHour task)
+        public TaskVM(Topic task)
         {
             _task = task;
             RemoveCommand = new RelayCommand
@@ -38,10 +38,10 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
 
         public override ushort Hours
         {
-            get => _task.Count;
+            get => _task.Hours;
             set
             {
-                _task.Count = value;
+                _task.Hours = value;
                 OnPropertyChanged();
             }
         }

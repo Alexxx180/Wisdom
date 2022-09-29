@@ -8,7 +8,7 @@
                  d:DesignHeight="35" d:DesignWidth="600" x:Name="This"
                  Height="35">
     <!--<Grid>
-                 x:TypeArguments="model:IndexedHour"
+                 x:TypeArguments="model:Topic"
                  xmlns:model="clr-namespace:ControlMaterials.Tables;assembly=ControlMaterials"
     
         <Grid.DataContext>

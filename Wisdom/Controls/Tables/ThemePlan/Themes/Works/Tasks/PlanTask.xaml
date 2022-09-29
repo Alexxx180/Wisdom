@@ -10,7 +10,7 @@
              x:Name="This">
     <!--<UserControl.Style>
              xmlns:model="clr-namespace:ControlMaterials.Tables;assembly=ControlMaterials"
-             x:TypeArguments="model:IndexedHour"
+             x:TypeArguments="model:Topic"
     
         <StaticResource ResourceKey="MultiRecord"/>
     </UserControl.Style>

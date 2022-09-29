@@ -17,12 +17,12 @@ namespace Wisdom.Writers.Markup
         private static readonly ushort PlanMerged1to2 = (ThemePlanSizes[1] + ThemePlanSizes[2]).ToUShort();
         private static readonly ushort PlanMerged0to2 = (ThemePlanSizes[0] + PlanMerged1to2).ToUShort();
 
-        public static List<Paragraph> Literature(List<Source> sources)
+        public static List<Paragraph> Literature(List<NameLabel> sources)
         {
             List<Paragraph> proccessedSources = new List<Paragraph>();
             for (byte i = 0; i < sources.Count; i++)
             {
-                Source source = sources[i];
+                NameLabel source = sources[i];
                 //List<Paragraph> paragraphs = NumberList
                 //    (source.Descriptions, ". ");
 
@@ -95,14 +95,14 @@ namespace Wisdom.Writers.Markup
             return table3;
         }
 
-        public static List<TableRow> CompetetionBase(string id, string name, List<Task> skills)
+        public static List<TableRow> CompetetionBase(string id, string name, List<Metadata> skills)
         {
             List<TableRow> rows = new List<TableRow>();
 
             List<Paragraph> skillsParagraphs = new List<Paragraph>();
             for (byte i = 0; i < skills.Count; i++)
             {
-                Task skill = skills[i];
+                Metadata skill = skills[i];
 
                 Run skillsName = RunBase(skill.Name + " ", Bold());
                 Run description = RunBase(skill.Data);
@@ -150,10 +150,10 @@ namespace Wisdom.Writers.Markup
         {
             List<TableRow> rows = new List<TableRow>();
 
-            List<HoursNode<Theme>> topics = program.Plan;
+            List<Topic> topics = program.Plan;
             for (byte i = 0; i < topics.Count; i++)
             {
-                HoursNode<Theme> topic = topics[i];
+                Topic topic = topics[i];
 
                 string topicHeader = $"Раздел {i + 1}. {topic.Name}";
                 //rows.Add(Topic(topicHeader, topic.Hours));

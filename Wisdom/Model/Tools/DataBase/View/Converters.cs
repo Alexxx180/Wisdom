@@ -7,7 +7,6 @@ using ControlMaterials.Tables;
 using ControlMaterials.Tables.ThemePlan;
 using static Wisdom.Customing.Converters;
 using ControlMaterials.Tables.Tasks;
-using ControlMaterials.Tables.Hours;
 
 namespace Wisdom.Model.Tools.DataBase
 {
@@ -85,11 +84,11 @@ namespace Wisdom.Model.Tools.DataBase
         }
 
 
-        private static List<Task>
+        private static List<Metadata>
             SetTypeFields(List<object[]> types)
         {
-            List<Task> fields = new
-                List<Task>();
+            List<Metadata> fields = new
+                List<Metadata>();
 
             for (byte i = 0; i < types.Count; i++)
             {
@@ -97,18 +96,18 @@ namespace Wisdom.Model.Tools.DataBase
                 string id = row[0].ToString();
                 string name = row[1].ToString();
 
-                Task type = new
-                    Task(id, name);
+                Metadata type = new
+                    Metadata(id, name);
                 fields.Add(type);
             }
             return fields;
         }
 
-        public static List<Task>
+        public static List<Metadata>
             SetMetaData(List<object[]> metaData)
         {
-            List<Task> data = new
-                List<Task>();
+            List<Metadata> data = new
+                List<Metadata>();
 
             for (int i = 0; i < metaData.Count; i++)
             {
@@ -116,40 +115,40 @@ namespace Wisdom.Model.Tools.DataBase
                 string type = row[1].ToString();
                 string value = row[2].ToString();
 
-                data.Add(new Task(type, value));
+                data.Add(new Metadata(type, value));
             }
             return data;
         }
 
-        private static List<Hour>
-            SetTotalHours(List<object[]> totalWorkHours)
+        private static List<Work>
+            SetTotalWorks(List<object[]> totalWorkWorks)
         {
-            List<Hour> data = new
-                List<Hour>();
+            List<Work> data = new
+                List<Work>();
 
-            for (int i = 0; i < totalWorkHours.Count; i++)
+            for (int i = 0; i < totalWorkWorks.Count; i++)
             {
-                object[] row = totalWorkHours[i];
+                object[] row = totalWorkWorks[i];
                 string type = row[1].ToString();
                 ushort value = row[2].ToUShort();
 
-                data.Add(new Hour(type, value));
+                data.Add(new Work(type, value));
             }
             return data;
         }
 
-        private static List<Source>
-            SetSources(List<object[]> sourcesList)
+        private static List<NameLabel>
+            SetNameLabels(List<object[]> NameLabelsList)
         {
-            List<Source> sources = new List<Source>();
+            List<NameLabel> NameLabels = new List<NameLabel>();
 
             List<string> types = new List<string>();
             Dictionary<string, List<string>> sort = new
                 Dictionary<string, List<string>>();
 
-            for (int i = 0; i < sourcesList.Count; i++)
+            for (int i = 0; i < NameLabelsList.Count; i++)
             {
-                object[] row = sourcesList[i];
+                object[] row = NameLabelsList[i];
                 string name = row[1].ToString();
                 object type = row[2];
                 string typeName = type.ToString();
@@ -171,7 +170,7 @@ namespace Wisdom.Model.Tools.DataBase
             //    sources.Add(source);
             //}
 
-            return sources;
+            return NameLabels;
         }
 
         private static List<Competetion> SetGeneral(List<object[]> generalCompetetions)
@@ -335,7 +334,7 @@ namespace Wisdom.Model.Tools.DataBase
 
         public static DisciplineBase GetDiscipline(string name,
             List<object[]> totalHours, List<object[]> metaData,
-            List<HoursNode<Theme>> themePlan,
+            List<Topic> themePlan,
             List<object[]> sources, List<object[]> generalCompetetions, 
             List<object[]> professionalCompetetions)
         {
@@ -348,18 +347,18 @@ namespace Wisdom.Model.Tools.DataBase
             {
                 discipline.MetaData = SetMetaData(metaData);
                 
-                List<Hour> hours = SetTotalHours(totalHours);
-                discipline.ClassHours.Clear();
-                for (ushort i = 0; i < hours.Count; i++)
+                List<Work> Works = SetTotalWorks(totalHours);
+                discipline.ClassWorks.Clear();
+                for (ushort i = 0; i < Works.Count; i++)
                 {
-                    Hour hour = hours[i];
-                    if (hour.Name == "Самостоятельная работа")
+                    Work Work = Works[i];
+                    if (Work.Name == "Самостоятельная работа")
                     {
-                        discipline.SelfHours.Add(hour);
+                        discipline.SelfWorks.Add(Work);
                     }
                     else
                     {
-                        discipline.ClassHours.Add(hour);
+                        discipline.ClassWorks.Add(Work);
                     }
                 }
 
@@ -378,12 +377,12 @@ namespace Wisdom.Model.Tools.DataBase
             return discipline;
         }
 
-        public static List<Task> GetHourTypes(List<object[]> types)
+        public static List<Metadata> GetHourTypes(List<object[]> types)
         {
-            List<Task> hourTypes = new List<Task>();
+            List<Metadata> hourTypes = new List<Metadata>();
             try
             {
-                List<Task> result = SetTypeFields(types);
+                List<Metadata> result = SetTypeFields(types);
                 hourTypes.AddRange(result);
             }
             catch (DbException exception)
@@ -396,12 +395,12 @@ namespace Wisdom.Model.Tools.DataBase
             return hourTypes;
         }
 
-        public static List<Task> GetMetaTypes(List<object[]> types)
+        public static List<Metadata> GetMetaTypes(List<object[]> types)
         {
-            List<Task> metaTypes = new List<Task>();
+            List<Metadata> metaTypes = new List<Metadata>();
             try
             {
-                List<Task> result = SetTypeFields(types);
+                List<Metadata> result = SetTypeFields(types);
                 metaTypes.AddRange(result);
             }
             catch (DbException exception)
@@ -414,12 +413,12 @@ namespace Wisdom.Model.Tools.DataBase
             return metaTypes;
         }
 
-        public static List<Task> GetSourceTypes(List<object[]> types)
+        public static List<Metadata> GetSourceTypes(List<object[]> types)
         {
-            List<Task> sourceTypes = new List<Task>();
+            List<Metadata> sourceTypes = new List<Metadata>();
             try
             {
-                List<Task> result = SetTypeFields(types);
+                List<Metadata> result = SetTypeFields(types);
                 sourceTypes.AddRange(result);
             }
             catch (DbException exception)

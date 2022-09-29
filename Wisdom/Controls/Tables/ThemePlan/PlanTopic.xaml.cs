@@ -15,7 +15,7 @@ namespace Wisdom.Controls.Tables.ThemePlan
         #region Dependency Properties
         public static readonly DependencyProperty
             DataProperty = DependencyProperty.Register(nameof(Data),
-                typeof(HoursNode<Theme>), typeof(PlanTopic));
+                typeof(Topic), typeof(PlanTopic));
 
         public static readonly DependencyProperty
             RemoveProperty = DependencyProperty.Register(nameof(Remove),
@@ -37,9 +37,9 @@ namespace Wisdom.Controls.Tables.ThemePlan
             set => SetValue(RemoveThemeProperty, value);
         }
         
-        public HoursNode<Theme> Data
+        public Topic Data
         {
-            get => GetValue(DataProperty) as HoursNode<Theme>;
+            get => GetValue(DataProperty) as Topic;
             set => SetValue(DataProperty, value);
         }
         #endregion

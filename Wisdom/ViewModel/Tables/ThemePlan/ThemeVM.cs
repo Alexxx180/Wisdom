@@ -61,16 +61,16 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        private OptionableCollection<Competetion> _gcompetetions;
-        public OptionableCollection<Competetion> GCompetetions
-        {
-            get => _gcompetetions;
-            set
-            {
-                _gcompetetions = value;
-                OnPropertyChanged();
-            }
-        }
+        //private OptionableCollection<Competetion> _gcompetetions;
+        //public OptionableCollection<Competetion> GCompetetions
+        //{
+        //    get => _gcompetetions;
+        //    set
+        //    {
+        //        _gcompetetions = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public IParent<ThemeVM> Parent { get; set; }
         public ICommand RemoveCommand { get; }

@@ -64,10 +64,10 @@ namespace Wisdom.Model.Tools.DataBase
             return GetSingle(types);
         }
 
-        public List<Task> LevelsData()
+        public List<Metadata> LevelsData()
         {
             List<object[]> levels = _dataBase.Levels();
-            return GetTasks(levels);
+            return GetMetadatas(levels);
         }
 
         private static string GetCompetetions(uint id)
@@ -79,9 +79,9 @@ namespace Wisdom.Model.Tools.DataBase
             return competetions;
         }
 
-        private static List<HoursNode<Theme>> GetThemePlan(List<object[]> themePlan)
+        private static List<Topic> GetThemePlan(List<object[]> themePlan)
         {
-            List<HoursNode<Theme>> plan = new List<HoursNode<Theme>>();
+            List<Topic> plan = new List<Topic>();
             for (int i = 0; i < themePlan.Count; i++)
             {
                 object[] row = themePlan[i];
@@ -90,7 +90,7 @@ namespace Wisdom.Model.Tools.DataBase
                 List<object[]> themesData = _dataBase.Themes(topicId);
                 List<Theme> themes = GetThemes(themesData);
 
-                HoursNode<Theme> topic = new HoursNode<Theme>(new Theme())
+                Topic topic = new Topic()
                 {
                     Name = row[2].ToString(),
                     //Hours = row[3].ToString(),
@@ -146,18 +146,18 @@ namespace Wisdom.Model.Tools.DataBase
             return group;
         }
 
-        private static List<Task> GetTasks(List<object[]> tasks)
+        private static List<Metadata> GetMetadatas(List<object[]> Metadatas)
         {
-            List<Task> group = new List<Task>();
-            for (int iv = 0; iv < tasks.Count; iv++)
+            List<Metadata> group = new List<Metadata>();
+            for (int iv = 0; iv < Metadatas.Count; iv++)
             {
-                object[] row = tasks[iv];
+                object[] row = Metadatas[iv];
 
                 string name = row[1].ToString();
                 string hours = row[2].ToString();
-                Task task = new Task(name, hours);
+                Metadata Metadata = new Metadata(name, hours);
 
-                group.Add(task);
+                group.Add(Metadata);
             }
             return group;
         }

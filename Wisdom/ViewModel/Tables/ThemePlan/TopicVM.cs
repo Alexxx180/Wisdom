@@ -7,9 +7,9 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
 {
     public class TopicVM : TNode<ThemeVM>, ICloneable<TopicVM>
     {
-        private readonly HoursNode<Theme> _topic;
+        private readonly Topic _topic;
 
-        public TopicVM(HoursNode<Theme> topic, IParent<TopicVM> parent)
+        public TopicVM(Topic topic, IParent<TopicVM> parent)
         {
             _topic = topic;
             Parent = parent;
