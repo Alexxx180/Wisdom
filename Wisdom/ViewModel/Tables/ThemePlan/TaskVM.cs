@@ -1,22 +1,29 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
 using System.Windows.Input;
+using Wisdom.ViewModel.Collections.Features.Count;
 using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class TaskVM : Highlightable, ICloneable<TaskVM>
+    public class TaskVM : PropertyChangedVM, INo, ICloneable<TaskVM>
     {
         private Topic _task;
+
+        public Numerable Number { get; }
+        private Highlightable Count { get; }
 
         public TaskVM(Topic task)
         {
             _task = task;
+            Number = new Numerable(this);
+            Count = new Highlightable();
+
             RemoveCommand = new RelayCommand
                 (argument => Parent.Remove((TaskVM)argument));
         }
 
-        public override ushort No
+        public ushort No
         {
             get => _task.No;
             set
@@ -36,7 +43,7 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public override ushort Hours
+        public ushort Hours
         {
             get => _task.Hours;
             set

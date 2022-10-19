@@ -20,6 +20,7 @@ using ControlMaterials.Total.Numeration;
 using Wisdom.ViewModel.Tables.ThemePlan;
 using Wisdom.ViewModel.Tables.Competetions;
 using ControlMaterials.Tables.Tasks;
+using Wisdom.ViewModel.Collections;
 
 namespace Wisdom.ViewModel
 {
@@ -298,9 +299,11 @@ namespace Wisdom.ViewModel
         {
             SpecialitySelect = new ObservableCollection<Metadata>();
             DisciplinesSelect = new ObservableCollection<Metadata>();
-            
+
             //Levels = new LevelsVM();
-            
+
+            AutoList<ThemePlanVM> lol = new Collections.AutoList<ThemePlanVM>(new ThemePlanVM());
+
             ThemePlan = new ThemePlanVM(new Plan());
             
             Sources = new ObservableCollection<HybridNode<IndexedLabel>>();
