@@ -1,6 +1,8 @@
-﻿using ControlMaterials.Total.Collections;
-using ControlMaterials.Total.Numeration;
+﻿using ControlMaterials.Total;
+using ControlMaterials.Total.Collections;
+using System.Collections.Generic;
 using Wisdom.ViewModel.Collections.Features.Count;
+using Wisdom.ViewModel.Collections.Features.Numeration;
 
 namespace Wisdom.ViewModel.Tables
 {
@@ -20,6 +22,7 @@ namespace Wisdom.ViewModel.Tables
 
         public void Increment(ushort no)
         {
+            System.Diagnostics.Trace.WriteLine(no);
             _item.No += no;
         }
 
@@ -28,13 +31,13 @@ namespace Wisdom.ViewModel.Tables
             _item.No -= no;
         }
 
-        public static State<T>[] Numeration<T>() where T : INumerable
+        public static List<State<T>> Collection<T>(IOptionableCollection<T> items) where T : INumerable, IChangeable
         {
-            return new State<T>[]
+            return new List<State<T>>
             {
-                new ManualNumeration<T>(),
-                new OnlyNewNumeration<T>(),
-                new AutoNumeration<T>()
+                new ManualNumeration<T>(items),
+                new OnlyNewNumeration<T>(items),
+                new AutoNumeration<T>(items)
             };
         }
     }

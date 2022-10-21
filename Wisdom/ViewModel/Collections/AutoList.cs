@@ -10,7 +10,7 @@ using Wisdom.ViewModel.Collections.Features;
 
 namespace Wisdom.ViewModel.Collections
 {
-    public class AutoList<T> : ObservableCollection<T> where T : IChangeable, ICloneable<T>
+    public class AutoList<T> : ObservableCollection<T>, IOptionableCollection<T> where T : IChangeable, ICloneable<T>
     {
         public List<StateBlock<T>> Options { get; }
         public T Additor { get; }
@@ -29,8 +29,8 @@ namespace Wisdom.ViewModel.Collections
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
-            OnAppend(args.OldItems);
-            OnDelete(args.NewItems);
+            OnAppend(args.NewItems);
+            OnDelete(args.OldItems);
         }
 
         // Subscribe to future changes for each item
@@ -38,6 +38,8 @@ namespace Wisdom.ViewModel.Collections
         {
             if (items is null)
                 return;
+
+            System.Diagnostics.Trace.WriteLine("YES");
 
             foreach (T item in items)
             {

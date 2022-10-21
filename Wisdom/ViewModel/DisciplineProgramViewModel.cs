@@ -271,7 +271,7 @@ namespace Wisdom.ViewModel
                 OnPropertyChanged();
             }
         }
-        
+
         private ObservableCollection<Metadata> _metadata;
         public ObservableCollection<Metadata> Metadata
         {
@@ -302,7 +302,7 @@ namespace Wisdom.ViewModel
 
             //Levels = new LevelsVM();
 
-            AutoList<ThemePlanVM> lol = new Collections.AutoList<ThemePlanVM>(new ThemePlanVM());
+            //AutoList<ThemePlanVM> lol = new Collections.AutoList<ThemePlanVM>(new ThemePlanVM());
 
             ThemePlan = new ThemePlanVM(new Plan());
             

@@ -1,33 +1,37 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
+using ControlMaterials.Total.Count;
 using System.Windows.Input;
+using Wisdom.ViewModel.Collections;
 using Wisdom.ViewModel.Commands;
+using Wisdom.ViewModel.Collections.Features;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class WorkVM : TNode<TaskVM>, ICloneable<WorkVM>
+    public class WorkVM : TNode<TaskVM>, Collections.Features.Count.ICount, Collections.Features.Count.Highlighting.IHighlighting, ICloneable<WorkVM>
     {
-        private readonly Work _work;
+        public Countable Count { get; }
+        public Highlightable Coloring { get; }
 
-        public WorkVM(Work work)
+        public WorkVM(IParent<WorkVM> parent, Work work)
         {
             _work = work;
+            Parent = parent;
+
+            Bridge<ISummator> sumLogic = new Bridge<ISummator>();
+            Count = new Countable(this, sumLogic);
+            Coloring = new Highlightable(this, sumLogic);
+
+            Items = new AutoList<TaskVM>(new TaskVM(this, new Topic()));
+            Items.Options.Add(new StateBlock<TaskVM>(Numerable.Collection(Items)));
+            Items.Options.Add(new StateBlock<TaskVM>(Count.Collection(Items)));
+            Items.Options.Add(new StateBlock<TaskVM>(Coloring.Collection(Items)));
+
             RemoveCommand = new RelayCommand
                 (argument => Parent.Remove((WorkVM)argument));
-
-            BuildItems(new TaskVM(new Topic()) { Parent = this });
         }
 
-        private ushort _no;
-        public override ushort No
-        {
-            get => _no;
-            set
-            {
-                _no = value;
-                OnPropertyChanged();
-            }
-        }
+        private readonly Work _work;
 
         public string Name
         {
@@ -39,7 +43,7 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public override ushort Hours
+        public ushort Hours
         {
             get => _work.Hours;
             set
@@ -49,15 +53,12 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public IParent<WorkVM> Parent { get; set; }
+        public IParent<WorkVM> Parent { get; }
         public ICommand RemoveCommand { get; }
         
         public WorkVM Copy()
         {
-            return new WorkVM(_work.Copy())
-            {
-                Parent = Parent
-            };
+            return new WorkVM(Parent, _work.Copy());
         }
     }
 }

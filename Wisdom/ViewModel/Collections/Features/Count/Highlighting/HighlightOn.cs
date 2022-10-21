@@ -1,13 +1,31 @@
-﻿namespace ControlMaterials.Total.Count.Highlighting
+﻿using ControlMaterials.Total;
+using ControlMaterials.Total.Collections;
+using ControlMaterials.Total.Count;
+using Color = ControlMaterials.Total.Count.Highlighting.HighlightColor;
+
+namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
 {
-    public class HighlightOn<T> : HighlightOff<T> where T : ISum
+    public class HighlightOn<T> : HighlightOff<T> where T : IChangeable
     {
         private readonly Bridge<ISummator> Count;
 
-        public HighlightOn(Bridge<ISummator> count,
-            IHighlighting item, string property) : base(item, property)
+        public HighlightOn(Bridge<ISummator> count, IHighlighting item,
+            IOptionableCollection<T> items) : base(item, items)
         {
             Count = count;
+        }
+
+        public Color DefineColor(ISummator summator)
+        {
+            if (summator.Sum == summator.PrevSum)
+                return Color.CONFORMITY;
+
+            return summator.Sum > summator.PrevSum ? Color.VIOLATION : Color.NEUTRAL;
+        }
+
+        public override void Setup()
+        {
+            Recalculate();
         }
 
         public override void Add(T item)
@@ -22,24 +40,8 @@
 
         public override void Recalculate()
         {
-            ISummator summator = Count.Reference;
-            if (summator.Sum > summator.PrevSum)
-            {
-                Item.SetColor(HighlightColor.VIOLATION);
-            }
-            else if (summator.Sum == summator.PrevSum)
-            {
-                Item.SetColor(HighlightColor.CONFORMITY);
-            }
-            else
-            {
-                Item.SetColor(HighlightColor.NEUTRAL);
-            }
-        }
-
-        public override void Setup()
-        {
-            Recalculate();
+            Color higlighting = DefineColor(Count.Reference);
+            Item.Coloring.SetColor(higlighting);
         }
     }
 }

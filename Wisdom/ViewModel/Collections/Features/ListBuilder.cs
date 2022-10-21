@@ -29,16 +29,16 @@ namespace Wisdom.ViewModel.Collections.Features
         // All production steps work with the same product instance.
         public void SetCount(Bridge<ISummator> count)
         {
-            StateBlock<T> count = new StateBlock<T>();
-            count.States.Add(new Count.ManualCount<T>(count, ""));
-            _product.Options.Add(count);
+            //StateBlock<T> count = new StateBlock<T>();
+            //count.States.Add(new Count.ManualCount<T>(count, ""));
+            //_product.Options.Add(count);
         }
 
         public void SetNumeration()
         {
-            StateBlock<T> count = new StateBlock<T>();
-            count.States.Add(new ManualNumeration<T>());
-            _product.Options.Add(count);
+            //StateBlock<T> count = new StateBlock<T>();
+            //count.States.Add(new ManualNumeration<T>());
+            //_product.Options.Add(count);
         }
     }
 }

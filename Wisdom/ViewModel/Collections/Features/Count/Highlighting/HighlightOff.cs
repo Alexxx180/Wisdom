@@ -1,15 +1,15 @@
-﻿using ControlMaterials.Total.Collections;
-using ControlMaterials.Total.Count;
-using ControlMaterials.Total.Count.Highlighting;
+﻿using ControlMaterials.Total;
+using ControlMaterials.Total.Collections;
+using static ControlMaterials.Total.Count.Highlighting.HighlightColor;
 
 namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
 {
-    public class HighlightOff<T> : State<T> where T : ISum
+    public class HighlightOff<T> : State<T> where T : IChangeable
     {
         public IHighlighting Item { get; set; }
 
-        public HighlightOff(IHighlighting item,
-            string property) : base(property)
+        public HighlightOff(IHighlighting item, IOptionableCollection<T> items) :
+            base(nameof(IHours.Hours), items)
         {
             Item = item;
         }
@@ -22,7 +22,7 @@ namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
 
         public override void Setup()
         {
-            Item.SetColor(HighlightColor.NEUTRAL);
+            Item.Coloring.SetColor(NEUTRAL);
         }
     }
 }

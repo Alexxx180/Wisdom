@@ -6,19 +6,22 @@ namespace Wisdom.ViewModel.Collections.Features.Count
 {
     public class ManualCount<T> : State<T>, ISummator where T : IHours, IChangeable
     {
-        private protected readonly Bridge<ISummator> Count;
         private readonly IHours _node;
+        private protected readonly Bridge<ISummator> Count;
 
         public ushort Sum => GetSum();
         public virtual ushort PrevSum => _node.Hours;
 
-        public ManualCount(Bridge<ISummator> count) : base(nameof(IHours.Hours))
+        private protected ManualCount(Bridge<ISummator> count,
+            IOptionableCollection<T> items) : base(nameof(IHours.Hours), items)
         {
             Count = count;
         }
 
-        public ManualCount(Bridge<ISummator> count, IHours node) : this(count)
+        public ManualCount(Bridge<ISummator> count, IHours node,
+            IOptionableCollection<T> items) : this(count, items)
         {
+            Count = count;
             _node = node;
         }
 

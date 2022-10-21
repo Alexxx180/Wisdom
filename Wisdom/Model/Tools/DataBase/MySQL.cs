@@ -62,6 +62,12 @@ namespace Wisdom.Model.Tools.DataBase
 
         internal override void Connect()
         {
+            if (App.DebugMode)
+            {
+                IndependentMode = true;
+                return;
+            }
+
             if (FileConnection())
                 return;
 
@@ -146,10 +152,10 @@ namespace Wisdom.Model.Tools.DataBase
         private MySqlConnection EnterConnection
             (string login, string password)
         {
-            string source = "SERVER=" + _hostName + ";";
-            string catalog = "DATABASE=" + _dataBaseName + ";";
-            string user = "UID=" + login + ";";
-            string pass = "PASSWORD=" + password + ";";
+            string source = $"SERVER={_hostName};";
+            string catalog = $"DATABASE={_dataBaseName};";
+            string user = $"UID={login};";
+            string pass = $"PASSWORD={password};";
             return NewConnection(source + catalog + user + pass);
         }
 

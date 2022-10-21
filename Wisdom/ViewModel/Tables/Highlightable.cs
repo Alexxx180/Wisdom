@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
 using ControlMaterials.Total.Count;
@@ -6,8 +7,10 @@ using ControlMaterials.Total.Count.Highlighting;
 
 namespace Wisdom.ViewModel.Tables
 {
-    public abstract class Highlightable : Countable, IHighlighting
+    public class Highlightable : PropertyChangedVM
     {
+        private readonly Bridge<ISummator> _bridge;
+        private readonly Collections.Features.Count.Highlighting.IHighlighting _item;
         public static readonly Color[] Pallete;
 
         static Highlightable()
@@ -20,9 +23,16 @@ namespace Wisdom.ViewModel.Tables
             };
         }
 
-        public void SetColor(HighlightColor color)
+        public Highlightable(Collections.Features.Count.Highlighting.IHighlighting item,
+            Bridge<ISummator> bridge)
         {
-            Color = Pallete[(byte)color];
+            _item = item;
+            _bridge = bridge;
+        }
+
+        public void SetColor(HighlightColor highlight)
+        {
+            Color = Pallete[(byte)highlight];
         }
 
         private Color _color;
@@ -36,12 +46,12 @@ namespace Wisdom.ViewModel.Tables
             }
         }
 
-        private protected State<T>[] Highlighting<T>(Bridge<ISummator> bridge) where T : IHighlighting
+        internal List<State<T>> Collection<T>(IOptionableCollection<T> items) where T : IChangeable
         {
-            return new State<T>[]
+            return new List<State<T>>()
             {
-                new HighlightOff<T>(this, nameof(Hours)),
-                new HighlightOn<T>(bridge, this, nameof(Hours))
+                new Collections.Features.Count.Highlighting.HighlightOff<T>(_item, items),
+                new Collections.Features.Count.Highlighting.HighlightOn<T>(_bridge, _item, items)
             };
         }
     }

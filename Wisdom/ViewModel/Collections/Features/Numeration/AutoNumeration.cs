@@ -1,13 +1,14 @@
-﻿using ControlMaterials.Total.Numeration;
-using Wisdom.ViewModel.Collections.Features.Count;
+﻿using ControlMaterials.Total;
+using ControlMaterials.Total.Collections;
 
 namespace Wisdom.ViewModel.Collections.Features.Numeration
 {
-    public class AutoNumeration<T> : OnlyNewNumeration<T> where T : INumerable
+    public class AutoNumeration<T> : OnlyNewNumeration<T> where T : INumerable, IChangeable
     {
         private bool _isCalculating;
 
-        public AutoNumeration()
+        public AutoNumeration(IOptionableCollection<T> items) :
+            base(items)
         {
             _isCalculating = false;
         }

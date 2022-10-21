@@ -1,18 +1,27 @@
 ﻿using ControlMaterials.Tables.Tasks;
 using ControlMaterials.Total;
+using System.Windows.Input;
+using Wisdom.ViewModel.Collections.Features.Numeration;
+using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables.Competetions
 {
-    public class LevelVM : Numerable, ICloneable<LevelVM>
+    public class LevelVM : PropertyChangedVM, INumerable, ICloneable<LevelVM>
     {
-        private Level _level;
+        public Numerable Number { get; }
 
-        public LevelVM(Level level)
+        public LevelVM(IParent<LevelVM> parent, Level level)
         {
+            Parent = parent;
             _level = level;
+
+            RemoveCommand = new RelayCommand
+                (argument => Parent.Remove((LevelVM)argument));
         }
 
-        public override ushort No
+        private Level _level;
+
+        public ushort No
         {
             get => _level.No;
             set
@@ -42,6 +51,12 @@ namespace Wisdom.ViewModel.Tables.Competetions
             }
         }
 
-        public LevelVM Copy() => new LevelVM(_level.Copy());
+        public IParent<LevelVM> Parent { get; }
+        public ICommand RemoveCommand { get; }
+
+        public LevelVM Copy()
+        {
+            return new LevelVM(Parent, _level.Copy());
+        }
     }
 }

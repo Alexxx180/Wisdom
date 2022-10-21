@@ -51,10 +51,10 @@
         <Setter Property="Control.FontWeight" Value="Bold"/>
         <Setter Property="Control.Background" Value="#FF002FA7"/>
         <Setter Property="Control.Foreground" Value="#FFFFFFFF"/>
-        <Setter Property="Control.BorderBrush" Value="#FFFFFFFF"/>
+        <Setter Property="Control.BorderBrush" Value="#141414"/>
         <Style.Triggers>
-            <Trigger Property="IsSelected" Value="False">
-                <Setter Property="Control.Background" Value="#FFFFFFFF"/>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Control.Background" Value="#141414"/>
                 <Setter Property="Control.Foreground" Value="#FF002FA7"/>
             </Trigger>
         </Style.Triggers>

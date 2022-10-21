@@ -4,9 +4,10 @@ using ControlMaterials.Total.Numeration;
 
 namespace Wisdom.ViewModel.Collections.Features.Numeration
 {
-    public class ManualNumeration<T> : State<T> where T : INumerable
+    public class ManualNumeration<T> : State<T> where T : INumerable, IChangeable
     {
-        public ManualNumeration() : base(nameof(Indexer.No)) { }
+        public ManualNumeration(IOptionableCollection<T> items) :
+            base(nameof(Indexer.No), items) { }
 
         public override void Add(T item) { }
 

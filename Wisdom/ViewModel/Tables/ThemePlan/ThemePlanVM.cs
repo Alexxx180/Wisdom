@@ -1,31 +1,35 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
+using ControlMaterials.Total.Count;
+using Wisdom.ViewModel.Collections;
+using Wisdom.ViewModel.Collections.Features;
+using Wisdom.ViewModel.Collections.Features.Count.Highlighting;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class ThemePlanVM : TNode<TopicVM>, ICloneable<ThemePlanVM>
+    public class ThemePlanVM : TNode<TopicVM>, Collections.Features.Count.ICount, IHighlighting, ICloneable<ThemePlanVM>
     {
-        private readonly Plan _plan;
+        public Countable Count { get; }
+        public Highlightable Coloring { get; }
 
         public ThemePlanVM(Plan plan)
         {
             _plan = plan;
 
-            BuildItems(new TopicVM(new Topic(), this));
+            Bridge<ISummator> sumLogic = new Bridge<ISummator>();
+            Count = new Countable(this, sumLogic);
+            Coloring = new Highlightable(this, sumLogic);
+
+            Items = new AutoList<TopicVM>(new TopicVM(this, new Topic()));
+
+            Items.Options.Add(new StateBlock<TopicVM>(Numerable.Collection(Items), 1));
+            Items.Options.Add(new StateBlock<TopicVM>(Count.Collection(Items)));
+            Items.Options.Add(new StateBlock<TopicVM>(Coloring.Collection(Items)));
         }
 
-        private ushort _no;
-        public override ushort No
-        {
-            get => _no;
-            set
-            {
-                _no = value;
-                OnPropertyChanged();
-            }
-        }
+        private readonly Plan _plan;
 
-        public override ushort Hours
+        public ushort Hours
         {
             get => _plan.Sum;
             set
@@ -35,6 +39,9 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public ThemePlanVM Copy() => new ThemePlanVM(_plan.Copy());
+        public ThemePlanVM Copy()
+        {
+            return new ThemePlanVM(_plan.Copy());
+        }
     }
 }

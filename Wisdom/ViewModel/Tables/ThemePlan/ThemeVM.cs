@@ -1,27 +1,43 @@
-﻿using ControlMaterials.Tables.Tasks;
-using ControlMaterials.Tables.ThemePlan;
+﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
-using ControlMaterials.Total.Collections;
+using ControlMaterials.Total.Count;
 using System.Windows.Input;
+using Wisdom.ViewModel.Collections;
+using Wisdom.ViewModel.Collections.Features;
+using Wisdom.ViewModel.Collections.Features.Count;
+using Wisdom.ViewModel.Collections.Features.Count.Highlighting;
+using Wisdom.ViewModel.Collections.Features.Numeration;
 using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class ThemeVM : TNode<WorkVM>, ICloneable<ThemeVM>
+    public class ThemeVM : TNode<WorkVM>, INo, INumerable, Collections.Features.Count.ICount, IHighlighting, ICloneable<ThemeVM>
     {
-        private readonly Theme _theme;
+        public Numerable Number { get; }
+        public Countable Count { get; }
+        public Highlightable Coloring { get; }
 
-        public ThemeVM(Theme theme, IParent<ThemeVM> parent)
+        public ThemeVM(IParent<ThemeVM> parent, Theme theme)
         {
             _theme = theme;
             Parent = parent;
+
             RemoveCommand = new RelayCommand
                 (argument => Parent.Remove((ThemeVM)argument));
 
-            BuildItems(new WorkVM(new Work()) { Parent = this });
+            Bridge<ISummator> sumLogic = new Bridge<ISummator>();
+            Count = new Countable(this, sumLogic);
+            Coloring = new Highlightable(this, sumLogic);
+
+            Items = new AutoList<WorkVM>(new WorkVM(this, new Topic()));
+
+            Items.Options.Add(new StateBlock<WorkVM>(Count.Collection(Items)));
+            Items.Options.Add(new StateBlock<WorkVM>(Coloring.Collection(Items)));
         }
 
-        public override ushort No
+        private readonly Theme _theme;
+
+        public ushort No
         {
             get => _theme.No;
             set
@@ -41,7 +57,7 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public override ushort Hours
+        public ushort Hours
         {
             get => _theme.Hours;
             set
@@ -75,6 +91,9 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
         public IParent<ThemeVM> Parent { get; set; }
         public ICommand RemoveCommand { get; }
 
-        public ThemeVM Copy() => new ThemeVM(_theme.Copy(), Parent);
+        public ThemeVM Copy()
+        {
+            return new ThemeVM(Parent, _theme.Copy());
+        }
     }
 }

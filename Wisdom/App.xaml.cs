@@ -8,6 +8,13 @@ namespace Wisdom
     /// </summary>
     public partial class App : Application
     {
+        public static bool DebugMode { get; }
+
+        static App()
+        {
+            DebugMode = true;
+        }
+
         private void OnStartup(object sender, StartupEventArgs e)
         {
             Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()

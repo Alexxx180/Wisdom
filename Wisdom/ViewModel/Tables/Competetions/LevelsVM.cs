@@ -1,20 +1,15 @@
 ﻿using ControlMaterials.Tables.Tasks;
+using Wisdom.ViewModel.Collections;
+using Wisdom.ViewModel.Collections.Features;
 
 namespace Wisdom.ViewModel.Tables.Competetions
 {
-    public class LevelsVM : INode<LevelVM>
+    public class LevelsVM : TNode<LevelVM>
     {
-        public LevelsVM() : base(new LevelVM(new Level())) { }
-
-        private ushort _no;
-        public override ushort No
+        public LevelsVM()
         {
-            get => _no;
-            set
-            {
-                _no = value;
-                OnPropertyChanged();
-            }
+            Items = new AutoList<LevelVM>(new LevelVM(this, new Level()));
+            Items.Options.Add(new StateBlock<LevelVM>(Numerable.Collection(Items)));
         }
     }
 }
