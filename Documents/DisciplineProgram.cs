@@ -2,7 +2,6 @@
 using ControlMaterials.Tables.Tasks;
 using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
-using ControlMaterials.Total.Collections.Nodes;
 
 namespace ControlMaterials.Documents
 {
@@ -15,7 +14,7 @@ namespace ControlMaterials.Documents
             MaxHours = "-";
             StudyLevels = new List<Metadata>();
             MetaData = new List<Metadata>();
-            Sources = new List<HybridNode<IndexedLabel>>();
+            //Sources = new List<HybridNode<IndexedLabel>>();
             Plan = new List<Topic>();
         }
 

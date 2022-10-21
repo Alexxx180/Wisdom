@@ -5,6 +5,6 @@ namespace ControlMaterials.Total.Collections
     public interface IOptionableCollection<T> : IList<T>, ICollection<T>
     {
         public T Additor { get; }
-        public void SetTotal(uint total);
+        //public void SetTotal(uint total);
     }
 }

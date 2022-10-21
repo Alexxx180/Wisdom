@@ -1,10 +1,9 @@
-using ControlMaterials.Total.Numeration;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace ControlMaterials.Total
 {
-    public class Indexer : INotifyPropertyChanged, INumerable
+    public class Indexer : INotifyPropertyChanged
     {
         public virtual Indexer Copy()
         {
