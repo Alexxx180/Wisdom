@@ -1,14 +1,16 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
-using ControlMaterials.Total.Count;
 using System.Windows.Input;
 using Wisdom.ViewModel.Collections;
 using Wisdom.ViewModel.Commands;
 using Wisdom.ViewModel.Collections.Features;
+using Wisdom.ViewModel.Collections.Features.Numeration;
+using Wisdom.ViewModel.Collections.Features.Count.Highlighting;
+using Wisdom.ViewModel.Collections.Features.Count;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class WorkVM : TNode<TaskVM>, Collections.Features.Count.ICount, Collections.Features.Count.Highlighting.IHighlighting, ICloneable<WorkVM>
+    public class WorkVM : TNode<TaskVM>, ICount, IHighlighting, ICloneable<WorkVM>
     {
         public Countable Count { get; }
         public Highlightable Coloring { get; }

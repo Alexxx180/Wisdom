@@ -1,6 +1,5 @@
 ﻿using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
-using static ControlMaterials.Total.Count.Highlighting.HighlightColor;
 
 namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
 {
@@ -22,7 +21,7 @@ namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
 
         public override void Setup()
         {
-            Item.Coloring.SetColor(NEUTRAL);
+            Item.Coloring.SetColor(HighlightColor.NEUTRAL);
         }
     }
 }

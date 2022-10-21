@@ -1,7 +1,4 @@
-﻿using Wisdom.ViewModel.Collections.Features.Count;
-using Wisdom.ViewModel.Tables;
-
-namespace Wisdom.ViewModel.Collections.Features.Numeration
+﻿namespace Wisdom.ViewModel.Collections.Features.Numeration
 {
     public interface INumerable : INo
     {

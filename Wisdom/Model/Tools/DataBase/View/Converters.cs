@@ -342,7 +342,7 @@ namespace Wisdom.Model.Tools.DataBase
             discipline.GeneralCompetetions.Clear();
             discipline.ProfessionalCompetetions.Clear();
             discipline.Plan.Clear();
-            discipline.Sources.Clear();
+            //discipline.Sources.Clear();
             try
             {
                 discipline.MetaData = SetMetaData(metaData);

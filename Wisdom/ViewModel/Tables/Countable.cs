@@ -1,16 +1,16 @@
 ﻿using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
-using ControlMaterials.Total.Count;
 using System.Collections.Generic;
+using Wisdom.ViewModel.Collections.Features.Count;
 
 namespace Wisdom.ViewModel.Tables
 {
     public class Countable
     {
         private readonly Bridge<ISummator> _bridge;
-        private readonly Collections.Features.Count.ICount _item;
+        private readonly ICount _item;
         
-        public Countable(Collections.Features.Count.ICount item, Bridge<ISummator> bridge)
+        public Countable(ICount item, Bridge<ISummator> bridge)
         {
             _item = item;
             _bridge = bridge;
@@ -33,13 +33,12 @@ namespace Wisdom.ViewModel.Tables
 
         public ushort Sum => _item.Hours;
 
-        internal List<State<T>> Collection<T>(IOptionableCollection<T> items)
-            where T : Collections.Features.Count.IHours, IChangeable
+        internal List<State<T>> Collection<T>(IOptionableCollection<T> items) where T : IHours, IChangeable
         {
             return new List<State<T>>
             {
-                new Collections.Features.Count.ManualCount<T>(_bridge, _item, items),
-                new Collections.Features.Count.AutoCount<T>(_bridge, _item, items)
+                new ManualCount<T>(_bridge, _item, items),
+                new AutoCount<T>(_bridge, _item, items)
             };
         }
     }

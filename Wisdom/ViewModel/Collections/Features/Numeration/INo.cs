@@ -1,4 +1,4 @@
-﻿namespace Wisdom.ViewModel.Collections.Features.Count
+﻿namespace Wisdom.ViewModel.Collections.Features.Numeration
 {
     public interface INo
     {

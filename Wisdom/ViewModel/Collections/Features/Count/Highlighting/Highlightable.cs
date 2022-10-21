@@ -2,15 +2,13 @@
 using System.Drawing;
 using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
-using ControlMaterials.Total.Count;
-using ControlMaterials.Total.Count.Highlighting;
 
-namespace Wisdom.ViewModel.Tables
+namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
 {
     public class Highlightable : PropertyChangedVM
     {
         private readonly Bridge<ISummator> _bridge;
-        private readonly Collections.Features.Count.Highlighting.IHighlighting _item;
+        private readonly IHighlighting _item;
         public static readonly Color[] Pallete;
 
         static Highlightable()
@@ -23,7 +21,7 @@ namespace Wisdom.ViewModel.Tables
             };
         }
 
-        public Highlightable(Collections.Features.Count.Highlighting.IHighlighting item,
+        public Highlightable(IHighlighting item,
             Bridge<ISummator> bridge)
         {
             _item = item;
@@ -50,8 +48,8 @@ namespace Wisdom.ViewModel.Tables
         {
             return new List<State<T>>()
             {
-                new Collections.Features.Count.Highlighting.HighlightOff<T>(_item, items),
-                new Collections.Features.Count.Highlighting.HighlightOn<T>(_bridge, _item, items)
+                new HighlightOff<T>(_item, items),
+                new HighlightOn<T>(_bridge, _item, items)
             };
         }
     }

@@ -1,6 +1,5 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
-using ControlMaterials.Total.Count;
 using System.Windows.Input;
 using Wisdom.ViewModel.Collections;
 using Wisdom.ViewModel.Collections.Features;
@@ -11,7 +10,7 @@ using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class ThemeVM : TNode<WorkVM>, INo, INumerable, Collections.Features.Count.ICount, IHighlighting, ICloneable<ThemeVM>
+    public class ThemeVM : TNode<WorkVM>, INo, INumerable, ICount, IHighlighting, ICloneable<ThemeVM>
     {
         public Numerable Number { get; }
         public Countable Count { get; }

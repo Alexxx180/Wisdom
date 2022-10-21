@@ -1,6 +1,7 @@
 ﻿using ControlMaterials.Tables.Tasks;
 using Wisdom.ViewModel.Collections;
 using Wisdom.ViewModel.Collections.Features;
+using Wisdom.ViewModel.Collections.Features.Numeration;
 
 namespace Wisdom.ViewModel.Tables.Competetions
 {

@@ -1,7 +1,5 @@
 ﻿using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
-using ControlMaterials.Total.Count;
-using Color = ControlMaterials.Total.Count.Highlighting.HighlightColor;
 
 namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
 {
@@ -15,12 +13,13 @@ namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
             Count = count;
         }
 
-        public Color DefineColor(ISummator summator)
+        public HighlightColor DefineColor(ISummator summator)
         {
             if (summator.Sum == summator.PrevSum)
-                return Color.CONFORMITY;
+                return HighlightColor.CONFORMITY;
 
-            return summator.Sum > summator.PrevSum ? Color.VIOLATION : Color.NEUTRAL;
+            return summator.Sum > summator.PrevSum ?
+                HighlightColor.VIOLATION : HighlightColor.NEUTRAL;
         }
 
         public override void Setup()
@@ -40,7 +39,7 @@ namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
 
         public override void Recalculate()
         {
-            Color higlighting = DefineColor(Count.Reference);
+            HighlightColor higlighting = DefineColor(Count.Reference);
             Item.Coloring.SetColor(higlighting);
         }
     }

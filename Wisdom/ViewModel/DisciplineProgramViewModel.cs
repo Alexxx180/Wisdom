@@ -14,9 +14,7 @@ using static Wisdom.Writers.ResultRenderer;
 using Wisdom.Model;
 using System.Windows.Input;
 using Wisdom.ViewModel.Commands;
-using ControlMaterials.Total.Collections.Nodes;
 using ControlMaterials.Total.Collections;
-using ControlMaterials.Total.Numeration;
 using Wisdom.ViewModel.Tables.ThemePlan;
 using Wisdom.ViewModel.Tables.Competetions;
 using ControlMaterials.Tables.Tasks;
@@ -250,16 +248,16 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private ObservableCollection<HybridNode<IndexedLabel>> _sources;
-        public ObservableCollection<HybridNode<IndexedLabel>> Sources
-        {
-            get => _sources;
-            set
-            {
-                _sources = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableCollection<HybridNode<IndexedLabel>> _sources;
+        //public ObservableCollection<HybridNode<IndexedLabel>> Sources
+        //{
+        //    get => _sources;
+        //    set
+        //    {
+        //        _sources = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private ThemePlanVM _themePlan;
         public ThemePlanVM ThemePlan
@@ -306,7 +304,7 @@ namespace Wisdom.ViewModel
 
             ThemePlan = new ThemePlanVM(new Plan());
             
-            Sources = new ObservableCollection<HybridNode<IndexedLabel>>();
+            //Sources = new ObservableCollection<HybridNode<IndexedLabel>>();
             Metadata = new ObservableCollection<Metadata>();
 
 
@@ -325,7 +323,7 @@ namespace Wisdom.ViewModel
             RemoveMetaCommand = new RelayCommand(argument => Metadata.Remove(argument as Metadata));
             //RemoveLevelCommand = new RelayCommand(argument => Levels.Remove(argument as Level));
             //RemoveTopicCommand = new RelayCommand(argument => ThemePlan.Remove(argument as Topic));
-            RemoveSourceCommand = new RelayCommand(argument => Sources.Remove(argument as HybridNode<IndexedLabel>));
+            //RemoveSourceCommand = new RelayCommand(argument => Sources.Remove(argument as HybridNode<IndexedLabel>));
             
             //RemoveGCompetetionCommand = new RelayCommand(argument => GCompetetions.Remove(argument as Competetion));
             //RemovePCompetetionCommand = new RelayCommand(argument => PCompetetions.Remove(argument as IndexNode<Competetion>));
@@ -488,14 +486,14 @@ namespace Wisdom.ViewModel
             }
         }
 
-        private void SetSources(List<HybridNode<IndexedLabel>> sources)
-        {
-            Sources.Clear();
-            for (ushort i = 0; i < sources.Count; i++)
-            {
-                Sources.Add(sources[i]);
-            }
-        }
+        //private void SetSources(List<HybridNode<IndexedLabel>> sources)
+        //{
+        //    Sources.Clear();
+        //    for (ushort i = 0; i < sources.Count; i++)
+        //    {
+        //        Sources.Add(sources[i]);
+        //    }
+        //}
 
         //private void SetThemePlan(List<Topic> plan)
         //{

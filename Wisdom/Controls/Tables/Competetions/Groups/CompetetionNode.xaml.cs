@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using Wisdom.ViewModel.Commands;
 using System.Windows.Input;
 using ControlMaterials.Total;
-using ControlMaterials.Total.Collections.Nodes;
 
 namespace Wisdom.Controls.Tables.Competetions.Groups
 {

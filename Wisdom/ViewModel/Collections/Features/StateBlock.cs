@@ -38,7 +38,6 @@ namespace Wisdom.ViewModel.Collections.Features
 
         public void Add(T item)
         {
-            System.Diagnostics.Trace.WriteLine("HM..");
             Current.Add(item);
         }
 

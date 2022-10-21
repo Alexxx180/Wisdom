@@ -1,6 +1,4 @@
-﻿using Wisdom.ViewModel.Tables;
-
-namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
+﻿namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
 {
     public interface IHighlighting
     {

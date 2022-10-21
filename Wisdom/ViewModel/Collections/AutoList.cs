@@ -39,8 +39,6 @@ namespace Wisdom.ViewModel.Collections
             if (items is null)
                 return;
 
-            System.Diagnostics.Trace.WriteLine("YES");
-
             foreach (T item in items)
             {
                 item.PropertyChanged += OnItemChanged;

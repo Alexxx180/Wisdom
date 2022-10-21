@@ -1,10 +1,8 @@
 ﻿using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
 using System.Collections.Generic;
-using Wisdom.ViewModel.Collections.Features.Count;
-using Wisdom.ViewModel.Collections.Features.Numeration;
 
-namespace Wisdom.ViewModel.Tables
+namespace Wisdom.ViewModel.Collections.Features.Numeration
 {
     public class Numerable : PropertyChangedVM
     {
@@ -22,7 +20,6 @@ namespace Wisdom.ViewModel.Tables
 
         public void Increment(ushort no)
         {
-            System.Diagnostics.Trace.WriteLine(no);
             _item.No += no;
         }
 
