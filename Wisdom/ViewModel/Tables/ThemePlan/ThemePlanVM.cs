@@ -5,6 +5,7 @@ using Wisdom.ViewModel.Collections.Features;
 using Wisdom.ViewModel.Collections.Features.Count;
 using Wisdom.ViewModel.Collections.Features.Count.Highlighting;
 using Wisdom.ViewModel.Collections.Features.Numeration;
+using static Wisdom.ViewModel.DisciplineProgramViewModel;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
@@ -22,9 +23,14 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             Coloring = new Highlightable(this, sumLogic);
 
             Items = new AutoList<TopicVM>(new TopicVM(this, new Topic()));
-            Items.Options.Add(new StateBlock<TopicVM>(Numerable.Collection(Items), 1));
+            Items.Options.Add(new StateBlock<TopicVM>(Numerable.Collection(Items)));
             Items.Options.Add(new StateBlock<TopicVM>(Count.Collection(Items)));
             Items.Options.Add(new StateBlock<TopicVM>(Coloring.Collection(Items)));
+        }
+
+        public void TrackChanges(ref OnSelect select)
+        {
+            Items.Options[0].TrackChanges(ref select);
         }
 
         private readonly Plan _plan;

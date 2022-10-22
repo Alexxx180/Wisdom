@@ -1,6 +1,7 @@
 ﻿using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
 using System.Collections.Generic;
+using static Wisdom.ViewModel.DisciplineProgramViewModel;
 
 namespace Wisdom.ViewModel.Collections.Features
 {
@@ -29,6 +30,12 @@ namespace Wisdom.ViewModel.Collections.Features
         {
             States = states;
             Select(selected);
+        }
+
+        public void TrackChanges(ref OnSelect select)
+        {
+            select += Select;
+            System.Diagnostics.Trace.WriteLine("ALE ALO");
         }
 
         public void Select(int selection)
