@@ -192,20 +192,8 @@ namespace Wisdom.ViewModel
         public ICommand RemoveGCompetetionCommand { get; }
         public ICommand RemovePCompetetionCommand { get; }
 
-        private int _planNumeration;
-        public int PlanNumeration
-        {
-            get => _planNumeration;
-            set
-            {
-                _planNumeration = value;
-                OnPropertyChanged();
-                Numeration.Invoke(value);
-            }
-        }
-
         public delegate void OnSelect(int selection);
-        public event OnSelect Numeration;
+        
 
         #region Data template members
         //private HoursNode<HoursNode<Topic>> _hours;
@@ -318,9 +306,6 @@ namespace Wisdom.ViewModel
             //AutoList<ThemePlanVM> lol = new Collections.AutoList<ThemePlanVM>(new ThemePlanVM());
 
             ThemePlan = new ThemePlanVM(new Plan());
-
-            ThemePlan.TrackChanges(ref Numeration);
-            PlanNumeration = 2;
 
             //Sources = new ObservableCollection<HybridNode<IndexedLabel>>();
             Metadata = new ObservableCollection<Metadata>();

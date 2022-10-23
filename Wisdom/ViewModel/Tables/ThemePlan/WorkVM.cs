@@ -15,22 +15,40 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
         public Countable Count { get; }
         public Highlightable Coloring { get; }
 
-        public WorkVM(IParent<WorkVM> parent, Work work)
+        public WorkVM(IPlan<WorkVM> parent, Work work)
         {
             _work = work;
             Parent = parent;
+
+            _numeration = parent.Numeration;
+            _sumCount = parent.SumCount;
+            _higlighting = parent.Higlighting;
 
             Bridge<ISummator> sumLogic = new Bridge<ISummator>();
             Count = new Countable(this, sumLogic);
             Coloring = new Highlightable(this, sumLogic);
 
             Items = new AutoList<TaskVM>(new TaskVM(this, new Topic()));
-            Items.Options.Add(new StateBlock<TaskVM>(Numerable.Collection(Items)));
-            Items.Options.Add(new StateBlock<TaskVM>(Count.Collection(Items)));
-            Items.Options.Add(new StateBlock<TaskVM>(Coloring.Collection(Items)));
+            SetNumeration();
+            SetCount();
+            SetHighlight();
 
-            RemoveCommand = new RelayCommand
-                (argument => Parent.Remove((WorkVM)argument));
+            RemoveCommand = new RelayCommand(argument => Parent.Remove((WorkVM)argument));
+        }
+
+        public void SetNumeration()
+        {
+            Items.Options.Add(new StateBlock<TaskVM>(Numerable.Collection(Items), ref _numeration));
+        }
+
+        public void SetCount()
+        {
+            Items.Options.Add(new StateBlock<TaskVM>(Count.Collection(Items), ref _sumCount));
+        }
+
+        public void SetHighlight()
+        {
+            Items.Options.Add(new StateBlock<TaskVM>(Coloring.Collection(Items), ref _higlighting));
         }
 
         private readonly Work _work;
@@ -55,12 +73,19 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public IParent<WorkVM> Parent { get; }
+        public IPlan<WorkVM> Parent { get; }
         public ICommand RemoveCommand { get; }
         
         public WorkVM Copy()
         {
             return new WorkVM(Parent, _work.Copy());
         }
+
+        private FeatureSetting _numeration;
+        public FeatureSetting Numeration => _numeration;
+        private FeatureSetting _sumCount;
+        public FeatureSetting SumCount => _sumCount;
+        private FeatureSetting _higlighting;
+        public FeatureSetting Higlighting => _higlighting;
     }
 }

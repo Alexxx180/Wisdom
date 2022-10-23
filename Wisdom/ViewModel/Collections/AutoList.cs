@@ -34,7 +34,7 @@ namespace Wisdom.ViewModel.Collections
         }
 
         // Subscribe to future changes for each item
-        private void OnAppend(IList items)
+        private void OnAppend(IList? items)
         {
             if (items is null)
                 return;
@@ -50,7 +50,7 @@ namespace Wisdom.ViewModel.Collections
         }
 
         // Unsubscribe to changes in each item
-        private void OnDelete(IList items)
+        private void OnDelete(IList? items)
         {
             if (items is null)
                 return;

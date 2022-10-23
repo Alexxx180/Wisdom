@@ -17,7 +17,7 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             _task = task;
 
             Number = new Numerable(this);
-            
+
             RemoveCommand = new RelayCommand
                 (argument => Parent.Remove((TaskVM)argument));
         }

@@ -10,7 +10,7 @@ namespace Wisdom.ViewModel.Tables.Competetions
         public LevelsVM()
         {
             Items = new AutoList<LevelVM>(new LevelVM(this, new Level()));
-            Items.Options.Add(new StateBlock<LevelVM>(Numerable.Collection(Items)));
+            //Items.Options.Add(new StateBlock<LevelVM>(Numerable.Collection(Items)));
         }
     }
 }

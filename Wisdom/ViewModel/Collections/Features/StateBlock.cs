@@ -26,16 +26,11 @@ namespace Wisdom.ViewModel.Collections.Features
             States = new List<State<T>>();
         }
 
-        public StateBlock(List<State<T>> states, int selected = 0)
+        public StateBlock(List<State<T>> states, ref FeatureSetting state)
         {
             States = states;
-            Select(selected);
-        }
-
-        public void TrackChanges(ref OnSelect select)
-        {
-            select += Select;
-            System.Diagnostics.Trace.WriteLine("ALE ALO");
+            state.Feature += Select;
+            Select(state.Setting);
         }
 
         public void Select(int selection)
