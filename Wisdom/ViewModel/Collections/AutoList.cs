@@ -34,7 +34,7 @@ namespace Wisdom.ViewModel.Collections
         }
 
         // Subscribe to future changes for each item
-        private void OnAppend(IList? items)
+        private void OnAppend(IList items)
         {
             if (items is null)
                 return;
@@ -50,7 +50,7 @@ namespace Wisdom.ViewModel.Collections
         }
 
         // Unsubscribe to changes in each item
-        private void OnDelete(IList? items)
+        private void OnDelete(IList items)
         {
             if (items is null)
                 return;
@@ -67,16 +67,19 @@ namespace Wisdom.ViewModel.Collections
 
         private void OnItemChanged(object sender, PropertyChangedEventArgs args)
         {
+            UpdateHead(args.PropertyName);
+        }
+
+        public void UpdateHead(string name)
+        {
             for (byte i = 0; i < Options.Count; i++)
             {
-                if (args.PropertyName == Options[i].PropertyName)
+                if (name == Options[i].PropertyName)
                 {
                     Options[i].Recalculate();
                 }
             }
         }
-
-        public virtual void SetTotal(uint total) { }
 
         #region INotifyPropertyChanged Members
         /// <summary>

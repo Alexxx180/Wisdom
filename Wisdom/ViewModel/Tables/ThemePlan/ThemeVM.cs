@@ -1,8 +1,6 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
 using System.Windows.Input;
-using Wisdom.ViewModel.Collections;
-using Wisdom.ViewModel.Collections.Features;
 using Wisdom.ViewModel.Collections.Features.Count;
 using Wisdom.ViewModel.Collections.Features.Count.Highlighting;
 using Wisdom.ViewModel.Collections.Features.Numeration;
@@ -10,41 +8,23 @@ using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class ThemeVM : TNode<WorkVM>, INo, INumerable, ICount, IHighlighting, ICloneable<ThemeVM>, IPlan<WorkVM>
+    public class ThemeVM : PlanVM<WorkVM>, INo, INumerable, ICount, IHighlighting, ICloneable<ThemeVM>, IPlan
     {
-        public Numerable Number { get; }
-        public Countable Count { get; }
-        public Highlightable Coloring { get; }
+        public Numerable Number { get; private set; }
 
-        public ThemeVM(IPlan<ThemeVM> parent, Theme theme)
+        public ThemeVM(PlanVM<ThemeVM> parent, Theme theme) : base(parent)
         {
             _theme = theme;
             Parent = parent;
+            ListSetup(new WorkVM(this, new Work()));
+            RemoveCommand = new RelayCommand
+                (argument => Parent.Remove((ThemeVM)argument));
+        }
 
-            _numeration = parent.Numeration;
-            _sumCount = parent.SumCount;
-            _higlighting = parent.Higlighting;
-
-            Bridge<ISummator> sumLogic = new Bridge<ISummator>();
+        private protected override void Features()
+        {
+            base.Features();
             Number = new Numerable(this);
-            Count = new Countable(this, sumLogic);
-            Coloring = new Highlightable(this, sumLogic);
-
-            Items = new AutoList<WorkVM>(new WorkVM(this, new Topic()));
-            SetCount();
-            SetHighlight();
-
-            RemoveCommand = new RelayCommand(argument => Parent.Remove((ThemeVM)argument));
-        }
-
-        public void SetCount()
-        {
-            Items.Options.Add(new StateBlock<WorkVM>(Count.Collection(Items), ref _sumCount));
-        }
-
-        public void SetHighlight()
-        {
-            Items.Options.Add(new StateBlock<WorkVM>(Coloring.Collection(Items), ref _higlighting));
         }
 
         private readonly Theme _theme;
@@ -69,13 +49,14 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public ushort Hours
+        public override ushort Hours
         {
             get => _theme.Hours;
             set
             {
                 _theme.Hours = value;
                 OnPropertyChanged();
+                Items.UpdateHead(nameof(Hours));
             }
         }
 
@@ -100,19 +81,12 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
         //    }
         //}
 
-        public IPlan<ThemeVM> Parent { get; set; }
+        public PlanVM<ThemeVM> Parent { get; }
         public ICommand RemoveCommand { get; }
 
         public ThemeVM Copy()
         {
             return new ThemeVM(Parent, _theme.Copy());
         }
-
-        private FeatureSetting _numeration;
-        public FeatureSetting Numeration => _numeration;
-        private FeatureSetting _sumCount;
-        public FeatureSetting SumCount => _sumCount;
-        private FeatureSetting _higlighting;
-        public FeatureSetting Higlighting => _higlighting;
     }
 }

@@ -40,12 +40,15 @@
 
             <TextBox Grid.Column="2" Style="{StaticResource HoursBoxLight}">
                 <TextBox.Text>
-                    <Binding Path="Count" Mode="TwoWay">
+                    <Binding Path="Hours" Mode="TwoWay">
                         <Binding.UpdateSourceTrigger>
                             LostFocus
                         </Binding.UpdateSourceTrigger>
                     </Binding>
                 </TextBox.Text>
+                <TextBox.Background>
+                    <SolidColorBrush Color="{Binding Path=Coloring.Color}"/>
+                </TextBox.Background>
             </TextBox>
         </Grid>
     </ControlTemplate>
@@ -162,6 +165,9 @@
                             </Binding.UpdateSourceTrigger>
                         </Binding>
                     </TextBox.Text>
+                    <TextBox.Background>
+                        <SolidColorBrush Color="{Binding Path=Coloring.Color}"/>
+                    </TextBox.Background>
                 </TextBox>
             </UniformGrid>
         </Grid>
@@ -243,6 +249,9 @@
                         </Binding.UpdateSourceTrigger>
                     </Binding>
                 </TextBox.Text>
+                <TextBox.Background>
+                    <SolidColorBrush Color="{Binding Path=Coloring.Color}"/>
+                </TextBox.Background>
             </TextBox>
         </Grid>
     </ControlTemplate>

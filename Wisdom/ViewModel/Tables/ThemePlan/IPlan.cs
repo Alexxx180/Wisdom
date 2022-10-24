@@ -2,7 +2,7 @@
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public interface IPlan<T> : IParent<T>
+    public interface IPlan
     {
         public FeatureSetting Numeration { get; }
         public FeatureSetting SumCount { get; }

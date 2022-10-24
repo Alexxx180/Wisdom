@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
+using System.Windows.Media;
 using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
 
@@ -15,9 +15,9 @@ namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
         {
             Pallete = new Color[]
             {
-                Color.FromArgb(255, 152, 99),
-                Color.Transparent,
-                Color.FromArgb(155, 252, 199)
+                Color.FromRgb(255, 152, 99),
+                Colors.Transparent,
+                Color.FromRgb(155, 252, 199)
             };
         }
 
