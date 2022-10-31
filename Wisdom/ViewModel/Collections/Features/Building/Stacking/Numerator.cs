@@ -29,7 +29,7 @@ namespace Wisdom.ViewModel.Collections.Features.Building.Stacking
         public override StateGroup<T, TParent> Stack()
         {
             StateGroup<T, TParent> group = _counter.Stack();
-            group.Features.Add(_numeration.Manual().OnlyNew().Auto().Select(0).Result());
+            group.Features.Add(_numeration.Manual().OnlyNew().Auto().Select(1).Result());
             return group;
         }
     }

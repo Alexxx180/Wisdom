@@ -29,7 +29,7 @@ namespace Wisdom.ViewModel.Collections.Features.Building.Stacking
             Bridge<ISummator<TParent>> count = new Bridge<ISummator<TParent>>();
             
             features.Add(_count.Sync(count).Manual().Auto().Select(0).Result());
-            features.Add(_highlighting.Off().On(count).Select(0).Result());
+            features.Add(_highlighting.Off().On(count).Select(1).Result());
 
             return new StateGroup<T, TParent>(features);
         }

@@ -23,7 +23,7 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             Set(parent, work);
             SetItems(new TaskVM(this));
             RemoveCommand = new RelayCommand
-                (argument => Parent.Remove((WorkVM)argument));
+                (argument => Parent.Items.Remove((WorkVM)argument));
 
             //AddChain(2);
         }
