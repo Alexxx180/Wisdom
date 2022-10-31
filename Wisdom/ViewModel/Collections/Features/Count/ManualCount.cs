@@ -1,46 +1,45 @@
 ﻿using ControlMaterials.Total;
-using ControlMaterials.Total.Collections;
 
 namespace Wisdom.ViewModel.Collections.Features.Count
 {
-    public class ManualCount<T> : State<T>, ISummator where T : IHours, IChangeable
+    public class ManualCount<T, TParent> : State<T, TParent>, ISummator<TParent>
+        where T : IHours, IChangeable, ICloneable<T>
+        where TParent : ICount, ICollectionContainer<T>, ICloneable<TParent>
     {
-        private readonly IHours _node;
-        private protected readonly Bridge<ISummator> Count;
-
-        public ushort Sum => GetSum();
-        public virtual ushort PrevSum => _node.Hours;
-
-        private protected ManualCount(Bridge<ISummator> count,
-            IOptionableCollection<T> items) : base(nameof(IHours.Hours), items)
+        private protected readonly Bridge<ISummator<TParent>> Count;
+        
+        public ManualCount(Bridge<ISummator<TParent>> count) : base(nameof(IHours.Hours))
         {
             Count = count;
         }
 
-        public ManualCount(Bridge<ISummator> count, IHours node,
-            IOptionableCollection<T> items) : this(count, items)
-        {
-            Count = count;
-            _node = node;
-        }
+        public override void Add(T item, TParent parent) { }
 
-        public override void Add(T item) { }
+        public override void Remove(T item, TParent parent) { }
 
-        public override void Remove(T item) { }
-
-        public override void Recalculate() { }
+        public override void Recalculate(T item, TParent parent) { }
 
         public override void Setup()
         {
             Count.SetReference(this);
         }
 
-        private protected ushort GetSum()
+        public ushort PreviousSum(TParent parent)
+        {
+            return parent.Count.Sum;
+        }
+
+        public virtual ushort CurrentSum(TParent parent)
+        {
+            return Sum(parent);
+        }
+
+        private protected static ushort Sum(TParent parent)
         {
             ushort sum = 0;
-            for (ushort i = 0; i < Items.Count; i++)
+            for (byte i = 0; i < parent.Items.Count; i++)
             {
-                sum += Items[i].Hours;
+                sum += parent.Items[i].Hours;
             }
             return sum;
         }

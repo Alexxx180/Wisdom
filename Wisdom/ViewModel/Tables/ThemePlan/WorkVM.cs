@@ -3,30 +3,41 @@ using ControlMaterials.Total;
 using System.Windows.Input;
 using Wisdom.ViewModel.Commands;
 using Wisdom.ViewModel.Collections.Features;
-using Wisdom.ViewModel.Collections.Features.Numeration;
 using Wisdom.ViewModel.Collections.Features.Count.Highlighting;
 using Wisdom.ViewModel.Collections.Features.Count;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class WorkVM : PlanVM<TaskVM>, ICount, IHighlighting, ICloneable<WorkVM>
+    public class WorkVM : PlanVM<TaskVM, WorkVM, StateGroup<TaskVM, WorkVM>>,
+        ICount, IHours, IHighlighting, ICloneable<WorkVM>, ICollectionContainer<TaskVM>, IParent<TaskVM>
     {
-        public WorkVM(PlanVM<WorkVM> parent, Work work) : base(parent)
+        private protected override WorkVM _this => this;
+
+        public WorkVM(ThemeVM parent)
+        {
+            Set(parent, new Work("Самостоятельная работа", 1));
+        }
+
+        public WorkVM(ThemeVM parent, Work work)
+        {
+            Set(parent, work);
+            SetItems(new TaskVM(this));
+            RemoveCommand = new RelayCommand
+                (argument => Parent.Remove((WorkVM)argument));
+
+            //AddChain(2);
+        }
+        
+        private protected void Set(ThemeVM parent, Work work)
         {
             _work = work;
             Parent = parent;
-            ListSetup(new TaskVM(this, new Topic()));
-            RemoveCommand = new RelayCommand
-                (argument => Parent.Remove((WorkVM)argument));
+            SetFeatures(this);
+            SetNode(parent.Node.List);
+            OnPropertyChanged(nameof(_this));
         }
 
-        private protected override void ListSetup(TaskVM additor)
-        {
-            base.ListSetup(additor);
-            Items.Options.Add(new StateBlock<TaskVM>(Numerable.Collection(Items), ref _numeration));
-        }
-
-        private readonly Work _work;
+        private Work _work;
 
         public string Name
         {
@@ -38,18 +49,17 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public override ushort Hours
+        public ushort Hours
         {
             get => _work.Hours;
             set
             {
                 _work.Hours = value;
                 OnPropertyChanged();
-                Items.UpdateHead(nameof(Hours));
             }
         }
-
-        public PlanVM<WorkVM> Parent { get; }
+        
+        public ThemeVM Parent { get; private set; }
         public ICommand RemoveCommand { get; }
         
         public WorkVM Copy()

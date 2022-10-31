@@ -1,7 +1,6 @@
 ﻿using ControlMaterials.Total;
 using ControlMaterials.Total.Collections;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -12,7 +11,7 @@ namespace Wisdom.ViewModel.Collections
 {
     public class AutoList<T> : ObservableCollection<T>, IOptionableCollection<T> where T : IChangeable, ICloneable<T>
     {
-        public List<StateBlock<T>> Options { get; }
+        public IState<T> Group { get; }
         public T Additor { get; }
 
         public void Add()
@@ -20,10 +19,10 @@ namespace Wisdom.ViewModel.Collections
             Add(Additor.Copy());
         }
 
-        public AutoList(T additor)
+        public AutoList(T additor, IState<T> group)
         {
             Additor = additor;
-            Options = new List<StateBlock<T>>();
+            Group = group;
             CollectionChanged += OnCollectionChanged;
         }
 
@@ -33,7 +32,6 @@ namespace Wisdom.ViewModel.Collections
             OnDelete(args.OldItems);
         }
 
-        // Subscribe to future changes for each item
         private void OnAppend(IList items)
         {
             if (items is null)
@@ -42,14 +40,10 @@ namespace Wisdom.ViewModel.Collections
             foreach (T item in items)
             {
                 item.PropertyChanged += OnItemChanged;
-                for (byte i = 0; i < Options.Count; i++)
-                {
-                    Options[i].Add(item);
-                }
+                Group.Add(item);
             }
         }
 
-        // Unsubscribe to changes in each item
         private void OnDelete(IList items)
         {
             if (items is null)
@@ -58,27 +52,13 @@ namespace Wisdom.ViewModel.Collections
             foreach (T item in items)
             {
                 item.PropertyChanged -= OnItemChanged;
-                for (byte i = 0; i < Options.Count; i++)
-                {
-                    Options[i].Remove(item);
-                }
+                Group.Remove(item);
             }
         }
 
         private void OnItemChanged(object sender, PropertyChangedEventArgs args)
         {
-            UpdateHead(args.PropertyName);
-        }
-
-        public void UpdateHead(string name)
-        {
-            for (byte i = 0; i < Options.Count; i++)
-            {
-                if (name == Options[i].PropertyName)
-                {
-                    Options[i].Recalculate();
-                }
-            }
+            Group.Recalculate((T)sender, args.PropertyName);
         }
 
         #region INotifyPropertyChanged Members

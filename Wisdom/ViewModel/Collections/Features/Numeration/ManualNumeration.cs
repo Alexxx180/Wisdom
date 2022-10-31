@@ -1,18 +1,16 @@
 ﻿using ControlMaterials.Total;
-using ControlMaterials.Total.Collections;
 
 namespace Wisdom.ViewModel.Collections.Features.Numeration
 {
-    public class ManualNumeration<T> : State<T> where T : INumerable, IChangeable
+    public class ManualNumeration<T, TParent> : State<T, TParent> where T : INumerable, IChangeable
     {
-        public ManualNumeration(IOptionableCollection<T> items) :
-            base(nameof(Indexer.No), items) { }
+        public ManualNumeration() : base(nameof(INo.No)) { }
 
-        public override void Add(T item) { }
+        public override void Add(T item, TParent parent) { }
 
-        public override void Remove(T item) { }
+        public override void Remove(T item, TParent parent) { }
 
-        public override void Recalculate() { }
+        public override void Recalculate(T item, TParent parent) { }
 
         public override void Setup() { }
     }

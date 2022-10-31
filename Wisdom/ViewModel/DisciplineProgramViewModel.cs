@@ -19,6 +19,10 @@ using Wisdom.ViewModel.Tables.ThemePlan;
 using Wisdom.ViewModel.Tables.Competetions;
 using ControlMaterials.Tables.Tasks;
 using Wisdom.ViewModel.Collections;
+using System;
+using Wisdom.ViewModel.Collections.Features;
+using Wisdom.ViewModel.Collections.Features.Building.Stacking;
+using Wisdom.ViewModel.Collections.Features.Building;
 
 namespace Wisdom.ViewModel
 {
@@ -283,7 +287,7 @@ namespace Wisdom.ViewModel
                 OnPropertyChanged();
             }
         }
-        
+
         //private ObservableCollection<Hour> _processSettings;
         //public ObservableCollection<Hour> ProcessSettings
         //{
@@ -294,6 +298,10 @@ namespace Wisdom.ViewModel
         //        OnPropertyChanged();
         //    }
         //}
+
+
+        private FNode<ThemePlanVM, TopicVM, FNode<TopicVM, ThemeVM,
+            FNode<ThemeVM, WorkVM, StateGroup<TaskVM, WorkVM>>>> _themePlanSettings;
         #endregion
 
         public DisciplineProgramViewModel()
@@ -301,11 +309,32 @@ namespace Wisdom.ViewModel
             SpecialitySelect = new ObservableCollection<Metadata>();
             DisciplinesSelect = new ObservableCollection<Metadata>();
 
+            FNode<ThemeVM, WorkVM, StateGroup<TaskVM, WorkVM>>
+                workSettings = new
+                FNode<ThemeVM, WorkVM, StateGroup<TaskVM, WorkVM>> (new Counter<WorkVM, ThemeVM>().Stack(),
+                new Numerator<TaskVM, WorkVM>(new Counter<TaskVM, WorkVM>()).Stack());
+
+            FNode<TopicVM, ThemeVM, FNode<ThemeVM, WorkVM, StateGroup<TaskVM, WorkVM>>>
+                themeSettings = new
+                FNode<TopicVM, ThemeVM, FNode<ThemeVM, WorkVM, StateGroup<TaskVM, WorkVM>>>
+                (new Numerator<ThemeVM, TopicVM>(new Counter<ThemeVM, TopicVM>()).Stack(), workSettings);
+
+            //StateGroup<TopicVM, ThemePlanVM> stck = new Numerator<TopicVM, ThemePlanVM>(new Counter<TopicVM, ThemePlanVM>()).Stack();
+
+            //for (byte i = 0; i < stck.Features.Count; i++)
+            //{
+            //    System.Diagnostics.Trace.WriteLine(stck.Features[i] is null);
+            //}
+
+            _themePlanSettings = new
+                FNode<ThemePlanVM, TopicVM, FNode<TopicVM, ThemeVM, FNode<ThemeVM, WorkVM, StateGroup<TaskVM, WorkVM>>>>
+                (new Numerator<TopicVM, ThemePlanVM>(new Counter<TopicVM, ThemePlanVM>()).Stack(), themeSettings);
+
             //Levels = new LevelsVM();
 
             //AutoList<ThemePlanVM> lol = new Collections.AutoList<ThemePlanVM>(new ThemePlanVM());
 
-            ThemePlan = new ThemePlanVM(new Plan());
+            ThemePlan = new ThemePlanVM(new Plan(), _themePlanSettings);
 
             //Sources = new ObservableCollection<HybridNode<IndexedLabel>>();
             Metadata = new ObservableCollection<Metadata>();

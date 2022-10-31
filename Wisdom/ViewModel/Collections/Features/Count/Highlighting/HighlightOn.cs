@@ -1,46 +1,45 @@
 ﻿using ControlMaterials.Total;
-using ControlMaterials.Total.Collections;
 
 namespace Wisdom.ViewModel.Collections.Features.Count.Highlighting
 {
-    public class HighlightOn<T> : HighlightOff<T> where T : IChangeable
+    public class HighlightOn<T, TParent> : HighlightOff<T, TParent>
+        where T : IChangeable
+        where TParent : IHighlighting
     {
-        private readonly Bridge<ISummator> Count;
+        private readonly Bridge<ISummator<TParent>> _count;
 
-        public HighlightOn(Bridge<ISummator> count, IHighlighting item,
-            IOptionableCollection<T> items) : base(item, items)
+        public HighlightOn(Bridge<ISummator<TParent>> count)
         {
-            Count = count;
+            _count = count;
         }
 
-        public HighlightColor DefineColor(ISummator summator)
+        public HighlightColor DefineColor(ISummator<TParent> summator, TParent parent)
         {
-            if (summator.Sum == summator.PrevSum)
+            ushort current = summator.CurrentSum(parent);
+            ushort previous = summator.PreviousSum(parent);
+
+            if (current == previous)
                 return HighlightColor.CONFORMITY;
 
-            return summator.Sum > summator.PrevSum ?
-                HighlightColor.VIOLATION : HighlightColor.NEUTRAL;
+            return current > previous ? HighlightColor.VIOLATION : HighlightColor.NEUTRAL;
         }
 
-        public override void Setup()
+        public override void Setup() { }
+
+        public override void Add(T item, TParent parent)
         {
-            Recalculate();
+            Recalculate(item, parent);
         }
 
-        public override void Add(T item)
+        public override void Remove(T item, TParent parent)
         {
-            Recalculate();
+            Recalculate(item, parent);
         }
 
-        public override void Remove(T item)
+        public override void Recalculate(T item, TParent parent)
         {
-            Recalculate();
-        }
-
-        public override void Recalculate()
-        {
-            HighlightColor higlighting = DefineColor(Count.Reference);
-            Item.Coloring.SetColor(higlighting);
+            HighlightColor higlighting = DefineColor(_count.Reference, parent);
+            parent.Coloring.SetColor(higlighting);
         }
     }
 }

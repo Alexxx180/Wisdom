@@ -1,8 +1,8 @@
 ﻿namespace Wisdom.ViewModel.Collections.Features.Count
 {
-    public interface ISummator
+    public interface ISummator<T>
     {
-        public ushort Sum { get; }
-        public ushort PrevSum { get; }
+        public ushort CurrentSum(T parent);
+        public ushort PreviousSum(T parent);
     }
 }

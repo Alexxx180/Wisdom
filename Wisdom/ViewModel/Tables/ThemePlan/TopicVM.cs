@@ -1,6 +1,7 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
 using System.Windows.Input;
+using Wisdom.ViewModel.Collections;
 using Wisdom.ViewModel.Collections.Features;
 using Wisdom.ViewModel.Collections.Features.Count;
 using Wisdom.ViewModel.Collections.Features.Count.Highlighting;
@@ -9,32 +10,46 @@ using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class TopicVM : PlanVM<ThemeVM>, INo, INumerable, ICount, IHighlighting, ICloneable<TopicVM>, IPlan
+    public class TopicVM : PlanVM<ThemeVM, TopicVM, FNode<TopicVM, ThemeVM, FNode<ThemeVM, WorkVM, StateGroup<TaskVM, WorkVM>>>>,
+        INo, INumerable, ICount, IHighlighting, ICloneable<TopicVM>, ICollectionContainer<ThemeVM>, IParent<ThemeVM>, IHours
     {
+        private protected override TopicVM _this => this;
+
         public Numerable Number { get; private set; }
 
-        public TopicVM(PlanVM<TopicVM> parent, Topic topic) : base(parent)
+        public TopicVM() { }
+
+        public TopicVM(ThemePlanVM parent)
+        {
+            Set(parent, new Topic(1, "СУПЕР ВАЖНОЕ Изучение местных достопримечательностей в Константинополе на оценку", 1));
+        }
+
+        public TopicVM(ThemePlanVM parent, Topic topic)
+        {
+            Set(parent, topic);
+            SetItems(new ThemeVM(this));
+
+            RemoveCommand = new RelayCommand
+                (argument => Parent.Remove(this));
+
+            //AddChain(5);
+        }
+
+        private protected void Set(ThemePlanVM parent, Topic topic)
         {
             _topic = topic;
             Parent = parent;
-            ListSetup(new ThemeVM(this, new Theme()));
-            RemoveCommand = new RelayCommand
-                (argument => Parent.Remove(this));
+            SetFeatures(this);
+            SetNode(parent.Node.List);
         }
 
-        private protected override void Features()
+        private protected override void SetFeatures(TopicVM item)
         {
-            base.Features();
-            Number = new Numerable(this);
+            base.SetFeatures(item);
+            Number = new Numerable(item);
         }
 
-        private protected override void ListSetup(ThemeVM additor)
-        {
-            base.ListSetup(additor);
-            Items.Options.Add(new StateBlock<ThemeVM>(Numerable.Collection(Items), ref _numeration));
-        }
-
-        private readonly Topic _topic;
+        private Topic _topic;
 
         public ushort No
         {
@@ -56,18 +71,17 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public override ushort Hours
+        public ushort Hours
         {
             get => _topic.Hours;
             set
             {
                 _topic.Hours = value;
                 OnPropertyChanged();
-                Items.UpdateHead(nameof(Hours));
             }
         }
 
-        public PlanVM<TopicVM> Parent { get; }
+        public ThemePlanVM Parent { get; private set; }
         public ICommand RemoveCommand { get; }
 
         public TopicVM Copy()

@@ -1,49 +1,30 @@
 ﻿using ControlMaterials.Total;
-using ControlMaterials.Total.Collections;
 
 namespace Wisdom.ViewModel.Collections.Features.Numeration
 {
-    public class AutoNumeration<T> : OnlyNewNumeration<T> where T : INumerable, IChangeable
+    public class AutoNumeration<T, TParent> : OnlyNewNumeration<T, TParent>
+        where T : INumerable, IChangeable, ICloneable<T>
+        where TParent : ICollectionContainer<T>, ICloneable<TParent>
     {
         private bool _isCalculating;
 
-        public AutoNumeration(IOptionableCollection<T> items) :
-            base(items)
+        public AutoNumeration()
         {
             _isCalculating = false;
         }
 
-        public override void Remove(T item)
+        public override void Remove(T item, TParent parent)
         {
             if (_isCalculating)
                 return;
 
             _isCalculating = true;
-            for (ushort i = item.No; i < Items.Count; i++)
+            for (ushort i = item.No; i < parent.Items.Count; i++)
             {
-                Items[i].Number.Decrement(1);
+                parent.Items[i].Number.Decrement(1);
             }
-            Items.Additor.Number.Decrement(1);
+            parent.Items.Additor.Number.Decrement(1);
             _isCalculating = false;
-        }
-
-        public override void Recalculate()
-        {
-            if (_isCalculating)
-                return;
-
-            _isCalculating = true;
-            for (ushort i = 0; i < Items.Count; i++)
-            {
-                ushort no = i;
-                Items[i].Number.SetNumber(no);
-            }
-            _isCalculating = false;
-        }
-
-        public override void Setup()
-        {
-            Recalculate();
         }
     }
 }

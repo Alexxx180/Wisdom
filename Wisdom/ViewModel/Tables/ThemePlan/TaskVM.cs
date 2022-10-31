@@ -11,10 +11,19 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
     {
         public Numerable Number { get; }
 
+        public TaskVM() { }
+
+        public TaskVM(IParent<TaskVM> parent)
+        {
+            _task = new Topic(1, "Изучение местных достопримечательностей в Константинополе на оценку", 0);
+            Parent = parent;
+            Number = new Numerable(this);
+        }
+
         public TaskVM(IParent<TaskVM> parent, Topic task)
         {
-            Parent = parent;
             _task = task;
+            Parent = parent;
 
             Number = new Numerable(this);
 

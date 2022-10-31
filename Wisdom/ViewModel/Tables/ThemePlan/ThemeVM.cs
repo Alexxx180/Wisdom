@@ -1,6 +1,8 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
 using System.Windows.Input;
+using Wisdom.ViewModel.Collections;
+using Wisdom.ViewModel.Collections.Features;
 using Wisdom.ViewModel.Collections.Features.Count;
 using Wisdom.ViewModel.Collections.Features.Count.Highlighting;
 using Wisdom.ViewModel.Collections.Features.Numeration;
@@ -8,26 +10,47 @@ using Wisdom.ViewModel.Commands;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class ThemeVM : PlanVM<WorkVM>, INo, INumerable, ICount, IHighlighting, ICloneable<ThemeVM>, IPlan
+    public class ThemeVM : PlanVM<WorkVM, ThemeVM, FNode<ThemeVM, WorkVM, StateGroup<TaskVM, WorkVM>>>,
+        INo, INumerable, IHighlighting, ICloneable<ThemeVM>, ICollectionContainer<WorkVM>, ICount, IParent<WorkVM>, IHours
     {
+        private protected override ThemeVM _this => this;
+
         public Numerable Number { get; private set; }
 
-        public ThemeVM(PlanVM<ThemeVM> parent, Theme theme) : base(parent)
+        public ThemeVM() { }
+
+        public ThemeVM(TopicVM parent)
+        {
+            Set(parent, new Theme(1, "ВАЖНОЕ Изучение местных достопримечательностей в Константинополе на оценку", 1, 2));
+        }
+
+        public ThemeVM(TopicVM parent, Theme theme)
+        {
+            Set(parent, theme);
+            SetItems(new WorkVM(this));
+
+            RemoveCommand = new RelayCommand
+                (argument => Parent.Remove((ThemeVM)argument));
+
+            //AddChain(5);
+        }
+
+        private protected void Set(TopicVM parent, Theme theme)
         {
             _theme = theme;
             Parent = parent;
-            ListSetup(new WorkVM(this, new Work()));
-            RemoveCommand = new RelayCommand
-                (argument => Parent.Remove((ThemeVM)argument));
+            SetFeatures(this);
+            SetNode(parent.Node.List);
+            OnPropertyChanged(nameof(_this));
         }
 
-        private protected override void Features()
+        private protected override void SetFeatures(ThemeVM item)
         {
-            base.Features();
-            Number = new Numerable(this);
+            base.SetFeatures(item);
+            Number = new Numerable(item);
         }
 
-        private readonly Theme _theme;
+        private Theme _theme;
 
         public ushort No
         {
@@ -49,14 +72,13 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
             }
         }
 
-        public override ushort Hours
+        public ushort Hours
         {
             get => _theme.Hours;
             set
             {
                 _theme.Hours = value;
                 OnPropertyChanged();
-                Items.UpdateHead(nameof(Hours));
             }
         }
 
@@ -81,7 +103,8 @@ namespace Wisdom.ViewModel.Tables.ThemePlan
         //    }
         //}
 
-        public PlanVM<ThemeVM> Parent { get; }
+        public TopicVM Parent { get; private set; }
+
         public ICommand RemoveCommand { get; }
 
         public ThemeVM Copy()

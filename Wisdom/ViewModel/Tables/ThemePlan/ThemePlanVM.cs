@@ -1,42 +1,46 @@
 ﻿using ControlMaterials.Tables.ThemePlan;
 using ControlMaterials.Total;
+using Wisdom.ViewModel.Collections;
 using Wisdom.ViewModel.Collections.Features;
 using Wisdom.ViewModel.Collections.Features.Count;
 using Wisdom.ViewModel.Collections.Features.Count.Highlighting;
-using Wisdom.ViewModel.Collections.Features.Numeration;
 
 namespace Wisdom.ViewModel.Tables.ThemePlan
 {
-    public class ThemePlanVM : PlanVM<TopicVM>, ICount, IHighlighting, ICloneable<ThemePlanVM>, IPlan
+    public class ThemePlanVM : PlanVM<TopicVM, ThemePlanVM,
+        FNode<ThemePlanVM, TopicVM, FNode<TopicVM, ThemeVM, FNode<ThemeVM, WorkVM, StateGroup<TaskVM, WorkVM>>>>>,
+        ICount, IHighlighting, ICloneable<ThemePlanVM>, ICollectionContainer<TopicVM>, IHours
     {
-        public ThemePlanVM(Plan plan) : base(0, 0, 0)
+        private protected override ThemePlanVM _this => this;
+
+        public ThemePlanVM(Plan plan,
+            FNode<ThemePlanVM, TopicVM, FNode<TopicVM, ThemeVM,
+                FNode<ThemeVM, WorkVM, StateGroup<TaskVM, WorkVM>>>> features)
         {
             _plan = plan;
-            ListSetup(new TopicVM(this, new Topic()));
-        }
+            SetFeatures(this);
+            SetNode(features);
+            OnPropertyChanged(nameof(_this));
+            SetItems(new TopicVM(this));
 
-        private protected override void ListSetup(TopicVM additor)
-        {
-            base.ListSetup(additor);
-            Items.Options.Add(new StateBlock<TopicVM>(Numerable.Collection(Items), ref _numeration));
+            //AddChain(5);
         }
 
         private readonly Plan _plan;
 
-        public override ushort Hours
+        public ushort Hours
         {
             get => _plan.Sum;
             set
             {
                 _plan.Sum = value;
                 OnPropertyChanged();
-                Items.UpdateHead(nameof(Hours));
             }
         }
 
         public ThemePlanVM Copy()
         {
-            return new ThemePlanVM(_plan.Copy());
+            return new ThemePlanVM(_plan.Copy(), Node);
         }
     }
 }

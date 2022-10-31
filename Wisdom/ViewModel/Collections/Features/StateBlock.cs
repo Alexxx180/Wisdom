@@ -1,16 +1,15 @@
 ﻿using ControlMaterials.Total;
-using ControlMaterials.Total.Collections;
 using System.Collections.Generic;
-using static Wisdom.ViewModel.DisciplineProgramViewModel;
 
 namespace Wisdom.ViewModel.Collections.Features
 {
-    public class StateBlock<T> : PropertyChangedVM where T : IChangeable
+    public class StateBlock<T, TParent> : PropertyChangedVM, IStateBlock<T, TParent> where T : IChangeable
     {
-        public List<State<T>> States { get; }
+        private FeatureSetting _state;
+        public List<State<T, TParent>> States { get; internal set; }
 
-        private State<T> _current;
-        public State<T> Current
+        private State<T, TParent> _current;
+        public State<T, TParent> Current
         {
             get => _current;
             set
@@ -23,14 +22,20 @@ namespace Wisdom.ViewModel.Collections.Features
 
         public StateBlock()
         {
-            States = new List<State<T>>();
+            States = new List<State<T, TParent>>();
         }
 
-        public StateBlock(List<State<T>> states, ref FeatureSetting state)
+        public StateBlock(List<State<T, TParent>> states, ref FeatureSetting state)
         {
+            _state = state;
             States = states;
             state.Feature += Select;
             Select(state.Setting);
+        }
+
+        public void Unsubscribe()
+        {
+            _state.Feature -= Select;
         }
 
         public void Select(int selection)
@@ -38,21 +43,12 @@ namespace Wisdom.ViewModel.Collections.Features
             Current = States[selection];
         }
 
-        public void Add(T item)
-        {
-            Current.Add(item);
-        }
+        public void Add(T item, TParent parent) => Current.Add(item, parent);
 
-        public void Remove(T item)
-        {
-            Current.Remove(item);
-        }
+        public void Remove(T item, TParent parent) => Current.Remove(item, parent);
 
-        public void Recalculate()
-        {
-            Current.Recalculate();
-        }
-
+        public void Recalculate(T item, TParent parent) => Current.Recalculate(item, parent);
+        
         public string PropertyName => Current.PropertyName;
     }
 }
